@@ -12,6 +12,22 @@
 		502A8CB81BB80EAC0064E0DA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 502A8CB61BB80EAC0064E0DA /* Main.storyboard */; };
 		502A8CBA1BB80EAC0064E0DA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 502A8CB91BB80EAC0064E0DA /* Assets.xcassets */; };
 		502A8CBD1BB80EAC0064E0DA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 502A8CBB1BB80EAC0064E0DA /* LaunchScreen.storyboard */; };
+		502A8CC91BB80FC40064E0DA /* GuillotineMenuSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502A8CC51BB80FC40064E0DA /* GuillotineMenuSegue.swift */; settings = {ASSET_TAGS = (); }; };
+		502A8CCA1BB80FC40064E0DA /* GuillotineMenuTransitionAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502A8CC61BB80FC40064E0DA /* GuillotineMenuTransitionAnimation.swift */; settings = {ASSET_TAGS = (); }; };
+		502A8CCB1BB80FC40064E0DA /* GuillotineMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502A8CC71BB80FC40064E0DA /* GuillotineMenuViewController.swift */; settings = {ASSET_TAGS = (); }; };
+		502A8CCC1BB80FC40064E0DA /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502A8CC81BB80FC40064E0DA /* UIViewExtension.swift */; settings = {ASSET_TAGS = (); }; };
+		502A8CDF1BB822410064E0DA /* MenuWhite.png in Resources */ = {isa = PBXBuildFile; fileRef = 502A8CD91BB822410064E0DA /* MenuWhite.png */; settings = {ASSET_TAGS = (); }; };
+		502A8CE01BB822410064E0DA /* MenuWhite@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 502A8CDA1BB822410064E0DA /* MenuWhite@2x.png */; settings = {ASSET_TAGS = (); }; };
+		502A8CE11BB822410064E0DA /* MenuWhite@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 502A8CDB1BB822410064E0DA /* MenuWhite@3x.png */; settings = {ASSET_TAGS = (); }; };
+		50FA4B7C1BB9384C00BC8958 /* MenuBlack.png in Resources */ = {isa = PBXBuildFile; fileRef = 50FA4B791BB9384C00BC8958 /* MenuBlack.png */; settings = {ASSET_TAGS = (); }; };
+		50FA4B7D1BB9384C00BC8958 /* MenuBlack@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 50FA4B7A1BB9384C00BC8958 /* MenuBlack@2x.png */; settings = {ASSET_TAGS = (); }; };
+		50FA4B7E1BB9384C00BC8958 /* MenuBlack@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 50FA4B7B1BB9384C00BC8958 /* MenuBlack@3x.png */; settings = {ASSET_TAGS = (); }; };
+		50FA4B871BB9474300BC8958 /* 0.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 50FA4B861BB9474300BC8958 /* 0.jpg */; settings = {ASSET_TAGS = (); }; };
+		50FD7F501BB8FFF600ABEC38 /* CategoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50FD7F4F1BB8FFF600ABEC38 /* CategoryCollectionViewCell.swift */; settings = {ASSET_TAGS = (); }; };
+		50FD7F591BB9089300ABEC38 /* 2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 50FD7F581BB9089300ABEC38 /* 2.jpg */; settings = {ASSET_TAGS = (); }; };
+		50FD7F5B1BB909E100ABEC38 /* 1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 50FD7F5A1BB909E100ABEC38 /* 1.jpg */; settings = {ASSET_TAGS = (); }; };
+		50FD7F5D1BB90A8900ABEC38 /* 3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 50FD7F5C1BB90A8900ABEC38 /* 3.jpg */; settings = {ASSET_TAGS = (); }; };
+		50FD7F5F1BB90AF500ABEC38 /* 4.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 50FD7F5E1BB90AF500ABEC38 /* 4.jpg */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +38,22 @@
 		502A8CB91BB80EAC0064E0DA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		502A8CBC1BB80EAC0064E0DA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		502A8CBE1BB80EAC0064E0DA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		502A8CC51BB80FC40064E0DA /* GuillotineMenuSegue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GuillotineMenuSegue.swift; sourceTree = "<group>"; };
+		502A8CC61BB80FC40064E0DA /* GuillotineMenuTransitionAnimation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GuillotineMenuTransitionAnimation.swift; sourceTree = "<group>"; };
+		502A8CC71BB80FC40064E0DA /* GuillotineMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GuillotineMenuViewController.swift; sourceTree = "<group>"; };
+		502A8CC81BB80FC40064E0DA /* UIViewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
+		502A8CD91BB822410064E0DA /* MenuWhite.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MenuWhite.png; sourceTree = "<group>"; };
+		502A8CDA1BB822410064E0DA /* MenuWhite@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MenuWhite@2x.png"; sourceTree = "<group>"; };
+		502A8CDB1BB822410064E0DA /* MenuWhite@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MenuWhite@3x.png"; sourceTree = "<group>"; };
+		50FA4B791BB9384C00BC8958 /* MenuBlack.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MenuBlack.png; sourceTree = "<group>"; };
+		50FA4B7A1BB9384C00BC8958 /* MenuBlack@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MenuBlack@2x.png"; sourceTree = "<group>"; };
+		50FA4B7B1BB9384C00BC8958 /* MenuBlack@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MenuBlack@3x.png"; sourceTree = "<group>"; };
+		50FA4B861BB9474300BC8958 /* 0.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 0.jpg; sourceTree = "<group>"; };
+		50FD7F4F1BB8FFF600ABEC38 /* CategoryCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryCollectionViewCell.swift; sourceTree = "<group>"; };
+		50FD7F581BB9089300ABEC38 /* 2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 2.jpg; sourceTree = "<group>"; };
+		50FD7F5A1BB909E100ABEC38 /* 1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 1.jpg; sourceTree = "<group>"; };
+		50FD7F5C1BB90A8900ABEC38 /* 3.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 3.jpg; sourceTree = "<group>"; };
+		50FD7F5E1BB90AF500ABEC38 /* 4.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 4.jpg; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,14 +86,94 @@
 		502A8CB11BB80EAC0064E0DA /* Blagaprint */ = {
 			isa = PBXGroup;
 			children = (
-				502A8CB21BB80EAC0064E0DA /* AppDelegate.swift */,
-				502A8CB41BB80EAC0064E0DA /* ViewController.swift */,
+				50FD7F521BB903C200ABEC38 /* AppDelegate */,
+				50FD7F531BB903CC00ABEC38 /* ViewControllers */,
 				502A8CB61BB80EAC0064E0DA /* Main.storyboard */,
+				50FD7F511BB903B700ABEC38 /* View */,
 				502A8CB91BB80EAC0064E0DA /* Assets.xcassets */,
 				502A8CBB1BB80EAC0064E0DA /* LaunchScreen.storyboard */,
 				502A8CBE1BB80EAC0064E0DA /* Info.plist */,
+				502A8CD41BB8120A0064E0DA /* Resources */,
+				502A8CCD1BB811EE0064E0DA /* ThirdParty */,
 			);
 			path = Blagaprint;
+			sourceTree = "<group>";
+		};
+		502A8CC41BB80FC40064E0DA /* GuillotineMenu */ = {
+			isa = PBXGroup;
+			children = (
+				502A8CC51BB80FC40064E0DA /* GuillotineMenuSegue.swift */,
+				502A8CC61BB80FC40064E0DA /* GuillotineMenuTransitionAnimation.swift */,
+				502A8CC71BB80FC40064E0DA /* GuillotineMenuViewController.swift */,
+				502A8CC81BB80FC40064E0DA /* UIViewExtension.swift */,
+			);
+			path = GuillotineMenu;
+			sourceTree = "<group>";
+		};
+		502A8CCD1BB811EE0064E0DA /* ThirdParty */ = {
+			isa = PBXGroup;
+			children = (
+				502A8CC41BB80FC40064E0DA /* GuillotineMenu */,
+			);
+			name = ThirdParty;
+			sourceTree = "<group>";
+		};
+		502A8CD41BB8120A0064E0DA /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				50FA4B7F1BB9385500BC8958 /* CategoriesImages */,
+				502A8CD51BB8126E0064E0DA /* NavigationBar */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		502A8CD51BB8126E0064E0DA /* NavigationBar */ = {
+			isa = PBXGroup;
+			children = (
+				502A8CD91BB822410064E0DA /* MenuWhite.png */,
+				502A8CDA1BB822410064E0DA /* MenuWhite@2x.png */,
+				502A8CDB1BB822410064E0DA /* MenuWhite@3x.png */,
+				50FA4B791BB9384C00BC8958 /* MenuBlack.png */,
+				50FA4B7A1BB9384C00BC8958 /* MenuBlack@2x.png */,
+				50FA4B7B1BB9384C00BC8958 /* MenuBlack@3x.png */,
+			);
+			name = NavigationBar;
+			sourceTree = "<group>";
+		};
+		50FA4B7F1BB9385500BC8958 /* CategoriesImages */ = {
+			isa = PBXGroup;
+			children = (
+				50FA4B861BB9474300BC8958 /* 0.jpg */,
+				50FD7F5A1BB909E100ABEC38 /* 1.jpg */,
+				50FD7F581BB9089300ABEC38 /* 2.jpg */,
+				50FD7F5C1BB90A8900ABEC38 /* 3.jpg */,
+				50FD7F5E1BB90AF500ABEC38 /* 4.jpg */,
+			);
+			name = CategoriesImages;
+			sourceTree = "<group>";
+		};
+		50FD7F511BB903B700ABEC38 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				50FD7F4F1BB8FFF600ABEC38 /* CategoryCollectionViewCell.swift */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		50FD7F521BB903C200ABEC38 /* AppDelegate */ = {
+			isa = PBXGroup;
+			children = (
+				502A8CB21BB80EAC0064E0DA /* AppDelegate.swift */,
+			);
+			name = AppDelegate;
+			sourceTree = "<group>";
+		};
+		50FD7F531BB903CC00ABEC38 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				502A8CB41BB80EAC0064E0DA /* ViewController.swift */,
+			);
+			name = ViewControllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -121,9 +233,20 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				50FD7F5F1BB90AF500ABEC38 /* 4.jpg in Resources */,
 				502A8CBD1BB80EAC0064E0DA /* LaunchScreen.storyboard in Resources */,
 				502A8CBA1BB80EAC0064E0DA /* Assets.xcassets in Resources */,
+				502A8CE01BB822410064E0DA /* MenuWhite@2x.png in Resources */,
+				50FD7F5B1BB909E100ABEC38 /* 1.jpg in Resources */,
+				50FA4B7D1BB9384C00BC8958 /* MenuBlack@2x.png in Resources */,
+				502A8CE11BB822410064E0DA /* MenuWhite@3x.png in Resources */,
+				50FA4B7C1BB9384C00BC8958 /* MenuBlack.png in Resources */,
+				50FD7F5D1BB90A8900ABEC38 /* 3.jpg in Resources */,
+				502A8CDF1BB822410064E0DA /* MenuWhite.png in Resources */,
+				50FA4B871BB9474300BC8958 /* 0.jpg in Resources */,
+				50FA4B7E1BB9384C00BC8958 /* MenuBlack@3x.png in Resources */,
 				502A8CB81BB80EAC0064E0DA /* Main.storyboard in Resources */,
+				50FD7F591BB9089300ABEC38 /* 2.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -134,7 +257,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				502A8CCC1BB80FC40064E0DA /* UIViewExtension.swift in Sources */,
+				502A8CC91BB80FC40064E0DA /* GuillotineMenuSegue.swift in Sources */,
 				502A8CB51BB80EAC0064E0DA /* ViewController.swift in Sources */,
+				502A8CCB1BB80FC40064E0DA /* GuillotineMenuViewController.swift in Sources */,
+				502A8CCA1BB80FC40064E0DA /* GuillotineMenuTransitionAnimation.swift in Sources */,
+				50FD7F501BB8FFF600ABEC38 /* CategoryCollectionViewCell.swift in Sources */,
 				502A8CB31BB80EAC0064E0DA /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -283,6 +411,7 @@
 				502A8CC31BB80EAC0064E0DA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
