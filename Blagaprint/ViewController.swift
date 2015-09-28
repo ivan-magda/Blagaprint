@@ -23,10 +23,10 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         
         let navBar = self.navigationController!.navigationBar
-        navBar.barTintColor = UIColor(red: 65.0 / 255.0, green: 62.0 / 255.0, blue: 79.0 / 255.0, alpha: 1)
+        navBar.barTintColor = UIColor(red: 21.0 / 255.0, green: 21.0 / 255.0, blue: 34.0 / 255, alpha: 1)
         navBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
         
-        self.collectionView.backgroundColor = UIColor(red: 44.0 / 255.0, green: 42.0 / 255.0, blue: 54.0 / 255, alpha: 1)
+        self.collectionView.backgroundColor = UIColor(red: 40.0 / 255.0, green: 37.0 / 255.0, blue: 60.0 / 255.0, alpha: 1)
     }
 
 // MARK: - Navigation -
@@ -57,9 +57,9 @@ extension ViewController: UICollectionViewDataSource {
     func collectionView(collectionView: UICollectionView, willDisplayCell cell: UICollectionViewCell, forItemAtIndexPath indexPath: NSIndexPath) {
         let collectionViewCell: CategoryCollectionViewCell = cell as! CategoryCollectionViewCell
         
-        collectionViewCell.layer.cornerRadius = 5
+        //collectionViewCell.layer.cornerRadius = 5
         collectionViewCell.categoryImageView?.image = UIImage(named: "\(indexPath.row).jpg")
-        collectionViewCell.categoryNameLabel.text = categories[indexPath.row]
+        collectionViewCell.categoryNameLabel.text = categories[indexPath.row].uppercaseString
     }
 }
 
