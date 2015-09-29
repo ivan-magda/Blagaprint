@@ -175,7 +175,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1P1-Ji-bLO" customClass="SwiftPages" customModule="Blagaprint" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
                                 <animations/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
                         </subviews>
                         <animations/>
@@ -183,6 +183,7 @@
                             <constraint firstItem="1P1-Ji-bLO" firstAttribute="top" secondItem="sb9-sV-MX8" secondAttribute="bottom" id="1nE-jR-yyV"/>
                             <constraint firstItem="1P1-Ji-bLO" firstAttribute="top" secondItem="sb9-sV-MX8" secondAttribute="bottom" id="5d1-3i-YG3"/>
                             <constraint firstItem="1P1-Ji-bLO" firstAttribute="centerX" secondItem="34h-uu-dPL" secondAttribute="centerX" id="Mrh-e5-2bn"/>
+                            <constraint firstAttribute="bottomMargin" secondItem="1P1-Ji-bLO" secondAttribute="bottom" id="PKd-v6-sdJ"/>
                             <constraint firstItem="oYo-SD-tNI" firstAttribute="top" secondItem="1P1-Ji-bLO" secondAttribute="bottom" id="Uxo-kn-kGA"/>
                             <constraint firstAttribute="topMargin" secondItem="1P1-Ji-bLO" secondAttribute="top" id="j4o-uX-QvS"/>
                             <constraint firstItem="1P1-Ji-bLO" firstAttribute="width" secondItem="34h-uu-dPL" secondAttribute="width" id="kqo-Dd-7jf"/>
@@ -191,6 +192,7 @@
                             <mask key="constraints">
                                 <exclude reference="1nE-jR-yyV"/>
                                 <exclude reference="5d1-3i-YG3"/>
+                                <exclude reference="Uxo-kn-kGA"/>
                             </mask>
                         </variation>
                     </view>
@@ -215,26 +217,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="L0a-HM-Qdz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="311" y="307"/>
-        </scene>
-        <!--View Controller-->
-        <scene sceneID="5jg-k0-LTu">
-            <objects>
-                <viewController restorationIdentifier="TestViewController" storyboardIdentifier="TestViewController" id="94p-Ly-bha" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="qCU-Fa-mS7"/>
-                        <viewControllerLayoutGuide type="bottom" id="ush-QV-3ug"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="tAb-Da-2Wz">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <animations/>
-                        <color key="backgroundColor" red="0.15686274509803921" green="0.14509803921568626" blue="0.23529411764705882" alpha="1" colorSpace="calibratedRGB"/>
-                    </view>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="4rQ-jS-fsj" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="732" y="1041"/>
         </scene>
     </scenes>
     <resources>

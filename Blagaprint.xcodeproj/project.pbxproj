@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5017B82E1BBAE45400CC8082 /* SwiftPages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5017B82D1BBAE45400CC8082 /* SwiftPages.swift */; settings = {ASSET_TAGS = (); }; };
 		502A8CB31BB80EAC0064E0DA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502A8CB21BB80EAC0064E0DA /* AppDelegate.swift */; };
 		502A8CB51BB80EAC0064E0DA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502A8CB41BB80EAC0064E0DA /* ViewController.swift */; };
 		502A8CB81BB80EAC0064E0DA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 502A8CB61BB80EAC0064E0DA /* Main.storyboard */; };
@@ -19,8 +20,8 @@
 		502A8CDF1BB822410064E0DA /* MenuWhite.png in Resources */ = {isa = PBXBuildFile; fileRef = 502A8CD91BB822410064E0DA /* MenuWhite.png */; settings = {ASSET_TAGS = (); }; };
 		502A8CE01BB822410064E0DA /* MenuWhite@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 502A8CDA1BB822410064E0DA /* MenuWhite@2x.png */; settings = {ASSET_TAGS = (); }; };
 		502A8CE11BB822410064E0DA /* MenuWhite@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 502A8CDB1BB822410064E0DA /* MenuWhite@3x.png */; settings = {ASSET_TAGS = (); }; };
+		508503041BBAADB600152131 /* AppAppearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508503031BBAADB600152131 /* AppAppearance.swift */; settings = {ASSET_TAGS = (); }; };
 		50BE470B1BBA253500724119 /* SwiftPagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50BE470A1BBA253500724119 /* SwiftPagesViewController.swift */; settings = {ASSET_TAGS = (); }; };
-		50BE470D1BBA291F00724119 /* SwiftPages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50BE470C1BBA291F00724119 /* SwiftPages.swift */; settings = {ASSET_TAGS = (); }; };
 		50BE47111BBA388400724119 /* MenuMalibu.png in Resources */ = {isa = PBXBuildFile; fileRef = 50BE470E1BBA388400724119 /* MenuMalibu.png */; settings = {ASSET_TAGS = (); }; };
 		50BE47121BBA388400724119 /* MenuMalibu@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 50BE470F1BBA388400724119 /* MenuMalibu@2x.png */; settings = {ASSET_TAGS = (); }; };
 		50BE47131BBA388400724119 /* MenuMalibu@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 50BE47101BBA388400724119 /* MenuMalibu@3x.png */; settings = {ASSET_TAGS = (); }; };
@@ -33,6 +34,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5017B82D1BBAE45400CC8082 /* SwiftPages.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftPages.swift; sourceTree = "<group>"; };
 		502A8CAF1BB80EAC0064E0DA /* Blagaprint.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Blagaprint.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		502A8CB21BB80EAC0064E0DA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		502A8CB41BB80EAC0064E0DA /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -47,8 +49,8 @@
 		502A8CD91BB822410064E0DA /* MenuWhite.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MenuWhite.png; sourceTree = "<group>"; };
 		502A8CDA1BB822410064E0DA /* MenuWhite@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MenuWhite@2x.png"; sourceTree = "<group>"; };
 		502A8CDB1BB822410064E0DA /* MenuWhite@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MenuWhite@3x.png"; sourceTree = "<group>"; };
+		508503031BBAADB600152131 /* AppAppearance.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppAppearance.swift; sourceTree = "<group>"; };
 		50BE470A1BBA253500724119 /* SwiftPagesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftPagesViewController.swift; sourceTree = "<group>"; };
-		50BE470C1BBA291F00724119 /* SwiftPages.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftPages.swift; sourceTree = "<group>"; };
 		50BE470E1BBA388400724119 /* MenuMalibu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MenuMalibu.png; sourceTree = "<group>"; };
 		50BE470F1BBA388400724119 /* MenuMalibu@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MenuMalibu@2x.png"; sourceTree = "<group>"; };
 		50BE47101BBA388400724119 /* MenuMalibu@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MenuMalibu@3x.png"; sourceTree = "<group>"; };
@@ -94,6 +96,7 @@
 				50FD7F531BB903CC00ABEC38 /* ViewControllers */,
 				502A8CB61BB80EAC0064E0DA /* Main.storyboard */,
 				50FD7F511BB903B700ABEC38 /* View */,
+				508503051BBAADCF00152131 /* Utility */,
 				502A8CB91BB80EAC0064E0DA /* Assets.xcassets */,
 				502A8CBB1BB80EAC0064E0DA /* LaunchScreen.storyboard */,
 				502A8CBE1BB80EAC0064E0DA /* Info.plist */,
@@ -145,10 +148,18 @@
 			name = NavigationBar;
 			sourceTree = "<group>";
 		};
+		508503051BBAADCF00152131 /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				508503031BBAADB600152131 /* AppAppearance.swift */,
+			);
+			name = Utility;
+			sourceTree = "<group>";
+		};
 		50BE47091BBA238000724119 /* SwiftPages */ = {
 			isa = PBXGroup;
 			children = (
-				50BE470C1BBA291F00724119 /* SwiftPages.swift */,
+				5017B82D1BBAE45400CC8082 /* SwiftPages.swift */,
 			);
 			name = SwiftPages;
 			sourceTree = "<group>";
@@ -273,13 +284,14 @@
 			files = (
 				502A8CCC1BB80FC40064E0DA /* UIViewExtension.swift in Sources */,
 				50BE470B1BBA253500724119 /* SwiftPagesViewController.swift in Sources */,
-				50BE470D1BBA291F00724119 /* SwiftPages.swift in Sources */,
 				502A8CC91BB80FC40064E0DA /* GuillotineMenuSegue.swift in Sources */,
 				502A8CB51BB80EAC0064E0DA /* ViewController.swift in Sources */,
 				502A8CCB1BB80FC40064E0DA /* GuillotineMenuViewController.swift in Sources */,
 				502A8CCA1BB80FC40064E0DA /* GuillotineMenuTransitionAnimation.swift in Sources */,
+				5017B82E1BBAE45400CC8082 /* SwiftPages.swift in Sources */,
 				50FD7F501BB8FFF600ABEC38 /* CategoryCollectionViewCell.swift in Sources */,
 				502A8CB31BB80EAC0064E0DA /* AppDelegate.swift in Sources */,
+				508503041BBAADB600152131 /* AppAppearance.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

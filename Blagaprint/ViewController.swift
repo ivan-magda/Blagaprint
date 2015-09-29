@@ -10,17 +10,17 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    let kCollectionViewCellReuseIdentifier = "CollectionViewCell"
-    
     @IBOutlet weak var collectionView: UICollectionView!
     
-    let categories: [String]! = ["Именные чехлы", "Именные футболки", "Печать на кружках", "Фотопечать", "Копи-услуги"]
+    private let kCollectionViewCellReuseIdentifier = "CollectionViewCell"
+    
+    private let categories: [String]! = ["Именные чехлы", "Именные футболки", "Печать на кружках", "Фотопечать", "Копи-услуги"]
     
 // MARK: - ViewController lifecycle -
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.collectionView.backgroundColor = UIColor(red: 40.0 / 255.0, green: 37.0 / 255.0, blue: 60.0 / 255.0, alpha: 1)
+        self.collectionView.backgroundColor = AppAppearance.ebonyClayColor
     }
 }
 
@@ -32,14 +32,11 @@ extension ViewController: UICollectionViewDataSource {
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell: CategoryCollectionViewCell = collectionView.dequeueReusableCellWithReuseIdentifier(kCollectionViewCellReuseIdentifier, forIndexPath: indexPath) as! CategoryCollectionViewCell
-        return cell
+        return collectionView.dequeueReusableCellWithReuseIdentifier(kCollectionViewCellReuseIdentifier, forIndexPath: indexPath) as! CategoryCollectionViewCell
     }
     
     func collectionView(collectionView: UICollectionView, willDisplayCell cell: UICollectionViewCell, forItemAtIndexPath indexPath: NSIndexPath) {
         let collectionViewCell: CategoryCollectionViewCell = cell as! CategoryCollectionViewCell
-        
-        //collectionViewCell.layer.cornerRadius = 5
         collectionViewCell.categoryImageView?.image = UIImage(named: "\(indexPath.row).jpg")
         collectionViewCell.categoryNameLabel.text = categories[indexPath.row].uppercaseString
     }

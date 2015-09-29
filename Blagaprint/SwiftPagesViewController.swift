@@ -9,6 +9,8 @@
 import UIKit
 
 class SwiftPagesViewController: UIViewController {
+    
+    private let kGuillotineMenuSegueIdentifier = "MenuSegue"
 
     @IBOutlet weak var swiftPagesView: SwiftPages!
     @IBOutlet weak var barButton: UIButton!
@@ -21,29 +23,32 @@ class SwiftPagesViewController: UIViewController {
         setUpSwiftPages()
     }
     
+// MARK: - SwiftPages -
+    
     func setUpSwiftPages() {
         //Initiation
-        let VCIDs : [String] = ["ViewController", "TestViewController"]
+        let VCIDs : [String] = ["ViewController", "ViewController"]
         let buttonTitles : [String] = ["Индивидуальное", "Сервисные Услуги"]
         
         //Customization
         swiftPagesView.setOriginY(0.0)
-        swiftPagesView.setTopBarBackground(self.navigationController!.navigationBar.barTintColor!)
-        swiftPagesView.enableBarShadow(false)
-        swiftPagesView.setContainerViewBackground(UIColor(red: 40.0 / 255.0, green: 37.0 / 255.0, blue: 60.0 / 255.0, alpha: 1))
+        swiftPagesView.setTopBarHeight(44.0)
+        swiftPagesView.setAnimatedBarHeight(2.0)
+        swiftPagesView.setTopBarBackground(AppAppearance.ebonyClayColor)
+        swiftPagesView.setContainerViewBackground(AppAppearance.ebonyClayColor)
         swiftPagesView.setButtonsTextFontAndSize(UIFont.systemFontOfSize(14.0))
-        
-        let malibu = UIColor(red:89.0 / 255.0, green:189.0 / 255.0, blue:247.0 / 255.0, alpha:1)
-        swiftPagesView.setButtonsTextColor(malibu)
-        swiftPagesView.setAnimatedBarColor(malibu)
-        
+        swiftPagesView.setButtonsTextColor(AppAppearance.malibuColor)
+        swiftPagesView.setAnimatedBarColor(AppAppearance.malibuColor)
+        swiftPagesView.enableBarShadow(true)
+        swiftPagesView.enableButtonsWithImages(false)
+        //Initialize
         swiftPagesView.initializeWithVCIDsArrayAndButtonTitlesArray(VCIDs, buttonTitlesArray: buttonTitles)
     }
     
 // MARK: - Navigation -
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == "MenuSegue" {
+        if segue.identifier == kGuillotineMenuSegueIdentifier {
             let destinationVC = segue.destinationViewController as! GuillotineMenuViewController
             destinationVC.hostNavigationBarHeight = CGRectGetHeight(self.navigationController!.navigationBar.frame)
             destinationVC.hostTitleText = self.navigationItem.title
