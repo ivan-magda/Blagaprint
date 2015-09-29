@@ -12,7 +12,6 @@ class ViewController: UIViewController {
     
     let kCollectionViewCellReuseIdentifier = "CollectionViewCell"
     
-    @IBOutlet weak var barButton: UIButton!
     @IBOutlet weak var collectionView: UICollectionView!
     
     let categories: [String]! = ["Именные чехлы", "Именные футболки", "Печать на кружках", "Фотопечать", "Копи-услуги"]
@@ -21,24 +20,7 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        let navBar = self.navigationController!.navigationBar
-        navBar.barTintColor = UIColor(red: 21.0 / 255.0, green: 21.0 / 255.0, blue: 34.0 / 255, alpha: 1)
-        navBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
-        
         self.collectionView.backgroundColor = UIColor(red: 40.0 / 255.0, green: 37.0 / 255.0, blue: 60.0 / 255.0, alpha: 1)
-    }
-
-// MARK: - Navigation -
-    
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == "MenuSegue" {
-            let destinationVC = segue.destinationViewController as! GuillotineMenuViewController
-            destinationVC.hostNavigationBarHeight = CGRectGetHeight(self.navigationController!.navigationBar.frame)
-            destinationVC.hostTitleText = self.navigationItem.title
-            destinationVC.view!.backgroundColor = self.navigationController!.navigationBar.barTintColor
-            destinationVC.setMenuButtonWithImage(self.barButton.imageView!.image!)
-        }
     }
 }
 

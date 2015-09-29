@@ -2,22 +2,23 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="15B17c" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Vzc-DV-tNv">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--BLAGAPRINT-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Blagaprint" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController restorationIdentifier="ViewController" storyboardIdentifier="ViewController" id="BYZ-38-t0r" customClass="ViewController" customModule="Blagaprint" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="4a9-SX-p1j">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
+                                <rect key="frame" x="0.0" y="20" width="320" height="548"/>
                                 <animations/>
                                 <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="enF-Ep-mgp">
@@ -108,28 +109,15 @@
                             <constraint firstAttribute="trailing" secondItem="4a9-SX-p1j" secondAttribute="trailing" id="ubs-Dj-kLx"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="BLAGAPRINT" id="LkU-gJ-aGe">
-                        <barButtonItem key="leftBarButtonItem" title="Item" id="fN0-0z-lhx">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Mu0-iN-2Zc" userLabel="Menu Button">
-                                <rect key="frame" x="16" y="7" width="20" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <animations/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <state key="normal" image="MenuWhite.png"/>
-                                <connections>
-                                    <segue destination="rnd-Sa-BxE" kind="custom" identifier="MenuSegue" customClass="GuillotineMenuSegue" customModule="Blagaprint" customModuleProvider="target" id="F5f-QY-oJ8"/>
-                                </connections>
-                            </button>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="BLAGAPRINT" id="LkU-gJ-aGe"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
-                        <outlet property="barButton" destination="Mu0-iN-2Zc" id="Knq-Eo-E3f"/>
                         <outlet property="collectionView" destination="4a9-SX-p1j" id="aor-7W-uMx"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="894" y="350"/>
+            <point key="canvasLocation" x="311" y="1041"/>
         </scene>
         <!--Guillotine Menu View Controller-->
         <scene sceneID="sNE-4S-CvL">
@@ -149,7 +137,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="n1i-1T-rYY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1297" y="350"/>
+            <point key="canvasLocation" x="732" y="307"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="VI7-9s-hUt">
@@ -165,16 +153,92 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="8jQ-xS-9ab"/>
+                        <segue destination="2S2-ve-e9p" kind="relationship" relationship="rootViewController" id="swh-vq-Slm"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ubg-mB-8f5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="493" y="350"/>
+            <point key="canvasLocation" x="-100" y="307"/>
+        </scene>
+        <!--BLAGAPRINT-->
+        <scene sceneID="xwR-1P-8CR">
+            <objects>
+                <viewController id="2S2-ve-e9p" customClass="SwiftPagesViewController" customModule="Blagaprint" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="sb9-sV-MX8"/>
+                        <viewControllerLayoutGuide type="bottom" id="oYo-SD-tNI"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="34h-uu-dPL">
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1P1-Ji-bLO" customClass="SwiftPages" customModule="Blagaprint" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
+                                <animations/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                        </subviews>
+                        <animations/>
+                        <constraints>
+                            <constraint firstItem="1P1-Ji-bLO" firstAttribute="top" secondItem="sb9-sV-MX8" secondAttribute="bottom" id="1nE-jR-yyV"/>
+                            <constraint firstItem="1P1-Ji-bLO" firstAttribute="top" secondItem="sb9-sV-MX8" secondAttribute="bottom" id="5d1-3i-YG3"/>
+                            <constraint firstItem="1P1-Ji-bLO" firstAttribute="centerX" secondItem="34h-uu-dPL" secondAttribute="centerX" id="Mrh-e5-2bn"/>
+                            <constraint firstItem="oYo-SD-tNI" firstAttribute="top" secondItem="1P1-Ji-bLO" secondAttribute="bottom" id="Uxo-kn-kGA"/>
+                            <constraint firstAttribute="topMargin" secondItem="1P1-Ji-bLO" secondAttribute="top" id="j4o-uX-QvS"/>
+                            <constraint firstItem="1P1-Ji-bLO" firstAttribute="width" secondItem="34h-uu-dPL" secondAttribute="width" id="kqo-Dd-7jf"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="1nE-jR-yyV"/>
+                                <exclude reference="5d1-3i-YG3"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <navigationItem key="navigationItem" title="BLAGAPRINT" id="UL7-2L-TmX">
+                        <barButtonItem key="leftBarButtonItem" id="4gT-x4-HUZ">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="cFL-nH-O7C">
+                                <rect key="frame" x="16" y="11" width="30" height="22"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <animations/>
+                                <state key="normal" image="MenuMalibu.png"/>
+                                <connections>
+                                    <segue destination="rnd-Sa-BxE" kind="custom" identifier="MenuSegue" customClass="GuillotineMenuSegue" customModule="Blagaprint" customModuleProvider="target" id="wZo-Mb-0no"/>
+                                </connections>
+                            </button>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="barButton" destination="cFL-nH-O7C" id="bFe-sX-jJ0"/>
+                        <outlet property="swiftPagesView" destination="1P1-Ji-bLO" id="tCU-dh-WxL"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="L0a-HM-Qdz" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="311" y="307"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="5jg-k0-LTu">
+            <objects>
+                <viewController restorationIdentifier="TestViewController" storyboardIdentifier="TestViewController" id="94p-Ly-bha" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="qCU-Fa-mS7"/>
+                        <viewControllerLayoutGuide type="bottom" id="ush-QV-3ug"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="tAb-Da-2Wz">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <animations/>
+                        <color key="backgroundColor" red="0.15686274509803921" green="0.14509803921568626" blue="0.23529411764705882" alpha="1" colorSpace="calibratedRGB"/>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4rQ-jS-fsj" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="732" y="1041"/>
         </scene>
     </scenes>
     <resources>
         <image name="0.jpg" width="1280" height="960"/>
-        <image name="MenuWhite.png" width="22" height="22"/>
+        <image name="MenuMalibu.png" width="22" height="22"/>
     </resources>
 </document>
