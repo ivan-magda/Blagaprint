@@ -9,18 +9,21 @@
 import UIKit
 
 class ViewController: UIViewController {
-    
     @IBOutlet weak var collectionView: UICollectionView!
     
     private let kCollectionViewCellReuseIdentifier = "CollectionViewCell"
     
-    private let categories: [String]! = ["Именные чехлы", "Именные футболки", "Печать на кружках", "Фотопечать", "Копи-услуги"]
+    private var categories: [Category]! = Category.seedInitialData()
     
 // MARK: - ViewController lifecycle -
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.collectionView.backgroundColor = AppAppearance.AppColors.ebonyClayColor
+    }
+    
+// MARK: - Navigation -
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
     }
 }
 
@@ -37,8 +40,10 @@ extension ViewController: UICollectionViewDataSource {
     
     func collectionView(collectionView: UICollectionView, willDisplayCell cell: UICollectionViewCell, forItemAtIndexPath indexPath: NSIndexPath) {
         let collectionViewCell: CategoryCollectionViewCell = cell as! CategoryCollectionViewCell
-        collectionViewCell.categoryImageView?.image = UIImage(named: "\(indexPath.row).jpg")
-        collectionViewCell.categoryNameLabel.text = categories[indexPath.row].uppercaseString
+        
+        let category = categories[indexPath.row]
+        collectionViewCell.categoryImageView?.image = category.image
+        collectionViewCell.categoryNameLabel.text = category.name
     }
 }
 

@@ -7,34 +7,34 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		5017B82E1BBAE45400CC8082 /* SwiftPages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5017B82D1BBAE45400CC8082 /* SwiftPages.swift */; settings = {ASSET_TAGS = (); }; };
 		502A8CB31BB80EAC0064E0DA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502A8CB21BB80EAC0064E0DA /* AppDelegate.swift */; };
 		502A8CB51BB80EAC0064E0DA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502A8CB41BB80EAC0064E0DA /* ViewController.swift */; };
 		502A8CB81BB80EAC0064E0DA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 502A8CB61BB80EAC0064E0DA /* Main.storyboard */; };
 		502A8CBA1BB80EAC0064E0DA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 502A8CB91BB80EAC0064E0DA /* Assets.xcassets */; };
 		502A8CBD1BB80EAC0064E0DA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 502A8CBB1BB80EAC0064E0DA /* LaunchScreen.storyboard */; };
-		502A8CC91BB80FC40064E0DA /* GuillotineMenuSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502A8CC51BB80FC40064E0DA /* GuillotineMenuSegue.swift */; settings = {ASSET_TAGS = (); }; };
-		502A8CCA1BB80FC40064E0DA /* GuillotineMenuTransitionAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502A8CC61BB80FC40064E0DA /* GuillotineMenuTransitionAnimation.swift */; settings = {ASSET_TAGS = (); }; };
-		502A8CCB1BB80FC40064E0DA /* GuillotineMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502A8CC71BB80FC40064E0DA /* GuillotineMenuViewController.swift */; settings = {ASSET_TAGS = (); }; };
-		502A8CCC1BB80FC40064E0DA /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502A8CC81BB80FC40064E0DA /* UIViewExtension.swift */; settings = {ASSET_TAGS = (); }; };
 		502A8CDF1BB822410064E0DA /* MenuWhite.png in Resources */ = {isa = PBXBuildFile; fileRef = 502A8CD91BB822410064E0DA /* MenuWhite.png */; settings = {ASSET_TAGS = (); }; };
 		502A8CE01BB822410064E0DA /* MenuWhite@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 502A8CDA1BB822410064E0DA /* MenuWhite@2x.png */; settings = {ASSET_TAGS = (); }; };
 		502A8CE11BB822410064E0DA /* MenuWhite@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 502A8CDB1BB822410064E0DA /* MenuWhite@3x.png */; settings = {ASSET_TAGS = (); }; };
 		508503041BBAADB600152131 /* AppAppearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508503031BBAADB600152131 /* AppAppearance.swift */; settings = {ASSET_TAGS = (); }; };
-		50BE470B1BBA253500724119 /* SwiftPagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50BE470A1BBA253500724119 /* SwiftPagesViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		50BE47111BBA388400724119 /* MenuMalibu.png in Resources */ = {isa = PBXBuildFile; fileRef = 50BE470E1BBA388400724119 /* MenuMalibu.png */; settings = {ASSET_TAGS = (); }; };
 		50BE47121BBA388400724119 /* MenuMalibu@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 50BE470F1BBA388400724119 /* MenuMalibu@2x.png */; settings = {ASSET_TAGS = (); }; };
 		50BE47131BBA388400724119 /* MenuMalibu@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 50BE47101BBA388400724119 /* MenuMalibu@3x.png */; settings = {ASSET_TAGS = (); }; };
-		50FA4B871BB9474300BC8958 /* 0.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 50FA4B861BB9474300BC8958 /* 0.jpg */; settings = {ASSET_TAGS = (); }; };
+		50DD72391BBED313008A9B80 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50DD72381BBED313008A9B80 /* Category.swift */; settings = {ASSET_TAGS = (); }; };
+		50DD723C1BBED66D008A9B80 /* cases.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 50DD723B1BBED66D008A9B80 /* cases.jpg */; settings = {ASSET_TAGS = (); }; };
+		50DD72441BBEDAAA008A9B80 /* cups.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 50DD72431BBEDAAA008A9B80 /* cups.jpg */; settings = {ASSET_TAGS = (); }; };
+		50DD72481BBEDDA5008A9B80 /* plates.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 50DD72451BBEDDA5008A9B80 /* plates.jpg */; settings = {ASSET_TAGS = (); }; };
+		50DD724E1BBEE085008A9B80 /* frames.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 50DD724B1BBEE085008A9B80 /* frames.jpg */; settings = {ASSET_TAGS = (); }; };
+		50DD72541BBEE2D6008A9B80 /* crystals.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 50DD72521BBEE2D6008A9B80 /* crystals.jpg */; settings = {ASSET_TAGS = (); }; };
+		50DD72561BBEE46B008A9B80 /* key_rings_by_3D_printer.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 50DD72551BBEE46B008A9B80 /* key_rings_by_3D_printer.jpg */; settings = {ASSET_TAGS = (); }; };
+		50DD72581BBEE555008A9B80 /* key_ring_with_photo.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 50DD72571BBEE555008A9B80 /* key_ring_with_photo.jpg */; settings = {ASSET_TAGS = (); }; };
+		50DD725F1BBEE774008A9B80 /* clothes.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 50DD725B1BBEE774008A9B80 /* clothes.jpg */; settings = {ASSET_TAGS = (); }; };
+		50DD72681BBEEA44008A9B80 /* 3D_printing.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 50DD72671BBEEA44008A9B80 /* 3D_printing.jpg */; settings = {ASSET_TAGS = (); }; };
+		50DD726E1BBEEB69008A9B80 /* wood_cases.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 50DD726B1BBEEB69008A9B80 /* wood_cases.jpg */; settings = {ASSET_TAGS = (); }; };
 		50FD7F501BB8FFF600ABEC38 /* CategoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50FD7F4F1BB8FFF600ABEC38 /* CategoryCollectionViewCell.swift */; settings = {ASSET_TAGS = (); }; };
-		50FD7F591BB9089300ABEC38 /* 2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 50FD7F581BB9089300ABEC38 /* 2.jpg */; settings = {ASSET_TAGS = (); }; };
-		50FD7F5B1BB909E100ABEC38 /* 1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 50FD7F5A1BB909E100ABEC38 /* 1.jpg */; settings = {ASSET_TAGS = (); }; };
-		50FD7F5D1BB90A8900ABEC38 /* 3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 50FD7F5C1BB90A8900ABEC38 /* 3.jpg */; settings = {ASSET_TAGS = (); }; };
-		50FD7F5F1BB90AF500ABEC38 /* 4.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 50FD7F5E1BB90AF500ABEC38 /* 4.jpg */; settings = {ASSET_TAGS = (); }; };
+		50FD7F5D1BB90A8900ABEC38 /* copy_services.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 50FD7F5C1BB90A8900ABEC38 /* copy_services.jpg */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		5017B82D1BBAE45400CC8082 /* SwiftPages.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftPages.swift; sourceTree = "<group>"; };
 		502A8CAF1BB80EAC0064E0DA /* Blagaprint.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Blagaprint.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		502A8CB21BB80EAC0064E0DA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		502A8CB41BB80EAC0064E0DA /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -42,24 +42,26 @@
 		502A8CB91BB80EAC0064E0DA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		502A8CBC1BB80EAC0064E0DA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		502A8CBE1BB80EAC0064E0DA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		502A8CC51BB80FC40064E0DA /* GuillotineMenuSegue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GuillotineMenuSegue.swift; sourceTree = "<group>"; };
-		502A8CC61BB80FC40064E0DA /* GuillotineMenuTransitionAnimation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GuillotineMenuTransitionAnimation.swift; sourceTree = "<group>"; };
-		502A8CC71BB80FC40064E0DA /* GuillotineMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GuillotineMenuViewController.swift; sourceTree = "<group>"; };
-		502A8CC81BB80FC40064E0DA /* UIViewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
 		502A8CD91BB822410064E0DA /* MenuWhite.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MenuWhite.png; sourceTree = "<group>"; };
 		502A8CDA1BB822410064E0DA /* MenuWhite@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MenuWhite@2x.png"; sourceTree = "<group>"; };
 		502A8CDB1BB822410064E0DA /* MenuWhite@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MenuWhite@3x.png"; sourceTree = "<group>"; };
 		508503031BBAADB600152131 /* AppAppearance.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppAppearance.swift; sourceTree = "<group>"; };
-		50BE470A1BBA253500724119 /* SwiftPagesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftPagesViewController.swift; sourceTree = "<group>"; };
 		50BE470E1BBA388400724119 /* MenuMalibu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MenuMalibu.png; sourceTree = "<group>"; };
 		50BE470F1BBA388400724119 /* MenuMalibu@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MenuMalibu@2x.png"; sourceTree = "<group>"; };
 		50BE47101BBA388400724119 /* MenuMalibu@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MenuMalibu@3x.png"; sourceTree = "<group>"; };
-		50FA4B861BB9474300BC8958 /* 0.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 0.jpg; sourceTree = "<group>"; };
+		50DD72381BBED313008A9B80 /* Category.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
+		50DD723B1BBED66D008A9B80 /* cases.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = cases.jpg; sourceTree = "<group>"; };
+		50DD72431BBEDAAA008A9B80 /* cups.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = cups.jpg; sourceTree = "<group>"; };
+		50DD72451BBEDDA5008A9B80 /* plates.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = plates.jpg; sourceTree = "<group>"; };
+		50DD724B1BBEE085008A9B80 /* frames.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = frames.jpg; sourceTree = "<group>"; };
+		50DD72521BBEE2D6008A9B80 /* crystals.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = crystals.jpg; sourceTree = "<group>"; };
+		50DD72551BBEE46B008A9B80 /* key_rings_by_3D_printer.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = key_rings_by_3D_printer.jpg; sourceTree = "<group>"; };
+		50DD72571BBEE555008A9B80 /* key_ring_with_photo.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = key_ring_with_photo.jpg; sourceTree = "<group>"; };
+		50DD725B1BBEE774008A9B80 /* clothes.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = clothes.jpg; sourceTree = "<group>"; };
+		50DD72671BBEEA44008A9B80 /* 3D_printing.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 3D_printing.jpg; sourceTree = "<group>"; };
+		50DD726B1BBEEB69008A9B80 /* wood_cases.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = wood_cases.jpg; sourceTree = "<group>"; };
 		50FD7F4F1BB8FFF600ABEC38 /* CategoryCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryCollectionViewCell.swift; sourceTree = "<group>"; };
-		50FD7F581BB9089300ABEC38 /* 2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 2.jpg; sourceTree = "<group>"; };
-		50FD7F5A1BB909E100ABEC38 /* 1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 1.jpg; sourceTree = "<group>"; };
-		50FD7F5C1BB90A8900ABEC38 /* 3.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 3.jpg; sourceTree = "<group>"; };
-		50FD7F5E1BB90AF500ABEC38 /* 4.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 4.jpg; sourceTree = "<group>"; };
+		50FD7F5C1BB90A8900ABEC38 /* copy_services.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = copy_services.jpg; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,6 +95,7 @@
 			isa = PBXGroup;
 			children = (
 				50FD7F521BB903C200ABEC38 /* AppDelegate */,
+				50DD723A1BBED31B008A9B80 /* DataModel */,
 				50FD7F531BB903CC00ABEC38 /* ViewControllers */,
 				502A8CB61BB80EAC0064E0DA /* Main.storyboard */,
 				50FD7F511BB903B700ABEC38 /* View */,
@@ -106,22 +109,9 @@
 			path = Blagaprint;
 			sourceTree = "<group>";
 		};
-		502A8CC41BB80FC40064E0DA /* GuillotineMenu */ = {
-			isa = PBXGroup;
-			children = (
-				502A8CC51BB80FC40064E0DA /* GuillotineMenuSegue.swift */,
-				502A8CC61BB80FC40064E0DA /* GuillotineMenuTransitionAnimation.swift */,
-				502A8CC71BB80FC40064E0DA /* GuillotineMenuViewController.swift */,
-				502A8CC81BB80FC40064E0DA /* UIViewExtension.swift */,
-			);
-			path = GuillotineMenu;
-			sourceTree = "<group>";
-		};
 		502A8CCD1BB811EE0064E0DA /* ThirdParty */ = {
 			isa = PBXGroup;
 			children = (
-				50BE47091BBA238000724119 /* SwiftPages */,
-				502A8CC41BB80FC40064E0DA /* GuillotineMenu */,
 			);
 			name = ThirdParty;
 			sourceTree = "<group>";
@@ -156,22 +146,28 @@
 			name = Utility;
 			sourceTree = "<group>";
 		};
-		50BE47091BBA238000724119 /* SwiftPages */ = {
+		50DD723A1BBED31B008A9B80 /* DataModel */ = {
 			isa = PBXGroup;
 			children = (
-				5017B82D1BBAE45400CC8082 /* SwiftPages.swift */,
+				50DD72381BBED313008A9B80 /* Category.swift */,
 			);
-			name = SwiftPages;
+			name = DataModel;
 			sourceTree = "<group>";
 		};
 		50FA4B7F1BB9385500BC8958 /* CategoriesImages */ = {
 			isa = PBXGroup;
 			children = (
-				50FA4B861BB9474300BC8958 /* 0.jpg */,
-				50FD7F5A1BB909E100ABEC38 /* 1.jpg */,
-				50FD7F581BB9089300ABEC38 /* 2.jpg */,
-				50FD7F5C1BB90A8900ABEC38 /* 3.jpg */,
-				50FD7F5E1BB90AF500ABEC38 /* 4.jpg */,
+				50DD723B1BBED66D008A9B80 /* cases.jpg */,
+				50DD72431BBEDAAA008A9B80 /* cups.jpg */,
+				50DD72451BBEDDA5008A9B80 /* plates.jpg */,
+				50DD724B1BBEE085008A9B80 /* frames.jpg */,
+				50DD72521BBEE2D6008A9B80 /* crystals.jpg */,
+				50DD725B1BBEE774008A9B80 /* clothes.jpg */,
+				50DD72551BBEE46B008A9B80 /* key_rings_by_3D_printer.jpg */,
+				50DD72571BBEE555008A9B80 /* key_ring_with_photo.jpg */,
+				50FD7F5C1BB90A8900ABEC38 /* copy_services.jpg */,
+				50DD72671BBEEA44008A9B80 /* 3D_printing.jpg */,
+				50DD726B1BBEEB69008A9B80 /* wood_cases.jpg */,
 			);
 			name = CategoriesImages;
 			sourceTree = "<group>";
@@ -195,7 +191,6 @@
 		50FD7F531BB903CC00ABEC38 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				50BE470A1BBA253500724119 /* SwiftPagesViewController.swift */,
 				502A8CB41BB80EAC0064E0DA /* ViewController.swift */,
 			);
 			name = ViewControllers;
@@ -258,20 +253,26 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				50FD7F5F1BB90AF500ABEC38 /* 4.jpg in Resources */,
+				50DD72481BBEDDA5008A9B80 /* plates.jpg in Resources */,
 				502A8CBD1BB80EAC0064E0DA /* LaunchScreen.storyboard in Resources */,
 				502A8CBA1BB80EAC0064E0DA /* Assets.xcassets in Resources */,
 				502A8CE01BB822410064E0DA /* MenuWhite@2x.png in Resources */,
 				50BE47131BBA388400724119 /* MenuMalibu@3x.png in Resources */,
-				50FD7F5B1BB909E100ABEC38 /* 1.jpg in Resources */,
+				50DD72541BBEE2D6008A9B80 /* crystals.jpg in Resources */,
+				50DD725F1BBEE774008A9B80 /* clothes.jpg in Resources */,
+				50DD726E1BBEEB69008A9B80 /* wood_cases.jpg in Resources */,
 				502A8CE11BB822410064E0DA /* MenuWhite@3x.png in Resources */,
-				50FD7F5D1BB90A8900ABEC38 /* 3.jpg in Resources */,
+				50DD72441BBEDAAA008A9B80 /* cups.jpg in Resources */,
+				50DD724E1BBEE085008A9B80 /* frames.jpg in Resources */,
+				50DD72561BBEE46B008A9B80 /* key_rings_by_3D_printer.jpg in Resources */,
+				50FD7F5D1BB90A8900ABEC38 /* copy_services.jpg in Resources */,
 				502A8CDF1BB822410064E0DA /* MenuWhite.png in Resources */,
 				50BE47111BBA388400724119 /* MenuMalibu.png in Resources */,
+				50DD72681BBEEA44008A9B80 /* 3D_printing.jpg in Resources */,
 				50BE47121BBA388400724119 /* MenuMalibu@2x.png in Resources */,
-				50FA4B871BB9474300BC8958 /* 0.jpg in Resources */,
+				50DD72581BBEE555008A9B80 /* key_ring_with_photo.jpg in Resources */,
 				502A8CB81BB80EAC0064E0DA /* Main.storyboard in Resources */,
-				50FD7F591BB9089300ABEC38 /* 2.jpg in Resources */,
+				50DD723C1BBED66D008A9B80 /* cases.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -282,13 +283,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				502A8CCC1BB80FC40064E0DA /* UIViewExtension.swift in Sources */,
-				50BE470B1BBA253500724119 /* SwiftPagesViewController.swift in Sources */,
-				502A8CC91BB80FC40064E0DA /* GuillotineMenuSegue.swift in Sources */,
 				502A8CB51BB80EAC0064E0DA /* ViewController.swift in Sources */,
-				502A8CCB1BB80FC40064E0DA /* GuillotineMenuViewController.swift in Sources */,
-				502A8CCA1BB80FC40064E0DA /* GuillotineMenuTransitionAnimation.swift in Sources */,
-				5017B82E1BBAE45400CC8082 /* SwiftPages.swift in Sources */,
+				50DD72391BBED313008A9B80 /* Category.swift in Sources */,
 				50FD7F501BB8FFF600ABEC38 /* CategoryCollectionViewCell.swift in Sources */,
 				502A8CB31BB80EAC0064E0DA /* AppDelegate.swift in Sources */,
 				508503041BBAADB600152131 /* AppAppearance.swift in Sources */,
