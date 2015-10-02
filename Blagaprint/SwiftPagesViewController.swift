@@ -34,10 +34,10 @@ class SwiftPagesViewController: UIViewController {
         
         //Customization
         swiftPagesView.setOriginY(0.0)
-        swiftPagesView.setTopBarHeight(44.0)
+        swiftPagesView.setTopBarHeight(52.0)
         swiftPagesView.setAnimatedBarHeight(2.0)
         swiftPagesView.setTopBarBackground(AppAppearance.AppColors.vulcanColor)
-        swiftPagesView.setContainerViewBackground(AppAppearance.AppColors.ebonyClayColor)
+        swiftPagesView.setContainerViewBackground(AppAppearance.AppColors.haiti)
         swiftPagesView.setButtonsTextFontAndSize(UIFont.systemFontOfSize(14.0))
         swiftPagesView.setButtonsTextColor(AppAppearance.AppColors.malibuColor)
         swiftPagesView.setAnimatedBarColor(AppAppearance.AppColors.malibuColor)

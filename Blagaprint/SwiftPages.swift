@@ -102,7 +102,7 @@ public class SwiftPages: UIView, UIScrollViewDelegate {
         var buttonNumber = 0
         //Check to see if the top bar will be created with images ot text
         if (!buttonsWithImages) {
-            for _ in buttonTitles
+            for item in buttonTitles
             {
                 var barButton: UIButton!
                 barButton = UIButton(frame: CGRectMake(buttonsXPosition, 0, containerView.frame.size.width/(CGFloat)(viewControllerIDs.count), topBarHeight))
@@ -198,7 +198,7 @@ public class SwiftPages: UIView, UIScrollViewDelegate {
         }
         
         //Use optional binding to check if the view has already been loaded
-        if let _ = pageViews[page]
+        if let pageView = pageViews[page]
         {
             // Do nothing. The view is already loaded.
         } else
@@ -213,7 +213,7 @@ public class SwiftPages: UIView, UIScrollViewDelegate {
             var newPageView: UIViewController
             
             //Look for the VC by its identifier in the storyboard and add it to the scrollview
-            newPageView = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier(viewControllerIDs[page]) 
+            newPageView = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier(viewControllerIDs[page])
             newPageView.view.frame = frame
             scrollView.addSubview(newPageView.view)
             

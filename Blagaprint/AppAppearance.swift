@@ -14,6 +14,8 @@ class AppAppearance: NSObject {
         static let vulcanColor: UIColor = UIColor(red: 21.0 / 255.0, green: 21.0 / 255.0, blue: 34.0 / 255, alpha: 1)
         static let malibuColor: UIColor = UIColor(red: 89.0 / 255.0, green: 189.0 / 255.0, blue: 247.0 / 255.0, alpha: 1)
         static let ebonyClayColor: UIColor = UIColor(red: 40.0 / 255.0, green: 37.0 / 255.0, blue: 60.0 / 255.0, alpha: 1)
+        static let brightGray: UIColor = UIColor(red: 65.0 / 255.0, green: 62.0 / 255.0, blue: 80.0 / 255.0, alpha: 1)
+        static let haiti: UIColor = UIColor(red: 44.0 / 255.0, green: 42.0 / 255.0, blue: 55.0 / 255.0, alpha: 1)
     }
     
     static func applyAppAppearance() {
