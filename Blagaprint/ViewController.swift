@@ -20,7 +20,7 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.collectionView.backgroundColor = AppAppearance.ebonyClayColor
+        self.collectionView.backgroundColor = AppAppearance.AppColors.ebonyClayColor
     }
 }
 

@@ -20,6 +20,8 @@ class SwiftPagesViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        UINavigationBar.hideBottomLineFromNavigationController(self.navigationController!)
+        
         setUpSwiftPages()
     }
     
@@ -34,13 +36,14 @@ class SwiftPagesViewController: UIViewController {
         swiftPagesView.setOriginY(0.0)
         swiftPagesView.setTopBarHeight(44.0)
         swiftPagesView.setAnimatedBarHeight(2.0)
-        swiftPagesView.setTopBarBackground(AppAppearance.ebonyClayColor)
-        swiftPagesView.setContainerViewBackground(AppAppearance.ebonyClayColor)
+        swiftPagesView.setTopBarBackground(AppAppearance.AppColors.vulcanColor)
+        swiftPagesView.setContainerViewBackground(AppAppearance.AppColors.ebonyClayColor)
         swiftPagesView.setButtonsTextFontAndSize(UIFont.systemFontOfSize(14.0))
-        swiftPagesView.setButtonsTextColor(AppAppearance.malibuColor)
-        swiftPagesView.setAnimatedBarColor(AppAppearance.malibuColor)
-        swiftPagesView.enableBarShadow(true)
+        swiftPagesView.setButtonsTextColor(AppAppearance.AppColors.malibuColor)
+        swiftPagesView.setAnimatedBarColor(AppAppearance.AppColors.malibuColor)
+        swiftPagesView.enableBarShadow(false)
         swiftPagesView.enableButtonsWithImages(false)
+        swiftPagesView.enableAeroEffectInTopBar(false)
         //Initialize
         swiftPagesView.initializeWithVCIDsArrayAndButtonTitlesArray(VCIDs, buttonTitlesArray: buttonTitles)
     }

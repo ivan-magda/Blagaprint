@@ -89,7 +89,7 @@ public class SwiftPages: UIView, UIScrollViewDelegate {
             //Create the blurred visual effect
             //You can choose between ExtraLight, Light and Dark
             topBar.backgroundColor = UIColor.clearColor()
-            let blurEffect: UIBlurEffect = UIBlurEffect(style: UIBlurEffectStyle.Light)
+            let blurEffect: UIBlurEffect = UIBlurEffect(style: UIBlurEffectStyle.Dark)
             let blurView = UIVisualEffectView(effect: blurEffect)
             blurView.frame = topBar.bounds
             blurView.translatesAutoresizingMaskIntoConstraints = false
@@ -102,7 +102,7 @@ public class SwiftPages: UIView, UIScrollViewDelegate {
         var buttonNumber = 0
         //Check to see if the top bar will be created with images ot text
         if (!buttonsWithImages) {
-            for item in buttonTitles
+            for _ in buttonTitles
             {
                 var barButton: UIButton!
                 barButton = UIButton(frame: CGRectMake(buttonsXPosition, 0, containerView.frame.size.width/(CGFloat)(viewControllerIDs.count), topBarHeight))
@@ -198,7 +198,7 @@ public class SwiftPages: UIView, UIScrollViewDelegate {
         }
         
         //Use optional binding to check if the view has already been loaded
-        if let pageView = pageViews[page]
+        if let _ = pageViews[page]
         {
             // Do nothing. The view is already loaded.
         } else

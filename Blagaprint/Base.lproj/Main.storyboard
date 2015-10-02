@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="15B17c" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Vzc-DV-tNv">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="15B22c" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Vzc-DV-tNv">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -22,51 +22,50 @@
                                 <animations/>
                                 <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="enF-Ep-mgp">
-                                    <size key="itemSize" width="320" height="168"/>
+                                    <size key="itemSize" width="320" height="220"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="CollectionViewCell" id="7ix-jd-9Zj" userLabel="CategoryCollectionCell" customClass="CategoryCollectionViewCell" customModule="Blagaprint" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="168"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="220"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="168"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="220"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="0.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="rRF-6U-GSh" userLabel="CategoryImageView">
-                                                    <rect key="frame" x="0.0" y="0.0" width="320" height="168"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="320" height="220"/>
                                                     <animations/>
                                                 </imageView>
-                                                <view alpha="0.90000000000000002" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="S9P-21-dBQ">
-                                                    <rect key="frame" x="0.0" y="71" width="97" height="26"/>
-                                                    <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Category" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RFO-KY-e0C">
-                                                            <rect key="frame" x="15" y="3" width="67" height="20"/>
-                                                            <animations/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
-                                                    </subviews>
+                                                <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Gmy-5Z-wEN">
+                                                    <rect key="frame" x="0.0" y="176" width="320" height="44"/>
+                                                    <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="qVr-6l-KSj">
+                                                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                        <subviews>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Category" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RFO-KY-e0C">
+                                                                <rect key="frame" x="15" y="14" width="297" height="17"/>
+                                                                <animations/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                        </subviews>
+                                                        <animations/>
+                                                        <constraints>
+                                                            <constraint firstItem="RFO-KY-e0C" firstAttribute="leading" secondItem="qVr-6l-KSj" secondAttribute="leading" constant="15" id="7FK-UG-NyJ"/>
+                                                            <constraint firstAttribute="trailing" secondItem="RFO-KY-e0C" secondAttribute="trailing" constant="8" id="Fmq-gi-BKM"/>
+                                                            <constraint firstItem="RFO-KY-e0C" firstAttribute="centerY" secondItem="qVr-6l-KSj" secondAttribute="centerY" id="UXk-kb-P4B"/>
+                                                        </constraints>
+                                                    </view>
                                                     <animations/>
-                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <constraints>
-                                                        <constraint firstItem="RFO-KY-e0C" firstAttribute="top" secondItem="S9P-21-dBQ" secondAttribute="top" constant="3" id="51x-9b-XPr"/>
-                                                        <constraint firstAttribute="bottom" secondItem="RFO-KY-e0C" secondAttribute="bottom" constant="3" id="DCi-2H-BNL"/>
-                                                        <constraint firstItem="RFO-KY-e0C" firstAttribute="centerY" secondItem="S9P-21-dBQ" secondAttribute="centerY" id="IHh-Oh-MbV"/>
-                                                        <constraint firstItem="RFO-KY-e0C" firstAttribute="centerX" secondItem="S9P-21-dBQ" secondAttribute="centerX" id="KyP-tw-8zD"/>
-                                                        <constraint firstAttribute="height" constant="26" id="eYU-F8-sja"/>
-                                                        <constraint firstAttribute="trailing" secondItem="RFO-KY-e0C" secondAttribute="trailing" constant="15" id="fma-Om-AEu"/>
-                                                        <constraint firstItem="RFO-KY-e0C" firstAttribute="leading" secondItem="S9P-21-dBQ" secondAttribute="leading" constant="15" id="hxP-53-V86"/>
+                                                        <constraint firstAttribute="height" constant="44" id="Cqb-fq-Pbw"/>
                                                     </constraints>
-                                                    <variation key="default">
-                                                        <mask key="constraints">
-                                                            <exclude reference="IHh-Oh-MbV"/>
-                                                            <exclude reference="KyP-tw-8zD"/>
-                                                        </mask>
-                                                    </variation>
-                                                </view>
+                                                    <blurEffect style="dark"/>
+                                                </visualEffectView>
                                             </subviews>
                                             <animations/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -74,20 +73,13 @@
                                         <animations/>
                                         <constraints>
                                             <constraint firstAttribute="trailing" secondItem="rRF-6U-GSh" secondAttribute="trailing" id="Bqd-wY-wPn"/>
-                                            <constraint firstAttribute="bottom" secondItem="S9P-21-dBQ" secondAttribute="bottom" constant="80" id="EZa-0W-fgf"/>
                                             <constraint firstAttribute="bottom" secondItem="rRF-6U-GSh" secondAttribute="bottom" id="EsS-Br-XFe"/>
-                                            <constraint firstAttribute="trailing" secondItem="S9P-21-dBQ" secondAttribute="trailing" constant="200" id="c2F-w7-xxV"/>
                                             <constraint firstItem="rRF-6U-GSh" firstAttribute="top" secondItem="7ix-jd-9Zj" secondAttribute="top" id="c9u-Wd-klS"/>
                                             <constraint firstItem="rRF-6U-GSh" firstAttribute="leading" secondItem="7ix-jd-9Zj" secondAttribute="leading" id="clc-1e-j1X"/>
-                                            <constraint firstItem="S9P-21-dBQ" firstAttribute="centerY" secondItem="7ix-jd-9Zj" secondAttribute="centerY" id="sau-5w-V2n"/>
-                                            <constraint firstItem="S9P-21-dBQ" firstAttribute="leading" secondItem="7ix-jd-9Zj" secondAttribute="leading" id="zeh-Ib-K1T"/>
+                                            <constraint firstItem="Gmy-5Z-wEN" firstAttribute="leading" secondItem="7ix-jd-9Zj" secondAttribute="leading" id="h5U-18-Jl1"/>
+                                            <constraint firstAttribute="bottom" secondItem="Gmy-5Z-wEN" secondAttribute="bottom" id="s5H-ht-LNG"/>
+                                            <constraint firstAttribute="trailing" secondItem="Gmy-5Z-wEN" secondAttribute="trailing" id="tzx-Tn-FaO"/>
                                         </constraints>
-                                        <variation key="default">
-                                            <mask key="constraints">
-                                                <exclude reference="EZa-0W-fgf"/>
-                                                <exclude reference="c2F-w7-xxV"/>
-                                            </mask>
-                                        </variation>
                                         <connections>
                                             <outlet property="CategoryImageView" destination="rRF-6U-GSh" id="87e-4r-sLC"/>
                                             <outlet property="CategoryNameLabel" destination="RFO-KY-e0C" id="d9l-Gc-Kaf"/>
