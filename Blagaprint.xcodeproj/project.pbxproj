@@ -8,13 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		502A8CB31BB80EAC0064E0DA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502A8CB21BB80EAC0064E0DA /* AppDelegate.swift */; };
-		502A8CB51BB80EAC0064E0DA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502A8CB41BB80EAC0064E0DA /* ViewController.swift */; };
+		502A8CB51BB80EAC0064E0DA /* CategoriesCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502A8CB41BB80EAC0064E0DA /* CategoriesCollectionViewController.swift */; };
 		502A8CB81BB80EAC0064E0DA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 502A8CB61BB80EAC0064E0DA /* Main.storyboard */; };
 		502A8CBA1BB80EAC0064E0DA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 502A8CB91BB80EAC0064E0DA /* Assets.xcassets */; };
 		502A8CBD1BB80EAC0064E0DA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 502A8CBB1BB80EAC0064E0DA /* LaunchScreen.storyboard */; };
 		502A8CDF1BB822410064E0DA /* MenuWhite.png in Resources */ = {isa = PBXBuildFile; fileRef = 502A8CD91BB822410064E0DA /* MenuWhite.png */; settings = {ASSET_TAGS = (); }; };
 		502A8CE01BB822410064E0DA /* MenuWhite@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 502A8CDA1BB822410064E0DA /* MenuWhite@2x.png */; settings = {ASSET_TAGS = (); }; };
 		502A8CE11BB822410064E0DA /* MenuWhite@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 502A8CDB1BB822410064E0DA /* MenuWhite@3x.png */; settings = {ASSET_TAGS = (); }; };
+		5071D34C1BBFE9D0005DDED3 /* NothingFoundCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5071D34B1BBFE9D0005DDED3 /* NothingFoundCollectionViewCell.swift */; settings = {ASSET_TAGS = (); }; };
 		508503041BBAADB600152131 /* AppAppearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508503031BBAADB600152131 /* AppAppearance.swift */; settings = {ASSET_TAGS = (); }; };
 		50BE47111BBA388400724119 /* MenuMalibu.png in Resources */ = {isa = PBXBuildFile; fileRef = 50BE470E1BBA388400724119 /* MenuMalibu.png */; settings = {ASSET_TAGS = (); }; };
 		50BE47121BBA388400724119 /* MenuMalibu@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 50BE470F1BBA388400724119 /* MenuMalibu@2x.png */; settings = {ASSET_TAGS = (); }; };
@@ -37,7 +38,7 @@
 /* Begin PBXFileReference section */
 		502A8CAF1BB80EAC0064E0DA /* Blagaprint.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Blagaprint.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		502A8CB21BB80EAC0064E0DA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		502A8CB41BB80EAC0064E0DA /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		502A8CB41BB80EAC0064E0DA /* CategoriesCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesCollectionViewController.swift; sourceTree = "<group>"; };
 		502A8CB71BB80EAC0064E0DA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		502A8CB91BB80EAC0064E0DA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		502A8CBC1BB80EAC0064E0DA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -45,6 +46,7 @@
 		502A8CD91BB822410064E0DA /* MenuWhite.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MenuWhite.png; sourceTree = "<group>"; };
 		502A8CDA1BB822410064E0DA /* MenuWhite@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MenuWhite@2x.png"; sourceTree = "<group>"; };
 		502A8CDB1BB822410064E0DA /* MenuWhite@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MenuWhite@3x.png"; sourceTree = "<group>"; };
+		5071D34B1BBFE9D0005DDED3 /* NothingFoundCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NothingFoundCollectionViewCell.swift; sourceTree = "<group>"; };
 		508503031BBAADB600152131 /* AppAppearance.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppAppearance.swift; sourceTree = "<group>"; };
 		50BE470E1BBA388400724119 /* MenuMalibu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MenuMalibu.png; sourceTree = "<group>"; };
 		50BE470F1BBA388400724119 /* MenuMalibu@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MenuMalibu@2x.png"; sourceTree = "<group>"; };
@@ -96,7 +98,7 @@
 			children = (
 				50FD7F521BB903C200ABEC38 /* AppDelegate */,
 				50DD723A1BBED31B008A9B80 /* DataModel */,
-				50FD7F531BB903CC00ABEC38 /* ViewControllers */,
+				50FD7F531BB903CC00ABEC38 /* Controllers */,
 				502A8CB61BB80EAC0064E0DA /* Main.storyboard */,
 				50FD7F511BB903B700ABEC38 /* View */,
 				508503051BBAADCF00152131 /* Utility */,
@@ -176,6 +178,7 @@
 			isa = PBXGroup;
 			children = (
 				50FD7F4F1BB8FFF600ABEC38 /* CategoryCollectionViewCell.swift */,
+				5071D34B1BBFE9D0005DDED3 /* NothingFoundCollectionViewCell.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -188,12 +191,12 @@
 			name = AppDelegate;
 			sourceTree = "<group>";
 		};
-		50FD7F531BB903CC00ABEC38 /* ViewControllers */ = {
+		50FD7F531BB903CC00ABEC38 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				502A8CB41BB80EAC0064E0DA /* ViewController.swift */,
+				502A8CB41BB80EAC0064E0DA /* CategoriesCollectionViewController.swift */,
 			);
-			name = ViewControllers;
+			name = Controllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -283,9 +286,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				502A8CB51BB80EAC0064E0DA /* ViewController.swift in Sources */,
+				502A8CB51BB80EAC0064E0DA /* CategoriesCollectionViewController.swift in Sources */,
 				50DD72391BBED313008A9B80 /* Category.swift in Sources */,
 				50FD7F501BB8FFF600ABEC38 /* CategoryCollectionViewCell.swift in Sources */,
+				5071D34C1BBFE9D0005DDED3 /* NothingFoundCollectionViewCell.swift in Sources */,
 				502A8CB31BB80EAC0064E0DA /* AppDelegate.swift in Sources */,
 				508503041BBAADB600152131 /* AppAppearance.swift in Sources */,
 			);
