@@ -26,6 +26,7 @@ class CategoriesCollectionViewController: UICollectionViewController {
         self.searchBarBoundsY = CGRectGetHeight(self.navigationController!.navigationBar.frame) + CGRectGetHeight(UIApplication.sharedApplication().statusBarFrame)
         
         var temporarySearchBar = UISearchBar(frame: CGRectMake(0.0, self.searchBarBoundsY + self.kCollectionViewTopSectionInset, CGRectGetWidth(UIScreen.mainScreen().bounds), self.searchBarHeight))
+        temporarySearchBar.searchBarStyle = UISearchBarStyle.Minimal
         temporarySearchBar.delegate = self
         temporarySearchBar.placeholder = "Поиск"
         
