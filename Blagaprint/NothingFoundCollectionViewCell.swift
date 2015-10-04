@@ -9,5 +9,7 @@
 import UIKit
 
 class NothingFoundCollectionViewCell: UICollectionViewCell {
+    // MARK: Properties
+    
     @IBOutlet weak var textLabel: UILabel!
 }

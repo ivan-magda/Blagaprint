@@ -9,6 +9,7 @@
 import UIKit
 
 class AppAppearance: NSObject {
+    // MARK: Colors
     
     struct AppColors {
         static let vulcanColor: UIColor = UIColor(red: 21.0 / 255.0, green: 21.0 / 255.0, blue: 34.0 / 255, alpha: 1)
@@ -19,9 +20,13 @@ class AppAppearance: NSObject {
         static let tuna: UIColor = UIColor(red: 54.0 / 255.0, green: 54.0 / 255.0, blue: 66.0 / 255.0, alpha: 1)
     }
     
+    // MARK: - Public
+    
     static func applyAppAppearance() {
         customizeNavigationAndStatusBars()
     }
+    
+    // MARK: - Private
     
     private static func customizeNavigationAndStatusBars() {
         UIApplication.sharedApplication().statusBarStyle = UIStatusBarStyle.LightContent
@@ -31,7 +36,7 @@ class AppAppearance: NSObject {
     }
 }
 
-// MARK: - UINavigationBar extension -
+// MARK: - UINavigationBar extension
 
 extension UINavigationBar {
     

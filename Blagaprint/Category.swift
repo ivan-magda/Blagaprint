@@ -9,14 +9,39 @@
 import Foundation
 import UIKit
 
-class Category {
-    var name: String?
-    var image: UIImage?
+class Category: NSObject, NSCoding {
+    // MARK: - Types
+    
+    enum CoderKeys: String {
+        case nameKey
+        case imageKey
+    }
+    
+    // MARK: - Properties
+    
+    var name: String
+    var image: UIImage
+    
+    // MARK: - Initializers
     
     init(name: String, image: UIImage) {
         self.name = name
         self.image = image
     }
+    
+    // MARK: - NSCoding
+    
+    required init?(coder aDecoder: NSCoder) {
+        name = aDecoder.decodeObjectForKey(CoderKeys.nameKey.rawValue) as! String
+        image = aDecoder.decodeObjectForKey(CoderKeys.imageKey.rawValue) as! UIImage
+    }
+    
+    func encodeWithCoder(aCoder: NSCoder) {
+        aCoder.encodeObject(name, forKey: CoderKeys.nameKey.rawValue)
+        aCoder.encodeObject(image, forKey: CoderKeys.imageKey.rawValue)
+    }
+    
+    // MARK: - Public
     
     static func seedInitialData() -> [Category] {
         let categories: [Category] = [

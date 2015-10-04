@@ -9,19 +9,31 @@
 import UIKit
 
 class CategoriesCollectionViewController: UICollectionViewController {
+    // MARK: Properties
+    
+    /// Reuse identifiers for collection view.
     private let kCategoryCollectionViewCellReuseIdentifier = "CollectionViewCell"
     private let kNothingFoundCollectionViewCellReuseIdentifier = "NothingFoundCell"
+    
+    /// Observe value key path for collection view content offset.
     private let kCollectionViewObserveValueKeyPath = "contentOffset"
+    
+    /// Collection view size and inset values.
     private let kCollectionViewCellHeightValue: CGFloat = 200.0
     private let kCollectionViewTopSectionInset: CGFloat = 0.0
     
+    /// Data model for the collection view.
     private var categories: [Category] = Category.seedInitialData()
     private var filteredCategories: [Category] = [Category]()
     
+    /// Search bar is active state value.
     private var searchBarActive: Bool = false
+    
+    /// Search bar coordinate and size values.
     private var searchBarBoundsY: CGFloat = 0.0
     private let searchBarHeight: CGFloat = 44.0
     
+    /// Search bar to help us with filtering.
     lazy private var searchBar: UISearchBar = {
         self.searchBarBoundsY = CGRectGetHeight(self.navigationController!.navigationBar.frame) + CGRectGetHeight(UIApplication.sharedApplication().statusBarFrame)
         
@@ -36,7 +48,7 @@ class CategoriesCollectionViewController: UICollectionViewController {
         return temporarySearchBar
     }()
     
-// MARK: - ViewController lifecycle -
+    // MARK: - View Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -54,13 +66,14 @@ class CategoriesCollectionViewController: UICollectionViewController {
         removeObservers()
     }
     
-// MARK: - Navigation -
+    // MARK: - Navigation
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
     }
 
-// MARK: - UICollectionView -
-// MARK: UICollectionViewDataSource
+    // MARK: - UICollectionView -
+    // MARK: UICollectionViewDataSource
+    
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if searchBarActive {
             if filteredCategories.count > 0 {
@@ -73,30 +86,30 @@ class CategoriesCollectionViewController: UICollectionViewController {
     }
     
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        if nothingFound() {
-            return collectionView.dequeueReusableCellWithReuseIdentifier(kNothingFoundCollectionViewCellReuseIdentifier, forIndexPath: indexPath) as! NothingFoundCollectionViewCell
-        } else {
-            return collectionView.dequeueReusableCellWithReuseIdentifier(kCategoryCollectionViewCellReuseIdentifier, forIndexPath: indexPath) as! CategoryCollectionViewCell
-        }
+        return getConfiguratedCellAtIndexPath(indexPath)
     }
     
-    override func collectionView(collectionView: UICollectionView, willDisplayCell cell: UICollectionViewCell, forItemAtIndexPath indexPath: NSIndexPath) {
+    func getConfiguratedCellAtIndexPath(indexPath: NSIndexPath) -> UICollectionViewCell {
         if nothingFound() {
-            let collectionViewCell: NothingFoundCollectionViewCell = cell as! NothingFoundCollectionViewCell
+            let collectionViewCell = self.collectionView!.dequeueReusableCellWithReuseIdentifier(kNothingFoundCollectionViewCellReuseIdentifier, forIndexPath: indexPath) as! NothingFoundCollectionViewCell
             collectionViewCell.textLabel.text = "Ничего не найдено"
+            
+            return collectionViewCell
         } else {
-            let collectionViewCell: CategoryCollectionViewCell = cell as! CategoryCollectionViewCell
+            let collectionViewCell = self.collectionView!.dequeueReusableCellWithReuseIdentifier(kCategoryCollectionViewCellReuseIdentifier, forIndexPath: indexPath) as! CategoryCollectionViewCell
             
             let category = (searchBarActive ? filteredCategories[indexPath.row] : categories[indexPath.row])
             collectionViewCell.categoryImageView?.image = category.image
             collectionViewCell.categoryNameLabel.text = category.name
+            
+            return collectionViewCell
         }
     }
 
-// MARK: UICollectionViewDelegate
+    // MARK: UICollectionViewDelegate
 
     override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        print("Select category at index: \(indexPath.row).")
+        print("Selected category at index: \(indexPath.row).")
     }
     
     override func collectionView(collectionView: UICollectionView, shouldSelectItemAtIndexPath indexPath: NSIndexPath) -> Bool {
@@ -106,6 +119,7 @@ class CategoriesCollectionViewController: UICollectionViewController {
 }
 
 // MARK: UICollectionViewDelegateFlowLayout
+
 extension CategoriesCollectionViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAtIndex section: Int) -> UIEdgeInsets {
         return UIEdgeInsetsMake(CGRectGetHeight(searchBar.frame) + kCollectionViewTopSectionInset * 2, 0.0, 0.0, 0.0)
@@ -116,7 +130,7 @@ extension CategoriesCollectionViewController: UICollectionViewDelegateFlowLayout
     }
 }
 
-//MARK: - Search -
+// MARK: - Search -
 
 extension CategoriesCollectionViewController: UISearchBarDelegate {
     
@@ -128,7 +142,7 @@ extension CategoriesCollectionViewController: UISearchBarDelegate {
     
     private func filterContentForSearchText(searchText: String) {
         filteredCategories = categories.filter({ (category: Category) -> Bool in
-            return (category.name?.lowercaseString.containsString(searchText.lowercaseString))!
+            return category.name.lowercaseString.containsString(searchText.lowercaseString)
         })
     }
     
@@ -140,6 +154,8 @@ extension CategoriesCollectionViewController: UISearchBarDelegate {
         return searchBarActive && filteredCategories.count == 0
     }
 
+    // MARK: UISearchBarDelegate
+    
     func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
         // user did type something, check our datasource for text that looks the same
         if searchText.characters.count > 0 {
@@ -184,7 +200,7 @@ extension CategoriesCollectionViewController: UISearchBarDelegate {
         self.searchBar.setShowsCancelButton(false, animated: true)
     }
     
-// MARK: - KVO Observing -
+    // MARK: - KVO Observing -
     
     private func addObservers() {
         self.collectionView?.addObserver(self, forKeyPath: kCollectionViewObserveValueKeyPath, options: [NSKeyValueObservingOptions.New, NSKeyValueObservingOptions.Old], context: nil)
