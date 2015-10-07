@@ -32,6 +32,7 @@ class AppAppearance: NSObject {
         UIApplication.sharedApplication().statusBarStyle = UIStatusBarStyle.LightContent
         
         UINavigationBar.appearance().barTintColor = self.AppColors.vulcanColor
+        UINavigationBar.appearance().tintColor = UIColor.whiteColor()
         UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
     }
 }

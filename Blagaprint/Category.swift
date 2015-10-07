@@ -12,6 +12,21 @@ import UIKit
 class Category: NSObject, NSCoding {
     // MARK: - Types
     
+    enum CategoryTypes: String {
+        case cases
+        case cups
+        case plates
+        case frames
+        case crystals
+        case keyRingsBy3DPrinter
+        case keyRingsWithPhoto
+        case clothes
+        case copyServices
+        case printingBy3Dprint
+        case woodCases
+        case undefined
+    }
+    
     private enum CoderKeys: String {
         case nameKey
         case imageKey
@@ -23,13 +38,15 @@ class Category: NSObject, NSCoding {
     var name: String
     var image: UIImage
     var categoryItems = Set<CategoryItem>()
+    var categoryType: CategoryTypes = .undefined
     
     // MARK: - Initializers
     
-    init(name: String, image: UIImage, categoryItems:Set<CategoryItem> = Set<CategoryItem>()) {
+    init(name: String, image: UIImage, categoryItems: Set<CategoryItem> = Set<CategoryItem>(), categoryType: CategoryTypes = .undefined) {
         self.name = name
         self.image = image
         self.categoryItems = categoryItems
+        self.categoryType = categoryType
     }
     
     // MARK: - NSCoding
@@ -49,18 +66,45 @@ class Category: NSObject, NSCoding {
     // MARK: - Public
     
     static func seedInitialData() -> [Category] {
-        let categories: [Category] = [
-            Category(name: "Чехлы",                image: UIImage(named:"cases.jpg")!),
-            Category(name: "Кружки",               image: UIImage(named: "cups.jpg")!),
-            Category(name: "Тарелки",              image: UIImage(named: "plates.jpg")!),
-            Category(name: "Фоторамки",            image: UIImage(named: "frames.jpg")!),
-            Category(name: "Кристаллы",            image: UIImage(named: "crystals.jpg")!),
-            Category(name: "Именные брелки",       image: UIImage(named: "key_rings_by_3D_printer.jpg")!),
-            Category(name: "Брелки с фото",        image: UIImage(named: "key_ring_with_photo.jpg")!),
-            Category(name: "Одежда",               image: UIImage(named: "clothes.jpg")!),
-            Category(name: "Копировальные услуги", image: UIImage(named: "copy_services.jpg")!),
-            Category(name: "3D печать",            image: UIImage(named: "3D_printing.jpg")!),
-            Category(name: "Деревянные чехлы",     image: UIImage(named: "wood_cases.jpg")!)]
+        var categories = [Category]()
+        
+        let cases = Category(name: "Чехлы", image: UIImage(named:"cases.jpg")!, categoryType: .cases)
+        cases.categoryItems = [CategoryItem(name: "Именные", image: UIImage(), parentCategory: cases), CategoryItem(name: "С фотографией", image: UIImage(), parentCategory: cases), CategoryItem(name: "С индивидуальным дизайном", image: UIImage(), parentCategory: cases)]
+        categories.append(cases)
+        
+        let cups = Category(name: "Кружки", image: UIImage(named: "cups.jpg")!, categoryType: .cups)
+        cups.categoryItems = [CategoryItem(name: "Хамелеон", image: UIImage(), parentCategory: cups), CategoryItem(name: "Керамика", image: UIImage(), parentCategory: cups), CategoryItem(name: "Парные кружки для влюбленных", image: UIImage(), parentCategory: cups)]
+        categories.append(cups)
+        
+        let plates = Category(name: "Тарелки", image: UIImage(named: "plates.jpg")!, categoryType: .plates)
+        categories.append(plates)
+        
+        let frames = Category(name: "Фоторамки", image: UIImage(named: "frames.jpg")!, categoryType: .frames)
+        categories.append(frames)
+        
+        let crystals = Category(name: "Кристаллы", image: UIImage(named: "crystals.jpg")!, categoryType: .crystals)
+        categories.append(crystals)
+        
+        let keyRingsBy3DPrinter = Category(name: "Именные брелки", image: UIImage(named: "key_rings_by_3D_printer.jpg")!, categoryType: .keyRingsBy3DPrinter)
+        categories.append(keyRingsBy3DPrinter)
+        
+        let keyRingsWithPhoto = Category(name: "Брелки с фото", image: UIImage(named: "key_ring_with_photo.jpg")!, categoryType: .keyRingsWithPhoto)
+        keyRingsWithPhoto.categoryItems = [CategoryItem(name: "Стеклянные", image: UIImage(), parentCategory: keyRingsWithPhoto), CategoryItem(name: "Пластиковые", image: UIImage(), parentCategory: keyRingsWithPhoto), CategoryItem(name: "С госномером", image: UIImage(), parentCategory: keyRingsWithPhoto)]
+        categories.append(keyRingsWithPhoto)
+        
+        let clothes = Category(name: "Одежда", image: UIImage(named: "clothes.jpg")!, categoryType: .clothes)
+        clothes.categoryItems = [CategoryItem(name: "Мужская", image: UIImage(), parentCategory: clothes), CategoryItem(name: "Женская", image: UIImage(), parentCategory: clothes), CategoryItem(name: "Детская", image: UIImage(), parentCategory: clothes)]
+        categories.append(clothes)
+        
+        let copyServices = Category(name: "Копировальные услуги", image: UIImage(named: "copy_services.jpg")!, categoryType: .copyServices)
+        copyServices.categoryItems = [CategoryItem(name: "Печать фотографий", image: UIImage(), parentCategory: copyServices), CategoryItem(name: "Банерная печать", image: UIImage(), parentCategory: copyServices), CategoryItem(name: "Визитки", image: UIImage(), parentCategory: copyServices)]
+        categories.append(copyServices)
+        
+        let printingBy3Dprint = Category(name: "3D печать", image: UIImage(named: "3D_printing.jpg")!, categoryType: .printingBy3Dprint)
+        printingBy3Dprint.categoryItems = [CategoryItem(name: "Разработка индивидуального дизайна", image: UIImage(), parentCategory: printingBy3Dprint), CategoryItem(name: "Из пластика", image: UIImage(), parentCategory: printingBy3Dprint), CategoryItem(name: "Из резины", image: UIImage(), parentCategory: printingBy3Dprint), CategoryItem(name: "Из твердого пластика", image: UIImage(), parentCategory: printingBy3Dprint)]
+        categories.append(printingBy3Dprint)
+        
+        categories.append(Category(name: "Деревянные чехлы", image: UIImage(named: "wood_cases.jpg")!, categoryType: .woodCases))
         
         return categories
     }

@@ -34,6 +34,11 @@ class CategoryItem: NSObject, NSCoding {
         self.image = image
     }
     
+    init(name: String, parentCategory: Category) {
+        self.name = name
+        self.parentCategory = parentCategory
+    }
+    
     init(name: String, image: UIImage, parentCategory: Category) {
         self.name = name
         self.image = image

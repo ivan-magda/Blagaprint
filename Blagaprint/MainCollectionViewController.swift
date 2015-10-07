@@ -15,6 +15,9 @@ class MainCollectionViewController: UICollectionViewController {
     private let kCategoryCollectionViewCellReuseIdentifier = "CollectionViewCell"
     private let kNothingFoundCollectionViewCellReuseIdentifier = "NothingFoundCell"
     
+    /// Detail category segue identifier.
+    private let kDetailCategorySegueIdentifier = "DetailCategory"
+    
     /// Observe value key path for collection view content offset.
     private let kCollectionViewObserveValueKeyPath = "contentOffset"
     
@@ -69,6 +72,13 @@ class MainCollectionViewController: UICollectionViewController {
     // MARK: - Navigation
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == kDetailCategorySegueIdentifier {
+            if let selectedCategory = sender as? Category {
+                let detailViewController = segue.destinationViewController as! DetailCategoryCollectionViewController
+                detailViewController.categoryItems = Array(selectedCategory.categoryItems)
+                detailViewController.parentCategoryName = selectedCategory.name
+            }
+        }
     }
 
     // MARK: - UICollectionView -
@@ -109,7 +119,14 @@ class MainCollectionViewController: UICollectionViewController {
     // MARK: UICollectionViewDelegate
 
     override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        print("Selected category at index: \(indexPath.row).")
+        let selectedCategory = categories[indexPath.row]
+        switch selectedCategory.categoryType {
+        case .cases, .cups, .keyRingsWithPhoto, .clothes, .copyServices, .printingBy3Dprint:
+            print("Perform detail segue")
+            self.performSegueWithIdentifier(kDetailCategorySegueIdentifier, sender: selectedCategory)
+        default:
+            break
+        }
     }
     
     override func collectionView(collectionView: UICollectionView, shouldSelectItemAtIndexPath indexPath: NSIndexPath) -> Bool {
