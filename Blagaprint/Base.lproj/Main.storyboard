@@ -7,7 +7,7 @@
         <!--Blagaprint-->
         <scene sceneID="lK0-pm-8Jg">
             <objects>
-                <collectionViewController id="TjY-5B-SA4" customClass="CategoriesCollectionViewController" customModule="Blagaprint" customModuleProvider="target" sceneMemberID="viewController">
+                <collectionViewController id="TjY-5B-SA4" customClass="MainCollectionViewController" customModule="Blagaprint" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" keyboardDismissMode="onDrag" dataMode="prototypes" id="LGd-zL-jdx">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

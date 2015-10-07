@@ -8,8 +8,8 @@
 
 import UIKit
 
-class CategoriesCollectionViewController: UICollectionViewController {
-    // MARK: Properties
+class MainCollectionViewController: UICollectionViewController {
+    // MARK: - Properties
     
     /// Reuse identifiers for collection view.
     private let kCategoryCollectionViewCellReuseIdentifier = "CollectionViewCell"
@@ -120,7 +120,7 @@ class CategoriesCollectionViewController: UICollectionViewController {
 
 // MARK: UICollectionViewDelegateFlowLayout
 
-extension CategoriesCollectionViewController: UICollectionViewDelegateFlowLayout {
+extension MainCollectionViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAtIndex section: Int) -> UIEdgeInsets {
         return UIEdgeInsetsMake(CGRectGetHeight(searchBar.frame) + kCollectionViewTopSectionInset * 2, 0.0, 0.0, 0.0)
     }
@@ -132,7 +132,7 @@ extension CategoriesCollectionViewController: UICollectionViewDelegateFlowLayout
 
 // MARK: - Search -
 
-extension CategoriesCollectionViewController: UISearchBarDelegate {
+extension MainCollectionViewController: UISearchBarDelegate {
     
     private func cancelSearching() {
         searchBarActive = false

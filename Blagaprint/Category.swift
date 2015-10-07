@@ -12,21 +12,24 @@ import UIKit
 class Category: NSObject, NSCoding {
     // MARK: - Types
     
-    enum CoderKeys: String {
+    private enum CoderKeys: String {
         case nameKey
         case imageKey
+        case categoryItemsKey
     }
     
     // MARK: - Properties
     
     var name: String
     var image: UIImage
+    var categoryItems = Set<CategoryItem>()
     
     // MARK: - Initializers
     
-    init(name: String, image: UIImage) {
+    init(name: String, image: UIImage, categoryItems:Set<CategoryItem> = Set<CategoryItem>()) {
         self.name = name
         self.image = image
+        self.categoryItems = categoryItems
     }
     
     // MARK: - NSCoding
@@ -34,11 +37,13 @@ class Category: NSObject, NSCoding {
     required init?(coder aDecoder: NSCoder) {
         name = aDecoder.decodeObjectForKey(CoderKeys.nameKey.rawValue) as! String
         image = aDecoder.decodeObjectForKey(CoderKeys.imageKey.rawValue) as! UIImage
+        categoryItems = aDecoder.decodeObjectForKey(CoderKeys.categoryItemsKey.rawValue) as! Set<CategoryItem>
     }
     
     func encodeWithCoder(aCoder: NSCoder) {
         aCoder.encodeObject(name, forKey: CoderKeys.nameKey.rawValue)
         aCoder.encodeObject(image, forKey: CoderKeys.imageKey.rawValue)
+        aCoder.encodeObject(categoryItems, forKey: CoderKeys.categoryItemsKey.rawValue)
     }
     
     // MARK: - Public
