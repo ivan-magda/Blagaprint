@@ -17,18 +17,10 @@ class DetailCategoryCollectionViewController: UICollectionViewController {
     // Data model for the collection view.
     var categoryItems: [CategoryItem] = []
     
-    // Title for the navigation bar.
-    var parentCategoryName: String?
-    
     // MARK: - View Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // Set title.
-        if let title = parentCategoryName {
-            self.title = title
-        }
     }
 
     // MARK: - UICollectionView -

@@ -13,6 +13,5 @@ class CategoryCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var categoryImageView: UIImageView?
     @IBOutlet weak var categoryNameLabel: UILabel!
-    @IBOutlet weak var visualEffectView: UIVisualEffectView!
     
 }
