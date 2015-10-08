@@ -16,7 +16,7 @@
 		502A8CE01BB822410064E0DA /* MenuWhite@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 502A8CDA1BB822410064E0DA /* MenuWhite@2x.png */; settings = {ASSET_TAGS = (); }; };
 		502A8CE11BB822410064E0DA /* MenuWhite@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 502A8CDB1BB822410064E0DA /* MenuWhite@3x.png */; settings = {ASSET_TAGS = (); }; };
 		503CBEC11BC415C700052BE0 /* CategoryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 503CBEC01BC415C700052BE0 /* CategoryItem.swift */; settings = {ASSET_TAGS = (); }; };
-		50425CA41BC51349006AFE36 /* DetailCategoryCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50425CA31BC51349006AFE36 /* DetailCategoryCollectionViewController.swift */; settings = {ASSET_TAGS = (); }; };
+		50425CA41BC51349006AFE36 /* DetailCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50425CA31BC51349006AFE36 /* DetailCategoryViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		5056EEC81BC55A760062712F /* DetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5056EEC71BC55A760062712F /* DetailTableViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		5056EECA1BC560970062712F /* ExpandedCollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5056EEC91BC560970062712F /* ExpandedCollectionViewFlowLayout.swift */; settings = {ASSET_TAGS = (); }; };
 		5056EECC1BC565420062712F /* DescriptionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5056EECB1BC565420062712F /* DescriptionCell.swift */; settings = {ASSET_TAGS = (); }; };
@@ -52,7 +52,7 @@
 		502A8CDA1BB822410064E0DA /* MenuWhite@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MenuWhite@2x.png"; sourceTree = "<group>"; };
 		502A8CDB1BB822410064E0DA /* MenuWhite@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MenuWhite@3x.png"; sourceTree = "<group>"; };
 		503CBEC01BC415C700052BE0 /* CategoryItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryItem.swift; sourceTree = "<group>"; };
-		50425CA31BC51349006AFE36 /* DetailCategoryCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailCategoryCollectionViewController.swift; sourceTree = "<group>"; };
+		50425CA31BC51349006AFE36 /* DetailCategoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailCategoryViewController.swift; sourceTree = "<group>"; };
 		5056EEC71BC55A760062712F /* DetailTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailTableViewController.swift; sourceTree = "<group>"; };
 		5056EEC91BC560970062712F /* ExpandedCollectionViewFlowLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpandedCollectionViewFlowLayout.swift; sourceTree = "<group>"; };
 		5056EECB1BC565420062712F /* DescriptionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DescriptionCell.swift; sourceTree = "<group>"; };
@@ -153,7 +153,7 @@
 		5056EECD1BC5686D0062712F /* DetailCategoryCollectionVC */ = {
 			isa = PBXGroup;
 			children = (
-				50425CA31BC51349006AFE36 /* DetailCategoryCollectionViewController.swift */,
+				50425CA31BC51349006AFE36 /* DetailCategoryViewController.swift */,
 				5056EEC91BC560970062712F /* ExpandedCollectionViewFlowLayout.swift */,
 			);
 			name = DetailCategoryCollectionVC;
@@ -313,7 +313,7 @@
 				50DD72391BBED313008A9B80 /* Category.swift in Sources */,
 				50FD7F501BB8FFF600ABEC38 /* CategoryCollectionViewCell.swift in Sources */,
 				5056EEC81BC55A760062712F /* DetailTableViewController.swift in Sources */,
-				50425CA41BC51349006AFE36 /* DetailCategoryCollectionViewController.swift in Sources */,
+				50425CA41BC51349006AFE36 /* DetailCategoryViewController.swift in Sources */,
 				503CBEC11BC415C700052BE0 /* CategoryItem.swift in Sources */,
 				5071D34C1BBFE9D0005DDED3 /* NothingFoundCollectionViewCell.swift in Sources */,
 				502A8CB31BB80EAC0064E0DA /* AppDelegate.swift in Sources */,

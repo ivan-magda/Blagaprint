@@ -23,6 +23,10 @@ class DetailTableViewController: UITableViewController {
     // Title for the navigation bar.
     var parentCategoryName: String?
     
+    // When DetailCategoryVC scroll to new page, we use this variable
+    // for proper selection of CategoryItem obj
+    private var selectedCategoryIndex: Int = 0
+    
     // MARK: - View Life Cycle
     
     override func viewDidLoad() {
@@ -49,12 +53,18 @@ class DetailTableViewController: UITableViewController {
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == kEmbedCollectionViewSegueIdentifier {
-            let destinationVC = segue.destinationViewController as! DetailCategoryCollectionViewController
+            let destinationVC = segue.destinationViewController as! DetailCategoryViewController
             destinationVC.categoryItems = self.categoryItems
+            
+            weak var weakSelf = self
+            destinationVC.detailCategoryDidScrollToPageIndex = { (index) in
+                weakSelf?.selectedCategoryIndex = index
+                weakSelf?.tableView?.reloadSections(NSIndexSet(index: 0), withRowAnimation: UITableViewRowAnimation.Automatic)
+            }
         }
     }
     
-    // MARK: - UITableView
+    // MARK: - UITableView -
     // MARK: Data Source
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -64,8 +74,14 @@ class DetailTableViewController: UITableViewController {
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier(kDetailTableViewCellReuseIdentifier) as! DescriptionCell
         
-        cell.descriptionLabel.text = "When you create a Core Data app, you design an initial data model for your app. However, after you ship your app inevitably you’ll want to make changes to your data model. What do you do then – you don’t want to break the app for existing users! "
+        cell.descriptionLabel.text = "\(categoryItems[selectedCategoryIndex].name)\nWhen you create a Core Data app, you design an initial data model for your app. However, after you ship your app inevitably you’ll want to make changes to your data model. What do you do then – you don’t want to break the app for existing users! "
         
         return cell
+    }
+    
+    // MARK: Delegate
+    
+    override func tableView(tableView: UITableView, willSelectRowAtIndexPath indexPath: NSIndexPath) -> NSIndexPath? {
+        return nil
     }
 }
