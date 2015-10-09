@@ -98,6 +98,33 @@
                                     <outlet property="textLabel" destination="3rR-6I-aLG" id="Oai-Nf-oVW"/>
                                 </connections>
                             </collectionViewCell>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="CategoryItemCell" id="b2R-td-b8J" userLabel="CategoryItemCell" customClass="CategoryItemCollectionViewCell" customModule="Blagaprint" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="464" width="320" height="200"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="200"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Category item" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X1W-w8-UIn">
+                                            <rect key="frame" x="15" y="90" width="297" height="21"/>
+                                            <animations/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <animations/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                                <animations/>
+                                <constraints>
+                                    <constraint firstItem="X1W-w8-UIn" firstAttribute="centerY" secondItem="b2R-td-b8J" secondAttribute="centerY" id="Q9D-yT-OqW"/>
+                                    <constraint firstItem="X1W-w8-UIn" firstAttribute="leading" secondItem="b2R-td-b8J" secondAttribute="leading" constant="15" id="RsZ-jX-Dei"/>
+                                    <constraint firstAttribute="trailing" secondItem="X1W-w8-UIn" secondAttribute="trailing" constant="8" id="hhP-fO-5N6"/>
+                                </constraints>
+                                <connections>
+                                    <outlet property="textLabel" destination="X1W-w8-UIn" id="A6f-zz-hwy"/>
+                                </connections>
+                            </collectionViewCell>
                         </cells>
                         <connections>
                             <outlet property="dataSource" destination="TjY-5B-SA4" id="a8b-TU-yfF"/>

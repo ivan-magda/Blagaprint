@@ -51,6 +51,7 @@
 		50F8F3D51BC7914A002CE3FD /* 3d_printing_individual.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 50F8F3D41BC7914A002CE3FD /* 3d_printing_individual.jpg */; settings = {ASSET_TAGS = (); }; };
 		50F8F3D71BC791BE002CE3FD /* 3d_printing_plastic.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 50F8F3D61BC791BE002CE3FD /* 3d_printing_plastic.jpg */; settings = {ASSET_TAGS = (); }; };
 		50F8F3D91BC7921A002CE3FD /* 3d_printing_strong_plastic.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 50F8F3D81BC7921A002CE3FD /* 3d_printing_strong_plastic.jpg */; settings = {ASSET_TAGS = (); }; };
+		50F8F41A1BC80857002CE3FD /* CategoryItemCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F8F4191BC80857002CE3FD /* CategoryItemCollectionViewCell.swift */; settings = {ASSET_TAGS = (); }; };
 		50FD7F501BB8FFF600ABEC38 /* CategoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50FD7F4F1BB8FFF600ABEC38 /* CategoryCollectionViewCell.swift */; settings = {ASSET_TAGS = (); }; };
 		50FD7F5D1BB90A8900ABEC38 /* copy_services.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 50FD7F5C1BB90A8900ABEC38 /* copy_services.jpg */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
@@ -102,6 +103,7 @@
 		50F8F3D41BC7914A002CE3FD /* 3d_printing_individual.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 3d_printing_individual.jpg; sourceTree = "<group>"; };
 		50F8F3D61BC791BE002CE3FD /* 3d_printing_plastic.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 3d_printing_plastic.jpg; sourceTree = "<group>"; };
 		50F8F3D81BC7921A002CE3FD /* 3d_printing_strong_plastic.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 3d_printing_strong_plastic.jpg; sourceTree = "<group>"; };
+		50F8F4191BC80857002CE3FD /* CategoryItemCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryItemCollectionViewCell.swift; sourceTree = "<group>"; };
 		50FD7F4F1BB8FFF600ABEC38 /* CategoryCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryCollectionViewCell.swift; sourceTree = "<group>"; };
 		50FD7F5C1BB90A8900ABEC38 /* copy_services.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = copy_services.jpg; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -246,6 +248,7 @@
 			children = (
 				50FD7F4F1BB8FFF600ABEC38 /* CategoryCollectionViewCell.swift */,
 				5071D34B1BBFE9D0005DDED3 /* NothingFoundCollectionViewCell.swift */,
+				50F8F4191BC80857002CE3FD /* CategoryItemCollectionViewCell.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -374,6 +377,7 @@
 			files = (
 				502A8CB51BB80EAC0064E0DA /* MainCollectionViewController.swift in Sources */,
 				50DD72391BBED313008A9B80 /* Category.swift in Sources */,
+				50F8F41A1BC80857002CE3FD /* CategoryItemCollectionViewCell.swift in Sources */,
 				50FD7F501BB8FFF600ABEC38 /* CategoryCollectionViewCell.swift in Sources */,
 				50425CA41BC51349006AFE36 /* DetailCategoryCollectionViewController.swift in Sources */,
 				503CBEC11BC415C700052BE0 /* CategoryItem.swift in Sources */,

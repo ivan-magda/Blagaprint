@@ -37,12 +37,12 @@ class Category: NSObject, NSCoding {
     
     var name: String
     var image: UIImage
-    var categoryItems = Set<CategoryItem>()
+    var categoryItems: [CategoryItem] = []
     var categoryType: CategoryTypes = .undefined
     
     // MARK: - Initializers
     
-    init(name: String, image: UIImage, categoryItems: Set<CategoryItem> = Set<CategoryItem>(), categoryType: CategoryTypes = .undefined) {
+    init(name: String, image: UIImage, categoryItems: [CategoryItem] = [], categoryType: CategoryTypes = .undefined) {
         self.name = name
         self.image = image
         self.categoryItems = categoryItems
@@ -54,7 +54,7 @@ class Category: NSObject, NSCoding {
     required init?(coder aDecoder: NSCoder) {
         name = aDecoder.decodeObjectForKey(CoderKeys.nameKey.rawValue) as! String
         image = aDecoder.decodeObjectForKey(CoderKeys.imageKey.rawValue) as! UIImage
-        categoryItems = aDecoder.decodeObjectForKey(CoderKeys.categoryItemsKey.rawValue) as! Set<CategoryItem>
+        categoryItems = aDecoder.decodeObjectForKey(CoderKeys.categoryItemsKey.rawValue) as! [CategoryItem]
     }
     
     func encodeWithCoder(aCoder: NSCoder) {

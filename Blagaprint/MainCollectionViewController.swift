@@ -18,7 +18,7 @@ class MainCollectionViewController: UICollectionViewController {
     /// Detail category segue identifier.
     private let kDetailCategorySegueIdentifier = "DetailCategory"
     
-    /// Observe value key path for collection view content offset.
+    /// Observe value for key path of the collection view content offset.
     private let kCollectionViewObserveValueKeyPath = "contentOffset"
     
     /// Collection view size and inset values.
@@ -35,6 +35,8 @@ class MainCollectionViewController: UICollectionViewController {
     /// Search bar coordinate and size values.
     private var searchBarBoundsY: CGFloat = 0.0
     private let searchBarHeight: CGFloat = 44.0
+    
+    private var selectedSectionIndex = -1
     
     /// Search bar to help us with filtering.
     lazy private var searchBar: UISearchBar = {
@@ -84,7 +86,7 @@ class MainCollectionViewController: UICollectionViewController {
     // MARK: - UICollectionView -
     // MARK: UICollectionViewDataSource
     
-    override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
         if searchBarActive {
             if filteredCategories.count > 0 {
                 return filteredCategories.count
@@ -93,6 +95,17 @@ class MainCollectionViewController: UICollectionViewController {
             }
         }
         return categories.count
+    }
+    
+    override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        if selectedSectionIndex != -1 &&
+           selectedSectionIndex == section {
+            let countItems = categories[section].categoryItems.count
+            
+            return (countItems == 0 ? 1 : countItems + 1)
+        } else {
+            return 1
+        }
     }
     
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
@@ -105,45 +118,69 @@ class MainCollectionViewController: UICollectionViewController {
             collectionViewCell.textLabel.text = "Ничего не найдено"
             
             return collectionViewCell
-        } else {
+        } else if indexPath.row == 0 {
             let collectionViewCell = self.collectionView!.dequeueReusableCellWithReuseIdentifier(kCategoryCollectionViewCellReuseIdentifier, forIndexPath: indexPath) as! CategoryCollectionViewCell
             
-            let category = (searchBarActive ? filteredCategories[indexPath.row] : categories[indexPath.row])
+            let category = (searchBarActive ? filteredCategories[indexPath.section] : categories[indexPath.section])
             collectionViewCell.categoryImageView?.image = category.image
             collectionViewCell.categoryNameLabel.text = category.name
             
             return collectionViewCell
+        } else {
+            let cell = collectionView!.dequeueReusableCellWithReuseIdentifier("CategoryItemCell", forIndexPath: indexPath) as! CategoryItemCollectionViewCell
+            let item = categories[indexPath.section].categoryItems[indexPath.row - 1]
+            cell.textLabel.text = item.name
+            
+            return cell
         }
     }
 
     // MARK: UICollectionViewDelegate
 
     override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        let selectedCategory = categories[indexPath.row]
-        switch selectedCategory.categoryType {
-        case .cases, .cups, .keyRingsWithPhoto, .clothes, .copyServices, .printingBy3Dprint:
-            print("Perform detail segue")
-            self.performSegueWithIdentifier(kDetailCategorySegueIdentifier, sender: selectedCategory)
-        default:
-            break
+//        let selectedCategory = categories[indexPath.row]
+//        switch selectedCategory.categoryType {
+//        case .cases, .cups, .keyRingsWithPhoto, .clothes, .copyServices, .printingBy3Dprint:
+//            print("Perform detail segue")
+//            self.performSegueWithIdentifier(kDetailCategorySegueIdentifier, sender: selectedCategory)
+//        default:
+//            break
+//        }
+        
+        if selectedSectionIndex == indexPath.section {
+            selectedSectionIndex = -1
+            collectionView.reloadSections(NSIndexSet(index: indexPath.section))
+        } else {
+            if selectedSectionIndex != indexPath.section &&
+               selectedSectionIndex != -1 {
+                selectedSectionIndex = indexPath.section
+                collectionView.reloadData()
+            } else {
+                selectedSectionIndex = indexPath.section
+                collectionView.reloadSections(NSIndexSet(index: selectedSectionIndex))
+            }
         }
     }
     
     override func collectionView(collectionView: UICollectionView, shouldSelectItemAtIndexPath indexPath: NSIndexPath) -> Bool {
         return !nothingFound()
     }
-    
 }
 
 // MARK: UICollectionViewDelegateFlowLayout
 
 extension MainCollectionViewController: UICollectionViewDelegateFlowLayout {
-    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAtIndex section: Int) -> UIEdgeInsets {
-        return UIEdgeInsetsMake(CGRectGetHeight(searchBar.frame) + kCollectionViewTopSectionInset * 2, 0.0, 0.0, 0.0)
-    }
+//    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAtIndex section: Int) -> UIEdgeInsets {
+//        return UIEdgeInsetsMake(CGRectGetHeight(searchBar.frame) + kCollectionViewTopSectionInset * 2, 0.0, 0.0, 0.0)
+//    }
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-        return CGSizeMake(CGRectGetWidth(collectionView.bounds), kCollectionViewCellHeightValue)
+        let widht = CGRectGetWidth(collectionView.bounds)
+        if indexPath.row == 0 {
+            return CGSizeMake(widht, kCollectionViewCellHeightValue)
+        } else {
+            return CGSizeMake(widht, 44.0)
+        }
     }
 }
 
