@@ -9,10 +9,6 @@
 import UIKit
 
 class ExpandedCollectionViewFlowLayout: UICollectionViewFlowLayout {
-    // MARK: - Properties
-    
-    let kCollectionViewHeightValue: CGFloat = 200.0
-
     // MARK: - Overriding
     
     override func collectionViewContentSize() -> CGSize {
@@ -22,10 +18,5 @@ class ExpandedCollectionViewFlowLayout: UICollectionViewFlowLayout {
         let height = CGRectGetHeight(self.collectionView!.bounds)
         
         return CGSizeMake(width * CGFloat(itemCount), height);
-    }
-    
-    override internal var itemSize: CGSize {
-        get { return CGSizeMake(CGRectGetWidth(self.collectionView!.bounds), kCollectionViewHeightValue) }
-        set {}
     }
 }

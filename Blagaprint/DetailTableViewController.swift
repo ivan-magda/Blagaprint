@@ -31,10 +31,18 @@ class DetailTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        setUp()
+    }
+    
+    // MARK: - Set Up
+    
+    private func setUp() {
+        setUpTitle()
+        setUpContainerViewFrame()
         configureTableView()
-        
-        // Set title.
+    }
+    
+    private func setUpTitle() {
         if let title = parentCategoryName {
             self.title = title
         } else {
@@ -42,11 +50,14 @@ class DetailTableViewController: UITableViewController {
         }
     }
     
-    // MARK: - Set Up
-    
-    func configureTableView() {
+    private func configureTableView() {
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 44.0
+    }
+    
+    private func setUpContainerViewFrame() {
+        let containerViewFrame = CGRectMake(tableView.tableHeaderView!.bounds.origin.x, tableView.tableHeaderView!.bounds.origin.y, CGRectGetWidth(tableView.bounds), CGRectGetHeight(tableView!.bounds) / 2.0)
+        self.tableView.tableHeaderView!.frame = containerViewFrame
     }
     
     // MARK: - Navigation
@@ -74,7 +85,7 @@ class DetailTableViewController: UITableViewController {
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier(kDetailTableViewCellReuseIdentifier) as! DescriptionCell
         
-        cell.descriptionLabel.text = "\(categoryItems[selectedCategoryIndex].name)\nWhen you create a Core Data app, you design an initial data model for your app. However, after you ship your app inevitably you’ll want to make changes to your data model. What do you do then – you don’t want to break the app for existing users! "
+        cell.descriptionLabel.text = "\(categoryItems[selectedCategoryIndex].name)."
         
         return cell
     }

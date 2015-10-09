@@ -79,7 +79,7 @@ class DetailCategoryViewController: UIViewController {
 
 // MARK: - UICollectionView -
 
-extension DetailCategoryViewController: UICollectionViewDataSource, UICollectionViewDelegate {
+extension DetailCategoryViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     // MARK: UICollectionViewDataSource
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -90,11 +90,15 @@ extension DetailCategoryViewController: UICollectionViewDataSource, UICollection
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(kDetailCategoryCollectionViewCellIdentifier, forIndexPath: indexPath) as! CategoryCollectionViewCell
         configuratedCellAtIndexPath(indexPath, cell: cell)
         
-        // Set up number of pages in pageControl.
-        let itemCount = collectionView.numberOfItemsInSection(0)
-        pageControl.numberOfPages = itemCount
+        setUpPageControl()
         
         return cell
+    }
+    
+    private func setUpPageControl() {
+        let itemCount = collectionView.numberOfItemsInSection(0)
+        self.pageControl.numberOfPages = itemCount
+        self.pageControl.hidden = (itemCount == 1)
     }
     
     func configuratedCellAtIndexPath(indexPath: NSIndexPath, cell: CategoryCollectionViewCell) {
@@ -109,4 +113,11 @@ extension DetailCategoryViewController: UICollectionViewDataSource, UICollection
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         print("Selected category at index: \(indexPath.row).")
     }
+    
+    // MARK: UICollectionViewDelegateFlowLayout
+    
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+        return CGSizeMake(CGRectGetWidth(collectionView.bounds), CGRectGetHeight(collectionView.bounds))
+    }
+    
 }

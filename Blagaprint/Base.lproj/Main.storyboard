@@ -123,11 +123,11 @@
                         <viewControllerLayoutGuide type="bottom" id="cFo-3U-bvx"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="b9l-q0-O0c">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="200"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="240"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceHorizontal="YES" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="4ly-S7-KhY">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="200"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="240"/>
                                 <animations/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="UcH-iI-7Ri" customClass="ExpandedCollectionViewFlowLayout" customModule="Blagaprint" customModuleProvider="target">
@@ -138,7 +138,7 @@
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="CategoryItemCell" id="Sj9-CX-UF7" customClass="CategoryCollectionViewCell" customModule="Blagaprint" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="-42" width="320" height="284"/>
+                                        <rect key="frame" x="0.0" y="-22" width="320" height="284"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="284"/>
@@ -170,7 +170,7 @@
                                 </connections>
                             </collectionView>
                             <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="Tek-hH-ufu">
-                                <rect key="frame" x="140" y="155" width="39" height="37"/>
+                                <rect key="frame" x="140" y="195" width="39" height="37"/>
                                 <animations/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="37" id="bNK-rQ-EGZ"/>
@@ -210,7 +210,7 @@
                         <animations/>
                         <color key="backgroundColor" red="0.21176470589999999" green="0.21176470589999999" blue="0.25882352939999997" alpha="1" colorSpace="calibratedRGB"/>
                         <containerView key="tableHeaderView" opaque="NO" contentMode="scaleToFill" id="nnV-bg-Tda">
-                            <rect key="frame" x="0.0" y="64" width="320" height="200"/>
+                            <rect key="frame" x="0.0" y="64" width="320" height="240"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                             <animations/>
                             <connections>
@@ -219,7 +219,7 @@
                         </containerView>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="InfoCell" id="tyr-Fl-QP8" customClass="DescriptionCell" customModule="Blagaprint" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="292" width="320" height="44"/>
+                                <rect key="frame" x="0.0" y="332" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="tyr-Fl-QP8" id="WbI-d3-cbw">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
