@@ -74,7 +74,7 @@ class MainCollectionViewController: UICollectionViewController {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == kDetailCategorySegueIdentifier {
             if let selectedCategory = sender as? Category {
-                let detailViewController = segue.destinationViewController as! DetailTableViewController
+                let detailViewController = segue.destinationViewController as! DetailCategoryCollectionViewController
                 detailViewController.categoryItems = Array(selectedCategory.categoryItems)
                 detailViewController.parentCategoryName = selectedCategory.name
             }

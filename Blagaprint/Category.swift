@@ -69,11 +69,11 @@ class Category: NSObject, NSCoding {
         var categories = [Category]()
         
         let cases = Category(name: "Чехлы", image: UIImage(named:"cases.jpg")!, categoryType: .cases)
-        cases.categoryItems = [CategoryItem(name: "Именные", image: UIImage(), parentCategory: cases), CategoryItem(name: "С фотографией", image: UIImage(), parentCategory: cases), CategoryItem(name: "С индивидуальным дизайном", image: UIImage(), parentCategory: cases)]
+        cases.categoryItems = [CategoryItem(name: "Именные", image: UIImage(named: "case_with_name.jpg")!, parentCategory: cases), CategoryItem(name: "С фотографией", image: UIImage(named: "case_with_photo.jpg")!, parentCategory: cases), CategoryItem(name: "С индивидуальным дизайном", image: UIImage(named: "case_individual.jpg")!, parentCategory: cases)]
         categories.append(cases)
         
         let cups = Category(name: "Кружки", image: UIImage(named: "cups.jpg")!, categoryType: .cups)
-        cups.categoryItems = [CategoryItem(name: "Хамелеон", image: UIImage(), parentCategory: cups), CategoryItem(name: "Керамика", image: UIImage(), parentCategory: cups), CategoryItem(name: "Парные кружки для влюбленных", image: UIImage(), parentCategory: cups)]
+        cups.categoryItems = [CategoryItem(name: "Хамелеон", image: UIImage(named: "cup_chameleon.jpg")!, parentCategory: cups), CategoryItem(name: "Керамика", image: UIImage(named: "cup_ceramic.jpg")!, parentCategory: cups), CategoryItem(name: "Парные кружки для влюбленных", image: UIImage(named: "cup_love_is.jpg")!, parentCategory: cups)]
         categories.append(cups)
         
         let plates = Category(name: "Тарелки", image: UIImage(named: "plates.jpg")!, categoryType: .plates)
@@ -89,19 +89,19 @@ class Category: NSObject, NSCoding {
         categories.append(keyRingsBy3DPrinter)
         
         let keyRingsWithPhoto = Category(name: "Брелки с фото", image: UIImage(named: "key_ring_with_photo.jpg")!, categoryType: .keyRingsWithPhoto)
-        keyRingsWithPhoto.categoryItems = [CategoryItem(name: "Стеклянные", image: UIImage(), parentCategory: keyRingsWithPhoto), CategoryItem(name: "Пластиковые", image: UIImage(), parentCategory: keyRingsWithPhoto), CategoryItem(name: "С госномером", image: UIImage(), parentCategory: keyRingsWithPhoto)]
+        keyRingsWithPhoto.categoryItems = [CategoryItem(name: "Стеклянные", image: UIImage(named: "key_ring_with_photo_glass.jpg")!, parentCategory: keyRingsWithPhoto), CategoryItem(name: "Пластиковые", image: UIImage(named: "key_ring_with_photo_plastic.jpg")!, parentCategory: keyRingsWithPhoto), CategoryItem(name: "С гос номером", image: UIImage(named: "key_ring_with_number.jpg")!, parentCategory: keyRingsWithPhoto)]
         categories.append(keyRingsWithPhoto)
         
         let clothes = Category(name: "Одежда", image: UIImage(named: "clothes.jpg")!, categoryType: .clothes)
-        clothes.categoryItems = [CategoryItem(name: "Мужская", image: UIImage(), parentCategory: clothes), CategoryItem(name: "Женская", image: UIImage(), parentCategory: clothes), CategoryItem(name: "Детская", image: UIImage(), parentCategory: clothes)]
+        clothes.categoryItems = [CategoryItem(name: "Мужская", image: UIImage(named: "clothes_man.jpg")!, parentCategory: clothes), CategoryItem(name: "Женская", image: UIImage(named: "clothes_wimen.jpg")!, parentCategory: clothes), CategoryItem(name: "Детская", image: UIImage(named: "clothes_kids.jpg")!, parentCategory: clothes)]
         categories.append(clothes)
         
         let copyServices = Category(name: "Копировальные услуги", image: UIImage(named: "copy_services.jpg")!, categoryType: .copyServices)
-        copyServices.categoryItems = [CategoryItem(name: "Печать фотографий", image: UIImage(), parentCategory: copyServices), CategoryItem(name: "Банерная печать", image: UIImage(), parentCategory: copyServices), CategoryItem(name: "Визитки", image: UIImage(), parentCategory: copyServices)]
+        copyServices.categoryItems = [CategoryItem(name: "Печать фотографий", image: UIImage(named: "copy_services_photo.jpg")!, parentCategory: copyServices), CategoryItem(name: "Банерная печать", image: UIImage(named: "copy_services_baner.jpg")!, parentCategory: copyServices), CategoryItem(name: "Визитки", image: UIImage(named: "copy_services_business_card.jpg")!, parentCategory: copyServices)]
         categories.append(copyServices)
         
         let printingBy3Dprint = Category(name: "3D печать", image: UIImage(named: "3D_printing.jpg")!, categoryType: .printingBy3Dprint)
-        printingBy3Dprint.categoryItems = [CategoryItem(name: "Разработка индивидуального дизайна", image: UIImage(), parentCategory: printingBy3Dprint), CategoryItem(name: "Из пластика", image: UIImage(), parentCategory: printingBy3Dprint), CategoryItem(name: "Из резины", image: UIImage(), parentCategory: printingBy3Dprint), CategoryItem(name: "Из твердого пластика", image: UIImage(), parentCategory: printingBy3Dprint)]
+        printingBy3Dprint.categoryItems = [CategoryItem(name: "Разработка индивидуального дизайна", image: UIImage(named: "3d_printing_individual.jpg")!, parentCategory: printingBy3Dprint), CategoryItem(name: "Из пластика", image: UIImage(named: "3d_printing_plastic.jpg")!, parentCategory: printingBy3Dprint), CategoryItem(name: "Из резины", image: UIImage(), parentCategory: printingBy3Dprint), CategoryItem(name: "Из твердого пластика", image: UIImage(named: "3d_printing_strong_plastic.jpg")!, parentCategory: printingBy3Dprint)]
         categories.append(printingBy3Dprint)
         
         categories.append(Category(name: "Деревянные чехлы", image: UIImage(named: "wood_cases.jpg")!, categoryType: .woodCases))
