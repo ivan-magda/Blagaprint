@@ -8,24 +8,21 @@
 
 import UIKit
 
-class MainCollectionViewController: UICollectionViewController {
+class MainTableViewController: UITableViewController {
     // MARK: - Properties
     
-    /// Reuse identifiers for collection view.
-    private let kCategoryCollectionViewCellReuseIdentifier = "CollectionViewCell"
-    private let kNothingFoundCollectionViewCellReuseIdentifier = "NothingFoundCell"
+    /// Identifier for table view cell.
+    private let kCategoryTableViewCellIdentifier = "CategoryCell"
+    private let kCategoryItemTableViewCellIdentifier = "CategoryItemCell"
+    private let kNothingFoundTableViewCellIdentifier = "NothingFoundCell"
     
     /// Detail category segue identifier.
     private let kDetailCategorySegueIdentifier = "DetailCategory"
     
-    /// Observe value for key path of the collection view content offset.
-    private let kCollectionViewObserveValueKeyPath = "contentOffset"
-    
     /// Collection view size and inset values.
-    private let kCollectionViewCellHeightValue: CGFloat = 200.0
-    private let kCollectionViewTopSectionInset: CGFloat = 0.0
+    private let kCategoryTableViewCellHeightValue: CGFloat = 200.0
     
-    /// Data model for the collection view.
+    /// Data model for the table view.
     private var categories: [Category] = Category.seedInitialData()
     private var filteredCategories: [Category] = [Category]()
     
@@ -42,13 +39,10 @@ class MainCollectionViewController: UICollectionViewController {
     lazy private var searchBar: UISearchBar = {
         self.searchBarBoundsY = CGRectGetHeight(self.navigationController!.navigationBar.frame) + CGRectGetHeight(UIApplication.sharedApplication().statusBarFrame)
         
-        var temporarySearchBar = UISearchBar(frame: CGRectMake(0.0, self.searchBarBoundsY + self.kCollectionViewTopSectionInset, CGRectGetWidth(UIScreen.mainScreen().bounds), self.searchBarHeight))
+        var temporarySearchBar = UISearchBar(frame: CGRectMake(0.0, self.searchBarBoundsY, CGRectGetWidth(UIScreen.mainScreen().bounds), self.searchBarHeight))
         temporarySearchBar.searchBarStyle = UISearchBarStyle.Minimal
         temporarySearchBar.delegate = self
         temporarySearchBar.placeholder = "Поиск"
-        
-        // add KVO observer.. so we will be informed when user scroll colllectionView
-        self.addObservers()
         
         return temporarySearchBar
     }()
@@ -57,18 +51,12 @@ class MainCollectionViewController: UICollectionViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+    
+        self.tableView.tableHeaderView = searchBar
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        
-        if !self.searchBar.isDescendantOfView(self.view) {
-            self.view.addSubview(self.searchBar)
-        }
-    }
-    
-    deinit {
-        removeObservers()
     }
     
     // MARK: - Navigation
@@ -83,10 +71,10 @@ class MainCollectionViewController: UICollectionViewController {
         }
     }
 
-    // MARK: - UICollectionView -
-    // MARK: UICollectionViewDataSource
+    // MARK: - UITableView -
+    // MARK: UITableViewDataSource
     
-    override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
+    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         if searchBarActive {
             if filteredCategories.count > 0 {
                 return filteredCategories.count
@@ -97,7 +85,7 @@ class MainCollectionViewController: UICollectionViewController {
         return categories.count
     }
     
-    override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if selectedSectionIndex != -1 &&
            selectedSectionIndex == section {
             let countItems = categories[section].categoryItems.count
@@ -108,36 +96,36 @@ class MainCollectionViewController: UICollectionViewController {
         }
     }
     
-    override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         return getConfiguratedCellAtIndexPath(indexPath)
     }
     
-    func getConfiguratedCellAtIndexPath(indexPath: NSIndexPath) -> UICollectionViewCell {
+    func getConfiguratedCellAtIndexPath(indexPath: NSIndexPath) -> UITableViewCell {
         if nothingFound() {
-            let collectionViewCell = self.collectionView!.dequeueReusableCellWithReuseIdentifier(kNothingFoundCollectionViewCellReuseIdentifier, forIndexPath: indexPath) as! NothingFoundCollectionViewCell
-            collectionViewCell.textLabel.text = "Ничего не найдено"
+            let nothingFoundCell = self.tableView!.dequeueReusableCellWithIdentifier(kNothingFoundTableViewCellIdentifier) as! NothingFoundTableViewCell
+            nothingFoundCell.label.text = "Ничего не найдено"
             
-            return collectionViewCell
+            return nothingFoundCell
         } else if indexPath.row == 0 {
-            let collectionViewCell = self.collectionView!.dequeueReusableCellWithReuseIdentifier(kCategoryCollectionViewCellReuseIdentifier, forIndexPath: indexPath) as! CategoryCollectionViewCell
+            let categoryCell = self.tableView.dequeueReusableCellWithIdentifier(kCategoryTableViewCellIdentifier) as! CategoryTableViewCell
             
             let category = (searchBarActive ? filteredCategories[indexPath.section] : categories[indexPath.section])
-            collectionViewCell.categoryImageView?.image = category.image
-            collectionViewCell.categoryNameLabel.text = category.name
+            categoryCell.categoryImageView?.image = category.image
+            categoryCell.categoryNameLabel.text = category.name
             
-            return collectionViewCell
+            return categoryCell
         } else {
-            let cell = collectionView!.dequeueReusableCellWithReuseIdentifier("CategoryItemCell", forIndexPath: indexPath) as! CategoryItemCollectionViewCell
+            let categoryItemCell = self.tableView.dequeueReusableCellWithIdentifier(kCategoryItemTableViewCellIdentifier) as! CategoryItemTableViewCell
             let item = categories[indexPath.section].categoryItems[indexPath.row - 1]
-            cell.textLabel.text = item.name
+            categoryItemCell.categoryItemCell.text = item.name
             
-            return cell
+            return categoryItemCell
         }
     }
 
-    // MARK: UICollectionViewDelegate
+    // MARK: UITableViewDelegate
 
-    override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
 //        let selectedCategory = categories[indexPath.row]
 //        switch selectedCategory.categoryType {
 //        case .cases, .cups, .keyRingsWithPhoto, .clothes, .copyServices, .printingBy3Dprint:
@@ -149,44 +137,40 @@ class MainCollectionViewController: UICollectionViewController {
         
         if selectedSectionIndex == indexPath.section {
             selectedSectionIndex = -1
-            collectionView.reloadSections(NSIndexSet(index: indexPath.section))
+            tableView.reloadSections(NSIndexSet(index: indexPath.section), withRowAnimation: .Automatic)
         } else {
             if selectedSectionIndex != indexPath.section &&
                selectedSectionIndex != -1 {
                 selectedSectionIndex = indexPath.section
-                collectionView.reloadData()
+                tableView.reloadData()
+                tableView.scrollToRowAtIndexPath(indexPath, atScrollPosition: UITableViewScrollPosition.Middle, animated: true)
             } else {
                 selectedSectionIndex = indexPath.section
-                collectionView.reloadSections(NSIndexSet(index: selectedSectionIndex))
+                tableView.reloadSections(NSIndexSet(index: selectedSectionIndex), withRowAnimation: .Automatic)
             }
         }
     }
     
-    override func collectionView(collectionView: UICollectionView, shouldSelectItemAtIndexPath indexPath: NSIndexPath) -> Bool {
-        return !nothingFound()
-    }
-}
-
-// MARK: UICollectionViewDelegateFlowLayout
-
-extension MainCollectionViewController: UICollectionViewDelegateFlowLayout {
-//    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAtIndex section: Int) -> UIEdgeInsets {
-//        return UIEdgeInsetsMake(CGRectGetHeight(searchBar.frame) + kCollectionViewTopSectionInset * 2, 0.0, 0.0, 0.0)
-//    }
-    
-    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-        let widht = CGRectGetWidth(collectionView.bounds)
-        if indexPath.row == 0 {
-            return CGSizeMake(widht, kCollectionViewCellHeightValue)
+    override func tableView(tableView: UITableView, willSelectRowAtIndexPath indexPath: NSIndexPath) -> NSIndexPath? {
+        if !nothingFound() {
+            return indexPath
         } else {
-            return CGSizeMake(widht, 44.0)
+            return nil
+        }
+    }
+    
+    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        if indexPath.row == 0  {
+            return kCategoryTableViewCellHeightValue
+        } else {
+            return 44.0
         }
     }
 }
 
 // MARK: - Search -
 
-extension MainCollectionViewController: UISearchBarDelegate {
+extension MainTableViewController: UISearchBarDelegate {
     
     private func cancelSearching() {
         searchBarActive = false
@@ -201,7 +185,7 @@ extension MainCollectionViewController: UISearchBarDelegate {
     }
     
     private func reloadContentData() {
-        collectionView?.reloadSections(NSIndexSet(index: 0))
+        tableView.reloadData()
     }
     
     private func nothingFound() -> Bool {
@@ -252,28 +236,6 @@ extension MainCollectionViewController: UISearchBarDelegate {
         // but no need to reloadCollectionView
         searchBarActive = false
         self.searchBar.setShowsCancelButton(false, animated: true)
-    }
-    
-    // MARK: - KVO Observing -
-    
-    private func addObservers() {
-        self.collectionView?.addObserver(self, forKeyPath: kCollectionViewObserveValueKeyPath, options: [NSKeyValueObservingOptions.New, NSKeyValueObservingOptions.Old], context: nil)
-    }
-    
-    private func removeObservers() {
-        self.collectionView?.removeObserver(self, forKeyPath: kCollectionViewObserveValueKeyPath, context: nil)
-    }
-    
-    override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
-        if let observer = object as? UICollectionView {
-            if keyPath! == kCollectionViewObserveValueKeyPath &&
-                observer == self.collectionView {
-                    self.searchBar.frame = CGRectMake(self.searchBar.frame.origin.x,
-                        self.searchBarBoundsY + ((-1 * object!.contentOffset.y) - self.searchBarBoundsY) + kCollectionViewTopSectionInset,
-                        self.searchBar.frame.size.width,
-                        self.searchBar.frame.size.height);
-            }
-        }
     }
 }
 

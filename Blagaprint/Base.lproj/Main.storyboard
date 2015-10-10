@@ -7,12 +7,12 @@
         <!--Blagaprint-->
         <scene sceneID="lK0-pm-8Jg">
             <objects>
-                <collectionViewController id="TjY-5B-SA4" customClass="MainCollectionViewController" customModule="Blagaprint" customModuleProvider="target" sceneMemberID="viewController">
+                <collectionViewController id="TjY-5B-SA4" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" keyboardDismissMode="onDrag" dataMode="prototypes" id="LGd-zL-jdx">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <animations/>
-                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="4Hd-QD-Fto">
                             <size key="itemSize" width="320" height="200"/>
                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -20,8 +20,8 @@
                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
                         <cells>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="CollectionViewCell" id="7ix-jd-9Zj" userLabel="CategoryCollectionCell" customClass="CategoryCollectionViewCell" customModule="Blagaprint" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="64" width="320" height="200"/>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="CollectionViewCell" id="7ix-jd-9Zj" userLabel="CategoryCollectionCell">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="200"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="200"/>
@@ -70,8 +70,8 @@
                                     <outlet property="CategoryNameLabel" destination="RFO-KY-e0C" id="d9l-Gc-Kaf"/>
                                 </connections>
                             </collectionViewCell>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="NothingFoundCell" id="As1-ez-66u" userLabel="NothingFoundCell" customClass="NothingFoundCollectionViewCell" customModule="Blagaprint" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="264" width="320" height="200"/>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="NothingFoundCell" id="As1-ez-66u" userLabel="NothingFoundCell">
+                                <rect key="frame" x="0.0" y="200" width="320" height="200"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="200"/>
@@ -98,8 +98,8 @@
                                     <outlet property="textLabel" destination="3rR-6I-aLG" id="Oai-Nf-oVW"/>
                                 </connections>
                             </collectionViewCell>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="CategoryItemCell" id="b2R-td-b8J" userLabel="CategoryItemCell" customClass="CategoryItemCollectionViewCell" customModule="Blagaprint" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="464" width="320" height="200"/>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="CategoryItemCell" id="b2R-td-b8J" userLabel="CategoryItemCell">
+                                <rect key="frame" x="0.0" y="400" width="320" height="200"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="200"/>
@@ -132,6 +132,7 @@
                         </connections>
                     </collectionView>
                     <navigationItem key="navigationItem" title="Blagaprint" id="FDI-qS-fb0"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
                         <segue destination="meY-S5-eLi" kind="show" identifier="DetailCategory" id="9L1-3h-fta"/>
                     </connections>
@@ -148,7 +149,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <animations/>
-                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="ikx-wB-4xy">
                             <size key="itemSize" width="320" height="200"/>
                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -156,8 +157,8 @@
                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
                         <cells>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="CategoryItemCell" id="AQ5-O4-bXH" customClass="CategoryCollectionViewCell" customModule="Blagaprint" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="64" width="320" height="200"/>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="CategoryItemCell" id="AQ5-O4-bXH">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="200"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="200"/>
@@ -230,12 +231,136 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="TjY-5B-SA4" kind="relationship" relationship="rootViewController" id="mmz-FL-lAF"/>
+                        <segue destination="Q8t-Lm-Vy4" kind="relationship" relationship="rootViewController" id="SOK-W3-EZd"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ubg-mB-8f5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-100" y="307"/>
+            <point key="canvasLocation" x="-193" y="971"/>
+        </scene>
+        <!--Blagaprint-->
+        <scene sceneID="1er-6J-mxk">
+            <objects>
+                <tableViewController id="Q8t-Lm-Vy4" customClass="MainTableViewController" customModule="Blagaprint" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="Kbw-bW-IMm">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="CategoryCell" rowHeight="200" id="FJf-ka-HpO" userLabel="CategoryCell" customClass="CategoryTableViewCell" customModule="Blagaprint" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="92" width="320" height="200"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="FJf-ka-HpO" id="vxa-Yl-h4g">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="200"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="3D_printing.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="9DT-2o-MP4">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="200"/>
+                                            <animations/>
+                                        </imageView>
+                                        <view alpha="0.94999999999999996" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OpU-JJ-UQ2">
+                                            <rect key="frame" x="0.0" y="150" width="320" height="50"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Category" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8KH-gk-tc1">
+                                                    <rect key="frame" x="15" y="14" width="297" height="21"/>
+                                                    <animations/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <animations/>
+                                            <color key="backgroundColor" red="0.21176470589999999" green="0.21176470589999999" blue="0.25882352939999997" alpha="1" colorSpace="calibratedRGB"/>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="8KH-gk-tc1" secondAttribute="trailing" constant="8" id="5L3-vW-XZU"/>
+                                                <constraint firstItem="8KH-gk-tc1" firstAttribute="leading" secondItem="OpU-JJ-UQ2" secondAttribute="leading" constant="15" id="in5-rY-c3U"/>
+                                                <constraint firstItem="8KH-gk-tc1" firstAttribute="centerY" secondItem="OpU-JJ-UQ2" secondAttribute="centerY" id="njD-ux-hUb"/>
+                                                <constraint firstAttribute="height" constant="50" id="odU-Ge-yqA"/>
+                                            </constraints>
+                                        </view>
+                                    </subviews>
+                                    <animations/>
+                                    <constraints>
+                                        <constraint firstAttribute="bottom" secondItem="9DT-2o-MP4" secondAttribute="bottom" id="61I-Ei-zzT"/>
+                                        <constraint firstAttribute="trailing" secondItem="9DT-2o-MP4" secondAttribute="trailing" id="78J-nO-N8D"/>
+                                        <constraint firstItem="9DT-2o-MP4" firstAttribute="top" secondItem="vxa-Yl-h4g" secondAttribute="top" id="FGA-nQ-3eU"/>
+                                        <constraint firstItem="9DT-2o-MP4" firstAttribute="leading" secondItem="vxa-Yl-h4g" secondAttribute="leading" id="UkU-rH-7ND"/>
+                                        <constraint firstAttribute="trailing" secondItem="OpU-JJ-UQ2" secondAttribute="trailing" id="d6C-Ob-L3q"/>
+                                        <constraint firstAttribute="bottom" secondItem="OpU-JJ-UQ2" secondAttribute="bottom" id="eZ5-RR-iW0"/>
+                                        <constraint firstItem="OpU-JJ-UQ2" firstAttribute="leading" secondItem="vxa-Yl-h4g" secondAttribute="leading" id="jyk-kC-Wsa"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <animations/>
+                                <connections>
+                                    <outlet property="categoryImageView" destination="9DT-2o-MP4" id="cGJ-Bg-Sfi"/>
+                                    <outlet property="categoryNameLabel" destination="8KH-gk-tc1" id="5yr-s5-4vL"/>
+                                </connections>
+                            </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="CategoryItemCell" id="uFg-uV-TBy" userLabel="CategoryItemCell" customClass="CategoryItemTableViewCell" customModule="Blagaprint" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="292" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="uFg-uV-TBy" id="cBE-Y5-AaO">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Category item" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fXZ-v4-xiT">
+                                            <rect key="frame" x="15" y="11" width="297" height="21"/>
+                                            <animations/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <animations/>
+                                    <constraints>
+                                        <constraint firstItem="fXZ-v4-xiT" firstAttribute="centerY" secondItem="cBE-Y5-AaO" secondAttribute="centerY" id="LvF-Rw-uqv"/>
+                                        <constraint firstAttribute="trailing" secondItem="fXZ-v4-xiT" secondAttribute="trailing" constant="8" id="d77-q8-UnB"/>
+                                        <constraint firstItem="fXZ-v4-xiT" firstAttribute="leading" secondItem="cBE-Y5-AaO" secondAttribute="leading" constant="15" id="yHf-UP-hQE"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <animations/>
+                                <connections>
+                                    <outlet property="categoryItemCell" destination="fXZ-v4-xiT" id="XgD-Eo-Kk7"/>
+                                </connections>
+                            </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="NothingFoundCell" id="EXS-CY-xsa" userLabel="NothingFoundCell" customClass="NothingFoundTableViewCell" customModule="Blagaprint" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="336" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="EXS-CY-xsa" id="ug5-tV-25x">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nothing found" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OWh-Fg-zVf">
+                                            <rect key="frame" x="105" y="11" width="110" height="21"/>
+                                            <animations/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <animations/>
+                                    <constraints>
+                                        <constraint firstItem="OWh-Fg-zVf" firstAttribute="centerX" secondItem="ug5-tV-25x" secondAttribute="centerX" id="hRV-xs-d02"/>
+                                        <constraint firstItem="OWh-Fg-zVf" firstAttribute="centerY" secondItem="ug5-tV-25x" secondAttribute="centerY" id="jdy-8n-z6j"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <animations/>
+                                <connections>
+                                    <outlet property="label" destination="OWh-Fg-zVf" id="Wdj-aI-c0p"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="Q8t-Lm-Vy4" id="lMG-p5-ZoX"/>
+                            <outlet property="delegate" destination="Q8t-Lm-Vy4" id="0rZ-TX-cfu"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Blagaprint" id="fRJ-Gs-DIm"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="itM-KT-VwC" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="212" y="971"/>
         </scene>
     </scenes>
     <resources>

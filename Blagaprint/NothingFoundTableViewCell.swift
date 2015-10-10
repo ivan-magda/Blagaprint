@@ -8,8 +8,8 @@
 
 import UIKit
 
-class NothingFoundCollectionViewCell: UICollectionViewCell {
+class NothingFoundTableViewCell: UITableViewCell {
     // MARK: Properties
     
-    @IBOutlet weak var textLabel: UILabel!
+    @IBOutlet weak var label: UILabel!
 }

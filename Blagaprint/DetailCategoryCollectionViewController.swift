@@ -47,20 +47,20 @@ class DetailCategoryCollectionViewController: UICollectionViewController, UIColl
         return categoryItems.count
     }
     
-    override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(kDetailCategoryCollectionViewCellIdentifier, forIndexPath: indexPath) as! CategoryCollectionViewCell
-        configuratedCellAtIndexPath(indexPath, cell: cell)
-        
-        return cell
-    }
+//    override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+//        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(kDetailCategoryCollectionViewCellIdentifier, forIndexPath: indexPath) as! CategoryCollectionViewCell
+//        configuratedCellAtIndexPath(indexPath, cell: cell)
+//        
+//        return cell
+//    }
     
-    func configuratedCellAtIndexPath(indexPath: NSIndexPath, cell: CategoryCollectionViewCell) {
-        let categoryItem = categoryItems[indexPath.row]
-        if let image = categoryItem.image {
-            cell.categoryImageView?.image = image
-        }
-        cell.categoryNameLabel.text = categoryItem.name
-    }
+//    func configuratedCellAtIndexPath(indexPath: NSIndexPath, cell: CategoryCollectionViewCell) {
+//        let categoryItem = categoryItems[indexPath.row]
+//        if let image = categoryItem.image {
+//            cell.categoryImageView?.image = image
+//        }
+//        cell.categoryNameLabel.text = categoryItem.name
+//    }
     
     // MARK: UICollectionViewDelegate
     
