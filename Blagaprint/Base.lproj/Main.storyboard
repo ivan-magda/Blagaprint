@@ -262,7 +262,7 @@
                                                 <constraint firstAttribute="height" constant="200" id="R9d-kb-SjL"/>
                                             </constraints>
                                         </imageView>
-                                        <view alpha="0.90000000000000002" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OpU-JJ-UQ2" userLabel="BackgroundView">
+                                        <view hidden="YES" alpha="0.90000000000000002" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OpU-JJ-UQ2" userLabel="BackgroundView">
                                             <rect key="frame" x="0.0" y="156" width="320" height="44"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Category" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8KH-gk-tc1">
@@ -311,6 +311,7 @@
                                             <rect key="frame" x="15" y="11" width="272" height="22"/>
                                             <animations/>
                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
@@ -329,7 +330,7 @@
                                     </variation>
                                 </tableViewCellContentView>
                                 <animations/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" red="0.21176470589999999" green="0.21176470589999999" blue="0.25882352939999997" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
                                     <outlet property="categoryItemLabel" destination="fXZ-v4-xiT" id="Api-UV-22O"/>
                                 </connections>

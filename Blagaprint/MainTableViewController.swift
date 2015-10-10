@@ -26,6 +26,9 @@ class MainTableViewController: UITableViewController {
     /// CategoryTableViewCell height value.
     private static let kCategoryTableViewCellHeightValue: CGFloat = 200.0
     
+    /// Height for tableView header view.
+    private static let kHeightForHeader: CGFloat = 44.0
+    
     /// Data source for the table view.
     private var categories: [Category] = Category.seedInitialData()
     private var filteredCategories: [Category] = [Category]()
@@ -78,6 +81,27 @@ class MainTableViewController: UITableViewController {
         return getConfiguratedCellAtIndexPath(indexPath)
     }
     
+    override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        if nothingFound() {
+            return nil
+        }
+        
+        let headerView = UIView(frame: CGRectMake(0.0, 0.0, CGRectGetWidth(tableView.bounds), MainTableViewController.kHeightForHeader))
+        headerView.backgroundColor = AppAppearance.AppColors.tuna
+        
+        let labelHeight: CGFloat = 18.0
+        let labelLeadingSpace = CategoryItemTableViewCell.leadingSpace
+        let labelTrailingSpace = labelLeadingSpace + 8.0
+        let label = UILabel(frame: CGRectMake(labelLeadingSpace, CGRectGetHeight(headerView.bounds) / 2 - labelHeight / 2.0, CGRectGetWidth(tableView.bounds) - labelTrailingSpace, labelHeight))
+        let category = (searchBarActive ? filteredCategories[section] : categories[section])
+        label.text = category.name
+        label.textColor = UIColor.whiteColor()
+        
+        headerView.addSubview(label)
+        
+        return headerView
+    }
+    
 
     // MARK: UITableViewDelegate
     
@@ -110,6 +134,10 @@ class MainTableViewController: UITableViewController {
         } else {
             return nil
         }
+    }
+    
+    override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return nothingFound() ? 0.0 : MainTableViewController.kHeightForHeader
     }
     
     // MARK: - Private Helpers Methods -
@@ -166,9 +194,7 @@ class MainTableViewController: UITableViewController {
     
     private func configurateSeparatorViewOnCell(cell: UITableViewCell, atIndexPath indexPath: NSIndexPath) {
         if indexPath.row != 0 && !nothingFound() {
-            let numberOfItems = numberOfItemsInSection(indexPath.section) - 1
-            let yOffSet:CGFloat = numberOfItems == indexPath.row ? 0.0 : 0.5
-            let separatorFrame = CGRectMake(CategoryItemTableViewCell.leadingSpace, CGRectGetHeight(cell.bounds) - yOffSet, CGRectGetWidth(tableView.bounds) - CategoryItemTableViewCell.leadingSpace, 0.5)
+            let separatorFrame = CGRectMake(CategoryItemTableViewCell.leadingSpace, CGRectGetHeight(cell.bounds) - 0.5, CGRectGetWidth(tableView.bounds) - CategoryItemTableViewCell.leadingSpace, 0.5)
             
             var separatorFound = false
             for view in cell.subviews {
@@ -213,7 +239,6 @@ class MainTableViewController: UITableViewController {
 // MARK: - Search -
 
 extension MainTableViewController: UISearchBarDelegate {
-    
     private func filterContentForSearchText(searchText: String) {
         filteredCategories = categories.filter({ (category: Category) -> Bool in
             return category.name.lowercaseString.containsString(searchText.lowercaseString)
