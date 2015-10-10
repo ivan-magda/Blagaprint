@@ -11,5 +11,9 @@ import UIKit
 class CategoryItemTableViewCell: UITableViewCell {
     // MARK: - Properties
     
-    @IBOutlet weak var categoryItemCell: UILabel!
+    /// Text label.
+    @IBOutlet weak var categoryItemLabel: UILabel!
+    
+    /// Leading space value.
+    static let leadingSpace: CGFloat = 24.0
 }
