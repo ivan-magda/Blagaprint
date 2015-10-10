@@ -15,5 +15,5 @@ class CategoryItemTableViewCell: UITableViewCell {
     @IBOutlet weak var categoryItemLabel: UILabel!
     
     /// Leading space value.
-    static let leadingSpace: CGFloat = 24.0
+    static let leadingSpace: CGFloat = 15.0
 }

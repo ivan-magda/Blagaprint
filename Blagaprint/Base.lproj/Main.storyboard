@@ -262,13 +262,13 @@
                                                 <constraint firstAttribute="height" constant="200" id="R9d-kb-SjL"/>
                                             </constraints>
                                         </imageView>
-                                        <view alpha="0.94999999999999996" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OpU-JJ-UQ2" userLabel="BackgroundView">
+                                        <view alpha="0.90000000000000002" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OpU-JJ-UQ2" userLabel="BackgroundView">
                                             <rect key="frame" x="0.0" y="156" width="320" height="44"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Category" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8KH-gk-tc1">
-                                                    <rect key="frame" x="15" y="11" width="297" height="21"/>
+                                                    <rect key="frame" x="15" y="13" width="297" height="18"/>
                                                     <animations/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -308,9 +308,9 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Category item" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fXZ-v4-xiT">
-                                            <rect key="frame" x="24" y="11" width="263" height="22"/>
+                                            <rect key="frame" x="15" y="11" width="272" height="22"/>
                                             <animations/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
@@ -320,7 +320,7 @@
                                         <constraint firstItem="fXZ-v4-xiT" firstAttribute="centerY" secondItem="cBE-Y5-AaO" secondAttribute="centerY" id="LvF-Rw-uqv"/>
                                         <constraint firstAttribute="trailing" secondItem="fXZ-v4-xiT" secondAttribute="trailing" id="d77-q8-UnB"/>
                                         <constraint firstAttribute="bottom" secondItem="fXZ-v4-xiT" secondAttribute="bottom" constant="11" id="xJ7-IS-Qft"/>
-                                        <constraint firstItem="fXZ-v4-xiT" firstAttribute="leading" secondItem="cBE-Y5-AaO" secondAttribute="leading" constant="24" id="yHf-UP-hQE"/>
+                                        <constraint firstItem="fXZ-v4-xiT" firstAttribute="leading" secondItem="cBE-Y5-AaO" secondAttribute="leading" constant="15" id="yHf-UP-hQE"/>
                                     </constraints>
                                     <variation key="default">
                                         <mask key="constraints">
@@ -329,6 +329,7 @@
                                     </variation>
                                 </tableViewCellContentView>
                                 <animations/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
                                     <outlet property="categoryItemLabel" destination="fXZ-v4-xiT" id="Api-UV-22O"/>
                                 </connections>

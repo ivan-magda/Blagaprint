@@ -152,7 +152,7 @@ class MainTableViewController: UITableViewController {
             
             let category = (searchBarActive ? filteredCategories[indexPath.section] : categories[indexPath.section])
             categoryCell.categoryImageView?.image = category.image
-            categoryCell.categoryNameLabel.text = category.name
+            categoryCell.categoryNameLabel.text = category.name.uppercaseString
             
             return categoryCell
         } else {
@@ -193,6 +193,7 @@ class MainTableViewController: UITableViewController {
         searchController = UISearchController(searchResultsController: nil)
     
         let searchBar = searchController.searchBar
+        searchBar.tintColor = UIColor.blackColor()
         searchBar.placeholder = "Поиск"
         searchBar.sizeToFit()
         tableView.tableHeaderView = searchBar
