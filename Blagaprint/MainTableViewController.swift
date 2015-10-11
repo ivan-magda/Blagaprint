@@ -20,9 +20,6 @@ class MainTableViewController: UITableViewController {
     /// NothingFoundTableViewCell identifier.
     private static let kNothingFoundTableViewCellIdentifier = "NothingFoundCell"
     
-    /// Detail category segue identifier.
-    private static let kDetailCategorySegueIdentifier = "DetailCategory"
-    
     /// CategoryTableViewCell height value.
     private static let kCategoryTableViewCellHeightValue: CGFloat = 200.0
     
@@ -57,13 +54,6 @@ class MainTableViewController: UITableViewController {
     // MARK: - Navigation -
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == MainTableViewController.kDetailCategorySegueIdentifier {
-            if let selectedCategory = sender as? Category {
-                let detailViewController = segue.destinationViewController as! DetailCategoryCollectionViewController
-                detailViewController.categoryItems = Array(selectedCategory.categoryItems)
-                detailViewController.parentCategoryName = selectedCategory.name
-            }
-        }
     }
 
     // MARK: - UITableView -
@@ -112,6 +102,14 @@ class MainTableViewController: UITableViewController {
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         searchController.searchBar.resignFirstResponder()
         
+        if indexPath.row == 0 {
+            let category = getCategoryFromIndexPath(indexPath)
+            if category.categoryType == Category.CategoryTypes.cases {
+                self.performSegueWithIdentifier("PhoneCaseConstructor", sender: nil)
+                return
+            }
+        }
+        
         if selectedSectionIndex == indexPath.section {
             selectedSectionIndex = -1
             tableView.reloadSections(NSIndexSet(index: indexPath.section), withRowAnimation: .Automatic)
@@ -120,7 +118,7 @@ class MainTableViewController: UITableViewController {
                selectedSectionIndex != -1 {
                 selectedSectionIndex = indexPath.section
                 tableView.reloadData()
-                tableView.scrollToRowAtIndexPath(indexPath, atScrollPosition: UITableViewScrollPosition.Middle, animated: true)
+                tableView.scrollToRowAtIndexPath(indexPath, atScrollPosition: UITableViewScrollPosition.Top, animated: true)
             } else {
                 selectedSectionIndex = indexPath.section
                 tableView.reloadSections(NSIndexSet(index: selectedSectionIndex), withRowAnimation: .Automatic)
@@ -178,7 +176,7 @@ class MainTableViewController: UITableViewController {
         } else if indexPath.row == 0 {
             let categoryCell = self.tableView.dequeueReusableCellWithIdentifier(MainTableViewController.kCategoryTableViewCellIdentifier) as! CategoryTableViewCell
             
-            let category = (searchBarActive ? filteredCategories[indexPath.section] : categories[indexPath.section])
+            let category = getCategoryFromIndexPath(indexPath)
             categoryCell.categoryImageView?.image = category.image
             categoryCell.categoryNameLabel.text = category.name.uppercaseString
             
@@ -190,6 +188,10 @@ class MainTableViewController: UITableViewController {
             
             return categoryItemCell
         }
+    }
+    
+    private func getCategoryFromIndexPath(indexPath: NSIndexPath) -> Category {
+        return searchBarActive ? filteredCategories[indexPath.section] : categories[indexPath.section]
     }
     
     private func configurateSeparatorViewOnCell(cell: UITableViewCell, atIndexPath indexPath: NSIndexPath) {
