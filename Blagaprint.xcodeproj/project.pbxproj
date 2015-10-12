@@ -20,6 +20,10 @@
 		50551C291BCB87D6005B88DA /* More@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 50551C261BCB87D6005B88DA /* More@2x.png */; settings = {ASSET_TAGS = (); }; };
 		50551C2A1BCB87D6005B88DA /* More@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 50551C271BCB87D6005B88DA /* More@3x.png */; settings = {ASSET_TAGS = (); }; };
 		50551C2C1BCB8B18005B88DA /* SelectDeviceTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50551C2B1BCB8B18005B88DA /* SelectDeviceTableViewController.swift */; settings = {ASSET_TAGS = (); }; };
+		50551C2E1BCBA523005B88DA /* SelectBackgroundCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50551C2D1BCBA523005B88DA /* SelectBackgroundCollectionViewController.swift */; settings = {ASSET_TAGS = (); }; };
+		50551C311BCBB43A005B88DA /* BackgroundOvalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50551C301BCBB43A005B88DA /* BackgroundOvalView.swift */; settings = {ASSET_TAGS = (); }; };
+		50551C331BCBB469005B88DA /* OvalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50551C321BCBB469005B88DA /* OvalView.swift */; settings = {ASSET_TAGS = (); }; };
+		50551C351BCBEA96005B88DA /* BackgroundCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50551C341BCBEA96005B88DA /* BackgroundCollectionViewCell.swift */; settings = {ASSET_TAGS = (); }; };
 		5071D34C1BBFE9D0005DDED3 /* NothingFoundTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5071D34B1BBFE9D0005DDED3 /* NothingFoundTableViewCell.swift */; settings = {ASSET_TAGS = (); }; };
 		508503041BBAADB600152131 /* AppAppearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508503031BBAADB600152131 /* AppAppearance.swift */; settings = {ASSET_TAGS = (); }; };
 		50A871D21BCA2B75003CB0F9 /* PhoneCases.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50A871D11BCA2B75003CB0F9 /* PhoneCases.swift */; settings = {ASSET_TAGS = (); }; };
@@ -78,6 +82,10 @@
 		50551C261BCB87D6005B88DA /* More@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "More@2x.png"; sourceTree = "<group>"; };
 		50551C271BCB87D6005B88DA /* More@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "More@3x.png"; sourceTree = "<group>"; };
 		50551C2B1BCB8B18005B88DA /* SelectDeviceTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectDeviceTableViewController.swift; sourceTree = "<group>"; };
+		50551C2D1BCBA523005B88DA /* SelectBackgroundCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectBackgroundCollectionViewController.swift; sourceTree = "<group>"; };
+		50551C301BCBB43A005B88DA /* BackgroundOvalView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackgroundOvalView.swift; sourceTree = "<group>"; };
+		50551C321BCBB469005B88DA /* OvalView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OvalView.swift; sourceTree = "<group>"; };
+		50551C341BCBEA96005B88DA /* BackgroundCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackgroundCollectionViewCell.swift; sourceTree = "<group>"; };
 		5071D34B1BBFE9D0005DDED3 /* NothingFoundTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NothingFoundTableViewCell.swift; sourceTree = "<group>"; };
 		508503031BBAADB600152131 /* AppAppearance.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppAppearance.swift; sourceTree = "<group>"; };
 		50A871D11BCA2B75003CB0F9 /* PhoneCases.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhoneCases.swift; sourceTree = "<group>"; };
@@ -160,9 +168,6 @@
 				502A8CB91BB80EAC0064E0DA /* Assets.xcassets */,
 				502A8CBE1BB80EAC0064E0DA /* Info.plist */,
 				502A8CD41BB8120A0064E0DA /* Resources */,
-				50551C251BCB87D6005B88DA /* More.png */,
-				50551C261BCB87D6005B88DA /* More@2x.png */,
-				50551C271BCB87D6005B88DA /* More@3x.png */,
 				502A8CCD1BB811EE0064E0DA /* ThirdParty */,
 			);
 			path = Blagaprint;
@@ -181,6 +186,7 @@
 				50F8F3DA1BC7922B002CE3FD /* CategoryItemImages */,
 				50FA4B7F1BB9385500BC8958 /* CategoriesImages */,
 				502A8CD51BB8126E0064E0DA /* NavigationBar */,
+				50592EF21BCBEF8F00CEB3B8 /* Icons */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -198,6 +204,36 @@
 			name = NavigationBar;
 			sourceTree = "<group>";
 		};
+		50551C2F1BCBA534005B88DA /* Cases */ = {
+			isa = PBXGroup;
+			children = (
+				50A871D61BCA9D68003CB0F9 /* CaseConstructorViewController.swift */,
+				50551C2B1BCB8B18005B88DA /* SelectDeviceTableViewController.swift */,
+				50551C2D1BCBA523005B88DA /* SelectBackgroundCollectionViewController.swift */,
+			);
+			name = Cases;
+			sourceTree = "<group>";
+		};
+		50592EF11BCBEF0F00CEB3B8 /* CaseBackgroundColor */ = {
+			isa = PBXGroup;
+			children = (
+				50551C321BCBB469005B88DA /* OvalView.swift */,
+				50551C301BCBB43A005B88DA /* BackgroundOvalView.swift */,
+				50551C341BCBEA96005B88DA /* BackgroundCollectionViewCell.swift */,
+			);
+			name = CaseBackgroundColor;
+			sourceTree = "<group>";
+		};
+		50592EF21BCBEF8F00CEB3B8 /* Icons */ = {
+			isa = PBXGroup;
+			children = (
+				50551C251BCB87D6005B88DA /* More.png */,
+				50551C261BCB87D6005B88DA /* More@2x.png */,
+				50551C271BCB87D6005B88DA /* More@3x.png */,
+			);
+			name = Icons;
+			sourceTree = "<group>";
+		};
 		508503051BBAADCF00152131 /* Utility */ = {
 			isa = PBXGroup;
 			children = (
@@ -206,13 +242,14 @@
 			name = Utility;
 			sourceTree = "<group>";
 		};
-		50A871D51BCA9B7C003CB0F9 /* PhoneCases */ = {
+		50A871D51BCA9B7C003CB0F9 /* CasesGroupViews */ = {
 			isa = PBXGroup;
 			children = (
 				50A871D31BCA2C18003CB0F9 /* IPhoneCase.swift */,
 				50A871D11BCA2B75003CB0F9 /* PhoneCases.swift */,
+				50592EF11BCBEF0F00CEB3B8 /* CaseBackgroundColor */,
 			);
-			name = PhoneCases;
+			name = CasesGroupViews;
 			sourceTree = "<group>";
 		};
 		50DD723A1BBED31B008A9B80 /* DataModel */ = {
@@ -270,7 +307,7 @@
 		50FD7F511BB903B700ABEC38 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				50A871D51BCA9B7C003CB0F9 /* PhoneCases */,
+				50A871D51BCA9B7C003CB0F9 /* CasesGroupViews */,
 				50FD7F4F1BB8FFF600ABEC38 /* CategoryTableViewCell.swift */,
 				5071D34B1BBFE9D0005DDED3 /* NothingFoundTableViewCell.swift */,
 				50F8F4191BC80857002CE3FD /* CategoryItemTableViewCell.swift */,
@@ -290,8 +327,7 @@
 			isa = PBXGroup;
 			children = (
 				502A8CB41BB80EAC0064E0DA /* MainTableViewController.swift */,
-				50A871D61BCA9D68003CB0F9 /* CaseConstructorViewController.swift */,
-				50551C2B1BCB8B18005B88DA /* SelectDeviceTableViewController.swift */,
+				50551C2F1BCBA534005B88DA /* Cases */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -405,14 +441,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				502A8CB51BB80EAC0064E0DA /* MainTableViewController.swift in Sources */,
+				50551C2E1BCBA523005B88DA /* SelectBackgroundCollectionViewController.swift in Sources */,
 				50DD72391BBED313008A9B80 /* Category.swift in Sources */,
 				50F8F41A1BC80857002CE3FD /* CategoryItemTableViewCell.swift in Sources */,
+				50551C351BCBEA96005B88DA /* BackgroundCollectionViewCell.swift in Sources */,
 				50551C2C1BCB8B18005B88DA /* SelectDeviceTableViewController.swift in Sources */,
 				50A871D41BCA2C18003CB0F9 /* IPhoneCase.swift in Sources */,
 				50A871D71BCA9D68003CB0F9 /* CaseConstructorViewController.swift in Sources */,
 				50FD7F501BB8FFF600ABEC38 /* CategoryTableViewCell.swift in Sources */,
 				50A871D21BCA2B75003CB0F9 /* PhoneCases.swift in Sources */,
 				503CBEC11BC415C700052BE0 /* CategoryItem.swift in Sources */,
+				50551C311BCBB43A005B88DA /* BackgroundOvalView.swift in Sources */,
+				50551C331BCBB469005B88DA /* OvalView.swift in Sources */,
 				5071D34C1BBFE9D0005DDED3 /* NothingFoundTableViewCell.swift in Sources */,
 				502A8CB31BB80EAC0064E0DA /* AppDelegate.swift in Sources */,
 				508503041BBAADB600152131 /* AppAppearance.swift in Sources */,

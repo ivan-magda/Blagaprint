@@ -1,18 +1,18 @@
 //
-//  IPhoneCase.swift
+//  OvalView.swift
 //  Blagaprint
 //
-//  Created by Ivan Magda on 11.10.15.
+//  Created by Ivan Magda on 12.10.15.
 //  Copyright © 2015 Blagaprint. All rights reserved.
 //
 
 import UIKit
 
 @IBDesignable
-class IPhoneCase: UIView {
+class OvalView: UIView {
     // MARK: - Properties
     
-    var fillColor: UIColor = UIColor.whiteColor() {
+    var fillColor: UIColor = UIColor.redColor() {
         didSet {
             self.setNeedsDisplay()
         }
@@ -21,6 +21,6 @@ class IPhoneCase: UIView {
     // MARK: - Drawing
     
     override func drawRect(rect: CGRect) {
-        PhoneCases.drawIPhoneCase(self.bounds, fillColor: fillColor)
+        BackgroundOvalView.drawOvalView(self.bounds, fillColor: fillColor)
     }
 }
