@@ -9,6 +9,39 @@
 import UIKit
 
 class CaseConstructorTableViewController: UITableViewController {
+    // MARK: - Properties
+    
+    /// Device label.
+    @IBOutlet weak var deviceLabel: UILabel!
+    
+    /// Segue identifier to SelectDeviceTableViewController.
+    static let kSelectDeviceSegueIdentifier = "SelectDevice"
+    
+    /// Default supported device.
+    var device: Device!
+    
+    // MARK: - View Life Cycle
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        device = Device(deviceName: "iPhone 5/5S", deviceManufacturer: "Apple")
+    }
+    
+    // MARK: - Navigation
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == CaseConstructorTableViewController.kSelectDeviceSegueIdentifier {
+            let selectDeviceViewController = segue.destinationViewController as! SelectDeviceTableViewController
+            selectDeviceViewController.originalDevice = device
+            
+            // Call back when SelectDeviceTableVC did select device.
+            weak var weakSelf = self
+            selectDeviceViewController.didSelectDeviceClosure = { (selectedDevice: Device) in
+                weakSelf?.device = selectedDevice
+                weakSelf?.deviceLabel.text = weakSelf?.device.deviceName
+            }
+        }
+    }
 
     
     // MARK: - IBActions

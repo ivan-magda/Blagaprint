@@ -16,6 +16,10 @@
 		502A8CE01BB822410064E0DA /* MenuWhite@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 502A8CDA1BB822410064E0DA /* MenuWhite@2x.png */; settings = {ASSET_TAGS = (); }; };
 		502A8CE11BB822410064E0DA /* MenuWhite@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 502A8CDB1BB822410064E0DA /* MenuWhite@3x.png */; settings = {ASSET_TAGS = (); }; };
 		503CBEC11BC415C700052BE0 /* CategoryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 503CBEC01BC415C700052BE0 /* CategoryItem.swift */; settings = {ASSET_TAGS = (); }; };
+		50551C281BCB87D6005B88DA /* More.png in Resources */ = {isa = PBXBuildFile; fileRef = 50551C251BCB87D6005B88DA /* More.png */; settings = {ASSET_TAGS = (); }; };
+		50551C291BCB87D6005B88DA /* More@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 50551C261BCB87D6005B88DA /* More@2x.png */; settings = {ASSET_TAGS = (); }; };
+		50551C2A1BCB87D6005B88DA /* More@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 50551C271BCB87D6005B88DA /* More@3x.png */; settings = {ASSET_TAGS = (); }; };
+		50551C2C1BCB8B18005B88DA /* SelectDeviceTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50551C2B1BCB8B18005B88DA /* SelectDeviceTableViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		5071D34C1BBFE9D0005DDED3 /* NothingFoundTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5071D34B1BBFE9D0005DDED3 /* NothingFoundTableViewCell.swift */; settings = {ASSET_TAGS = (); }; };
 		508503041BBAADB600152131 /* AppAppearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508503031BBAADB600152131 /* AppAppearance.swift */; settings = {ASSET_TAGS = (); }; };
 		50A871D21BCA2B75003CB0F9 /* PhoneCases.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50A871D11BCA2B75003CB0F9 /* PhoneCases.swift */; settings = {ASSET_TAGS = (); }; };
@@ -70,6 +74,10 @@
 		502A8CDA1BB822410064E0DA /* MenuWhite@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MenuWhite@2x.png"; sourceTree = "<group>"; };
 		502A8CDB1BB822410064E0DA /* MenuWhite@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MenuWhite@3x.png"; sourceTree = "<group>"; };
 		503CBEC01BC415C700052BE0 /* CategoryItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryItem.swift; sourceTree = "<group>"; };
+		50551C251BCB87D6005B88DA /* More.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = More.png; sourceTree = "<group>"; };
+		50551C261BCB87D6005B88DA /* More@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "More@2x.png"; sourceTree = "<group>"; };
+		50551C271BCB87D6005B88DA /* More@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "More@3x.png"; sourceTree = "<group>"; };
+		50551C2B1BCB8B18005B88DA /* SelectDeviceTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectDeviceTableViewController.swift; sourceTree = "<group>"; };
 		5071D34B1BBFE9D0005DDED3 /* NothingFoundTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NothingFoundTableViewCell.swift; sourceTree = "<group>"; };
 		508503031BBAADB600152131 /* AppAppearance.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppAppearance.swift; sourceTree = "<group>"; };
 		50A871D11BCA2B75003CB0F9 /* PhoneCases.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhoneCases.swift; sourceTree = "<group>"; };
@@ -152,6 +160,9 @@
 				502A8CB91BB80EAC0064E0DA /* Assets.xcassets */,
 				502A8CBE1BB80EAC0064E0DA /* Info.plist */,
 				502A8CD41BB8120A0064E0DA /* Resources */,
+				50551C251BCB87D6005B88DA /* More.png */,
+				50551C261BCB87D6005B88DA /* More@2x.png */,
+				50551C271BCB87D6005B88DA /* More@3x.png */,
 				502A8CCD1BB811EE0064E0DA /* ThirdParty */,
 			);
 			path = Blagaprint;
@@ -280,6 +291,7 @@
 			children = (
 				502A8CB41BB80EAC0064E0DA /* MainTableViewController.swift */,
 				50A871D61BCA9D68003CB0F9 /* CaseConstructorViewController.swift */,
+				50551C2B1BCB8B18005B88DA /* SelectDeviceTableViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -362,6 +374,7 @@
 				50F8F3C91BC78EA7002CE3FD /* clothes_man.jpg in Resources */,
 				50F8F3C51BC78CB7002CE3FD /* key_ring_with_photo_plastic.jpg in Resources */,
 				50DD726E1BBEEB69008A9B80 /* wood_cases.jpg in Resources */,
+				50551C281BCB87D6005B88DA /* More.png in Resources */,
 				502A8CE11BB822410064E0DA /* MenuWhite@3x.png in Resources */,
 				50F8F3BD1BC788FD002CE3FD /* cup_chameleon.jpg in Resources */,
 				50DD72441BBEDAAA008A9B80 /* cups.jpg in Resources */,
@@ -371,10 +384,12 @@
 				50FD7F5D1BB90A8900ABEC38 /* copy_services.jpg in Resources */,
 				50F8F3C31BC78B83002CE3FD /* key_ring_with_photo_glass.jpg in Resources */,
 				502A8CDF1BB822410064E0DA /* MenuWhite.png in Resources */,
+				50551C2A1BCB87D6005B88DA /* More@3x.png in Resources */,
 				50F8F3BB1BC787B5002CE3FD /* case_individual.jpg in Resources */,
 				50BE47111BBA388400724119 /* MenuMalibu.png in Resources */,
 				50DD72681BBEEA44008A9B80 /* 3D_printing.jpg in Resources */,
 				50F8F3CD1BC78FAA002CE3FD /* clothes_kids.jpg in Resources */,
+				50551C291BCB87D6005B88DA /* More@2x.png in Resources */,
 				50BE47121BBA388400724119 /* MenuMalibu@2x.png in Resources */,
 				50DD72581BBEE555008A9B80 /* key_ring_with_photo.jpg in Resources */,
 				502A8CB81BB80EAC0064E0DA /* Main.storyboard in Resources */,
@@ -392,6 +407,7 @@
 				502A8CB51BB80EAC0064E0DA /* MainTableViewController.swift in Sources */,
 				50DD72391BBED313008A9B80 /* Category.swift in Sources */,
 				50F8F41A1BC80857002CE3FD /* CategoryItemTableViewCell.swift in Sources */,
+				50551C2C1BCB8B18005B88DA /* SelectDeviceTableViewController.swift in Sources */,
 				50A871D41BCA2C18003CB0F9 /* IPhoneCase.swift in Sources */,
 				50A871D71BCA9D68003CB0F9 /* CaseConstructorViewController.swift in Sources */,
 				50FD7F501BB8FFF600ABEC38 /* CategoryTableViewCell.swift in Sources */,
