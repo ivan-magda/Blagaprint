@@ -12,15 +12,23 @@ import UIKit
 class IPhoneCase: UIView {
     // MARK: - Properties
     
+    /// Case fill color.
     var fillColor: UIColor = UIColor.whiteColor() {
         didSet {
             self.setNeedsDisplay()
         }
     }
     
+    /// Case text.
+    var text: String = "BLAGAPRINT" {
+        didSet {
+            self.setNeedsLayout()
+        }
+    }
+    
     // MARK: - Drawing
     
     override func drawRect(rect: CGRect) {
-        PhoneCases.drawIPhoneCase(self.bounds, fillColor: fillColor)
+        PhoneCases.drawIPhoneCase(self.bounds, fillColor: fillColor, caseText: text)
     }
 }
