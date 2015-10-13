@@ -49,6 +49,7 @@ class SelectBackgroundCollectionViewController: UICollectionViewController {
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(SelectBackgroundCollectionViewController.kCellIdentifier, forIndexPath: indexPath) as! BackgroundCollectionViewCell
         cell.ovalView.fillColor = colors[indexPath.row]
+        cell.ovalView.checkmarkVisible = cell.ovalView.fillColor == selectedColor
         
         return cell
     }
@@ -57,7 +58,7 @@ class SelectBackgroundCollectionViewController: UICollectionViewController {
     
     override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         selectedColor = colors[indexPath.row]
-        doneWithColorSelecting(selectedColor)
+        collectionView.reloadData()
     }
     
     // MARK: IBActions
