@@ -17,6 +17,11 @@ class CaseConstructorTableViewController: UITableViewController {
         case Text
     }
     
+    enum SelectBackgroundColorType: String {
+        case Case
+        case Text
+    }
+    
     // MARK: - Properties
     
     /// Case view.
@@ -28,8 +33,8 @@ class CaseConstructorTableViewController: UITableViewController {
     /// Segue identifier to SelectDeviceTableViewController.
     static let kSelectDeviceSegueIdentifier = "SelectDevice"
     
-    /// Segue identifier to SelectbackgroundCollectionViewController.
-    static let kSelectBackgroundSegueIdentifier = "BackgroundAction"
+    /// Segue identifier to SelectBackgroundCollectionViewController.
+    static let kSelectBackgroundSegueIdentifier = "ColorPicking"
     
     /// Default supported device.
     var device: Device!
@@ -57,14 +62,31 @@ class CaseConstructorTableViewController: UITableViewController {
         } else if segue.identifier == CaseConstructorTableViewController.kSelectBackgroundSegueIdentifier {
             let navigationController = segue.destinationViewController as! UINavigationController
             let selectBackgroundVC = navigationController.topViewController as! SelectBackgroundCollectionViewController
-            selectBackgroundVC.selectedColor = caseView.fillColor
             
-            // Change color of case, when new color is picked.
+            let colorPickType = sender as! String
+            var isBackgroundColorPicking = false
+            var isTextColorPicking = false
+            
+            if colorPickType == SelectBackgroundColorType.Case.rawValue {
+                selectBackgroundVC.selectedColor = caseView.fillColor
+                isBackgroundColorPicking = true
+            } else if colorPickType == SelectBackgroundColorType.Text.rawValue {
+                selectBackgroundVC.selectedColor = caseView.textColor
+                isTextColorPicking = true
+            }
+            
+            // Change case/text color, when new color picked.
             weak var weakSelf = self
             selectBackgroundVC.didSelectColorCompletionHandler = { (color) in
-                if weakSelf!.caseView.fillColor != color {
+                if isBackgroundColorPicking {
+                    if weakSelf!.caseView.fillColor != color {
+                        UIView.animateWithDuration(0.25, animations: { () -> Void in
+                            weakSelf!.caseView.fillColor = color
+                        })
+                    }
+                } else if isTextColorPicking {
                     UIView.animateWithDuration(0.25, animations: { () -> Void in
-                        weakSelf!.caseView.fillColor = color
+                        weakSelf!.caseView.textColor = color
                     })
                 }
             }
@@ -118,7 +140,7 @@ class CaseConstructorTableViewController: UITableViewController {
         
         // Background library action
         let backgroundAction = UIAlertAction(title: "Палитра", style: .Default) { (action) -> Void in
-            weakSelf?.performSegueWithIdentifier(CaseConstructorTableViewController.kSelectBackgroundSegueIdentifier, sender: nil)
+            weakSelf?.performSegueWithIdentifier(CaseConstructorTableViewController.kSelectBackgroundSegueIdentifier, sender: SelectBackgroundColorType.Case.rawValue)
         }
         backgroundSelectionAlertController.addAction(backgroundAction)
         
@@ -138,7 +160,7 @@ class CaseConstructorTableViewController: UITableViewController {
     private func presentManageTextAlertController() {
         let manageTextAlertController = UIAlertController(title: nil, message: nil, preferredStyle: .ActionSheet)
         
-        //weak var weakSelf = self
+        weak var weakSelf = self
         
         // Cancel action
         let cancelAction = UIAlertAction(title: "Отмена", style: .Cancel) { (action) -> Void in
@@ -152,6 +174,7 @@ class CaseConstructorTableViewController: UITableViewController {
         
         // Select text color action
         let selectTextColorAction = UIAlertAction(title: "Цвет", style: .Default) { (action) -> Void in
+            weakSelf!.performSegueWithIdentifier(CaseConstructorTableViewController.kSelectBackgroundSegueIdentifier, sender: SelectBackgroundColorType.Text.rawValue)
         }
         manageTextAlertController.addAction(selectTextColorAction)
         

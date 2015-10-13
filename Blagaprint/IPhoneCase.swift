@@ -26,9 +26,16 @@ class IPhoneCase: UIView {
         }
     }
     
+    /// Text color.
+    var textColor: UIColor = UIColor.blackColor() {
+        didSet {
+            self.setNeedsDisplay()
+        }
+    }
+    
     // MARK: - Drawing
     
     override func drawRect(rect: CGRect) {
-        PhoneCases.drawIPhoneCase(self.bounds, fillColor: fillColor, caseText: text)
+        PhoneCases.drawIPhoneCase(self.bounds, fillColor: fillColor, colorOfText: textColor, caseText: text)
     }
 }

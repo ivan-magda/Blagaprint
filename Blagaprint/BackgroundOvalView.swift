@@ -73,11 +73,3 @@ class BackgroundOvalView : NSObject {
     }
 
 }
-
-@objc protocol StyleKitSettableImage {
-    var image: UIImage! { get set }
-}
-
-@objc protocol StyleKitSettableSelectedImage {
-    var selectedImage: UIImage! { get set }
-}

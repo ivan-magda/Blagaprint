@@ -28,7 +28,7 @@ class PhoneCases : NSObject {
 
     //// Drawing Methods
 
-    class func drawIPhoneCase(frame: CGRect, fillColor: UIColor, caseText: String) {
+    class func drawIPhoneCase(frame: CGRect, fillColor: UIColor, colorOfText: UIColor, caseText: String) {
         //// General Declarations
         let context = UIGraphicsGetCurrentContext()
 
@@ -83,26 +83,26 @@ class PhoneCases : NSObject {
 
         //// Text Drawing
         CGContextSaveGState(context)
-        CGContextTranslateCTM(context, frame.minX + 113.07, frame.minY + 200)
+        CGContextTranslateCTM(context, frame.minX + 112.88, frame.minY + 200)
         CGContextRotateCTM(context, CGFloat(-270 * M_PI / 180))
-        CGContextScaleCTM(context, 1, 4.6)
+        CGContextScaleCTM(context, 1, 4.5)
 
-        let textRect: CGRect = CGRectMake(-140, -23.25, 280, 47.83)
+        let textRect: CGRect = CGRectMake(-140, -23.73, 280, 48.83)
         let textStyle = NSMutableParagraphStyle.defaultParagraphStyle().mutableCopy() as! NSMutableParagraphStyle
         textStyle.alignment = NSTextAlignment.Left;
-        
-        let textFontAttributes: [String : AnyObject] = [NSFontAttributeName: UIFont(name: "Helvetica", size: 43)!, NSForegroundColorAttributeName: UIColor.blackColor(), NSParagraphStyleAttributeName: textStyle]
 
-        NSString(string: caseText).drawInRect(CGRectOffset(textRect, 0, (textRect.height - NSString(string: caseText).boundingRectWithSize(textRect.size, options: NSStringDrawingOptions.UsesLineFragmentOrigin, attributes: textFontAttributes, context: nil).size.height) / 2), withAttributes: textFontAttributes)
+        let textFontAttributes = [NSFontAttributeName: UIFont(name: "Helvetica", size: 44)!, NSForegroundColorAttributeName: colorOfText, NSParagraphStyleAttributeName: textStyle]
+
+        NSString(string: caseText).drawInRect(CGRectOffset(textRect, 0, (textRect.height - NSString(string: caseText).boundingRectWithSize(textRect.size, options: NSStringDrawingOptions.UsesLineFragmentOrigin, attributes: textFontAttributes, context: nil).size.height) / 2), withAttributes: textFontAttributes);
 
         CGContextRestoreGState(context)
     }
 
     //// Generated Images
 
-    class func imageOfIPhoneCase(frame: CGRect, fillColor: UIColor, caseText: String) -> UIImage {
-        UIGraphicsBeginImageContextWithOptions(CGSizeMake(320, 568), false, 0)
-        PhoneCases.drawIPhoneCase(frame, fillColor: fillColor, caseText: caseText)
+    class func imageOfIPhoneCase(frame: CGRect, fillColor: UIColor, colorOfText: UIColor, caseText: String) -> UIImage {
+        UIGraphicsBeginImageContextWithOptions(CGSizeMake(320, 470), false, 0)
+        PhoneCases.drawIPhoneCase(frame, fillColor: fillColor, colorOfText: colorOfText, caseText: caseText)
         let imageOfIPhoneCase = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
 
