@@ -22,7 +22,7 @@ class IPhoneCase: UIView {
     /// Case text.
     var text: String = "BLAGAPRINT" {
         didSet {
-            self.setNeedsLayout()
+            self.setNeedsDisplay()
         }
     }
     

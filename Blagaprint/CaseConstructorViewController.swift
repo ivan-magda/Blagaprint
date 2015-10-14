@@ -17,9 +17,9 @@ class CaseConstructorTableViewController: UITableViewController {
         case Text
     }
     
-    enum SelectBackgroundColorType: String {
-        case Case
-        case Text
+    enum ColorSelectionType: String {
+        case CaseBackground
+        case TextColor
     }
     
     // MARK: - Properties
@@ -33,8 +33,11 @@ class CaseConstructorTableViewController: UITableViewController {
     /// Segue identifier to SelectDeviceTableViewController.
     static let kSelectDeviceSegueIdentifier = "SelectDevice"
     
-    /// Segue identifier to SelectBackgroundCollectionViewController.
+    /// Segue identifier to SelectbackgroundCollectionViewController.
     static let kSelectBackgroundSegueIdentifier = "ColorPicking"
+    
+    /// Segue identifier to TextEditingViewController.
+    static let kTextEditingSegueIdentifier = "TextEditing"
     
     /// Default supported device.
     var device: Device!
@@ -63,32 +66,42 @@ class CaseConstructorTableViewController: UITableViewController {
             let navigationController = segue.destinationViewController as! UINavigationController
             let selectBackgroundVC = navigationController.topViewController as! SelectBackgroundCollectionViewController
             
-            let colorPickType = sender as! String
-            var isBackgroundColorPicking = false
-            var isTextColorPicking = false
-            
-            if colorPickType == SelectBackgroundColorType.Case.rawValue {
-                selectBackgroundVC.selectedColor = caseView.fillColor
-                isBackgroundColorPicking = true
-            } else if colorPickType == SelectBackgroundColorType.Text.rawValue {
-                selectBackgroundVC.selectedColor = caseView.textColor
-                isTextColorPicking = true
-            }
-            
             // Change case/text color, when new color picked.
             weak var weakSelf = self
+            
+            var caseBackgroundType = false
+            var textColorType = false
+            let type = sender as! String
+            if type == ColorSelectionType.CaseBackground.rawValue {
+                selectBackgroundVC.selectedColor = caseView.fillColor
+                caseBackgroundType = true
+            } else if type == ColorSelectionType.TextColor.rawValue {
+                selectBackgroundVC.selectedColor = caseView.textColor
+                textColorType = true
+            }
+            
             selectBackgroundVC.didSelectColorCompletionHandler = { (color) in
-                if isBackgroundColorPicking {
+                if caseBackgroundType {
                     if weakSelf!.caseView.fillColor != color {
                         UIView.animateWithDuration(0.25, animations: { () -> Void in
                             weakSelf!.caseView.fillColor = color
                         })
                     }
-                } else if isTextColorPicking {
+                } else if textColorType {
                     UIView.animateWithDuration(0.25, animations: { () -> Void in
                         weakSelf!.caseView.textColor = color
                     })
                 }
+            }
+        } else if segue.identifier == CaseConstructorTableViewController.kTextEditingSegueIdentifier {
+            let navigationController = segue.destinationViewController as! UINavigationController
+            let textEditingVC = navigationController.topViewController as! TextEditingViewController
+            textEditingVC.text = caseView.text
+            
+            // Change text on case.
+            weak var weakSelf = self
+            textEditingVC.didDoneOnTextCompletionHandler = { (text) in
+                weakSelf?.caseView.text = text
             }
         }
     }
@@ -140,7 +153,8 @@ class CaseConstructorTableViewController: UITableViewController {
         
         // Background library action
         let backgroundAction = UIAlertAction(title: "Палитра", style: .Default) { (action) -> Void in
-            weakSelf?.performSegueWithIdentifier(CaseConstructorTableViewController.kSelectBackgroundSegueIdentifier, sender: SelectBackgroundColorType.Case.rawValue)
+            let type = ColorSelectionType.CaseBackground.rawValue
+            weakSelf?.performSegueWithIdentifier(CaseConstructorTableViewController.kSelectBackgroundSegueIdentifier, sender: type)
         }
         backgroundSelectionAlertController.addAction(backgroundAction)
         
@@ -169,19 +183,16 @@ class CaseConstructorTableViewController: UITableViewController {
         
         // Enter text action
         let enterTextAction = UIAlertAction(title: "Ввести", style: .Default) { (action) -> Void in
+            self.performSegueWithIdentifier(CaseConstructorTableViewController.kTextEditingSegueIdentifier, sender: nil)
         }
         manageTextAlertController.addAction(enterTextAction)
         
         // Select text color action
         let selectTextColorAction = UIAlertAction(title: "Цвет", style: .Default) { (action) -> Void in
-            weakSelf!.performSegueWithIdentifier(CaseConstructorTableViewController.kSelectBackgroundSegueIdentifier, sender: SelectBackgroundColorType.Text.rawValue)
+            let type = ColorSelectionType.TextColor.rawValue
+            weakSelf!.performSegueWithIdentifier(CaseConstructorTableViewController.kSelectBackgroundSegueIdentifier, sender: type)
         }
         manageTextAlertController.addAction(selectTextColorAction)
-        
-        // Pattern picking image action
-        let pickImageAction = UIAlertAction(title: "Узор текста", style: .Default) { (action) -> Void in
-        }
-        manageTextAlertController.addAction(pickImageAction)
         
         self.presentViewController(manageTextAlertController, animated: true, completion: nil)
     }

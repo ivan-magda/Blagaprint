@@ -371,6 +371,7 @@
                         <outlet property="caseView" destination="MkY-0E-315" id="R2L-qC-b0S"/>
                         <outlet property="deviceLabel" destination="U4N-Fd-6Db" id="S7w-pA-ZZS"/>
                         <segue destination="54c-VM-0PW" kind="presentation" identifier="ColorPicking" id="uJi-v2-IYJ"/>
+                        <segue destination="MI7-Pa-BGt" kind="presentation" identifier="TextEditing" id="9f8-Ba-pcp"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lGs-Mb-ptV" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -441,7 +442,7 @@
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="88p-gJ-iGe" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2005" y="1185"/>
+            <point key="canvasLocation" x="2043" y="955"/>
         </scene>
         <!--Select Device Table View Controller-->
         <scene sceneID="bFU-bu-LyS">
@@ -482,7 +483,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="E0P-D1-IXY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1601" y="517"/>
+            <point key="canvasLocation" x="1601" y="269"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="7Lh-gH-edF">
@@ -501,7 +502,77 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7hS-TV-J5e" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1601" y="1185"/>
+            <point key="canvasLocation" x="1611" y="955"/>
+        </scene>
+        <!--Текст-->
+        <scene sceneID="8Fh-Aq-Wnk">
+            <objects>
+                <viewController id="F3u-4f-dE3" customClass="TextEditingViewController" customModule="Blagaprint" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="mcW-go-Epm"/>
+                        <viewControllerLayoutGuide type="bottom" id="ED7-RD-GGR"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="LdC-qA-VFk">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter a text" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="WLl-QD-aoN">
+                                <rect key="frame" x="20" y="72" width="280" height="30"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
+                                <connections>
+                                    <action selector="textFieldDidEndOnText:" destination="F3u-4f-dE3" eventType="editingDidEndOnExit" id="ou9-ER-JDw"/>
+                                </connections>
+                            </textField>
+                        </subviews>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="WLl-QD-aoN" secondAttribute="trailing" constant="20" symbolic="YES" id="Jvb-pj-AkK"/>
+                            <constraint firstItem="WLl-QD-aoN" firstAttribute="top" secondItem="mcW-go-Epm" secondAttribute="bottom" constant="8" symbolic="YES" id="bKW-8I-00E"/>
+                            <constraint firstItem="WLl-QD-aoN" firstAttribute="leading" secondItem="LdC-qA-VFk" secondAttribute="leading" constant="20" symbolic="YES" id="o5a-ng-Wdi"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Текст" id="hJd-f0-84b">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="VVa-DI-O7B">
+                            <connections>
+                                <action selector="cancelButtonDidPressed:" destination="F3u-4f-dE3" id="1VH-Js-GeY"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="SrQ-JH-BXG">
+                            <connections>
+                                <action selector="doneButtonDidPressed:" destination="F3u-4f-dE3" id="6y2-b4-10z"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="doneButton" destination="SrQ-JH-BXG" id="13d-5c-Dua"/>
+                        <outlet property="textField" destination="WLl-QD-aoN" id="QF2-L0-C6T"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="RIs-0S-6eW" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2043" y="1622"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="xbj-c5-iv9">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="MI7-Pa-BGt" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Evo-be-bhw">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <animations/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="F3u-4f-dE3" kind="relationship" relationship="rootViewController" id="5Uw-JL-IVn"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="c4H-g1-8WE" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1601" y="1622"/>
         </scene>
     </scenes>
     <resources>

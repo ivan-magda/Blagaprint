@@ -13,28 +13,28 @@
 import UIKit
 
 class PhoneCases : NSObject {
-
+    
     //// Cache
-
+    
     struct Cache {
         static var innerShadow: NSShadow = NSShadow(color: UIColor.darkGrayColor(), offset: CGSizeMake(1.1, -2.1), blurRadius: 4)
         static var outerShadow: NSShadow = NSShadow(color: UIColor.darkGrayColor().colorWithAlphaComponent(0.7), offset: CGSizeMake(-6.1, 8.1), blurRadius: 15)
     }
-
+    
     //// Shadows
-
+    
     class var innerShadow: NSShadow { return Cache.innerShadow }
     class var outerShadow: NSShadow { return Cache.outerShadow }
-
+    
     //// Drawing Methods
-
+    
     class func drawIPhoneCase(frame: CGRect, fillColor: UIColor, colorOfText: UIColor, caseText: String) {
         //// General Declarations
         let context = UIGraphicsGetCurrentContext()
-
+        
         //// Color Declarations
         let strokeColor = UIColor(red: 0.000, green: 0.000, blue: 0.000, alpha: 0.104)
-
+        
         //// Rectangle Drawing
         let rectanglePath = UIBezierPath()
         rectanglePath.moveToPoint(CGPointMake(frame.minX + 29.73, frame.minY + 31))
@@ -55,7 +55,7 @@ class PhoneCases : NSObject {
         CGContextSetShadowWithColor(context, PhoneCases.outerShadow.shadowOffset, PhoneCases.outerShadow.shadowBlurRadius, PhoneCases.outerShadow.shadowColor!.CGColor)
         fillColor.setFill()
         rectanglePath.fill()
-
+        
         ////// Rectangle Inner Shadow
         CGContextSaveGState(context)
         CGContextClipToRect(context, rectanglePath.bounds)
@@ -66,49 +66,49 @@ class PhoneCases : NSObject {
         CGContextSetShadowWithColor(context, PhoneCases.innerShadow.shadowOffset, PhoneCases.innerShadow.shadowBlurRadius, rectangleOpaqueShadow.CGColor)
         CGContextSetBlendMode(context, CGBlendMode.SourceOut)
         CGContextBeginTransparencyLayer(context, nil)
-
+        
         rectangleOpaqueShadow.setFill()
         rectanglePath.fill()
-
+        
         CGContextEndTransparencyLayer(context)
         CGContextEndTransparencyLayer(context)
         CGContextRestoreGState(context)
-
+        
         CGContextRestoreGState(context)
-
+        
         strokeColor.setStroke()
         rectanglePath.lineWidth = 1
         rectanglePath.stroke()
-
-
+        
+        
         //// Text Drawing
         CGContextSaveGState(context)
-        CGContextTranslateCTM(context, frame.minX + 112.88, frame.minY + 200)
+        CGContextTranslateCTM(context, frame.minX + 113.07, frame.minY + 200)
         CGContextRotateCTM(context, CGFloat(-270 * M_PI / 180))
         CGContextScaleCTM(context, 1, 4.5)
-
-        let textRect: CGRect = CGRectMake(-140, -23.73, 280, 48.83)
+        
+        let textRect: CGRect = CGRectMake(-140, -23.76, 280, 48.89)
         let textStyle = NSMutableParagraphStyle.defaultParagraphStyle().mutableCopy() as! NSMutableParagraphStyle
         textStyle.alignment = NSTextAlignment.Left;
-
+        
         let textFontAttributes = [NSFontAttributeName: UIFont(name: "Helvetica", size: 44)!, NSForegroundColorAttributeName: colorOfText, NSParagraphStyleAttributeName: textStyle]
-
+        
         NSString(string: caseText).drawInRect(CGRectOffset(textRect, 0, (textRect.height - NSString(string: caseText).boundingRectWithSize(textRect.size, options: NSStringDrawingOptions.UsesLineFragmentOrigin, attributes: textFontAttributes, context: nil).size.height) / 2), withAttributes: textFontAttributes);
-
+        
         CGContextRestoreGState(context)
     }
-
+    
     //// Generated Images
-
+    
     class func imageOfIPhoneCase(frame: CGRect, fillColor: UIColor, colorOfText: UIColor, caseText: String) -> UIImage {
-        UIGraphicsBeginImageContextWithOptions(CGSizeMake(320, 470), false, 0)
+        UIGraphicsBeginImageContextWithOptions(CGSizeMake(320, 568), false, 0)
         PhoneCases.drawIPhoneCase(frame, fillColor: fillColor, colorOfText: colorOfText, caseText: caseText)
         let imageOfIPhoneCase = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
-
+        
         return imageOfIPhoneCase!
     }
-
+    
 }
 
 

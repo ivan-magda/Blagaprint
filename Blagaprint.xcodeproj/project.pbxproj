@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		501506501BCE96C700697C99 /* TextEditingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5015064F1BCE96C700697C99 /* TextEditingViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		502A8CB31BB80EAC0064E0DA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502A8CB21BB80EAC0064E0DA /* AppDelegate.swift */; };
 		502A8CB51BB80EAC0064E0DA /* MainTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502A8CB41BB80EAC0064E0DA /* MainTableViewController.swift */; };
 		502A8CB81BB80EAC0064E0DA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 502A8CB61BB80EAC0064E0DA /* Main.storyboard */; };
@@ -67,6 +68,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5015064F1BCE96C700697C99 /* TextEditingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextEditingViewController.swift; sourceTree = "<group>"; };
 		502A8CAF1BB80EAC0064E0DA /* Blagaprint.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Blagaprint.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		502A8CB21BB80EAC0064E0DA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		502A8CB41BB80EAC0064E0DA /* MainTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTableViewController.swift; sourceTree = "<group>"; };
@@ -210,6 +212,7 @@
 				50A871D61BCA9D68003CB0F9 /* CaseConstructorViewController.swift */,
 				50551C2B1BCB8B18005B88DA /* SelectDeviceTableViewController.swift */,
 				50551C2D1BCBA523005B88DA /* SelectBackgroundCollectionViewController.swift */,
+				5015064F1BCE96C700697C99 /* TextEditingViewController.swift */,
 			);
 			name = Cases;
 			sourceTree = "<group>";
@@ -453,6 +456,7 @@
 				50A871D21BCA2B75003CB0F9 /* PhoneCases.swift in Sources */,
 				503CBEC11BC415C700052BE0 /* CategoryItem.swift in Sources */,
 				50551C311BCBB43A005B88DA /* BackgroundOvalView.swift in Sources */,
+				501506501BCE96C700697C99 /* TextEditingViewController.swift in Sources */,
 				50551C331BCBB469005B88DA /* OvalView.swift in Sources */,
 				5071D34C1BBFE9D0005DDED3 /* NothingFoundTableViewCell.swift in Sources */,
 				502A8CB31BB80EAC0064E0DA /* AppDelegate.swift in Sources */,
