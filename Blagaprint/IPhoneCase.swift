@@ -19,6 +19,20 @@ class IPhoneCase: UIView {
         }
     }
     
+    /// Text color.
+    var textColor: UIColor = UIColor.blackColor() {
+        didSet {
+            self.setNeedsDisplay()
+        }
+    }
+    
+    /// Case background image.
+    var image: UIImage = UIImage() {
+        didSet {
+            self.setNeedsDisplay()
+        }
+    }
+    
     /// Case text.
     var text: String = "BLAGAPRINT" {
         didSet {
@@ -26,8 +40,8 @@ class IPhoneCase: UIView {
         }
     }
     
-    /// Text color.
-    var textColor: UIColor = UIColor.blackColor() {
+    /// Background image visability.
+    var showBackgroundImage: Bool = false {
         didSet {
             self.setNeedsDisplay()
         }
@@ -36,6 +50,6 @@ class IPhoneCase: UIView {
     // MARK: - Drawing
     
     override func drawRect(rect: CGRect) {
-        PhoneCases.drawIPhoneCase(self.bounds, fillColor: fillColor, colorOfText: textColor, caseText: text)
+        PhoneCases.drawIPhoneCase(self.bounds, fillColor: fillColor, colorOfText: textColor, image: image, caseText: text, backgroundImageVisible: showBackgroundImage)
     }
 }

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import ImageIO
 
 class CaseConstructorTableViewController: UITableViewController {
     // MARK: - Types
@@ -42,12 +43,18 @@ class CaseConstructorTableViewController: UITableViewController {
     /// Default supported device.
     var device: Device!
     
+    /// Image picker controller to let us take/pick photo.
+    let imagePickerController: UIImagePickerController = UIImagePickerController()
+    
     // MARK: - View Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         device = Device(deviceName: "iPhone 5/5S", deviceManufacturer: "Apple")
+
+        // The required delegate to get a photo back to the app.
+        imagePickerController.delegate = self
     }
     
     // MARK: - Navigation
@@ -164,9 +171,15 @@ class CaseConstructorTableViewController: UITableViewController {
         backgroundSelectionAlertController.addAction(imagesLibraryAction)
         
         // Photo from gallery(take photo) action
-        let photoAction = UIAlertAction(title: "Фото", style: .Default) { (action) -> Void in
+        let photoFromLibrary = UIAlertAction(title: "Выбрать фото", style: .Default) { (action) -> Void in
+            weakSelf!.photoFromLibrary()
         }
-        backgroundSelectionAlertController.addAction(photoAction)
+        backgroundSelectionAlertController.addAction(photoFromLibrary)
+        
+        let shoot = UIAlertAction(title: "Сфотать", style: .Default) { (action) -> Void in
+            weakSelf!.shootPhoto()
+        }
+        backgroundSelectionAlertController.addAction(shoot)
         
         self.presentViewController(backgroundSelectionAlertController, animated: true, completion: nil)
     }
@@ -195,5 +208,62 @@ class CaseConstructorTableViewController: UITableViewController {
         manageTextAlertController.addAction(selectTextColorAction)
         
         self.presentViewController(manageTextAlertController, animated: true, completion: nil)
+    }
+}
+
+// MARK: - Image picking extension -
+
+extension CaseConstructorTableViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    // MARK: Private helper methods
+    
+    private func noCamera() {
+        let alertVC = UIAlertController(title: "No Camera", message: "Sorry, this device has no camera", preferredStyle: .Alert)
+        let okAction = UIAlertAction(title: "OK", style:.Default, handler: nil)
+        alertVC.addAction(okAction)
+        self.presentViewController(alertVC, animated: true, completion: nil)
+    }
+    
+    /// Get a photo from the library.
+    private func photoFromLibrary() {
+        imagePickerController.allowsEditing = false
+        imagePickerController.sourceType = .PhotoLibrary
+        imagePickerController.modalPresentationStyle = .FullScreen
+        self.presentViewController(imagePickerController, animated: true, completion: nil)
+    }
+    
+    /// Take a picture, check if we have a camera first.
+    private func shootPhoto() {
+        if UIImagePickerController.availableCaptureModesForCameraDevice(.Rear) != nil {
+            imagePickerController.allowsEditing = false
+            imagePickerController.sourceType = UIImagePickerControllerSourceType.Camera
+            imagePickerController.cameraCaptureMode = .Photo
+            imagePickerController.modalPresentationStyle = .FullScreen
+            self.presentViewController(imagePickerController, animated: true, completion: nil)
+        } else {
+            noCamera()
+        }
+    }
+    
+    // MARK: UIImagePickerControllerDelegate
+    
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
+        let chosenImage = info[UIImagePickerControllerOriginalImage] as! UIImage
+        
+        let newSize = CGSizeMake(CGRectGetWidth(caseView.bounds), CGRectGetHeight(caseView.bounds))
+        
+        UIGraphicsBeginImageContextWithOptions(newSize, false, 1.0);
+        let newImageRect = CGRectMake(0.0, 0.0, newSize.width, newSize.height);
+        chosenImage.drawInRect(newImageRect)
+        let newImage = UIGraphicsGetImageFromCurrentImageContext();
+        UIGraphicsEndImageContext();
+        
+        caseView.image = newImage
+        caseView.showBackgroundImage = true
+
+        self.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    func imagePickerControllerDidCancel(picker: UIImagePickerController) {
+        dismissViewControllerAnimated(true, completion: nil)
     }
 }
