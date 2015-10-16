@@ -71,8 +71,6 @@ class TextEditingViewController: UIViewController {
 extension TextEditingViewController: UITextFieldDelegate {
     func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
         let newText = (textField.text! as NSString).stringByReplacingCharactersInRange(range, withString: string)
-        
-        doneButton.enabled = newText.characters.count > 0
         text = newText.uppercaseString
         
         return true

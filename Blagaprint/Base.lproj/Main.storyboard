@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="15B22c" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Vzc-DV-tNv">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Vzc-DV-tNv">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
     </dependencies>
@@ -190,7 +190,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qGB-hP-DMx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="740" y="971"/>
+            <point key="canvasLocation" x="648" y="971"/>
         </scene>
         <!--Чехол-->
         <scene sceneID="RYb-9i-dgl">
@@ -269,7 +269,7 @@
                                             <segue destination="rzw-l5-t8A" kind="show" identifier="SelectDevice" id="r95-6n-14o"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="bc1-KP-7x0" userLabel="PhoneBackgroundSelectionCell">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="bc1-KP-7x0" userLabel="PhoneBackgroundSelectionCell">
                                         <rect key="frame" x="0.0" y="508" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="bc1-KP-7x0" id="8Ge-59-pvd">
@@ -307,7 +307,7 @@
                                         </tableViewCellContentView>
                                         <animations/>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="9wE-5E-9PX" userLabel="TextSelectionCell">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="9wE-5E-9PX" userLabel="TextSelectionCell">
                                         <rect key="frame" x="0.0" y="552" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="9wE-5E-9PX" id="Vnk-pP-jmb">
@@ -372,11 +372,12 @@
                         <outlet property="deviceLabel" destination="U4N-Fd-6Db" id="S7w-pA-ZZS"/>
                         <segue destination="54c-VM-0PW" kind="presentation" identifier="ColorPicking" id="uJi-v2-IYJ"/>
                         <segue destination="MI7-Pa-BGt" kind="presentation" identifier="TextEditing" id="9f8-Ba-pcp"/>
+                        <segue destination="2eN-08-h4l" kind="presentation" identifier="PhotoLibrary" id="gwy-23-ssl"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lGs-Mb-ptV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1167" y="971"/>
+            <point key="canvasLocation" x="1075" y="971"/>
         </scene>
         <!--Палитра-->
         <scene sceneID="HOr-Af-TLE">
@@ -442,7 +443,7 @@
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="88p-gJ-iGe" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2043" y="955"/>
+            <point key="canvasLocation" x="1949" y="1308"/>
         </scene>
         <!--Select Device Table View Controller-->
         <scene sceneID="bFU-bu-LyS">
@@ -483,7 +484,72 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="E0P-D1-IXY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1601" y="269"/>
+            <point key="canvasLocation" x="1517" y="-16"/>
+        </scene>
+        <!--Библиотека-->
+        <scene sceneID="Jvg-mT-6N4">
+            <objects>
+                <collectionViewController id="MPQ-Nr-mxS" customClass="PhotoLibraryCollectionViewController" customModule="Blagaprint" customModuleProvider="target" sceneMemberID="viewController">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="Pvw-6m-wCA">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="4" minimumInteritemSpacing="4" id="uJC-1L-VIQ">
+                            <size key="itemSize" width="80" height="80"/>
+                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <inset key="sectionInset" minX="8" minY="8" maxX="8" maxY="8"/>
+                        </collectionViewFlowLayout>
+                        <cells>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="PhotoLibraryCell" id="4JP-kA-yvs" customClass="PhotoLibraryItemCollectionViewCell" customModule="Blagaprint" customModuleProvider="target">
+                                <rect key="frame" x="8" y="72" width="80" height="80"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="80" height="80"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="4WG-n5-fXH">
+                                            <rect key="frame" x="0.0" y="0.0" width="80" height="80"/>
+                                            <animations/>
+                                        </imageView>
+                                    </subviews>
+                                    <animations/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                                <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="4WG-n5-fXH" secondAttribute="trailing" id="4GZ-0o-wql"/>
+                                    <constraint firstAttribute="bottom" secondItem="4WG-n5-fXH" secondAttribute="bottom" id="Lrq-kn-wFM"/>
+                                    <constraint firstItem="4WG-n5-fXH" firstAttribute="top" secondItem="4JP-kA-yvs" secondAttribute="top" id="UUA-7g-FEv"/>
+                                    <constraint firstItem="4WG-n5-fXH" firstAttribute="leading" secondItem="4JP-kA-yvs" secondAttribute="leading" id="n94-ma-cmB"/>
+                                </constraints>
+                                <connections>
+                                    <outlet property="imageView" destination="4WG-n5-fXH" id="aqS-yD-odQ"/>
+                                </connections>
+                            </collectionViewCell>
+                        </cells>
+                        <connections>
+                            <outlet property="dataSource" destination="MPQ-Nr-mxS" id="JPm-U5-15u"/>
+                            <outlet property="delegate" destination="MPQ-Nr-mxS" id="ftF-e8-sVj"/>
+                        </connections>
+                    </collectionView>
+                    <navigationItem key="navigationItem" title="Библиотека" id="55W-X4-BsO">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="CWd-mg-8N0">
+                            <connections>
+                                <action selector="cancelButtonDidPressed:" destination="MPQ-Nr-mxS" id="Epr-cP-r1T"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="Kco-sZ-dzq">
+                            <connections>
+                                <action selector="doneButtonDidPressed:" destination="MPQ-Nr-mxS" id="p8N-Of-EHf"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </collectionViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8PH-3c-QN4" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1949" y="663"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="7Lh-gH-edF">
@@ -502,7 +568,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7hS-TV-J5e" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1611" y="955"/>
+            <point key="canvasLocation" x="1517" y="1308"/>
         </scene>
         <!--Текст-->
         <scene sceneID="8Fh-Aq-Wnk">
@@ -520,7 +586,7 @@
                                 <rect key="frame" x="20" y="72" width="280" height="30"/>
                                 <animations/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <textInputTraits key="textInputTraits" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="done"/>
                                 <connections>
                                     <action selector="textFieldDidEndOnText:" destination="F3u-4f-dE3" eventType="editingDidEndOnExit" id="ou9-ER-JDw"/>
                                 </connections>
@@ -553,7 +619,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RIs-0S-6eW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2043" y="1622"/>
+            <point key="canvasLocation" x="1517" y="1963"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="xbj-c5-iv9">
@@ -572,7 +638,26 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="c4H-g1-8WE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1601" y="1622"/>
+            <point key="canvasLocation" x="1075" y="1963"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="7Vk-AT-3rE">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="2eN-08-h4l" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="0FE-1E-WnL">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <animations/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="MPQ-Nr-mxS" kind="relationship" relationship="rootViewController" id="eOr-HY-5A4"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wg7-4G-xei" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1517" y="663"/>
         </scene>
     </scenes>
     <resources>

@@ -9,6 +9,18 @@
 import UIKit
 import ImageIO
 
+/// Segue identifier to SelectDeviceTableViewController.
+private let kSelectDeviceSegueIdentifier = "SelectDevice"
+
+/// Segue identifier to SelectbackgroundCollectionViewController.
+private let kSelectBackgroundSegueIdentifier = "ColorPicking"
+
+/// Segue identifier to TextEditingViewController.
+private let kTextEditingSegueIdentifier = "TextEditing"
+
+/// Segue identifier to PhotoLibraryCollectionViewController
+private let kPhotoLibrarySegueIdentifier = "PhotoLibrary"
+
 class CaseConstructorTableViewController: UITableViewController {
     // MARK: - Types
     
@@ -31,15 +43,6 @@ class CaseConstructorTableViewController: UITableViewController {
     /// Device label.
     @IBOutlet weak var deviceLabel: UILabel!
     
-    /// Segue identifier to SelectDeviceTableViewController.
-    static let kSelectDeviceSegueIdentifier = "SelectDevice"
-    
-    /// Segue identifier to SelectbackgroundCollectionViewController.
-    static let kSelectBackgroundSegueIdentifier = "ColorPicking"
-    
-    /// Segue identifier to TextEditingViewController.
-    static let kTextEditingSegueIdentifier = "TextEditing"
-    
     /// Default supported device.
     var device: Device!
     
@@ -59,7 +62,7 @@ class CaseConstructorTableViewController: UITableViewController {
     
     // MARK: - Navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == CaseConstructorTableViewController.kSelectDeviceSegueIdentifier {
+        if segue.identifier == kSelectDeviceSegueIdentifier {
             let selectDeviceViewController = segue.destinationViewController as! SelectDeviceTableViewController
             selectDeviceViewController.originalDevice = device
             
@@ -69,7 +72,7 @@ class CaseConstructorTableViewController: UITableViewController {
                 weakSelf?.device = selectedDevice
                 weakSelf?.deviceLabel.text = weakSelf?.device.deviceName
             }
-        } else if segue.identifier == CaseConstructorTableViewController.kSelectBackgroundSegueIdentifier {
+        } else if segue.identifier == kSelectBackgroundSegueIdentifier {
             let navigationController = segue.destinationViewController as! UINavigationController
             let selectBackgroundVC = navigationController.topViewController as! SelectBackgroundCollectionViewController
             
@@ -89,18 +92,17 @@ class CaseConstructorTableViewController: UITableViewController {
             
             selectBackgroundVC.didSelectColorCompletionHandler = { (color) in
                 if caseBackgroundType {
-                    if weakSelf!.caseView.fillColor != color {
-                        UIView.animateWithDuration(0.25, animations: { () -> Void in
-                            weakSelf!.caseView.fillColor = color
-                        })
-                    }
+                    UIView.animateWithDuration(0.25, animations: { () -> Void in
+                        weakSelf!.caseView.fillColor = color
+                        weakSelf!.caseView.showBackgroundImage = false
+                    })
                 } else if textColorType {
                     UIView.animateWithDuration(0.25, animations: { () -> Void in
                         weakSelf!.caseView.textColor = color
                     })
                 }
             }
-        } else if segue.identifier == CaseConstructorTableViewController.kTextEditingSegueIdentifier {
+        } else if segue.identifier == kTextEditingSegueIdentifier {
             let navigationController = segue.destinationViewController as! UINavigationController
             let textEditingVC = navigationController.topViewController as! TextEditingViewController
             textEditingVC.text = caseView.text
@@ -110,22 +112,25 @@ class CaseConstructorTableViewController: UITableViewController {
             textEditingVC.didDoneOnTextCompletionHandler = { (text) in
                 weakSelf?.caseView.text = text
             }
+        } else if segue.identifier == kPhotoLibrarySegueIdentifier {
+            let navigationController = segue.destinationViewController as! UINavigationController
+            let photoLibraryVC = navigationController.topViewController as! PhotoLibraryCollectionViewController
+            
+            photoLibraryVC.delegate = self
         }
     }
     
     // MARK: - UITableView
     // MARK: UITableViewDelegate
     
-    override func tableView(tableView: UITableView, willSelectRowAtIndexPath indexPath: NSIndexPath) -> NSIndexPath? {
-        if indexPath.row == CellTypes.Background.rawValue ||
-           indexPath.row == CellTypes.Text.rawValue {
-            return nil
-        }
-        return indexPath
-    }
-    
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        
+        if indexPath.row == CellTypes.Background.rawValue {
+            presentSelectBackgroundAlertController()
+        } else if indexPath.row == CellTypes.Text.rawValue {
+            presentManageTextAlertController()
+        }
     }
     
     // MARK: - IBActions
@@ -161,22 +166,23 @@ class CaseConstructorTableViewController: UITableViewController {
         // Background library action
         let backgroundAction = UIAlertAction(title: "Палитра", style: .Default) { (action) -> Void in
             let type = ColorSelectionType.CaseBackground.rawValue
-            weakSelf?.performSegueWithIdentifier(CaseConstructorTableViewController.kSelectBackgroundSegueIdentifier, sender: type)
+            weakSelf?.performSegueWithIdentifier(kSelectBackgroundSegueIdentifier, sender: type)
         }
         backgroundSelectionAlertController.addAction(backgroundAction)
         
         // Images library action
-        let imagesLibraryAction = UIAlertAction(title: "Библиотека", style: .Default, handler: { (action) -> Void in
+        let imagesLibraryAction = UIAlertAction(title: "Библиотека изображений", style: .Default, handler: { (action) -> Void in
+            weakSelf?.performSegueWithIdentifier(kPhotoLibrarySegueIdentifier, sender: nil)
         })
         backgroundSelectionAlertController.addAction(imagesLibraryAction)
         
         // Photo from gallery(take photo) action
-        let photoFromLibrary = UIAlertAction(title: "Выбрать фото", style: .Default) { (action) -> Void in
+        let photoFromLibrary = UIAlertAction(title: "Медиатека", style: .Default) { (action) -> Void in
             weakSelf!.photoFromLibrary()
         }
         backgroundSelectionAlertController.addAction(photoFromLibrary)
         
-        let shoot = UIAlertAction(title: "Сфотать", style: .Default) { (action) -> Void in
+        let shoot = UIAlertAction(title: "Снять фото", style: .Default) { (action) -> Void in
             weakSelf!.shootPhoto()
         }
         backgroundSelectionAlertController.addAction(shoot)
@@ -189,21 +195,29 @@ class CaseConstructorTableViewController: UITableViewController {
         
         weak var weakSelf = self
         
+        // Remove text action
+        let removeTextAction = UIAlertAction(title: "Очистить", style: .Destructive) { (action) -> Void in
+            UIView.animateWithDuration(0.45, animations: { () -> Void in
+                weakSelf!.caseView.text = ""
+            })
+        }
+        manageTextAlertController.addAction(removeTextAction)
+        
         // Cancel action
         let cancelAction = UIAlertAction(title: "Отмена", style: .Cancel) { (action) -> Void in
         }
         manageTextAlertController.addAction(cancelAction)
         
         // Enter text action
-        let enterTextAction = UIAlertAction(title: "Ввести", style: .Default) { (action) -> Void in
-            self.performSegueWithIdentifier(CaseConstructorTableViewController.kTextEditingSegueIdentifier, sender: nil)
+        let enterTextAction = UIAlertAction(title: "Ввести текст", style: .Default) { (action) -> Void in
+            self.performSegueWithIdentifier(kTextEditingSegueIdentifier, sender: nil)
         }
         manageTextAlertController.addAction(enterTextAction)
         
         // Select text color action
         let selectTextColorAction = UIAlertAction(title: "Цвет", style: .Default) { (action) -> Void in
             let type = ColorSelectionType.TextColor.rawValue
-            weakSelf!.performSegueWithIdentifier(CaseConstructorTableViewController.kSelectBackgroundSegueIdentifier, sender: type)
+            weakSelf!.performSegueWithIdentifier(kSelectBackgroundSegueIdentifier, sender: type)
         }
         manageTextAlertController.addAction(selectTextColorAction)
         
@@ -265,5 +279,12 @@ extension CaseConstructorTableViewController: UIImagePickerControllerDelegate, U
     
     func imagePickerControllerDidCancel(picker: UIImagePickerController) {
         dismissViewControllerAnimated(true, completion: nil)
+    }
+}
+
+extension CaseConstructorTableViewController: PhotoLibraryCollectionViewControllerDelegate {
+    func photoLibraryCollectionViewController(controller: PhotoLibraryCollectionViewController, didDoneOnImage image: UIImage) {
+        self.caseView.image = image
+        self.caseView.showBackgroundImage = true
     }
 }

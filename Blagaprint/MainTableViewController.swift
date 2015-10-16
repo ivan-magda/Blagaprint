@@ -8,23 +8,23 @@
 
 import UIKit
 
+/// CategoryTableViewCell identifier.
+private let kCategoryTableViewCellIdentifier = "CategoryCell"
+
+/// CategoryItemTableViewCell identifier.
+private let kCategoryItemTableViewCellIdentifier = "CategoryItemCell"
+
+/// NothingFoundTableViewCell identifier.
+private let kNothingFoundTableViewCellIdentifier = "NothingFoundCell"
+
+/// CategoryTableViewCell height value.
+private let kCategoryTableViewCellHeightValue: CGFloat = 200.0
+
+/// Height for tableView header view.
+private let kHeightForHeader: CGFloat = 44.0
+
 class MainTableViewController: UITableViewController {
     // MARK: - Properties -
-    
-    /// CategoryTableViewCell identifier.
-    private static let kCategoryTableViewCellIdentifier = "CategoryCell"
-    
-    /// CategoryItemTableViewCell identifier.
-    private static let kCategoryItemTableViewCellIdentifier = "CategoryItemCell"
-    
-    /// NothingFoundTableViewCell identifier.
-    private static let kNothingFoundTableViewCellIdentifier = "NothingFoundCell"
-    
-    /// CategoryTableViewCell height value.
-    private static let kCategoryTableViewCellHeightValue: CGFloat = 200.0
-    
-    /// Height for tableView header view.
-    private static let kHeightForHeader: CGFloat = 44.0
     
     /// Data source for the table view.
     private var categories: [Category] = Category.seedInitialData()
@@ -76,7 +76,7 @@ class MainTableViewController: UITableViewController {
             return nil
         }
         
-        let headerView = UIView(frame: CGRectMake(0.0, 0.0, CGRectGetWidth(tableView.bounds), MainTableViewController.kHeightForHeader))
+        let headerView = UIView(frame: CGRectMake(0.0, 0.0, CGRectGetWidth(tableView.bounds), kHeightForHeader))
         headerView.backgroundColor = AppAppearance.AppColors.tuna
         
         let labelHeight: CGFloat = 18.0
@@ -135,14 +135,14 @@ class MainTableViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return nothingFound() ? 0.0 : MainTableViewController.kHeightForHeader
+        return nothingFound() ? 0.0 : kHeightForHeader
     }
     
     // MARK: - Private Helpers Methods -
     
     private func configurateTableView() {
         self.tableView.rowHeight = UITableViewAutomaticDimension
-        self.tableView.estimatedRowHeight = MainTableViewController.kCategoryTableViewCellHeightValue
+        self.tableView.estimatedRowHeight = kCategoryTableViewCellHeightValue
     }
     
     private func numberOfSections() -> Int {
@@ -169,12 +169,12 @@ class MainTableViewController: UITableViewController {
     
     private func getConfiguratedCellAtIndexPath(indexPath: NSIndexPath) -> UITableViewCell {
         if nothingFound() {
-            let nothingFoundCell = self.tableView!.dequeueReusableCellWithIdentifier(MainTableViewController.kNothingFoundTableViewCellIdentifier) as! NothingFoundTableViewCell
+            let nothingFoundCell = self.tableView!.dequeueReusableCellWithIdentifier(kNothingFoundTableViewCellIdentifier) as! NothingFoundTableViewCell
             nothingFoundCell.label.text = "Ничего не найдено"
             
             return nothingFoundCell
         } else if indexPath.row == 0 {
-            let categoryCell = self.tableView.dequeueReusableCellWithIdentifier(MainTableViewController.kCategoryTableViewCellIdentifier) as! CategoryTableViewCell
+            let categoryCell = self.tableView.dequeueReusableCellWithIdentifier(kCategoryTableViewCellIdentifier) as! CategoryTableViewCell
             
             let category = getCategoryFromIndexPath(indexPath)
             categoryCell.categoryImageView?.image = category.image
@@ -182,7 +182,7 @@ class MainTableViewController: UITableViewController {
             
             return categoryCell
         } else {
-            let categoryItemCell = self.tableView.dequeueReusableCellWithIdentifier(MainTableViewController.kCategoryItemTableViewCellIdentifier) as! CategoryItemTableViewCell
+            let categoryItemCell = self.tableView.dequeueReusableCellWithIdentifier(kCategoryItemTableViewCellIdentifier) as! CategoryItemTableViewCell
             let item = categories[indexPath.section].categoryItems[indexPath.row - 1]
             categoryItemCell.categoryItemLabel.text = item.name
             

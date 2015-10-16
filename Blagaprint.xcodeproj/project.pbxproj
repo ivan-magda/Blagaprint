@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0C541A571BD0B2710028BD9A /* PhotoLibraryCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C541A561BD0B2710028BD9A /* PhotoLibraryCollectionViewController.swift */; settings = {ASSET_TAGS = (); }; };
+		0C541A591BD0B51A0028BD9A /* PhotoLibraryItemCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C541A581BD0B51A0028BD9A /* PhotoLibraryItemCollectionViewCell.swift */; settings = {ASSET_TAGS = (); }; };
+		0C541A6A1BD0BA970028BD9A /* 3dWallpaper.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0C541A671BD0BA970028BD9A /* 3dWallpaper.jpg */; settings = {ASSET_TAGS = (); }; };
+		0C541A6B1BD0BA970028BD9A /* FunnyAnimals.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0C541A681BD0BA970028BD9A /* FunnyAnimals.jpg */; settings = {ASSET_TAGS = (); }; };
+		0C541A6C1BD0BA970028BD9A /* wallpaper.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0C541A691BD0BA970028BD9A /* wallpaper.jpg */; settings = {ASSET_TAGS = (); }; };
 		501506501BCE96C700697C99 /* TextEditingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5015064F1BCE96C700697C99 /* TextEditingViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		502A8CB31BB80EAC0064E0DA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502A8CB21BB80EAC0064E0DA /* AppDelegate.swift */; };
 		502A8CB51BB80EAC0064E0DA /* MainTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502A8CB41BB80EAC0064E0DA /* MainTableViewController.swift */; };
@@ -68,6 +73,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0C541A561BD0B2710028BD9A /* PhotoLibraryCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoLibraryCollectionViewController.swift; sourceTree = "<group>"; };
+		0C541A581BD0B51A0028BD9A /* PhotoLibraryItemCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoLibraryItemCollectionViewCell.swift; sourceTree = "<group>"; };
+		0C541A671BD0BA970028BD9A /* 3dWallpaper.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 3dWallpaper.jpg; sourceTree = "<group>"; };
+		0C541A681BD0BA970028BD9A /* FunnyAnimals.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = FunnyAnimals.jpg; sourceTree = "<group>"; };
+		0C541A691BD0BA970028BD9A /* wallpaper.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = wallpaper.jpg; sourceTree = "<group>"; };
 		5015064F1BCE96C700697C99 /* TextEditingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextEditingViewController.swift; sourceTree = "<group>"; };
 		502A8CAF1BB80EAC0064E0DA /* Blagaprint.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Blagaprint.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		502A8CB21BB80EAC0064E0DA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -141,6 +151,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0C541A5E1BD0B9A00028BD9A /* PhotoLibraryImages */ = {
+			isa = PBXGroup;
+			children = (
+				0C541A671BD0BA970028BD9A /* 3dWallpaper.jpg */,
+				0C541A681BD0BA970028BD9A /* FunnyAnimals.jpg */,
+				0C541A691BD0BA970028BD9A /* wallpaper.jpg */,
+			);
+			name = PhotoLibraryImages;
+			sourceTree = "<group>";
+		};
 		502A8CA61BB80EAC0064E0DA = {
 			isa = PBXGroup;
 			children = (
@@ -187,6 +207,7 @@
 			children = (
 				50F8F3DA1BC7922B002CE3FD /* CategoryItemImages */,
 				50FA4B7F1BB9385500BC8958 /* CategoriesImages */,
+				0C541A5E1BD0B9A00028BD9A /* PhotoLibraryImages */,
 				502A8CD51BB8126E0064E0DA /* NavigationBar */,
 				50592EF21BCBEF8F00CEB3B8 /* Icons */,
 			);
@@ -213,6 +234,7 @@
 				50551C2B1BCB8B18005B88DA /* SelectDeviceTableViewController.swift */,
 				50551C2D1BCBA523005B88DA /* SelectBackgroundCollectionViewController.swift */,
 				5015064F1BCE96C700697C99 /* TextEditingViewController.swift */,
+				0C541A561BD0B2710028BD9A /* PhotoLibraryCollectionViewController.swift */,
 			);
 			name = Cases;
 			sourceTree = "<group>";
@@ -314,6 +336,7 @@
 				50FD7F4F1BB8FFF600ABEC38 /* CategoryTableViewCell.swift */,
 				5071D34B1BBFE9D0005DDED3 /* NothingFoundTableViewCell.swift */,
 				50F8F4191BC80857002CE3FD /* CategoryItemTableViewCell.swift */,
+				0C541A581BD0B51A0028BD9A /* PhotoLibraryItemCollectionViewCell.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -393,6 +416,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0C541A6B1BD0BA970028BD9A /* FunnyAnimals.jpg in Resources */,
 				50F8F3B91BC7873C002CE3FD /* case_with_photo.jpg in Resources */,
 				50DD72481BBEDDA5008A9B80 /* plates.jpg in Resources */,
 				502A8CBD1BB80EAC0064E0DA /* LaunchScreen.storyboard in Resources */,
@@ -416,12 +440,14 @@
 				50DD726E1BBEEB69008A9B80 /* wood_cases.jpg in Resources */,
 				50551C281BCB87D6005B88DA /* More.png in Resources */,
 				502A8CE11BB822410064E0DA /* MenuWhite@3x.png in Resources */,
+				0C541A6C1BD0BA970028BD9A /* wallpaper.jpg in Resources */,
 				50F8F3BD1BC788FD002CE3FD /* cup_chameleon.jpg in Resources */,
 				50DD72441BBEDAAA008A9B80 /* cups.jpg in Resources */,
 				50F8F3C11BC78A1A002CE3FD /* cup_love_is.jpg in Resources */,
 				50DD724E1BBEE085008A9B80 /* frames.jpg in Resources */,
 				50DD72561BBEE46B008A9B80 /* key_rings_by_3D_printer.jpg in Resources */,
 				50FD7F5D1BB90A8900ABEC38 /* copy_services.jpg in Resources */,
+				0C541A6A1BD0BA970028BD9A /* 3dWallpaper.jpg in Resources */,
 				50F8F3C31BC78B83002CE3FD /* key_ring_with_photo_glass.jpg in Resources */,
 				502A8CDF1BB822410064E0DA /* MenuWhite.png in Resources */,
 				50551C2A1BCB87D6005B88DA /* More@3x.png in Resources */,
@@ -445,6 +471,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				502A8CB51BB80EAC0064E0DA /* MainTableViewController.swift in Sources */,
+				0C541A571BD0B2710028BD9A /* PhotoLibraryCollectionViewController.swift in Sources */,
 				50551C2E1BCBA523005B88DA /* SelectBackgroundCollectionViewController.swift in Sources */,
 				50DD72391BBED313008A9B80 /* Category.swift in Sources */,
 				50F8F41A1BC80857002CE3FD /* CategoryItemTableViewCell.swift in Sources */,
@@ -456,6 +483,7 @@
 				50A871D21BCA2B75003CB0F9 /* PhoneCases.swift in Sources */,
 				503CBEC11BC415C700052BE0 /* CategoryItem.swift in Sources */,
 				50551C311BCBB43A005B88DA /* BackgroundOvalView.swift in Sources */,
+				0C541A591BD0B51A0028BD9A /* PhotoLibraryItemCollectionViewCell.swift in Sources */,
 				501506501BCE96C700697C99 /* TextEditingViewController.swift in Sources */,
 				50551C331BCBB469005B88DA /* OvalView.swift in Sources */,
 				5071D34C1BBFE9D0005DDED3 /* NothingFoundTableViewCell.swift in Sources */,
