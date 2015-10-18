@@ -50,6 +50,6 @@ class IPhoneCase: UIView {
     // MARK: - Drawing
     
     override func drawRect(rect: CGRect) {
-        PhoneCases.drawIPhoneCase(self.bounds, fillColor: fillColor, colorOfText: textColor, image: image, caseText: text, backgroundImageVisible: showBackgroundImage)
+        PhoneCase.drawIPhoneCase(self.bounds, fillColor: fillColor, colorOfText: textColor, image: image, caseText: text, backgroundImageVisible: showBackgroundImage)
     }
 }

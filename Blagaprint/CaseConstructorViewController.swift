@@ -163,6 +163,17 @@ class CaseConstructorTableViewController: UITableViewController {
         }
         backgroundSelectionAlertController.addAction(cancelAction)
         
+        // Photo from gallery(take photo) action
+        let photoFromLibrary = UIAlertAction(title: "Медиатека", style: .Default) { (action) -> Void in
+            weakSelf!.photoFromLibrary()
+        }
+        backgroundSelectionAlertController.addAction(photoFromLibrary)
+        
+        let shoot = UIAlertAction(title: "Снять фото", style: .Default) { (action) -> Void in
+            weakSelf!.shootPhoto()
+        }
+        backgroundSelectionAlertController.addAction(shoot)
+        
         // Background library action
         let backgroundAction = UIAlertAction(title: "Палитра", style: .Default) { (action) -> Void in
             let type = ColorSelectionType.CaseBackground.rawValue
@@ -175,17 +186,6 @@ class CaseConstructorTableViewController: UITableViewController {
             weakSelf?.performSegueWithIdentifier(kPhotoLibrarySegueIdentifier, sender: nil)
         })
         backgroundSelectionAlertController.addAction(imagesLibraryAction)
-        
-        // Photo from gallery(take photo) action
-        let photoFromLibrary = UIAlertAction(title: "Медиатека", style: .Default) { (action) -> Void in
-            weakSelf!.photoFromLibrary()
-        }
-        backgroundSelectionAlertController.addAction(photoFromLibrary)
-        
-        let shoot = UIAlertAction(title: "Снять фото", style: .Default) { (action) -> Void in
-            weakSelf!.shootPhoto()
-        }
-        backgroundSelectionAlertController.addAction(shoot)
         
         self.presentViewController(backgroundSelectionAlertController, animated: true, completion: nil)
     }
@@ -258,20 +258,24 @@ extension CaseConstructorTableViewController: UIImagePickerControllerDelegate, U
         }
     }
     
+    private func imageForCase(image: UIImage) -> UIImage {
+        let newSize = CGSizeMake(CGRectGetWidth(caseView.bounds), CGRectGetHeight(caseView.bounds))
+        
+        UIGraphicsBeginImageContextWithOptions(newSize, false, 0.0);
+        let newImageRect = CGRectMake(0.0, 0.0, newSize.width, newSize.height);
+        image.drawInRect(newImageRect)
+        let newImage = UIGraphicsGetImageFromCurrentImageContext();
+        UIGraphicsEndImageContext();
+        
+        return newImage
+    }
+    
     // MARK: UIImagePickerControllerDelegate
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
         let chosenImage = info[UIImagePickerControllerOriginalImage] as! UIImage
         
-        let newSize = CGSizeMake(CGRectGetWidth(caseView.bounds), CGRectGetHeight(caseView.bounds))
-        
-        UIGraphicsBeginImageContextWithOptions(newSize, false, 1.0);
-        let newImageRect = CGRectMake(0.0, 0.0, newSize.width, newSize.height);
-        chosenImage.drawInRect(newImageRect)
-        let newImage = UIGraphicsGetImageFromCurrentImageContext();
-        UIGraphicsEndImageContext();
-        
-        caseView.image = newImage
+        caseView.image = imageForCase(chosenImage)
         caseView.showBackgroundImage = true
 
         self.dismissViewControllerAnimated(true, completion: nil)
@@ -284,7 +288,7 @@ extension CaseConstructorTableViewController: UIImagePickerControllerDelegate, U
 
 extension CaseConstructorTableViewController: PhotoLibraryCollectionViewControllerDelegate {
     func photoLibraryCollectionViewController(controller: PhotoLibraryCollectionViewController, didDoneOnImage image: UIImage) {
-        self.caseView.image = image
+        self.caseView.image = imageForCase(image)
         self.caseView.showBackgroundImage = true
     }
 }
