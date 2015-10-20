@@ -208,18 +208,18 @@ class CaseConstructorTableViewController: UITableViewController {
         }
         manageTextAlertController.addAction(cancelAction)
         
-        // Enter text action
-        let enterTextAction = UIAlertAction(title: "Ввести текст", style: .Default) { (action) -> Void in
-            self.performSegueWithIdentifier(kTextEditingSegueIdentifier, sender: nil)
-        }
-        manageTextAlertController.addAction(enterTextAction)
-        
         // Select text color action
         let selectTextColorAction = UIAlertAction(title: "Цвет", style: .Default) { (action) -> Void in
             let type = ColorSelectionType.TextColor.rawValue
             weakSelf!.performSegueWithIdentifier(kSelectBackgroundSegueIdentifier, sender: type)
         }
         manageTextAlertController.addAction(selectTextColorAction)
+        
+        // Enter text action
+        let enterTextAction = UIAlertAction(title: "Ввести текст", style: .Default) { (action) -> Void in
+            self.performSegueWithIdentifier(kTextEditingSegueIdentifier, sender: nil)
+        }
+        manageTextAlertController.addAction(enterTextAction)
         
         self.presentViewController(manageTextAlertController, animated: true, completion: nil)
     }
@@ -261,11 +261,11 @@ extension CaseConstructorTableViewController: UIImagePickerControllerDelegate, U
     private func imageForCase(image: UIImage) -> UIImage {
         let newSize = CGSizeMake(CGRectGetWidth(caseView.bounds), CGRectGetHeight(caseView.bounds))
         
-        UIGraphicsBeginImageContextWithOptions(newSize, false, 0.0);
-        let newImageRect = CGRectMake(0.0, 0.0, newSize.width, newSize.height);
+        UIGraphicsBeginImageContextWithOptions(newSize, false, 0.0)
+        let newImageRect = CGRectMake(0.0, 0.0, newSize.width, newSize.height)
         image.drawInRect(newImageRect)
-        let newImage = UIGraphicsGetImageFromCurrentImageContext();
-        UIGraphicsEndImageContext();
+        let newImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
         
         return newImage
     }
@@ -275,8 +275,8 @@ extension CaseConstructorTableViewController: UIImagePickerControllerDelegate, U
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
         let chosenImage = info[UIImagePickerControllerOriginalImage] as! UIImage
         
-        caseView.image = imageForCase(chosenImage)
-        caseView.showBackgroundImage = true
+        self.caseView.image = imageForCase(chosenImage)
+        self.caseView.showBackgroundImage = true
 
         self.dismissViewControllerAnimated(true, completion: nil)
     }
