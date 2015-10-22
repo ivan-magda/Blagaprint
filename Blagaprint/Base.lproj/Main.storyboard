@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Vzc-DV-tNv">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Vzc-DV-tNv">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
     </dependencies>
@@ -202,37 +202,31 @@
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <view key="tableHeaderView" contentMode="scaleToFill" id="UgT-nP-BYM" userLabel="headerView">
-                            <rect key="frame" x="0.0" y="64" width="320" height="392"/>
+                            <rect key="frame" x="0.0" y="64" width="320" height="400"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
-                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MkY-0E-315" userLabel="caseView" customClass="IPhoneCase" customModule="Blagaprint" customModuleProvider="target">
-                                    <rect key="frame" x="50" y="0.0" width="220" height="392"/>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9P3-AA-IEw" customClass="CaseView" customModule="Blagaprint" customModuleProvider="target">
+                                    <rect key="frame" x="50" y="0.0" width="220" height="400"/>
                                     <animations/>
-                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     <constraints>
-                                        <constraint firstAttribute="width" constant="220" id="gBn-g4-CmF"/>
+                                        <constraint firstAttribute="height" constant="400" id="6AW-lg-62M"/>
+                                        <constraint firstAttribute="width" constant="220" id="dr1-Mg-t4Q"/>
                                     </constraints>
                                 </view>
                             </subviews>
                             <animations/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <constraints>
-                                <constraint firstItem="MkY-0E-315" firstAttribute="centerY" secondItem="UgT-nP-BYM" secondAttribute="centerY" id="Fpa-jR-f2P"/>
-                                <constraint firstItem="MkY-0E-315" firstAttribute="top" secondItem="UgT-nP-BYM" secondAttribute="top" id="Wye-DC-Lhe"/>
-                                <constraint firstAttribute="bottom" secondItem="MkY-0E-315" secondAttribute="bottom" id="rQa-UG-Tvl"/>
-                                <constraint firstItem="MkY-0E-315" firstAttribute="centerX" secondItem="UgT-nP-BYM" secondAttribute="centerX" id="rgY-cQ-p33"/>
+                                <constraint firstItem="9P3-AA-IEw" firstAttribute="centerX" secondItem="UgT-nP-BYM" secondAttribute="centerX" id="SSz-0Q-eTt"/>
+                                <constraint firstItem="9P3-AA-IEw" firstAttribute="top" secondItem="UgT-nP-BYM" secondAttribute="top" id="aX3-wf-fiX"/>
                             </constraints>
-                            <variation key="default">
-                                <mask key="constraints">
-                                    <exclude reference="Fpa-jR-f2P"/>
-                                </mask>
-                            </variation>
                         </view>
                         <sections>
                             <tableViewSection id="2po-YE-mhl">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" id="vOC-pm-cuf" userLabel="PhoneCell">
-                                        <rect key="frame" x="0.0" y="456" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="464" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="vOC-pm-cuf" id="R42-ze-ZAj">
                                             <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
@@ -270,7 +264,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="bc1-KP-7x0" userLabel="PhoneBackgroundSelectionCell">
-                                        <rect key="frame" x="0.0" y="500" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="508" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="bc1-KP-7x0" id="8Ge-59-pvd">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
@@ -308,7 +302,7 @@
                                         <animations/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="9wE-5E-9PX" userLabel="TextSelectionCell">
-                                        <rect key="frame" x="0.0" y="544" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="552" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="9wE-5E-9PX" id="Vnk-pP-jmb">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
@@ -368,7 +362,7 @@
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="320" height="600"/>
                     <connections>
-                        <outlet property="caseView" destination="MkY-0E-315" id="R2L-qC-b0S"/>
+                        <outlet property="caseView" destination="9P3-AA-IEw" id="S4x-ay-i0p"/>
                         <outlet property="deviceLabel" destination="U4N-Fd-6Db" id="S7w-pA-ZZS"/>
                         <segue destination="54c-VM-0PW" kind="presentation" identifier="ColorPicking" id="uJi-v2-IYJ"/>
                         <segue destination="MI7-Pa-BGt" kind="presentation" identifier="TextEditing" id="9f8-Ba-pcp"/>

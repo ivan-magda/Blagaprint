@@ -38,7 +38,7 @@ class CaseConstructorTableViewController: UITableViewController {
     // MARK: - Properties
     
     /// Case view.
-    @IBOutlet weak var caseView: IPhoneCase!
+    @IBOutlet weak var caseView: CaseView!
     
     /// Device label.
     @IBOutlet weak var deviceLabel: UILabel!

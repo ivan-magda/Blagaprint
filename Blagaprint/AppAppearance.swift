@@ -26,6 +26,11 @@ class AppAppearance: NSObject {
         customizeNavigationAndStatusBars()
     }
     
+    /// Return Anderson Supercar font with passed size.
+    static func andersonSupercarFontWithSize(size: CGFloat) -> UIFont {
+        return UIFont(name: "AndersonSupercar", size: size)!
+    }
+    
     // MARK: - Private
     
     private static func customizeNavigationAndStatusBars() {

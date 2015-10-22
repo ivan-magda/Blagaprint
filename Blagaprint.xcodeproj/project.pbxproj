@@ -32,7 +32,6 @@
 		50551C351BCBEA96005B88DA /* BackgroundCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50551C341BCBEA96005B88DA /* BackgroundCollectionViewCell.swift */; settings = {ASSET_TAGS = (); }; };
 		5071D34C1BBFE9D0005DDED3 /* NothingFoundTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5071D34B1BBFE9D0005DDED3 /* NothingFoundTableViewCell.swift */; settings = {ASSET_TAGS = (); }; };
 		508503041BBAADB600152131 /* AppAppearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508503031BBAADB600152131 /* AppAppearance.swift */; settings = {ASSET_TAGS = (); }; };
-		50A871D41BCA2C18003CB0F9 /* IPhoneCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50A871D31BCA2C18003CB0F9 /* IPhoneCase.swift */; settings = {ASSET_TAGS = (); }; };
 		50A871D71BCA9D68003CB0F9 /* CaseConstructorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50A871D61BCA9D68003CB0F9 /* CaseConstructorViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		50BE47111BBA388400724119 /* MenuMalibu.png in Resources */ = {isa = PBXBuildFile; fileRef = 50BE470E1BBA388400724119 /* MenuMalibu.png */; settings = {ASSET_TAGS = (); }; };
 		50BE47121BBA388400724119 /* MenuMalibu@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 50BE470F1BBA388400724119 /* MenuMalibu@2x.png */; settings = {ASSET_TAGS = (); }; };
@@ -69,7 +68,9 @@
 		50F8F41A1BC80857002CE3FD /* CategoryItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F8F4191BC80857002CE3FD /* CategoryItemTableViewCell.swift */; settings = {ASSET_TAGS = (); }; };
 		50FD7F501BB8FFF600ABEC38 /* CategoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50FD7F4F1BB8FFF600ABEC38 /* CategoryTableViewCell.swift */; settings = {ASSET_TAGS = (); }; };
 		50FD7F5D1BB90A8900ABEC38 /* copy_services.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 50FD7F5C1BB90A8900ABEC38 /* copy_services.jpg */; settings = {ASSET_TAGS = (); }; };
-		754600C51BD3D02C007DD842 /* PhoneCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 754600C41BD3D02C007DD842 /* PhoneCase.swift */; settings = {ASSET_TAGS = (); }; };
+		75823AAF1BD8BDD000C92F83 /* PhoneCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75823AAE1BD8BDD000C92F83 /* PhoneCase.swift */; settings = {ASSET_TAGS = (); }; };
+		75DD91F91BD7B43800932AD7 /* AndersonSupercar.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 75DD91F81BD7B43800932AD7 /* AndersonSupercar.ttf */; settings = {ASSET_TAGS = (); }; };
+		75DD91FF1BD7BFE000932AD7 /* CaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75DD91FE1BD7BFE000932AD7 /* CaseView.swift */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -100,7 +101,6 @@
 		50551C341BCBEA96005B88DA /* BackgroundCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackgroundCollectionViewCell.swift; sourceTree = "<group>"; };
 		5071D34B1BBFE9D0005DDED3 /* NothingFoundTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NothingFoundTableViewCell.swift; sourceTree = "<group>"; };
 		508503031BBAADB600152131 /* AppAppearance.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppAppearance.swift; sourceTree = "<group>"; };
-		50A871D31BCA2C18003CB0F9 /* IPhoneCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IPhoneCase.swift; sourceTree = "<group>"; };
 		50A871D61BCA9D68003CB0F9 /* CaseConstructorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CaseConstructorViewController.swift; sourceTree = "<group>"; };
 		50BE470E1BBA388400724119 /* MenuMalibu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MenuMalibu.png; sourceTree = "<group>"; };
 		50BE470F1BBA388400724119 /* MenuMalibu@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MenuMalibu@2x.png"; sourceTree = "<group>"; };
@@ -137,7 +137,9 @@
 		50F8F4191BC80857002CE3FD /* CategoryItemTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryItemTableViewCell.swift; sourceTree = "<group>"; };
 		50FD7F4F1BB8FFF600ABEC38 /* CategoryTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryTableViewCell.swift; sourceTree = "<group>"; };
 		50FD7F5C1BB90A8900ABEC38 /* copy_services.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = copy_services.jpg; sourceTree = "<group>"; };
-		754600C41BD3D02C007DD842 /* PhoneCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhoneCase.swift; sourceTree = "<group>"; };
+		75823AAE1BD8BDD000C92F83 /* PhoneCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhoneCase.swift; sourceTree = "<group>"; };
+		75DD91F81BD7B43800932AD7 /* AndersonSupercar.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = AndersonSupercar.ttf; sourceTree = "<group>"; };
+		75DD91FE1BD7BFE000932AD7 /* CaseView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CaseView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -210,6 +212,7 @@
 				0C541A5E1BD0B9A00028BD9A /* PhotoLibraryImages */,
 				502A8CD51BB8126E0064E0DA /* NavigationBar */,
 				50592EF21BCBEF8F00CEB3B8 /* Icons */,
+				75FDB4B71BD620C7007FB441 /* Fonts */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -270,8 +273,8 @@
 		50A871D51BCA9B7C003CB0F9 /* CaseViews */ = {
 			isa = PBXGroup;
 			children = (
-				50A871D31BCA2C18003CB0F9 /* IPhoneCase.swift */,
-				754600C41BD3D02C007DD842 /* PhoneCase.swift */,
+				75DD91FE1BD7BFE000932AD7 /* CaseView.swift */,
+				75823AAE1BD8BDD000C92F83 /* PhoneCase.swift */,
 				50592EF11BCBEF0F00CEB3B8 /* CaseBackgroundColor */,
 			);
 			name = CaseViews;
@@ -358,6 +361,14 @@
 			name = Controllers;
 			sourceTree = "<group>";
 		};
+		75FDB4B71BD620C7007FB441 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				75DD91F81BD7B43800932AD7 /* AndersonSupercar.ttf */,
+			);
+			name = Fonts;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -417,6 +428,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0C541A6B1BD0BA970028BD9A /* FunnyAnimals.jpg in Resources */,
+				75DD91F91BD7B43800932AD7 /* AndersonSupercar.ttf in Resources */,
 				50F8F3B91BC7873C002CE3FD /* case_with_photo.jpg in Resources */,
 				50DD72481BBEDDA5008A9B80 /* plates.jpg in Resources */,
 				502A8CBD1BB80EAC0064E0DA /* LaunchScreen.storyboard in Resources */,
@@ -471,14 +483,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				502A8CB51BB80EAC0064E0DA /* MainTableViewController.swift in Sources */,
+				75823AAF1BD8BDD000C92F83 /* PhoneCase.swift in Sources */,
+				75DD91FF1BD7BFE000932AD7 /* CaseView.swift in Sources */,
 				0C541A571BD0B2710028BD9A /* PhotoLibraryCollectionViewController.swift in Sources */,
 				50551C2E1BCBA523005B88DA /* SelectBackgroundCollectionViewController.swift in Sources */,
 				50DD72391BBED313008A9B80 /* Category.swift in Sources */,
-				754600C51BD3D02C007DD842 /* PhoneCase.swift in Sources */,
 				50F8F41A1BC80857002CE3FD /* CategoryItemTableViewCell.swift in Sources */,
 				50551C351BCBEA96005B88DA /* BackgroundCollectionViewCell.swift in Sources */,
 				50551C2C1BCB8B18005B88DA /* SelectDeviceTableViewController.swift in Sources */,
-				50A871D41BCA2C18003CB0F9 /* IPhoneCase.swift in Sources */,
 				50A871D71BCA9D68003CB0F9 /* CaseConstructorViewController.swift in Sources */,
 				50FD7F501BB8FFF600ABEC38 /* CategoryTableViewCell.swift in Sources */,
 				503CBEC11BC415C700052BE0 /* CategoryItem.swift in Sources */,
