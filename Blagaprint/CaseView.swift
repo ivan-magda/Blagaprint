@@ -18,6 +18,13 @@ let MinFontSize: CGFloat = 46.0
 class CaseView: UIView {
     // MARK: - Properties
     
+    /// Device
+    var device = Device(deviceName: "iPhone 5/5S", deviceManufacturer: "Apple") {
+        didSet {
+            setNeedsDisplay()
+        }
+    }
+    
     /// Case fill color.
     var fillColor: UIColor = UIColor.whiteColor() {
         didSet {
@@ -56,7 +63,11 @@ class CaseView: UIView {
     // MARK: - Drawing
     
     override func drawRect(rect: CGRect) {
-        PhoneCase.drawIPhone5Case(self.bounds, fillColor: fillColor, colorOfText: textColor, image: image, caseText: text, backgroundImageVisible: showBackgroundImage)
+        if device.deviceName == "iPhone 5/5S" {
+            PhoneCase.drawIPhone5Case(self.bounds, fillColor: fillColor, colorOfText: textColor, image: image, caseText: text, backgroundImageVisible: showBackgroundImage)
+        } else if device.deviceName == "iPhone 4/4S" {
+            PhoneCase.drawIPhone4Case(self.bounds, fillColor: fillColor, colorOfText: textColor, image: image, caseText: text, backgroundImageVisible: showBackgroundImage)
+        }
     }
     
     // MARK: - Text Label Dimensions

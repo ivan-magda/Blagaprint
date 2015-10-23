@@ -70,6 +70,11 @@ class CaseConstructorTableViewController: UITableViewController {
             weak var weakSelf = self
             selectDeviceViewController.didSelectDeviceClosure = { (selectedDevice: Device) in
                 weakSelf?.device = selectedDevice
+                
+                /////////////WARNING!!!!!!!!!
+                ///////NEEEDDD to update frame.
+                
+                weakSelf?.caseView.device = selectedDevice
                 weakSelf?.deviceLabel.text = weakSelf?.device.deviceName
             }
         } else if segue.identifier == kSelectBackgroundSegueIdentifier {

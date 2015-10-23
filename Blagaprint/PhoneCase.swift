@@ -13,35 +13,35 @@
 import UIKit
 
 class PhoneCase : NSObject {
-    
+
     //// Cache
-    
+
     struct Cache {
         static var innerShadow: NSShadow = NSShadow(color: UIColor.darkGrayColor(), offset: CGSizeMake(1.1, -2.1), blurRadius: 4)
         static var outerShadow: NSShadow = NSShadow(color: UIColor.darkGrayColor().colorWithAlphaComponent(0.7), offset: CGSizeMake(-6.1, 8.1), blurRadius: 15)
     }
-    
+
     //// Shadows
-    
+
     class var innerShadow: NSShadow { return Cache.innerShadow }
     class var outerShadow: NSShadow { return Cache.outerShadow }
-    
+
     //// Drawing Methods
-    
+
     class func drawIPhone5Case(frame: CGRect, fillColor: UIColor, colorOfText: UIColor, image: UIImage, caseText: String, backgroundImageVisible: Bool) {
         //// General Declarations
         let context = UIGraphicsGetCurrentContext()
-        
+
         //// Color Declarations
         let strokeColor = UIColor(red: 0.000, green: 0.000, blue: 0.000, alpha: 0.104)
-        
+
         //// Shadow Declarations
         let cameraOuterShadow = NSShadow(color: UIColor.grayColor(), offset: CGSizeMake(0.1, 2.1), blurRadius: 3)
         let cameraInnerShadow = NSShadow(color: UIColor.grayColor(), offset: CGSizeMake(0.1, -0.1), blurRadius: 10)
-        
+
         //// Image Declarations
-        let cameraImage = UIImage(named: "cameraImage.png")
-        
+        let iPhone5CameraImage = UIImage(named: "iPhone5CameraImage.png")
+
         //// Variable Declarations
         let numberOfCharacters = caseText.characters.count
         let textRectHeight = CaseView.getTextRectHeightFromNumberOfCharacters(numberOfCharacters)
@@ -49,11 +49,11 @@ class PhoneCase : NSObject {
         let textYscale = CaseView.getTextYscaleFromNumberOfCharacters(numberOfCharacters)
         var textSize = CaseView.getTextFontSizeFromNumberOfCharacters(numberOfCharacters)
         let textXscale = CaseView.getTextXScaleFromText(caseText)
-        
+
         //// Rectangle Drawing
         CGContextSaveGState(context)
         CGContextTranslateCTM(context, frame.minX + 110.01, frame.minY + 196.64)
-        
+
         let rectanglePath = UIBezierPath()
         rectanglePath.moveToPoint(CGPointMake(-80.23, -166.09))
         rectanglePath.addCurveToPoint(CGPointMake(-89.41, -136.95), controlPoint1: CGPointMake(-91.16, -151.46), controlPoint2: CGPointMake(-89.41, -136.95))
@@ -73,7 +73,7 @@ class PhoneCase : NSObject {
         CGContextSetShadowWithColor(context, PhoneCase.outerShadow.shadowOffset, PhoneCase.outerShadow.shadowBlurRadius, PhoneCase.outerShadow.shadowColor!.CGColor)
         fillColor.setFill()
         rectanglePath.fill()
-        
+
         ////// Rectangle Inner Shadow
         CGContextSaveGState(context)
         CGContextClipToRect(context, rectanglePath.bounds)
@@ -84,28 +84,28 @@ class PhoneCase : NSObject {
         CGContextSetShadowWithColor(context, PhoneCase.innerShadow.shadowOffset, PhoneCase.innerShadow.shadowBlurRadius, rectangleOpaqueShadow.CGColor)
         CGContextSetBlendMode(context, .SourceOut)
         CGContextBeginTransparencyLayer(context, nil)
-        
+
         rectangleOpaqueShadow.setFill()
         rectanglePath.fill()
-        
+
         CGContextEndTransparencyLayer(context)
         CGContextEndTransparencyLayer(context)
         CGContextRestoreGState(context)
-        
+
         CGContextRestoreGState(context)
-        
+
         strokeColor.setStroke()
         rectanglePath.lineWidth = 1
         rectanglePath.stroke()
-        
+
         CGContextRestoreGState(context)
-        
-        
+
+
         if (backgroundImageVisible) {
             //// Background Image Rectangle Drawing
             CGContextSaveGState(context)
             CGContextTranslateCTM(context, frame.minX + 110.01, frame.minY + 196.64)
-            
+
             let backgroundImageRectangleRect: CGRect = CGRectMake(-89.51, -177.14, 180, 356)
             let backgroundImageRectanglePath = UIBezierPath()
             backgroundImageRectanglePath.moveToPoint(CGPointMake(-80.23, -166.09))
@@ -130,7 +130,7 @@ class PhoneCase : NSObject {
             image.drawInRect(CGRectMake(floor(backgroundImageRectangleRect.minX + 0.5), floor(backgroundImageRectangleRect.minY + 0.5), image.size.width, image.size.height))
             CGContextRestoreGState(context)
             CGContextEndTransparencyLayer(context)
-            
+
             ////// Background Image Rectangle Inner Shadow
             CGContextSaveGState(context)
             CGContextClipToRect(context, backgroundImageRectanglePath.bounds)
@@ -141,23 +141,24 @@ class PhoneCase : NSObject {
             CGContextSetShadowWithColor(context, PhoneCase.innerShadow.shadowOffset, PhoneCase.innerShadow.shadowBlurRadius, backgroundImageRectangleOpaqueShadow.CGColor)
             CGContextSetBlendMode(context, .SourceOut)
             CGContextBeginTransparencyLayer(context, nil)
-            
+
             backgroundImageRectangleOpaqueShadow.setFill()
             backgroundImageRectanglePath.fill()
-            
+
             CGContextEndTransparencyLayer(context)
             CGContextEndTransparencyLayer(context)
             CGContextRestoreGState(context)
-            
+
             CGContextRestoreGState(context)
-            
+
             strokeColor.setStroke()
             backgroundImageRectanglePath.lineWidth = 1
             backgroundImageRectanglePath.stroke()
-            
+
             CGContextRestoreGState(context)
         }
-        
+
+
         //// Text Drawing
         CGContextSaveGState(context)
         CGContextTranslateCTM(context, frame.minX + 18, frame.minY + 60)
@@ -178,12 +179,13 @@ class PhoneCase : NSObject {
         print("Text size = \(textSize)")
         
         let textFontAttributes = [NSFontAttributeName: AppAppearance.andersonSupercarFontWithSize(textSize), NSForegroundColorAttributeName: colorOfText, NSParagraphStyleAttributeName: textStyle]
-        
+
+
         NSString(string: caseText).drawInRect(CGRectOffset(textRect, 0, (textRect.height - NSString(string: caseText).boundingRectWithSize(textRect.size, options: NSStringDrawingOptions.UsesLineFragmentOrigin, attributes: textFontAttributes, context: nil).size.height) / 2), withAttributes: textFontAttributes);
-        
+
         CGContextRestoreGState(context)
-        
-        
+
+
         //// Camera Drawing
         let cameraRect: CGRect = CGRectMake(frame.minX + 38, frame.minY + 30, 60, 25)
         let cameraPath = UIBezierPath()
@@ -198,12 +200,12 @@ class PhoneCase : NSObject {
         CGContextBeginTransparencyLayer(context, nil)
         CGContextSaveGState(context)
         cameraPath.addClip()
-        if cameraImage != nil {
-            cameraImage!.drawInRect(CGRectMake(floor(cameraRect.minX - 1 + 0.5), floor(cameraRect.minY - 3 + 0.5), cameraImage!.size.width, cameraImage!.size.height))
-            CGContextRestoreGState(context)
-            CGContextEndTransparencyLayer(context)
+        if iPhone5CameraImage != nil {
+            iPhone5CameraImage!.drawInRect(CGRectMake(floor(cameraRect.minX - 1 + 0.5), floor(cameraRect.minY - 3 + 0.5), iPhone5CameraImage!.size.width, iPhone5CameraImage!.size.height))
         }
-        
+        CGContextRestoreGState(context)
+        CGContextEndTransparencyLayer(context)
+
         ////// Camera Inner Shadow
         CGContextSaveGState(context)
         CGContextClipToRect(context, cameraPath.bounds)
@@ -214,32 +216,233 @@ class PhoneCase : NSObject {
         CGContextSetShadowWithColor(context, cameraInnerShadow.shadowOffset, cameraInnerShadow.shadowBlurRadius, cameraOpaqueShadow.CGColor)
         CGContextSetBlendMode(context, .SourceOut)
         CGContextBeginTransparencyLayer(context, nil)
-        
+
         cameraOpaqueShadow.setFill()
         cameraPath.fill()
-        
+
         CGContextEndTransparencyLayer(context)
         CGContextEndTransparencyLayer(context)
         CGContextRestoreGState(context)
-        
+
         CGContextRestoreGState(context)
-        
+
         strokeColor.setStroke()
         cameraPath.lineWidth = 1.5
         cameraPath.stroke()
     }
-    
+
+    class func drawIPhone4Case(frame: CGRect, fillColor: UIColor, colorOfText: UIColor, image: UIImage, caseText: String, backgroundImageVisible: Bool) {
+        //// General Declarations
+        let context = UIGraphicsGetCurrentContext()
+
+        //// Color Declarations
+        let strokeColor = UIColor(red: 0.000, green: 0.000, blue: 0.000, alpha: 0.104)
+
+        //// Shadow Declarations
+        let cameraOuterShadow = NSShadow(color: UIColor.grayColor(), offset: CGSizeMake(0.1, 2.1), blurRadius: 3)
+        let cameraInnerShadow = NSShadow(color: UIColor.grayColor(), offset: CGSizeMake(0.1, -0.1), blurRadius: 10)
+
+        //// Image Declarations
+        let iPhone4CameraImage = UIImage(named: "iPhone4CameraImage.png")
+
+        //// Variable Declarations
+        let numberOfCharacters = caseText.characters.count
+        let textRectHeight = CaseView.getTextRectHeightFromNumberOfCharacters(numberOfCharacters)
+        let textYoffset = -textRectHeight
+        let textYscale = CaseView.getTextYscaleFromNumberOfCharacters(numberOfCharacters)
+        var textSize = CaseView.getTextFontSizeFromNumberOfCharacters(numberOfCharacters)
+        let textXscale = CaseView.getTextXScaleFromText(caseText)
+
+
+        //// Rectangle Drawing
+        CGContextSaveGState(context)
+        CGContextTranslateCTM(context, frame.minX + 110.01, frame.minY + 196.64)
+
+        let rectanglePath = UIBezierPath()
+        rectanglePath.moveToPoint(CGPointMake(-80.23, -166.71))
+        rectanglePath.addCurveToPoint(CGPointMake(-89.41, -139.2), controlPoint1: CGPointMake(-91.16, -152.91), controlPoint2: CGPointMake(-89.41, -139.2))
+        rectanglePath.addLineToPoint(CGPointMake(-89.41, 118.76))
+        rectanglePath.addCurveToPoint(CGPointMake(-80.23, 151.96), controlPoint1: CGPointMake(-89.41, 118.76), controlPoint2: CGPointMake(-88.62, 140.63))
+        rectanglePath.addCurveToPoint(CGPointMake(-55.44, 158.59), controlPoint1: CGPointMake(-74.31, 159.95), controlPoint2: CGPointMake(-61.77, 158.59))
+        rectanglePath.addCurveToPoint(CGPointMake(53.74, 158.59), controlPoint1: CGPointMake(-46.1, 158.59), controlPoint2: CGPointMake(30.54, 158.59))
+        rectanglePath.addCurveToPoint(CGPointMake(80.45, 151.96), controlPoint1: CGPointMake(60.8, 158.59), controlPoint2: CGPointMake(73.37, 160.89))
+        rectanglePath.addCurveToPoint(CGPointMake(90.46, 118.29), controlPoint1: CGPointMake(88.72, 141.52), controlPoint2: CGPointMake(90.46, 118.29))
+        rectanglePath.addCurveToPoint(CGPointMake(90.46, -139.2), controlPoint1: CGPointMake(90.46, 118.29), controlPoint2: CGPointMake(90.46, -128.29))
+        rectanglePath.addCurveToPoint(CGPointMake(80.45, -166.71), controlPoint1: CGPointMake(90.46, -140.16), controlPoint2: CGPointMake(91.47, -152.48))
+        rectanglePath.addCurveToPoint(CGPointMake(53.74, -177.14), controlPoint1: CGPointMake(72.69, -176.73), controlPoint2: CGPointMake(60.06, -177.14))
+        rectanglePath.addCurveToPoint(CGPointMake(-55.44, -177.14), controlPoint1: CGPointMake(42.79, -177.14), controlPoint2: CGPointMake(-51.61, -177.14))
+        rectanglePath.addCurveToPoint(CGPointMake(-80.23, -166.71), controlPoint1: CGPointMake(-62.02, -177.14), controlPoint2: CGPointMake(-71.96, -177.14))
+        rectanglePath.closePath()
+        CGContextSaveGState(context)
+        CGContextSetShadowWithColor(context, PhoneCase.outerShadow.shadowOffset, PhoneCase.outerShadow.shadowBlurRadius, PhoneCase.outerShadow.shadowColor!.CGColor)
+        fillColor.setFill()
+        rectanglePath.fill()
+
+        ////// Rectangle Inner Shadow
+        CGContextSaveGState(context)
+        CGContextClipToRect(context, rectanglePath.bounds)
+        CGContextSetShadow(context, CGSizeMake(0, 0), 0)
+        CGContextSetAlpha(context, CGColorGetAlpha(PhoneCase.innerShadow.shadowColor!.CGColor))
+        CGContextBeginTransparencyLayer(context, nil)
+        let rectangleOpaqueShadow = PhoneCase.innerShadow.shadowColor!.colorWithAlphaComponent(1)
+        CGContextSetShadowWithColor(context, PhoneCase.innerShadow.shadowOffset, PhoneCase.innerShadow.shadowBlurRadius, rectangleOpaqueShadow.CGColor)
+        CGContextSetBlendMode(context, .SourceOut)
+        CGContextBeginTransparencyLayer(context, nil)
+
+        rectangleOpaqueShadow.setFill()
+        rectanglePath.fill()
+
+        CGContextEndTransparencyLayer(context)
+        CGContextEndTransparencyLayer(context)
+        CGContextRestoreGState(context)
+
+        CGContextRestoreGState(context)
+
+        strokeColor.setStroke()
+        rectanglePath.lineWidth = 1
+        rectanglePath.stroke()
+
+        CGContextRestoreGState(context)
+
+
+        if (backgroundImageVisible) {
+            //// Background Image Rectangle Drawing
+            CGContextSaveGState(context)
+            CGContextTranslateCTM(context, frame.minX + 110.01, frame.minY + 196.64)
+
+            let backgroundImageRectangleRect: CGRect = CGRectMake(-89.51, -177.14, 180, 336)
+            let backgroundImageRectanglePath = UIBezierPath()
+            backgroundImageRectanglePath.moveToPoint(CGPointMake(-80.23, -166.71))
+            backgroundImageRectanglePath.addCurveToPoint(CGPointMake(-89.41, -139.2), controlPoint1: CGPointMake(-91.16, -152.91), controlPoint2: CGPointMake(-89.41, -139.2))
+            backgroundImageRectanglePath.addLineToPoint(CGPointMake(-89.41, 118.76))
+            backgroundImageRectanglePath.addCurveToPoint(CGPointMake(-80.23, 151.96), controlPoint1: CGPointMake(-89.41, 118.76), controlPoint2: CGPointMake(-88.62, 140.63))
+            backgroundImageRectanglePath.addCurveToPoint(CGPointMake(-55.44, 158.59), controlPoint1: CGPointMake(-74.31, 159.95), controlPoint2: CGPointMake(-61.77, 158.59))
+            backgroundImageRectanglePath.addCurveToPoint(CGPointMake(53.74, 158.59), controlPoint1: CGPointMake(-46.1, 158.59), controlPoint2: CGPointMake(30.54, 158.59))
+            backgroundImageRectanglePath.addCurveToPoint(CGPointMake(80.45, 151.96), controlPoint1: CGPointMake(60.8, 158.59), controlPoint2: CGPointMake(73.37, 160.89))
+            backgroundImageRectanglePath.addCurveToPoint(CGPointMake(90.46, 118.29), controlPoint1: CGPointMake(88.72, 141.52), controlPoint2: CGPointMake(90.46, 118.29))
+            backgroundImageRectanglePath.addCurveToPoint(CGPointMake(90.46, -139.2), controlPoint1: CGPointMake(90.46, 118.29), controlPoint2: CGPointMake(90.46, -128.29))
+            backgroundImageRectanglePath.addCurveToPoint(CGPointMake(80.45, -166.71), controlPoint1: CGPointMake(90.46, -140.16), controlPoint2: CGPointMake(91.47, -152.48))
+            backgroundImageRectanglePath.addCurveToPoint(CGPointMake(53.74, -177.14), controlPoint1: CGPointMake(72.69, -176.73), controlPoint2: CGPointMake(60.06, -177.14))
+            backgroundImageRectanglePath.addCurveToPoint(CGPointMake(-55.44, -177.14), controlPoint1: CGPointMake(42.79, -177.14), controlPoint2: CGPointMake(-51.61, -177.14))
+            backgroundImageRectanglePath.addCurveToPoint(CGPointMake(-80.23, -166.71), controlPoint1: CGPointMake(-62.02, -177.14), controlPoint2: CGPointMake(-71.96, -177.14))
+            backgroundImageRectanglePath.closePath()
+            CGContextSaveGState(context)
+            CGContextSetShadowWithColor(context, PhoneCase.outerShadow.shadowOffset, PhoneCase.outerShadow.shadowBlurRadius, PhoneCase.outerShadow.shadowColor!.CGColor)
+            CGContextBeginTransparencyLayer(context, nil)
+            CGContextSaveGState(context)
+            backgroundImageRectanglePath.addClip()
+            image.drawInRect(CGRectMake(floor(backgroundImageRectangleRect.minX + 0.5), floor(backgroundImageRectangleRect.minY + 0.5), image.size.width, image.size.height))
+            CGContextRestoreGState(context)
+            CGContextEndTransparencyLayer(context)
+
+            ////// Background Image Rectangle Inner Shadow
+            CGContextSaveGState(context)
+            CGContextClipToRect(context, backgroundImageRectanglePath.bounds)
+            CGContextSetShadow(context, CGSizeMake(0, 0), 0)
+            CGContextSetAlpha(context, CGColorGetAlpha(PhoneCase.innerShadow.shadowColor!.CGColor))
+            CGContextBeginTransparencyLayer(context, nil)
+            let backgroundImageRectangleOpaqueShadow = PhoneCase.innerShadow.shadowColor!.colorWithAlphaComponent(1)
+            CGContextSetShadowWithColor(context, PhoneCase.innerShadow.shadowOffset, PhoneCase.innerShadow.shadowBlurRadius, backgroundImageRectangleOpaqueShadow.CGColor)
+            CGContextSetBlendMode(context, .SourceOut)
+            CGContextBeginTransparencyLayer(context, nil)
+
+            backgroundImageRectangleOpaqueShadow.setFill()
+            backgroundImageRectanglePath.fill()
+
+            CGContextEndTransparencyLayer(context)
+            CGContextEndTransparencyLayer(context)
+            CGContextRestoreGState(context)
+
+            CGContextRestoreGState(context)
+
+            strokeColor.setStroke()
+            backgroundImageRectanglePath.lineWidth = 1
+            backgroundImageRectanglePath.stroke()
+
+            CGContextRestoreGState(context)
+        }
+
+
+        //// Text Drawing
+        CGContextSaveGState(context)
+        CGContextTranslateCTM(context, frame.minX + 18, frame.minY + 60)
+        CGContextRotateCTM(context, CGFloat(90 * M_PI / 180))
+        CGContextScaleCTM(context, textXscale, textYscale)
+
+        let textRect: CGRect = CGRectMake(0, textYoffset, 280, textRectHeight)
+        let textStyle = NSMutableParagraphStyle.defaultParagraphStyle().mutableCopy() as! NSMutableParagraphStyle
+        textStyle.alignment = NSTextAlignment.Left;
+        
+        // Calculate font size
+        let fontSizeThatFitsRect = CaseView.fontSizeThatFitsRect(textRect, withText: caseText)
+        if fontSizeThatFitsRect != textSize && fontSizeThatFitsRect > textSize {
+            let adjustedFontSize: CGFloat = round(fontSizeThatFitsRect - textSize)
+            textSize += adjustedFontSize
+        }
+
+        let textFontAttributes = [NSFontAttributeName: AppAppearance.andersonSupercarFontWithSize(textSize), NSForegroundColorAttributeName: colorOfText, NSParagraphStyleAttributeName: textStyle]
+
+        NSString(string: caseText).drawInRect(CGRectOffset(textRect, 0, (textRect.height - NSString(string: caseText).boundingRectWithSize(textRect.size, options: NSStringDrawingOptions.UsesLineFragmentOrigin, attributes: textFontAttributes, context: nil).size.height) / 2), withAttributes: textFontAttributes);
+
+        CGContextRestoreGState(context)
+
+
+        //// Camera Drawing
+        let cameraRect: CGRect = CGRectMake(frame.minX + 38, frame.minY + 30, 60, 25)
+        let cameraPath = UIBezierPath()
+        cameraPath.moveToPoint(CGPointMake(frame.minX + 48.41, frame.maxY - 325))
+        cameraPath.addCurveToPoint(CGPointMake(frame.maxX - 133.43, frame.maxY - 325), controlPoint1: CGPointMake(frame.minX + 62.28, frame.maxY - 325), controlPoint2: CGPointMake(frame.maxX - 148.67, frame.maxY - 325))
+        cameraPath.addCurveToPoint(CGPointMake(frame.maxX - 133.43, frame.minY + 30), controlPoint1: CGPointMake(frame.maxX - 118.19, frame.maxY - 325), controlPoint2: CGPointMake(frame.maxX - 118.19, frame.minY + 30))
+        cameraPath.addCurveToPoint(CGPointMake(frame.minX + 48.41, frame.minY + 30), controlPoint1: CGPointMake(frame.maxX - 148.67, frame.minY + 30), controlPoint2: CGPointMake(frame.minX + 62.28, frame.minY + 30))
+        cameraPath.addCurveToPoint(CGPointMake(frame.minX + 48.41, frame.maxY - 325), controlPoint1: CGPointMake(frame.minX + 34.53, frame.minY + 30), controlPoint2: CGPointMake(frame.minX + 34.53, frame.maxY - 325))
+        cameraPath.closePath()
+        CGContextSaveGState(context)
+        CGContextSetShadowWithColor(context, cameraOuterShadow.shadowOffset, cameraOuterShadow.shadowBlurRadius, cameraOuterShadow.shadowColor!.CGColor)
+        CGContextBeginTransparencyLayer(context, nil)
+        CGContextSaveGState(context)
+        cameraPath.addClip()
+        if iPhone4CameraImage != nil {
+            iPhone4CameraImage!.drawInRect(CGRectMake(floor(cameraRect.minX + 0.5), floor(cameraRect.minY + 0.5), iPhone4CameraImage!.size.width, iPhone4CameraImage!.size.height))
+        }
+        CGContextRestoreGState(context)
+        CGContextEndTransparencyLayer(context)
+
+        ////// Camera Inner Shadow
+        CGContextSaveGState(context)
+        CGContextClipToRect(context, cameraPath.bounds)
+        CGContextSetShadow(context, CGSizeMake(0, 0), 0)
+        CGContextSetAlpha(context, CGColorGetAlpha(cameraInnerShadow.shadowColor!.CGColor))
+        CGContextBeginTransparencyLayer(context, nil)
+        let cameraOpaqueShadow = cameraInnerShadow.shadowColor!.colorWithAlphaComponent(1)
+        CGContextSetShadowWithColor(context, cameraInnerShadow.shadowOffset, cameraInnerShadow.shadowBlurRadius, cameraOpaqueShadow.CGColor)
+        CGContextSetBlendMode(context, .SourceOut)
+        CGContextBeginTransparencyLayer(context, nil)
+
+        cameraOpaqueShadow.setFill()
+        cameraPath.fill()
+
+        CGContextEndTransparencyLayer(context)
+        CGContextEndTransparencyLayer(context)
+        CGContextRestoreGState(context)
+
+        CGContextRestoreGState(context)
+
+        strokeColor.setStroke()
+        cameraPath.lineWidth = 1.5
+        cameraPath.stroke()
+    }
+
     //// Generated Images
-    
+
     class func imageOfIPhone5Case(frame: CGRect, fillColor: UIColor, colorOfText: UIColor, image: UIImage, caseText: String, backgroundImageVisible: Bool) -> UIImage {
         UIGraphicsBeginImageContextWithOptions(CGSizeMake(320, 568), false, 0)
         PhoneCase.drawIPhone5Case(frame, fillColor: fillColor, colorOfText: colorOfText, image: image, caseText: caseText, backgroundImageVisible: backgroundImageVisible)
         let imageOfIPhone5Case = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
-        
+
         return imageOfIPhone5Case!
     }
-    
+
 }
 
 
