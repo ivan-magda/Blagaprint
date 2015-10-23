@@ -40,7 +40,7 @@ class PhoneCase : NSObject {
         let cameraInnerShadow = NSShadow(color: UIColor.grayColor(), offset: CGSizeMake(0.1, -0.1), blurRadius: 10)
         
         //// Image Declarations
-        let cameraImage = UIImage(named: "cameraImage.png")!
+        let cameraImage = UIImage(named: "cameraImage.png")
         
         //// Variable Declarations
         let numberOfCharacters = caseText.characters.count
@@ -48,7 +48,7 @@ class PhoneCase : NSObject {
         let textYoffset = -textRectHeight
         let textYscale = CaseView.getTextYscaleFromNumberOfCharacters(numberOfCharacters)
         var textSize = CaseView.getTextFontSizeFromNumberOfCharacters(numberOfCharacters)
-        let textXscale: CGFloat = 1.0
+        let textXscale = CaseView.getTextXScaleFromText(caseText)
         
         //// Rectangle Drawing
         CGContextSaveGState(context)
@@ -166,7 +166,7 @@ class PhoneCase : NSObject {
         
         let textRect: CGRect = CGRectMake(0, textYoffset, 280, textRectHeight)
         let textStyle = NSMutableParagraphStyle.defaultParagraphStyle().mutableCopy() as! NSMutableParagraphStyle
-        textStyle.alignment = NSTextAlignment.Center;
+        textStyle.alignment = NSTextAlignment.Left
         
         // Calculate font size
         let fontSizeThatFitsRect = CaseView.fontSizeThatFitsRect(textRect, withText: caseText)
@@ -198,9 +198,11 @@ class PhoneCase : NSObject {
         CGContextBeginTransparencyLayer(context, nil)
         CGContextSaveGState(context)
         cameraPath.addClip()
-        cameraImage.drawInRect(CGRectMake(floor(cameraRect.minX - 1 + 0.5), floor(cameraRect.minY - 3 + 0.5), cameraImage.size.width, cameraImage.size.height))
-        CGContextRestoreGState(context)
-        CGContextEndTransparencyLayer(context)
+        if cameraImage != nil {
+            cameraImage!.drawInRect(CGRectMake(floor(cameraRect.minX - 1 + 0.5), floor(cameraRect.minY - 3 + 0.5), cameraImage!.size.width, cameraImage!.size.height))
+            CGContextRestoreGState(context)
+            CGContextEndTransparencyLayer(context)
+        }
         
         ////// Camera Inner Shadow
         CGContextSaveGState(context)

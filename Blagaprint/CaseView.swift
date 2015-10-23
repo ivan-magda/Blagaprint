@@ -132,6 +132,38 @@ class CaseView: UIView {
         return scale
     }
     
+    static func getTextXScaleFromText(text: String) -> CGFloat {
+        var scale: CGFloat = 1.0
+        var countOnWideCharacter = 0
+        
+        // Count for wide characters.
+        for character in text.characters {
+            if character == "M" || character == "W" {
+                ++countOnWideCharacter
+            }
+        }
+        
+        // Add extra value to x scale.
+        if countOnWideCharacter < 2 {
+            scale += 0.1
+            if text.characters.count < 4 {
+                scale += 0.3
+            } else if countOnWideCharacter == 0 {
+                if text.characters.count < 7 {
+                    scale += 0.2
+                } else if text.characters.count < 13 {
+                    scale += 0.1
+                }
+            }
+        } else if countOnWideCharacter < 3 && text.characters.count < 4 {
+            scale += 0.2
+        }
+        
+        print("X scale = \(scale)")
+        
+        return scale
+    }
+    
     static func getTextFontSizeFromNumberOfCharacters(characters: Int) -> CGFloat {
         switch characters {
         case 1, 2, 3:
