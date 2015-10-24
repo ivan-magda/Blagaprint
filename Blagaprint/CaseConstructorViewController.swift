@@ -72,7 +72,7 @@ class CaseConstructorTableViewController: UITableViewController {
                 weakSelf?.device = selectedDevice
                 
                 // Update table header view frame.
-                var tableHeaderViewHeight: CGFloat = 0.0
+                var tableHeaderViewHeight: CGFloat = 400.0
                 if selectedDevice.deviceName == "iPhone 5/5S" {
                     tableHeaderViewHeight = 400.0
                 } else if selectedDevice.deviceName == "iPhone 4/4S" {

@@ -9,16 +9,16 @@
 import UIKit
 
 /// Max font size value.
-let MaxFontSize: CGFloat = 200.0
+var MaxFontSize: CGFloat = 200.0
 
 /// Min font size value.
-let MinFontSize: CGFloat = 46.0
+var MinFontSize: CGFloat = 46.0
 
 @IBDesignable
-class CaseView: UIView {
+class CaseView: UIView, BaseCaseViewProtocol {
     // MARK: - Properties
     
-    /// Device
+    /// Device.
     var device = Device(deviceName: "iPhone 5/5S", deviceManufacturer: "Apple") {
         didSet {
             setNeedsDisplay()
@@ -103,6 +103,8 @@ class CaseView: UIView {
         
         return fontSize
     }
+    
+    // MARK: - BaseCaseViewProtocol
     
     static func getTextRectHeightFromNumberOfCharacters(characters: Int) -> CGFloat {
         switch characters {
