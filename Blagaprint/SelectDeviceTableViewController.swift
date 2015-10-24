@@ -9,11 +9,11 @@
 import UIKit
 
 internal struct Device {
-    let deviceName: String
-    let deviceManufacturer: String
+    let name: String
+    let manufacturer: String
     
     func descriptionFromDevice() -> String {
-        return "\(deviceManufacturer) \(deviceName)"
+        return "\(manufacturer) \(name)"
     }
 }
 
@@ -49,14 +49,14 @@ class SelectDeviceTableViewController: UITableViewController {
     private func configurateDevices() {
         let appleInc = "Apple"
         let samsung = "Samsung"
-        devices = [Device(deviceName: "iPhone 4/4S", deviceManufacturer: appleInc), Device(deviceName: "iPhone 5/5S", deviceManufacturer: appleInc), Device(deviceName: "iPhone 6/6S", deviceManufacturer: appleInc), Device(deviceName: "iPhone 6/6S Plus", deviceManufacturer: appleInc), Device(deviceName: "Galaxy S5", deviceManufacturer: samsung)]
+        devices = [Device(name: "iPhone 4/4S", manufacturer: appleInc), Device(name: "iPhone 5/5S", manufacturer: appleInc), Device(name: "iPhone 6/6S", manufacturer: appleInc), Device(name: "iPhone 6/6S Plus", manufacturer: appleInc), Device(name: "Galaxy S5", manufacturer: samsung)]
     }
     
     private func configurateCell(cell: UITableViewCell, atIndexPath indexPath: NSIndexPath) {
         let device = devices[indexPath.row];
         cell.textLabel?.text = device.descriptionFromDevice()
         
-        if originalDevice.deviceName == device.deviceName {
+        if originalDevice.name == device.name {
             cell.accessoryType = .Checkmark
         } else {
             cell.accessoryType = .None

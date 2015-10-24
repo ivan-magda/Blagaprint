@@ -70,7 +70,6 @@
 		50FD7F5D1BB90A8900ABEC38 /* copy_services.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 50FD7F5C1BB90A8900ABEC38 /* copy_services.jpg */; };
 		756088E41BDB19FB001580B2 /* iPhone5CameraImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 756088E21BDB19FB001580B2 /* iPhone5CameraImage.png */; };
 		756088E51BDB19FB001580B2 /* iPhone5CameraImage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 756088E31BDB19FB001580B2 /* iPhone5CameraImage@2x.png */; };
-		756088E91BDB267C001580B2 /* BaseCaseViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 756088E81BDB267C001580B2 /* BaseCaseViewProtocol.swift */; };
 		75823AAF1BD8BDD000C92F83 /* PhoneCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75823AAE1BD8BDD000C92F83 /* PhoneCase.swift */; };
 		758595621BDA30C10079A1BA /* iPhone4CameraImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 7585955E1BDA30C10079A1BA /* iPhone4CameraImage.png */; };
 		758595631BDA30C10079A1BA /* iPhone4CameraImage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7585955F1BDA30C10079A1BA /* iPhone4CameraImage@2x.png */; };
@@ -144,7 +143,6 @@
 		50FD7F5C1BB90A8900ABEC38 /* copy_services.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = copy_services.jpg; sourceTree = "<group>"; };
 		756088E21BDB19FB001580B2 /* iPhone5CameraImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iPhone5CameraImage.png; sourceTree = "<group>"; };
 		756088E31BDB19FB001580B2 /* iPhone5CameraImage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iPhone5CameraImage@2x.png"; sourceTree = "<group>"; };
-		756088E81BDB267C001580B2 /* BaseCaseViewProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseCaseViewProtocol.swift; sourceTree = "<group>"; };
 		75823AAE1BD8BDD000C92F83 /* PhoneCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhoneCase.swift; sourceTree = "<group>"; };
 		7585955E1BDA30C10079A1BA /* iPhone4CameraImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = iPhone4CameraImage.png; path = images/iPhone4CameraImage.png; sourceTree = "<group>"; };
 		7585955F1BDA30C10079A1BA /* iPhone4CameraImage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "iPhone4CameraImage@2x.png"; path = "images/iPhone4CameraImage@2x.png"; sourceTree = "<group>"; };
@@ -284,7 +282,6 @@
 		50A871D51BCA9B7C003CB0F9 /* CaseViews */ = {
 			isa = PBXGroup;
 			children = (
-				756088E81BDB267C001580B2 /* BaseCaseViewProtocol.swift */,
 				75DD91FE1BD7BFE000932AD7 /* CaseView.swift */,
 				75823AAE1BD8BDD000C92F83 /* PhoneCase.swift */,
 				50592EF11BCBEF0F00CEB3B8 /* CaseBackgroundColor */,
@@ -538,7 +535,6 @@
 				50FD7F501BB8FFF600ABEC38 /* CategoryTableViewCell.swift in Sources */,
 				503CBEC11BC415C700052BE0 /* CategoryItem.swift in Sources */,
 				50551C311BCBB43A005B88DA /* BackgroundOvalView.swift in Sources */,
-				756088E91BDB267C001580B2 /* BaseCaseViewProtocol.swift in Sources */,
 				0C541A591BD0B51A0028BD9A /* PhotoLibraryItemCollectionViewCell.swift in Sources */,
 				501506501BCE96C700697C99 /* TextEditingViewController.swift in Sources */,
 				50551C331BCBB469005B88DA /* OvalView.swift in Sources */,

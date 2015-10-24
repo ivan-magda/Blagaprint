@@ -54,7 +54,7 @@ class CaseConstructorTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        device = Device(deviceName: "iPhone 5/5S", deviceManufacturer: "Apple")
+        device = Device(name: "iPhone 5/5S", manufacturer: "Apple")
 
         // The required delegate to get a photo back to the app.
         imagePickerController.delegate = self
@@ -73,9 +73,9 @@ class CaseConstructorTableViewController: UITableViewController {
                 
                 // Update table header view frame.
                 var tableHeaderViewHeight: CGFloat = 400.0
-                if selectedDevice.deviceName == "iPhone 5/5S" {
+                if selectedDevice.name == "iPhone 5/5S" {
                     tableHeaderViewHeight = 400.0
-                } else if selectedDevice.deviceName == "iPhone 4/4S" {
+                } else if selectedDevice.name == "iPhone 4/4S" {
                     tableHeaderViewHeight = 380.0
                 }
                 
@@ -93,7 +93,7 @@ class CaseConstructorTableViewController: UITableViewController {
                 
                 // Present selected device.
                 weakSelf?.caseView.device = selectedDevice
-                weakSelf?.deviceLabel.text = weakSelf?.device.deviceName
+                weakSelf?.deviceLabel.text = weakSelf?.device.name
             }
         } else if segue.identifier == kSelectBackgroundSegueIdentifier {
             let navigationController = segue.destinationViewController as! UINavigationController
