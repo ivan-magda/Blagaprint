@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Vzc-DV-tNv">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9059" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Vzc-DV-tNv">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
     </dependencies>
     <scenes>
         <!--Navigation Controller-->
@@ -213,12 +213,18 @@
                                         <constraint firstAttribute="height" constant="400" id="6AW-lg-62M"/>
                                         <constraint firstAttribute="width" constant="220" id="dr1-Mg-t4Q"/>
                                     </constraints>
+                                    <variation key="default">
+                                        <mask key="constraints">
+                                            <exclude reference="6AW-lg-62M"/>
+                                        </mask>
+                                    </variation>
                                 </view>
                             </subviews>
                             <animations/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <constraints>
                                 <constraint firstItem="9P3-AA-IEw" firstAttribute="centerX" secondItem="UgT-nP-BYM" secondAttribute="centerX" id="SSz-0Q-eTt"/>
+                                <constraint firstAttribute="bottom" secondItem="9P3-AA-IEw" secondAttribute="bottom" id="YVm-Wm-ZvR"/>
                                 <constraint firstItem="9P3-AA-IEw" firstAttribute="top" secondItem="UgT-nP-BYM" secondAttribute="top" id="aX3-wf-fiX"/>
                             </constraints>
                         </view>

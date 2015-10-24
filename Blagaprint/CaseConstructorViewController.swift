@@ -71,9 +71,27 @@ class CaseConstructorTableViewController: UITableViewController {
             selectDeviceViewController.didSelectDeviceClosure = { (selectedDevice: Device) in
                 weakSelf?.device = selectedDevice
                 
-                /////////////WARNING!!!!!!!!!
-                ///////NEEEDDD to update frame.
+                // Update table header view frame.
+                var tableHeaderViewHeight: CGFloat = 0.0
+                if selectedDevice.deviceName == "iPhone 5/5S" {
+                    tableHeaderViewHeight = 400.0
+                } else if selectedDevice.deviceName == "iPhone 4/4S" {
+                    tableHeaderViewHeight = 380.0
+                }
                 
+                let tableView = weakSelf?.tableView
+                let newFrame = CGRectMake(tableView!.bounds.origin.x, tableView!.bounds.origin.y, CGRectGetWidth(tableView!.bounds), tableHeaderViewHeight)
+                
+                weakSelf?.view.layoutIfNeeded()
+                
+                tableView?.tableHeaderView?.alpha = 0.0
+                UIView.animateWithDuration(0.45, delay: 0.1, options: .CurveEaseInOut, animations: { () in
+                    tableView?.tableHeaderView?.frame = newFrame
+                    tableView?.tableHeaderView = tableView?.tableHeaderView
+                    tableView?.tableHeaderView?.alpha = 1.0
+                    }, completion: nil)
+                
+                // Present selected device.
                 weakSelf?.caseView.device = selectedDevice
                 weakSelf?.deviceLabel.text = weakSelf?.device.deviceName
             }
