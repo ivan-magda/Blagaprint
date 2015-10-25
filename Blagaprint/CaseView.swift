@@ -13,7 +13,7 @@ class CaseView: UIView {
     // MARK: - Properties
     
     /// Device.
-    var device = Device(name: "iPhone 5/5S", manufacturer: "Apple") {
+    var device = Device.iPhone5() {
         didSet {
             setNeedsDisplay()
         }
@@ -63,10 +63,14 @@ class CaseView: UIView {
         let textSize = getTextFontSizeFromNumberOfCharacters(numberOfCharacters)
         let textXscale = getTextXScaleFromText(text)
         
-        if device.name == "iPhone 4/4S" {
+        if device.name == Device.iPhone4().name {
             PhoneCase.drawIPhone4Case(self.bounds, fillColor: fillColor, colorOfText: textColor, image: image, caseText: text, backgroundImageVisible: showBackgroundImage, textRectHeight: textRectHeight, textYscale: textYscale, textSize: textSize, textXscale: textXscale)
-        } else if device.name == "iPhone 5/5S" {
+        } else if device.name == Device.iPhone5().name {
             PhoneCase.drawIPhone5Case(self.bounds, fillColor: fillColor, colorOfText: textColor, image: image, caseText: text, backgroundImageVisible: showBackgroundImage, textRectHeight: textRectHeight, textYscale: textYscale, textSize: textSize, textXscale: textXscale)
+        } else if device.name == Device.iPhone6().name {
+            PhoneCase.drawIPhone6Case(self.bounds, fillColor: fillColor, colorOfText: textColor, image: image, caseText: text, backgroundImageVisible: showBackgroundImage, textRectHeight: textRectHeight, textYscale: textYscale, textSize: textSize, textXscale: textXscale)
+        } else if device.name == Device.iPhone6Plus().name {
+            PhoneCase.drawIPhone6PlusCase(self.bounds, fillColor: fillColor, colorOfText: textColor, image: image, caseText: text, backgroundImageVisible: showBackgroundImage, textRectHeight: textRectHeight, textYscale: textYscale, textSize: textSize, textXscale: textXscale)
         }
     }
     
@@ -105,7 +109,7 @@ class CaseView: UIView {
     }
     
     private func getTextFontSizeFromNumberOfCharacters(characters: Int) -> CGFloat {
-        if device.name == "iPhone 5/5S" {
+        if device.name == Device.iPhone5().name {
             switch characters {
             case 1, 2, 3:
                 return 200.0
@@ -130,7 +134,7 @@ class CaseView: UIView {
             default:
                 return 46.0
             }
-        } else if device.name == "iPhone 4/4S" {
+        } else if device.name == Device.iPhone4().name {
             switch characters {
             case 1, 2:
                 return 200.0
@@ -157,14 +161,68 @@ class CaseView: UIView {
             default:
                 return 44.0
             }
+        } else if device.name == Device.iPhone6().name {
+            switch characters {
+            case 1, 2:
+                return 220.0
+            case 3:
+                return 216.0
+            case 4:
+                return 162.0
+            case 5:
+                return 129.0
+            case 6:
+                return 108.0
+            case 7:
+                return 92.0
+            case 8:
+                return 81.0
+            case 9:
+                return 72.0
+            case 10:
+                return 64.0
+            case 11:
+                return 58.0
+            case 12:
+                return 54
+            default:
+                return 49.0
+            }
+        } else if device.name == Device.iPhone6Plus().name {
+            switch characters {
+            case 1, 2:
+                return 240.0
+            case 3:
+                return 230.0
+            case 4:
+                return 173.0
+            case 5:
+                return 138.0
+            case 6:
+                return 115.0
+            case 7:
+                return 98.0
+            case 8:
+                return 86.0
+            case 9:
+                return 76.0
+            case 10:
+                return 69.0
+            case 11:
+                return 62.0
+            case 12:
+                return 57
+            default:
+                return 53.0
+            }
+
         }
-        
         return 0.0
     }
     
     private func getTextRectHeightFromNumberOfCharacters(characters: Int) -> CGFloat {
-        if device.name == "iPhone 5/5S" ||
-           device.name == "iPhone 4/4S" {
+        if device.name == Device.iPhone4().name ||
+           device.name == Device.iPhone5().name {
             switch characters {
             case 1, 2, 3:
                 return 200.0
@@ -189,6 +247,56 @@ class CaseView: UIView {
             default:
                 return 67.0
             }
+        } else if device.name == Device.iPhone6().name {
+            switch characters {
+            case 1, 2, 3:
+                return 220.0
+            case 4:
+                return 184.0
+            case 5:
+                return 157.0
+            case 6:
+                return 137.5
+            case 7:
+                return 122.0
+            case 8:
+                return 110.0
+            case 9:
+                return 100.0
+            case 10:
+                return 92.0
+            case 11:
+                return 85.0
+            case 12:
+                return 79.0
+            default:
+                return 74.0
+            }
+        } else if device.name == Device.iPhone6Plus().name {
+            switch characters {
+            case 1, 2, 3:
+                return 240.0
+            case 4:
+                return 200.0
+            case 5:
+                return 171.5
+            case 6:
+                return 150.0
+            case 7:
+                return 133.0
+            case 8:
+                return 120.0
+            case 9:
+                return 109.0
+            case 10:
+                return 100.0
+            case 11:
+                return 92.0
+            case 12:
+                return 85.0
+            default:
+                return 80.0
+            }
         }
         
         return 0.0
@@ -196,6 +304,13 @@ class CaseView: UIView {
     
     private func getTextYscaleFromNumberOfCharacters(characters: Int) -> CGFloat {
         var scale: CGFloat = 1.0
+        
+        // Check for empty text.
+        if characters == 0 {
+            return scale
+        }
+        
+        // Calculate scale.
         for i in 1...characters {
             if i > 3 {
                 scale += 0.2
@@ -219,7 +334,8 @@ class CaseView: UIView {
         }
         
         // Add extra value to x scale for specific case.
-        if device.name == "iPhone 4/4S" {
+        if device.name == Device.iPhone4().name ||
+           device.name == Device.iPhone6Plus().name {
             if countOnWideCharacter < 2 {
                 scale += 0.1
                 if numberOfCharacters < 4 {
@@ -232,7 +348,7 @@ class CaseView: UIView {
             } else if countOnWideCharacter < 3 && numberOfCharacters < 4 {
                 scale += 0.1
             }
-        } else if device.name == "iPhone 5/5S" {
+        } else {
             if countOnWideCharacter < 2 {
                 scale += 0.1
                 if numberOfCharacters < 4 {

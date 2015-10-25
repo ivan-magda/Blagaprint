@@ -40,6 +40,9 @@ class CaseConstructorTableViewController: UITableViewController {
     /// Case view.
     @IBOutlet weak var caseView: CaseView!
     
+    /// Case view width constraint.
+    @IBOutlet weak var caseViewWidthConstraint: NSLayoutConstraint!
+    
     /// Device label.
     @IBOutlet weak var deviceLabel: UILabel!
     
@@ -54,7 +57,7 @@ class CaseConstructorTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        device = Device(name: "iPhone 5/5S", manufacturer: "Apple")
+        device = Device.iPhone5()
 
         // The required delegate to get a photo back to the app.
         imagePickerController.delegate = self
@@ -72,17 +75,28 @@ class CaseConstructorTableViewController: UITableViewController {
                 weakSelf?.device = selectedDevice
                 
                 // Update table header view frame.
-                var tableHeaderViewHeight: CGFloat = 400.0
-                if selectedDevice.name == "iPhone 5/5S" {
-                    tableHeaderViewHeight = 400.0
-                } else if selectedDevice.name == "iPhone 4/4S" {
+                var tableHeaderViewHeight: CGFloat = 0.0
+                var caseViewWidth: CGFloat = 220.0
+                if selectedDevice.name == Device.iPhone4().name {
                     tableHeaderViewHeight = 380.0
+                    caseViewWidth = 220.0
+                } else if selectedDevice.name == Device.iPhone5().name {
+                    tableHeaderViewHeight = 400.0
+                    caseViewWidth = 220.0
+                } else if selectedDevice.name == Device.iPhone6().name {
+                    tableHeaderViewHeight = 420.0
+                    caseViewWidth = 240.0
+                } else if selectedDevice.name == Device.iPhone6Plus().name {
+                    tableHeaderViewHeight = 440.0
+                    caseViewWidth = 260.0
                 }
                 
                 let tableView = weakSelf?.tableView
                 let newFrame = CGRectMake(tableView!.bounds.origin.x, tableView!.bounds.origin.y, CGRectGetWidth(tableView!.bounds), tableHeaderViewHeight)
                 
                 weakSelf?.view.layoutIfNeeded()
+                
+                self.caseViewWidthConstraint.constant = caseViewWidth
                 
                 tableView?.tableHeaderView?.alpha = 0.0
                 UIView.animateWithDuration(0.45, delay: 0.1, options: .CurveEaseInOut, animations: { () in

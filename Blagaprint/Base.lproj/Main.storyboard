@@ -205,19 +205,13 @@
                             <rect key="frame" x="0.0" y="64" width="320" height="400"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
-                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9P3-AA-IEw" customClass="CaseView" customModule="Blagaprint" customModuleProvider="target">
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9P3-AA-IEw" userLabel="CaseView" customClass="CaseView" customModule="Blagaprint" customModuleProvider="target">
                                     <rect key="frame" x="50" y="0.0" width="220" height="400"/>
                                     <animations/>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     <constraints>
-                                        <constraint firstAttribute="height" constant="400" id="6AW-lg-62M"/>
                                         <constraint firstAttribute="width" constant="220" id="dr1-Mg-t4Q"/>
                                     </constraints>
-                                    <variation key="default">
-                                        <mask key="constraints">
-                                            <exclude reference="6AW-lg-62M"/>
-                                        </mask>
-                                    </variation>
                                 </view>
                             </subviews>
                             <animations/>
@@ -369,6 +363,7 @@
                     <size key="freeformSize" width="320" height="600"/>
                     <connections>
                         <outlet property="caseView" destination="9P3-AA-IEw" id="S4x-ay-i0p"/>
+                        <outlet property="caseViewWidthConstraint" destination="dr1-Mg-t4Q" id="tib-ID-aTy"/>
                         <outlet property="deviceLabel" destination="U4N-Fd-6Db" id="S7w-pA-ZZS"/>
                         <segue destination="54c-VM-0PW" kind="presentation" identifier="ColorPicking" id="uJi-v2-IYJ"/>
                         <segue destination="MI7-Pa-BGt" kind="presentation" identifier="TextEditing" id="9f8-Ba-pcp"/>

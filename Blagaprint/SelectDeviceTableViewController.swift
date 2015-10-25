@@ -8,15 +8,6 @@
 
 import UIKit
 
-internal struct Device {
-    let name: String
-    let manufacturer: String
-    
-    func descriptionFromDevice() -> String {
-        return "\(manufacturer) \(name)"
-    }
-}
-
 class SelectDeviceTableViewController: UITableViewController {
     // MARK: - Properties
     
@@ -30,7 +21,7 @@ class SelectDeviceTableViewController: UITableViewController {
     static private let kDeviceCellReuseIdentifier = "DeviceCell"
     
     /// Supported devices.
-    private var devices: [Device] = []
+    private var devices: [Device] = Device.allDevices()
     
     // MARK: - View Life Cycle
     
@@ -40,17 +31,9 @@ class SelectDeviceTableViewController: UITableViewController {
         assert(originalDevice != nil, "Original device must be passed when segue to this controller")
         
         self.title = "Устройство"
-        
-        configurateDevices()
     }
     
     // MARK: - Private
-    
-    private func configurateDevices() {
-        let appleInc = "Apple"
-        let samsung = "Samsung"
-        devices = [Device(name: "iPhone 4/4S", manufacturer: appleInc), Device(name: "iPhone 5/5S", manufacturer: appleInc), Device(name: "iPhone 6/6S", manufacturer: appleInc), Device(name: "iPhone 6/6S Plus", manufacturer: appleInc), Device(name: "Galaxy S5", manufacturer: samsung)]
-    }
     
     private func configurateCell(cell: UITableViewCell, atIndexPath indexPath: NSIndexPath) {
         let device = devices[indexPath.row];

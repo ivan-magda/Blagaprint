@@ -70,6 +70,9 @@
 		50FD7F5D1BB90A8900ABEC38 /* copy_services.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 50FD7F5C1BB90A8900ABEC38 /* copy_services.jpg */; };
 		756088E41BDB19FB001580B2 /* iPhone5CameraImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 756088E21BDB19FB001580B2 /* iPhone5CameraImage.png */; };
 		756088E51BDB19FB001580B2 /* iPhone5CameraImage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 756088E31BDB19FB001580B2 /* iPhone5CameraImage@2x.png */; };
+		757470321BDCB405004CABD0 /* PhoneCaseDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 757470311BDCB404004CABD0 /* PhoneCaseDevice.swift */; };
+		757470351BDCBEB4004CABD0 /* iPhone6CameraImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 757470331BDCBEB4004CABD0 /* iPhone6CameraImage.png */; };
+		757470361BDCBEB4004CABD0 /* iPhone6CameraImage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 757470341BDCBEB4004CABD0 /* iPhone6CameraImage@2x.png */; };
 		75823AAF1BD8BDD000C92F83 /* PhoneCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75823AAE1BD8BDD000C92F83 /* PhoneCase.swift */; };
 		758595621BDA30C10079A1BA /* iPhone4CameraImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 7585955E1BDA30C10079A1BA /* iPhone4CameraImage.png */; };
 		758595631BDA30C10079A1BA /* iPhone4CameraImage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7585955F1BDA30C10079A1BA /* iPhone4CameraImage@2x.png */; };
@@ -143,6 +146,9 @@
 		50FD7F5C1BB90A8900ABEC38 /* copy_services.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = copy_services.jpg; sourceTree = "<group>"; };
 		756088E21BDB19FB001580B2 /* iPhone5CameraImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iPhone5CameraImage.png; sourceTree = "<group>"; };
 		756088E31BDB19FB001580B2 /* iPhone5CameraImage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iPhone5CameraImage@2x.png"; sourceTree = "<group>"; };
+		757470311BDCB404004CABD0 /* PhoneCaseDevice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhoneCaseDevice.swift; sourceTree = "<group>"; };
+		757470331BDCBEB4004CABD0 /* iPhone6CameraImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = iPhone6CameraImage.png; path = images/iPhone6CameraImage.png; sourceTree = "<group>"; };
+		757470341BDCBEB4004CABD0 /* iPhone6CameraImage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "iPhone6CameraImage@2x.png"; path = "images/iPhone6CameraImage@2x.png"; sourceTree = "<group>"; };
 		75823AAE1BD8BDD000C92F83 /* PhoneCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhoneCase.swift; sourceTree = "<group>"; };
 		7585955E1BDA30C10079A1BA /* iPhone4CameraImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = iPhone4CameraImage.png; path = images/iPhone4CameraImage.png; sourceTree = "<group>"; };
 		7585955F1BDA30C10079A1BA /* iPhone4CameraImage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "iPhone4CameraImage@2x.png"; path = "images/iPhone4CameraImage@2x.png"; sourceTree = "<group>"; };
@@ -294,6 +300,7 @@
 			children = (
 				50DD72381BBED313008A9B80 /* Category.swift */,
 				503CBEC01BC415C700052BE0 /* CategoryItem.swift */,
+				757470311BDCB404004CABD0 /* PhoneCaseDevice.swift */,
 			);
 			name = DataModel;
 			sourceTree = "<group>";
@@ -370,11 +377,21 @@
 			name = Controllers;
 			sourceTree = "<group>";
 		};
+		757470371BDCBEB9004CABD0 /* iPhone6/6S */ = {
+			isa = PBXGroup;
+			children = (
+				757470331BDCBEB4004CABD0 /* iPhone6CameraImage.png */,
+				757470341BDCBEB4004CABD0 /* iPhone6CameraImage@2x.png */,
+			);
+			name = iPhone6/6S;
+			sourceTree = "<group>";
+		};
 		758595581BDA16EE0079A1BA /* CameraImages */ = {
 			isa = PBXGroup;
 			children = (
 				758595661BDA30D30079A1BA /* iPhone4/4S */,
 				758595591BDA17100079A1BA /* iPhone5/5S */,
+				757470371BDCBEB9004CABD0 /* iPhone6/6S */,
 			);
 			name = CameraImages;
 			sourceTree = "<group>";
@@ -497,6 +514,7 @@
 				50F8F3C11BC78A1A002CE3FD /* cup_love_is.jpg in Resources */,
 				50DD724E1BBEE085008A9B80 /* frames.jpg in Resources */,
 				50DD72561BBEE46B008A9B80 /* key_rings_by_3D_printer.jpg in Resources */,
+				757470351BDCBEB4004CABD0 /* iPhone6CameraImage.png in Resources */,
 				50FD7F5D1BB90A8900ABEC38 /* copy_services.jpg in Resources */,
 				0C541A6A1BD0BA970028BD9A /* 3dWallpaper.jpg in Resources */,
 				50F8F3C31BC78B83002CE3FD /* key_ring_with_photo_glass.jpg in Resources */,
@@ -507,6 +525,7 @@
 				50DD72681BBEEA44008A9B80 /* 3D_printing.jpg in Resources */,
 				50F8F3CD1BC78FAA002CE3FD /* clothes_kids.jpg in Resources */,
 				50551C291BCB87D6005B88DA /* More@2x.png in Resources */,
+				757470361BDCBEB4004CABD0 /* iPhone6CameraImage@2x.png in Resources */,
 				50BE47121BBA388400724119 /* MenuMalibu@2x.png in Resources */,
 				758595621BDA30C10079A1BA /* iPhone4CameraImage.png in Resources */,
 				50DD72581BBEE555008A9B80 /* key_ring_with_photo.jpg in Resources */,
@@ -540,6 +559,7 @@
 				50551C331BCBB469005B88DA /* OvalView.swift in Sources */,
 				5071D34C1BBFE9D0005DDED3 /* NothingFoundTableViewCell.swift in Sources */,
 				502A8CB31BB80EAC0064E0DA /* AppDelegate.swift in Sources */,
+				757470321BDCB405004CABD0 /* PhoneCaseDevice.swift in Sources */,
 				508503041BBAADB600152131 /* AppAppearance.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
