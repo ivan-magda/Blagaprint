@@ -68,6 +68,20 @@
 		50F8F41A1BC80857002CE3FD /* CategoryItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F8F4191BC80857002CE3FD /* CategoryItemTableViewCell.swift */; };
 		50FD7F501BB8FFF600ABEC38 /* CategoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50FD7F4F1BB8FFF600ABEC38 /* CategoryTableViewCell.swift */; };
 		50FD7F5D1BB90A8900ABEC38 /* copy_services.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 50FD7F5C1BB90A8900ABEC38 /* copy_services.jpg */; };
+		7547D2491BDE2376006E4170 /* galaxyS3CameraImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 7547D23B1BDE2376006E4170 /* galaxyS3CameraImage.png */; };
+		7547D24A1BDE2376006E4170 /* galaxyS3CameraImage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7547D23C1BDE2376006E4170 /* galaxyS3CameraImage@2x.png */; };
+		7547D24B1BDE2376006E4170 /* galaxyS3Led.png in Resources */ = {isa = PBXBuildFile; fileRef = 7547D23D1BDE2376006E4170 /* galaxyS3Led.png */; };
+		7547D24C1BDE2376006E4170 /* galaxyS3Led@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7547D23E1BDE2376006E4170 /* galaxyS3Led@2x.png */; };
+		7547D24D1BDE2376006E4170 /* galaxyS3Speaker.png in Resources */ = {isa = PBXBuildFile; fileRef = 7547D23F1BDE2376006E4170 /* galaxyS3Speaker.png */; };
+		7547D24E1BDE2376006E4170 /* galaxyS3Speaker@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7547D2401BDE2376006E4170 /* galaxyS3Speaker@2x.png */; };
+		7547D24F1BDE2376006E4170 /* galaxyS4CameraImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 7547D2411BDE2376006E4170 /* galaxyS4CameraImage.png */; };
+		7547D2501BDE2376006E4170 /* galaxyS4CameraImage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7547D2421BDE2376006E4170 /* galaxyS4CameraImage@2x.png */; };
+		7547D2511BDE2376006E4170 /* galaxyS4Speaker.png in Resources */ = {isa = PBXBuildFile; fileRef = 7547D2431BDE2376006E4170 /* galaxyS4Speaker.png */; };
+		7547D2521BDE2376006E4170 /* galaxyS4Speaker@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7547D2441BDE2376006E4170 /* galaxyS4Speaker@2x.png */; };
+		7547D2531BDE2376006E4170 /* galaxyS5CameraImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 7547D2451BDE2376006E4170 /* galaxyS5CameraImage.png */; };
+		7547D2541BDE2376006E4170 /* galaxyS5CameraImage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7547D2461BDE2376006E4170 /* galaxyS5CameraImage@2x.png */; };
+		7547D2551BDE2376006E4170 /* galaxyS5Speaker.png in Resources */ = {isa = PBXBuildFile; fileRef = 7547D2471BDE2376006E4170 /* galaxyS5Speaker.png */; };
+		7547D2561BDE2376006E4170 /* galaxyS5Speaker@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7547D2481BDE2376006E4170 /* galaxyS5Speaker@2x.png */; };
 		756088E41BDB19FB001580B2 /* iPhone5CameraImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 756088E21BDB19FB001580B2 /* iPhone5CameraImage.png */; };
 		756088E51BDB19FB001580B2 /* iPhone5CameraImage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 756088E31BDB19FB001580B2 /* iPhone5CameraImage@2x.png */; };
 		757470321BDCB405004CABD0 /* PhoneCaseDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 757470311BDCB404004CABD0 /* PhoneCaseDevice.swift */; };
@@ -144,6 +158,20 @@
 		50F8F4191BC80857002CE3FD /* CategoryItemTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryItemTableViewCell.swift; sourceTree = "<group>"; };
 		50FD7F4F1BB8FFF600ABEC38 /* CategoryTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryTableViewCell.swift; sourceTree = "<group>"; };
 		50FD7F5C1BB90A8900ABEC38 /* copy_services.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = copy_services.jpg; sourceTree = "<group>"; };
+		7547D23B1BDE2376006E4170 /* galaxyS3CameraImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = galaxyS3CameraImage.png; path = images/galaxyS3CameraImage.png; sourceTree = "<group>"; };
+		7547D23C1BDE2376006E4170 /* galaxyS3CameraImage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "galaxyS3CameraImage@2x.png"; path = "images/galaxyS3CameraImage@2x.png"; sourceTree = "<group>"; };
+		7547D23D1BDE2376006E4170 /* galaxyS3Led.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = galaxyS3Led.png; path = images/galaxyS3Led.png; sourceTree = "<group>"; };
+		7547D23E1BDE2376006E4170 /* galaxyS3Led@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "galaxyS3Led@2x.png"; path = "images/galaxyS3Led@2x.png"; sourceTree = "<group>"; };
+		7547D23F1BDE2376006E4170 /* galaxyS3Speaker.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = galaxyS3Speaker.png; path = images/galaxyS3Speaker.png; sourceTree = "<group>"; };
+		7547D2401BDE2376006E4170 /* galaxyS3Speaker@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "galaxyS3Speaker@2x.png"; path = "images/galaxyS3Speaker@2x.png"; sourceTree = "<group>"; };
+		7547D2411BDE2376006E4170 /* galaxyS4CameraImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = galaxyS4CameraImage.png; path = images/galaxyS4CameraImage.png; sourceTree = "<group>"; };
+		7547D2421BDE2376006E4170 /* galaxyS4CameraImage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "galaxyS4CameraImage@2x.png"; path = "images/galaxyS4CameraImage@2x.png"; sourceTree = "<group>"; };
+		7547D2431BDE2376006E4170 /* galaxyS4Speaker.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = galaxyS4Speaker.png; path = images/galaxyS4Speaker.png; sourceTree = "<group>"; };
+		7547D2441BDE2376006E4170 /* galaxyS4Speaker@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "galaxyS4Speaker@2x.png"; path = "images/galaxyS4Speaker@2x.png"; sourceTree = "<group>"; };
+		7547D2451BDE2376006E4170 /* galaxyS5CameraImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = galaxyS5CameraImage.png; path = images/galaxyS5CameraImage.png; sourceTree = "<group>"; };
+		7547D2461BDE2376006E4170 /* galaxyS5CameraImage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "galaxyS5CameraImage@2x.png"; path = "images/galaxyS5CameraImage@2x.png"; sourceTree = "<group>"; };
+		7547D2471BDE2376006E4170 /* galaxyS5Speaker.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = galaxyS5Speaker.png; path = images/galaxyS5Speaker.png; sourceTree = "<group>"; };
+		7547D2481BDE2376006E4170 /* galaxyS5Speaker@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "galaxyS5Speaker@2x.png"; path = "images/galaxyS5Speaker@2x.png"; sourceTree = "<group>"; };
 		756088E21BDB19FB001580B2 /* iPhone5CameraImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iPhone5CameraImage.png; sourceTree = "<group>"; };
 		756088E31BDB19FB001580B2 /* iPhone5CameraImage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iPhone5CameraImage@2x.png"; sourceTree = "<group>"; };
 		757470311BDCB404004CABD0 /* PhoneCaseDevice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhoneCaseDevice.swift; sourceTree = "<group>"; };
@@ -377,6 +405,41 @@
 			name = Controllers;
 			sourceTree = "<group>";
 		};
+		7547D2571BDE2381006E4170 /* GalaxyS3 */ = {
+			isa = PBXGroup;
+			children = (
+				7547D23B1BDE2376006E4170 /* galaxyS3CameraImage.png */,
+				7547D23C1BDE2376006E4170 /* galaxyS3CameraImage@2x.png */,
+				7547D23D1BDE2376006E4170 /* galaxyS3Led.png */,
+				7547D23E1BDE2376006E4170 /* galaxyS3Led@2x.png */,
+				7547D23F1BDE2376006E4170 /* galaxyS3Speaker.png */,
+				7547D2401BDE2376006E4170 /* galaxyS3Speaker@2x.png */,
+			);
+			name = GalaxyS3;
+			sourceTree = "<group>";
+		};
+		7547D2581BDE2390006E4170 /* GalaxyS4 */ = {
+			isa = PBXGroup;
+			children = (
+				7547D2411BDE2376006E4170 /* galaxyS4CameraImage.png */,
+				7547D2421BDE2376006E4170 /* galaxyS4CameraImage@2x.png */,
+				7547D2431BDE2376006E4170 /* galaxyS4Speaker.png */,
+				7547D2441BDE2376006E4170 /* galaxyS4Speaker@2x.png */,
+			);
+			name = GalaxyS4;
+			sourceTree = "<group>";
+		};
+		7547D2591BDE2398006E4170 /* GalaxyS5 */ = {
+			isa = PBXGroup;
+			children = (
+				7547D2451BDE2376006E4170 /* galaxyS5CameraImage.png */,
+				7547D2461BDE2376006E4170 /* galaxyS5CameraImage@2x.png */,
+				7547D2471BDE2376006E4170 /* galaxyS5Speaker.png */,
+				7547D2481BDE2376006E4170 /* galaxyS5Speaker@2x.png */,
+			);
+			name = GalaxyS5;
+			sourceTree = "<group>";
+		};
 		757470371BDCBEB9004CABD0 /* iPhone6/6S */ = {
 			isa = PBXGroup;
 			children = (
@@ -392,6 +455,9 @@
 				758595661BDA30D30079A1BA /* iPhone4/4S */,
 				758595591BDA17100079A1BA /* iPhone5/5S */,
 				757470371BDCBEB9004CABD0 /* iPhone6/6S */,
+				7547D2571BDE2381006E4170 /* GalaxyS3 */,
+				7547D2581BDE2390006E4170 /* GalaxyS4 */,
+				7547D2591BDE2398006E4170 /* GalaxyS5 */,
 			);
 			name = CameraImages;
 			sourceTree = "<group>";
@@ -489,6 +555,7 @@
 				502A8CBA1BB80EAC0064E0DA /* Assets.xcassets in Resources */,
 				756088E51BDB19FB001580B2 /* iPhone5CameraImage@2x.png in Resources */,
 				50F8F3C71BC78D3A002CE3FD /* key_ring_with_number.jpg in Resources */,
+				7547D2521BDE2376006E4170 /* galaxyS4Speaker@2x.png in Resources */,
 				502A8CE01BB822410064E0DA /* MenuWhite@2x.png in Resources */,
 				50BE47131BBA388400724119 /* MenuMalibu@3x.png in Resources */,
 				50F8F3CB1BC78F20002CE3FD /* clothes_wimen.jpg in Resources */,
@@ -496,7 +563,9 @@
 				50F8F3D11BC79070002CE3FD /* copy_services_baner.jpg in Resources */,
 				756088E41BDB19FB001580B2 /* iPhone5CameraImage.png in Resources */,
 				50F8F3D51BC7914A002CE3FD /* 3d_printing_individual.jpg in Resources */,
+				7547D24A1BDE2376006E4170 /* galaxyS3CameraImage@2x.png in Resources */,
 				50F8F3D31BC790D7002CE3FD /* copy_services_business_card.jpg in Resources */,
+				7547D2541BDE2376006E4170 /* galaxyS5CameraImage@2x.png in Resources */,
 				50F8F3BF1BC789AE002CE3FD /* cup_ceramic.jpg in Resources */,
 				50F8F3D91BC7921A002CE3FD /* 3d_printing_strong_plastic.jpg in Resources */,
 				50F8F3D71BC791BE002CE3FD /* 3d_printing_plastic.jpg in Resources */,
@@ -505,30 +574,41 @@
 				50DD725F1BBEE774008A9B80 /* clothes.jpg in Resources */,
 				50F8F3C91BC78EA7002CE3FD /* clothes_man.jpg in Resources */,
 				50F8F3C51BC78CB7002CE3FD /* key_ring_with_photo_plastic.jpg in Resources */,
+				7547D2561BDE2376006E4170 /* galaxyS5Speaker@2x.png in Resources */,
+				7547D2511BDE2376006E4170 /* galaxyS4Speaker.png in Resources */,
 				50DD726E1BBEEB69008A9B80 /* wood_cases.jpg in Resources */,
 				50551C281BCB87D6005B88DA /* More.png in Resources */,
+				7547D2551BDE2376006E4170 /* galaxyS5Speaker.png in Resources */,
 				502A8CE11BB822410064E0DA /* MenuWhite@3x.png in Resources */,
 				0C541A6C1BD0BA970028BD9A /* wallpaper.jpg in Resources */,
 				50F8F3BD1BC788FD002CE3FD /* cup_chameleon.jpg in Resources */,
 				50DD72441BBEDAAA008A9B80 /* cups.jpg in Resources */,
 				50F8F3C11BC78A1A002CE3FD /* cup_love_is.jpg in Resources */,
+				7547D24F1BDE2376006E4170 /* galaxyS4CameraImage.png in Resources */,
 				50DD724E1BBEE085008A9B80 /* frames.jpg in Resources */,
 				50DD72561BBEE46B008A9B80 /* key_rings_by_3D_printer.jpg in Resources */,
+				7547D2491BDE2376006E4170 /* galaxyS3CameraImage.png in Resources */,
 				757470351BDCBEB4004CABD0 /* iPhone6CameraImage.png in Resources */,
 				50FD7F5D1BB90A8900ABEC38 /* copy_services.jpg in Resources */,
 				0C541A6A1BD0BA970028BD9A /* 3dWallpaper.jpg in Resources */,
+				7547D2531BDE2376006E4170 /* galaxyS5CameraImage.png in Resources */,
 				50F8F3C31BC78B83002CE3FD /* key_ring_with_photo_glass.jpg in Resources */,
 				502A8CDF1BB822410064E0DA /* MenuWhite.png in Resources */,
 				50551C2A1BCB87D6005B88DA /* More@3x.png in Resources */,
 				50F8F3BB1BC787B5002CE3FD /* case_individual.jpg in Resources */,
 				50BE47111BBA388400724119 /* MenuMalibu.png in Resources */,
 				50DD72681BBEEA44008A9B80 /* 3D_printing.jpg in Resources */,
+				7547D24C1BDE2376006E4170 /* galaxyS3Led@2x.png in Resources */,
+				7547D2501BDE2376006E4170 /* galaxyS4CameraImage@2x.png in Resources */,
 				50F8F3CD1BC78FAA002CE3FD /* clothes_kids.jpg in Resources */,
 				50551C291BCB87D6005B88DA /* More@2x.png in Resources */,
+				7547D24E1BDE2376006E4170 /* galaxyS3Speaker@2x.png in Resources */,
 				757470361BDCBEB4004CABD0 /* iPhone6CameraImage@2x.png in Resources */,
 				50BE47121BBA388400724119 /* MenuMalibu@2x.png in Resources */,
+				7547D24B1BDE2376006E4170 /* galaxyS3Led.png in Resources */,
 				758595621BDA30C10079A1BA /* iPhone4CameraImage.png in Resources */,
 				50DD72581BBEE555008A9B80 /* key_ring_with_photo.jpg in Resources */,
+				7547D24D1BDE2376006E4170 /* galaxyS3Speaker.png in Resources */,
 				502A8CB81BB80EAC0064E0DA /* Main.storyboard in Resources */,
 				50DD723C1BBED66D008A9B80 /* cases.jpg in Resources */,
 			);
