@@ -71,6 +71,12 @@ class CaseView: UIView {
             PhoneCase.drawIPhone6Case(self.bounds, fillColor: fillColor, colorOfText: textColor, image: image, caseText: text, backgroundImageVisible: showBackgroundImage, textRectHeight: textRectHeight, textYscale: textYscale, textSize: textSize, textXscale: textXscale)
         } else if device.name == Device.iPhone6Plus().name {
             PhoneCase.drawIPhone6PlusCase(self.bounds, fillColor: fillColor, colorOfText: textColor, image: image, caseText: text, backgroundImageVisible: showBackgroundImage, textRectHeight: textRectHeight, textYscale: textYscale, textSize: textSize, textXscale: textXscale)
+        } else if device.name == Device.galaxyS3().name {
+            PhoneCase.drawGalaxyS3(self.bounds, fillColor: fillColor, colorOfText: textColor, image: image, caseText: text, backgroundImageVisible: showBackgroundImage, textRectHeight: textRectHeight, textYscale: textYscale, textSize: textSize, textXscale: textXscale)
+        } else if device.name == Device.galaxyS4().name {
+            PhoneCase.drawGalaxyS4(self.bounds, fillColor: fillColor, colorOfText: textColor, image: image, caseText: text, backgroundImageVisible: showBackgroundImage, textRectHeight: textRectHeight, textYscale: textYscale, textSize: textSize, textXscale: textXscale)
+        } else if device.name == Device.galaxyS5().name {
+            PhoneCase.drawGalaxyS5(self.bounds, fillColor: fillColor, colorOfText: textColor, image: image, caseText: text, backgroundImageVisible: showBackgroundImage, textRectHeight: textRectHeight, textYscale: textYscale, textSize: textSize, textXscale: textXscale)
         }
     }
     
@@ -108,6 +114,77 @@ class CaseView: UIView {
         return fontSize
     }
     
+    private func getTextYscaleFromNumberOfCharacters(characters: Int) -> CGFloat {
+        var scale: CGFloat = 1.0
+        
+        // Check for empty text.
+        if characters == 0 {
+            return scale
+        }
+        
+        // Calculate scale.
+        for i in 1...characters {
+            if i > 3 {
+                scale += 0.2
+            }
+        }
+        print("Y scale = \(scale)")
+        
+        return scale
+    }
+    
+    private func getTextXScaleFromText(text: String) -> CGFloat {
+        let numberOfCharacters = text.characters.count
+        var scale: CGFloat = 1.0
+        var countOnWideCharacter = 0
+        
+        // Count for wide characters.
+        for character in text.characters {
+            if character == "M" || character == "W" {
+                ++countOnWideCharacter
+            }
+        }
+        
+        // Add extra value to x scale for specific case.
+        if device.name == Device.iPhone4().name ||
+           device.name == Device.iPhone6Plus().name ||
+           device.name == Device.galaxyS3().name ||
+           device.name == Device.galaxyS4().name ||
+           device.name == Device.galaxyS5().name {
+                if countOnWideCharacter < 2 {
+                    scale += 0.1
+                    if numberOfCharacters < 4 {
+                        scale += 0.2
+                    } else if countOnWideCharacter == 0 {
+                        if numberOfCharacters < 7 {
+                            scale += 0.1
+                        }
+                    }
+                } else if countOnWideCharacter < 3 && numberOfCharacters < 4 {
+                    scale += 0.1
+                }
+        } else {
+            if countOnWideCharacter < 2 {
+                scale += 0.1
+                if numberOfCharacters < 4 {
+                    scale += 0.3
+                } else if countOnWideCharacter == 0 {
+                    if numberOfCharacters < 7 {
+                        scale += 0.2
+                    } else if numberOfCharacters < 13 {
+                        scale += 0.1
+                    }
+                }
+            } else if countOnWideCharacter < 3 && numberOfCharacters < 4 {
+                scale += 0.2
+            }
+        }
+        
+        print("X scale = \(scale)")
+        
+        return scale
+    }
+    
     private func getTextFontSizeFromNumberOfCharacters(characters: Int) -> CGFloat {
         if device.name == Device.iPhone5().name {
             switch characters {
@@ -134,7 +211,8 @@ class CaseView: UIView {
             default:
                 return 46.0
             }
-        } else if device.name == Device.iPhone4().name {
+        } else if device.name == Device.iPhone4().name ||
+                  device.name == Device.galaxyS3().name {
             switch characters {
             case 1, 2:
                 return 200.0
@@ -215,14 +293,68 @@ class CaseView: UIView {
             default:
                 return 53.0
             }
-
+        } else if device.name == Device.galaxyS4().name {
+            switch characters {
+            case 1, 2:
+                return 220.0
+            case 3:
+                return 194.0
+            case 4:
+                return 145.0
+            case 5:
+                return 116.0
+            case 6:
+                return 97.0
+            case 7:
+                return 83.0
+            case 8:
+                return 72.0
+            case 9:
+                return 64.0
+            case 10:
+                return 58.0
+            case 11:
+                return 53.0
+            case 12:
+                return 48
+            default:
+                return 44.0
+            }
+        } else if device.name == Device.galaxyS5().name {
+            switch characters {
+            case 1, 2:
+                return 225.0
+            case 3:
+                return 201.0
+            case 4:
+                return 151.0
+            case 5:
+                return 121.0
+            case 6:
+                return 100.0
+            case 7:
+                return 86.0
+            case 8:
+                return 75.0
+            case 9:
+                return 67.0
+            case 10:
+                return 60.0
+            case 11:
+                return 55.0
+            case 12:
+                return 50.0
+            default:
+                return 46.0
+            }
         }
         return 0.0
     }
     
     private func getTextRectHeightFromNumberOfCharacters(characters: Int) -> CGFloat {
         if device.name == Device.iPhone4().name ||
-           device.name == Device.iPhone5().name {
+           device.name == Device.iPhone5().name ||
+           device.name == Device.galaxyS3().name {
             switch characters {
             case 1, 2, 3:
                 return 200.0
@@ -247,7 +379,8 @@ class CaseView: UIView {
             default:
                 return 67.0
             }
-        } else if device.name == Device.iPhone6().name {
+        } else if device.name == Device.iPhone6().name ||
+                  device.name == Device.galaxyS4().name {
             switch characters {
             case 1, 2, 3:
                 return 220.0
@@ -297,76 +430,32 @@ class CaseView: UIView {
             default:
                 return 80.0
             }
+        } else if device.name == Device.galaxyS5().name {
+            switch characters {
+            case 1, 2, 3:
+                return 225.0
+            case 4:
+                return 187.5
+            case 5:
+                return 161.0
+            case 6:
+                return 141.0
+            case 7:
+                return 125.0
+            case 8:
+                return 112.5
+            case 9:
+                return 102.0
+            case 10:
+                return 94.0
+            case 11:
+                return 86.5
+            case 12:
+                return 80.0
+            default:
+                return 75.0
+            }
         }
-        
         return 0.0
-    }
-    
-    private func getTextYscaleFromNumberOfCharacters(characters: Int) -> CGFloat {
-        var scale: CGFloat = 1.0
-        
-        // Check for empty text.
-        if characters == 0 {
-            return scale
-        }
-        
-        // Calculate scale.
-        for i in 1...characters {
-            if i > 3 {
-                scale += 0.2
-            }
-        }
-        print("Y scale = \(scale)")
-        
-        return scale
-    }
-    
-    private func getTextXScaleFromText(text: String) -> CGFloat {
-        let numberOfCharacters = text.characters.count
-        var scale: CGFloat = 1.0
-        var countOnWideCharacter = 0
-        
-        // Count for wide characters.
-        for character in text.characters {
-            if character == "M" || character == "W" {
-                ++countOnWideCharacter
-            }
-        }
-        
-        // Add extra value to x scale for specific case.
-        if device.name == Device.iPhone4().name ||
-           device.name == Device.iPhone6Plus().name {
-            if countOnWideCharacter < 2 {
-                scale += 0.1
-                if numberOfCharacters < 4 {
-                    scale += 0.2
-                } else if countOnWideCharacter == 0 {
-                    if numberOfCharacters < 7 {
-                        scale += 0.1
-                    }
-                }
-            } else if countOnWideCharacter < 3 && numberOfCharacters < 4 {
-                scale += 0.1
-            }
-        } else {
-            if countOnWideCharacter < 2 {
-                scale += 0.1
-                if numberOfCharacters < 4 {
-                    scale += 0.3
-                } else if countOnWideCharacter == 0 {
-                    if numberOfCharacters < 7 {
-                        scale += 0.2
-                    } else if numberOfCharacters < 13 {
-                        scale += 0.1
-                    }
-                }
-            } else if countOnWideCharacter < 3 && numberOfCharacters < 4 {
-                scale += 0.2
-            }
-        }
-        
-        print("X scale = \(scale)")
-        
-        return scale
     }
 }

@@ -80,15 +80,20 @@ class CaseConstructorTableViewController: UITableViewController {
                 if selectedDevice.name == Device.iPhone4().name {
                     tableHeaderViewHeight = 380.0
                     caseViewWidth = 220.0
-                } else if selectedDevice.name == Device.iPhone5().name {
+                } else if selectedDevice.name == Device.iPhone5().name ||
+                          selectedDevice.name == Device.galaxyS3().name {
                     tableHeaderViewHeight = 400.0
                     caseViewWidth = 220.0
-                } else if selectedDevice.name == Device.iPhone6().name {
+                } else if selectedDevice.name == Device.iPhone6().name ||
+                          selectedDevice.name == Device.galaxyS4().name {
                     tableHeaderViewHeight = 420.0
                     caseViewWidth = 240.0
                 } else if selectedDevice.name == Device.iPhone6Plus().name {
                     tableHeaderViewHeight = 440.0
                     caseViewWidth = 260.0
+                } else if selectedDevice.name == Device.galaxyS5().name {
+                    tableHeaderViewHeight = 440.0
+                    caseViewWidth = 240
                 }
                 
                 let tableView = weakSelf?.tableView
