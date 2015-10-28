@@ -76,8 +76,10 @@ class CaseConstructorTableViewController: UITableViewController {
                 
                 // Update table header view frame.
                 var tableHeaderViewHeight: CGFloat = 0.0
-                var caseViewWidth: CGFloat = 220.0
-                if selectedDevice.name == Device.iPhone4().name {
+                var caseViewWidth: CGFloat = 0.0
+                if selectedDevice.name == Device.iPhone4().name ||
+                   selectedDevice.name == Device.galaxyS4Mini().name ||
+                   selectedDevice.name == Device.galaxyS5Mini().name {
                     tableHeaderViewHeight = 380.0
                     caseViewWidth = 220.0
                 } else if selectedDevice.name == Device.iPhone5().name ||

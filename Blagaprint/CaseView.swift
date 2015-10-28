@@ -75,8 +75,12 @@ class CaseView: UIView {
             PhoneCase.drawGalaxyS3(self.bounds, fillColor: fillColor, colorOfText: textColor, image: image, caseText: text, backgroundImageVisible: showBackgroundImage, textRectHeight: textRectHeight, textYscale: textYscale, textSize: textSize, textXscale: textXscale)
         } else if device.name == Device.galaxyS4().name {
             PhoneCase.drawGalaxyS4(self.bounds, fillColor: fillColor, colorOfText: textColor, image: image, caseText: text, backgroundImageVisible: showBackgroundImage, textRectHeight: textRectHeight, textYscale: textYscale, textSize: textSize, textXscale: textXscale)
+        } else if device.name == Device.galaxyS4Mini().name {
+            PhoneCase.drawGalaxyS4Mini(self.bounds, fillColor: fillColor, colorOfText: textColor, image: image, caseText: text, backgroundImageVisible: showBackgroundImage, textRectHeight: textRectHeight, textYscale: textYscale, textSize: textSize, textXscale: textXscale)
         } else if device.name == Device.galaxyS5().name {
             PhoneCase.drawGalaxyS5(self.bounds, fillColor: fillColor, colorOfText: textColor, image: image, caseText: text, backgroundImageVisible: showBackgroundImage, textRectHeight: textRectHeight, textYscale: textYscale, textSize: textSize, textXscale: textXscale)
+        } else if device.name == Device.galaxyS5Mini().name {
+            PhoneCase.drawGalaxyS5Mini(self.bounds, fillColor: fillColor, colorOfText: textColor, image: image, caseText: text, backgroundImageVisible: showBackgroundImage, textRectHeight: textRectHeight, textYscale: textYscale, textSize: textSize, textXscale: textXscale)
         }
     }
     
@@ -146,11 +150,13 @@ class CaseView: UIView {
         }
         
         // Add extra value to x scale for specific case.
-        if device.name == Device.iPhone4().name ||
-           device.name == Device.iPhone6Plus().name ||
-           device.name == Device.galaxyS3().name ||
-           device.name == Device.galaxyS4().name ||
-           device.name == Device.galaxyS5().name {
+        if device.name == Device.iPhone4().name      ||
+           device.name == Device.iPhone6Plus().name  ||
+           device.name == Device.galaxyS3().name     ||
+           device.name == Device.galaxyS4().name     ||
+           device.name == Device.galaxyS4Mini().name ||
+           device.name == Device.galaxyS5().name     ||
+           device.name == Device.galaxyS5Mini().name {
                 if countOnWideCharacter < 2 {
                     scale += 0.1
                     if numberOfCharacters < 4 {
@@ -211,8 +217,9 @@ class CaseView: UIView {
             default:
                 return 46.0
             }
-        } else if device.name == Device.iPhone4().name ||
-                  device.name == Device.galaxyS3().name {
+        } else if device.name == Device.iPhone4().name      ||
+                  device.name == Device.galaxyS3().name     ||
+                  device.name == Device.galaxyS5Mini().name {
             switch characters {
             case 1, 2:
                 return 200.0
@@ -320,6 +327,33 @@ class CaseView: UIView {
             default:
                 return 44.0
             }
+        } else if device.name == Device.galaxyS4Mini().name {
+            switch characters {
+            case 1, 2:
+                return 220.0
+            case 3:
+                return 173.0
+            case 4:
+                return 129.0
+            case 5:
+                return 103.0
+            case 6:
+                return 86.0
+            case 7:
+                return 74.0
+            case 8:
+                return 64.0
+            case 9:
+                return 57.0
+            case 10:
+                return 51.0
+            case 11:
+                return 47.0
+            case 12:
+                return 43
+            default:
+                return 39.0
+            }
         } else if device.name == Device.galaxyS5().name {
             switch characters {
             case 1, 2:
@@ -352,9 +386,11 @@ class CaseView: UIView {
     }
     
     private func getTextRectHeightFromNumberOfCharacters(characters: Int) -> CGFloat {
-        if device.name == Device.iPhone4().name ||
-           device.name == Device.iPhone5().name ||
-           device.name == Device.galaxyS3().name {
+        if device.name == Device.iPhone4().name      ||
+           device.name == Device.iPhone5().name      ||
+           device.name == Device.galaxyS3().name     ||
+           device.name == Device.galaxyS4Mini().name ||
+           device.name == Device.galaxyS5Mini().name {
             switch characters {
             case 1, 2, 3:
                 return 200.0
