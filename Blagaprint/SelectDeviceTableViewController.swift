@@ -21,7 +21,7 @@ class SelectDeviceTableViewController: UITableViewController {
     static private let kDeviceCellReuseIdentifier = "DeviceCell"
     
     /// Supported devices.
-    private var devices: [Device] = Device.allDevices()
+    private var devices = [String: [Device]]()
     
     // MARK: - View Life Cycle
     
@@ -29,15 +29,37 @@ class SelectDeviceTableViewController: UITableViewController {
         super.viewDidLoad()
         
         assert(originalDevice != nil, "Original device must be passed when segue to this controller")
-        
-        self.title = "Устройство"
+        setUp()
     }
-    
+
     // MARK: - Private
     
+    private func setUp() {
+        self.title = "Устройство"
+        self.configurateDevicesByCompany()
+    }
+    
+    private func configurateDevicesByCompany() {
+        for company in Device.companies() {
+            for device in Device.allDevices() {
+                if device.manufacturer == company {
+                    if devices[company] == nil {
+                        devices[company] = []
+                    }
+                    devices[company]!.append(device)
+                }
+            }
+        }
+    }
+    
+    private func companyFromSection(section: Int) -> String {
+        return Device.companies()[section]
+    }
+
     private func configurateCell(cell: UITableViewCell, atIndexPath indexPath: NSIndexPath) {
-        let device = devices[indexPath.row];
-        cell.textLabel?.text = device.descriptionFromDevice()
+        let key = companyFromSection(indexPath.section)
+        let device = devices[key]![indexPath.row]
+        cell.textLabel?.text = device.name
         
         if originalDevice.name == device.name {
             cell.accessoryType = .Checkmark
@@ -49,8 +71,13 @@ class SelectDeviceTableViewController: UITableViewController {
     // MARK: - UITableView
     // MARK: UITableViewDataSource
     
+    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return Device.numberOfCompanies()
+    }
+    
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return devices.count
+        let key = companyFromSection(section)
+        return devices[key]!.count
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -60,13 +87,19 @@ class SelectDeviceTableViewController: UITableViewController {
         return cell
     }
     
-    // MARK: -UITableViewDelegate
+    override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return companyFromSection(section)
+    }
+    
+    // MARK: - UITableViewDelegate
+    
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         
         weak var weakSelf = self
         if let callBack = didSelectDeviceClosure {
-            let selectedDevice = weakSelf!.devices[indexPath.row]
+            let key = companyFromSection(indexPath.section)
+            let selectedDevice = weakSelf!.devices[key]![indexPath.row]
             callBack(selectedDevice)
         }
         

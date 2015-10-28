@@ -17,6 +17,8 @@ private let SamsungInc = "Samsung"
 private let IPhone = "iPhone"
 /// Supported device.
 private let GalaxyS = "Galaxy S"
+/// Supported device.
+private let Galaxy = "Galaxy"
 
 struct Device {
     // MARK: - Properties
@@ -24,8 +26,17 @@ struct Device {
     let manufacturer: String
     
     // MARK: - Methods
+    
     func descriptionFromDevice() -> String {
         return "\(manufacturer) \(name)"
+    }
+    
+    static func companies() -> [String] {
+        return [AppleInc, SamsungInc]
+    }
+    
+    static func numberOfCompanies() -> Int {
+        return companies().count
     }
     
     // MARK: - Supported Phone Case Devices
@@ -66,7 +77,19 @@ struct Device {
         return Device(name: "\(GalaxyS)5 Mini", manufacturer: SamsungInc)
     }
     
+    static func galaxyA3() -> Device {
+        return Device(name: "\(Galaxy) A3", manufacturer: SamsungInc)
+    }
+    
+    static func galaxyA5() -> Device {
+        return Device(name: "\(Galaxy) A5", manufacturer: SamsungInc)
+    }
+    
+    static func galaxyA7() -> Device {
+        return Device(name: "\(Galaxy) A7", manufacturer: SamsungInc)
+    }
+    
     static func allDevices() -> [Device] {
-        return [iPhone4(), iPhone5(), iPhone6(), iPhone6Plus(), galaxyS3(), galaxyS4(), galaxyS4Mini(), galaxyS5(), galaxyS5Mini()]
+        return [iPhone4(), iPhone5(), iPhone6(), iPhone6Plus(), galaxyS3(), galaxyS4Mini(), galaxyS4(), galaxyS5Mini(), galaxyS5(), galaxyA3(), galaxyA5(), galaxyA7()]
     }
 }
