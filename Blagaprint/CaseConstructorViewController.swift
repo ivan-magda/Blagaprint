@@ -93,7 +93,8 @@ class CaseConstructorTableViewController: UITableViewController {
                 } else if selectedDevice.name == Device.iPhone6Plus().name {
                     tableHeaderViewHeight = 440.0
                     caseViewWidth = 260.0
-                } else if selectedDevice.name == Device.galaxyS5().name {
+                } else if selectedDevice.name == Device.galaxyS5().name ||
+                          selectedDevice.name == Device.galaxyS6().name {
                     tableHeaderViewHeight = 440.0
                     caseViewWidth = 240
                 }
