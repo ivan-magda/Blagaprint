@@ -395,7 +395,7 @@ class PhoneCase : NSObject {
         CGContextScaleCTM(context, 1, -1)
         
         if iPhone4CameraImage != nil {
-            CGContextDrawTiledImage(context, CGRectMake(cameraRect.minX, -cameraRect.minY, iPhone4CameraImage!.size.width, iPhone4CameraImage!.size.height), iPhone4CameraImage!.CGImage)
+            CGContextDrawTiledImage(context, CGRectMake(cameraRect.minX - 1, -cameraRect.minY, iPhone4CameraImage!.size.width, iPhone4CameraImage!.size.height), iPhone4CameraImage!.CGImage)
         }
         
         CGContextRestoreGState(context)
