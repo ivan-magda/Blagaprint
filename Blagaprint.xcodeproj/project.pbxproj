@@ -110,6 +110,13 @@
 		75A36C381BE2549E0036B500 /* galaxyA5Led@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 75A36C361BE2549E0036B500 /* galaxyA5Led@2x.png */; };
 		75A36C3B1BE254AB0036B500 /* galaxyA5Speaker.png in Resources */ = {isa = PBXBuildFile; fileRef = 75A36C391BE254AB0036B500 /* galaxyA5Speaker.png */; };
 		75A36C3C1BE254AB0036B500 /* galaxyA5Speaker@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 75A36C3A1BE254AB0036B500 /* galaxyA5Speaker@2x.png */; };
+		75A36C3F1BE25C310036B500 /* GalaxyA7.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75A36C3E1BE25C310036B500 /* GalaxyA7.swift */; };
+		75A36C421BE263380036B500 /* galaxyA7CameraImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 75A36C401BE263380036B500 /* galaxyA7CameraImage.png */; };
+		75A36C431BE263380036B500 /* galaxyA7CameraImage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 75A36C411BE263380036B500 /* galaxyA7CameraImage@2x.png */; };
+		75A36C471BE266690036B500 /* galaxyA7Led.png in Resources */ = {isa = PBXBuildFile; fileRef = 75A36C451BE266690036B500 /* galaxyA7Led.png */; };
+		75A36C481BE266690036B500 /* galaxyA7Led@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 75A36C461BE266690036B500 /* galaxyA7Led@2x.png */; };
+		75A36C4B1BE266700036B500 /* galaxyA7Speaker.png in Resources */ = {isa = PBXBuildFile; fileRef = 75A36C491BE266700036B500 /* galaxyA7Speaker.png */; };
+		75A36C4C1BE266700036B500 /* galaxyA7Speaker@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 75A36C4A1BE266700036B500 /* galaxyA7Speaker@2x.png */; };
 		75DD91F91BD7B43800932AD7 /* AndersonSupercar.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 75DD91F81BD7B43800932AD7 /* AndersonSupercar.ttf */; };
 		75DD91FF1BD7BFE000932AD7 /* CaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75DD91FE1BD7BFE000932AD7 /* CaseView.swift */; };
 /* End PBXBuildFile section */
@@ -220,6 +227,13 @@
 		75A36C361BE2549E0036B500 /* galaxyA5Led@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "galaxyA5Led@2x.png"; sourceTree = "<group>"; };
 		75A36C391BE254AB0036B500 /* galaxyA5Speaker.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = galaxyA5Speaker.png; sourceTree = "<group>"; };
 		75A36C3A1BE254AB0036B500 /* galaxyA5Speaker@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "galaxyA5Speaker@2x.png"; sourceTree = "<group>"; };
+		75A36C3E1BE25C310036B500 /* GalaxyA7.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GalaxyA7.swift; sourceTree = "<group>"; };
+		75A36C401BE263380036B500 /* galaxyA7CameraImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = galaxyA7CameraImage.png; sourceTree = "<group>"; };
+		75A36C411BE263380036B500 /* galaxyA7CameraImage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "galaxyA7CameraImage@2x.png"; sourceTree = "<group>"; };
+		75A36C451BE266690036B500 /* galaxyA7Led.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = galaxyA7Led.png; sourceTree = "<group>"; };
+		75A36C461BE266690036B500 /* galaxyA7Led@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "galaxyA7Led@2x.png"; sourceTree = "<group>"; };
+		75A36C491BE266700036B500 /* galaxyA7Speaker.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = galaxyA7Speaker.png; sourceTree = "<group>"; };
+		75A36C4A1BE266700036B500 /* galaxyA7Speaker@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "galaxyA7Speaker@2x.png"; sourceTree = "<group>"; };
 		75DD91F81BD7B43800932AD7 /* AndersonSupercar.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = AndersonSupercar.ttf; sourceTree = "<group>"; };
 		75DD91FE1BD7BFE000932AD7 /* CaseView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CaseView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -358,6 +372,7 @@
 			children = (
 				75DD91FE1BD7BFE000932AD7 /* CaseView.swift */,
 				75823AAE1BD8BDD000C92F83 /* PhoneCase.swift */,
+				75A36C3E1BE25C310036B500 /* GalaxyA7.swift */,
 				50592EF11BCBEF0F00CEB3B8 /* CaseBackgroundColor */,
 			);
 			name = CaseViews;
@@ -535,6 +550,7 @@
 				752278401BE12956008E117F /* GalaxyS6 */,
 				750E4AF61BE20F7C006103AE /* GalaxyA3 */,
 				75A36C3D1BE254B60036B500 /* GalaxyA5 */,
+				75A36C441BE264960036B500 /* GalaxyA7 */,
 			);
 			name = CameraImages;
 			sourceTree = "<group>";
@@ -586,6 +602,19 @@
 				75A36C321BE254910036B500 /* galaxyA5CameraImage@2x.png */,
 			);
 			name = GalaxyA5;
+			sourceTree = "<group>";
+		};
+		75A36C441BE264960036B500 /* GalaxyA7 */ = {
+			isa = PBXGroup;
+			children = (
+				75A36C491BE266700036B500 /* galaxyA7Speaker.png */,
+				75A36C4A1BE266700036B500 /* galaxyA7Speaker@2x.png */,
+				75A36C451BE266690036B500 /* galaxyA7Led.png */,
+				75A36C461BE266690036B500 /* galaxyA7Led@2x.png */,
+				75A36C401BE263380036B500 /* galaxyA7CameraImage.png */,
+				75A36C411BE263380036B500 /* galaxyA7CameraImage@2x.png */,
+			);
+			name = GalaxyA7;
 			sourceTree = "<group>";
 		};
 		75FDB4B71BD620C7007FB441 /* Fonts */ = {
@@ -663,6 +692,7 @@
 				750E4AE81BE20345006103AE /* galaxyS6EdgeCameraImage@2x.png in Resources */,
 				50F8F3B71BC785C5002CE3FD /* case_with_name.jpg in Resources */,
 				502A8CBA1BB80EAC0064E0DA /* Assets.xcassets in Resources */,
+				75A36C4C1BE266700036B500 /* galaxyA7Speaker@2x.png in Resources */,
 				50F8F3C71BC78D3A002CE3FD /* key_ring_with_number.jpg in Resources */,
 				7547D2521BDE2376006E4170 /* galaxyS4Speaker@2x.png in Resources */,
 				750E4AF51BE20F70006103AE /* galaxyA3Speaker@2x.png in Resources */,
@@ -670,6 +700,7 @@
 				750E4AF41BE20F70006103AE /* galaxyA3Speaker.png in Resources */,
 				50BE47131BBA388400724119 /* MenuMalibu@3x.png in Resources */,
 				50F8F3CB1BC78F20002CE3FD /* clothes_wimen.jpg in Resources */,
+				75A36C421BE263380036B500 /* galaxyA7CameraImage.png in Resources */,
 				750E4AF01BE20F67006103AE /* galaxyA3Led.png in Resources */,
 				758595631BDA30C10079A1BA /* iPhone4CameraImage@2x.png in Resources */,
 				50F8F3D11BC79070002CE3FD /* copy_services_baner.jpg in Resources */,
@@ -679,6 +710,7 @@
 				759E8CD51BDF6D46008A5503 /* galaxyS5MiniCameraImage@2x.png in Resources */,
 				7547D24A1BDE2376006E4170 /* galaxyS3CameraImage@2x.png in Resources */,
 				50F8F3D31BC790D7002CE3FD /* copy_services_business_card.jpg in Resources */,
+				75A36C431BE263380036B500 /* galaxyA7CameraImage@2x.png in Resources */,
 				7522783B1BE11E72008E117F /* iPhone5CameraImage@2x.png in Resources */,
 				7547D2541BDE2376006E4170 /* galaxyS5CameraImage@2x.png in Resources */,
 				50F8F3BF1BC789AE002CE3FD /* cup_ceramic.jpg in Resources */,
@@ -689,6 +721,7 @@
 				50DD725F1BBEE774008A9B80 /* clothes.jpg in Resources */,
 				75A36C3B1BE254AB0036B500 /* galaxyA5Speaker.png in Resources */,
 				7522783A1BE11E72008E117F /* iPhone5CameraImage.png in Resources */,
+				75A36C471BE266690036B500 /* galaxyA7Led.png in Resources */,
 				50F8F3C91BC78EA7002CE3FD /* clothes_man.jpg in Resources */,
 				75A36C331BE254910036B500 /* galaxyA5CameraImage.png in Resources */,
 				50F8F3C51BC78CB7002CE3FD /* key_ring_with_photo_plastic.jpg in Resources */,
@@ -710,6 +743,7 @@
 				759E8CD41BDF6D46008A5503 /* galaxyS5MiniCameraImage.png in Resources */,
 				7547D2491BDE2376006E4170 /* galaxyS3CameraImage.png in Resources */,
 				757470351BDCBEB4004CABD0 /* iPhone6CameraImage.png in Resources */,
+				75A36C481BE266690036B500 /* galaxyA7Led@2x.png in Resources */,
 				50FD7F5D1BB90A8900ABEC38 /* copy_services.jpg in Resources */,
 				0C541A6A1BD0BA970028BD9A /* 3dWallpaper.jpg in Resources */,
 				7547D2531BDE2376006E4170 /* galaxyS5CameraImage.png in Resources */,
@@ -717,6 +751,7 @@
 				502A8CDF1BB822410064E0DA /* MenuWhite.png in Resources */,
 				75A36C3C1BE254AB0036B500 /* galaxyA5Speaker@2x.png in Resources */,
 				50551C2A1BCB87D6005B88DA /* More@3x.png in Resources */,
+				75A36C4B1BE266700036B500 /* galaxyA7Speaker.png in Resources */,
 				50F8F3BB1BC787B5002CE3FD /* case_individual.jpg in Resources */,
 				759E8CCF1BDF64A1008A5503 /* galaxyS4MiniCameraImage.png in Resources */,
 				50BE47111BBA388400724119 /* MenuMalibu.png in Resources */,
@@ -764,6 +799,7 @@
 				50551C311BCBB43A005B88DA /* BackgroundOvalView.swift in Sources */,
 				0C541A591BD0B51A0028BD9A /* PhotoLibraryItemCollectionViewCell.swift in Sources */,
 				501506501BCE96C700697C99 /* TextEditingViewController.swift in Sources */,
+				75A36C3F1BE25C310036B500 /* GalaxyA7.swift in Sources */,
 				50551C331BCBB469005B88DA /* OvalView.swift in Sources */,
 				5071D34C1BBFE9D0005DDED3 /* NothingFoundTableViewCell.swift in Sources */,
 				502A8CB31BB80EAC0064E0DA /* AppDelegate.swift in Sources */,

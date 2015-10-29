@@ -87,6 +87,8 @@ class CaseView: UIView {
         } else if device.name == Device.galaxyA3().name ||
                   device.name == Device.galaxyA5().name {
             PhoneCase.drawGalaxyA3A5(self.bounds, fillColor: fillColor, colorOfText: textColor, image: image, caseText: text, backgroundImageVisible: showBackgroundImage, textRectHeight: textRectHeight, textYscale: textYscale, textSize: textSize, textXscale: textXscale, device: device)
+        } else if device.name == Device.galaxyA7().name {
+            GalaxyA7.drawGalaxyA7Canvas(self.bounds, fillColor: fillColor, colorOfText: textColor, image: image, textXscale: textXscale, textSize: textSize, backgroundImageVisible: showBackgroundImage, caseText: text, textYscale: textYscale, textRectHeight: textRectHeight)
         }
     }
     
@@ -166,7 +168,8 @@ class CaseView: UIView {
            device.name == Device.galaxyS6().name     ||
            device.name == Device.galaxyS6Edge().name ||
            device.name == Device.galaxyA3().name     ||
-           device.name == Device.galaxyA5().name {
+           device.name == Device.galaxyA5().name     ||
+           device.name == Device.galaxyA7().name {
                 if countOnWideCharacter < 2 {
                     scale += 0.1
                     if numberOfCharacters < 4 {
@@ -229,7 +232,8 @@ class CaseView: UIView {
             }
         } else if device.name == Device.iPhone4().name  ||
                   device.name == Device.galaxyS3().name ||
-                  device.name == Device.galaxyS5Mini().name {
+                  device.name == Device.galaxyS5Mini().name ||
+                  device.name == Device.galaxyA7().name {
             switch characters {
             case 1, 2:
                 return 200.0
@@ -406,7 +410,8 @@ class CaseView: UIView {
            device.name == Device.galaxyS4Mini().name ||
            device.name == Device.galaxyS5Mini().name ||
            device.name == Device.galaxyA3().name     ||
-           device.name == Device.galaxyA5().name {
+           device.name == Device.galaxyA5().name     ||
+           device.name == Device.galaxyA7().name {
             switch characters {
             case 1, 2, 3:
                 return 200.0
@@ -512,4 +517,25 @@ class CaseView: UIView {
         }
         return 0.0
     }
+}
+
+// MARK: - NSShadow Extension -
+
+extension NSShadow {
+    convenience init(color: AnyObject!, offset: CGSize, blurRadius: CGFloat) {
+        self.init()
+        self.shadowColor = color
+        self.shadowOffset = offset
+        self.shadowBlurRadius = blurRadius
+    }
+}
+
+// MARK: - objc Protocols -
+
+@objc protocol StyleKitSettableImage {
+    var image: UIImage! { get set }
+}
+
+@objc protocol StyleKitSettableSelectedImage {
+    var selectedImage: UIImage! { get set }
 }

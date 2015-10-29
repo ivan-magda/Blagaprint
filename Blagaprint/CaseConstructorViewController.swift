@@ -85,7 +85,8 @@ class CaseConstructorTableViewController: UITableViewController {
                         tableHeaderViewHeight = 380.0
                         caseViewWidth = 220.0
                 } else if selectedDevice.name == Device.iPhone5().name ||
-                    selectedDevice.name == Device.galaxyS3().name {
+                    selectedDevice.name == Device.galaxyS3().name ||
+                    selectedDevice.name == Device.galaxyA7().name {
                         tableHeaderViewHeight = 400.0
                         caseViewWidth = 220.0
                 } else if selectedDevice.name == Device.iPhone6().name ||

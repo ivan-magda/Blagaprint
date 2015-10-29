@@ -2742,22 +2742,3 @@ class PhoneCase : NSObject {
     }
 
 }
-
-
-
-extension NSShadow {
-    convenience init(color: AnyObject!, offset: CGSize, blurRadius: CGFloat) {
-        self.init()
-        self.shadowColor = color
-        self.shadowOffset = offset
-        self.shadowBlurRadius = blurRadius
-    }
-}
-
-@objc protocol StyleKitSettableImage {
-    var image: UIImage! { get set }
-}
-
-@objc protocol StyleKitSettableSelectedImage {
-    var selectedImage: UIImage! { get set }
-}
