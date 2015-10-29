@@ -81,8 +81,9 @@ class CaseView: UIView {
             PhoneCase.drawGalaxyS5(self.bounds, fillColor: fillColor, colorOfText: textColor, image: image, caseText: text, backgroundImageVisible: showBackgroundImage, textRectHeight: textRectHeight, textYscale: textYscale, textSize: textSize, textXscale: textXscale)
         } else if device.name == Device.galaxyS5Mini().name {
             PhoneCase.drawGalaxyS5Mini(self.bounds, fillColor: fillColor, colorOfText: textColor, image: image, caseText: text, backgroundImageVisible: showBackgroundImage, textRectHeight: textRectHeight, textYscale: textYscale, textSize: textSize, textXscale: textXscale)
-        } else if device.name == Device.galaxyS6().name {
-            PhoneCase.drawGalaxyS6(self.bounds, fillColor: fillColor, colorOfText: textColor, image: image, caseText: text, backgroundImageVisible: showBackgroundImage, textRectHeight: textRectHeight, textYscale: textYscale, textSize: textSize, textXscale: textXscale)
+        } else if device.name == Device.galaxyS6().name ||
+                  device.name == Device.galaxyS6Edge().name {
+            PhoneCase.drawGalaxyS6(self.bounds, fillColor: fillColor, colorOfText: textColor, image: image, caseText: text, backgroundImageVisible: showBackgroundImage, textRectHeight: textRectHeight, textYscale: textYscale, textSize: textSize, textXscale: textXscale, device: device)
         }
     }
     
@@ -159,7 +160,8 @@ class CaseView: UIView {
            device.name == Device.galaxyS4Mini().name ||
            device.name == Device.galaxyS5().name     ||
            device.name == Device.galaxyS5Mini().name ||
-           device.name == Device.galaxyS6().name {
+           device.name == Device.galaxyS6().name     ||
+           device.name == Device.galaxyS6Edge().name {
                 if countOnWideCharacter < 2 {
                     scale += 0.1
                     if numberOfCharacters < 4 {
@@ -358,7 +360,8 @@ class CaseView: UIView {
                 return 39.0
             }
         } else if device.name == Device.galaxyS5().name ||
-                  device.name == Device.galaxyS6().name {
+                  device.name == Device.galaxyS6().name ||
+                  device.name == Device.galaxyS6Edge().name {
             switch characters {
             case 1, 2:
                 return 225.0
@@ -471,7 +474,8 @@ class CaseView: UIView {
                 return 80.0
             }
         } else if device.name == Device.galaxyS5().name ||
-                  device.name == Device.galaxyS6().name {
+                  device.name == Device.galaxyS6().name ||
+                  device.name == Device.galaxyS6Edge().name {
             switch characters {
             case 1, 2, 3:
                 return 225.0

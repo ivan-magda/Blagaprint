@@ -2110,7 +2110,7 @@ class PhoneCase : NSObject {
         cameraPath.stroke()
     }
     
-    class func drawGalaxyS6(frame: CGRect, fillColor: UIColor, colorOfText: UIColor, image: UIImage, caseText: String, backgroundImageVisible: Bool, textRectHeight: CGFloat, textYscale: CGFloat, var textSize: CGFloat, textXscale: CGFloat) {
+    class func drawGalaxyS6(frame: CGRect, fillColor: UIColor, colorOfText: UIColor, image: UIImage, caseText: String, backgroundImageVisible: Bool, textRectHeight: CGFloat, textYscale: CGFloat, var textSize: CGFloat, textXscale: CGFloat, device:Device) {
         //// General Declarations
         let context = UIGraphicsGetCurrentContext()
         
@@ -2128,7 +2128,12 @@ class PhoneCase : NSObject {
         let cameraInnerShadow = NSShadow(color: UIColor.grayColor(), offset: CGSizeMake(0.1, -0.1), blurRadius: 10)
         
         //// Image Declarations
-        let galaxyS6CameraImage = UIImage(named: "galaxyS6CameraImage.png")
+        var galaxyS6CameraImage: UIImage?
+        if device.name == Device.galaxyS6Edge().name {
+            galaxyS6CameraImage = UIImage(named: "galaxyS6EdgeCameraImage.png")
+        } else {
+            galaxyS6CameraImage = UIImage(named: "galaxyS6CameraImage.png")
+        }
         
         //// Rectangle Drawing
         CGContextSaveGState(context)
@@ -2266,21 +2271,26 @@ class PhoneCase : NSObject {
         
         
         //// Camera Drawing
-        let cameraRect: CGRect = CGRectMake(frame.minX + 88, frame.minY + 50, 80, 40)
+        let cameraRect: CGRect = CGRectMake(frame.minX + 88, frame.minY + 49.68, 80, 40)
         let cameraPath = UIBezierPath()
-        cameraPath.moveToPoint(CGPointMake(frame.minX + 101.88, frame.maxY - 350))
-        cameraPath.addCurveToPoint(CGPointMake(frame.maxX - 87.24, frame.maxY - 350), controlPoint1: CGPointMake(frame.minX + 120.38, frame.maxY - 350), controlPoint2: CGPointMake(frame.maxX - 107.56, frame.maxY - 350))
-        cameraPath.addCurveToPoint(CGPointMake(frame.maxX - 87.24, frame.minY + 50), controlPoint1: CGPointMake(frame.maxX - 66.92, frame.maxY - 350), controlPoint2: CGPointMake(frame.maxX - 66.92, frame.minY + 50))
-        cameraPath.addCurveToPoint(CGPointMake(frame.minX + 101.88, frame.minY + 50), controlPoint1: CGPointMake(frame.maxX - 107.56, frame.minY + 50), controlPoint2: CGPointMake(frame.minX + 120.38, frame.minY + 50))
-        cameraPath.addCurveToPoint(CGPointMake(frame.minX + 101.88, frame.maxY - 350), controlPoint1: CGPointMake(frame.minX + 83.37, frame.minY + 50), controlPoint2: CGPointMake(frame.minX + 83.37, frame.maxY - 350))
+        cameraPath.moveToPoint(CGPointMake(frame.minX + 101.83, frame.maxY - 350.75))
+        cameraPath.addCurveToPoint(CGPointMake(frame.minX + 130.87, frame.minY + 89.25), controlPoint1: CGPointMake(frame.minX + 111.15, frame.maxY - 350.75), controlPoint2: CGPointMake(frame.minX + 123.24, frame.minY + 90.22))
+        cameraPath.addCurveToPoint(CGPointMake(frame.minX + 136.85, frame.minY + 86.3), controlPoint1: CGPointMake(frame.minX + 132.59, frame.minY + 89.03), controlPoint2: CGPointMake(frame.minX + 135.01, frame.minY + 86.46))
+        cameraPath.addCurveToPoint(CGPointMake(frame.maxX - 87.2, frame.maxY - 353.7), controlPoint1: CGPointMake(frame.minX + 143.04, frame.minY + 85.77), controlPoint2: CGPointMake(frame.maxX - 94.92, frame.maxY - 353.7))
+        cameraPath.addCurveToPoint(CGPointMake(frame.maxX - 87.2, frame.minY + 52.94), controlPoint1: CGPointMake(frame.maxX - 66.93, frame.maxY - 353.7), controlPoint2: CGPointMake(frame.maxX - 66.93, frame.minY + 52.94))
+        cameraPath.addCurveToPoint(CGPointMake(frame.minX + 136.85, frame.minY + 52.94), controlPoint1: CGPointMake(frame.maxX - 94.46, frame.minY + 52.94), controlPoint2: CGPointMake(frame.minX + 142.67, frame.minY + 52.94))
+        cameraPath.addCurveToPoint(CGPointMake(frame.minX + 130.87, frame.minY + 49.99), controlPoint1: CGPointMake(frame.minX + 135.01, frame.minY + 52.94), controlPoint2: CGPointMake(frame.minX + 132.85, frame.minY + 50.15))
+        cameraPath.addCurveToPoint(CGPointMake(frame.minX + 101.83, frame.minY + 49.99), controlPoint1: CGPointMake(frame.minX + 121.7, frame.minY + 49.29), controlPoint2: CGPointMake(frame.minX + 111.57, frame.minY + 49.99))
+        cameraPath.addCurveToPoint(CGPointMake(frame.minX + 101.83, frame.maxY - 350.75), controlPoint1: CGPointMake(frame.minX + 83.39, frame.minY + 49.99), controlPoint2: CGPointMake(frame.minX + 83.39, frame.maxY - 350.75))
         cameraPath.closePath()
         CGContextSaveGState(context)
         CGContextSetShadowWithColor(context, cameraOuterShadow.shadowOffset, cameraOuterShadow.shadowBlurRadius, cameraOuterShadow.shadowColor!.CGColor)
         CGContextBeginTransparencyLayer(context, nil)
         CGContextSaveGState(context)
         cameraPath.addClip()
+        
         if galaxyS6CameraImage != nil {
-            galaxyS6CameraImage!.drawInRect(CGRectMake(floor(cameraRect.minX + 0.5), floor(cameraRect.minY + 0.5), galaxyS6CameraImage!.size.width, galaxyS6CameraImage!.size.height))
+            galaxyS6CameraImage!.drawInRect(CGRectMake(floor(cameraRect.minX + 0.5), floor(cameraRect.minY + 0.76 + 0.5), galaxyS6CameraImage!.size.width, galaxyS6CameraImage!.size.height))
         }
         
         CGContextRestoreGState(context)
@@ -2395,9 +2405,9 @@ class PhoneCase : NSObject {
         return imageOfGalaxyS5Mini!
     }
     
-    class func imageOfGalaxyS6(frame: CGRect, fillColor: UIColor, colorOfText: UIColor, image: UIImage, caseText: String, backgroundImageVisible: Bool, textRectHeight: CGFloat, textYscale: CGFloat, textSize: CGFloat, textXscale: CGFloat) -> UIImage {
+    class func imageOfGalaxyS6(frame: CGRect, fillColor: UIColor, colorOfText: UIColor, image: UIImage, caseText: String, backgroundImageVisible: Bool, textRectHeight: CGFloat, textYscale: CGFloat, textSize: CGFloat, textXscale: CGFloat, device: Device) -> UIImage {
         UIGraphicsBeginImageContextWithOptions(CGSizeMake(320, 568), false, 0)
-        PhoneCase.drawGalaxyS6(frame, fillColor: fillColor, colorOfText: colorOfText, image: image, caseText: caseText, backgroundImageVisible: backgroundImageVisible, textRectHeight: textRectHeight, textYscale: textYscale, textSize: textSize, textXscale: textXscale)
+        PhoneCase.drawGalaxyS6(frame, fillColor: fillColor, colorOfText: colorOfText, image: image, caseText: caseText, backgroundImageVisible: backgroundImageVisible, textRectHeight: textRectHeight, textYscale: textYscale, textSize: textSize, textXscale: textXscale, device: device)
         let imageOfGalaxyS5 = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
         
