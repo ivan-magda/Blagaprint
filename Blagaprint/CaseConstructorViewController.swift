@@ -58,7 +58,7 @@ class CaseConstructorTableViewController: UITableViewController {
         super.viewDidLoad()
         
         device = Device.iPhone5()
-
+        
         // The required delegate to get a photo back to the app.
         imagePickerController.delegate = self
     }
@@ -78,26 +78,28 @@ class CaseConstructorTableViewController: UITableViewController {
                 var tableHeaderViewHeight: CGFloat = 0.0
                 var caseViewWidth: CGFloat = 0.0
                 if selectedDevice.name == Device.iPhone4().name ||
-                   selectedDevice.name == Device.galaxyS4Mini().name ||
-                   selectedDevice.name == Device.galaxyS5Mini().name {
-                    tableHeaderViewHeight = 380.0
-                    caseViewWidth = 220.0
+                    selectedDevice.name == Device.galaxyS4Mini().name ||
+                    selectedDevice.name == Device.galaxyS5Mini().name ||
+                    selectedDevice.name == Device.galaxyA3().name ||
+                    selectedDevice.name == Device.galaxyA5().name{
+                        tableHeaderViewHeight = 380.0
+                        caseViewWidth = 220.0
                 } else if selectedDevice.name == Device.iPhone5().name ||
-                          selectedDevice.name == Device.galaxyS3().name {
-                    tableHeaderViewHeight = 400.0
-                    caseViewWidth = 220.0
+                    selectedDevice.name == Device.galaxyS3().name {
+                        tableHeaderViewHeight = 400.0
+                        caseViewWidth = 220.0
                 } else if selectedDevice.name == Device.iPhone6().name ||
-                          selectedDevice.name == Device.galaxyS4().name {
-                    tableHeaderViewHeight = 420.0
-                    caseViewWidth = 240.0
+                    selectedDevice.name == Device.galaxyS4().name {
+                        tableHeaderViewHeight = 420.0
+                        caseViewWidth = 240.0
                 } else if selectedDevice.name == Device.iPhone6Plus().name {
                     tableHeaderViewHeight = 440.0
                     caseViewWidth = 260.0
                 } else if selectedDevice.name == Device.galaxyS5().name ||
-                          selectedDevice.name == Device.galaxyS6().name ||
-                          selectedDevice.name == Device.galaxyS6Edge().name {
-                    tableHeaderViewHeight = 440.0
-                    caseViewWidth = 240
+                    selectedDevice.name == Device.galaxyS6().name ||
+                    selectedDevice.name == Device.galaxyS6Edge().name {
+                        tableHeaderViewHeight = 440.0
+                        caseViewWidth = 240
                 }
                 
                 let tableView = weakSelf?.tableView
@@ -323,7 +325,7 @@ extension CaseConstructorTableViewController: UIImagePickerControllerDelegate, U
         
         self.caseView.image = imageForCase(chosenImage)
         self.caseView.showBackgroundImage = true
-
+        
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     

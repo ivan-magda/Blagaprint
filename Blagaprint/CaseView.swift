@@ -84,6 +84,9 @@ class CaseView: UIView {
         } else if device.name == Device.galaxyS6().name ||
                   device.name == Device.galaxyS6Edge().name {
             PhoneCase.drawGalaxyS6(self.bounds, fillColor: fillColor, colorOfText: textColor, image: image, caseText: text, backgroundImageVisible: showBackgroundImage, textRectHeight: textRectHeight, textYscale: textYscale, textSize: textSize, textXscale: textXscale, device: device)
+        } else if device.name == Device.galaxyA3().name ||
+                  device.name == Device.galaxyA5().name {
+            PhoneCase.drawGalaxyA3A5(self.bounds, fillColor: fillColor, colorOfText: textColor, image: image, caseText: text, backgroundImageVisible: showBackgroundImage, textRectHeight: textRectHeight, textYscale: textYscale, textSize: textSize, textXscale: textXscale, device: device)
         }
     }
     
@@ -161,7 +164,9 @@ class CaseView: UIView {
            device.name == Device.galaxyS5().name     ||
            device.name == Device.galaxyS5Mini().name ||
            device.name == Device.galaxyS6().name     ||
-           device.name == Device.galaxyS6Edge().name {
+           device.name == Device.galaxyS6Edge().name ||
+           device.name == Device.galaxyA3().name     ||
+           device.name == Device.galaxyA5().name {
                 if countOnWideCharacter < 2 {
                     scale += 0.1
                     if numberOfCharacters < 4 {
@@ -222,8 +227,8 @@ class CaseView: UIView {
             default:
                 return 46.0
             }
-        } else if device.name == Device.iPhone4().name      ||
-                  device.name == Device.galaxyS3().name     ||
+        } else if device.name == Device.iPhone4().name  ||
+                  device.name == Device.galaxyS3().name ||
                   device.name == Device.galaxyS5Mini().name {
             switch characters {
             case 1, 2:
@@ -332,7 +337,9 @@ class CaseView: UIView {
             default:
                 return 44.0
             }
-        } else if device.name == Device.galaxyS4Mini().name {
+        } else if device.name == Device.galaxyS4Mini().name ||
+                  device.name == Device.galaxyA3().name     ||
+                  device.name == Device.galaxyA5().name {
             switch characters {
             case 1, 2:
                 return 220.0
@@ -397,7 +404,9 @@ class CaseView: UIView {
            device.name == Device.iPhone5().name      ||
            device.name == Device.galaxyS3().name     ||
            device.name == Device.galaxyS4Mini().name ||
-           device.name == Device.galaxyS5Mini().name {
+           device.name == Device.galaxyS5Mini().name ||
+           device.name == Device.galaxyA3().name     ||
+           device.name == Device.galaxyA5().name {
             switch characters {
             case 1, 2, 3:
                 return 200.0
