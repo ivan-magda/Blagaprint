@@ -98,7 +98,10 @@ class CaseConstructorTableViewController: UITableViewController {
                     caseViewWidth = 260.0
                 } else if selectedDevice.name == Device.galaxyS5().name ||
                     selectedDevice.name == Device.galaxyS6().name ||
-                    selectedDevice.name == Device.galaxyS6Edge().name {
+                    selectedDevice.name == Device.galaxyS6Edge().name ||
+                    selectedDevice.name == Device.galaxyNote2().name  ||
+                    selectedDevice.name == Device.galaxyNote3().name  ||
+                    selectedDevice.name == Device.galaxyNote4().name {
                         tableHeaderViewHeight = 440.0
                         caseViewWidth = 240
                 }

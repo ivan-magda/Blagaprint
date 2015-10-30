@@ -89,6 +89,12 @@ class CaseView: UIView {
             PhoneCase.drawGalaxyA3A5(self.bounds, fillColor: fillColor, colorOfText: textColor, image: image, caseText: text, backgroundImageVisible: showBackgroundImage, textRectHeight: textRectHeight, textYscale: textYscale, textSize: textSize, textXscale: textXscale, device: device)
         } else if device.name == Device.galaxyA7().name {
             GalaxyA7.drawGalaxyA7Canvas(self.bounds, fillColor: fillColor, colorOfText: textColor, image: image, textXscale: textXscale, textSize: textSize, backgroundImageVisible: showBackgroundImage, caseText: text, textYscale: textYscale, textRectHeight: textRectHeight)
+        } else if device.name == Device.galaxyNote2().name {
+            GalaxyNote2.drawGalaxyNote2(self.bounds, colorOfText: textColor, fillColor: fillColor, image: image, textSize: textSize, textXscale: textXscale, textRectHeight: textRectHeight, caseText: text, textYscale: textYscale, backgroundImageVisible: showBackgroundImage)
+        } else if device.name == Device.galaxyNote3().name {
+            GalaxyNote3.drawNote3(self.bounds, fillColor: fillColor, colorOfText: textColor, image: image, textSize: textSize, textXscale: textXscale, caseText: text, backgroundImageVisible: showBackgroundImage, textYscale: textYscale, textRectHeight: textRectHeight)
+        } else if device.name == Device.galaxyNote4().name {
+            GalaxyNote4.drawNote4(self.bounds, colorOfText: textColor, fillColor: fillColor, image: image, caseText: text, textYscale: textYscale, backgroundImageVisible: showBackgroundImage, textXscale: textXscale, textSize: textSize, textRectHeight: textRectHeight)
         }
     }
     
@@ -158,18 +164,8 @@ class CaseView: UIView {
         }
         
         // Add extra value to x scale for specific case.
-        if device.name == Device.iPhone4().name      ||
-           device.name == Device.iPhone6Plus().name  ||
-           device.name == Device.galaxyS3().name     ||
-           device.name == Device.galaxyS4().name     ||
-           device.name == Device.galaxyS4Mini().name ||
-           device.name == Device.galaxyS5().name     ||
-           device.name == Device.galaxyS5Mini().name ||
-           device.name == Device.galaxyS6().name     ||
-           device.name == Device.galaxyS6Edge().name ||
-           device.name == Device.galaxyA3().name     ||
-           device.name == Device.galaxyA5().name     ||
-           device.name == Device.galaxyA7().name {
+        if device.name != Device.iPhone5().name &&
+           device.name != Device.iPhone6().name {
                 if countOnWideCharacter < 2 {
                     scale += 0.1
                     if numberOfCharacters < 4 {
@@ -372,7 +368,10 @@ class CaseView: UIView {
             }
         } else if device.name == Device.galaxyS5().name ||
                   device.name == Device.galaxyS6().name ||
-                  device.name == Device.galaxyS6Edge().name {
+                  device.name == Device.galaxyS6Edge().name ||
+                  device.name == Device.galaxyNote2().name  ||
+                  device.name == Device.galaxyNote3().name  ||
+                  device.name == Device.galaxyNote4().name {
             switch characters {
             case 1, 2:
                 return 225.0
@@ -489,7 +488,10 @@ class CaseView: UIView {
             }
         } else if device.name == Device.galaxyS5().name ||
                   device.name == Device.galaxyS6().name ||
-                  device.name == Device.galaxyS6Edge().name {
+                  device.name == Device.galaxyS6Edge().name ||
+                  device.name == Device.galaxyNote2().name  ||
+                  device.name == Device.galaxyNote3().name  ||
+                  device.name == Device.galaxyNote4().name {
             switch characters {
             case 1, 2, 3:
                 return 225.0
