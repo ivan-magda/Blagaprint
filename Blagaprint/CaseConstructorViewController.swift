@@ -108,7 +108,8 @@ class CaseConstructorTableViewController: UITableViewController {
                     selectedDevice.name == Device.sonyXperiaZ1().name ||
                     selectedDevice.name == Device.sonyXperiaZ2().name ||
                     selectedDevice.name == Device.sonyXperiaZ3().name ||
-                    selectedDevice.name == Device.xiaomiMi4().name {
+                    selectedDevice.name == Device.xiaomiMi4().name    ||
+                    selectedDevice.name == Device.lenovoS850().name {
                         tableHeaderViewHeight = 440.0
                         caseViewWidth = 240
                 }

@@ -143,6 +143,9 @@
 		75F739321BE491930063EB6F /* xiaomiMi4Microphone.png in Resources */ = {isa = PBXBuildFile; fileRef = 75F739301BE491930063EB6F /* xiaomiMi4Microphone.png */; };
 		75F739331BE491930063EB6F /* xiaomiMi4Microphone@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 75F739311BE491930063EB6F /* xiaomiMi4Microphone@2x.png */; };
 		75F739371BE491BF0063EB6F /* XiaomiMi4.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75F739361BE491BF0063EB6F /* XiaomiMi4.swift */; };
+		75F7393A1BE4979B0063EB6F /* LenovoS850.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75F739391BE4979B0063EB6F /* LenovoS850.swift */; };
+		75F7393D1BE497AC0063EB6F /* lenovoS850CameraImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 75F7393B1BE497AC0063EB6F /* lenovoS850CameraImage.png */; };
+		75F7393E1BE497AC0063EB6F /* lenovoS850CameraImage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 75F7393C1BE497AC0063EB6F /* lenovoS850CameraImage@2x.png */; };
 		75FD246F1BE3D3E500446801 /* XperiaZ.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75FD246E1BE3D3E500446801 /* XperiaZ.swift */; };
 		75FD24731BE457B200446801 /* xperiaZ1CameraImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 75FD24711BE457B200446801 /* xperiaZ1CameraImage.png */; };
 		75FD24741BE457B200446801 /* xperiaZ1CameraImage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 75FD24721BE457B200446801 /* xperiaZ1CameraImage@2x.png */; };
@@ -292,6 +295,9 @@
 		75F739301BE491930063EB6F /* xiaomiMi4Microphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = xiaomiMi4Microphone.png; sourceTree = "<group>"; };
 		75F739311BE491930063EB6F /* xiaomiMi4Microphone@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "xiaomiMi4Microphone@2x.png"; sourceTree = "<group>"; };
 		75F739361BE491BF0063EB6F /* XiaomiMi4.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XiaomiMi4.swift; sourceTree = "<group>"; };
+		75F739391BE4979B0063EB6F /* LenovoS850.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LenovoS850.swift; sourceTree = "<group>"; };
+		75F7393B1BE497AC0063EB6F /* lenovoS850CameraImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lenovoS850CameraImage.png; sourceTree = "<group>"; };
+		75F7393C1BE497AC0063EB6F /* lenovoS850CameraImage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "lenovoS850CameraImage@2x.png"; sourceTree = "<group>"; };
 		75FD246E1BE3D3E500446801 /* XperiaZ.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XperiaZ.swift; sourceTree = "<group>"; };
 		75FD24711BE457B200446801 /* xperiaZ1CameraImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = xperiaZ1CameraImage.png; sourceTree = "<group>"; };
 		75FD24721BE457B200446801 /* xperiaZ1CameraImage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "xperiaZ1CameraImage@2x.png"; sourceTree = "<group>"; };
@@ -436,6 +442,7 @@
 			children = (
 				75DD91FE1BD7BFE000932AD7 /* CaseView.swift */,
 				75823AAE1BD8BDD000C92F83 /* PhoneCase.swift */,
+				75F739391BE4979B0063EB6F /* LenovoS850.swift */,
 				75A3E97F1BE3612F0001E073 /* Samsung */,
 				75FD24701BE3D3EA00446801 /* Sony */,
 				75F739381BE491C60063EB6F /* Xiaomi */,
@@ -609,6 +616,7 @@
 				75A3E9721BE3553C0001E073 /* Samsung */,
 				75FD24751BE457B600446801 /* Sony */,
 				75F739341BE491990063EB6F /* Xiaomi */,
+				75F7393F1BE497B00063EB6F /* Lenovo */,
 			);
 			name = PhoneCaseImages;
 			sourceTree = "<group>";
@@ -800,6 +808,23 @@
 			name = Xiaomi;
 			sourceTree = "<group>";
 		};
+		75F7393F1BE497B00063EB6F /* Lenovo */ = {
+			isa = PBXGroup;
+			children = (
+				75F739401BE497BB0063EB6F /* S850 */,
+			);
+			name = Lenovo;
+			sourceTree = "<group>";
+		};
+		75F739401BE497BB0063EB6F /* S850 */ = {
+			isa = PBXGroup;
+			children = (
+				75F7393B1BE497AC0063EB6F /* lenovoS850CameraImage.png */,
+				75F7393C1BE497AC0063EB6F /* lenovoS850CameraImage@2x.png */,
+			);
+			name = S850;
+			sourceTree = "<group>";
+		};
 		75FD24701BE3D3EA00446801 /* Sony */ = {
 			isa = PBXGroup;
 			children = (
@@ -938,6 +963,7 @@
 				502A8CE01BB822410064E0DA /* MenuWhite@2x.png in Resources */,
 				750E4AF41BE20F70006103AE /* galaxyA3Speaker.png in Resources */,
 				50BE47131BBA388400724119 /* MenuMalibu@3x.png in Resources */,
+				75F7393E1BE497AC0063EB6F /* lenovoS850CameraImage@2x.png in Resources */,
 				50F8F3CB1BC78F20002CE3FD /* clothes_wimen.jpg in Resources */,
 				75A36C421BE263380036B500 /* galaxyA7CameraImage.png in Resources */,
 				750E4AF01BE20F67006103AE /* galaxyA3Led.png in Resources */,
@@ -1024,6 +1050,7 @@
 				7547D24B1BDE2376006E4170 /* galaxyS3Led.png in Resources */,
 				7522783F1BE12951008E117F /* galaxyS6CameraImage@2x.png in Resources */,
 				75F739321BE491930063EB6F /* xiaomiMi4Microphone.png in Resources */,
+				75F7393D1BE497AC0063EB6F /* lenovoS850CameraImage.png in Resources */,
 				750E4AEC1BE20F5E006103AE /* galaxyA3CameraImage.png in Resources */,
 				758595621BDA30C10079A1BA /* iPhone4CameraImage.png in Resources */,
 				75F7391F1BE469940063EB6F /* xperiaZ3compactCameraImage.png in Resources */,
@@ -1060,6 +1087,7 @@
 				75A3E9811BE3645E0001E073 /* GalaxyNote4.swift in Sources */,
 				50FD7F501BB8FFF600ABEC38 /* CategoryTableViewCell.swift in Sources */,
 				503CBEC11BC415C700052BE0 /* CategoryItem.swift in Sources */,
+				75F7393A1BE4979B0063EB6F /* LenovoS850.swift in Sources */,
 				50551C311BCBB43A005B88DA /* BackgroundOvalView.swift in Sources */,
 				0C541A591BD0B51A0028BD9A /* PhotoLibraryItemCollectionViewCell.swift in Sources */,
 				501506501BCE96C700697C99 /* TextEditingViewController.swift in Sources */,

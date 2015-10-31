@@ -105,6 +105,8 @@ class CaseView: UIView {
             XperiaZcompact.drawXperiaZcompact(self.bounds, colorOfText: textColor, fillColor: fillColor, image: image, textRectHeight: textRectHeight, backgroundImageVisible: showBackgroundImage, textYscale: textYscale, caseText: text, textXscale: textXscale, textSize: textSize, device: device)
         } else if device.name == Device.xiaomiMi4().name {
             XiaomiMi4.drawXiaomiMi(self.bounds, fillColor: fillColor, colorOfText: textColor, image: image, textYscale: textYscale, textXscale: textXscale, textSize: textSize, textRectHeight: textRectHeight, backgroundImageVisible: showBackgroundImage, caseText: text)
+        } else if device.name == Device.lenovoS850().name {
+            LenovoS850.drawLenovoS(self.bounds, colorOfText: textColor, fillColor: fillColor, image: image, textYscale: textYscale, caseText: text, textRectHeight: textRectHeight, textSize: textSize, textXscale: textXscale, backgroundImageVisible: showBackgroundImage)
         }
     }
     
@@ -388,7 +390,8 @@ class CaseView: UIView {
                   device.name == Device.sonyXperiaZ1().name ||
                   device.name == Device.sonyXperiaZ2().name ||
                   device.name == Device.sonyXperiaZ3().name ||
-                  device.name == Device.xiaomiMi4().name {
+                  device.name == Device.xiaomiMi4().name    ||
+                  device.name == Device.lenovoS850().name {
             switch characters {
             case 1, 2:
                 return 225.0
@@ -515,7 +518,8 @@ class CaseView: UIView {
                   device.name == Device.sonyXperiaZ1().name ||
                   device.name == Device.sonyXperiaZ2().name ||
                   device.name == Device.sonyXperiaZ3().name ||
-                  device.name == Device.xiaomiMi4().name {
+                  device.name == Device.xiaomiMi4().name    ||
+                  device.name == Device.lenovoS850().name {
             switch characters {
             case 1, 2, 3:
                 return 225.0
