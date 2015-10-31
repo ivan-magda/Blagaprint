@@ -200,19 +200,17 @@ class XperiaZ : NSObject {
         
         
         //// Camera Drawing
-        let cameraRect: CGRect = CGRectMake(frame.minX + 40, frame.minY + 40, 40, 55)
+        let cameraRect: CGRect = CGRectMake(frame.minX + 40, frame.minY + 40, 40, 56)
         let cameraPath = UIBezierPath()
-        cameraPath.moveToPoint(CGPointMake(frame.minX + 74.14, frame.minY + 45.15))
-        cameraPath.addCurveToPoint(CGPointMake(frame.minX + 74.14, frame.minY + 69.99), controlPoint1: CGPointMake(frame.minX + 81.95, frame.minY + 52.01), controlPoint2: CGPointMake(frame.minX + 81.95, frame.minY + 63.13))
-        cameraPath.addCurveToPoint(CGPointMake(frame.minX + 70, frame.minY + 72.78), controlPoint1: CGPointMake(frame.minX + 72.88, frame.minY + 71.1), controlPoint2: CGPointMake(frame.minX + 71.48, frame.minY + 72.03))
-        cameraPath.addCurveToPoint(CGPointMake(frame.minX + 70, frame.minY + 83.92), controlPoint1: CGPointMake(frame.minX + 70, frame.minY + 77.41), controlPoint2: CGPointMake(frame.minX + 69.81, frame.minY + 81.02))
-        cameraPath.addCurveToPoint(CGPointMake(frame.minX + 70, frame.minY + 88.31), controlPoint1: CGPointMake(frame.minX + 70.11, frame.minY + 85.58), controlPoint2: CGPointMake(frame.minX + 70, frame.minY + 85.06))
-        cameraPath.addCurveToPoint(CGPointMake(frame.minX + 50, frame.minY + 88.31), controlPoint1: CGPointMake(frame.minX + 70, frame.minY + 97.23), controlPoint2: CGPointMake(frame.minX + 50, frame.minY + 97.23))
-        cameraPath.addCurveToPoint(CGPointMake(frame.minX + 50, frame.minY + 83.92), controlPoint1: CGPointMake(frame.minX + 50, frame.minY + 85.63), controlPoint2: CGPointMake(frame.minX + 50.1, frame.minY + 85.24))
-        cameraPath.addCurveToPoint(CGPointMake(frame.minX + 50, frame.minY + 72.78), controlPoint1: CGPointMake(frame.minX + 49.76, frame.minY + 80.84), controlPoint2: CGPointMake(frame.minX + 50, frame.minY + 77.87))
-        cameraPath.addCurveToPoint(CGPointMake(frame.minX + 45.86, frame.minY + 69.99), controlPoint1: CGPointMake(frame.minX + 48.52, frame.minY + 72.03), controlPoint2: CGPointMake(frame.minX + 47.12, frame.minY + 71.1))
-        cameraPath.addCurveToPoint(CGPointMake(frame.minX + 45.86, frame.minY + 45.15), controlPoint1: CGPointMake(frame.minX + 38.05, frame.minY + 63.13), controlPoint2: CGPointMake(frame.minX + 38.05, frame.minY + 52.01))
-        cameraPath.addCurveToPoint(CGPointMake(frame.minX + 74.14, frame.minY + 45.15), controlPoint1: CGPointMake(frame.minX + 53.67, frame.minY + 38.28), controlPoint2: CGPointMake(frame.minX + 66.33, frame.minY + 38.28))
+        cameraPath.moveToPoint(CGPointMake(frame.minX + 75.31, frame.minY + 45.11))
+        cameraPath.addCurveToPoint(CGPointMake(frame.minX + 74.05, frame.minY + 76.17), controlPoint1: CGPointMake(frame.minX + 83.29, frame.minY + 51.5), controlPoint2: CGPointMake(frame.minX + 79.88, frame.minY + 70.03))
+        cameraPath.addCurveToPoint(CGPointMake(frame.minX + 73.93, frame.minY + 78.72), controlPoint1: CGPointMake(frame.minX + 74.02, frame.minY + 77.03), controlPoint2: CGPointMake(frame.minX + 73.98, frame.minY + 77.89))
+        cameraPath.addCurveToPoint(CGPointMake(frame.minX + 73.93, frame.minY + 88.77), controlPoint1: CGPointMake(frame.minX + 73.7, frame.minY + 82.72), controlPoint2: CGPointMake(frame.minX + 73.93, frame.minY + 86.22))
+        cameraPath.addCurveToPoint(CGPointMake(frame.minX + 46.75, frame.minY + 88.77), controlPoint1: CGPointMake(frame.minX + 73.93, frame.minY + 97.99), controlPoint2: CGPointMake(frame.minX + 46.75, frame.minY + 98.82))
+        cameraPath.addCurveToPoint(CGPointMake(frame.minX + 46.75, frame.minY + 78.72), controlPoint1: CGPointMake(frame.minX + 46.75, frame.minY + 86.25), controlPoint2: CGPointMake(frame.minX + 47.07, frame.minY + 82.27))
+        cameraPath.addCurveToPoint(CGPointMake(frame.minX + 46.63, frame.minY + 77.12), controlPoint1: CGPointMake(frame.minX + 46.71, frame.minY + 78.2), controlPoint2: CGPointMake(frame.minX + 46.67, frame.minY + 77.66))
+        cameraPath.addCurveToPoint(CGPointMake(frame.minX + 44.45, frame.minY + 45.11), controlPoint1: CGPointMake(frame.minX + 41.24, frame.minY + 72.26), controlPoint2: CGPointMake(frame.minX + 35.99, frame.minY + 51.88))
+        cameraPath.addCurveToPoint(CGPointMake(frame.minX + 75.31, frame.minY + 45.11), controlPoint1: CGPointMake(frame.minX + 52.97, frame.minY + 38.3), controlPoint2: CGPointMake(frame.minX + 66.78, frame.minY + 38.3))
         cameraPath.closePath()
         CGContextSaveGState(context)
         CGContextSetShadowWithColor(context, cameraOuterShadow.shadowOffset, cameraOuterShadow.shadowBlurRadius, cameraOuterShadow.shadowColor!.CGColor)
@@ -224,7 +222,6 @@ class XperiaZ : NSObject {
         if xperiaCameraImage != nil {
             CGContextDrawTiledImage(context, CGRectMake(cameraRect.minX, -cameraRect.minY, xperiaCameraImage!.size.width, xperiaCameraImage!.size.height), xperiaCameraImage!.CGImage)
         }
-        
         CGContextRestoreGState(context)
         CGContextEndTransparencyLayer(context)
         
