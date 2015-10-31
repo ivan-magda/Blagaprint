@@ -95,6 +95,10 @@ class CaseView: UIView {
             GalaxyNote3.drawNote3(self.bounds, fillColor: fillColor, colorOfText: textColor, image: image, textSize: textSize, textXscale: textXscale, caseText: text, backgroundImageVisible: showBackgroundImage, textYscale: textYscale, textRectHeight: textRectHeight)
         } else if device.name == Device.galaxyNote4().name {
             GalaxyNote4.drawNote4(self.bounds, colorOfText: textColor, fillColor: fillColor, image: image, caseText: text, textYscale: textYscale, backgroundImageVisible: showBackgroundImage, textXscale: textXscale, textSize: textSize, textRectHeight: textRectHeight)
+        } else if device.name == Device.sonyXperiaZ1().name ||
+                  device.name == Device.sonyXperiaZ2().name ||
+                  device.name == Device.sonyXperiaZ3().name {
+                XperiaZ.drawXperiaZ1(self.bounds, colorOfText: textColor, fillColor: fillColor, image: image, textYscale: textYscale, caseText: text, textSize: textSize, textXscale: textXscale, backgroundImageVisible: showBackgroundImage, textRectHeight: textRectHeight, device: device)
         }
     }
     
@@ -371,7 +375,10 @@ class CaseView: UIView {
                   device.name == Device.galaxyS6Edge().name ||
                   device.name == Device.galaxyNote2().name  ||
                   device.name == Device.galaxyNote3().name  ||
-                  device.name == Device.galaxyNote4().name {
+                  device.name == Device.galaxyNote4().name  ||
+                  device.name == Device.sonyXperiaZ1().name ||
+                  device.name == Device.sonyXperiaZ2().name ||
+                  device.name == Device.sonyXperiaZ3().name {
             switch characters {
             case 1, 2:
                 return 225.0
@@ -491,7 +498,10 @@ class CaseView: UIView {
                   device.name == Device.galaxyS6Edge().name ||
                   device.name == Device.galaxyNote2().name  ||
                   device.name == Device.galaxyNote3().name  ||
-                  device.name == Device.galaxyNote4().name {
+                  device.name == Device.galaxyNote4().name  ||
+                  device.name == Device.sonyXperiaZ1().name ||
+                  device.name == Device.sonyXperiaZ2().name ||
+                  device.name == Device.sonyXperiaZ3().name {
             switch characters {
             case 1, 2, 3:
                 return 225.0

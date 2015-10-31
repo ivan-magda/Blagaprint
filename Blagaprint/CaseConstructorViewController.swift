@@ -101,7 +101,10 @@ class CaseConstructorTableViewController: UITableViewController {
                     selectedDevice.name == Device.galaxyS6Edge().name ||
                     selectedDevice.name == Device.galaxyNote2().name  ||
                     selectedDevice.name == Device.galaxyNote3().name  ||
-                    selectedDevice.name == Device.galaxyNote4().name {
+                    selectedDevice.name == Device.galaxyNote4().name  ||
+                    selectedDevice.name == Device.sonyXperiaZ1().name ||
+                    selectedDevice.name == Device.sonyXperiaZ2().name ||
+                    selectedDevice.name == Device.sonyXperiaZ3().name {
                         tableHeaderViewHeight = 440.0
                         caseViewWidth = 240
                 }
