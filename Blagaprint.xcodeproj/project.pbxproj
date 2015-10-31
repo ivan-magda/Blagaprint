@@ -132,6 +132,12 @@
 		75A3E9891BE365DC0001E073 /* galaxyNote4Speaker@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 75A3E9871BE365DC0001E073 /* galaxyNote4Speaker@2x.png */; };
 		75DD91F91BD7B43800932AD7 /* AndersonSupercar.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 75DD91F81BD7B43800932AD7 /* AndersonSupercar.ttf */; };
 		75DD91FF1BD7BFE000932AD7 /* CaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75DD91FE1BD7BFE000932AD7 /* CaseView.swift */; };
+		75F7391F1BE469940063EB6F /* xperiaZ3compactCameraImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 75F7391D1BE469940063EB6F /* xperiaZ3compactCameraImage.png */; };
+		75F739201BE469940063EB6F /* xperiaZ3compactCameraImage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 75F7391E1BE469940063EB6F /* xperiaZ3compactCameraImage@2x.png */; };
+		75F739231BE4699B0063EB6F /* xperiaZ2compactCameraImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 75F739211BE4699B0063EB6F /* xperiaZ2compactCameraImage.png */; };
+		75F739241BE4699B0063EB6F /* xperiaZ2compactCameraImage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 75F739221BE4699B0063EB6F /* xperiaZ2compactCameraImage@2x.png */; };
+		75F739271BE469A20063EB6F /* xperiaZ1compactCameraImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 75F739251BE469A20063EB6F /* xperiaZ1compactCameraImage.png */; };
+		75F739281BE469A20063EB6F /* xperiaZ1compactCameraImage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 75F739261BE469A20063EB6F /* xperiaZ1compactCameraImage@2x.png */; };
 		75FD246F1BE3D3E500446801 /* XperiaZ.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75FD246E1BE3D3E500446801 /* XperiaZ.swift */; };
 		75FD24731BE457B200446801 /* xperiaZ1CameraImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 75FD24711BE457B200446801 /* xperiaZ1CameraImage.png */; };
 		75FD24741BE457B200446801 /* xperiaZ1CameraImage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 75FD24721BE457B200446801 /* xperiaZ1CameraImage@2x.png */; };
@@ -139,6 +145,7 @@
 		75FD247A1BE4594C00446801 /* xperiaZ2CameraImage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 75FD24781BE4594C00446801 /* xperiaZ2CameraImage@2x.png */; };
 		75FD247E1BE45B7E00446801 /* xperiaZ3CameraImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 75FD247C1BE45B7E00446801 /* xperiaZ3CameraImage.png */; };
 		75FD247F1BE45B7E00446801 /* xperiaZ3CameraImage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 75FD247D1BE45B7E00446801 /* xperiaZ3CameraImage@2x.png */; };
+		75FD24821BE461EE00446801 /* XperiaZcompact.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75FD24811BE461EE00446801 /* XperiaZcompact.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -269,6 +276,12 @@
 		75A3E9871BE365DC0001E073 /* galaxyNote4Speaker@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "galaxyNote4Speaker@2x.png"; sourceTree = "<group>"; };
 		75DD91F81BD7B43800932AD7 /* AndersonSupercar.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = AndersonSupercar.ttf; sourceTree = "<group>"; };
 		75DD91FE1BD7BFE000932AD7 /* CaseView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CaseView.swift; sourceTree = "<group>"; };
+		75F7391D1BE469940063EB6F /* xperiaZ3compactCameraImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = xperiaZ3compactCameraImage.png; sourceTree = "<group>"; };
+		75F7391E1BE469940063EB6F /* xperiaZ3compactCameraImage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "xperiaZ3compactCameraImage@2x.png"; sourceTree = "<group>"; };
+		75F739211BE4699B0063EB6F /* xperiaZ2compactCameraImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = xperiaZ2compactCameraImage.png; sourceTree = "<group>"; };
+		75F739221BE4699B0063EB6F /* xperiaZ2compactCameraImage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "xperiaZ2compactCameraImage@2x.png"; sourceTree = "<group>"; };
+		75F739251BE469A20063EB6F /* xperiaZ1compactCameraImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = xperiaZ1compactCameraImage.png; sourceTree = "<group>"; };
+		75F739261BE469A20063EB6F /* xperiaZ1compactCameraImage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "xperiaZ1compactCameraImage@2x.png"; sourceTree = "<group>"; };
 		75FD246E1BE3D3E500446801 /* XperiaZ.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XperiaZ.swift; sourceTree = "<group>"; };
 		75FD24711BE457B200446801 /* xperiaZ1CameraImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = xperiaZ1CameraImage.png; sourceTree = "<group>"; };
 		75FD24721BE457B200446801 /* xperiaZ1CameraImage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "xperiaZ1CameraImage@2x.png"; sourceTree = "<group>"; };
@@ -276,6 +289,7 @@
 		75FD24781BE4594C00446801 /* xperiaZ2CameraImage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "xperiaZ2CameraImage@2x.png"; sourceTree = "<group>"; };
 		75FD247C1BE45B7E00446801 /* xperiaZ3CameraImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = xperiaZ3CameraImage.png; sourceTree = "<group>"; };
 		75FD247D1BE45B7E00446801 /* xperiaZ3CameraImage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "xperiaZ3CameraImage@2x.png"; sourceTree = "<group>"; };
+		75FD24811BE461EE00446801 /* XperiaZcompact.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XperiaZcompact.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -720,10 +734,38 @@
 			name = GalaxyNote4;
 			sourceTree = "<group>";
 		};
+		75F739291BE469A80063EB6F /* XperiaZ1Compact */ = {
+			isa = PBXGroup;
+			children = (
+				75F739251BE469A20063EB6F /* xperiaZ1compactCameraImage.png */,
+				75F739261BE469A20063EB6F /* xperiaZ1compactCameraImage@2x.png */,
+			);
+			name = XperiaZ1Compact;
+			sourceTree = "<group>";
+		};
+		75F7392A1BE469B60063EB6F /* XperiaZ2Compact */ = {
+			isa = PBXGroup;
+			children = (
+				75F739211BE4699B0063EB6F /* xperiaZ2compactCameraImage.png */,
+				75F739221BE4699B0063EB6F /* xperiaZ2compactCameraImage@2x.png */,
+			);
+			name = XperiaZ2Compact;
+			sourceTree = "<group>";
+		};
+		75F7392B1BE469BB0063EB6F /* XperiaZ3Compact */ = {
+			isa = PBXGroup;
+			children = (
+				75F7391D1BE469940063EB6F /* xperiaZ3compactCameraImage.png */,
+				75F7391E1BE469940063EB6F /* xperiaZ3compactCameraImage@2x.png */,
+			);
+			name = XperiaZ3Compact;
+			sourceTree = "<group>";
+		};
 		75FD24701BE3D3EA00446801 /* Sony */ = {
 			isa = PBXGroup;
 			children = (
 				75FD246E1BE3D3E500446801 /* XperiaZ.swift */,
+				75FD24811BE461EE00446801 /* XperiaZcompact.swift */,
 			);
 			name = Sony;
 			sourceTree = "<group>";
@@ -734,6 +776,9 @@
 				75FD24761BE457C400446801 /* XperiaZ1 */,
 				75FD247B1BE4595700446801 /* XperiaZ2 */,
 				75FD24801BE45B8900446801 /* XperiaZ3 */,
+				75F739291BE469A80063EB6F /* XperiaZ1Compact */,
+				75F7392A1BE469B60063EB6F /* XperiaZ2Compact */,
+				75F7392B1BE469BB0063EB6F /* XperiaZ3Compact */,
 			);
 			name = Sony;
 			sourceTree = "<group>";
@@ -839,6 +884,7 @@
 				502A8CBD1BB80EAC0064E0DA /* LaunchScreen.storyboard in Resources */,
 				750E4AE81BE20345006103AE /* galaxyS6EdgeCameraImage@2x.png in Resources */,
 				75A3E97E1BE360D70001E073 /* galaxyNote3CameraImage@2x.png in Resources */,
+				75F739271BE469A20063EB6F /* xperiaZ1compactCameraImage.png in Resources */,
 				50F8F3B71BC785C5002CE3FD /* case_with_name.jpg in Resources */,
 				75FD24741BE457B200446801 /* xperiaZ1CameraImage@2x.png in Resources */,
 				75A3E97D1BE360D70001E073 /* galaxyNote3CameraImage.png in Resources */,
@@ -877,6 +923,7 @@
 				75A36C3B1BE254AB0036B500 /* galaxyA5Speaker.png in Resources */,
 				7522783A1BE11E72008E117F /* iPhone5CameraImage.png in Resources */,
 				75A36C471BE266690036B500 /* galaxyA7Led.png in Resources */,
+				75F739241BE4699B0063EB6F /* xperiaZ2compactCameraImage@2x.png in Resources */,
 				50F8F3C91BC78EA7002CE3FD /* clothes_man.jpg in Resources */,
 				75A36C331BE254910036B500 /* galaxyA5CameraImage.png in Resources */,
 				50F8F3C51BC78CB7002CE3FD /* key_ring_with_photo_plastic.jpg in Resources */,
@@ -899,6 +946,7 @@
 				50DD72561BBEE46B008A9B80 /* key_rings_by_3D_printer.jpg in Resources */,
 				759E8CD41BDF6D46008A5503 /* galaxyS5MiniCameraImage.png in Resources */,
 				75A3E96C1BE355120001E073 /* galaxyNote2Speaker@2x.png in Resources */,
+				75F739281BE469A20063EB6F /* xperiaZ1compactCameraImage@2x.png in Resources */,
 				75FD247F1BE45B7E00446801 /* xperiaZ3CameraImage@2x.png in Resources */,
 				7547D2491BDE2376006E4170 /* galaxyS3CameraImage.png in Resources */,
 				757470351BDCBEB4004CABD0 /* iPhone6CameraImage.png in Resources */,
@@ -912,12 +960,14 @@
 				75A36C3C1BE254AB0036B500 /* galaxyA5Speaker@2x.png in Resources */,
 				50551C2A1BCB87D6005B88DA /* More@3x.png in Resources */,
 				75A36C4B1BE266700036B500 /* galaxyA7Speaker.png in Resources */,
+				75F739231BE4699B0063EB6F /* xperiaZ2compactCameraImage.png in Resources */,
 				75FD247E1BE45B7E00446801 /* xperiaZ3CameraImage.png in Resources */,
 				50F8F3BB1BC787B5002CE3FD /* case_individual.jpg in Resources */,
 				759E8CCF1BDF64A1008A5503 /* galaxyS4MiniCameraImage.png in Resources */,
 				50BE47111BBA388400724119 /* MenuMalibu.png in Resources */,
 				75A36C381BE2549E0036B500 /* galaxyA5Led@2x.png in Resources */,
 				50DD72681BBEEA44008A9B80 /* 3D_printing.jpg in Resources */,
+				75F739201BE469940063EB6F /* xperiaZ3compactCameraImage@2x.png in Resources */,
 				7547D24C1BDE2376006E4170 /* galaxyS3Led@2x.png in Resources */,
 				750E4AF11BE20F67006103AE /* galaxyA3Led@2x.png in Resources */,
 				7547D2501BDE2376006E4170 /* galaxyS4CameraImage@2x.png in Resources */,
@@ -933,6 +983,7 @@
 				7522783F1BE12951008E117F /* galaxyS6CameraImage@2x.png in Resources */,
 				750E4AEC1BE20F5E006103AE /* galaxyA3CameraImage.png in Resources */,
 				758595621BDA30C10079A1BA /* iPhone4CameraImage.png in Resources */,
+				75F7391F1BE469940063EB6F /* xperiaZ3compactCameraImage.png in Resources */,
 				50DD72581BBEE555008A9B80 /* key_ring_with_photo.jpg in Resources */,
 				7547D24D1BDE2376006E4170 /* galaxyS3Speaker.png in Resources */,
 				502A8CB81BB80EAC0064E0DA /* Main.storyboard in Resources */,
@@ -956,6 +1007,7 @@
 				50DD72391BBED313008A9B80 /* Category.swift in Sources */,
 				75A3E9681BE354F40001E073 /* GalaxyNote2.swift in Sources */,
 				50F8F41A1BC80857002CE3FD /* CategoryItemTableViewCell.swift in Sources */,
+				75FD24821BE461EE00446801 /* XperiaZcompact.swift in Sources */,
 				75A3E9751BE35DC90001E073 /* GalaxyNote3.swift in Sources */,
 				75FD246F1BE3D3E500446801 /* XperiaZ.swift in Sources */,
 				50551C351BCBEA96005B88DA /* BackgroundCollectionViewCell.swift in Sources */,

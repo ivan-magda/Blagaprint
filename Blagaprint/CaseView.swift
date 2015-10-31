@@ -99,6 +99,10 @@ class CaseView: UIView {
                   device.name == Device.sonyXperiaZ2().name ||
                   device.name == Device.sonyXperiaZ3().name {
                 XperiaZ.drawXperiaZ1(self.bounds, colorOfText: textColor, fillColor: fillColor, image: image, textYscale: textYscale, caseText: text, textSize: textSize, textXscale: textXscale, backgroundImageVisible: showBackgroundImage, textRectHeight: textRectHeight, device: device)
+        } else if device.name == Device.sonyXperiaZ1Compact().name ||
+                  device.name == Device.sonyXperiaZ2Compact().name ||
+                  device.name == Device.sonyXperiaZ3Compact().name {
+            XperiaZcompact.drawXperiaZcompact(self.bounds, colorOfText: textColor, fillColor: fillColor, image: image, textRectHeight: textRectHeight, backgroundImageVisible: showBackgroundImage, textYscale: textYscale, caseText: text, textXscale: textXscale, textSize: textSize, device: device)
         }
     }
     
@@ -230,10 +234,13 @@ class CaseView: UIView {
             default:
                 return 46.0
             }
-        } else if device.name == Device.iPhone4().name  ||
-                  device.name == Device.galaxyS3().name ||
-                  device.name == Device.galaxyS5Mini().name ||
-                  device.name == Device.galaxyA7().name {
+        } else if device.name == Device.iPhone4().name             ||
+                  device.name == Device.galaxyS3().name            ||
+                  device.name == Device.galaxyS5Mini().name        ||
+                  device.name == Device.galaxyA7().name            ||
+                  device.name == Device.sonyXperiaZ1Compact().name ||
+                  device.name == Device.sonyXperiaZ2Compact().name ||
+                  device.name == Device.sonyXperiaZ3Compact().name {
             switch characters {
             case 1, 2:
                 return 200.0
@@ -410,14 +417,17 @@ class CaseView: UIView {
     }
     
     private func getTextRectHeightFromNumberOfCharacters(characters: Int) -> CGFloat {
-        if device.name == Device.iPhone4().name      ||
-           device.name == Device.iPhone5().name      ||
-           device.name == Device.galaxyS3().name     ||
-           device.name == Device.galaxyS4Mini().name ||
-           device.name == Device.galaxyS5Mini().name ||
-           device.name == Device.galaxyA3().name     ||
-           device.name == Device.galaxyA5().name     ||
-           device.name == Device.galaxyA7().name {
+        if device.name == Device.iPhone4().name             ||
+           device.name == Device.iPhone5().name             ||
+           device.name == Device.galaxyS3().name            ||
+           device.name == Device.galaxyS4Mini().name        ||
+           device.name == Device.galaxyS5Mini().name        ||
+           device.name == Device.galaxyA3().name            ||
+           device.name == Device.galaxyA5().name            ||
+           device.name == Device.galaxyA7().name            ||
+           device.name == Device.sonyXperiaZ1Compact().name ||
+           device.name == Device.sonyXperiaZ2Compact().name ||
+           device.name == Device.sonyXperiaZ3Compact().name {
             switch characters {
             case 1, 2, 3:
                 return 200.0

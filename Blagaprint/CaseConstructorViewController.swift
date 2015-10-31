@@ -81,7 +81,10 @@ class CaseConstructorTableViewController: UITableViewController {
                     selectedDevice.name == Device.galaxyS4Mini().name ||
                     selectedDevice.name == Device.galaxyS5Mini().name ||
                     selectedDevice.name == Device.galaxyA3().name ||
-                    selectedDevice.name == Device.galaxyA5().name{
+                    selectedDevice.name == Device.galaxyA5().name ||
+                    selectedDevice.name == Device.sonyXperiaZ1Compact().name ||
+                    selectedDevice.name == Device.sonyXperiaZ2Compact().name ||
+                    selectedDevice.name == Device.sonyXperiaZ3Compact().name {
                         tableHeaderViewHeight = 380.0
                         caseViewWidth = 220.0
                 } else if selectedDevice.name == Device.iPhone5().name ||
