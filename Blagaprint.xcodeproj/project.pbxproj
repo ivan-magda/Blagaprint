@@ -138,6 +138,11 @@
 		75F739241BE4699B0063EB6F /* xperiaZ2compactCameraImage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 75F739221BE4699B0063EB6F /* xperiaZ2compactCameraImage@2x.png */; };
 		75F739271BE469A20063EB6F /* xperiaZ1compactCameraImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 75F739251BE469A20063EB6F /* xperiaZ1compactCameraImage.png */; };
 		75F739281BE469A20063EB6F /* xperiaZ1compactCameraImage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 75F739261BE469A20063EB6F /* xperiaZ1compactCameraImage@2x.png */; };
+		75F7392E1BE4918B0063EB6F /* xiaomiMi4CameraImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 75F7392C1BE4918B0063EB6F /* xiaomiMi4CameraImage.png */; };
+		75F7392F1BE4918B0063EB6F /* xiaomiMi4CameraImage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 75F7392D1BE4918B0063EB6F /* xiaomiMi4CameraImage@2x.png */; };
+		75F739321BE491930063EB6F /* xiaomiMi4Microphone.png in Resources */ = {isa = PBXBuildFile; fileRef = 75F739301BE491930063EB6F /* xiaomiMi4Microphone.png */; };
+		75F739331BE491930063EB6F /* xiaomiMi4Microphone@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 75F739311BE491930063EB6F /* xiaomiMi4Microphone@2x.png */; };
+		75F739371BE491BF0063EB6F /* XiaomiMi4.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75F739361BE491BF0063EB6F /* XiaomiMi4.swift */; };
 		75FD246F1BE3D3E500446801 /* XperiaZ.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75FD246E1BE3D3E500446801 /* XperiaZ.swift */; };
 		75FD24731BE457B200446801 /* xperiaZ1CameraImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 75FD24711BE457B200446801 /* xperiaZ1CameraImage.png */; };
 		75FD24741BE457B200446801 /* xperiaZ1CameraImage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 75FD24721BE457B200446801 /* xperiaZ1CameraImage@2x.png */; };
@@ -282,6 +287,11 @@
 		75F739221BE4699B0063EB6F /* xperiaZ2compactCameraImage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "xperiaZ2compactCameraImage@2x.png"; sourceTree = "<group>"; };
 		75F739251BE469A20063EB6F /* xperiaZ1compactCameraImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = xperiaZ1compactCameraImage.png; sourceTree = "<group>"; };
 		75F739261BE469A20063EB6F /* xperiaZ1compactCameraImage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "xperiaZ1compactCameraImage@2x.png"; sourceTree = "<group>"; };
+		75F7392C1BE4918B0063EB6F /* xiaomiMi4CameraImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = xiaomiMi4CameraImage.png; sourceTree = "<group>"; };
+		75F7392D1BE4918B0063EB6F /* xiaomiMi4CameraImage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "xiaomiMi4CameraImage@2x.png"; sourceTree = "<group>"; };
+		75F739301BE491930063EB6F /* xiaomiMi4Microphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = xiaomiMi4Microphone.png; sourceTree = "<group>"; };
+		75F739311BE491930063EB6F /* xiaomiMi4Microphone@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "xiaomiMi4Microphone@2x.png"; sourceTree = "<group>"; };
+		75F739361BE491BF0063EB6F /* XiaomiMi4.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XiaomiMi4.swift; sourceTree = "<group>"; };
 		75FD246E1BE3D3E500446801 /* XperiaZ.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XperiaZ.swift; sourceTree = "<group>"; };
 		75FD24711BE457B200446801 /* xperiaZ1CameraImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = xperiaZ1CameraImage.png; sourceTree = "<group>"; };
 		75FD24721BE457B200446801 /* xperiaZ1CameraImage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "xperiaZ1CameraImage@2x.png"; sourceTree = "<group>"; };
@@ -362,7 +372,7 @@
 				0C541A5E1BD0B9A00028BD9A /* PhotoLibraryImages */,
 				502A8CD51BB8126E0064E0DA /* NavigationBar */,
 				50592EF21BCBEF8F00CEB3B8 /* Icons */,
-				758595581BDA16EE0079A1BA /* CameraImages */,
+				758595581BDA16EE0079A1BA /* PhoneCaseImages */,
 				75FDB4B71BD620C7007FB441 /* Fonts */,
 			);
 			name = Resources;
@@ -428,6 +438,7 @@
 				75823AAE1BD8BDD000C92F83 /* PhoneCase.swift */,
 				75A3E97F1BE3612F0001E073 /* Samsung */,
 				75FD24701BE3D3EA00446801 /* Sony */,
+				75F739381BE491C60063EB6F /* Xiaomi */,
 				50592EF11BCBEF0F00CEB3B8 /* CaseBackgroundColor */,
 			);
 			name = PhoneCase;
@@ -591,14 +602,15 @@
 			name = iPhone6/6S;
 			sourceTree = "<group>";
 		};
-		758595581BDA16EE0079A1BA /* CameraImages */ = {
+		758595581BDA16EE0079A1BA /* PhoneCaseImages */ = {
 			isa = PBXGroup;
 			children = (
 				75A3E9731BE355480001E073 /* Apple */,
 				75A3E9721BE3553C0001E073 /* Samsung */,
 				75FD24751BE457B600446801 /* Sony */,
+				75F739341BE491990063EB6F /* Xiaomi */,
 			);
-			name = CameraImages;
+			name = PhoneCaseImages;
 			sourceTree = "<group>";
 		};
 		758595591BDA17100079A1BA /* iPhone5/5S */ = {
@@ -761,6 +773,33 @@
 			name = XperiaZ3Compact;
 			sourceTree = "<group>";
 		};
+		75F739341BE491990063EB6F /* Xiaomi */ = {
+			isa = PBXGroup;
+			children = (
+				75F739351BE491AA0063EB6F /* Mi4 */,
+			);
+			name = Xiaomi;
+			sourceTree = "<group>";
+		};
+		75F739351BE491AA0063EB6F /* Mi4 */ = {
+			isa = PBXGroup;
+			children = (
+				75F739301BE491930063EB6F /* xiaomiMi4Microphone.png */,
+				75F739311BE491930063EB6F /* xiaomiMi4Microphone@2x.png */,
+				75F7392C1BE4918B0063EB6F /* xiaomiMi4CameraImage.png */,
+				75F7392D1BE4918B0063EB6F /* xiaomiMi4CameraImage@2x.png */,
+			);
+			name = Mi4;
+			sourceTree = "<group>";
+		};
+		75F739381BE491C60063EB6F /* Xiaomi */ = {
+			isa = PBXGroup;
+			children = (
+				75F739361BE491BF0063EB6F /* XiaomiMi4.swift */,
+			);
+			name = Xiaomi;
+			sourceTree = "<group>";
+		};
 		75FD24701BE3D3EA00446801 /* Sony */ = {
 			isa = PBXGroup;
 			children = (
@@ -881,6 +920,7 @@
 				50F8F3B91BC7873C002CE3FD /* case_with_photo.jpg in Resources */,
 				50DD72481BBEDDA5008A9B80 /* plates.jpg in Resources */,
 				75A36C341BE254910036B500 /* galaxyA5CameraImage@2x.png in Resources */,
+				75F7392F1BE4918B0063EB6F /* xiaomiMi4CameraImage@2x.png in Resources */,
 				502A8CBD1BB80EAC0064E0DA /* LaunchScreen.storyboard in Resources */,
 				750E4AE81BE20345006103AE /* galaxyS6EdgeCameraImage@2x.png in Resources */,
 				75A3E97E1BE360D70001E073 /* galaxyNote3CameraImage@2x.png in Resources */,
@@ -950,6 +990,7 @@
 				75FD247F1BE45B7E00446801 /* xperiaZ3CameraImage@2x.png in Resources */,
 				7547D2491BDE2376006E4170 /* galaxyS3CameraImage.png in Resources */,
 				757470351BDCBEB4004CABD0 /* iPhone6CameraImage.png in Resources */,
+				75F739331BE491930063EB6F /* xiaomiMi4Microphone@2x.png in Resources */,
 				75FD24731BE457B200446801 /* xperiaZ1CameraImage.png in Resources */,
 				75A36C481BE266690036B500 /* galaxyA7Led@2x.png in Resources */,
 				50FD7F5D1BB90A8900ABEC38 /* copy_services.jpg in Resources */,
@@ -966,6 +1007,7 @@
 				759E8CCF1BDF64A1008A5503 /* galaxyS4MiniCameraImage.png in Resources */,
 				50BE47111BBA388400724119 /* MenuMalibu.png in Resources */,
 				75A36C381BE2549E0036B500 /* galaxyA5Led@2x.png in Resources */,
+				75F7392E1BE4918B0063EB6F /* xiaomiMi4CameraImage.png in Resources */,
 				50DD72681BBEEA44008A9B80 /* 3D_printing.jpg in Resources */,
 				75F739201BE469940063EB6F /* xperiaZ3compactCameraImage@2x.png in Resources */,
 				7547D24C1BDE2376006E4170 /* galaxyS3Led@2x.png in Resources */,
@@ -981,6 +1023,7 @@
 				50BE47121BBA388400724119 /* MenuMalibu@2x.png in Resources */,
 				7547D24B1BDE2376006E4170 /* galaxyS3Led.png in Resources */,
 				7522783F1BE12951008E117F /* galaxyS6CameraImage@2x.png in Resources */,
+				75F739321BE491930063EB6F /* xiaomiMi4Microphone.png in Resources */,
 				750E4AEC1BE20F5E006103AE /* galaxyA3CameraImage.png in Resources */,
 				758595621BDA30C10079A1BA /* iPhone4CameraImage.png in Resources */,
 				75F7391F1BE469940063EB6F /* xperiaZ3compactCameraImage.png in Resources */,
@@ -999,6 +1042,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				75F739371BE491BF0063EB6F /* XiaomiMi4.swift in Sources */,
 				502A8CB51BB80EAC0064E0DA /* MainTableViewController.swift in Sources */,
 				75823AAF1BD8BDD000C92F83 /* PhoneCase.swift in Sources */,
 				75DD91FF1BD7BFE000932AD7 /* CaseView.swift in Sources */,
