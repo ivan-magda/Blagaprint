@@ -116,7 +116,7 @@ class MainTableViewController: UITableViewController {
         } else {
             if selectedSectionIndex != indexPath.section &&
                selectedSectionIndex != -1 {
-                selectedSectionIndex = indexPath.section
+               selectedSectionIndex = indexPath.section
                 tableView.reloadData()
                 tableView.scrollToRowAtIndexPath(indexPath, atScrollPosition: UITableViewScrollPosition.Top, animated: true)
             } else {

@@ -94,6 +94,7 @@
 		7547D2541BDE2376006E4170 /* galaxyS5CameraImage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7547D2461BDE2376006E4170 /* galaxyS5CameraImage@2x.png */; };
 		7547D2551BDE2376006E4170 /* galaxyS5Speaker.png in Resources */ = {isa = PBXBuildFile; fileRef = 7547D2471BDE2376006E4170 /* galaxyS5Speaker.png */; };
 		7547D2561BDE2376006E4170 /* galaxyS5Speaker@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7547D2481BDE2376006E4170 /* galaxyS5Speaker@2x.png */; };
+		755266431BE9B66500788DE2 /* Library.swift in Sources */ = {isa = PBXBuildFile; fileRef = 755266421BE9B66500788DE2 /* Library.swift */; };
 		757470321BDCB405004CABD0 /* PhoneCaseDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 757470311BDCB404004CABD0 /* PhoneCaseDevice.swift */; };
 		757470351BDCBEB4004CABD0 /* iPhone6CameraImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 757470331BDCBEB4004CABD0 /* iPhone6CameraImage.png */; };
 		757470361BDCBEB4004CABD0 /* iPhone6CameraImage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 757470341BDCBEB4004CABD0 /* iPhone6CameraImage@2x.png */; };
@@ -130,6 +131,8 @@
 		75A3E9851BE365CC0001E073 /* galaxyNote4CameraImage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 75A3E9831BE365CC0001E073 /* galaxyNote4CameraImage@2x.png */; };
 		75A3E9881BE365DC0001E073 /* galaxyNote4Speaker.png in Resources */ = {isa = PBXBuildFile; fileRef = 75A3E9861BE365DC0001E073 /* galaxyNote4Speaker.png */; };
 		75A3E9891BE365DC0001E073 /* galaxyNote4Speaker@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 75A3E9871BE365DC0001E073 /* galaxyNote4Speaker@2x.png */; };
+		75AB8ABE1BE73F4000B88A5A /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 75AB8ABD1BE73F4000B88A5A /* CloudKit.framework */; };
+		75AB8AC01BE744DB00B88A5A /* CloudKitCentral.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75AB8ABF1BE744DB00B88A5A /* CloudKitCentral.swift */; };
 		75DD91F91BD7B43800932AD7 /* AndersonSupercar.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 75DD91F81BD7B43800932AD7 /* AndersonSupercar.ttf */; };
 		75DD91FF1BD7BFE000932AD7 /* CaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75DD91FE1BD7BFE000932AD7 /* CaseView.swift */; };
 		75F7391F1BE469940063EB6F /* xperiaZ3compactCameraImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 75F7391D1BE469940063EB6F /* xperiaZ3compactCameraImage.png */; };
@@ -246,6 +249,7 @@
 		7547D2461BDE2376006E4170 /* galaxyS5CameraImage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "galaxyS5CameraImage@2x.png"; path = "images/galaxyS5CameraImage@2x.png"; sourceTree = "<group>"; };
 		7547D2471BDE2376006E4170 /* galaxyS5Speaker.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = galaxyS5Speaker.png; path = images/galaxyS5Speaker.png; sourceTree = "<group>"; };
 		7547D2481BDE2376006E4170 /* galaxyS5Speaker@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "galaxyS5Speaker@2x.png"; path = "images/galaxyS5Speaker@2x.png"; sourceTree = "<group>"; };
+		755266421BE9B66500788DE2 /* Library.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Library.swift; sourceTree = "<group>"; };
 		757470311BDCB404004CABD0 /* PhoneCaseDevice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhoneCaseDevice.swift; sourceTree = "<group>"; };
 		757470331BDCBEB4004CABD0 /* iPhone6CameraImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = iPhone6CameraImage.png; path = images/iPhone6CameraImage.png; sourceTree = "<group>"; };
 		757470341BDCBEB4004CABD0 /* iPhone6CameraImage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "iPhone6CameraImage@2x.png"; path = "images/iPhone6CameraImage@2x.png"; sourceTree = "<group>"; };
@@ -282,6 +286,9 @@
 		75A3E9831BE365CC0001E073 /* galaxyNote4CameraImage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "galaxyNote4CameraImage@2x.png"; sourceTree = "<group>"; };
 		75A3E9861BE365DC0001E073 /* galaxyNote4Speaker.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = galaxyNote4Speaker.png; sourceTree = "<group>"; };
 		75A3E9871BE365DC0001E073 /* galaxyNote4Speaker@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "galaxyNote4Speaker@2x.png"; sourceTree = "<group>"; };
+		75AB8ABC1BE73F2900B88A5A /* Blagaprint.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Blagaprint.entitlements; sourceTree = "<group>"; };
+		75AB8ABD1BE73F4000B88A5A /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
+		75AB8ABF1BE744DB00B88A5A /* CloudKitCentral.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CloudKitCentral.swift; sourceTree = "<group>"; };
 		75DD91F81BD7B43800932AD7 /* AndersonSupercar.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = AndersonSupercar.ttf; sourceTree = "<group>"; };
 		75DD91FE1BD7BFE000932AD7 /* CaseView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CaseView.swift; sourceTree = "<group>"; };
 		75F7391D1BE469940063EB6F /* xperiaZ3compactCameraImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = xperiaZ3compactCameraImage.png; sourceTree = "<group>"; };
@@ -313,6 +320,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				75AB8ABE1BE73F4000B88A5A /* CloudKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -357,6 +365,8 @@
 				502A8CBB1BB80EAC0064E0DA /* LaunchScreen.storyboard */,
 				502A8CB91BB80EAC0064E0DA /* Assets.xcassets */,
 				502A8CBE1BB80EAC0064E0DA /* Info.plist */,
+				75AB8ABC1BE73F2900B88A5A /* Blagaprint.entitlements */,
+				75AB8AC11BE7479F00B88A5A /* Frameworks */,
 				502A8CD41BB8120A0064E0DA /* Resources */,
 				502A8CCD1BB811EE0064E0DA /* ThirdParty */,
 			);
@@ -409,14 +419,14 @@
 			name = PhoneCase;
 			sourceTree = "<group>";
 		};
-		50592EF11BCBEF0F00CEB3B8 /* CaseBackgroundColor */ = {
+		50592EF11BCBEF0F00CEB3B8 /* PhoneCaseBackgroundColor */ = {
 			isa = PBXGroup;
 			children = (
 				50551C321BCBB469005B88DA /* OvalView.swift */,
 				50551C301BCBB43A005B88DA /* BackgroundOvalView.swift */,
 				50551C341BCBEA96005B88DA /* BackgroundCollectionViewCell.swift */,
 			);
-			name = CaseBackgroundColor;
+			name = PhoneCaseBackgroundColor;
 			sourceTree = "<group>";
 		};
 		50592EF21BCBEF8F00CEB3B8 /* Icons */ = {
@@ -442,11 +452,11 @@
 			children = (
 				75DD91FE1BD7BFE000932AD7 /* CaseView.swift */,
 				75823AAE1BD8BDD000C92F83 /* PhoneCase.swift */,
-				75F739391BE4979B0063EB6F /* LenovoS850.swift */,
 				75A3E97F1BE3612F0001E073 /* Samsung */,
 				75FD24701BE3D3EA00446801 /* Sony */,
 				75F739381BE491C60063EB6F /* Xiaomi */,
-				50592EF11BCBEF0F00CEB3B8 /* CaseBackgroundColor */,
+				75F739411BE499590063EB6F /* Lenovo */,
+				50592EF11BCBEF0F00CEB3B8 /* PhoneCaseBackgroundColor */,
 			);
 			name = PhoneCase;
 			sourceTree = "<group>";
@@ -454,6 +464,8 @@
 		50DD723A1BBED31B008A9B80 /* DataModel */ = {
 			isa = PBXGroup;
 			children = (
+				75AB8ABF1BE744DB00B88A5A /* CloudKitCentral.swift */,
+				755266421BE9B66500788DE2 /* Library.swift */,
 				50DD72381BBED313008A9B80 /* Category.swift */,
 				503CBEC01BC415C700052BE0 /* CategoryItem.swift */,
 				757470311BDCB404004CABD0 /* PhoneCaseDevice.swift */,
@@ -754,6 +766,14 @@
 			name = GalaxyNote4;
 			sourceTree = "<group>";
 		};
+		75AB8AC11BE7479F00B88A5A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				75AB8ABD1BE73F4000B88A5A /* CloudKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		75F739291BE469A80063EB6F /* XperiaZ1Compact */ = {
 			isa = PBXGroup;
 			children = (
@@ -823,6 +843,14 @@
 				75F7393C1BE497AC0063EB6F /* lenovoS850CameraImage@2x.png */,
 			);
 			name = S850;
+			sourceTree = "<group>";
+		};
+		75F739411BE499590063EB6F /* Lenovo */ = {
+			isa = PBXGroup;
+			children = (
+				75F739391BE4979B0063EB6F /* LenovoS850.swift */,
+			);
+			name = Lenovo;
 			sourceTree = "<group>";
 		};
 		75FD24701BE3D3EA00446801 /* Sony */ = {
@@ -914,6 +942,11 @@
 					502A8CAE1BB80EAC0064E0DA = {
 						CreatedOnToolsVersion = 7.0;
 						DevelopmentTeam = 6UNHY8UY6E;
+						SystemCapabilities = {
+							com.apple.iCloud = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -1086,6 +1119,8 @@
 				50A871D71BCA9D68003CB0F9 /* CaseConstructorViewController.swift in Sources */,
 				75A3E9811BE3645E0001E073 /* GalaxyNote4.swift in Sources */,
 				50FD7F501BB8FFF600ABEC38 /* CategoryTableViewCell.swift in Sources */,
+				755266431BE9B66500788DE2 /* Library.swift in Sources */,
+				75AB8AC01BE744DB00B88A5A /* CloudKitCentral.swift in Sources */,
 				503CBEC11BC415C700052BE0 /* CategoryItem.swift in Sources */,
 				75F7393A1BE4979B0063EB6F /* LenovoS850.swift in Sources */,
 				50551C311BCBB43A005B88DA /* BackgroundOvalView.swift in Sources */,
@@ -1207,6 +1242,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Blagaprint/Blagaprint.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = Blagaprint/Info.plist;
@@ -1221,6 +1257,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Blagaprint/Blagaprint.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = Blagaprint/Info.plist;

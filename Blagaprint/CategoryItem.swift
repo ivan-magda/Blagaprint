@@ -7,6 +7,10 @@
 //
 
 import UIKit
+import CloudKit
+
+/// The type of CategoryItem record, app supported record type.
+let CategoryItemRecordType = "CategoryItem"
 
 class CategoryItem: NSObject, NSCoding {
     // MARK: - Types
@@ -14,6 +18,7 @@ class CategoryItem: NSObject, NSCoding {
     private enum CoderKeys: String {
         case nameKey
         case imageKey
+        case imageUrlKey
         case parentCategoryKey
     }
     
@@ -21,28 +26,83 @@ class CategoryItem: NSObject, NSCoding {
     
     var name: String
     var image: UIImage?
+    var imageUrl: NSURL?
+    var queue: NSOperationQueue?
     weak var parentCategory: Category?
+    
+    override var description: String {
+        return "Name: \(name)\nImageUrl: \(imageUrl)\n ParentCategory: \(parentCategory?.name)"
+    }
 
     // MARK: - Initializers
     
     init(name: String) {
         self.name = name
+        
+        super.init()
     }
     
     init(name: String, image: UIImage) {
         self.name = name
         self.image = image
+        
+        super.init()
     }
     
     init(name: String, parentCategory: Category) {
         self.name = name
         self.parentCategory = parentCategory
+        
+        super.init()
     }
     
     init(name: String, image: UIImage, parentCategory: Category) {
         self.name = name
         self.image = image
         self.parentCategory = parentCategory
+        
+        super.init()
+    }
+    
+    init(record: CKRecord) {
+        self.name = record[CloudKitFieldNames.Name.rawValue] as! String
+
+        super.init()
+        
+        let image = record[CloudKitFieldNames.Image.rawValue] as? CKAsset
+        if let ckAsset = image {
+            let url = ckAsset.fileURL
+            self.imageUrl = url
+            self.queue = NSOperationQueue()
+            queue!.addOperationWithBlock({
+                let imageData = NSData(contentsOfURL: url)
+                self.image = UIImage(data: imageData!)!
+            })
+        }
+    }
+    
+    // MARK: - CloudKit
+    
+    static func countFromCloudKitWithCompletionHandler(countCallback: (Int) -> ()) {
+        var count = 0
+        let query = CKQuery(recordType: CategoryItemRecordType, predicate: NSPredicate(value: true))
+        let queryOperation = CKQueryOperation(query: query)
+        queryOperation.resultsLimit = CKQueryOperationMaximumResults
+        queryOperation.recordFetchedBlock = {
+            record in
+            ++count
+        }
+        queryOperation.queryCompletionBlock = {
+            cursor, error in
+            if error != nil {
+                print(error!.localizedDescription)
+            } else {
+                NSOperationQueue.mainQueue().addOperationWithBlock() {
+                    countCallback(count)
+                }
+            }
+        }
+        CloudKitCentral.sharedInstance.publicDatabase.addOperation(queryOperation)
     }
     
     // MARK: - NSCoding
@@ -50,12 +110,14 @@ class CategoryItem: NSObject, NSCoding {
     required init?(coder aDecoder: NSCoder) {
         name = aDecoder.decodeObjectForKey(CoderKeys.nameKey.rawValue) as! String
         image = aDecoder.decodeObjectForKey(CoderKeys.imageKey.rawValue) as? UIImage
+        imageUrl = aDecoder.decodeObjectForKey(CoderKeys.imageUrlKey.rawValue) as? NSURL
         parentCategory = aDecoder.decodeObjectForKey(CoderKeys.parentCategoryKey.rawValue) as? Category
     }
     
     func encodeWithCoder(aCoder: NSCoder) {
         aCoder.encodeObject(name, forKey: CoderKeys.nameKey.rawValue)
         aCoder.encodeObject(image, forKey: CoderKeys.imageKey.rawValue)
+        aCoder.encodeObject(imageUrl, forKey: CoderKeys.imageUrlKey.rawValue)
         aCoder.encodeObject(parentCategory, forKey: CoderKeys.parentCategoryKey.rawValue)
     }
 }

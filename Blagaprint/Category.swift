@@ -8,6 +8,19 @@
 
 import Foundation
 import UIKit
+import CloudKit
+
+
+/// CloudKit field names for Category and CategoryItem.
+enum CloudKitFieldNames: String {
+    case Name
+    case Image
+    case ParentCategory
+    case CategoryType
+}
+
+/// The type of Category record, app supported record type.
+let CategoryRecordType = "Category"
 
 class Category: NSObject, NSCoding {
     // MARK: - Types
@@ -30,15 +43,29 @@ class Category: NSObject, NSCoding {
     private enum CoderKeys: String {
         case nameKey
         case imageKey
+        case imageUrlKey
+        case recordKey
+        case recordNameKey
         case categoryItemsKey
+        case categoryTypeKey
+        case isCachedKey
     }
     
     // MARK: - Properties
     
-    var name: String
-    var image: UIImage
+    let name: String
+    var image: UIImage?
+    var imageUrl: NSURL?
+    let record: CKRecord
+    var recordName: String
     var categoryItems: [CategoryItem] = []
     var categoryType: CategoryTypes = .undefined
+    var queue: NSOperationQueue?
+    var isCached: Bool
+    
+    override var description: String {
+        return "Name: \(name)\nRecordName: \(recordName)\nCategoryItemsCount: \(categoryItems.count)\nCategoryType: \(categoryType.rawValue)\nCached: \(isCached)."
+    }
     
     // MARK: - Initializers
     
@@ -47,20 +74,91 @@ class Category: NSObject, NSCoding {
         self.image = image
         self.categoryItems = categoryItems
         self.categoryType = categoryType
+        
+        self.record = CKRecord(recordType: CategoryRecordType)
+        self.recordName = ""
+        self.isCached = false
+    }
+    
+    init(record: CKRecord) {
+        self.name = record[CloudKitFieldNames.Name.rawValue] as! String
+        self.record = record
+        self.recordName = record.recordID.recordName
+        self.isCached = false
+        
+        let categoryString = record[CloudKitFieldNames.CategoryType.rawValue] as! String
+        if let type = Category.categoryTypeFromString(categoryString) {
+            self.categoryType = type
+        } else {
+            self.categoryType = .undefined
+        }
+        
+        super.init()
+        
+        let image = record[CloudKitFieldNames.Image.rawValue] as? CKAsset
+        if let ckAsset = image {
+            let url = ckAsset.fileURL
+            self.imageUrl = url
+            self.queue = NSOperationQueue()
+            queue!.addOperationWithBlock({
+                let imageData = NSData(contentsOfURL: url)
+                self.image = UIImage(data: imageData!)!
+            })
+        }
+    }
+    
+    // MARK: - CloudKit
+    
+    static func countFromCloudKitWithCompletionHandler(countCallback: (Int) -> ()) {
+        var count = 0
+        let query = CKQuery(recordType: CategoryRecordType, predicate: NSPredicate(value: true))
+        let queryOperation = CKQueryOperation(query: query)
+        queryOperation.resultsLimit = CKQueryOperationMaximumResults
+        queryOperation.recordFetchedBlock = {
+            record in
+            ++count
+        }
+        queryOperation.queryCompletionBlock = {
+            cursor, error in
+            if error != nil {
+                print(error!.localizedDescription)
+            } else {
+                NSOperationQueue.mainQueue().addOperationWithBlock() {
+                    countCallback(count)
+                }
+            }
+        }
+        CloudKitCentral.sharedInstance.publicDatabase.addOperation(queryOperation)
+    }
+    
+    // MARK: - Private
+    
+    private class func categoryTypeFromString(string: String) -> CategoryTypes? {
+        return CategoryTypes(rawValue: string)
     }
     
     // MARK: - NSCoding
     
     required init?(coder aDecoder: NSCoder) {
         name = aDecoder.decodeObjectForKey(CoderKeys.nameKey.rawValue) as! String
-        image = aDecoder.decodeObjectForKey(CoderKeys.imageKey.rawValue) as! UIImage
+        image = aDecoder.decodeObjectForKey(CoderKeys.imageKey.rawValue) as? UIImage
+        imageUrl = aDecoder.decodeObjectForKey(CoderKeys.imageUrlKey.rawValue) as? NSURL
+        record = aDecoder.decodeObjectForKey(CoderKeys.recordKey.rawValue) as! CKRecord
+        recordName = aDecoder.decodeObjectForKey(CoderKeys.recordNameKey.rawValue) as! String
         categoryItems = aDecoder.decodeObjectForKey(CoderKeys.categoryItemsKey.rawValue) as! [CategoryItem]
+        categoryType = CategoryTypes(rawValue: aDecoder.decodeObjectForKey(CoderKeys.categoryTypeKey.rawValue) as! String)!
+        isCached = aDecoder.decodeBoolForKey(CoderKeys.isCachedKey.rawValue)
     }
     
     func encodeWithCoder(aCoder: NSCoder) {
         aCoder.encodeObject(name, forKey: CoderKeys.nameKey.rawValue)
         aCoder.encodeObject(image, forKey: CoderKeys.imageKey.rawValue)
+        aCoder.encodeObject(imageUrl, forKey: CoderKeys.imageUrlKey.rawValue)
+        aCoder.encodeObject(record, forKey: CoderKeys.recordKey.rawValue)
+        aCoder.encodeObject(recordName, forKey: CoderKeys.recordNameKey.rawValue)
         aCoder.encodeObject(categoryItems, forKey: CoderKeys.categoryItemsKey.rawValue)
+        aCoder.encodeObject(categoryType.rawValue, forKey: CoderKeys.categoryTypeKey.rawValue)
+        aCoder.encodeBool(isCached, forKey: CoderKeys.isCachedKey.rawValue)
     }
     
     // MARK: - Public
@@ -68,9 +166,9 @@ class Category: NSObject, NSCoding {
     static func seedInitialData() -> [Category] {
         var categories = [Category]()
         
-        let cases = Category(name: "Чехлы", image: UIImage(named:"cases.jpg")!, categoryType: .cases)
-        cases.categoryItems = [CategoryItem(name: "Именные", image: UIImage(named: "case_with_name.jpg")!, parentCategory: cases), CategoryItem(name: "С фотографией", image: UIImage(named: "case_with_photo.jpg")!, parentCategory: cases), CategoryItem(name: "С индивидуальным дизайном", image: UIImage(named: "case_individual.jpg")!, parentCategory: cases)]
-        categories.append(cases)
+        let phoneCase = Category(name: "Чехлы", image: UIImage(named:"cases.jpg")!, categoryType: .cases)
+        phoneCase.categoryItems = [CategoryItem(name: "Именные", image: UIImage(named: "case_with_name.jpg")!, parentCategory: phoneCase), CategoryItem(name: "С фотографией", image: UIImage(named: "case_with_photo.jpg")!, parentCategory: phoneCase), CategoryItem(name: "С индивидуальным дизайном", image: UIImage(named: "case_individual.jpg")!, parentCategory: phoneCase)]
+        categories.append(phoneCase)
         
         let cups = Category(name: "Кружки", image: UIImage(named: "cups.jpg")!, categoryType: .cups)
         cups.categoryItems = [CategoryItem(name: "Хамелеон", image: UIImage(named: "cup_chameleon.jpg")!, parentCategory: cups), CategoryItem(name: "Керамика", image: UIImage(named: "cup_ceramic.jpg")!, parentCategory: cups), CategoryItem(name: "Парные кружки для влюбленных", image: UIImage(named: "cup_love_is.jpg")!, parentCategory: cups)]
