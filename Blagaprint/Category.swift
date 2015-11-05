@@ -107,30 +107,6 @@ class Category: NSObject, NSCoding {
         }
     }
     
-    // MARK: - CloudKit
-    
-    static func countFromCloudKitWithCompletionHandler(countCallback: (Int) -> ()) {
-        var count = 0
-        let query = CKQuery(recordType: CategoryRecordType, predicate: NSPredicate(value: true))
-        let queryOperation = CKQueryOperation(query: query)
-        queryOperation.resultsLimit = CKQueryOperationMaximumResults
-        queryOperation.recordFetchedBlock = {
-            record in
-            ++count
-        }
-        queryOperation.queryCompletionBlock = {
-            cursor, error in
-            if error != nil {
-                print(error!.localizedDescription)
-            } else {
-                NSOperationQueue.mainQueue().addOperationWithBlock() {
-                    countCallback(count)
-                }
-            }
-        }
-        CloudKitCentral.sharedInstance.publicDatabase.addOperation(queryOperation)
-    }
-    
     // MARK: - Private
     
     private class func categoryTypeFromString(string: String) -> CategoryTypes? {

@@ -95,6 +95,7 @@
 		7547D2551BDE2376006E4170 /* galaxyS5Speaker.png in Resources */ = {isa = PBXBuildFile; fileRef = 7547D2471BDE2376006E4170 /* galaxyS5Speaker.png */; };
 		7547D2561BDE2376006E4170 /* galaxyS5Speaker@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7547D2481BDE2376006E4170 /* galaxyS5Speaker@2x.png */; };
 		755266431BE9B66500788DE2 /* Library.swift in Sources */ = {isa = PBXBuildFile; fileRef = 755266421BE9B66500788DE2 /* Library.swift */; };
+		755266451BEB50E600788DE2 /* CloudKitExtenstions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 755266441BEB50E600788DE2 /* CloudKitExtenstions.swift */; };
 		757470321BDCB405004CABD0 /* PhoneCaseDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 757470311BDCB404004CABD0 /* PhoneCaseDevice.swift */; };
 		757470351BDCBEB4004CABD0 /* iPhone6CameraImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 757470331BDCBEB4004CABD0 /* iPhone6CameraImage.png */; };
 		757470361BDCBEB4004CABD0 /* iPhone6CameraImage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 757470341BDCBEB4004CABD0 /* iPhone6CameraImage@2x.png */; };
@@ -250,6 +251,7 @@
 		7547D2471BDE2376006E4170 /* galaxyS5Speaker.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = galaxyS5Speaker.png; path = images/galaxyS5Speaker.png; sourceTree = "<group>"; };
 		7547D2481BDE2376006E4170 /* galaxyS5Speaker@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "galaxyS5Speaker@2x.png"; path = "images/galaxyS5Speaker@2x.png"; sourceTree = "<group>"; };
 		755266421BE9B66500788DE2 /* Library.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Library.swift; sourceTree = "<group>"; };
+		755266441BEB50E600788DE2 /* CloudKitExtenstions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CloudKitExtenstions.swift; sourceTree = "<group>"; };
 		757470311BDCB404004CABD0 /* PhoneCaseDevice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhoneCaseDevice.swift; sourceTree = "<group>"; };
 		757470331BDCBEB4004CABD0 /* iPhone6CameraImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = iPhone6CameraImage.png; path = images/iPhone6CameraImage.png; sourceTree = "<group>"; };
 		757470341BDCBEB4004CABD0 /* iPhone6CameraImage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "iPhone6CameraImage@2x.png"; path = "images/iPhone6CameraImage@2x.png"; sourceTree = "<group>"; };
@@ -464,8 +466,7 @@
 		50DD723A1BBED31B008A9B80 /* DataModel */ = {
 			isa = PBXGroup;
 			children = (
-				75AB8ABF1BE744DB00B88A5A /* CloudKitCentral.swift */,
-				755266421BE9B66500788DE2 /* Library.swift */,
+				755266461BEB512700788DE2 /* CloudKit */,
 				50DD72381BBED313008A9B80 /* Category.swift */,
 				503CBEC01BC415C700052BE0 /* CategoryItem.swift */,
 				757470311BDCB404004CABD0 /* PhoneCaseDevice.swift */,
@@ -610,6 +611,16 @@
 				7547D2481BDE2376006E4170 /* galaxyS5Speaker@2x.png */,
 			);
 			name = GalaxyS5;
+			sourceTree = "<group>";
+		};
+		755266461BEB512700788DE2 /* CloudKit */ = {
+			isa = PBXGroup;
+			children = (
+				75AB8ABF1BE744DB00B88A5A /* CloudKitCentral.swift */,
+				755266441BEB50E600788DE2 /* CloudKitExtenstions.swift */,
+				755266421BE9B66500788DE2 /* Library.swift */,
+			);
+			name = CloudKit;
 			sourceTree = "<group>";
 		};
 		757470371BDCBEB9004CABD0 /* iPhone6/6S */ = {
@@ -1117,6 +1128,7 @@
 				50551C351BCBEA96005B88DA /* BackgroundCollectionViewCell.swift in Sources */,
 				50551C2C1BCB8B18005B88DA /* SelectDeviceTableViewController.swift in Sources */,
 				50A871D71BCA9D68003CB0F9 /* CaseConstructorViewController.swift in Sources */,
+				755266451BEB50E600788DE2 /* CloudKitExtenstions.swift in Sources */,
 				75A3E9811BE3645E0001E073 /* GalaxyNote4.swift in Sources */,
 				50FD7F501BB8FFF600ABEC38 /* CategoryTableViewCell.swift in Sources */,
 				755266431BE9B66500788DE2 /* Library.swift in Sources */,

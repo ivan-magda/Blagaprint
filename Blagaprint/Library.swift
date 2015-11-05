@@ -92,6 +92,7 @@ class Library {
                                 NSOperationQueue().addOperationWithBlock() {
                                     library!.saveToCache()
                                 }
+                                print("Done with load from CloudKit")
                                 callback()
                             }
                         }
@@ -124,6 +125,7 @@ class Library {
                         $0.name < $1.name
                     }
                     NSOperationQueue.mainQueue().addOperationWithBlock() {
+                        print("Done with load from cache")
                         callback()
                     }
                 }
@@ -134,10 +136,11 @@ class Library {
     func saveToCache() {
         let data = NSMutableData()
         let archiver = NSKeyedArchiver(forWritingWithMutableData: data)
-        let rootObject = Library.sharedInstance.categories
-        archiver.encodeRootObject(rootObject)
+        archiver.encodeRootObject(Library.sharedInstance.categories)
         archiver.finishEncoding()
         data.writeToURL(cacheUrl(), atomically: true)
+        
+        print("Save to cache")
     }
     
     func deleteCache() {
@@ -146,6 +149,8 @@ class Library {
         
         do {
             try fileManager.removeItemAtURL(url)
+            
+            print("Cache deleted")
         } catch let error as NSError {
             print(error.localizedDescription)
         }
