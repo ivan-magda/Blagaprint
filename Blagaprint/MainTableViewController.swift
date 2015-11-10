@@ -27,7 +27,7 @@ class MainTableViewController: UITableViewController {
     // MARK: - Properties -
     
     /// Data source for the table view.
-    private var categories: [Category] = Category.seedInitialData()
+    private var categories: [Category] = []
     private var filteredCategories: [Category] = [Category]()
     
     /// Handle previous selection of CategoryTableViewCell.
@@ -42,6 +42,10 @@ class MainTableViewController: UITableViewController {
     /// Search bar state.
     private var searchBarActive: Bool = false
     
+    private let library: Library = Library.sharedInstance
+    
+    private var refreshLibraryControl: UIRefreshControl!
+    
     // MARK: - View Life Cycle -
     
     override func viewDidLoad() {
@@ -49,6 +53,23 @@ class MainTableViewController: UITableViewController {
         
         configurateTableView()
         searchSetUp()
+        
+        // Load data from library.
+        if Library.cacheExist() {
+            library.loadFromCache() {
+                self.reloadDataAfterCallback()
+            }
+            configurateRefreshControl()
+        } else {
+            self.refreshLibraryControl.beginRefreshing()
+            library.loadData() {
+                self.reloadDataAfterCallback()
+            }
+        }
+    }
+    
+    deinit {
+        removeObservers()
     }
     
     // MARK: - Navigation -
@@ -140,6 +161,54 @@ class MainTableViewController: UITableViewController {
     
     // MARK: - Private Helpers Methods -
     
+    func reloadLibrary() {
+        weak var weakSelf = self
+        if Library.cacheExist() {
+            library.loadFromCloudKit() {
+                weakSelf!.reloadDataAfterCallback()
+            }
+        } else {
+            library.loadFromCache() {
+                weakSelf!.reloadDataAfterCallback()
+            }
+        }
+    }
+    
+    private func reloadDataAfterCallback() {
+        self.categories = Library.sharedInstance.categories
+        self.tableView.reloadData()
+        self.refreshLibraryControl.endRefreshing()
+    }
+    
+    private func configurateRefreshControl() {
+        self.refreshLibraryControl = UIRefreshControl()
+        self.tableView.addSubview(self.refreshLibraryControl)
+        self.refreshLibraryControl.addTarget(self, action: Selector("reloadLibrary"), forControlEvents: UIControlEvents.ValueChanged)
+    }
+    
+    // MARK: NSNotificationCenter
+    
+    private func addObservers() {
+        weak var weakSelf = self
+        NSNotificationCenter.defaultCenter().addObserverForName(LibraryDidDoneWithCloudKitDataDownloadingNotification, object: nil, queue: NSOperationQueue.mainQueue(), usingBlock: {
+            notification in
+            print("Handle cloudkit notification: \(notification)")
+            weakSelf!.reloadLibrary()
+        })
+        
+        NSNotificationCenter.defaultCenter().addObserverForName(LibraryDidDoneWithDataLoadingFromCacheNotification, object: nil, queue: NSOperationQueue.mainQueue(), usingBlock: {
+            notification in
+            print("Handle cache notification: \(notification)")
+            weakSelf!.reloadLibrary()
+        })
+    }
+    
+    private func removeObservers() {
+        NSNotificationCenter.defaultCenter().removeObserver(self)
+    }
+    
+    // MARK: UITableView
+    
     private func configurateTableView() {
         self.tableView.rowHeight = UITableViewAutomaticDimension
         self.tableView.estimatedRowHeight = kCategoryTableViewCellHeightValue
@@ -158,7 +227,7 @@ class MainTableViewController: UITableViewController {
     
     private func numberOfItemsInSection(section: Int) -> Int {
         if selectedSectionIndex != -1 &&
-            selectedSectionIndex == section {
+           selectedSectionIndex == section {
                 let countItems = categories[section].categoryItems.count
                 
                 return (countItems == 0 ? 1 : countItems + 1)

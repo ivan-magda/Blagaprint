@@ -7,7 +7,18 @@
 //
 
 import Foundation
+import UIKit
 import CloudKit
+
+protocol SortByNameProtocol {
+    var name: String { get set }
+}
+
+/// Notification name, when data donwloading from CloudKit completed.
+let LibraryDidDoneWithCloudKitDataDownloadingNotification = "LibraryDidDoneWithCloudKitDataDownloading"
+
+/// Notification name, when data loading from cache completed.
+let LibraryDidDoneWithDataLoadingFromCacheNotification = "LibraryDidDoneWithDataLoadingFromCache"
 
 class Library {
     // MARK: - Types
@@ -46,14 +57,14 @@ class Library {
     // MARK: CloudKit
     
     func loadFromCloudKit(callback: Callback) {
-        weak var library = Library.sharedInstance
+        weak var weakSelf = Library.sharedInstance
         let cloudKitCentral = CloudKitCentral.sharedInstance
         CategoryItem.countFromCloudKitWithCompletionHandler() {
             count in
             let query = CKQuery(recordType: CategoryRecordType, predicate: NSPredicate(value: true))
             let queryOperation = CKQueryOperation(query: query)
-            library!.categories.removeAll(keepCapacity: true)
-            library!.categoriesItems.removeAll(keepCapacity: true)
+            weakSelf!.categories.removeAll(keepCapacity: true)
+            weakSelf!.categoriesItems.removeAll(keepCapacity: true)
             
             // Fetched block for each category.
             queryOperation.recordFetchedBlock = {
@@ -70,9 +81,9 @@ class Library {
                 categoryItemOperation.recordFetchedBlock = {
                     record in
                     let categoryItem = CategoryItem(record: record as CKRecord)
-                    categoryItem.parentCategory = category
+                    //categoryItem.parentCategory = category
                     category.categoryItems.append(categoryItem)
-                    library!.categoriesItems.append(categoryItem)
+                    weakSelf!.categoriesItems.append(categoryItem)
                     print("\(categoryItem)" + "\n")
                 }
                 
@@ -83,16 +94,19 @@ class Library {
                         print(error!.localizedDescription)
                     } else {
                         NSOperationQueue.mainQueue().addOperationWithBlock() {
-                            library!.categoriesItems.sortInPlace() {
-                                $0.name < $1.name
-                            }
+                            weakSelf!.categoriesItems = weakSelf!.sortedArrayByName(weakSelf!.categoriesItems, ascending: true)
                             
                             // We are done with fetching if all categories items fetched.
-                            if library!.categoriesItems.count == count {
+                            if weakSelf!.categoriesItems.count == count {
+                                weakSelf!.categories = weakSelf!.sortedArrayByName(weakSelf!.categories, ascending: false)
+                                
                                 NSOperationQueue().addOperationWithBlock() {
-                                    library!.saveToCache()
+                                    weakSelf!.saveToCache()
                                 }
                                 print("Done with load from CloudKit")
+                                
+                                // Post notification.
+                                NSNotificationCenter.defaultCenter().postNotificationName(LibraryDidDoneWithCloudKitDataDownloadingNotification, object: nil)
                                 callback()
                             }
                         }
@@ -107,6 +121,11 @@ class Library {
     
     // MARK: Cache
     
+    class func cacheExist() -> Bool {
+        let fileManager = NSFileManager.defaultManager()
+        return fileManager.fileExistsAtPath(Library.sharedInstance.cacheUrl().path!)
+    }
+    
     func loadFromCache(callback: Callback) {
         let library = Library.sharedInstance
         if let data = NSData(contentsOfURL: library.cacheUrl()) {
@@ -115,17 +134,19 @@ class Library {
                 let object: AnyObject! = decoder.decodeObject()
                 if object != nil {
                     library.categories = object as! [Category]
+                    library.categories = sortedArrayByName(library.categories, ascending: false)
                     for category in library.categories {
                         library.categoriesItems += category.categoryItems
-                        for categoryItem in category.categoryItems {
-                            categoryItem.parentCategory = category
-                        }
+//                        for categoryItem in category.categoryItems {
+//                            categoryItem.parentCategory = category
+//                        }
                     }
-                    library.categoriesItems.sortInPlace() {
-                        $0.name < $1.name
-                    }
+                    library.categoriesItems = sortedArrayByName(library.categoriesItems, ascending: true)
+                    
                     NSOperationQueue.mainQueue().addOperationWithBlock() {
                         print("Done with load from cache")
+                        // Post notification.
+                        NSNotificationCenter.defaultCenter().postNotificationName(LibraryDidDoneWithDataLoadingFromCacheNotification, object: nil)
                         callback()
                     }
                 }
@@ -149,7 +170,6 @@ class Library {
         
         do {
             try fileManager.removeItemAtURL(url)
-            
             print("Cache deleted")
         } catch let error as NSError {
             print(error.localizedDescription)
@@ -162,5 +182,19 @@ class Library {
         let saveUrl = cacheUrl.URLByAppendingPathComponent("blagaprint.cache")
         
         return saveUrl
+    }
+    
+    // MARK: - Sorting Array -
+    
+    func sortedArrayByName<T: SortByNameProtocol>(arrayToSort: [T], ascending: Bool) -> [T] {
+        if ascending {
+            return arrayToSort.sort() {
+                $0.name < $1.name
+            }
+        } else {
+            return arrayToSort.sort() {
+                $0.name > $1.name
+            }
+        }
     }
 }

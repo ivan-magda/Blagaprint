@@ -22,7 +22,7 @@ enum CloudKitFieldNames: String {
 /// The type of Category record, app supported record type.
 let CategoryRecordType = "Category"
 
-class Category: NSObject, NSCoding {
+class Category: NSObject, NSCoding, SortByNameProtocol {
     // MARK: - Types
     
     enum CategoryTypes: String {
@@ -53,14 +53,13 @@ class Category: NSObject, NSCoding {
     
     // MARK: - Properties
     
-    let name: String
+    var name: String
     var image: UIImage?
     var imageUrl: NSURL?
     let record: CKRecord
     var recordName: String
     var categoryItems: [CategoryItem] = []
     var categoryType: CategoryTypes = .undefined
-    var queue: NSOperationQueue?
     var isCached: Bool
     
     override var description: String {
@@ -99,10 +98,13 @@ class Category: NSObject, NSCoding {
         if let ckAsset = image {
             let url = ckAsset.fileURL
             self.imageUrl = url
-            self.queue = NSOperationQueue()
-            queue!.addOperationWithBlock({
+            let queue = NSOperationQueue()
+            queue.addOperationWithBlock({
                 let imageData = NSData(contentsOfURL: url)
                 self.image = UIImage(data: imageData!)!
+                
+                let data = NSKeyedArchiver.archivedDataWithRootObject(self.image!)
+                print("Size \(data.length)")
             })
         }
     }

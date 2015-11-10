@@ -12,7 +12,7 @@ import CloudKit
 /// The type of CategoryItem record, app supported record type.
 let CategoryItemRecordType = "CategoryItem"
 
-class CategoryItem: NSObject, NSCoding {
+class CategoryItem: NSObject, NSCoding, SortByNameProtocol {
     // MARK: - Types
     
     private enum CoderKeys: String {
@@ -27,11 +27,9 @@ class CategoryItem: NSObject, NSCoding {
     var name: String
     var image: UIImage?
     var imageUrl: NSURL?
-    var queue: NSOperationQueue?
-    weak var parentCategory: Category?
     
     override var description: String {
-        return "Name: \(name)\nImageUrl: \(imageUrl)\n ParentCategory: \(parentCategory?.name)"
+        return "Name: \(name)\nImageUrl: \(imageUrl)"
     }
 
     // MARK: - Initializers
@@ -51,7 +49,6 @@ class CategoryItem: NSObject, NSCoding {
     
     init(name: String, parentCategory: Category) {
         self.name = name
-        self.parentCategory = parentCategory
         
         super.init()
     }
@@ -59,7 +56,6 @@ class CategoryItem: NSObject, NSCoding {
     init(name: String, image: UIImage, parentCategory: Category) {
         self.name = name
         self.image = image
-        self.parentCategory = parentCategory
         
         super.init()
     }
@@ -73,8 +69,8 @@ class CategoryItem: NSObject, NSCoding {
         if let ckAsset = image {
             let url = ckAsset.fileURL
             self.imageUrl = url
-            self.queue = NSOperationQueue()
-            queue!.addOperationWithBlock({
+            let queue = NSOperationQueue()
+            queue.addOperationWithBlock({
                 let imageData = NSData(contentsOfURL: url)
                 self.image = UIImage(data: imageData!)!
             })
@@ -87,13 +83,11 @@ class CategoryItem: NSObject, NSCoding {
         name = aDecoder.decodeObjectForKey(CoderKeys.nameKey.rawValue) as! String
         image = aDecoder.decodeObjectForKey(CoderKeys.imageKey.rawValue) as? UIImage
         imageUrl = aDecoder.decodeObjectForKey(CoderKeys.imageUrlKey.rawValue) as? NSURL
-        parentCategory = aDecoder.decodeObjectForKey(CoderKeys.parentCategoryKey.rawValue) as? Category
     }
     
     func encodeWithCoder(aCoder: NSCoder) {
         aCoder.encodeObject(name, forKey: CoderKeys.nameKey.rawValue)
         aCoder.encodeObject(image, forKey: CoderKeys.imageKey.rawValue)
         aCoder.encodeObject(imageUrl, forKey: CoderKeys.imageUrlKey.rawValue)
-        aCoder.encodeObject(parentCategory, forKey: CoderKeys.parentCategoryKey.rawValue)
     }
 }

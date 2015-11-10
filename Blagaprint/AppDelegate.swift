@@ -14,21 +14,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // MARK: - Properties
     
     var window: UIWindow?
-    var cloudKitCentral: CloudKitCentral!
-    var library: Library!
-    var fetchedCategories = [CKRecord]()
-    var backgroundQueue = NSOperationQueue()
     
     // MARK: - Application Life Cycle
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        self.cloudKitCentral = CloudKitCentral.sharedInstance
-        self.library = Library.sharedInstance
-
-        self.library.loadData() {
-            print("Done with data loading")
-        }
-        
         AppAppearance.applyAppAppearance()
         
         return true
