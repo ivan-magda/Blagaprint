@@ -44,27 +44,43 @@ class MainTableViewController: UITableViewController {
     
     private let library: Library = Library.sharedInstance
     
-    private var refreshLibraryControl: UIRefreshControl!
+    /// Activity indicator that presenting when app first time launched.
+    private var activityIndicator: UIActivityIndicatorView?
     
     // MARK: - View Life Cycle -
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        configurateTableView()
-        searchSetUp()
-        
-        // Load data from library.
-        if Library.cacheExist() {
-            library.loadFromCache() {
+        if AppConfiguration.isFirstTimeAppLaunch() {
+            self.configurateTableView()
+            self.presentLoadingActivityIndicator()
+            library.loadFromCloudKit() {
+                self.activityIndicator!.stopAnimating()
+                self.activityIndicator!.removeFromSuperview()
+                
+                self.configurateRefreshControl()
+                self.searchSetUp()
                 self.reloadDataAfterCallback()
+                
+                NSUserDefaults.standardUserDefaults().setBool(false, forKey: IsFirstTimeAppLaunchIdentifier)
             }
-            configurateRefreshControl()
         } else {
-            self.refreshLibraryControl.beginRefreshing()
-            library.loadData() {
-                self.reloadDataAfterCallback()
+            // Load data from library.
+            if Library.cacheExist() {
+                library.loadFromCache() {
+                    self.reloadDataAfterCallback()
+                }
+                configurateRefreshControl()
+            } else {
+                self.configurateRefreshControl()
+                self.refreshControl!.beginRefreshing()
+                library.loadFromCloudKit() {
+                    self.reloadDataAfterCallback()
+                }
             }
+            configurateTableView()
+            searchSetUp()
         }
     }
     
@@ -177,13 +193,31 @@ class MainTableViewController: UITableViewController {
     private func reloadDataAfterCallback() {
         self.categories = Library.sharedInstance.categories
         self.tableView.reloadData()
-        self.refreshLibraryControl.endRefreshing()
+        self.refreshControl?.endRefreshing()
     }
     
     private func configurateRefreshControl() {
-        self.refreshLibraryControl = UIRefreshControl()
-        self.tableView.addSubview(self.refreshLibraryControl)
-        self.refreshLibraryControl.addTarget(self, action: Selector("reloadLibrary"), forControlEvents: UIControlEvents.ValueChanged)
+        let refreshLibraryControl = UIRefreshControl()
+        refreshLibraryControl.addTarget(self, action: Selector("reloadLibrary"), forControlEvents: UIControlEvents.ValueChanged)
+        self.refreshControl = refreshLibraryControl
+    }
+    
+    private func presentLoadingActivityIndicator() {
+        let navigationController = self.navigationController!
+        let navControllerFrame = navigationController.view.bounds
+        
+        self.activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.Gray)
+        self.activityIndicator!.color = AppAppearance.AppColors.vulcanColor
+        
+        let activityIndicatorSize = CGSizeMake(20.0, 20.0)
+        let indicatorOriginX = round(CGRectGetWidth(navControllerFrame) / 2.0 - (activityIndicatorSize.width / 2.0))
+        let indicatorOriginY = floor(CGRectGetHeight(navControllerFrame) / 2.0 - (activityIndicatorSize.height / 2.0))
+        let activityRect = CGRectMake(indicatorOriginX, indicatorOriginY, 37.0, 37.0)
+        self.activityIndicator!.frame = activityRect
+        debugPrint(self.activityIndicator!.frame)
+        
+        navigationController.view.addSubview(self.activityIndicator!)
+        self.activityIndicator!.startAnimating()
     }
     
     // MARK: NSNotificationCenter

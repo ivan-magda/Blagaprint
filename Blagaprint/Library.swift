@@ -57,6 +57,8 @@ class Library {
     // MARK: CloudKit
     
     func loadFromCloudKit(callback: Callback) {
+        UIApplication.sharedApplication().networkActivityIndicatorVisible = true
+        
         weak var weakSelf = Library.sharedInstance
         let cloudKitCentral = CloudKitCentral.sharedInstance
         CategoryItem.countFromCloudKitWithCompletionHandler() {
@@ -107,6 +109,9 @@ class Library {
                                 
                                 // Post notification.
                                 NSNotificationCenter.defaultCenter().postNotificationName(LibraryDidDoneWithCloudKitDataDownloadingNotification, object: nil)
+                                
+                                UIApplication.sharedApplication().networkActivityIndicatorVisible = false
+                                
                                 callback()
                             }
                         }
