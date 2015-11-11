@@ -83,7 +83,7 @@ class Library {
                 categoryItemOperation.recordFetchedBlock = {
                     record in
                     let categoryItem = CategoryItem(record: record as CKRecord)
-                    //categoryItem.parentCategory = category
+                    categoryItem.parentCategory = category
                     category.categoryItems.append(categoryItem)
                     weakSelf!.categoriesItems.append(categoryItem)
                     print("\(categoryItem)" + "\n")
@@ -142,9 +142,9 @@ class Library {
                     library.categories = sortedArrayByName(library.categories, ascending: false)
                     for category in library.categories {
                         library.categoriesItems += category.categoryItems
-//                        for categoryItem in category.categoryItems {
-//                            categoryItem.parentCategory = category
-//                        }
+                        for categoryItem in category.categoryItems {
+                            categoryItem.parentCategory = category
+                        }
                     }
                     library.categoriesItems = sortedArrayByName(library.categoriesItems, ascending: true)
                     

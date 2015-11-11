@@ -210,9 +210,9 @@ class MainTableViewController: UITableViewController {
         self.activityIndicator!.color = AppAppearance.AppColors.vulcanColor
         
         let activityIndicatorSize = CGSizeMake(20.0, 20.0)
-        let indicatorOriginX = round(CGRectGetWidth(navControllerFrame) / 2.0 - (activityIndicatorSize.width / 2.0))
-        let indicatorOriginY = floor(CGRectGetHeight(navControllerFrame) / 2.0 - (activityIndicatorSize.height / 2.0))
-        let activityRect = CGRectMake(indicatorOriginX, indicatorOriginY, 37.0, 37.0)
+        let indicatorOriginX = CGRectGetWidth(navControllerFrame) / 2.0 - activityIndicatorSize.width / 2.0
+        let indicatorOriginY = CGRectGetHeight(navControllerFrame) / 2.0 - activityIndicatorSize.height / 2.0
+        let activityRect = CGRectMake(indicatorOriginX, indicatorOriginY, activityIndicatorSize.width, activityIndicatorSize.height)
         self.activityIndicator!.frame = activityRect
         debugPrint(self.activityIndicator!.frame)
         

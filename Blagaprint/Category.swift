@@ -125,7 +125,9 @@ class Category: NSObject, NSCoding, SortByNameProtocol {
         recordName = aDecoder.decodeObjectForKey(CoderKeys.recordNameKey.rawValue) as! String
         categoryItems = aDecoder.decodeObjectForKey(CoderKeys.categoryItemsKey.rawValue) as! [CategoryItem]
         categoryType = CategoryTypes(rawValue: aDecoder.decodeObjectForKey(CoderKeys.categoryTypeKey.rawValue) as! String)!
-        isCached = aDecoder.decodeBoolForKey(CoderKeys.isCachedKey.rawValue)
+        isCached = true
+        
+        super.init()
     }
     
     func encodeWithCoder(aCoder: NSCoder) {

@@ -27,6 +27,7 @@ class CategoryItem: NSObject, NSCoding, SortByNameProtocol {
     var name: String
     var image: UIImage?
     var imageUrl: NSURL?
+    weak var parentCategory: Category?
     
     override var description: String {
         return "Name: \(name)\nImageUrl: \(imageUrl)"
@@ -62,7 +63,7 @@ class CategoryItem: NSObject, NSCoding, SortByNameProtocol {
     
     init(record: CKRecord) {
         self.name = record[CloudKitFieldNames.Name.rawValue] as! String
-
+        
         super.init()
         
         let image = record[CloudKitFieldNames.Image.rawValue] as? CKAsset
@@ -83,6 +84,8 @@ class CategoryItem: NSObject, NSCoding, SortByNameProtocol {
         name = aDecoder.decodeObjectForKey(CoderKeys.nameKey.rawValue) as! String
         image = aDecoder.decodeObjectForKey(CoderKeys.imageKey.rawValue) as? UIImage
         imageUrl = aDecoder.decodeObjectForKey(CoderKeys.imageUrlKey.rawValue) as? NSURL
+        
+        super.init()
     }
     
     func encodeWithCoder(aCoder: NSCoder) {
