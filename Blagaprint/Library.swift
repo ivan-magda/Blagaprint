@@ -183,7 +183,7 @@ class Library {
     
     func cacheUrl() -> NSURL {
         let fileManager = NSFileManager.defaultManager()
-        let cacheUrl = try! fileManager.URLForDirectory(.CachesDirectory, inDomain: .UserDomainMask, appropriateForURL: nil, create: false)
+        let cacheUrl = try! fileManager.URLForDirectory(.CachesDirectory, inDomain: .UserDomainMask, appropriateForURL: nil, create: true)
         let saveUrl = cacheUrl.URLByAppendingPathComponent("blagaprint.cache")
         
         return saveUrl

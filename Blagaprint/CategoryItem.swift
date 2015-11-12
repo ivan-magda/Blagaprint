@@ -17,6 +17,7 @@ class CategoryItem: NSObject, NSCoding, SortByNameProtocol {
     
     private enum CoderKeys: String {
         case nameKey
+        case recordKey
         case imageKey
         case imageUrlKey
         case parentCategoryKey
@@ -25,6 +26,7 @@ class CategoryItem: NSObject, NSCoding, SortByNameProtocol {
     // MARK: - Properties
     
     var name: String
+    var record: CKRecord = CKRecord(recordType: CategoryItemRecordType)
     var image: UIImage?
     var imageUrl: NSURL?
     weak var parentCategory: Category?
@@ -63,6 +65,7 @@ class CategoryItem: NSObject, NSCoding, SortByNameProtocol {
     
     init(record: CKRecord) {
         self.name = record[CloudKitFieldNames.Name.rawValue] as! String
+        self.record = record
         
         super.init()
         
@@ -82,6 +85,7 @@ class CategoryItem: NSObject, NSCoding, SortByNameProtocol {
     
     required init?(coder aDecoder: NSCoder) {
         name = aDecoder.decodeObjectForKey(CoderKeys.nameKey.rawValue) as! String
+        record = aDecoder.decodeObjectForKey(CoderKeys.recordKey.rawValue) as! CKRecord
         image = aDecoder.decodeObjectForKey(CoderKeys.imageKey.rawValue) as? UIImage
         imageUrl = aDecoder.decodeObjectForKey(CoderKeys.imageUrlKey.rawValue) as? NSURL
         
@@ -90,6 +94,7 @@ class CategoryItem: NSObject, NSCoding, SortByNameProtocol {
     
     func encodeWithCoder(aCoder: NSCoder) {
         aCoder.encodeObject(name, forKey: CoderKeys.nameKey.rawValue)
+        aCoder.encodeObject(record, forKey: CoderKeys.recordKey.rawValue)
         aCoder.encodeObject(image, forKey: CoderKeys.imageKey.rawValue)
         aCoder.encodeObject(imageUrl, forKey: CoderKeys.imageUrlKey.rawValue)
     }

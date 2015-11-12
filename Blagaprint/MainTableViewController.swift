@@ -44,8 +44,8 @@ class MainTableViewController: UITableViewController {
     
     private let library: Library = Library.sharedInstance
     
-    /// Activity indicator that presenting when app first time launched.
-    private var activityIndicator: UIActivityIndicatorView?
+    /// LoadingView that presenting when app first time launched.
+    private var loadingView: LoadingView?
     
     // MARK: - View Life Cycle -
     
@@ -56,8 +56,8 @@ class MainTableViewController: UITableViewController {
             self.configurateTableView()
             self.presentLoadingActivityIndicator()
             library.loadFromCloudKit() {
-                self.activityIndicator!.stopAnimating()
-                self.activityIndicator!.removeFromSuperview()
+                self.loadingView!.stopAnimating()
+                self.loadingView!.removeFromSuperview()
                 
                 self.configurateRefreshControl()
                 self.searchSetUp()
@@ -206,18 +206,9 @@ class MainTableViewController: UITableViewController {
         let navigationController = self.navigationController!
         let navControllerFrame = navigationController.view.bounds
         
-        self.activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.Gray)
-        self.activityIndicator!.color = AppAppearance.AppColors.vulcanColor
-        
-        let activityIndicatorSize = CGSizeMake(20.0, 20.0)
-        let indicatorOriginX = CGRectGetWidth(navControllerFrame) / 2.0 - activityIndicatorSize.width / 2.0
-        let indicatorOriginY = CGRectGetHeight(navControllerFrame) / 2.0 - activityIndicatorSize.height / 2.0
-        let activityRect = CGRectMake(indicatorOriginX, indicatorOriginY, activityIndicatorSize.width, activityIndicatorSize.height)
-        self.activityIndicator!.frame = activityRect
-        debugPrint(self.activityIndicator!.frame)
-        
-        navigationController.view.addSubview(self.activityIndicator!)
-        self.activityIndicator!.startAnimating()
+        self.loadingView = LoadingView(frame: navControllerFrame)
+        navigationController.view.addSubview(loadingView!)
+        self.loadingView!.startAnimating()
     }
     
     // MARK: NSNotificationCenter
