@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 import CloudKit
+import CoreData
 
 protocol SortByNameProtocol {
     var name: String { get set }
@@ -47,8 +48,8 @@ class Library {
     
     func loadData(callback: Callback) {
         let fileManager = NSFileManager.defaultManager()
-        if fileManager.fileExistsAtPath(Library.sharedInstance.cacheUrl().path!) {
-            loadFromCache(callback)
+        if fileManager.fileExistsAtPath(Library.storeUrl().path!) {
+            loadFromDataBase(callback)
         } else {
             loadFromCloudKit(callback)
         }
@@ -59,7 +60,7 @@ class Library {
     func loadFromCloudKit(callback: Callback) {
         UIApplication.sharedApplication().networkActivityIndicatorVisible = true
         
-        weak var weakSelf = Library.sharedInstance
+        weak var weakSelf = self
         let cloudKitCentral = CloudKitCentral.sharedInstance
         CategoryItem.countFromCloudKitWithCompletionHandler() {
             count in
@@ -102,15 +103,17 @@ class Library {
                             if weakSelf!.categoriesItems.count == count {
                                 weakSelf!.categories = weakSelf!.sortedArrayByName(weakSelf!.categories, ascending: false)
                                 
-                                NSOperationQueue().addOperationWithBlock() {
-                                    weakSelf!.saveToCache()
+                                if Library.dataBaseExist() {
+                                    weakSelf!.deleteData()
                                 }
-                                print("Done with load from CloudKit")
+                                weakSelf!.saveToDatabase()
                                 
                                 // Post notification.
                                 NSNotificationCenter.defaultCenter().postNotificationName(LibraryDidDoneWithCloudKitDataDownloadingNotification, object: nil)
                                 
                                 UIApplication.sharedApplication().networkActivityIndicatorVisible = false
+                                
+                                print("Done with load from CloudKit")
                                 
                                 callback()
                             }
@@ -126,67 +129,102 @@ class Library {
     
     // MARK: Cache
     
-    class func cacheExist() -> Bool {
+    class func dataBaseExist() -> Bool {
         let fileManager = NSFileManager.defaultManager()
-        return fileManager.fileExistsAtPath(Library.sharedInstance.cacheUrl().path!)
+        
+        // Count for categories
+        let request = NSFetchRequest(entityName: CategoryDataEntityName)
+        var error: NSError?
+        let count = Persistence.sharedInstance.managedObjectContext.countForFetchRequest(request, error: &error)
+        if error != nil {
+            print("Error: \(error!.localizedDescription)")
+        }
+        
+        return (fileManager.fileExistsAtPath(Persistence.sharedInstance.storeUrl.path!) && count > 0)
     }
     
-    func loadFromCache(callback: Callback) {
-        let library = Library.sharedInstance
-        if let data = NSData(contentsOfURL: library.cacheUrl()) {
-            if data.length > 0 {
-                let decoder = NSKeyedUnarchiver(forReadingWithData: data)
-                let object: AnyObject! = decoder.decodeObject()
-                if object != nil {
-                    library.categories = object as! [Category]
-                    library.categories = sortedArrayByName(library.categories, ascending: false)
-                    for category in library.categories {
-                        library.categoriesItems += category.categoryItems
-                        for categoryItem in category.categoryItems {
-                            categoryItem.parentCategory = category
-                        }
-                    }
-                    library.categoriesItems = sortedArrayByName(library.categoriesItems, ascending: true)
-                    
-                    NSOperationQueue.mainQueue().addOperationWithBlock() {
-                        print("Done with load from cache")
-                        // Post notification.
-                        NSNotificationCenter.defaultCenter().postNotificationName(LibraryDidDoneWithDataLoadingFromCacheNotification, object: nil)
-                        callback()
+    func loadFromDataBase(callback: Callback) {
+        let request = NSFetchRequest(entityName: CategoryDataEntityName)
+        request.returnsObjectsAsFaults = false
+        
+        let sort = NSSortDescriptor(key: "name", ascending: false)
+        request.sortDescriptors = [sort]
+        
+        var fetchedCategories: [CategoryData]?
+        do {
+            fetchedCategories = try Persistence.sharedInstance.managedObjectContext.executeFetchRequest(request) as? [CategoryData]
+        } catch let error as NSError {
+            print("Error: \(error.localizedDescription)")
+        }
+        
+        if fetchedCategories != nil {
+            for categoryData in fetchedCategories! {
+                let category = Category(categoryData: categoryData)
+                if let items = categoryData.items?.allObjects as? [CategoryItemData] {
+                    for categoryItem in items {
+                        let item = CategoryItem(categoryItemData: categoryItem)
+                        item.parentCategory = category
+                        category.categoryItems.append(item)
+                        
+                        self.categoriesItems.append(item)
                     }
                 }
+                self.categories.append(category)
             }
         }
-    }
-    
-    func saveToCache() {
-        let data = NSMutableData()
-        let archiver = NSKeyedArchiver(forWritingWithMutableData: data)
-        archiver.encodeRootObject(Library.sharedInstance.categories)
-        archiver.finishEncoding()
-        data.writeToURL(cacheUrl(), atomically: true)
+        Persistence.sharedInstance.managedObjectContext.refreshAllObjects()
         
-        print("Save to cache")
-    }
-    
-    func deleteCache() {
-        let url = cacheUrl()
-        let fileManager = NSFileManager.defaultManager()
+        self.categories = sortedArrayByName(categories, ascending: false)
+        self.categoriesItems = sortedArrayByName(categoriesItems, ascending: true)
         
-        do {
-            try fileManager.removeItemAtURL(url)
-            print("Cache deleted")
-        } catch let error as NSError {
-            print(error.localizedDescription)
+        NSOperationQueue.mainQueue().addOperationWithBlock() {
+            NSNotificationCenter.defaultCenter().postNotificationName(LibraryDidDoneWithDataLoadingFromCacheNotification, object: nil)
+            print("Done with load from database")
+            callback()
         }
     }
     
-    func cacheUrl() -> NSURL {
-        let fileManager = NSFileManager.defaultManager()
-        let cacheUrl = try! fileManager.URLForDirectory(.CachesDirectory, inDomain: .UserDomainMask, appropriateForURL: nil, create: true)
-        let saveUrl = cacheUrl.URLByAppendingPathComponent("blagaprint.cache")
+    func saveToDatabase() {
+        let persistence = Persistence.sharedInstance
         
-        return saveUrl
+        for category in categories {
+            let categoryData = NSEntityDescription.insertNewObjectForEntityForName(CategoryDataEntityName, inManagedObjectContext: persistence.managedObjectContext) as! CategoryData
+            categoryData.name = category.name
+            categoryData.record = category.record
+            categoryData.recordName = category.recordName
+            categoryData.type = category.categoryType.rawValue
+            categoryData.imageUrl = category.imageUrl
+            if let image = category.image {
+                categoryData.image = UIImageJPEGRepresentation(image, 1.0)
+            }
+            
+            let itemsSet = NSMutableSet(capacity: category.categoryItems.count)
+            for categoryItem in category.categoryItems {
+                let categoryItemData = NSEntityDescription.insertNewObjectForEntityForName(CategoryItemDataEntityName, inManagedObjectContext: persistence.managedObjectContext) as! CategoryItemData
+                categoryItemData.name = categoryItem.name
+                categoryItemData.record = categoryItem.record
+                if let image = categoryItem.image {
+                    categoryItemData.image = UIImageJPEGRepresentation(image, 1.0)
+                }
+                categoryItemData.imageUrl = categoryItem.imageUrl
+                categoryItemData.parentCategory = categoryData
+                
+                itemsSet.addObject(categoryItemData)
+            }
+            categoryData.items = itemsSet
+        }
+        persistence.saveContext()
+        
+        Persistence.sharedInstance.managedObjectContext.refreshAllObjects()
+        print("Done with save to database")
+    }
+    
+    func deleteData() {
+        Persistence.sharedInstance.deleteData()
+    }
+    
+    class func storeUrl() -> NSURL {
+        return Persistence.sharedInstance.storeUrl
     }
     
     // MARK: - Sorting Array -

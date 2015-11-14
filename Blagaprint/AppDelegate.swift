@@ -8,6 +8,7 @@
 
 import UIKit
 import CloudKit
+import CoreData
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -15,10 +16,43 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var window: UIWindow?
     
+    var cloudKitCentral: CloudKitCentral!
+    var persistence: Persistence!
+    var managedObjectContext: NSManagedObjectContext!
+    
+    // MARK: - Persistence Stack
+    
+    private func setUpPersistence() {
+        self.persistence = Persistence(storeUrl: self.storeUrl(), modelUrl: self.modelUrl())
+        self.managedObjectContext = self.persistence.managedObjectContext
+        
+        spreadManagedObjectContext()
+    }
+    
+    private func spreadManagedObjectContext() {
+        let navigationController = window!.rootViewController as! UINavigationController
+        let mainTableViewController = navigationController.topViewController as! MainTableViewController
+        
+        mainTableViewController.managedObjectContext = self.managedObjectContext
+    }
+    
+    private func documentsDirectory() -> NSURL {
+        return try! NSFileManager.defaultManager().URLForDirectory(.DocumentDirectory, inDomain: .UserDomainMask, appropriateForURL: nil, create: true)
+    }
+    
+    private func storeUrl() -> NSURL {
+        return documentsDirectory().URLByAppendingPathComponent("DataStore.sqlite")
+    }
+    
+    private func modelUrl() -> NSURL {
+        return NSBundle.mainBundle().URLForResource("DataModel", withExtension: "momd")!
+    }
+    
     // MARK: - Application Life Cycle
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        CloudKitCentral.sharedInstance
+        setUpPersistence()
+        self.cloudKitCentral = CloudKitCentral.sharedInstance
         AppAppearance.applyAppAppearance()
         AppConfiguration.setUp()
         
@@ -31,8 +65,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func applicationDidEnterBackground(application: UIApplication) {
-        // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
-        // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+        persistence.saveContext()
     }
     
     func applicationWillEnterForeground(application: UIApplication) {
@@ -44,7 +77,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func applicationWillTerminate(application: UIApplication) {
-        // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+        persistence.saveContext()
     }
     
     

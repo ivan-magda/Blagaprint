@@ -136,6 +136,12 @@
 		75A3E9891BE365DC0001E073 /* galaxyNote4Speaker@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 75A3E9871BE365DC0001E073 /* galaxyNote4Speaker@2x.png */; };
 		75AB8ABE1BE73F4000B88A5A /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 75AB8ABD1BE73F4000B88A5A /* CloudKit.framework */; };
 		75AB8AC01BE744DB00B88A5A /* CloudKitCentral.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75AB8ABF1BE744DB00B88A5A /* CloudKitCentral.swift */; };
+		75C762C61BF59FEB004F06C2 /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 75C762C41BF59FEB004F06C2 /* DataModel.xcdatamodeld */; };
+		75C762CB1BF5A36F004F06C2 /* CategoryData+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75C762C71BF5A36F004F06C2 /* CategoryData+CoreDataProperties.swift */; };
+		75C762CC1BF5A36F004F06C2 /* CategoryData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75C762C81BF5A36F004F06C2 /* CategoryData.swift */; };
+		75C762CD1BF5A36F004F06C2 /* CategoryItemData+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75C762C91BF5A36F004F06C2 /* CategoryItemData+CoreDataProperties.swift */; };
+		75C762CE1BF5A36F004F06C2 /* CategoryItemData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75C762CA1BF5A36F004F06C2 /* CategoryItemData.swift */; };
+		75C762D11BF5AC8D004F06C2 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75C762D01BF5AC8D004F06C2 /* Persistence.swift */; };
 		75DD91F91BD7B43800932AD7 /* AndersonSupercar.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 75DD91F81BD7B43800932AD7 /* AndersonSupercar.ttf */; };
 		75DD91FF1BD7BFE000932AD7 /* CaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75DD91FE1BD7BFE000932AD7 /* CaseView.swift */; };
 		75F7391F1BE469940063EB6F /* xperiaZ3compactCameraImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 75F7391D1BE469940063EB6F /* xperiaZ3compactCameraImage.png */; };
@@ -295,6 +301,12 @@
 		75AB8ABC1BE73F2900B88A5A /* Blagaprint.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Blagaprint.entitlements; sourceTree = "<group>"; };
 		75AB8ABD1BE73F4000B88A5A /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		75AB8ABF1BE744DB00B88A5A /* CloudKitCentral.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CloudKitCentral.swift; sourceTree = "<group>"; };
+		75C762C51BF59FEB004F06C2 /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
+		75C762C71BF5A36F004F06C2 /* CategoryData+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CategoryData+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		75C762C81BF5A36F004F06C2 /* CategoryData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryData.swift; sourceTree = "<group>"; };
+		75C762C91BF5A36F004F06C2 /* CategoryItemData+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CategoryItemData+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		75C762CA1BF5A36F004F06C2 /* CategoryItemData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryItemData.swift; sourceTree = "<group>"; };
+		75C762D01BF5AC8D004F06C2 /* Persistence.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		75DD91F81BD7B43800932AD7 /* AndersonSupercar.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = AndersonSupercar.ttf; sourceTree = "<group>"; };
 		75DD91FE1BD7BFE000932AD7 /* CaseView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CaseView.swift; sourceTree = "<group>"; };
 		75F7391D1BE469940063EB6F /* xperiaZ3compactCameraImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = xperiaZ3compactCameraImage.png; sourceTree = "<group>"; };
@@ -471,6 +483,7 @@
 		50DD723A1BBED31B008A9B80 /* DataModel */ = {
 			isa = PBXGroup;
 			children = (
+				75C762CF1BF5A381004F06C2 /* CoreData */,
 				755266461BEB512700788DE2 /* CloudKit */,
 				50DD72381BBED313008A9B80 /* Category.swift */,
 				503CBEC01BC415C700052BE0 /* CategoryItem.swift */,
@@ -789,6 +802,19 @@
 				75AB8ABD1BE73F4000B88A5A /* CloudKit.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		75C762CF1BF5A381004F06C2 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				75C762D01BF5AC8D004F06C2 /* Persistence.swift */,
+				75C762C71BF5A36F004F06C2 /* CategoryData+CoreDataProperties.swift */,
+				75C762C81BF5A36F004F06C2 /* CategoryData.swift */,
+				75C762C91BF5A36F004F06C2 /* CategoryItemData+CoreDataProperties.swift */,
+				75C762CA1BF5A36F004F06C2 /* CategoryItemData.swift */,
+				75C762C41BF59FEB004F06C2 /* DataModel.xcdatamodeld */,
+			);
+			name = CoreData;
 			sourceTree = "<group>";
 		};
 		75F739291BE469A80063EB6F /* XperiaZ1Compact */ = {
@@ -1120,6 +1146,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				75F739371BE491BF0063EB6F /* XiaomiMi4.swift in Sources */,
+				75C762CC1BF5A36F004F06C2 /* CategoryData.swift in Sources */,
 				502A8CB51BB80EAC0064E0DA /* MainTableViewController.swift in Sources */,
 				75823AAF1BD8BDD000C92F83 /* PhoneCase.swift in Sources */,
 				75DD91FF1BD7BFE000932AD7 /* CaseView.swift in Sources */,
@@ -1137,16 +1164,21 @@
 				50551C2C1BCB8B18005B88DA /* SelectDeviceTableViewController.swift in Sources */,
 				50A871D71BCA9D68003CB0F9 /* CaseConstructorViewController.swift in Sources */,
 				755266451BEB50E600788DE2 /* CloudKitExtenstions.swift in Sources */,
+				75C762CD1BF5A36F004F06C2 /* CategoryItemData+CoreDataProperties.swift in Sources */,
 				75A3E9811BE3645E0001E073 /* GalaxyNote4.swift in Sources */,
 				50FD7F501BB8FFF600ABEC38 /* CategoryTableViewCell.swift in Sources */,
 				755266431BE9B66500788DE2 /* Library.swift in Sources */,
+				75C762C61BF59FEB004F06C2 /* DataModel.xcdatamodeld in Sources */,
 				75AB8AC01BE744DB00B88A5A /* CloudKitCentral.swift in Sources */,
 				503CBEC11BC415C700052BE0 /* CategoryItem.swift in Sources */,
 				75F7393A1BE4979B0063EB6F /* LenovoS850.swift in Sources */,
 				50551C311BCBB43A005B88DA /* BackgroundOvalView.swift in Sources */,
+				75C762CB1BF5A36F004F06C2 /* CategoryData+CoreDataProperties.swift in Sources */,
 				0C541A591BD0B51A0028BD9A /* PhotoLibraryItemCollectionViewCell.swift in Sources */,
+				75C762CE1BF5A36F004F06C2 /* CategoryItemData.swift in Sources */,
 				501506501BCE96C700697C99 /* TextEditingViewController.swift in Sources */,
 				75A36C3F1BE25C310036B500 /* GalaxyA7.swift in Sources */,
+				75C762D11BF5AC8D004F06C2 /* Persistence.swift in Sources */,
 				50551C331BCBB469005B88DA /* OvalView.swift in Sources */,
 				5071D34C1BBFE9D0005DDED3 /* NothingFoundTableViewCell.swift in Sources */,
 				502A8CB31BB80EAC0064E0DA /* AppDelegate.swift in Sources */,
@@ -1310,6 +1342,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		75C762C41BF59FEB004F06C2 /* DataModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				75C762C51BF59FEB004F06C2 /* DataModel.xcdatamodel */,
+			);
+			currentVersion = 75C762C51BF59FEB004F06C2 /* DataModel.xcdatamodel */;
+			path = DataModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 502A8CA71BB80EAC0064E0DA /* Project object */;
 }

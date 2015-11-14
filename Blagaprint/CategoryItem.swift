@@ -81,6 +81,21 @@ class CategoryItem: NSObject, NSCoding, SortByNameProtocol {
         }
     }
     
+    init(categoryItemData: CategoryItemData) {
+        self.name = categoryItemData.name!
+        self.record = categoryItemData.record as! CKRecord
+        
+        if let url = categoryItemData.imageUrl as? NSURL {
+            self.imageUrl = url
+        }
+        
+        if let imageData = categoryItemData.image {
+            self.image = UIImage(data: imageData)
+        }
+        
+        super.init()
+    }
+    
     // MARK: - NSCoding
     
     required init?(coder aDecoder: NSCoder) {

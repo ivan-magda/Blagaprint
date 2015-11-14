@@ -48,7 +48,6 @@ class Category: NSObject, NSCoding, SortByNameProtocol {
         case recordNameKey
         case categoryItemsKey
         case categoryTypeKey
-        case isCachedKey
     }
     
     // MARK: - Properties
@@ -60,10 +59,9 @@ class Category: NSObject, NSCoding, SortByNameProtocol {
     var recordName: String
     var categoryItems: [CategoryItem] = []
     var categoryType: CategoryTypes = .undefined
-    var isCached: Bool
     
     override var description: String {
-        return "Name: \(name)\nRecordName: \(recordName)\nCategoryItemsCount: \(categoryItems.count)\nCategoryType: \(categoryType.rawValue)\nCached: \(isCached)."
+        return "Name: \(name)\nRecordName: \(recordName)\nCategoryItemsCount: \(categoryItems.count)\nCategoryType: \(categoryType.rawValue)."
     }
     
     // MARK: - Initializers
@@ -76,14 +74,12 @@ class Category: NSObject, NSCoding, SortByNameProtocol {
         
         self.record = CKRecord(recordType: CategoryRecordType)
         self.recordName = ""
-        self.isCached = false
     }
     
     init(record: CKRecord) {
         self.name = record[CloudKitFieldNames.Name.rawValue] as! String
         self.record = record
         self.recordName = record.recordID.recordName
-        self.isCached = false
         
         let categoryString = record[CloudKitFieldNames.CategoryType.rawValue] as! String
         if let type = Category.categoryTypeFromString(categoryString) {
@@ -102,11 +98,31 @@ class Category: NSObject, NSCoding, SortByNameProtocol {
             queue.addOperationWithBlock({
                 let imageData = NSData(contentsOfURL: url)
                 self.image = UIImage(data: imageData!)!
-                
-                let data = NSKeyedArchiver.archivedDataWithRootObject(self.image!)
-                print("Size \(data.length)")
             })
         }
+    }
+    
+    init(categoryData: CategoryData) {
+        self.name = categoryData.name!
+        self.record = categoryData.record as! CKRecord
+        self.recordName = categoryData.recordName!
+        
+        if let url = categoryData.imageUrl as? NSURL {
+            self.imageUrl = url
+        }
+        
+        if let imageData = categoryData.image {
+            self.image = UIImage(data: imageData)
+        }
+        
+        let typeString = categoryData.type!
+        if let type = Category.categoryTypeFromString(typeString) {
+            self.categoryType = type
+        } else {
+            self.categoryType = .undefined
+        }
+        
+        super.init()
     }
     
     // MARK: - Private
@@ -125,7 +141,6 @@ class Category: NSObject, NSCoding, SortByNameProtocol {
         recordName = aDecoder.decodeObjectForKey(CoderKeys.recordNameKey.rawValue) as! String
         categoryItems = aDecoder.decodeObjectForKey(CoderKeys.categoryItemsKey.rawValue) as! [CategoryItem]
         categoryType = CategoryTypes(rawValue: aDecoder.decodeObjectForKey(CoderKeys.categoryTypeKey.rawValue) as! String)!
-        isCached = true
         
         super.init()
     }
@@ -138,7 +153,6 @@ class Category: NSObject, NSCoding, SortByNameProtocol {
         aCoder.encodeObject(recordName, forKey: CoderKeys.recordNameKey.rawValue)
         aCoder.encodeObject(categoryItems, forKey: CoderKeys.categoryItemsKey.rawValue)
         aCoder.encodeObject(categoryType.rawValue, forKey: CoderKeys.categoryTypeKey.rawValue)
-        aCoder.encodeBool(isCached, forKey: CoderKeys.isCachedKey.rawValue)
     }
     
     // MARK: - Public

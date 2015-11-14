@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 /// CategoryTableViewCell identifier.
 private let kCategoryTableViewCellIdentifier = "CategoryCell"
@@ -25,6 +26,8 @@ private let kHeightForHeader: CGFloat = 44.0
 
 class MainTableViewController: UITableViewController {
     // MARK: - Properties -
+    
+    var managedObjectContext: NSManagedObjectContext!
     
     /// Data source for the table view.
     private var categories: [Category] = []
@@ -63,12 +66,14 @@ class MainTableViewController: UITableViewController {
                 self.searchSetUp()
                 self.reloadDataAfterCallback()
                 
-                NSUserDefaults.standardUserDefaults().setBool(false, forKey: IsFirstTimeAppLaunchIdentifier)
+                let userDefaults = NSUserDefaults.standardUserDefaults()
+                userDefaults.setBool(false, forKey: IsFirstTimeAppLaunchIdentifier)
+                userDefaults.synchronize()
             }
         } else {
             // Load data from library.
-            if Library.cacheExist() {
-                library.loadFromCache() {
+            if Library.dataBaseExist() {
+                library.loadFromDataBase() {
                     self.reloadDataAfterCallback()
                 }
                 configurateRefreshControl()
@@ -179,12 +184,12 @@ class MainTableViewController: UITableViewController {
     
     func reloadLibrary() {
         weak var weakSelf = self
-        if Library.cacheExist() {
+        if Library.dataBaseExist() {
             library.loadFromCloudKit() {
                 weakSelf!.reloadDataAfterCallback()
             }
         } else {
-            library.loadFromCache() {
+            library.loadFromDataBase() {
                 weakSelf!.reloadDataAfterCallback()
             }
         }

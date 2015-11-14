@@ -27,6 +27,7 @@ class AppConfiguration: NSObject {
         if !userDefaults.boolForKey(RegisterDefaultsIdentifier) {
             userDefaults.setBool(true, forKey: IsFirstTimeAppLaunchIdentifier)
             userDefaults.setBool(true, forKey: RegisterDefaultsIdentifier)
+            userDefaults.synchronize()
         }
     }
 }
