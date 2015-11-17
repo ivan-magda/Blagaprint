@@ -10,6 +10,8 @@ import UIKit
 import CloudKit
 import CoreData
 
+let SubscriptionNotification = "SubscriptionNotification"
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
     // MARK: - Properties
@@ -52,11 +54,28 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         setUpPersistence()
-        self.cloudKitCentral = CloudKitCentral.sharedInstance
+        cloudKitCentral = CloudKitCentral.sharedInstance
+        
         AppAppearance.applyAppAppearance()
         AppConfiguration.setUp()
         
+        registerForPushNotifications(application)
+        
         return true
+    }
+    
+    func registerForPushNotifications(application: UIApplication) {
+        let notificationSettings = UIUserNotificationSettings(forTypes: .Alert, categories: nil)
+        application.registerUserNotificationSettings(notificationSettings)
+        application.registerForRemoteNotifications()
+    }
+    
+    func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
+        let castedUserInfo = userInfo as! [String: NSObject]
+        let notification = CKNotification(fromRemoteNotificationDictionary: castedUserInfo)
+        if notification.notificationType == .Query {
+            NSNotificationCenter.defaultCenter().postNotificationName(SubscriptionNotification, object: nil, userInfo: ["subscriptionID": notification.subscriptionID!])
+        }
     }
     
     func applicationWillResignActive(application: UIApplication) {
@@ -79,7 +98,5 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(application: UIApplication) {
         persistence.saveContext()
     }
-    
-    
 }
 
