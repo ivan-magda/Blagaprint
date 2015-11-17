@@ -4,7 +4,7 @@
         <attribute name="image" optional="YES" attributeType="Binary" allowsExternalBinaryDataStorage="YES" syncable="YES"/>
         <attribute name="imageUrl" optional="YES" attributeType="Transformable" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="record" optional="YES" attributeType="Transformable" syncable="YES"/>
+        <attribute name="recordChangeTag" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="recordName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="type" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="items" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="CategoryItemData" inverseName="parentCategory" inverseEntity="CategoryItemData" syncable="YES"/>
@@ -13,11 +13,12 @@
         <attribute name="image" optional="YES" attributeType="Binary" allowsExternalBinaryDataStorage="YES" syncable="YES"/>
         <attribute name="imageUrl" optional="YES" attributeType="Transformable" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="record" optional="YES" attributeType="Transformable" syncable="YES"/>
+        <attribute name="recordChangeTag" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="recordName" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="parentCategory" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CategoryData" inverseName="items" inverseEntity="CategoryData" syncable="YES"/>
     </entity>
     <elements>
         <element name="CategoryData" positionX="-63" positionY="-18" width="128" height="148"/>
-        <element name="CategoryItemData" positionX="115" positionY="-18" width="128" height="118"/>
+        <element name="CategoryItemData" positionX="115" positionY="-18" width="128" height="133"/>
     </elements>
 </model>

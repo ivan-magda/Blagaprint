@@ -327,7 +327,6 @@ class MainTableViewController: UITableViewController {
         
         searchController.dimsBackgroundDuringPresentation = false
         searchController.searchBar.delegate = self    // so we can monitor text changes + others
-        
         /*
         Search is now just presenting a view controller. As such, normal view controller
         presentation semantics apply. Namely that presentation will walk up the view controller

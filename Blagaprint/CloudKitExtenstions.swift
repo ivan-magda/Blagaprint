@@ -16,6 +16,7 @@ extension Category {
         var count = 0
         let query = CKQuery(recordType: CategoryRecordType, predicate: NSPredicate(value: true))
         let queryOperation = CKQueryOperation(query: query)
+        queryOperation.desiredKeys = []
         queryOperation.resultsLimit = CKQueryOperationMaximumResults
         queryOperation.recordFetchedBlock = {
             record in
@@ -26,7 +27,7 @@ extension Category {
             if error != nil {
                 print(error!.localizedDescription)
             } else {
-                NSOperationQueue.mainQueue().addOperationWithBlock() {
+                dispatch_async(dispatch_get_main_queue()) {
                     countCallback(count)
                 }
             }
@@ -40,6 +41,7 @@ extension CategoryItem {
         var count = 0
         let query = CKQuery(recordType: CategoryItemRecordType, predicate: NSPredicate(value: true))
         let queryOperation = CKQueryOperation(query: query)
+        queryOperation.desiredKeys = []
         queryOperation.resultsLimit = CKQueryOperationMaximumResults
         queryOperation.recordFetchedBlock = {
             record in
@@ -50,7 +52,7 @@ extension CategoryItem {
             if error != nil {
                 print(error!.localizedDescription)
             } else {
-                NSOperationQueue.mainQueue().addOperationWithBlock() {
+                dispatch_async(dispatch_get_main_queue()) {
                     countCallback(count)
                 }
             }

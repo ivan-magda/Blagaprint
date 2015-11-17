@@ -41,7 +41,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="200"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="3D_printing.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="9DT-2o-MP4">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="9DT-2o-MP4">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="200"/>
                                             <animations/>
                                             <constraints>
@@ -656,7 +656,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="3D_printing.jpg" width="2048" height="1138"/>
         <image name="More.png" width="33" height="33"/>
     </resources>
 </document>

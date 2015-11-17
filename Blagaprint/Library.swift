@@ -65,6 +65,7 @@ class Library {
         CategoryItem.countFromCloudKitWithCompletionHandler() {
             count in
             let query = CKQuery(recordType: CategoryRecordType, predicate: NSPredicate(value: true))
+            query.sortDescriptors = [NSSortDescriptor(key: CloudKitFieldNames.Name.rawValue, ascending: false)]
             let queryOperation = CKQueryOperation(query: query)
             weakSelf!.categories.removeAll(keepCapacity: true)
             weakSelf!.categoriesItems.removeAll(keepCapacity: true)
@@ -73,7 +74,7 @@ class Library {
             queryOperation.recordFetchedBlock = {
                 record in
                 let category = Category(record: record as CKRecord)
-                print("\(category)" + "\n")
+                debugPrint(category)
                 
                 let reference = CKReference(record: record as CKRecord, action: .DeleteSelf)
                 let predicate = NSPredicate(format: "ParentCategory == %@", reference)
@@ -87,7 +88,7 @@ class Library {
                     categoryItem.parentCategory = category
                     category.categoryItems.append(categoryItem)
                     weakSelf!.categoriesItems.append(categoryItem)
-                    print("\(categoryItem)" + "\n")
+                    debugPrint(categoryItem)
                 }
                 
                 // Completion block for each category items in specific category.
@@ -96,13 +97,11 @@ class Library {
                     if error != nil {
                         print(error!.localizedDescription)
                     } else {
-                        NSOperationQueue.mainQueue().addOperationWithBlock() {
+                        dispatch_async(dispatch_get_main_queue()) {
                             weakSelf!.categoriesItems = weakSelf!.sortedArrayByName(weakSelf!.categoriesItems, ascending: true)
                             
                             // We are done with fetching if all categories items fetched.
                             if weakSelf!.categoriesItems.count == count {
-                                weakSelf!.categories = weakSelf!.sortedArrayByName(weakSelf!.categories, ascending: false)
-                                
                                 if Library.dataBaseExist() {
                                     weakSelf!.deleteData()
                                 }
@@ -190,7 +189,8 @@ class Library {
         for category in categories {
             let categoryData = NSEntityDescription.insertNewObjectForEntityForName(CategoryDataEntityName, inManagedObjectContext: persistence.managedObjectContext) as! CategoryData
             categoryData.name = category.name
-            categoryData.record = category.record
+            categoryData.recordName = category.recordName
+            categoryData.recordChangeTag = category.recordChangeTag
             categoryData.recordName = category.recordName
             categoryData.type = category.categoryType.rawValue
             categoryData.imageUrl = category.imageUrl
@@ -202,7 +202,8 @@ class Library {
             for categoryItem in category.categoryItems {
                 let categoryItemData = NSEntityDescription.insertNewObjectForEntityForName(CategoryItemDataEntityName, inManagedObjectContext: persistence.managedObjectContext) as! CategoryItemData
                 categoryItemData.name = categoryItem.name
-                categoryItemData.record = categoryItem.record
+                categoryItemData.recordName = categoryItem.recordName
+                categoryItemData.recordChangeTag = categoryItem.recordChangeTag
                 if let image = categoryItem.image {
                     categoryItemData.image = UIImageJPEGRepresentation(image, 1.0)
                 }
