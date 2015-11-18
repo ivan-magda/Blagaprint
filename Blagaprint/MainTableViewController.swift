@@ -149,6 +149,8 @@ class MainTableViewController: UITableViewController {
             if category.categoryType == Category.CategoryTypes.cases {
                 self.performSegueWithIdentifier("PhoneCaseConstructor", sender: nil)
                 return
+            } else if category.categoryType == Category.CategoryTypes.frames {
+                self.performSegueWithIdentifier("FrameConstructor", sender: nil)
             }
         }
         

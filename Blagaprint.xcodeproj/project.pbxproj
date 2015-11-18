@@ -12,6 +12,9 @@
 		0C541A6A1BD0BA970028BD9A /* 3dWallpaper.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0C541A671BD0BA970028BD9A /* 3dWallpaper.jpg */; };
 		0C541A6B1BD0BA970028BD9A /* FunnyAnimals.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0C541A681BD0BA970028BD9A /* FunnyAnimals.jpg */; };
 		0C541A6C1BD0BA970028BD9A /* wallpaper.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0C541A691BD0BA970028BD9A /* wallpaper.jpg */; };
+		0C8296BE1BFC5CF200B2B345 /* ImagePickingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C8296BD1BFC5CF200B2B345 /* ImagePickingTableViewCell.swift */; };
+		0C8296C01BFC5FF100B2B345 /* FrameConstructorTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C8296BF1BFC5FF100B2B345 /* FrameConstructorTableViewController.swift */; };
+		0C8296C21BFC65D500B2B345 /* DescriptionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C8296C11BFC65D400B2B345 /* DescriptionTableViewCell.swift */; };
 		501506501BCE96C700697C99 /* TextEditingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5015064F1BCE96C700697C99 /* TextEditingViewController.swift */; };
 		502A8CB31BB80EAC0064E0DA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502A8CB21BB80EAC0064E0DA /* AppDelegate.swift */; };
 		502A8CB51BB80EAC0064E0DA /* MainTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502A8CB41BB80EAC0064E0DA /* MainTableViewController.swift */; };
@@ -140,6 +143,9 @@
 		0C541A671BD0BA970028BD9A /* 3dWallpaper.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 3dWallpaper.jpg; sourceTree = "<group>"; };
 		0C541A681BD0BA970028BD9A /* FunnyAnimals.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = FunnyAnimals.jpg; sourceTree = "<group>"; };
 		0C541A691BD0BA970028BD9A /* wallpaper.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = wallpaper.jpg; sourceTree = "<group>"; };
+		0C8296BD1BFC5CF200B2B345 /* ImagePickingTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagePickingTableViewCell.swift; sourceTree = "<group>"; };
+		0C8296BF1BFC5FF100B2B345 /* FrameConstructorTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FrameConstructorTableViewController.swift; sourceTree = "<group>"; };
+		0C8296C11BFC65D400B2B345 /* DescriptionTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DescriptionTableViewCell.swift; sourceTree = "<group>"; };
 		5015064F1BCE96C700697C99 /* TextEditingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextEditingViewController.swift; sourceTree = "<group>"; };
 		502A8CAF1BB80EAC0064E0DA /* Blagaprint.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Blagaprint.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		502A8CB21BB80EAC0064E0DA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -417,6 +423,8 @@
 				50F8F4191BC80857002CE3FD /* CategoryItemTableViewCell.swift */,
 				0C541A581BD0B51A0028BD9A /* PhotoLibraryItemCollectionViewCell.swift */,
 				758792A71BF487E10071C383 /* LoadingView.swift */,
+				0C8296BD1BFC5CF200B2B345 /* ImagePickingTableViewCell.swift */,
+				0C8296C11BFC65D400B2B345 /* DescriptionTableViewCell.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -434,6 +442,7 @@
 			children = (
 				502A8CB41BB80EAC0064E0DA /* MainTableViewController.swift */,
 				50551C2F1BCBA534005B88DA /* PhoneCase */,
+				0C8296BF1BFC5FF100B2B345 /* FrameConstructorTableViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -1020,8 +1029,11 @@
 				0C541A591BD0B51A0028BD9A /* PhotoLibraryItemCollectionViewCell.swift in Sources */,
 				75C762CE1BF5A36F004F06C2 /* CategoryItemData.swift in Sources */,
 				501506501BCE96C700697C99 /* TextEditingViewController.swift in Sources */,
+				0C8296BE1BFC5CF200B2B345 /* ImagePickingTableViewCell.swift in Sources */,
 				75A36C3F1BE25C310036B500 /* GalaxyA7.swift in Sources */,
+				0C8296C21BFC65D500B2B345 /* DescriptionTableViewCell.swift in Sources */,
 				75C762D11BF5AC8D004F06C2 /* Persistence.swift in Sources */,
+				0C8296C01BFC5FF100B2B345 /* FrameConstructorTableViewController.swift in Sources */,
 				50551C331BCBB469005B88DA /* OvalView.swift in Sources */,
 				5071D34C1BBFE9D0005DDED3 /* NothingFoundTableViewCell.swift in Sources */,
 				502A8CB31BB80EAC0064E0DA /* AppDelegate.swift in Sources */,

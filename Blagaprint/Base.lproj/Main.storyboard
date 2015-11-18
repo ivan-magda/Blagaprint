@@ -167,11 +167,137 @@
                     <navigationItem key="navigationItem" title="Blagaprint" id="fRJ-Gs-DIm"/>
                     <connections>
                         <segue destination="8pD-Rf-hwo" kind="presentation" identifier="PhoneCaseConstructor" id="7r0-zj-qN0"/>
+                        <segue destination="Fpf-00-QAj" kind="presentation" identifier="FrameConstructor" id="NLq-Qb-mPa"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="itM-KT-VwC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="212" y="971"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="FOx-6z-gpi">
+            <objects>
+                <navigationController id="Fpf-00-QAj" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="SXT-rN-CGt">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <animations/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="jf1-OA-wt3" kind="relationship" relationship="rootViewController" id="ulx-pH-SLN"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4xh-xk-of4" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="648" y="1713"/>
+        </scene>
+        <!--Фоторамка-->
+        <scene sceneID="zqT-tx-zQy">
+            <objects>
+                <tableViewController id="jf1-OA-wt3" customClass="FrameConstructorTableViewController" customModule="Blagaprint" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" indicatorStyle="black" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="FFA-u2-hi1">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <containerView key="tableHeaderView" opaque="NO" contentMode="scaleToFill" id="5ap-lw-c6Q">
+                            <rect key="frame" x="0.0" y="64" width="320" height="320"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                            <animations/>
+                            <connections>
+                                <segue destination="IGw-Ox-mdh" kind="embed" id="bwp-Li-qsZ"/>
+                            </connections>
+                        </containerView>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ImagePickingCell" id="N7O-pA-EM5" customClass="ImagePickingTableViewCell" customModule="Blagaprint" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="412" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="N7O-pA-EM5" id="yVt-0f-sNu">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Изображение" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SlR-30-Ug2">
+                                            <rect key="frame" x="15" y="11" width="112" height="21"/>
+                                            <animations/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a3W-7g-kkJ">
+                                            <rect key="frame" x="267" y="5" width="33" height="33"/>
+                                            <animations/>
+                                            <state key="normal" image="More.png"/>
+                                            <connections>
+                                                <action selector="imagePickingButtonPressed:" destination="jf1-OA-wt3" eventType="touchUpInside" id="4FZ-uY-MaR"/>
+                                            </connections>
+                                        </button>
+                                    </subviews>
+                                    <animations/>
+                                    <constraints>
+                                        <constraint firstAttribute="bottom" secondItem="SlR-30-Ug2" secondAttribute="bottom" constant="11" id="9LW-ro-sNN"/>
+                                        <constraint firstItem="a3W-7g-kkJ" firstAttribute="top" secondItem="yVt-0f-sNu" secondAttribute="top" constant="5" id="TEg-ZA-qAy"/>
+                                        <constraint firstAttribute="trailing" secondItem="a3W-7g-kkJ" secondAttribute="trailing" constant="20" symbolic="YES" id="UBT-VX-dGb"/>
+                                        <constraint firstAttribute="bottom" secondItem="a3W-7g-kkJ" secondAttribute="bottom" constant="5" id="aTq-4Q-yvV"/>
+                                        <constraint firstItem="SlR-30-Ug2" firstAttribute="top" secondItem="yVt-0f-sNu" secondAttribute="top" constant="11" id="jQz-Gr-7iK"/>
+                                        <constraint firstItem="SlR-30-Ug2" firstAttribute="leading" secondItem="yVt-0f-sNu" secondAttribute="leading" constant="15" id="oNA-ZM-8J7"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <animations/>
+                                <connections>
+                                    <outlet property="moreButton" destination="a3W-7g-kkJ" id="sJ6-Fs-HCC"/>
+                                    <outlet property="titleLabel" destination="SlR-30-Ug2" id="sPy-TO-tOn"/>
+                                </connections>
+                            </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="DescriptionCell" id="gm6-7I-H7U" customClass="DescriptionTableViewCell" customModule="Blagaprint" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="456" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="gm6-7I-H7U" id="WPQ-ys-vBu">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Описание" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L6h-lG-yqa">
+                                            <rect key="frame" x="15" y="11" width="297" height="21"/>
+                                            <animations/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <animations/>
+                                    <constraints>
+                                        <constraint firstItem="L6h-lG-yqa" firstAttribute="leading" secondItem="WPQ-ys-vBu" secondAttribute="leading" constant="15" id="JvC-Ea-sLH"/>
+                                        <constraint firstItem="L6h-lG-yqa" firstAttribute="top" secondItem="WPQ-ys-vBu" secondAttribute="top" constant="11" id="SZB-hp-eRv"/>
+                                        <constraint firstAttribute="bottom" secondItem="L6h-lG-yqa" secondAttribute="bottom" constant="11" id="a6r-Sf-STA"/>
+                                        <constraint firstAttribute="trailing" secondItem="L6h-lG-yqa" secondAttribute="trailing" constant="8" id="quw-GQ-xCq"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <animations/>
+                                <connections>
+                                    <outlet property="descriptionLabel" destination="L6h-lG-yqa" id="iET-yY-aVt"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="jf1-OA-wt3" id="e0y-0N-tn2"/>
+                            <outlet property="delegate" destination="jf1-OA-wt3" id="qAI-Y3-ecD"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Фоторамка" id="sWm-TA-c7q">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="voe-MC-xdG">
+                            <connections>
+                                <action selector="cancelButtonPressed:" destination="jf1-OA-wt3" id="2Oz-c7-6qM"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="CGC-aC-ahf">
+                            <connections>
+                                <action selector="doneButtonPressed:" destination="jf1-OA-wt3" id="gA5-JZ-DHm"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Dv1-cx-qV1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1075" y="1713"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Ld9-Tl-0lZ">
@@ -372,7 +498,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lGs-Mb-ptV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1075" y="971"/>
+            <point key="canvasLocation" x="1075" y="987"/>
         </scene>
         <!--Палитра-->
         <scene sceneID="HOr-Af-TLE">
@@ -438,7 +564,7 @@
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="88p-gJ-iGe" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1949" y="1308"/>
+            <point key="canvasLocation" x="1933" y="499"/>
         </scene>
         <!--Select Device Table View Controller-->
         <scene sceneID="bFU-bu-LyS">
@@ -479,7 +605,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="E0P-D1-IXY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1517" y="-16"/>
+            <point key="canvasLocation" x="1511" y="-816"/>
         </scene>
         <!--Библиотека-->
         <scene sceneID="Jvg-mT-6N4">
@@ -544,7 +670,7 @@
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8PH-3c-QN4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1949" y="663"/>
+            <point key="canvasLocation" x="1933" y="-152"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="7Lh-gH-edF">
@@ -563,7 +689,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7hS-TV-J5e" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1517" y="1308"/>
+            <point key="canvasLocation" x="1511" y="499"/>
         </scene>
         <!--Текст-->
         <scene sceneID="8Fh-Aq-Wnk">
@@ -614,7 +740,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RIs-0S-6eW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1517" y="1963"/>
+            <point key="canvasLocation" x="1933" y="1151"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="xbj-c5-iv9">
@@ -633,7 +759,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="c4H-g1-8WE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1075" y="1963"/>
+            <point key="canvasLocation" x="1511" y="1151"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="7Vk-AT-3rE">
@@ -652,7 +778,26 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wg7-4G-xei" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1517" y="663"/>
+            <point key="canvasLocation" x="1511" y="-152"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="p7N-ab-FAk">
+            <objects>
+                <viewController id="IGw-Ox-mdh" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="gGC-OL-ctn"/>
+                        <viewControllerLayoutGuide type="bottom" id="HOP-t7-x6o"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="pLB-Wd-JsZ">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="320"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="F5Z-Dg-cgN" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1511" y="1713"/>
         </scene>
     </scenes>
     <resources>
