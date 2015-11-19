@@ -8,10 +8,14 @@
 
 import UIKit
 
-private let imagePickingCellIdentifier = "ImagePickingCell"
-private let descriptionCellIdentifier  = "DescriptionCell"
-
 class FrameConstructorTableViewController: UITableViewController {
+    // MARK: - Types
+    
+    private enum CellIdentifier: String {
+        case ImagePickingCell
+        case DescriptionCell
+    }
+    
     // MARK: - Properties
     
     /// Image picker controller to let us take/pick photo.
@@ -29,22 +33,15 @@ class FrameConstructorTableViewController: UITableViewController {
     // MARK: - UItableView
     // MARK: UITableViewDataSource
 
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 1
-    }
-
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 2
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         if indexPath.row == 0 {
-            let cell = tableView.dequeueReusableCellWithIdentifier(imagePickingCellIdentifier) as! ImagePickingTableViewCell
-            //cell.moreButton.addTarget(self, action: Selector("presentImagePickingAlertController"), forControlEvents: UIControlEvents.TouchUpInside)
-            
-            return cell
+            return tableView.dequeueReusableCellWithIdentifier(CellIdentifier.ImagePickingCell.rawValue) as! ImagePickingTableViewCell
         } else {
-            let cell = tableView.dequeueReusableCellWithIdentifier(descriptionCellIdentifier) as! DescriptionTableViewCell
+            let cell = tableView.dequeueReusableCellWithIdentifier(CellIdentifier.DescriptionCell.rawValue) as! DescriptionTableViewCell
             cell.descriptionLabel.text = "Text may refer to:\nText & Talk (formerly Text), an academic journal \nText (literary theory), any object that can be read\nTextbook, a book of instruction any branch of study"
             
             return cell
@@ -161,7 +158,7 @@ extension FrameConstructorTableViewController: UIImagePickerControllerDelegate, 
     // MARK: UIImagePickerControllerDelegate
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
-        let chosenImage = info[UIImagePickerControllerOriginalImage] as! UIImage
+        //let chosenImage = info[UIImagePickerControllerOriginalImage] as! UIImage
         
 //        self.caseView.image = imageForCase(chosenImage)
 //        self.caseView.showBackgroundImage = true

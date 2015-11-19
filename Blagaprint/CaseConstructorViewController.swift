@@ -9,28 +9,23 @@
 import UIKit
 import ImageIO
 
-/// Segue identifier to SelectDeviceTableViewController.
-private let kSelectDeviceSegueIdentifier = "SelectDevice"
-
-/// Segue identifier to SelectbackgroundCollectionViewController.
-private let kSelectBackgroundSegueIdentifier = "ColorPicking"
-
-/// Segue identifier to TextEditingViewController.
-private let kTextEditingSegueIdentifier = "TextEditing"
-
-/// Segue identifier to PhotoLibraryCollectionViewController
-private let kPhotoLibrarySegueIdentifier = "PhotoLibrary"
-
 class CaseConstructorTableViewController: UITableViewController {
     // MARK: - Types
     
-    enum CellTypes: Int {
+    private enum SegueIdentifier: String {
+        case SelectDevice
+        case ColorPicking
+        case TextEditing
+        case PhotoLibrary
+    }
+    
+    private enum CellTypes: Int {
         case Device
         case Background
         case Text
     }
     
-    enum ColorSelectionType: String {
+    private enum ColorSelectionType: String {
         case CaseBackground
         case TextColor
     }
@@ -65,7 +60,7 @@ class CaseConstructorTableViewController: UITableViewController {
     
     // MARK: - Navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == kSelectDeviceSegueIdentifier {
+        if segue.identifier == SegueIdentifier.SelectDevice.rawValue {
             let selectDeviceViewController = segue.destinationViewController as! SelectDeviceTableViewController
             selectDeviceViewController.originalDevice = device
             
@@ -132,7 +127,7 @@ class CaseConstructorTableViewController: UITableViewController {
                 weakSelf?.caseView.device = selectedDevice
                 weakSelf?.deviceLabel.text = weakSelf?.device.name
             }
-        } else if segue.identifier == kSelectBackgroundSegueIdentifier {
+        } else if segue.identifier == SegueIdentifier.ColorPicking.rawValue {
             let navigationController = segue.destinationViewController as! UINavigationController
             let selectBackgroundVC = navigationController.topViewController as! SelectBackgroundCollectionViewController
             
@@ -162,7 +157,7 @@ class CaseConstructorTableViewController: UITableViewController {
                     })
                 }
             }
-        } else if segue.identifier == kTextEditingSegueIdentifier {
+        } else if segue.identifier == SegueIdentifier.TextEditing.rawValue {
             let navigationController = segue.destinationViewController as! UINavigationController
             let textEditingVC = navigationController.topViewController as! TextEditingViewController
             textEditingVC.text = caseView.text
@@ -172,7 +167,7 @@ class CaseConstructorTableViewController: UITableViewController {
             textEditingVC.didDoneOnTextCompletionHandler = { (text) in
                 weakSelf?.caseView.text = text
             }
-        } else if segue.identifier == kPhotoLibrarySegueIdentifier {
+        } else if segue.identifier == SegueIdentifier.PhotoLibrary.rawValue {
             let navigationController = segue.destinationViewController as! UINavigationController
             let photoLibraryVC = navigationController.topViewController as! PhotoLibraryCollectionViewController
             
@@ -214,7 +209,7 @@ class CaseConstructorTableViewController: UITableViewController {
     // MARK: - UIAlertActions
     
     private func presentSelectBackgroundAlertController() {
-        let backgroundSelectionAlertController = UIAlertController(title: nil, message: nil, preferredStyle: .ActionSheet)
+        let backgroundSelectionAlertController = UIAlertController(title: "Выберите фон", message: nil, preferredStyle: .ActionSheet)
         
         weak var weakSelf = self
         
@@ -237,13 +232,13 @@ class CaseConstructorTableViewController: UITableViewController {
         // Background library action
         let backgroundAction = UIAlertAction(title: "Палитра", style: .Default) { (action) -> Void in
             let type = ColorSelectionType.CaseBackground.rawValue
-            weakSelf?.performSegueWithIdentifier(kSelectBackgroundSegueIdentifier, sender: type)
+            weakSelf?.performSegueWithIdentifier(SegueIdentifier.ColorPicking.rawValue, sender: type)
         }
         backgroundSelectionAlertController.addAction(backgroundAction)
         
         // Images library action
         let imagesLibraryAction = UIAlertAction(title: "Библиотека изображений", style: .Default, handler: { (action) -> Void in
-            weakSelf?.performSegueWithIdentifier(kPhotoLibrarySegueIdentifier, sender: nil)
+            weakSelf?.performSegueWithIdentifier(SegueIdentifier.PhotoLibrary.rawValue, sender: nil)
         })
         backgroundSelectionAlertController.addAction(imagesLibraryAction)
         
@@ -251,7 +246,7 @@ class CaseConstructorTableViewController: UITableViewController {
     }
     
     private func presentManageTextAlertController() {
-        let manageTextAlertController = UIAlertController(title: nil, message: nil, preferredStyle: .ActionSheet)
+        let manageTextAlertController = UIAlertController(title: "Редактирование текста", message: nil, preferredStyle: .ActionSheet)
         
         weak var weakSelf = self
         
@@ -271,13 +266,13 @@ class CaseConstructorTableViewController: UITableViewController {
         // Select text color action
         let selectTextColorAction = UIAlertAction(title: "Цвет", style: .Default) { (action) -> Void in
             let type = ColorSelectionType.TextColor.rawValue
-            weakSelf!.performSegueWithIdentifier(kSelectBackgroundSegueIdentifier, sender: type)
+            weakSelf!.performSegueWithIdentifier(SegueIdentifier.ColorPicking.rawValue, sender: type)
         }
         manageTextAlertController.addAction(selectTextColorAction)
         
         // Enter text action
         let enterTextAction = UIAlertAction(title: "Ввести текст", style: .Default) { (action) -> Void in
-            self.performSegueWithIdentifier(kTextEditingSegueIdentifier, sender: nil)
+            self.performSegueWithIdentifier(SegueIdentifier.TextEditing.rawValue, sender: nil)
         }
         manageTextAlertController.addAction(enterTextAction)
         

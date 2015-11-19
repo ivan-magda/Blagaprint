@@ -9,15 +9,6 @@
 import UIKit
 import CoreData
 
-/// CategoryTableViewCell identifier.
-private let kCategoryTableViewCellIdentifier = "CategoryCell"
-
-/// CategoryItemTableViewCell identifier.
-private let kCategoryItemTableViewCellIdentifier = "CategoryItemCell"
-
-/// NothingFoundTableViewCell identifier.
-private let kNothingFoundTableViewCellIdentifier = "NothingFoundCell"
-
 /// CategoryTableViewCell height value.
 private let kCategoryTableViewCellHeightValue: CGFloat = 200.0
 
@@ -25,6 +16,19 @@ private let kCategoryTableViewCellHeightValue: CGFloat = 200.0
 private let kHeightForHeader: CGFloat = 44.0
 
 class MainTableViewController: UITableViewController {
+    // MARK: - Types
+    
+    private enum SegueIdentifier: String {
+        case PhoneCaseConstructor
+        case FrameConstructor
+    }
+    
+    private enum CellIdentifier: String {
+        case CategoryCell
+        case CategoryItemCell
+        case NothingFoundCell
+    }
+    
     // MARK: - Properties -
     
     var managedObjectContext: NSManagedObjectContext!
@@ -96,6 +100,11 @@ class MainTableViewController: UITableViewController {
     // MARK: - Navigation -
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == SegueIdentifier.PhoneCaseConstructor.rawValue {
+            debugPrint("Segue to PhoneCase")
+        } else if segue.identifier == SegueIdentifier.FrameConstructor.rawValue {
+            debugPrint("Segue to FrameConstructor")
+        }
     }
 
     // MARK: - UITableView -
@@ -147,10 +156,10 @@ class MainTableViewController: UITableViewController {
         if indexPath.row == 0 {
             let category = getCategoryFromIndexPath(indexPath)
             if category.categoryType == Category.CategoryTypes.cases {
-                self.performSegueWithIdentifier("PhoneCaseConstructor", sender: nil)
+                self.performSegueWithIdentifier(SegueIdentifier.PhoneCaseConstructor.rawValue, sender: nil)
                 return
             } else if category.categoryType == Category.CategoryTypes.frames {
-                self.performSegueWithIdentifier("FrameConstructor", sender: nil)
+                self.performSegueWithIdentifier(SegueIdentifier.FrameConstructor.rawValue, sender: nil)
             }
         }
         
@@ -270,12 +279,12 @@ class MainTableViewController: UITableViewController {
     
     private func getConfiguratedCellAtIndexPath(indexPath: NSIndexPath) -> UITableViewCell {
         if nothingFound() {
-            let nothingFoundCell = self.tableView!.dequeueReusableCellWithIdentifier(kNothingFoundTableViewCellIdentifier) as! NothingFoundTableViewCell
+            let nothingFoundCell = self.tableView!.dequeueReusableCellWithIdentifier(CellIdentifier.NothingFoundCell.rawValue) as! NothingFoundTableViewCell
             nothingFoundCell.label.text = "Ничего не найдено"
             
             return nothingFoundCell
         } else if indexPath.row == 0 {
-            let categoryCell = self.tableView.dequeueReusableCellWithIdentifier(kCategoryTableViewCellIdentifier) as! CategoryTableViewCell
+            let categoryCell = self.tableView.dequeueReusableCellWithIdentifier(CellIdentifier.CategoryCell.rawValue) as! CategoryTableViewCell
             
             let category = getCategoryFromIndexPath(indexPath)
             categoryCell.categoryImageView?.image = category.image
@@ -283,7 +292,7 @@ class MainTableViewController: UITableViewController {
             
             return categoryCell
         } else {
-            let categoryItemCell = self.tableView.dequeueReusableCellWithIdentifier(kCategoryItemTableViewCellIdentifier) as! CategoryItemTableViewCell
+            let categoryItemCell = self.tableView.dequeueReusableCellWithIdentifier(CellIdentifier.CategoryItemCell.rawValue) as! CategoryItemTableViewCell
             let item = categories[indexPath.section].categoryItems[indexPath.row - 1]
             categoryItemCell.categoryItemLabel.text = item.name
             
