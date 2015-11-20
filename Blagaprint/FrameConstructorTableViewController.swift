@@ -14,9 +14,14 @@ class FrameConstructorTableViewController: UITableViewController {
     private enum CellIdentifier: String {
         case ImagePickingCell
         case DescriptionCell
+        case CollectionViewCell
+        case FrameItemCell
     }
     
     // MARK: - Properties
+    
+    weak var collectionView: FrameItemColectionView!
+    weak var pageControl: UIPageControl!
     
     /// Image picker controller to let us take/pick photo.
     let imagePickerController: UIImagePickerController = UIImagePickerController()
@@ -29,22 +34,71 @@ class FrameConstructorTableViewController: UITableViewController {
         self.tableView.rowHeight = UITableViewAutomaticDimension
         self.tableView.estimatedRowHeight = 44.0
     }
+    
+    // MARK: - UIScrollViewDelegate
+    
+    override func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
+        handleScrollInScrollView(scrollView)
+    }
+    
+    private func handleScrollInScrollView(scrollView: UIScrollView) {
+        if !scrollView.isKindOfClass(FrameItemColectionView) {
+            return
+        } else {
+            let pageWidth: CGFloat = CGRectGetWidth(self.collectionView.bounds)
+            let currentPage = self.collectionView.contentOffset.x / pageWidth
+            
+            let needToReloadData = pageControl.currentPage != Int(currentPage)
+            
+            if (0.0 != fmodf(Float(currentPage), 1.0)) {
+                self.pageControl.currentPage = Int(currentPage) + 1
+            } else {
+                self.pageControl.currentPage = Int(currentPage)
+            }
+            
+            if needToReloadData {
+                reloadDescriptionCell()
+            }
+        }
+    }
+    
+    private func reloadDescriptionCell() {
+        let descriptionIndexPath = NSIndexPath(forRow: 1, inSection: 1)
+        self.tableView.reloadRowsAtIndexPaths([descriptionIndexPath], withRowAnimation: .Automatic)
+    }
 
-    // MARK: - UItableView
+    // MARK: - UITableView
     // MARK: UITableViewDataSource
-
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    
+    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 2
     }
 
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        if indexPath.row == 0 {
-            return tableView.dequeueReusableCellWithIdentifier(CellIdentifier.ImagePickingCell.rawValue) as! ImagePickingTableViewCell
+    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if section == 0 {
+            return 1
         } else {
-            let cell = tableView.dequeueReusableCellWithIdentifier(CellIdentifier.DescriptionCell.rawValue) as! DescriptionTableViewCell
-            cell.descriptionLabel.text = "Text may refer to:\nText & Talk (formerly Text), an academic journal \nText (literary theory), any object that can be read\nTextbook, a book of instruction any branch of study"
+            return 2
+        }
+    }
+    
+    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        if indexPath.section == 0 {
+            let cell = tableView.dequeueReusableCellWithIdentifier(CellIdentifier.CollectionViewCell.rawValue) as! CollectionTableViewCell
+            self.collectionView = cell.collectionView
+            self.pageControl = cell.pageControl
+            self.pageControl.numberOfPages = self.collectionView.numberOfSections()
             
             return cell
+        } else {
+            if indexPath.row == 0 {
+                return tableView.dequeueReusableCellWithIdentifier(CellIdentifier.ImagePickingCell.rawValue) as! ImagePickingTableViewCell
+            } else {
+                let cell = tableView.dequeueReusableCellWithIdentifier(CellIdentifier.DescriptionCell.rawValue) as! DescriptionTableViewCell
+                cell.descriptionLabel.text = "Text may refer to:\nText & Talk (formerly Text), an academic journal \nText (literary theory), any object that can be read\nTextbook, a book of instruction any branch of study"
+                
+                return cell
+            }
         }
     }
     
@@ -68,7 +122,7 @@ class FrameConstructorTableViewController: UITableViewController {
     // MARK: - UIAlertActions
     
     private func presentImagePickingAlertController() {
-        let imagePickingSelectionAlertController = UIAlertController(title: nil, message: nil, preferredStyle: .ActionSheet)
+        let imagePickingSelectionAlertController = UIAlertController(title: "Выберите изображение", message: nil, preferredStyle: .ActionSheet)
         
         weak var weakSelf = self
         
@@ -110,10 +164,20 @@ class FrameConstructorTableViewController: UITableViewController {
     @IBAction func imagePickingButtonPressed(sender: UIButton) {
         presentImagePickingAlertController()
     }
+    
+    @IBAction func pageControlDidChangeValue(sender: UIPageControl) {
+        let pageWidth = CGRectGetWidth(self.collectionView.bounds)
+        let scrollTo = CGPointMake(pageWidth * CGFloat(sender.currentPage), 0)
+        self.collectionView.setContentOffset(scrollTo, animated: true)
+        
+        reloadDescriptionCell()
+    }
 }
 
+// MARK: - Image Picking Extension
+
 extension FrameConstructorTableViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-    // MARK: Private helper methods
+    // MARK: - Private helper methods
     
     private func noCamera() {
         let alertVC = UIAlertController(title: "No Camera", message: "Sorry, this device has no camera", preferredStyle: .Alert)
@@ -168,5 +232,48 @@ extension FrameConstructorTableViewController: UIImagePickerControllerDelegate, 
     
     func imagePickerControllerDidCancel(picker: UIImagePickerController) {
         dismissViewControllerAnimated(true, completion: nil)
+    }
+}
+
+// MARK: - CollectionView Extensions
+
+extension FrameConstructorTableViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+    
+    // MARK: - UICollectionViewDataSource
+    
+    func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
+        return 7
+    }
+    
+    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 1
+    }
+    
+    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(CellIdentifier.FrameItemCell.rawValue, forIndexPath: indexPath)
+        
+        let red = CGFloat(drand48())
+        let green = CGFloat(drand48())
+        let blue = CGFloat(drand48())
+        let color: UIColor = UIColor(red: red, green: green, blue: blue, alpha: 1.0)
+        cell.backgroundColor = color
+        
+        return cell
+    }
+    
+    // MARK: - UICollectionViewDelegate
+    
+    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        print("Select item at section: \(indexPath.section)")
+    }
+    
+    // MARK: - UICollectionViewDelegateFlowLayout
+    
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+        let insets = FrameItemCollectionViewCell.leftSectionInset + FrameItemCollectionViewCell.rightSectionInset
+        let width  = CGRectGetWidth(collectionView.bounds) - insets
+        let height: CGFloat = FrameItemCollectionViewCell.height
+        
+        return CGSizeMake(width, height)
     }
 }

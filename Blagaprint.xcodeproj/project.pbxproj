@@ -48,6 +48,10 @@
 		7522783B1BE11E72008E117F /* iPhone5CameraImage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 752278391BE11E72008E117F /* iPhone5CameraImage@2x.png */; };
 		7522783E1BE12951008E117F /* galaxyS6CameraImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 7522783C1BE12951008E117F /* galaxyS6CameraImage.png */; };
 		7522783F1BE12951008E117F /* galaxyS6CameraImage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7522783D1BE12951008E117F /* galaxyS6CameraImage@2x.png */; };
+		7522B8901BFF34C800BC14C0 /* CollectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7522B88F1BFF34C800BC14C0 /* CollectionTableViewCell.swift */; };
+		7522B8921BFF3C0100BC14C0 /* ExpandedCollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7522B8911BFF3C0100BC14C0 /* ExpandedCollectionViewFlowLayout.swift */; };
+		7522B8941BFF3F6600BC14C0 /* FrameItemColectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7522B8931BFF3F6600BC14C0 /* FrameItemColectionView.swift */; };
+		7522B8961BFF49F200BC14C0 /* FrameItemCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7522B8951BFF49F200BC14C0 /* FrameItemCollectionViewCell.swift */; };
 		753CD57A1BF3210500795F44 /* AppConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 753CD5791BF3210500795F44 /* AppConfiguration.swift */; };
 		7547D2491BDE2376006E4170 /* galaxyS3CameraImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 7547D23B1BDE2376006E4170 /* galaxyS3CameraImage.png */; };
 		7547D24A1BDE2376006E4170 /* galaxyS3CameraImage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7547D23C1BDE2376006E4170 /* galaxyS3CameraImage@2x.png */; };
@@ -181,6 +185,10 @@
 		752278391BE11E72008E117F /* iPhone5CameraImage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "iPhone5CameraImage@2x.png"; path = "images/iPhone5CameraImage@2x.png"; sourceTree = "<group>"; };
 		7522783C1BE12951008E117F /* galaxyS6CameraImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = galaxyS6CameraImage.png; path = images/galaxyS6CameraImage.png; sourceTree = "<group>"; };
 		7522783D1BE12951008E117F /* galaxyS6CameraImage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "galaxyS6CameraImage@2x.png"; path = "images/galaxyS6CameraImage@2x.png"; sourceTree = "<group>"; };
+		7522B88F1BFF34C800BC14C0 /* CollectionTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionTableViewCell.swift; sourceTree = "<group>"; };
+		7522B8911BFF3C0100BC14C0 /* ExpandedCollectionViewFlowLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpandedCollectionViewFlowLayout.swift; sourceTree = "<group>"; };
+		7522B8931BFF3F6600BC14C0 /* FrameItemColectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FrameItemColectionView.swift; sourceTree = "<group>"; };
+		7522B8951BFF49F200BC14C0 /* FrameItemCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FrameItemCollectionViewCell.swift; sourceTree = "<group>"; };
 		753CD5791BF3210500795F44 /* AppConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppConfiguration.swift; sourceTree = "<group>"; };
 		7547D23B1BDE2376006E4170 /* galaxyS3CameraImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = galaxyS3CameraImage.png; path = images/galaxyS3CameraImage.png; sourceTree = "<group>"; };
 		7547D23C1BDE2376006E4170 /* galaxyS3CameraImage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "galaxyS3CameraImage@2x.png"; path = "images/galaxyS3CameraImage@2x.png"; sourceTree = "<group>"; };
@@ -425,6 +433,8 @@
 				758792A71BF487E10071C383 /* LoadingView.swift */,
 				0C8296BD1BFC5CF200B2B345 /* ImagePickingTableViewCell.swift */,
 				0C8296C11BFC65D400B2B345 /* DescriptionTableViewCell.swift */,
+				7522B88F1BFF34C800BC14C0 /* CollectionTableViewCell.swift */,
+				7522B8951BFF49F200BC14C0 /* FrameItemCollectionViewCell.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -442,7 +452,7 @@
 			children = (
 				502A8CB41BB80EAC0064E0DA /* MainTableViewController.swift */,
 				50551C2F1BCBA534005B88DA /* PhoneCase */,
-				0C8296BF1BFC5FF100B2B345 /* FrameConstructorTableViewController.swift */,
+				7522B8971BFF4E0200BC14C0 /* PhotoFrame */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -477,6 +487,16 @@
 				7522783D1BE12951008E117F /* galaxyS6CameraImage@2x.png */,
 			);
 			name = GalaxyS6;
+			sourceTree = "<group>";
+		};
+		7522B8971BFF4E0200BC14C0 /* PhotoFrame */ = {
+			isa = PBXGroup;
+			children = (
+				0C8296BF1BFC5FF100B2B345 /* FrameConstructorTableViewController.swift */,
+				7522B8931BFF3F6600BC14C0 /* FrameItemColectionView.swift */,
+				7522B8911BFF3C0100BC14C0 /* ExpandedCollectionViewFlowLayout.swift */,
+			);
+			name = PhotoFrame;
 			sourceTree = "<group>";
 		};
 		7547D2571BDE2381006E4170 /* GalaxyS3 */ = {
@@ -1010,6 +1030,7 @@
 				75FD24821BE461EE00446801 /* XperiaZcompact.swift in Sources */,
 				753CD57A1BF3210500795F44 /* AppConfiguration.swift in Sources */,
 				75A3E9751BE35DC90001E073 /* GalaxyNote3.swift in Sources */,
+				7522B8921BFF3C0100BC14C0 /* ExpandedCollectionViewFlowLayout.swift in Sources */,
 				75FD246F1BE3D3E500446801 /* XperiaZ.swift in Sources */,
 				50551C351BCBEA96005B88DA /* BackgroundCollectionViewCell.swift in Sources */,
 				758792A81BF487E10071C383 /* LoadingView.swift in Sources */,
@@ -1027,6 +1048,7 @@
 				50551C311BCBB43A005B88DA /* BackgroundOvalView.swift in Sources */,
 				75C762CB1BF5A36F004F06C2 /* CategoryData+CoreDataProperties.swift in Sources */,
 				0C541A591BD0B51A0028BD9A /* PhotoLibraryItemCollectionViewCell.swift in Sources */,
+				7522B8941BFF3F6600BC14C0 /* FrameItemColectionView.swift in Sources */,
 				75C762CE1BF5A36F004F06C2 /* CategoryItemData.swift in Sources */,
 				501506501BCE96C700697C99 /* TextEditingViewController.swift in Sources */,
 				0C8296BE1BFC5CF200B2B345 /* ImagePickingTableViewCell.swift in Sources */,
@@ -1035,9 +1057,11 @@
 				75C762D11BF5AC8D004F06C2 /* Persistence.swift in Sources */,
 				0C8296C01BFC5FF100B2B345 /* FrameConstructorTableViewController.swift in Sources */,
 				50551C331BCBB469005B88DA /* OvalView.swift in Sources */,
+				7522B8901BFF34C800BC14C0 /* CollectionTableViewCell.swift in Sources */,
 				5071D34C1BBFE9D0005DDED3 /* NothingFoundTableViewCell.swift in Sources */,
 				502A8CB31BB80EAC0064E0DA /* AppDelegate.swift in Sources */,
 				757470321BDCB405004CABD0 /* PhoneCaseDevice.swift in Sources */,
+				7522B8961BFF49F200BC14C0 /* FrameItemCollectionViewCell.swift in Sources */,
 				508503041BBAADB600152131 /* AppAppearance.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

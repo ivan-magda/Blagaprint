@@ -195,22 +195,90 @@
         <scene sceneID="zqT-tx-zQy">
             <objects>
                 <tableViewController id="jf1-OA-wt3" customClass="FrameConstructorTableViewController" customModule="Blagaprint" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" indicatorStyle="black" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="FFA-u2-hi1">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" indicatorStyle="black" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="FFA-u2-hi1">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <containerView key="tableHeaderView" opaque="NO" contentMode="scaleToFill" id="5ap-lw-c6Q">
-                            <rect key="frame" x="0.0" y="64" width="320" height="320"/>
-                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                            <animations/>
-                            <connections>
-                                <segue destination="IGw-Ox-mdh" kind="embed" id="bwp-Li-qsZ"/>
-                            </connections>
-                        </containerView>
                         <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="CollectionViewCell" rowHeight="285" id="Rwo-dq-Uc9" userLabel="CollectionCell" customClass="CollectionTableViewCell" customModule="Blagaprint" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="92" width="320" height="285"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Rwo-dq-Uc9" id="RWr-Cu-jbC">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="284"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceHorizontal="YES" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="e4s-uE-qID" customClass="FrameItemColectionView" customModule="Blagaprint" customModuleProvider="target">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="247"/>
+                                            <animations/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="320" id="hLt-K6-heH"/>
+                                                <constraint firstAttribute="height" constant="247" id="mG3-aO-mMT"/>
+                                            </constraints>
+                                            <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="8" minimumInteritemSpacing="0.0" id="FRz-Br-7Kf" customClass="ExpandedCollectionViewFlowLayout" customModule="Blagaprint" customModuleProvider="target">
+                                                <size key="itemSize" width="304" height="231"/>
+                                                <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                                <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                                <inset key="sectionInset" minX="8" minY="8" maxX="8" maxY="8"/>
+                                            </collectionViewFlowLayout>
+                                            <cells>
+                                                <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="FrameItemCell" id="fde-vd-JID" customClass="FrameItemCollectionViewCell" customModule="Blagaprint" customModuleProvider="target">
+                                                    <rect key="frame" x="8" y="8" width="304" height="231"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                                        <rect key="frame" x="0.0" y="0.0" width="304" height="231"/>
+                                                        <autoresizingMask key="autoresizingMask"/>
+                                                        <animations/>
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                    </view>
+                                                    <animations/>
+                                                </collectionViewCell>
+                                            </cells>
+                                            <connections>
+                                                <outlet property="dataSource" destination="jf1-OA-wt3" id="00A-qz-MNl"/>
+                                                <outlet property="delegate" destination="jf1-OA-wt3" id="E7l-2G-ydu"/>
+                                            </connections>
+                                        </collectionView>
+                                        <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="WBG-9M-M72">
+                                            <rect key="frame" x="141" y="247" width="39" height="37"/>
+                                            <animations/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="37" id="gBg-wN-mG2"/>
+                                            </constraints>
+                                            <color key="pageIndicatorTintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="currentPageIndicatorTintColor" red="0.082352941176470587" green="0.082352941176470587" blue="0.13333333333333333" alpha="1" colorSpace="calibratedRGB"/>
+                                            <connections>
+                                                <action selector="pageControlDidChangeValue:" destination="jf1-OA-wt3" eventType="valueChanged" id="FIL-Dn-cap"/>
+                                            </connections>
+                                        </pageControl>
+                                    </subviews>
+                                    <animations/>
+                                    <constraints>
+                                        <constraint firstItem="e4s-uE-qID" firstAttribute="top" secondItem="RWr-Cu-jbC" secondAttribute="top" id="C6i-uZ-e0V"/>
+                                        <constraint firstAttribute="bottom" secondItem="WBG-9M-M72" secondAttribute="bottom" id="Gp1-LZ-oQG"/>
+                                        <constraint firstAttribute="bottom" secondItem="e4s-uE-qID" secondAttribute="bottom" id="aFc-Z2-mzz"/>
+                                        <constraint firstItem="e4s-uE-qID" firstAttribute="bottom" secondItem="WBG-9M-M72" secondAttribute="bottom" id="ch8-Ao-YcI"/>
+                                        <constraint firstItem="WBG-9M-M72" firstAttribute="centerX" secondItem="RWr-Cu-jbC" secondAttribute="centerX" id="m5u-oo-fXu"/>
+                                        <constraint firstAttribute="trailing" secondItem="e4s-uE-qID" secondAttribute="trailing" id="ozD-FO-sqT"/>
+                                        <constraint firstItem="e4s-uE-qID" firstAttribute="leading" secondItem="RWr-Cu-jbC" secondAttribute="leading" id="rDV-ve-lqo"/>
+                                        <constraint firstItem="WBG-9M-M72" firstAttribute="top" secondItem="e4s-uE-qID" secondAttribute="bottom" id="xMp-oT-gGu"/>
+                                    </constraints>
+                                    <variation key="default">
+                                        <mask key="constraints">
+                                            <exclude reference="aFc-Z2-mzz"/>
+                                            <exclude reference="ch8-Ao-YcI"/>
+                                        </mask>
+                                    </variation>
+                                </tableViewCellContentView>
+                                <animations/>
+                                <connections>
+                                    <outlet property="collectionView" destination="e4s-uE-qID" id="hki-wR-uJH"/>
+                                    <outlet property="pageControl" destination="WBG-9M-M72" id="kuD-FN-A76"/>
+                                </connections>
+                            </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ImagePickingCell" id="N7O-pA-EM5" customClass="ImagePickingTableViewCell" customModule="Blagaprint" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="412" width="320" height="44"/>
+                                <rect key="frame" x="0.0" y="377" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="N7O-pA-EM5" id="yVt-0f-sNu">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
@@ -249,7 +317,7 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="DescriptionCell" id="gm6-7I-H7U" customClass="DescriptionTableViewCell" customModule="Blagaprint" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="456" width="320" height="44"/>
+                                <rect key="frame" x="0.0" y="421" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="gm6-7I-H7U" id="WPQ-ys-vBu">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
@@ -779,25 +847,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wg7-4G-xei" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1511" y="-152"/>
-        </scene>
-        <!--View Controller-->
-        <scene sceneID="p7N-ab-FAk">
-            <objects>
-                <viewController id="IGw-Ox-mdh" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="gGC-OL-ctn"/>
-                        <viewControllerLayoutGuide type="bottom" id="HOP-t7-x6o"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="pLB-Wd-JsZ">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="320"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <animations/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="F5Z-Dg-cgN" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1511" y="1713"/>
         </scene>
     </scenes>
     <resources>
