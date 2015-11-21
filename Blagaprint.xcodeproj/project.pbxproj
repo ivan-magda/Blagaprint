@@ -72,6 +72,8 @@
 		757470321BDCB405004CABD0 /* PhoneCaseDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 757470311BDCB404004CABD0 /* PhoneCaseDevice.swift */; };
 		757470351BDCBEB4004CABD0 /* iPhone6CameraImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 757470331BDCBEB4004CABD0 /* iPhone6CameraImage.png */; };
 		757470361BDCBEB4004CABD0 /* iPhone6CameraImage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 757470341BDCBEB4004CABD0 /* iPhone6CameraImage@2x.png */; };
+		757D2A451C00978400E4FE15 /* placeholderImage.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 757D2A441C00978400E4FE15 /* placeholderImage.jpg */; };
+		757D2A481C00995E00E4FE15 /* SH38_PhotoFrame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 757D2A471C00995E00E4FE15 /* SH38_PhotoFrame.swift */; };
 		75823AAF1BD8BDD000C92F83 /* PhoneCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75823AAE1BD8BDD000C92F83 /* PhoneCase.swift */; };
 		758595621BDA30C10079A1BA /* iPhone4CameraImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 7585955E1BDA30C10079A1BA /* iPhone4CameraImage.png */; };
 		758595631BDA30C10079A1BA /* iPhone4CameraImage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7585955F1BDA30C10079A1BA /* iPhone4CameraImage@2x.png */; };
@@ -80,6 +82,7 @@
 		759E8CD01BDF64A1008A5503 /* galaxyS4MiniCameraImage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 759E8CCE1BDF64A1008A5503 /* galaxyS4MiniCameraImage@2x.png */; };
 		759E8CD41BDF6D46008A5503 /* galaxyS5MiniCameraImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 759E8CD21BDF6D46008A5503 /* galaxyS5MiniCameraImage.png */; };
 		759E8CD51BDF6D46008A5503 /* galaxyS5MiniCameraImage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 759E8CD31BDF6D46008A5503 /* galaxyS5MiniCameraImage@2x.png */; };
+		75A3618E1C00914F00D97278 /* PhotoFrameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75A3618D1C00914F00D97278 /* PhotoFrameView.swift */; };
 		75A36C331BE254910036B500 /* galaxyA5CameraImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 75A36C311BE254910036B500 /* galaxyA5CameraImage.png */; };
 		75A36C341BE254910036B500 /* galaxyA5CameraImage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 75A36C321BE254910036B500 /* galaxyA5CameraImage@2x.png */; };
 		75A36C371BE2549E0036B500 /* galaxyA5Led.png in Resources */ = {isa = PBXBuildFile; fileRef = 75A36C351BE2549E0036B500 /* galaxyA5Led.png */; };
@@ -209,6 +212,8 @@
 		757470311BDCB404004CABD0 /* PhoneCaseDevice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhoneCaseDevice.swift; sourceTree = "<group>"; };
 		757470331BDCBEB4004CABD0 /* iPhone6CameraImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = iPhone6CameraImage.png; path = images/iPhone6CameraImage.png; sourceTree = "<group>"; };
 		757470341BDCBEB4004CABD0 /* iPhone6CameraImage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "iPhone6CameraImage@2x.png"; path = "images/iPhone6CameraImage@2x.png"; sourceTree = "<group>"; };
+		757D2A441C00978400E4FE15 /* placeholderImage.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = placeholderImage.jpg; sourceTree = "<group>"; };
+		757D2A471C00995E00E4FE15 /* SH38_PhotoFrame.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SH38_PhotoFrame.swift; sourceTree = "<group>"; };
 		75823AAE1BD8BDD000C92F83 /* PhoneCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhoneCase.swift; sourceTree = "<group>"; };
 		7585955E1BDA30C10079A1BA /* iPhone4CameraImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = iPhone4CameraImage.png; path = images/iPhone4CameraImage.png; sourceTree = "<group>"; };
 		7585955F1BDA30C10079A1BA /* iPhone4CameraImage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "iPhone4CameraImage@2x.png"; path = "images/iPhone4CameraImage@2x.png"; sourceTree = "<group>"; };
@@ -217,6 +222,7 @@
 		759E8CCE1BDF64A1008A5503 /* galaxyS4MiniCameraImage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "galaxyS4MiniCameraImage@2x.png"; path = "images/galaxyS4MiniCameraImage@2x.png"; sourceTree = "<group>"; };
 		759E8CD21BDF6D46008A5503 /* galaxyS5MiniCameraImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = galaxyS5MiniCameraImage.png; path = images/galaxyS5MiniCameraImage.png; sourceTree = "<group>"; };
 		759E8CD31BDF6D46008A5503 /* galaxyS5MiniCameraImage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "galaxyS5MiniCameraImage@2x.png"; path = "images/galaxyS5MiniCameraImage@2x.png"; sourceTree = "<group>"; };
+		75A3618D1C00914F00D97278 /* PhotoFrameView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoFrameView.swift; sourceTree = "<group>"; };
 		75A36C311BE254910036B500 /* galaxyA5CameraImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = galaxyA5CameraImage.png; sourceTree = "<group>"; };
 		75A36C321BE254910036B500 /* galaxyA5CameraImage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "galaxyA5CameraImage@2x.png"; sourceTree = "<group>"; };
 		75A36C351BE2549E0036B500 /* galaxyA5Led.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = galaxyA5Led.png; sourceTree = "<group>"; };
@@ -350,6 +356,7 @@
 				0C541A5E1BD0B9A00028BD9A /* PhotoLibraryImages */,
 				50592EF21BCBEF8F00CEB3B8 /* Icons */,
 				758595581BDA16EE0079A1BA /* PhoneCaseImages */,
+				757D2A461C00978B00E4FE15 /* PhotoFrameImages */,
 				75FDB4B71BD620C7007FB441 /* Fonts */,
 			);
 			name = Resources;
@@ -426,6 +433,7 @@
 			isa = PBXGroup;
 			children = (
 				50A871D51BCA9B7C003CB0F9 /* PhoneCase */,
+				75A361911C00920700D97278 /* PhotoFrame */,
 				50FD7F4F1BB8FFF600ABEC38 /* CategoryTableViewCell.swift */,
 				5071D34B1BBFE9D0005DDED3 /* NothingFoundTableViewCell.swift */,
 				50F8F4191BC80857002CE3FD /* CategoryItemTableViewCell.swift */,
@@ -554,6 +562,14 @@
 			name = iPhone6/6S;
 			sourceTree = "<group>";
 		};
+		757D2A461C00978B00E4FE15 /* PhotoFrameImages */ = {
+			isa = PBXGroup;
+			children = (
+				757D2A441C00978400E4FE15 /* placeholderImage.jpg */,
+			);
+			name = PhotoFrameImages;
+			sourceTree = "<group>";
+		};
 		758595581BDA16EE0079A1BA /* PhoneCaseImages */ = {
 			isa = PBXGroup;
 			children = (
@@ -600,6 +616,15 @@
 				759E8CD31BDF6D46008A5503 /* galaxyS5MiniCameraImage@2x.png */,
 			);
 			name = GalaxyS5Mini;
+			sourceTree = "<group>";
+		};
+		75A361911C00920700D97278 /* PhotoFrame */ = {
+			isa = PBXGroup;
+			children = (
+				75A3618D1C00914F00D97278 /* PhotoFrameView.swift */,
+				757D2A471C00995E00E4FE15 /* SH38_PhotoFrame.swift */,
+			);
+			name = PhotoFrame;
 			sourceTree = "<group>";
 		};
 		75A36C3D1BE254B60036B500 /* GalaxyA5 */ = {
@@ -1001,6 +1026,7 @@
 				75F739321BE491930063EB6F /* xiaomiMi4Microphone.png in Resources */,
 				75F7393D1BE497AC0063EB6F /* lenovoS850CameraImage.png in Resources */,
 				750E4AEC1BE20F5E006103AE /* galaxyA3CameraImage.png in Resources */,
+				757D2A451C00978400E4FE15 /* placeholderImage.jpg in Resources */,
 				758595621BDA30C10079A1BA /* iPhone4CameraImage.png in Resources */,
 				75F7391F1BE469940063EB6F /* xperiaZ3compactCameraImage.png in Resources */,
 				7547D24D1BDE2376006E4170 /* galaxyS3Speaker.png in Resources */,
@@ -1049,6 +1075,7 @@
 				75C762CB1BF5A36F004F06C2 /* CategoryData+CoreDataProperties.swift in Sources */,
 				0C541A591BD0B51A0028BD9A /* PhotoLibraryItemCollectionViewCell.swift in Sources */,
 				7522B8941BFF3F6600BC14C0 /* FrameItemColectionView.swift in Sources */,
+				757D2A481C00995E00E4FE15 /* SH38_PhotoFrame.swift in Sources */,
 				75C762CE1BF5A36F004F06C2 /* CategoryItemData.swift in Sources */,
 				501506501BCE96C700697C99 /* TextEditingViewController.swift in Sources */,
 				0C8296BE1BFC5CF200B2B345 /* ImagePickingTableViewCell.swift in Sources */,
@@ -1063,6 +1090,7 @@
 				757470321BDCB405004CABD0 /* PhoneCaseDevice.swift in Sources */,
 				7522B8961BFF49F200BC14C0 /* FrameItemCollectionViewCell.swift in Sources */,
 				508503041BBAADB600152131 /* AppAppearance.swift in Sources */,
+				75A3618E1C00914F00D97278 /* PhotoFrameView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

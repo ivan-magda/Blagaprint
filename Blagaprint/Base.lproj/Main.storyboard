@@ -229,10 +229,28 @@
                                                     <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                                         <rect key="frame" x="0.0" y="0.0" width="304" height="231"/>
                                                         <autoresizingMask key="autoresizingMask"/>
+                                                        <subviews>
+                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DCZ-cy-jO3" customClass="PhotoFrameView" customModule="Blagaprint" customModuleProvider="target">
+                                                                <rect key="frame" x="0.0" y="0.0" width="304" height="231"/>
+                                                                <animations/>
+                                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="width" constant="304" id="ku7-T2-Nzh"/>
+                                                                    <constraint firstAttribute="height" constant="231" id="taY-Hd-UWi"/>
+                                                                </constraints>
+                                                            </view>
+                                                        </subviews>
                                                         <animations/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                     </view>
                                                     <animations/>
+                                                    <constraints>
+                                                        <constraint firstItem="DCZ-cy-jO3" firstAttribute="centerY" secondItem="fde-vd-JID" secondAttribute="centerY" id="9hv-w0-woD"/>
+                                                        <constraint firstItem="DCZ-cy-jO3" firstAttribute="centerX" secondItem="fde-vd-JID" secondAttribute="centerX" id="nMf-mx-ctT"/>
+                                                    </constraints>
+                                                    <connections>
+                                                        <outlet property="photoFrame" destination="DCZ-cy-jO3" id="Y4b-UJ-vh8"/>
+                                                    </connections>
                                                 </collectionViewCell>
                                             </cells>
                                             <connections>

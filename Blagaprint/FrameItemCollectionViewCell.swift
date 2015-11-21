@@ -15,4 +15,6 @@ class FrameItemCollectionViewCell: UICollectionViewCell {
     static let rightSectionInset: CGFloat = 8.0
     
     static let height: CGFloat = 231.0
+    
+    @IBOutlet weak var photoFrame: PhotoFrameView!
 }

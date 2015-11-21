@@ -23,6 +23,8 @@ class FrameConstructorTableViewController: UITableViewController {
     weak var collectionView: FrameItemColectionView!
     weak var pageControl: UIPageControl!
     
+    weak var currentPhotoFrame: PhotoFrameView!
+    
     /// Image picker controller to let us take/pick photo.
     let imagePickerController: UIImagePickerController = UIImagePickerController()
     
@@ -191,6 +193,7 @@ extension FrameConstructorTableViewController: UIImagePickerControllerDelegate, 
         imagePickerController.allowsEditing = false
         imagePickerController.sourceType = .PhotoLibrary
         imagePickerController.modalPresentationStyle = .FullScreen
+        imagePickerController.delegate = self
         self.presentViewController(imagePickerController, animated: true, completion: nil)
     }
     
@@ -207,8 +210,8 @@ extension FrameConstructorTableViewController: UIImagePickerControllerDelegate, 
         }
     }
     
-    private func imageForCase(image: UIImage) -> UIImage {
-        let newSize = CGSizeMake(100, 100)
+    private func imageForPhotoFrame(image: UIImage) -> UIImage {
+        let newSize = CGSizeMake(189, 132)
         
         UIGraphicsBeginImageContextWithOptions(newSize, false, 0.0)
         let newImageRect = CGRectMake(0.0, 0.0, newSize.width, newSize.height)
@@ -222,10 +225,9 @@ extension FrameConstructorTableViewController: UIImagePickerControllerDelegate, 
     // MARK: UIImagePickerControllerDelegate
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
-        //let chosenImage = info[UIImagePickerControllerOriginalImage] as! UIImage
+        let chosenImage = info[UIImagePickerControllerOriginalImage] as! UIImage
         
-//        self.caseView.image = imageForCase(chosenImage)
-//        self.caseView.showBackgroundImage = true
+        self.currentPhotoFrame.image = imageForPhotoFrame(chosenImage)
         
         self.dismissViewControllerAnimated(true, completion: nil)
     }
@@ -242,7 +244,7 @@ extension FrameConstructorTableViewController: UICollectionViewDataSource, UICol
     // MARK: - UICollectionViewDataSource
     
     func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
-        return 7
+        return 6
     }
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -250,7 +252,9 @@ extension FrameConstructorTableViewController: UICollectionViewDataSource, UICol
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(CellIdentifier.FrameItemCell.rawValue, forIndexPath: indexPath)
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(CellIdentifier.FrameItemCell.rawValue, forIndexPath: indexPath) as! FrameItemCollectionViewCell
+        
+        self.currentPhotoFrame = cell.photoFrame
         
         let red = CGFloat(drand48())
         let green = CGFloat(drand48())
