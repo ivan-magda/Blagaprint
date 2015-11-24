@@ -129,18 +129,29 @@ class FrameConstructorTableViewController: UITableViewController {
         weak var weakSelf = self
         
         /// Cancel action
-        let cancelAction = UIAlertAction(title: "Отмена", style: .Cancel) { (action) -> Void in
+        let cancelAction = UIAlertAction(title: "Отмена", style: .Cancel) { (action) in
         }
         imagePickingSelectionAlertController.addAction(cancelAction)
         
+        /// Clear action
+        let clearAction = UIAlertAction(title: "Очистить", style: .Destructive) { (action) in
+            dispatch_async(dispatch_get_main_queue()) {
+                for frame in self.photoFrames {
+                    frame.image = nil
+                }
+                self.collectionView.reloadData()
+            }
+        }
+        imagePickingSelectionAlertController.addAction(clearAction)
+        
         /// Photo from gallery(take photo) action
-        let photoFromLibrary = UIAlertAction(title: "Медиатека", style: .Default) { (action) -> Void in
+        let photoFromLibrary = UIAlertAction(title: "Медиатека", style: .Default) { (action) in
             weakSelf!.photoFromLibrary()
         }
         imagePickingSelectionAlertController.addAction(photoFromLibrary)
         
         /// Shoot photo
-        let shoot = UIAlertAction(title: "Снять фото", style: .Default) { (action) -> Void in
+        let shoot = UIAlertAction(title: "Снять фото", style: .Default) { (action) in
             weakSelf!.shootPhoto()
         }
         imagePickingSelectionAlertController.addAction(shoot)
@@ -253,13 +264,15 @@ extension FrameConstructorTableViewController: UICollectionViewDataSource, UICol
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(CellIdentifier.FrameItemCell.rawValue, forIndexPath: indexPath) as! FrameItemCollectionViewCell
 
         let frame = photoFrames[indexPath.section]
-        let image = frame.image
+        let image = frame.image ?? UIImage()
         let type = frame.type
         switch type {
+        case .SH_3:
+            cell.imageView?.image = SH3_PhotoFrame.imageOfSH3(pickedImage: image)
         case .SH_19:
-            cell.imageView?.image = SH19_PhotoFrame.imageOfSH19(pickedImage: image ?? UIImage())
+            cell.imageView?.image = SH19_PhotoFrame.imageOfSH19(pickedImage: image)
         case .SH_38:
-            cell.imageView?.image = SH38_PhotoFrame.imageOfSH38(pickedImage: image ?? UIImage())
+            cell.imageView?.image = SH38_PhotoFrame.imageOfSH38(pickedImage: image)
         }
         
         return cell

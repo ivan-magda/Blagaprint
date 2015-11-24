@@ -16,7 +16,7 @@ public class SH38_PhotoFrame : NSObject {
 
     //// Drawing Methods
 
-    public class func drawSH38(frame frame: CGRect = CGRectMake(89, 54, 462, 356), pickedImage: UIImage = UIImage(named: "pickedImage.png")!) {
+    public class func drawSH38(frame frame: CGRect = CGRectMake(0, 0, 462, 356), pickedImage: UIImage = UIImage(named: "pickedImage.png")!) {
         //// General Declarations
         let context = UIGraphicsGetCurrentContext()
 
@@ -28,7 +28,7 @@ public class SH38_PhotoFrame : NSObject {
         outerShadow.shadowBlurRadius = 10
 
         //// Image Declarations
-        let placeholderImage = UIImage(named: "SH38_placeholderImage.jpg")!
+        let placeholderImage = UIImage(named: "sh38_placeholderImage.jpg")!
 
         //// Placeholder Drawing
         let placeholderRect = CGRectMake(frame.minX, frame.minY, 462, 356)

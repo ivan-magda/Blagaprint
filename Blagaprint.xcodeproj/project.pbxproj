@@ -37,7 +37,7 @@
 		50F8F41A1BC80857002CE3FD /* CategoryItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F8F4191BC80857002CE3FD /* CategoryItemTableViewCell.swift */; };
 		50FD7F501BB8FFF600ABEC38 /* CategoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50FD7F4F1BB8FFF600ABEC38 /* CategoryTableViewCell.swift */; };
 		750C83C91C02EEBB00BAFEB0 /* SH38_PhotoFrame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 750C83C81C02EEBB00BAFEB0 /* SH38_PhotoFrame.swift */; };
-		750C83CF1C03110200BAFEB0 /* SH38_placeholderImage.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 750C83CE1C03110200BAFEB0 /* SH38_placeholderImage.jpg */; };
+		750C83CF1C03110200BAFEB0 /* sh38_placeholderImage.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 750C83CE1C03110200BAFEB0 /* sh38_placeholderImage.jpg */; };
 		750E4AE71BE20345006103AE /* galaxyS6EdgeCameraImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 750E4AE51BE20345006103AE /* galaxyS6EdgeCameraImage.png */; };
 		750E4AE81BE20345006103AE /* galaxyS6EdgeCameraImage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 750E4AE61BE20345006103AE /* galaxyS6EdgeCameraImage@2x.png */; };
 		750E4AEC1BE20F5E006103AE /* galaxyA3CameraImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 750E4AEA1BE20F5E006103AE /* galaxyA3CameraImage.png */; };
@@ -111,8 +111,10 @@
 		75AB8ABE1BE73F4000B88A5A /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 75AB8ABD1BE73F4000B88A5A /* CloudKit.framework */; };
 		75AB8AC01BE744DB00B88A5A /* CloudKitCentral.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75AB8ABF1BE744DB00B88A5A /* CloudKitCentral.swift */; };
 		75BF69531C044900009D670D /* PhotoFrame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75BF69521C044900009D670D /* PhotoFrame.swift */; };
-		75BF69571C044E62009D670D /* SH19_placeholderImage.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 75BF69561C044E62009D670D /* SH19_placeholderImage.jpg */; };
+		75BF69571C044E62009D670D /* sh19_placeholderImage.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 75BF69561C044E62009D670D /* sh19_placeholderImage.jpg */; };
 		75BF69591C044EDC009D670D /* SH19_PhotoFrame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75BF69581C044EDC009D670D /* SH19_PhotoFrame.swift */; };
+		75BF695B1C045E44009D670D /* sh3_placeholderImage.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 75BF695A1C045E44009D670D /* sh3_placeholderImage.jpg */; };
+		75BF695D1C045E78009D670D /* SH3_PhotoFrame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75BF695C1C045E78009D670D /* SH3_PhotoFrame.swift */; };
 		75C762C61BF59FEB004F06C2 /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 75C762C41BF59FEB004F06C2 /* DataModel.xcdatamodeld */; };
 		75C762CB1BF5A36F004F06C2 /* CategoryData+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75C762C71BF5A36F004F06C2 /* CategoryData+CoreDataProperties.swift */; };
 		75C762CC1BF5A36F004F06C2 /* CategoryData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75C762C81BF5A36F004F06C2 /* CategoryData.swift */; };
@@ -179,7 +181,7 @@
 		50F8F4191BC80857002CE3FD /* CategoryItemTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryItemTableViewCell.swift; sourceTree = "<group>"; };
 		50FD7F4F1BB8FFF600ABEC38 /* CategoryTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryTableViewCell.swift; sourceTree = "<group>"; };
 		750C83C81C02EEBB00BAFEB0 /* SH38_PhotoFrame.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SH38_PhotoFrame.swift; sourceTree = "<group>"; };
-		750C83CE1C03110200BAFEB0 /* SH38_placeholderImage.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = SH38_placeholderImage.jpg; path = images/SH38_placeholderImage.jpg; sourceTree = "<group>"; };
+		750C83CE1C03110200BAFEB0 /* sh38_placeholderImage.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = sh38_placeholderImage.jpg; path = images/sh38_placeholderImage.jpg; sourceTree = "<group>"; };
 		750E4AE51BE20345006103AE /* galaxyS6EdgeCameraImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = galaxyS6EdgeCameraImage.png; path = images/galaxyS6EdgeCameraImage.png; sourceTree = "<group>"; };
 		750E4AE61BE20345006103AE /* galaxyS6EdgeCameraImage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "galaxyS6EdgeCameraImage@2x.png"; path = "images/galaxyS6EdgeCameraImage@2x.png"; sourceTree = "<group>"; };
 		750E4AEA1BE20F5E006103AE /* galaxyA3CameraImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = galaxyA3CameraImage.png; sourceTree = "<group>"; };
@@ -254,8 +256,10 @@
 		75AB8ABD1BE73F4000B88A5A /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		75AB8ABF1BE744DB00B88A5A /* CloudKitCentral.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CloudKitCentral.swift; sourceTree = "<group>"; };
 		75BF69521C044900009D670D /* PhotoFrame.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoFrame.swift; sourceTree = "<group>"; };
-		75BF69561C044E62009D670D /* SH19_placeholderImage.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = SH19_placeholderImage.jpg; sourceTree = "<group>"; };
+		75BF69561C044E62009D670D /* sh19_placeholderImage.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = sh19_placeholderImage.jpg; sourceTree = "<group>"; };
 		75BF69581C044EDC009D670D /* SH19_PhotoFrame.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SH19_PhotoFrame.swift; sourceTree = "<group>"; };
+		75BF695A1C045E44009D670D /* sh3_placeholderImage.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = sh3_placeholderImage.jpg; sourceTree = "<group>"; };
+		75BF695C1C045E78009D670D /* SH3_PhotoFrame.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SH3_PhotoFrame.swift; sourceTree = "<group>"; };
 		75C762C51BF59FEB004F06C2 /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
 		75C762C71BF5A36F004F06C2 /* CategoryData+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CategoryData+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		75C762C81BF5A36F004F06C2 /* CategoryData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryData.swift; sourceTree = "<group>"; };
@@ -570,8 +574,9 @@
 		757D2A461C00978B00E4FE15 /* PhotoFrameImages */ = {
 			isa = PBXGroup;
 			children = (
-				750C83CE1C03110200BAFEB0 /* SH38_placeholderImage.jpg */,
-				75BF69561C044E62009D670D /* SH19_placeholderImage.jpg */,
+				75BF695A1C045E44009D670D /* sh3_placeholderImage.jpg */,
+				75BF69561C044E62009D670D /* sh19_placeholderImage.jpg */,
+				750C83CE1C03110200BAFEB0 /* sh38_placeholderImage.jpg */,
 			);
 			name = PhotoFrameImages;
 			sourceTree = "<group>";
@@ -627,8 +632,9 @@
 		75A361911C00920700D97278 /* PhotoFrame */ = {
 			isa = PBXGroup;
 			children = (
-				750C83C81C02EEBB00BAFEB0 /* SH38_PhotoFrame.swift */,
+				75BF695C1C045E78009D670D /* SH3_PhotoFrame.swift */,
 				75BF69581C044EDC009D670D /* SH19_PhotoFrame.swift */,
+				750C83C81C02EEBB00BAFEB0 /* SH38_PhotoFrame.swift */,
 			);
 			name = PhotoFrame;
 			sourceTree = "<group>";
@@ -972,8 +978,8 @@
 				750E4AF41BE20F70006103AE /* galaxyA3Speaker.png in Resources */,
 				75F7393E1BE497AC0063EB6F /* lenovoS850CameraImage@2x.png in Resources */,
 				75A36C421BE263380036B500 /* galaxyA7CameraImage.png in Resources */,
-				75BF69571C044E62009D670D /* SH19_placeholderImage.jpg in Resources */,
-				750C83CF1C03110200BAFEB0 /* SH38_placeholderImage.jpg in Resources */,
+				75BF69571C044E62009D670D /* sh19_placeholderImage.jpg in Resources */,
+				750C83CF1C03110200BAFEB0 /* sh38_placeholderImage.jpg in Resources */,
 				750E4AF01BE20F67006103AE /* galaxyA3Led.png in Resources */,
 				758595631BDA30C10079A1BA /* iPhone4CameraImage@2x.png in Resources */,
 				750E4AE71BE20345006103AE /* galaxyS6EdgeCameraImage.png in Resources */,
@@ -985,6 +991,7 @@
 				7547D2541BDE2376006E4170 /* galaxyS5CameraImage@2x.png in Resources */,
 				75A3E9701BE355250001E073 /* galaxyNote2CameraImage@2x.png in Resources */,
 				75A3E9881BE365DC0001E073 /* galaxyNote4Speaker.png in Resources */,
+				75BF695B1C045E44009D670D /* sh3_placeholderImage.jpg in Resources */,
 				75A36C3B1BE254AB0036B500 /* galaxyA5Speaker.png in Resources */,
 				7522783A1BE11E72008E117F /* iPhone5CameraImage.png in Resources */,
 				75A36C471BE266690036B500 /* galaxyA7Led.png in Resources */,
@@ -1054,6 +1061,7 @@
 				502A8CB51BB80EAC0064E0DA /* MainTableViewController.swift in Sources */,
 				75823AAF1BD8BDD000C92F83 /* PhoneCase.swift in Sources */,
 				75DD91FF1BD7BFE000932AD7 /* CaseView.swift in Sources */,
+				75BF695D1C045E78009D670D /* SH3_PhotoFrame.swift in Sources */,
 				0C541A571BD0B2710028BD9A /* PhotoLibraryCollectionViewController.swift in Sources */,
 				50551C2E1BCBA523005B88DA /* SelectBackgroundCollectionViewController.swift in Sources */,
 				50DD72391BBED313008A9B80 /* Category.swift in Sources */,

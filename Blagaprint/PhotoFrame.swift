@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 
 enum PhotoFrameType: String {
+    case SH_3
     case SH_19
     case SH_38
 }
@@ -36,6 +37,7 @@ class PhotoFrame: NSObject {
     class func seedInitialFrames() -> [PhotoFrame] {
         var frames = [PhotoFrame]()
         
+        frames.append(PhotoFrame(type: .SH_3, imageSize: CGSizeMake(402.0, 286.0), image: nil))
         frames.append(PhotoFrame(type: .SH_19, imageSize: CGSizeMake(400.0, 400.0), image: nil))
         frames.append(PhotoFrame(type: .SH_38, imageSize: CGSizeMake(282.0, 200.0), image: nil))
         

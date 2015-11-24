@@ -16,7 +16,7 @@ public class SH19_PhotoFrame : NSObject {
 
     //// Drawing Methods
 
-    public class func drawSH19(frame frame: CGRect = CGRectMake(62, 60, 529, 524), pickedImage: UIImage = UIImage(named: "pickedImage.png")!) {
+    public class func drawSH19(frame frame: CGRect = CGRectMake(0, 0, 529, 524), pickedImage: UIImage = UIImage(named: "pickedImage.png")!) {
         //// General Declarations
         let context = UIGraphicsGetCurrentContext()
 
@@ -28,7 +28,7 @@ public class SH19_PhotoFrame : NSObject {
         outerShadow.shadowBlurRadius = 15
 
         //// Image Declarations
-        let sH19_PlaceholderImage = UIImage(named: "SH19_placeholderImage.jpg")!
+        let sH19_PlaceholderImage = UIImage(named: "sh19_placeholderImage.jpg")!
 
         //// PlaceholderRectangle Drawing
         let placeholderRectangleRect = CGRectMake(frame.minX, frame.minY, 529, 524)
