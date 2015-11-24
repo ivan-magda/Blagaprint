@@ -111,10 +111,10 @@
 		75AB8ABE1BE73F4000B88A5A /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 75AB8ABD1BE73F4000B88A5A /* CloudKit.framework */; };
 		75AB8AC01BE744DB00B88A5A /* CloudKitCentral.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75AB8ABF1BE744DB00B88A5A /* CloudKitCentral.swift */; };
 		75BF69531C044900009D670D /* PhotoFrame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75BF69521C044900009D670D /* PhotoFrame.swift */; };
-		75BF69571C044E62009D670D /* sh19_placeholderImage.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 75BF69561C044E62009D670D /* sh19_placeholderImage.jpg */; };
 		75BF69591C044EDC009D670D /* SH19_PhotoFrame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75BF69581C044EDC009D670D /* SH19_PhotoFrame.swift */; };
 		75BF695B1C045E44009D670D /* sh3_placeholderImage.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 75BF695A1C045E44009D670D /* sh3_placeholderImage.jpg */; };
 		75BF695D1C045E78009D670D /* SH3_PhotoFrame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75BF695C1C045E78009D670D /* SH3_PhotoFrame.swift */; };
+		75BF695F1C0464AA009D670D /* sh19_placeholderImage.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 75BF695E1C0464AA009D670D /* sh19_placeholderImage.jpg */; };
 		75C762C61BF59FEB004F06C2 /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 75C762C41BF59FEB004F06C2 /* DataModel.xcdatamodeld */; };
 		75C762CB1BF5A36F004F06C2 /* CategoryData+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75C762C71BF5A36F004F06C2 /* CategoryData+CoreDataProperties.swift */; };
 		75C762CC1BF5A36F004F06C2 /* CategoryData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75C762C81BF5A36F004F06C2 /* CategoryData.swift */; };
@@ -256,10 +256,10 @@
 		75AB8ABD1BE73F4000B88A5A /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		75AB8ABF1BE744DB00B88A5A /* CloudKitCentral.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CloudKitCentral.swift; sourceTree = "<group>"; };
 		75BF69521C044900009D670D /* PhotoFrame.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoFrame.swift; sourceTree = "<group>"; };
-		75BF69561C044E62009D670D /* sh19_placeholderImage.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = sh19_placeholderImage.jpg; sourceTree = "<group>"; };
 		75BF69581C044EDC009D670D /* SH19_PhotoFrame.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SH19_PhotoFrame.swift; sourceTree = "<group>"; };
 		75BF695A1C045E44009D670D /* sh3_placeholderImage.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = sh3_placeholderImage.jpg; sourceTree = "<group>"; };
 		75BF695C1C045E78009D670D /* SH3_PhotoFrame.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SH3_PhotoFrame.swift; sourceTree = "<group>"; };
+		75BF695E1C0464AA009D670D /* sh19_placeholderImage.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = sh19_placeholderImage.jpg; sourceTree = "<group>"; };
 		75C762C51BF59FEB004F06C2 /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
 		75C762C71BF5A36F004F06C2 /* CategoryData+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CategoryData+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		75C762C81BF5A36F004F06C2 /* CategoryData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryData.swift; sourceTree = "<group>"; };
@@ -575,7 +575,7 @@
 			isa = PBXGroup;
 			children = (
 				75BF695A1C045E44009D670D /* sh3_placeholderImage.jpg */,
-				75BF69561C044E62009D670D /* sh19_placeholderImage.jpg */,
+				75BF695E1C0464AA009D670D /* sh19_placeholderImage.jpg */,
 				750C83CE1C03110200BAFEB0 /* sh38_placeholderImage.jpg */,
 			);
 			name = PhotoFrameImages;
@@ -978,7 +978,6 @@
 				750E4AF41BE20F70006103AE /* galaxyA3Speaker.png in Resources */,
 				75F7393E1BE497AC0063EB6F /* lenovoS850CameraImage@2x.png in Resources */,
 				75A36C421BE263380036B500 /* galaxyA7CameraImage.png in Resources */,
-				75BF69571C044E62009D670D /* sh19_placeholderImage.jpg in Resources */,
 				750C83CF1C03110200BAFEB0 /* sh38_placeholderImage.jpg in Resources */,
 				750E4AF01BE20F67006103AE /* galaxyA3Led.png in Resources */,
 				758595631BDA30C10079A1BA /* iPhone4CameraImage@2x.png in Resources */,
@@ -1024,6 +1023,7 @@
 				75F739231BE4699B0063EB6F /* xperiaZ2compactCameraImage.png in Resources */,
 				75FD247E1BE45B7E00446801 /* xperiaZ3CameraImage.png in Resources */,
 				759E8CCF1BDF64A1008A5503 /* galaxyS4MiniCameraImage.png in Resources */,
+				75BF695F1C0464AA009D670D /* sh19_placeholderImage.jpg in Resources */,
 				75A36C381BE2549E0036B500 /* galaxyA5Led@2x.png in Resources */,
 				75F7392E1BE4918B0063EB6F /* xiaomiMi4CameraImage.png in Resources */,
 				75F739201BE469940063EB6F /* xperiaZ3compactCameraImage@2x.png in Resources */,
