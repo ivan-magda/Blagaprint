@@ -230,26 +230,42 @@
                                                         <rect key="frame" x="0.0" y="0.0" width="304" height="231"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <subviews>
-                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DCZ-cy-jO3" customClass="PhotoFrameView" customModule="Blagaprint" customModuleProvider="target">
+                                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="XY1-ca-9ne">
                                                                 <rect key="frame" x="0.0" y="0.0" width="304" height="231"/>
                                                                 <animations/>
-                                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                                 <constraints>
-                                                                    <constraint firstAttribute="width" constant="304" id="ku7-T2-Nzh"/>
-                                                                    <constraint firstAttribute="height" constant="231" id="taY-Hd-UWi"/>
+                                                                    <constraint firstAttribute="width" constant="304" id="SbV-aq-irK"/>
+                                                                    <constraint firstAttribute="height" constant="231" id="arI-oi-xGL"/>
                                                                 </constraints>
-                                                            </view>
+                                                                <variation key="default">
+                                                                    <mask key="constraints">
+                                                                        <exclude reference="SbV-aq-irK"/>
+                                                                        <exclude reference="arI-oi-xGL"/>
+                                                                    </mask>
+                                                                </variation>
+                                                            </imageView>
                                                         </subviews>
                                                         <animations/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                     </view>
                                                     <animations/>
                                                     <constraints>
-                                                        <constraint firstItem="DCZ-cy-jO3" firstAttribute="centerY" secondItem="fde-vd-JID" secondAttribute="centerY" id="9hv-w0-woD"/>
-                                                        <constraint firstItem="DCZ-cy-jO3" firstAttribute="centerX" secondItem="fde-vd-JID" secondAttribute="centerX" id="nMf-mx-ctT"/>
+                                                        <constraint firstItem="XY1-ca-9ne" firstAttribute="centerY" secondItem="fde-vd-JID" secondAttribute="centerY" id="7MM-tJ-XkB"/>
+                                                        <constraint firstAttribute="trailing" secondItem="XY1-ca-9ne" secondAttribute="trailing" id="CoV-QU-PtZ"/>
+                                                        <constraint firstItem="XY1-ca-9ne" firstAttribute="leading" secondItem="fde-vd-JID" secondAttribute="leading" id="Ns4-gc-pii"/>
+                                                        <constraint firstItem="XY1-ca-9ne" firstAttribute="top" secondItem="fde-vd-JID" secondAttribute="top" id="XaU-kH-ZtD"/>
+                                                        <constraint firstItem="XY1-ca-9ne" firstAttribute="centerX" secondItem="fde-vd-JID" secondAttribute="centerX" id="Xzu-2l-18e"/>
+                                                        <constraint firstAttribute="bottom" secondItem="XY1-ca-9ne" secondAttribute="bottom" id="xo6-BO-A2x"/>
                                                     </constraints>
+                                                    <variation key="default">
+                                                        <mask key="constraints">
+                                                            <exclude reference="7MM-tJ-XkB"/>
+                                                            <exclude reference="Xzu-2l-18e"/>
+                                                        </mask>
+                                                    </variation>
                                                     <connections>
-                                                        <outlet property="photoFrame" destination="DCZ-cy-jO3" id="Y4b-UJ-vh8"/>
+                                                        <outlet property="imageView" destination="XY1-ca-9ne" id="bmL-Hb-n68"/>
                                                     </connections>
                                                 </collectionViewCell>
                                             </cells>

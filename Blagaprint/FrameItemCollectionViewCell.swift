@@ -16,5 +16,5 @@ class FrameItemCollectionViewCell: UICollectionViewCell {
     
     static let height: CGFloat = 231.0
     
-    @IBOutlet weak var photoFrame: PhotoFrameView!
+    @IBOutlet weak var imageView: UIImageView?
 }

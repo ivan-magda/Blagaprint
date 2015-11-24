@@ -23,7 +23,7 @@ class FrameConstructorTableViewController: UITableViewController {
     weak var collectionView: FrameItemColectionView!
     weak var pageControl: UIPageControl!
     
-    weak var currentPhotoFrame: PhotoFrameView!
+    var photoFrames = PhotoFrame.seedInitialFrames()
     
     /// Image picker controller to let us take/pick photo.
     let imagePickerController: UIImagePickerController = UIImagePickerController()
@@ -147,11 +147,6 @@ class FrameConstructorTableViewController: UITableViewController {
         
         self.presentViewController(imagePickingSelectionAlertController, animated: true, completion: nil)
     }
-
-    // MARK: - Navigation
-
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-    }
     
     // MARK: - Actions
     
@@ -194,6 +189,7 @@ extension FrameConstructorTableViewController: UIImagePickerControllerDelegate, 
         imagePickerController.sourceType = .PhotoLibrary
         imagePickerController.modalPresentationStyle = .FullScreen
         imagePickerController.delegate = self
+        
         self.presentViewController(imagePickerController, animated: true, completion: nil)
     }
     
@@ -204,15 +200,14 @@ extension FrameConstructorTableViewController: UIImagePickerControllerDelegate, 
             imagePickerController.sourceType = UIImagePickerControllerSourceType.Camera
             imagePickerController.cameraCaptureMode = .Photo
             imagePickerController.modalPresentationStyle = .FullScreen
+            
             self.presentViewController(imagePickerController, animated: true, completion: nil)
         } else {
             noCamera()
         }
     }
     
-    private func imageForPhotoFrame(image: UIImage) -> UIImage {
-        let newSize = CGSizeMake(189, 132)
-        
+    private func imageForPhotoFrame(image: UIImage, newSize: CGSize) -> UIImage {
         UIGraphicsBeginImageContextWithOptions(newSize, false, 0.0)
         let newImageRect = CGRectMake(0.0, 0.0, newSize.width, newSize.height)
         image.drawInRect(newImageRect)
@@ -227,7 +222,10 @@ extension FrameConstructorTableViewController: UIImagePickerControllerDelegate, 
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
         let chosenImage = info[UIImagePickerControllerOriginalImage] as! UIImage
         
-        self.currentPhotoFrame.image = imageForPhotoFrame(chosenImage)
+        for frame in photoFrames {
+            frame.image = imageForPhotoFrame(chosenImage, newSize: frame.pickedImageSize)
+        }
+        self.collectionView.reloadData()
         
         self.dismissViewControllerAnimated(true, completion: nil)
     }
@@ -244,7 +242,7 @@ extension FrameConstructorTableViewController: UICollectionViewDataSource, UICol
     // MARK: - UICollectionViewDataSource
     
     func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
-        return 6
+        return photoFrames.count
     }
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -253,14 +251,16 @@ extension FrameConstructorTableViewController: UICollectionViewDataSource, UICol
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(CellIdentifier.FrameItemCell.rawValue, forIndexPath: indexPath) as! FrameItemCollectionViewCell
-        
-        self.currentPhotoFrame = cell.photoFrame
-        
-        let red = CGFloat(drand48())
-        let green = CGFloat(drand48())
-        let blue = CGFloat(drand48())
-        let color: UIColor = UIColor(red: red, green: green, blue: blue, alpha: 1.0)
-        cell.backgroundColor = color
+
+        let frame = photoFrames[indexPath.section]
+        let image = frame.image
+        let type = frame.type
+        switch type {
+        case .SH_19:
+            cell.imageView?.image = SH19_PhotoFrame.imageOfSH19(pickedImage: image ?? UIImage())
+        case .SH_38:
+            cell.imageView?.image = SH38_PhotoFrame.imageOfSH38(pickedImage: image ?? UIImage())
+        }
         
         return cell
     }
