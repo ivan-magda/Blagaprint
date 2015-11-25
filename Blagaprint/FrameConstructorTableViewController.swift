@@ -271,6 +271,8 @@ extension FrameConstructorTableViewController: UICollectionViewDataSource, UICol
             cell.imageView?.image = SH2_PhotoFrame.imageOfSH2(pickedImage: image)
         case .SH_3:
             cell.imageView?.image = SH3_PhotoFrame.imageOfSH3(pickedImage: image)
+        case .SH_11:
+            cell.imageView?.image = SH11_PhotoFrame.imageOfSH11(pickedImage: image)
         case .SH_15:
             cell.imageView?.image = SH15_PhotoFrame.imageOfSH15(pickedImage: image)
         case .SH_19:
