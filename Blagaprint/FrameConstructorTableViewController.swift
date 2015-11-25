@@ -267,6 +267,8 @@ extension FrameConstructorTableViewController: UICollectionViewDataSource, UICol
         let image = frame.image ?? UIImage()
         let type = frame.type
         switch type {
+        case .SH_2:
+            cell.imageView?.image = SH2_PhotoFrame.imageOfSH2(pickedImage: image)
         case .SH_3:
             cell.imageView?.image = SH3_PhotoFrame.imageOfSH3(pickedImage: image)
         case .SH_19:
