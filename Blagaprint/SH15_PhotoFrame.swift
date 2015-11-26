@@ -16,7 +16,7 @@ public class SH15_PhotoFrame : NSObject {
 
     //// Drawing Methods
 
-    public class func drawSH15(frame frame: CGRect = CGRectMake(0, 0, 817, 461), pickedImage: UIImage = UIImage(named: "pickedImage.png")!) {
+    public class func drawSH15(frame frame: CGRect = CGRectMake(0, 0, 817, 461), pickedImage: UIImage = UIImage()) {
         //// General Declarations
         let context = UIGraphicsGetCurrentContext()
 
@@ -122,7 +122,7 @@ public class SH15_PhotoFrame : NSObject {
 
     //// Generated Images
 
-    public class func imageOfSH15(frame frame: CGRect = CGRectMake(0, 0, 817, 461), pickedImage: UIImage = UIImage(named: "pickedImage.png")!) -> UIImage {
+    public class func imageOfSH15(frame frame: CGRect = CGRectMake(0, 0, 817, 461), pickedImage: UIImage = UIImage()) -> UIImage {
         UIGraphicsBeginImageContextWithOptions(frame.size, false, 0)
             SH15_PhotoFrame.drawSH15(frame: CGRectMake(0, 0, frame.size.width, frame.size.height), pickedImage: pickedImage)
 

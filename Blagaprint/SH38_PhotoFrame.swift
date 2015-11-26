@@ -16,7 +16,7 @@ public class SH38_PhotoFrame : NSObject {
 
     //// Drawing Methods
 
-    public class func drawSH38(frame frame: CGRect = CGRectMake(0, 0, 462, 356), pickedImage: UIImage = UIImage(named: "pickedImage.png")!) {
+    public class func drawSH38(frame frame: CGRect = CGRectMake(0, 0, 462, 356), pickedImage: UIImage = UIImage()) {
         //// General Declarations
         let context = UIGraphicsGetCurrentContext()
 
@@ -108,7 +108,7 @@ public class SH38_PhotoFrame : NSObject {
 
     //// Generated Images
 
-    public class func imageOfSH38(frame frame: CGRect = CGRectMake(0, 0, 462, 356), pickedImage: UIImage = UIImage(named: "pickedImage.png")!) -> UIImage {
+    public class func imageOfSH38(frame frame: CGRect = CGRectMake(0, 0, 462, 356), pickedImage: UIImage = UIImage()) -> UIImage {
         UIGraphicsBeginImageContextWithOptions(frame.size, false, 0)
             SH38_PhotoFrame.drawSH38(frame: CGRectMake(0, 0, frame.size.width, frame.size.height), pickedImage: pickedImage)
 

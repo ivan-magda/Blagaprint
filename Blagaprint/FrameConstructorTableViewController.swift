@@ -126,8 +126,6 @@ class FrameConstructorTableViewController: UITableViewController {
     private func presentImagePickingAlertController() {
         let imagePickingSelectionAlertController = UIAlertController(title: "Выберите изображение", message: nil, preferredStyle: .ActionSheet)
         
-        weak var weakSelf = self
-        
         /// Cancel action
         let cancelAction = UIAlertAction(title: "Отмена", style: .Cancel) { (action) in
         }
@@ -135,24 +133,20 @@ class FrameConstructorTableViewController: UITableViewController {
         
         /// Clear action
         let clearAction = UIAlertAction(title: "Очистить", style: .Destructive) { (action) in
-            dispatch_async(dispatch_get_main_queue()) {
-                for frame in self.photoFrames {
-                    frame.image = nil
-                }
-                self.collectionView.reloadData()
-            }
+            self.updateFramesImages(nil)
+            self.collectionView.reloadData()
         }
         imagePickingSelectionAlertController.addAction(clearAction)
         
         /// Photo from gallery(take photo) action
         let photoFromLibrary = UIAlertAction(title: "Медиатека", style: .Default) { (action) in
-            weakSelf!.photoFromLibrary()
+            self.photoFromLibrary()
         }
         imagePickingSelectionAlertController.addAction(photoFromLibrary)
         
         /// Shoot photo
         let shoot = UIAlertAction(title: "Снять фото", style: .Default) { (action) in
-            weakSelf!.shootPhoto()
+            self.shootPhoto()
         }
         imagePickingSelectionAlertController.addAction(shoot)
         
@@ -185,13 +179,26 @@ class FrameConstructorTableViewController: UITableViewController {
 // MARK: - Image Picking Extension
 
 extension FrameConstructorTableViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-    // MARK: - Private helper methods
+    // MARK: - Private Helper Methods
     
     private func noCamera() {
         let alertVC = UIAlertController(title: "No Camera", message: "Sorry, this device has no camera", preferredStyle: .Alert)
         let okAction = UIAlertAction(title: "OK", style:.Default, handler: nil)
         alertVC.addAction(okAction)
+        
         self.presentViewController(alertVC, animated: true, completion: nil)
+    }
+    
+    private func updateFramesImages(pickedImage: UIImage?) {
+        if let pickedImage = pickedImage {
+            for frame in photoFrames {
+                frame.image = frame.frameImageWithPickedImage(pickedImage)
+            }
+        } else {
+            for frame in photoFrames {
+                frame.image = frame.frameImage()
+            }
+        }
     }
     
     /// Get a photo from the library.
@@ -218,24 +225,10 @@ extension FrameConstructorTableViewController: UIImagePickerControllerDelegate, 
         }
     }
     
-    private func imageForPhotoFrame(image: UIImage, newSize: CGSize) -> UIImage {
-        UIGraphicsBeginImageContextWithOptions(newSize, false, 0.0)
-        let newImageRect = CGRectMake(0.0, 0.0, newSize.width, newSize.height)
-        image.drawInRect(newImageRect)
-        let newImage = UIGraphicsGetImageFromCurrentImageContext()
-        UIGraphicsEndImageContext()
-        
-        return newImage
-    }
-    
     // MARK: UIImagePickerControllerDelegate
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
-        let chosenImage = info[UIImagePickerControllerOriginalImage] as! UIImage
-        
-        for frame in photoFrames {
-            frame.image = imageForPhotoFrame(chosenImage, newSize: frame.pickedImageSize)
-        }
+        updateFramesImages(info[UIImagePickerControllerOriginalImage] as? UIImage)
         self.collectionView.reloadData()
         
         self.dismissViewControllerAnimated(true, completion: nil)
@@ -264,22 +257,7 @@ extension FrameConstructorTableViewController: UICollectionViewDataSource, UICol
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(CellIdentifier.FrameItemCell.rawValue, forIndexPath: indexPath) as! FrameItemCollectionViewCell
 
         let frame = photoFrames[indexPath.section]
-        let image = frame.image ?? UIImage()
-        let type = frame.type
-        switch type {
-        case .SH_2:
-            cell.imageView?.image = SH2_PhotoFrame.imageOfSH2(pickedImage: image)
-        case .SH_3:
-            cell.imageView?.image = SH3_PhotoFrame.imageOfSH3(pickedImage: image)
-        case .SH_11:
-            cell.imageView?.image = SH11_PhotoFrame.imageOfSH11(pickedImage: image)
-        case .SH_15:
-            cell.imageView?.image = SH15_PhotoFrame.imageOfSH15(pickedImage: image)
-        case .SH_19:
-            cell.imageView?.image = SH19_PhotoFrame.imageOfSH19(pickedImage: image)
-        case .SH_38:
-            cell.imageView?.image = SH38_PhotoFrame.imageOfSH38(pickedImage: image)
-        }
+        cell.imageView?.image = frame.image
         
         return cell
     }

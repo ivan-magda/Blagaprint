@@ -16,7 +16,7 @@ public class SH2_PhotoFrame : NSObject {
 
     //// Drawing Methods
 
-    public class func drawSH2(frame frame: CGRect = CGRectMake(0, 0, 515, 533), pickedImage: UIImage = UIImage(named: "pickedImage.png")!) {
+    public class func drawSH2(frame frame: CGRect = CGRectMake(0, 0, 515, 533), pickedImage: UIImage = UIImage()) {
         //// General Declarations
         let context = UIGraphicsGetCurrentContext()
 
@@ -125,7 +125,7 @@ public class SH2_PhotoFrame : NSObject {
 
     //// Generated Images
 
-    public class func imageOfSH2(frame frame: CGRect = CGRectMake(0, 0, 515, 533), pickedImage: UIImage = UIImage(named: "pickedImage.png")!) -> UIImage {
+    public class func imageOfSH2(frame frame: CGRect = CGRectMake(0, 0, 515, 533), pickedImage: UIImage = UIImage()) -> UIImage {
         UIGraphicsBeginImageContextWithOptions(frame.size, false, 0)
             SH2_PhotoFrame.drawSH2(frame: CGRectMake(0, 0, frame.size.width, frame.size.height), pickedImage: pickedImage)
 
