@@ -97,7 +97,7 @@ class FrameConstructorTableViewController: UITableViewController {
                 return tableView.dequeueReusableCellWithIdentifier(CellIdentifier.ImagePickingCell.rawValue) as! ImagePickingTableViewCell
             } else {
                 let cell = tableView.dequeueReusableCellWithIdentifier(CellIdentifier.DescriptionCell.rawValue) as! DescriptionTableViewCell
-                cell.descriptionLabel.text = "Text may refer to:\nText & Talk (formerly Text), an academic journal \nText (literary theory), any object that can be read\nTextbook, a book of instruction any branch of study"
+                cell.descriptionLabel.text = photoFrames[pageControl.currentPage].descriptionText
                 
                 return cell
             }
