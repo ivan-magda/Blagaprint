@@ -19,11 +19,11 @@ public class SH11_PhotoFrame : NSObject {
     public class func drawSH11(frame frame: CGRect = CGRectMake(0, 0, 540, 575), pickedImage: UIImage = UIImage()) {
         //// General Declarations
         let context = UIGraphicsGetCurrentContext()
-
-
+        
+        
         //// Image Declarations
         let sh11_placeholderImage = UIImage(named: "sh11_placeholderImage.jpg")!
-
+        
         //// PlaceholderRectangle Drawing
         let placeholderRectangleRect = CGRectMake(frame.minX, frame.minY, 540, 575)
         let placeholderRectanglePath = UIBezierPath(rect: placeholderRectangleRect)
@@ -31,33 +31,38 @@ public class SH11_PhotoFrame : NSObject {
         placeholderRectanglePath.addClip()
         sh11_placeholderImage.drawInRect(CGRectMake(floor(placeholderRectangleRect.minX + 0.5), floor(placeholderRectangleRect.minY + 0.5), sh11_placeholderImage.size.width, sh11_placeholderImage.size.height))
         CGContextRestoreGState(context)
-
-
+        
+        
         //// PickedImageRectangle Drawing
-        let pickedImageRectangleRect = CGRectMake(frame.minX + 29, frame.minY + 20, 492, 503)
+        let pickedImageRectangleRect = CGRectMake(frame.minX + 29, frame.minY + 20, 494, 503)
         let pickedImageRectanglePath = UIBezierPath()
         pickedImageRectanglePath.moveToPoint(CGPointMake(frame.minX + 33, frame.minY + 265))
         pickedImageRectanglePath.addLineToPoint(CGPointMake(frame.minX + 29, frame.minY + 514))
-        pickedImageRectanglePath.addLineToPoint(CGPointMake(frame.minX + 115.43, frame.minY + 515.58))
-        pickedImageRectanglePath.addLineToPoint(CGPointMake(frame.minX + 115.92, frame.minY + 492))
-        pickedImageRectanglePath.addLineToPoint(CGPointMake(frame.minX + 145.89, frame.minY + 492))
-        pickedImageRectanglePath.addLineToPoint(CGPointMake(frame.minX + 145.89, frame.minY + 516))
-        pickedImageRectanglePath.addLineToPoint(CGPointMake(frame.minX + 378.64, frame.minY + 520.35))
-        pickedImageRectanglePath.addLineToPoint(CGPointMake(frame.minX + 378.68, frame.minY + 495))
-        pickedImageRectanglePath.addLineToPoint(CGPointMake(frame.minX + 410.66, frame.minY + 495))
-        pickedImageRectanglePath.addLineToPoint(CGPointMake(frame.minX + 410.66, frame.minY + 520))
-        pickedImageRectanglePath.addLineToPoint(CGPointMake(frame.minX + 520.56, frame.minY + 523))
-        pickedImageRectanglePath.addCurveToPoint(CGPointMake(frame.minX + 520.56, frame.minY + 465), controlPoint1: CGPointMake(frame.minX + 520.56, frame.minY + 523), controlPoint2: CGPointMake(frame.minX + 521.56, frame.minY + 499))
-        pickedImageRectanglePath.addCurveToPoint(CGPointMake(frame.minX + 493.58, frame.minY + 422), controlPoint1: CGPointMake(frame.minX + 520.16, frame.minY + 451.52), controlPoint2: CGPointMake(frame.minX + 499.4, frame.minY + 436.99))
-        pickedImageRectanglePath.addCurveToPoint(CGPointMake(frame.minX + 454.62, frame.minY + 358), controlPoint1: CGPointMake(frame.minX + 484.8, frame.minY + 399.4), controlPoint2: CGPointMake(frame.minX + 461.4, frame.minY + 384.02))
-        pickedImageRectanglePath.addCurveToPoint(CGPointMake(frame.minX + 459.61, frame.minY + 318), controlPoint1: CGPointMake(frame.minX + 450.53, frame.minY + 342.32), controlPoint2: CGPointMake(frame.minX + 463.25, frame.minY + 334.48))
-        pickedImageRectanglePath.addCurveToPoint(CGPointMake(frame.minX + 459.61, frame.minY + 231), controlPoint1: CGPointMake(frame.minX + 453.25, frame.minY + 289.24), controlPoint2: CGPointMake(frame.minX + 466.8, frame.minY + 259.56))
-        pickedImageRectanglePath.addCurveToPoint(CGPointMake(frame.minX + 446.65, frame.minY + 154.56), controlPoint1: CGPointMake(frame.minX + 452.37, frame.minY + 202.25), controlPoint2: CGPointMake(frame.minX + 455.58, frame.minY + 180.39))
-        pickedImageRectanglePath.addCurveToPoint(CGPointMake(frame.minX + 435.63, frame.minY + 130), controlPoint1: CGPointMake(frame.minX + 443.73, frame.minY + 146.11), controlPoint2: CGPointMake(frame.minX + 438.72, frame.minY + 137.91))
-        pickedImageRectanglePath.addCurveToPoint(CGPointMake(frame.minX + 377.69, frame.minY + 63), controlPoint1: CGPointMake(frame.minX + 424.74, frame.minY + 102.13), controlPoint2: CGPointMake(frame.minX + 398.03, frame.minY + 80.16))
-        pickedImageRectanglePath.addCurveToPoint(CGPointMake(frame.minX + 328.73, frame.minY + 27), controlPoint1: CGPointMake(frame.minX + 351.18, frame.minY + 40.64), controlPoint2: CGPointMake(frame.minX + 331.32, frame.minY + 27.17))
-        pickedImageRectanglePath.addCurveToPoint(CGPointMake(frame.minX + 228.82, frame.minY + 25), controlPoint1: CGPointMake(frame.minX + 313.74, frame.minY + 26), controlPoint2: CGPointMake(frame.minX + 228.82, frame.minY + 25))
-        pickedImageRectanglePath.addLineToPoint(CGPointMake(frame.minX + 35.99, frame.minY + 20))
+        pickedImageRectanglePath.addLineToPoint(CGPointMake(frame.minX + 115.46, frame.minY + 515.58))
+        pickedImageRectanglePath.addLineToPoint(CGPointMake(frame.minX + 115.95, frame.minY + 492))
+        pickedImageRectanglePath.addLineToPoint(CGPointMake(frame.minX + 145.93, frame.minY + 492))
+        pickedImageRectanglePath.addLineToPoint(CGPointMake(frame.minX + 145.93, frame.minY + 516))
+        pickedImageRectanglePath.addLineToPoint(CGPointMake(frame.minX + 378.76, frame.minY + 520.35))
+        pickedImageRectanglePath.addLineToPoint(CGPointMake(frame.minX + 378.8, frame.minY + 495))
+        pickedImageRectanglePath.addLineToPoint(CGPointMake(frame.minX + 410.78, frame.minY + 495))
+        pickedImageRectanglePath.addLineToPoint(CGPointMake(frame.minX + 410.78, frame.minY + 520))
+        pickedImageRectanglePath.addLineToPoint(CGPointMake(frame.minX + 521.72, frame.minY + 523))
+        pickedImageRectanglePath.addCurveToPoint(CGPointMake(frame.minX + 522.72, frame.minY + 461), controlPoint1: CGPointMake(frame.minX + 521.72, frame.minY + 523), controlPoint2: CGPointMake(frame.minX + 523.72, frame.minY + 495))
+        pickedImageRectanglePath.addCurveToPoint(CGPointMake(frame.minX + 499.74, frame.minY + 422), controlPoint1: CGPointMake(frame.minX + 522.32, frame.minY + 447.52), controlPoint2: CGPointMake(frame.minX + 505.56, frame.minY + 436.99))
+        pickedImageRectanglePath.addCurveToPoint(CGPointMake(frame.minX + 475.26, frame.minY + 388.99), controlPoint1: CGPointMake(frame.minX + 495.78, frame.minY + 411.83), controlPoint2: CGPointMake(frame.minX + 482.36, frame.minY + 399.88))
+        pickedImageRectanglePath.addCurveToPoint(CGPointMake(frame.minX + 463.76, frame.minY + 358), controlPoint1: CGPointMake(frame.minX + 466.6, frame.minY + 375.68), controlPoint2: CGPointMake(frame.minX + 464.44, frame.minY + 362.95))
+        pickedImageRectanglePath.addCurveToPoint(CGPointMake(frame.minX + 461.75, frame.minY + 318), controlPoint1: CGPointMake(frame.minX + 463.01, frame.minY + 352.58), controlPoint2: CGPointMake(frame.minX + 459.24, frame.minY + 326.02))
+        pickedImageRectanglePath.addCurveToPoint(CGPointMake(frame.minX + 463.6, frame.minY + 276.76), controlPoint1: CGPointMake(frame.minX + 464.07, frame.minY + 310.62), controlPoint2: CGPointMake(frame.minX + 463.66, frame.minY + 294.52))
+        pickedImageRectanglePath.addCurveToPoint(CGPointMake(frame.minX + 461.75, frame.minY + 230), controlPoint1: CGPointMake(frame.minX + 463.55, frame.minY + 260.81), controlPoint2: CGPointMake(frame.minX + 465.16, frame.minY + 243.51))
+        pickedImageRectanglePath.addCurveToPoint(CGPointMake(frame.minX + 460.86, frame.minY + 186.72), controlPoint1: CGPointMake(frame.minX + 458.09, frame.minY + 215.44), controlPoint2: CGPointMake(frame.minX + 462.1, frame.minY + 198.9))
+        pickedImageRectanglePath.addCurveToPoint(CGPointMake(frame.minX + 448.79, frame.minY + 154.56), controlPoint1: CGPointMake(frame.minX + 459.65, frame.minY + 174.85), controlPoint2: CGPointMake(frame.minX + 453.2, frame.minY + 167.31))
+        pickedImageRectanglePath.addCurveToPoint(CGPointMake(frame.minX + 441.77, frame.minY + 130), controlPoint1: CGPointMake(frame.minX + 445.87, frame.minY + 146.11), controlPoint2: CGPointMake(frame.minX + 444.86, frame.minY + 137.91))
+        pickedImageRectanglePath.addCurveToPoint(CGPointMake(frame.minX + 437.1, frame.minY + 111.39), controlPoint1: CGPointMake(frame.minX + 439.22, frame.minY + 123.48), controlPoint2: CGPointMake(frame.minX + 441, frame.minY + 117.28))
+        pickedImageRectanglePath.addCurveToPoint(CGPointMake(frame.minX + 420.28, frame.minY + 97.63), controlPoint1: CGPointMake(frame.minX + 433.94, frame.minY + 106.6), controlPoint2: CGPointMake(frame.minX + 424.33, frame.minY + 102.02))
+        pickedImageRectanglePath.addCurveToPoint(CGPointMake(frame.minX + 378.8, frame.minY + 63), controlPoint1: CGPointMake(frame.minX + 408.01, frame.minY + 84.36), controlPoint2: CGPointMake(frame.minX + 390, frame.minY + 72))
+        pickedImageRectanglePath.addCurveToPoint(CGPointMake(frame.minX + 328.83, frame.minY + 26), controlPoint1: CGPointMake(frame.minX + 353.46, frame.minY + 42.63), controlPoint2: CGPointMake(frame.minX + 331.42, frame.minY + 26.17))
+        pickedImageRectanglePath.addCurveToPoint(CGPointMake(frame.minX + 228.89, frame.minY + 24), controlPoint1: CGPointMake(frame.minX + 313.84, frame.minY + 25), controlPoint2: CGPointMake(frame.minX + 228.89, frame.minY + 24))
+        pickedImageRectanglePath.addLineToPoint(CGPointMake(frame.minX + 36, frame.minY + 20))
         pickedImageRectanglePath.addLineToPoint(CGPointMake(frame.minX + 33, frame.minY + 265))
         pickedImageRectanglePath.closePath()
         CGContextSaveGState(context)

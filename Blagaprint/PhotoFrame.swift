@@ -91,11 +91,11 @@ class PhotoFrame: NSObject {
         let material = "Материал: натуральный камень."
         
         frames.append(PhotoFrame(type:  .SH_2, imageSize: CGSizeMake(468.0, 450.0), image: SH2_PhotoFrame.imageOfSH2(), description: "Размер: 20 x 20.\n\(material)"))
-        frames.append(PhotoFrame(type:  .SH_3, imageSize: CGSizeMake(402.0, 286.0), image: SH3_PhotoFrame.imageOfSH3(), description: "Размер: 15 x 20.\n\(material)"))
-        frames.append(PhotoFrame(type: .SH_11, imageSize: CGSizeMake(492.0, 503.0), image: SH11_PhotoFrame.imageOfSH11(), description: "Размер: 20 x 20.\n\(material)"))
-        frames.append(PhotoFrame(type: .SH_15, imageSize: CGSizeMake(751.0, 338.0), image: SH15_PhotoFrame.imageOfSH15(), description: "Размер: 12 x 22.\n\(material)"))
-        frames.append(PhotoFrame(type: .SH_19, imageSize: CGSizeMake(400.0, 400.0), image: SH19_PhotoFrame.imageOfSH19(), description: "Размер: 15 x 15.\n\(material)"))
-        frames.append(PhotoFrame(type: .SH_38, imageSize: CGSizeMake(282.0, 200.0), image: SH38_PhotoFrame.imageOfSH38(), description: "Размер: 12 x 17.\n\(material)"))
+        frames.append(PhotoFrame(type:  .SH_3, imageSize: CGSizeMake(405.0, 291.0), image: SH3_PhotoFrame.imageOfSH3(), description: "Размер: 15 x 20.\n\(material)"))
+        frames.append(PhotoFrame(type: .SH_11, imageSize: CGSizeMake(494.0, 503.0), image: SH11_PhotoFrame.imageOfSH11(), description: "Размер: 20 x 20.\n\(material)"))
+        frames.append(PhotoFrame(type: .SH_15, imageSize: CGSizeMake(751.0, 339.0), image: SH15_PhotoFrame.imageOfSH15(), description: "Размер: 12 x 22.\n\(material)"))
+        frames.append(PhotoFrame(type: .SH_19, imageSize: CGSizeMake(401.0, 400.0), image: SH19_PhotoFrame.imageOfSH19(), description: "Размер: 15 x 15.\n\(material)"))
+        frames.append(PhotoFrame(type: .SH_38, imageSize: CGSizeMake(284.0, 198.0), image: SH38_PhotoFrame.imageOfSH38(), description: "Размер: 12 x 17.\n\(material)"))
         
         return frames
     }
@@ -105,7 +105,7 @@ class PhotoFrame: NSObject {
 
 extension UIImage {
     class func resizedImage(image: UIImage, newSize: CGSize) -> UIImage {
-        UIGraphicsBeginImageContextWithOptions(newSize, false, 0.0)
+        UIGraphicsBeginImageContextWithOptions(newSize, false, 0.9)
         let newImageRect = CGRectMake(0.0, 0.0, newSize.width, newSize.height)
         image.drawInRect(newImageRect)
         let newImage = UIGraphicsGetImageFromCurrentImageContext()
