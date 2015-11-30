@@ -124,7 +124,7 @@ class FrameConstructorTableViewController: UITableViewController {
     // MARK: - UIAlertActions
     
     private func presentImagePickingAlertController() {
-        let imagePickingSelectionAlertController = UIAlertController(title: "Выберите изображение", message: nil, preferredStyle: .ActionSheet)
+        let imagePickingSelectionAlertController = UIAlertController(title: "Выберите действие", message: nil, preferredStyle: .ActionSheet)
         
         /// Cancel action
         let cancelAction = UIAlertAction(title: "Отмена", style: .Cancel) { (action) in
