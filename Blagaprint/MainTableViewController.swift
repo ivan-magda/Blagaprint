@@ -21,6 +21,7 @@ class MainTableViewController: UITableViewController {
     private enum SegueIdentifier: String {
         case PhoneCaseConstructor
         case FrameConstructor
+        case PlateConstructor
     }
     
     private enum CellIdentifier: String {
@@ -101,9 +102,11 @@ class MainTableViewController: UITableViewController {
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == SegueIdentifier.PhoneCaseConstructor.rawValue {
-            debugPrint("Segue to PhoneCase")
+            print("Segue to PhoneCase")
         } else if segue.identifier == SegueIdentifier.FrameConstructor.rawValue {
-            debugPrint("Segue to FrameConstructor")
+            print("Segue to FrameConstructor")
+        } else if segue.identifier == SegueIdentifier.PlateConstructor.rawValue {
+            print("Segue to PlateConstructor")
         }
     }
 
@@ -142,7 +145,6 @@ class MainTableViewController: UITableViewController {
         
         return headerView
     }
-    
 
     // MARK: UITableViewDelegate
     
@@ -155,11 +157,18 @@ class MainTableViewController: UITableViewController {
         
         if indexPath.row == 0 {
             let category = getCategoryFromIndexPath(indexPath)
-            if category.categoryType == Category.CategoryTypes.cases {
+            switch category.categoryType {
+            case .cases:
                 self.performSegueWithIdentifier(SegueIdentifier.PhoneCaseConstructor.rawValue, sender: nil)
                 return
-            } else if category.categoryType == Category.CategoryTypes.frames {
+            case .frames:
                 self.performSegueWithIdentifier(SegueIdentifier.FrameConstructor.rawValue, sender: nil)
+                return
+            case .plates:
+                self.performSegueWithIdentifier(SegueIdentifier.PlateConstructor.rawValue, sender: nil)
+                return
+            default:
+                return
             }
         }
         

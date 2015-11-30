@@ -80,6 +80,10 @@
 		757470321BDCB405004CABD0 /* PhoneCaseDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 757470311BDCB404004CABD0 /* PhoneCaseDevice.swift */; };
 		757470351BDCBEB4004CABD0 /* iPhone6CameraImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 757470331BDCBEB4004CABD0 /* iPhone6CameraImage.png */; };
 		757470361BDCBEB4004CABD0 /* iPhone6CameraImage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 757470341BDCBEB4004CABD0 /* iPhone6CameraImage@2x.png */; };
+		758070141C0C4088000F9D84 /* PlateTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 758070131C0C4088000F9D84 /* PlateTableViewController.swift */; };
+		758070181C0C420E000F9D84 /* PlateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 758070171C0C420E000F9D84 /* PlateView.swift */; };
+		7580701E1C0C46CF000F9D84 /* Plate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7580701D1C0C46CF000F9D84 /* Plate.swift */; };
+		758070211C0C49F2000F9D84 /* PlateTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 758070201C0C49F2000F9D84 /* PlateTableViewCell.swift */; };
 		75823AAF1BD8BDD000C92F83 /* PhoneCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75823AAE1BD8BDD000C92F83 /* PhoneCase.swift */; };
 		758595621BDA30C10079A1BA /* iPhone4CameraImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 7585955E1BDA30C10079A1BA /* iPhone4CameraImage.png */; };
 		758595631BDA30C10079A1BA /* iPhone4CameraImage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7585955F1BDA30C10079A1BA /* iPhone4CameraImage@2x.png */; };
@@ -230,6 +234,10 @@
 		757470311BDCB404004CABD0 /* PhoneCaseDevice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhoneCaseDevice.swift; sourceTree = "<group>"; };
 		757470331BDCBEB4004CABD0 /* iPhone6CameraImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = iPhone6CameraImage.png; path = images/iPhone6CameraImage.png; sourceTree = "<group>"; };
 		757470341BDCBEB4004CABD0 /* iPhone6CameraImage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "iPhone6CameraImage@2x.png"; path = "images/iPhone6CameraImage@2x.png"; sourceTree = "<group>"; };
+		758070131C0C4088000F9D84 /* PlateTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlateTableViewController.swift; sourceTree = "<group>"; };
+		758070171C0C420E000F9D84 /* PlateView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlateView.swift; sourceTree = "<group>"; };
+		7580701D1C0C46CF000F9D84 /* Plate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Plate.swift; sourceTree = "<group>"; };
+		758070201C0C49F2000F9D84 /* PlateTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlateTableViewCell.swift; sourceTree = "<group>"; };
 		75823AAE1BD8BDD000C92F83 /* PhoneCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhoneCase.swift; sourceTree = "<group>"; };
 		7585955E1BDA30C10079A1BA /* iPhone4CameraImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = iPhone4CameraImage.png; path = images/iPhone4CameraImage.png; sourceTree = "<group>"; };
 		7585955F1BDA30C10079A1BA /* iPhone4CameraImage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "iPhone4CameraImage@2x.png"; path = "images/iPhone4CameraImage@2x.png"; sourceTree = "<group>"; };
@@ -349,6 +357,7 @@
 				50FD7F521BB903C200ABEC38 /* AppDelegate */,
 				50DD723A1BBED31B008A9B80 /* DataModel */,
 				50FD7F531BB903CC00ABEC38 /* Controllers */,
+				758070131C0C4088000F9D84 /* PlateTableViewController.swift */,
 				50FD7F511BB903B700ABEC38 /* View */,
 				508503051BBAADCF00152131 /* Utility */,
 				502A8CB61BB80EAC0064E0DA /* Main.storyboard */,
@@ -454,6 +463,7 @@
 			children = (
 				50A871D51BCA9B7C003CB0F9 /* PhoneCase */,
 				75A361911C00920700D97278 /* PhotoFrame */,
+				7580701F1C0C4944000F9D84 /* Plate */,
 				50FD7F4F1BB8FFF600ABEC38 /* CategoryTableViewCell.swift */,
 				5071D34B1BBFE9D0005DDED3 /* NothingFoundTableViewCell.swift */,
 				50F8F4191BC80857002CE3FD /* CategoryItemTableViewCell.swift */,
@@ -463,6 +473,7 @@
 				0C8296C11BFC65D400B2B345 /* DescriptionTableViewCell.swift */,
 				7522B88F1BFF34C800BC14C0 /* CollectionTableViewCell.swift */,
 				7522B8951BFF49F200BC14C0 /* FrameItemCollectionViewCell.swift */,
+				758070201C0C49F2000F9D84 /* PlateTableViewCell.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -594,6 +605,15 @@
 				750C83CE1C03110200BAFEB0 /* sh38_placeholderImage.jpg */,
 			);
 			name = PhotoFrameImages;
+			sourceTree = "<group>";
+		};
+		7580701F1C0C4944000F9D84 /* Plate */ = {
+			isa = PBXGroup;
+			children = (
+				7580701D1C0C46CF000F9D84 /* Plate.swift */,
+				758070171C0C420E000F9D84 /* PlateView.swift */,
+			);
+			name = Plate;
 			sourceTree = "<group>";
 		};
 		758595581BDA16EE0079A1BA /* PhoneCaseImages */ = {
@@ -1080,6 +1100,7 @@
 				75F739371BE491BF0063EB6F /* XiaomiMi4.swift in Sources */,
 				75C762CC1BF5A36F004F06C2 /* CategoryData.swift in Sources */,
 				502A8CB51BB80EAC0064E0DA /* MainTableViewController.swift in Sources */,
+				758070141C0C4088000F9D84 /* PlateTableViewController.swift in Sources */,
 				75823AAF1BD8BDD000C92F83 /* PhoneCase.swift in Sources */,
 				75DD91FF1BD7BFE000932AD7 /* CaseView.swift in Sources */,
 				75BF695D1C045E78009D670D /* SH3_PhotoFrame.swift in Sources */,
@@ -1119,13 +1140,16 @@
 				75C762CE1BF5A36F004F06C2 /* CategoryItemData.swift in Sources */,
 				501506501BCE96C700697C99 /* TextEditingViewController.swift in Sources */,
 				75BF69531C044900009D670D /* PhotoFrame.swift in Sources */,
+				7580701E1C0C46CF000F9D84 /* Plate.swift in Sources */,
 				0C8296BE1BFC5CF200B2B345 /* ImagePickingTableViewCell.swift in Sources */,
 				75A36C3F1BE25C310036B500 /* GalaxyA7.swift in Sources */,
+				758070211C0C49F2000F9D84 /* PlateTableViewCell.swift in Sources */,
 				0C8296C21BFC65D500B2B345 /* DescriptionTableViewCell.swift in Sources */,
 				75C762D11BF5AC8D004F06C2 /* Persistence.swift in Sources */,
 				0C8296C01BFC5FF100B2B345 /* FrameConstructorTableViewController.swift in Sources */,
 				50551C331BCBB469005B88DA /* OvalView.swift in Sources */,
 				7522B8901BFF34C800BC14C0 /* CollectionTableViewCell.swift in Sources */,
+				758070181C0C420E000F9D84 /* PlateView.swift in Sources */,
 				5071D34C1BBFE9D0005DDED3 /* NothingFoundTableViewCell.swift in Sources */,
 				502A8CB31BB80EAC0064E0DA /* AppDelegate.swift in Sources */,
 				757470321BDCB405004CABD0 /* PhoneCaseDevice.swift in Sources */,
