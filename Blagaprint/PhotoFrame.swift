@@ -105,7 +105,7 @@ class PhotoFrame: NSObject {
 
 extension UIImage {
     class func resizedImage(image: UIImage, newSize: CGSize) -> UIImage {
-        UIGraphicsBeginImageContextWithOptions(newSize, false, 0.9)
+        UIGraphicsBeginImageContextWithOptions(newSize, false, 0.0)
         let newImageRect = CGRectMake(0.0, 0.0, newSize.width, newSize.height)
         image.drawInRect(newImageRect)
         let newImage = UIGraphicsGetImageFromCurrentImageContext()

@@ -168,7 +168,7 @@ class MainTableViewController: UITableViewController {
                 self.performSegueWithIdentifier(SegueIdentifier.PlateConstructor.rawValue, sender: nil)
                 return
             default:
-                return
+                break
             }
         }
         

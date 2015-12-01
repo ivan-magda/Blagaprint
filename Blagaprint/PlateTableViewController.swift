@@ -19,7 +19,12 @@ class PlateTableViewController: UITableViewController {
     // MARK: - Properties
     
     /// Plate view.
-    weak var plateView: PlateView!
+    weak var plateView: PlateView?
+    
+    /// Size of the plate view image.
+    var plateViewImageSize: CGSize {
+        return CGSizeMake(230.0, 230.0)
+    }
     
     /// Image picker controller to let us take/pick photo.
     let imagePickerController: UIImagePickerController = UIImagePickerController()
@@ -80,6 +85,10 @@ class PlateTableViewController: UITableViewController {
         
         /// Clear action
         let clearAction = UIAlertAction(title: "Очистить", style: .Destructive) { (action) in
+            if let plateView = self.plateView {
+                plateView.image = nil
+                plateView.showImage = false
+            }
         }
         imagePickingSelectionAlertController.addAction(clearAction)
         
@@ -149,7 +158,14 @@ extension PlateTableViewController: UIImagePickerControllerDelegate, UINavigatio
     // MARK: UIImagePickerControllerDelegate
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
-        //let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage
+        let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage
+        
+        if let plateView = self.plateView {
+            if let image = pickedImage {
+                plateView.image = UIImage.resizedImage(image, newSize: plateViewImageSize)
+                plateView.showImage = true
+            }
+        }
         
         self.dismissViewControllerAnimated(true, completion: nil)
     }

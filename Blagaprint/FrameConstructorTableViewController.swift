@@ -155,12 +155,8 @@ class FrameConstructorTableViewController: UITableViewController {
     
     // MARK: - Actions
     
-    @IBAction func cancelButtonPressed(sender: UIBarButtonItem) {
-        self.dismissViewControllerAnimated(true, completion: nil)
-    }
-    
     @IBAction func doneButtonPressed(sender: UIBarButtonItem) {
-        self.dismissViewControllerAnimated(true, completion: nil)
+        self.navigationController?.popViewControllerAnimated(true)
     }
     
     @IBAction func imagePickingButtonPressed(sender: UIButton) {

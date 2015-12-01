@@ -13,7 +13,7 @@ class PlateView: UIView {
     // MARK: - Properties
     
     /// Plate background image.
-    var image: UIImage = UIImage() {
+    var image: UIImage? {
         didSet {
             self.setNeedsDisplay()
         }
@@ -29,7 +29,7 @@ class PlateView: UIView {
     // MARK: - Drawing
     
     override func drawRect(rect: CGRect) {
-        Plate.drawPlateCanvas(frame: rect, image: image, isPlateImageVisible: showImage)
+        Plate.drawPlateCanvas(frame: rect, image: image ?? UIImage(), isPlateImageVisible: showImage)
     }
 
 }

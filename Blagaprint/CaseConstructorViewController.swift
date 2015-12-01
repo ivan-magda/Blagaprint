@@ -44,6 +44,11 @@ class CaseConstructorTableViewController: UITableViewController {
     /// Default supported device.
     var device: Device!
     
+    /// Case view size value.
+    var caseViewSize: CGSize {
+        return CGSizeMake(CGRectGetWidth(self.caseView.bounds), CGRectGetHeight(self.caseView.bounds))
+    }
+    
     /// Image picker controller to let us take/pick photo.
     let imagePickerController: UIImagePickerController = UIImagePickerController()
     
@@ -198,12 +203,8 @@ class CaseConstructorTableViewController: UITableViewController {
         presentManageTextAlertController()
     }
     
-    @IBAction func cancelButtonDidPressed(sender: UIBarButtonItem) {
-        self.dismissViewControllerAnimated(true, completion: nil)
-    }
-    
     @IBAction func doneButtonDidPressed(sender: UIBarButtonItem) {
-        self.dismissViewControllerAnimated(true, completion: nil)
+        self.navigationController?.popViewControllerAnimated(true)
     }
     
     // MARK: - UIAlertActions
@@ -313,24 +314,12 @@ extension CaseConstructorTableViewController: UIImagePickerControllerDelegate, U
         }
     }
     
-    private func imageForCase(image: UIImage) -> UIImage {
-        let newSize = CGSizeMake(CGRectGetWidth(caseView.bounds), CGRectGetHeight(caseView.bounds))
-        
-        UIGraphicsBeginImageContextWithOptions(newSize, false, 0.0)
-        let newImageRect = CGRectMake(0.0, 0.0, newSize.width, newSize.height)
-        image.drawInRect(newImageRect)
-        let newImage = UIGraphicsGetImageFromCurrentImageContext()
-        UIGraphicsEndImageContext()
-        
-        return newImage
-    }
-    
     // MARK: UIImagePickerControllerDelegate
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
         let chosenImage = info[UIImagePickerControllerOriginalImage] as! UIImage
         
-        self.caseView.image = imageForCase(chosenImage)
+        self.caseView.image = UIImage.resizedImage(chosenImage, newSize: caseViewSize)
         self.caseView.showBackgroundImage = true
         
         self.dismissViewControllerAnimated(true, completion: nil)
@@ -343,7 +332,7 @@ extension CaseConstructorTableViewController: UIImagePickerControllerDelegate, U
 
 extension CaseConstructorTableViewController: PhotoLibraryCollectionViewControllerDelegate {
     func photoLibraryCollectionViewController(controller: PhotoLibraryCollectionViewController, didDoneOnImage image: UIImage) {
-        self.caseView.image = imageForCase(image)
+        self.caseView.image = UIImage.resizedImage(image, newSize: caseViewSize)
         self.caseView.showBackgroundImage = true
     }
 }
