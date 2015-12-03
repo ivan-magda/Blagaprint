@@ -74,6 +74,8 @@
 		7547D2561BDE2376006E4170 /* galaxyS5Speaker@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7547D2481BDE2376006E4170 /* galaxyS5Speaker@2x.png */; };
 		755266431BE9B66500788DE2 /* Library.swift in Sources */ = {isa = PBXBuildFile; fileRef = 755266421BE9B66500788DE2 /* Library.swift */; };
 		755266451BEB50E600788DE2 /* CloudKitExtenstions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 755266441BEB50E600788DE2 /* CloudKitExtenstions.swift */; };
+		7561AE9F1C0FD563009B2C8B /* Plate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7561AE9E1C0FD563009B2C8B /* Plate.swift */; };
+		7561AEAF1C0FD8E4009B2C8B /* UIImageResizeAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7561AEAE1C0FD8E4009B2C8B /* UIImageResizeAdditions.swift */; };
 		757470321BDCB405004CABD0 /* PhoneCaseDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 757470311BDCB404004CABD0 /* PhoneCaseDevice.swift */; };
 		757470351BDCBEB4004CABD0 /* iPhone6CameraImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 757470331BDCBEB4004CABD0 /* iPhone6CameraImage.png */; };
 		757470361BDCBEB4004CABD0 /* iPhone6CameraImage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 757470341BDCBEB4004CABD0 /* iPhone6CameraImage@2x.png */; };
@@ -83,7 +85,6 @@
 		7581ED3A1C0D8ABF00EFE936 /* More.png in Resources */ = {isa = PBXBuildFile; fileRef = 7581ED371C0D8ABF00EFE936 /* More.png */; };
 		7581ED3B1C0D8ABF00EFE936 /* More@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7581ED381C0D8ABF00EFE936 /* More@2x.png */; };
 		7581ED3C1C0D8ABF00EFE936 /* More@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7581ED391C0D8ABF00EFE936 /* More@3x.png */; };
-		7581ED441C0D9AC200EFE936 /* Plate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7581ED431C0D9AC200EFE936 /* Plate.swift */; };
 		75823AAF1BD8BDD000C92F83 /* PhoneCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75823AAE1BD8BDD000C92F83 /* PhoneCase.swift */; };
 		758595621BDA30C10079A1BA /* iPhone4CameraImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 7585955E1BDA30C10079A1BA /* iPhone4CameraImage.png */; };
 		758595631BDA30C10079A1BA /* iPhone4CameraImage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7585955F1BDA30C10079A1BA /* iPhone4CameraImage@2x.png */; };
@@ -228,6 +229,8 @@
 		7547D2481BDE2376006E4170 /* galaxyS5Speaker@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "galaxyS5Speaker@2x.png"; path = "images/galaxyS5Speaker@2x.png"; sourceTree = "<group>"; };
 		755266421BE9B66500788DE2 /* Library.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Library.swift; sourceTree = "<group>"; };
 		755266441BEB50E600788DE2 /* CloudKitExtenstions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CloudKitExtenstions.swift; sourceTree = "<group>"; };
+		7561AE9E1C0FD563009B2C8B /* Plate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Plate.swift; sourceTree = "<group>"; };
+		7561AEAE1C0FD8E4009B2C8B /* UIImageResizeAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageResizeAdditions.swift; sourceTree = "<group>"; };
 		757470311BDCB404004CABD0 /* PhoneCaseDevice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhoneCaseDevice.swift; sourceTree = "<group>"; };
 		757470331BDCBEB4004CABD0 /* iPhone6CameraImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = iPhone6CameraImage.png; path = images/iPhone6CameraImage.png; sourceTree = "<group>"; };
 		757470341BDCBEB4004CABD0 /* iPhone6CameraImage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "iPhone6CameraImage@2x.png"; path = "images/iPhone6CameraImage@2x.png"; sourceTree = "<group>"; };
@@ -237,7 +240,6 @@
 		7581ED371C0D8ABF00EFE936 /* More.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = More.png; sourceTree = "<group>"; };
 		7581ED381C0D8ABF00EFE936 /* More@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "More@2x.png"; sourceTree = "<group>"; };
 		7581ED391C0D8ABF00EFE936 /* More@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "More@3x.png"; sourceTree = "<group>"; };
-		7581ED431C0D9AC200EFE936 /* Plate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Plate.swift; sourceTree = "<group>"; };
 		75823AAE1BD8BDD000C92F83 /* PhoneCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhoneCase.swift; sourceTree = "<group>"; };
 		7585955E1BDA30C10079A1BA /* iPhone4CameraImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = iPhone4CameraImage.png; path = images/iPhone4CameraImage.png; sourceTree = "<group>"; };
 		7585955F1BDA30C10079A1BA /* iPhone4CameraImage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "iPhone4CameraImage@2x.png"; path = "images/iPhone4CameraImage@2x.png"; sourceTree = "<group>"; };
@@ -360,6 +362,7 @@
 				758070131C0C4088000F9D84 /* PlateTableViewController.swift */,
 				50FD7F511BB903B700ABEC38 /* View */,
 				508503051BBAADCF00152131 /* Utility */,
+				7561AEAD1C0FD7CD009B2C8B /* UIImageAdditions */,
 				502A8CB61BB80EAC0064E0DA /* Main.storyboard */,
 				502A8CBB1BB80EAC0064E0DA /* LaunchScreen.storyboard */,
 				502A8CB91BB80EAC0064E0DA /* Assets.xcassets */,
@@ -585,6 +588,15 @@
 			name = CloudKit;
 			sourceTree = "<group>";
 		};
+		7561AEAD1C0FD7CD009B2C8B /* UIImageAdditions */ = {
+			isa = PBXGroup;
+			children = (
+				7561AEAE1C0FD8E4009B2C8B /* UIImageResizeAdditions.swift */,
+			);
+			name = UIImageAdditions;
+			path = ..;
+			sourceTree = "<group>";
+		};
 		757470371BDCBEB9004CABD0 /* iPhone6/6S */ = {
 			isa = PBXGroup;
 			children = (
@@ -610,7 +622,7 @@
 		7580701F1C0C4944000F9D84 /* Plate */ = {
 			isa = PBXGroup;
 			children = (
-				7581ED431C0D9AC200EFE936 /* Plate.swift */,
+				7561AE9E1C0FD563009B2C8B /* Plate.swift */,
 				758070171C0C420E000F9D84 /* PlateView.swift */,
 			);
 			name = Plate;
@@ -957,6 +969,7 @@
 		502A8CA71BB80EAC0064E0DA /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftUpdateCheck = 0710;
 				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = Blagaprint;
 				TargetAttributes = {
@@ -1106,6 +1119,7 @@
 				75BF695D1C045E78009D670D /* SH3_PhotoFrame.swift in Sources */,
 				0C541A571BD0B2710028BD9A /* PhotoLibraryCollectionViewController.swift in Sources */,
 				50551C2E1BCBA523005B88DA /* SelectBackgroundCollectionViewController.swift in Sources */,
+				7561AEAF1C0FD8E4009B2C8B /* UIImageResizeAdditions.swift in Sources */,
 				50DD72391BBED313008A9B80 /* Category.swift in Sources */,
 				75D77A041BFB4872005E4EE8 /* UsersService.swift in Sources */,
 				75A3E9681BE354F40001E073 /* GalaxyNote2.swift in Sources */,
@@ -1119,7 +1133,7 @@
 				75FD246F1BE3D3E500446801 /* XperiaZ.swift in Sources */,
 				50551C351BCBEA96005B88DA /* BackgroundCollectionViewCell.swift in Sources */,
 				758792A81BF487E10071C383 /* LoadingView.swift in Sources */,
-				7581ED441C0D9AC200EFE936 /* Plate.swift in Sources */,
+				7561AE9F1C0FD563009B2C8B /* Plate.swift in Sources */,
 				50551C2C1BCB8B18005B88DA /* SelectDeviceTableViewController.swift in Sources */,
 				50A871D71BCA9D68003CB0F9 /* CaseConstructorViewController.swift in Sources */,
 				755266451BEB50E600788DE2 /* CloudKitExtenstions.swift in Sources */,
@@ -1265,6 +1279,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Blagaprint/Blagaprint.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -1273,6 +1288,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.IvanMagda.Blagaprint;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
@@ -1280,6 +1296,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Blagaprint/Blagaprint.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";

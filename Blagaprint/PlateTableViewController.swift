@@ -23,7 +23,7 @@ class PlateTableViewController: UITableViewController {
     
     /// Size of the plate view image.
     var plateViewImageSize: CGSize {
-        return CGSizeMake(230.0, 230.0)
+        return CGSizeMake(210.0, 210.0)
     }
     
     /// Image picker controller to let us take/pick photo.
@@ -162,7 +162,7 @@ extension PlateTableViewController: UIImagePickerControllerDelegate, UINavigatio
         
         if let plateView = self.plateView {
             if let image = pickedImage {
-                plateView.image = UIImage.resizedImage(image, newSize: plateViewImageSize)
+                plateView.image = image.resizedImageWithContentMode(.ScaleAspectFill, bounds: plateViewImageSize, interpolationQuality: .High)
                 plateView.showImage = true
             }
         }

@@ -100,17 +100,3 @@ class PhotoFrame: NSObject {
         return frames
     }
 }
-
-// MARK: - UIImage Extension -
-
-extension UIImage {
-    class func resizedImage(image: UIImage, newSize: CGSize) -> UIImage {
-        UIGraphicsBeginImageContextWithOptions(newSize, false, 0.0)
-        let newImageRect = CGRectMake(0.0, 0.0, newSize.width, newSize.height)
-        image.drawInRect(newImageRect)
-        let newImage = UIGraphicsGetImageFromCurrentImageContext()
-        UIGraphicsEndImageContext()
-        
-        return newImage
-    }
-}
