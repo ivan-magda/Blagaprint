@@ -26,7 +26,7 @@ class FrameConstructorTableViewController: UITableViewController {
     var photoFrames = PhotoFrame.seedInitialFrames()
     
     /// Image picker controller to let us take/pick photo.
-    let imagePickerController: UIImagePickerController = UIImagePickerController()
+    var imagePickerController: BLImagePickerController?
     
     // MARK: - View Life Cycle
 
@@ -35,6 +35,12 @@ class FrameConstructorTableViewController: UITableViewController {
         
         self.tableView.rowHeight = UITableViewAutomaticDimension
         self.tableView.estimatedRowHeight = 44.0
+        
+        self.imagePickerController = BLImagePickerController(rootViewController: self) {
+            pickedImage in
+            self.updateFramesImages(pickedImage)
+            self.collectionView.reloadData()
+        }
     }
     
     // MARK: - UIScrollViewDelegate
@@ -67,6 +73,20 @@ class FrameConstructorTableViewController: UITableViewController {
     private func reloadDescriptionCell() {
         let descriptionIndexPath = NSIndexPath(forRow: 1, inSection: 1)
         self.tableView.reloadRowsAtIndexPaths([descriptionIndexPath], withRowAnimation: .Automatic)
+    }
+    
+    // MARK: - Private
+    
+    private func updateFramesImages(pickedImage: UIImage?) {
+        if let pickedImage = pickedImage {
+            for frame in photoFrames {
+                frame.image = frame.frameImageWithPickedImage(pickedImage)
+            }
+        } else {
+            for frame in photoFrames {
+                frame.image = frame.frameImage()
+            }
+        }
     }
 
     // MARK: - UITableView
@@ -127,26 +147,30 @@ class FrameConstructorTableViewController: UITableViewController {
         let imagePickingSelectionAlertController = UIAlertController(title: "Выберите действие", message: nil, preferredStyle: .ActionSheet)
         
         /// Cancel action
-        let cancelAction = UIAlertAction(title: "Отмена", style: .Cancel) { (action) in
+        let cancelAction = UIAlertAction(title: "Отмена", style: .Cancel) { action in
         }
         imagePickingSelectionAlertController.addAction(cancelAction)
         
         /// Clear action
-        let clearAction = UIAlertAction(title: "Очистить", style: .Destructive) { (action) in
+        let clearAction = UIAlertAction(title: "Очистить", style: .Destructive) { action in
             self.updateFramesImages(nil)
             self.collectionView.reloadData()
         }
         imagePickingSelectionAlertController.addAction(clearAction)
         
         /// Photo from gallery(take photo) action
-        let photoFromLibrary = UIAlertAction(title: "Медиатека", style: .Default) { (action) in
-            self.photoFromLibrary()
+        let photoFromLibrary = UIAlertAction(title: "Медиатека", style: .Default) { action in
+            if let imagePickerController = self.imagePickerController {
+                imagePickerController.photoFromLibrary()
+            }
         }
         imagePickingSelectionAlertController.addAction(photoFromLibrary)
         
         /// Shoot photo
-        let shoot = UIAlertAction(title: "Снять фото", style: .Default) { (action) in
-            self.shootPhoto()
+        let shoot = UIAlertAction(title: "Снять фото", style: .Default) { action in
+            if let imagePickerController = self.imagePickerController {
+                imagePickerController.shootPhoto()
+            }
         }
         imagePickingSelectionAlertController.addAction(shoot)
         
@@ -169,69 +193,6 @@ class FrameConstructorTableViewController: UITableViewController {
         self.collectionView.setContentOffset(scrollTo, animated: true)
         
         reloadDescriptionCell()
-    }
-}
-
-// MARK: - Image Picking Extension
-
-extension FrameConstructorTableViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-    // MARK: - Private Helper Methods
-    
-    private func noCamera() {
-        let alertVC = UIAlertController(title: "No Camera", message: "Sorry, this device has no camera", preferredStyle: .Alert)
-        let okAction = UIAlertAction(title: "OK", style:.Default, handler: nil)
-        alertVC.addAction(okAction)
-        
-        self.presentViewController(alertVC, animated: true, completion: nil)
-    }
-    
-    private func updateFramesImages(pickedImage: UIImage?) {
-        if let pickedImage = pickedImage {
-            for frame in photoFrames {
-                frame.image = frame.frameImageWithPickedImage(pickedImage)
-            }
-        } else {
-            for frame in photoFrames {
-                frame.image = frame.frameImage()
-            }
-        }
-    }
-    
-    /// Get a photo from the library.
-    private func photoFromLibrary() {
-        imagePickerController.allowsEditing = false
-        imagePickerController.sourceType = .PhotoLibrary
-        imagePickerController.modalPresentationStyle = .FullScreen
-        imagePickerController.delegate = self
-        
-        self.presentViewController(imagePickerController, animated: true, completion: nil)
-    }
-    
-    /// Take a picture, check if we have a camera first.
-    private func shootPhoto() {
-        if UIImagePickerController.availableCaptureModesForCameraDevice(.Rear) != nil {
-            imagePickerController.allowsEditing = false
-            imagePickerController.sourceType = UIImagePickerControllerSourceType.Camera
-            imagePickerController.cameraCaptureMode = .Photo
-            imagePickerController.modalPresentationStyle = .FullScreen
-            
-            self.presentViewController(imagePickerController, animated: true, completion: nil)
-        } else {
-            noCamera()
-        }
-    }
-    
-    // MARK: UIImagePickerControllerDelegate
-    
-    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
-        updateFramesImages(info[UIImagePickerControllerOriginalImage] as? UIImage)
-        self.collectionView.reloadData()
-        
-        self.dismissViewControllerAnimated(true, completion: nil)
-    }
-    
-    func imagePickerControllerDidCancel(picker: UIImagePickerController) {
-        dismissViewControllerAnimated(true, completion: nil)
     }
 }
 

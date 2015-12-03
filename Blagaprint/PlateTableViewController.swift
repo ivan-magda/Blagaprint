@@ -27,7 +27,7 @@ class PlateTableViewController: UITableViewController {
     }
     
     /// Image picker controller to let us take/pick photo.
-    let imagePickerController: UIImagePickerController = UIImagePickerController()
+    var imagePickerController: BLImagePickerController?
     
     // MARK: - View Lyfecycle
     
@@ -36,6 +36,14 @@ class PlateTableViewController: UITableViewController {
         
         self.tableView.rowHeight = UITableViewAutomaticDimension
         self.tableView.estimatedRowHeight = 44.0
+        
+        self.imagePickerController = BLImagePickerController(rootViewController: self) {
+            pickedImage in
+            if let plateView = self.plateView {
+                plateView.image = pickedImage.resizedImageWithContentMode(.ScaleAspectFill, bounds: self.plateViewImageSize, interpolationQuality: .High)
+                plateView.showImage = true
+            }
+        }
     }
     
     // MARK: - UITableView
@@ -86,21 +94,29 @@ class PlateTableViewController: UITableViewController {
         /// Clear action
         let clearAction = UIAlertAction(title: "Очистить", style: .Destructive) { (action) in
             if let plateView = self.plateView {
-                plateView.image = nil
-                plateView.showImage = false
+                plateView.alpha = 0.0
+                UIView.animateWithDuration(0.45, animations: {
+                    plateView.image = nil
+                    plateView.showImage = false
+                    plateView.alpha = 1.0
+                    }, completion: nil)
             }
         }
         imagePickingSelectionAlertController.addAction(clearAction)
         
         /// Photo from gallery(take photo) action
         let photoFromLibrary = UIAlertAction(title: "Медиатека", style: .Default) { (action) in
-            self.photoFromLibrary()
+            if let imagePickerController = self.imagePickerController {
+                imagePickerController.photoFromLibrary()
+            }
         }
         imagePickingSelectionAlertController.addAction(photoFromLibrary)
         
         /// Shoot photo
         let shoot = UIAlertAction(title: "Снять фото", style: .Default) { (action) in
-            self.shootPhoto()
+            if let imagePickerController = self.imagePickerController {
+                imagePickerController.shootPhoto()
+            }
         }
         imagePickingSelectionAlertController.addAction(shoot)
         
@@ -116,62 +132,4 @@ class PlateTableViewController: UITableViewController {
     @IBAction func imagePickingButtonPressed(sender: UIButton) {
         presentImagePickingAlertController()
     }
-}
-
-// MARK: - Image Picking Extension
-
-extension PlateTableViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-    // MARK: - Private Helper Methods
-    
-    private func noCamera() {
-        let alertVC = UIAlertController(title: "No Camera", message: "Sorry, this device has no camera", preferredStyle: .Alert)
-        let okAction = UIAlertAction(title: "OK", style:.Default, handler: nil)
-        alertVC.addAction(okAction)
-        
-        self.presentViewController(alertVC, animated: true, completion: nil)
-    }
-    
-    /// Get a photo from the library.
-    private func photoFromLibrary() {
-        imagePickerController.allowsEditing = false
-        imagePickerController.sourceType = .PhotoLibrary
-        imagePickerController.modalPresentationStyle = .FullScreen
-        imagePickerController.delegate = self
-        
-        self.presentViewController(imagePickerController, animated: true, completion: nil)
-    }
-    
-    /// Take a picture, check if we have a camera first.
-    private func shootPhoto() {
-        if UIImagePickerController.availableCaptureModesForCameraDevice(.Rear) != nil {
-            imagePickerController.allowsEditing = false
-            imagePickerController.sourceType = UIImagePickerControllerSourceType.Camera
-            imagePickerController.cameraCaptureMode = .Photo
-            imagePickerController.modalPresentationStyle = .FullScreen
-            
-            self.presentViewController(imagePickerController, animated: true, completion: nil)
-        } else {
-            noCamera()
-        }
-    }
-    
-    // MARK: UIImagePickerControllerDelegate
-    
-    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
-        let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage
-        
-        if let plateView = self.plateView {
-            if let image = pickedImage {
-                plateView.image = image.resizedImageWithContentMode(.ScaleAspectFill, bounds: plateViewImageSize, interpolationQuality: .High)
-                plateView.showImage = true
-            }
-        }
-        
-        self.dismissViewControllerAnimated(true, completion: nil)
-    }
-    
-    func imagePickerControllerDidCancel(picker: UIImagePickerController) {
-        dismissViewControllerAnimated(true, completion: nil)
-    }
-
 }

@@ -50,7 +50,7 @@ class CaseConstructorTableViewController: UITableViewController {
     }
     
     /// Image picker controller to let us take/pick photo.
-    let imagePickerController: UIImagePickerController = UIImagePickerController()
+    var imagePickerController: BLImagePickerController?
     
     // MARK: - View Life Cycle
     
@@ -59,8 +59,39 @@ class CaseConstructorTableViewController: UITableViewController {
         
         device = Device.iPhone5()
         
-        // The required delegate to get a photo back to the app.
-        imagePickerController.delegate = self
+        self.imagePickerController = BLImagePickerController(rootViewController: self) {
+            pickedImage in
+            self.setImageToCaseView(pickedImage)
+        }
+    }
+    
+    // MARK: - Private
+    
+    private func setImageToCaseView(image: UIImage) {
+        self.caseView.image = UIImage.resizedImage(image, newSize: caseViewSize)
+        self.caseView.showBackgroundImage = true
+    }
+    
+    // MARK: Animations
+    
+    private func animateCaseView(delay: NSTimeInterval) {
+        let tableView = self.tableView
+        
+        tableView.tableHeaderView?.alpha = 0.0
+        UIView.animateWithDuration(0.45, delay: delay, options: .CurveEaseInOut, animations: {
+            tableView.tableHeaderView?.alpha = 1.0
+            }, completion: nil)
+    }
+    
+    private func animateCaseViewWithNewFrame(newFrame: CGRect) {
+        let tableView = self.tableView
+        
+        tableView.tableHeaderView?.alpha = 0.0
+        UIView.animateWithDuration(0.45, delay: 0.1, options: .CurveEaseInOut, animations: { () in
+            tableView.tableHeaderView?.frame = newFrame
+            tableView.tableHeaderView = tableView.tableHeaderView
+            tableView.tableHeaderView?.alpha = 1.0
+            }, completion: nil)
     }
     
     // MARK: - Navigation
@@ -70,9 +101,8 @@ class CaseConstructorTableViewController: UITableViewController {
             selectDeviceViewController.originalDevice = device
             
             // Call back when SelectDeviceTableVC did select device.
-            weak var weakSelf = self
             selectDeviceViewController.didSelectDeviceClosure = { (selectedDevice: Device) in
-                weakSelf?.device = selectedDevice
+                self.device = selectedDevice
                 
                 // Update table header view frame.
                 var tableHeaderViewHeight: CGFloat = 0.0
@@ -114,34 +144,27 @@ class CaseConstructorTableViewController: UITableViewController {
                         caseViewWidth = 240
                 }
                 
-                let tableView = weakSelf?.tableView
-                let newFrame = CGRectMake(tableView!.bounds.origin.x, tableView!.bounds.origin.y, CGRectGetWidth(tableView!.bounds), tableHeaderViewHeight)
+                let tableView = self.tableView
+                let newFrame = CGRectMake(tableView.bounds.origin.x, tableView.bounds.origin.y, CGRectGetWidth(tableView.bounds), tableHeaderViewHeight)
                 
-                weakSelf?.view.layoutIfNeeded()
+                self.view.layoutIfNeeded()
                 
                 self.caseViewWidthConstraint.constant = caseViewWidth
-                
-                tableView?.tableHeaderView?.alpha = 0.0
-                UIView.animateWithDuration(0.45, delay: 0.1, options: .CurveEaseInOut, animations: { () in
-                    tableView?.tableHeaderView?.frame = newFrame
-                    tableView?.tableHeaderView = tableView?.tableHeaderView
-                    tableView?.tableHeaderView?.alpha = 1.0
-                    }, completion: nil)
+                self.animateCaseViewWithNewFrame(newFrame)
                 
                 // Present selected device.
-                weakSelf?.caseView.device = selectedDevice
-                weakSelf?.deviceLabel.text = weakSelf?.device.name
+                self.caseView.device = selectedDevice
+                self.deviceLabel.text = self.device.name
             }
         } else if segue.identifier == SegueIdentifier.ColorPicking.rawValue {
             let navigationController = segue.destinationViewController as! UINavigationController
             let selectBackgroundVC = navigationController.topViewController as! SelectBackgroundCollectionViewController
             
-            // Change case/text color, when new color picked.
-            weak var weakSelf = self
-            
+            // Change case/text color when new color picked.
             var caseBackgroundType = false
             var textColorType = false
             let type = sender as! String
+            
             if type == ColorSelectionType.CaseBackground.rawValue {
                 selectBackgroundVC.selectedColor = caseView.fillColor
                 caseBackgroundType = true
@@ -153,12 +176,12 @@ class CaseConstructorTableViewController: UITableViewController {
             selectBackgroundVC.didSelectColorCompletionHandler = { (color) in
                 if caseBackgroundType {
                     UIView.animateWithDuration(0.25, animations: { () -> Void in
-                        weakSelf!.caseView.fillColor = color
-                        weakSelf!.caseView.showBackgroundImage = false
+                        self.caseView.fillColor = color
+                        self.caseView.showBackgroundImage = false
                     })
                 } else if textColorType {
                     UIView.animateWithDuration(0.25, animations: { () -> Void in
-                        weakSelf!.caseView.textColor = color
+                        self.caseView.textColor = color
                     })
                 }
             }
@@ -168,9 +191,9 @@ class CaseConstructorTableViewController: UITableViewController {
             textEditingVC.text = caseView.text
             
             // Change text on case.
-            weak var weakSelf = self
-            textEditingVC.didDoneOnTextCompletionHandler = { (text) in
-                weakSelf?.caseView.text = text
+            textEditingVC.didDoneOnTextCompletionHandler = { text in
+                self.animateCaseView(0.1)
+                self.caseView.text = text
             }
         } else if segue.identifier == SegueIdentifier.PhotoLibrary.rawValue {
             let navigationController = segue.destinationViewController as! UINavigationController
@@ -212,34 +235,46 @@ class CaseConstructorTableViewController: UITableViewController {
     private func presentSelectBackgroundAlertController() {
         let backgroundSelectionAlertController = UIAlertController(title: "Выберите фон", message: nil, preferredStyle: .ActionSheet)
         
-        weak var weakSelf = self
-        
-        // Cancel action
-        let cancelAction = UIAlertAction(title: "Отмена", style: .Cancel) { (action) -> Void in
+        /// Cancel action
+        let cancelAction = UIAlertAction(title: "Отмена", style: .Cancel) { action in
         }
         backgroundSelectionAlertController.addAction(cancelAction)
         
-        // Photo from gallery(take photo) action
-        let photoFromLibrary = UIAlertAction(title: "Медиатека", style: .Default) { (action) -> Void in
-            weakSelf!.photoFromLibrary()
+        /// Clear action
+        let clearAction = UIAlertAction(title: "Очистить", style: .Destructive) { action in
+            self.animateCaseView(0.0)
+            self.caseView.image = UIImage()
+            self.caseView.showBackgroundImage = false
+            self.caseView.fillColor = UIColor.whiteColor()
+        }
+        backgroundSelectionAlertController.addAction(clearAction)
+        
+        /// Photo from gallery(take photo) action
+        let photoFromLibrary = UIAlertAction(title: "Медиатека", style: .Default) { action in
+            if let imagePickerController = self.imagePickerController {
+                imagePickerController.photoFromLibrary()
+            }
         }
         backgroundSelectionAlertController.addAction(photoFromLibrary)
         
-        let shoot = UIAlertAction(title: "Снять фото", style: .Default) { (action) -> Void in
-            weakSelf!.shootPhoto()
+        /// Shoot photo action
+        let shoot = UIAlertAction(title: "Снять фото", style: .Default) { action in
+            if let imagePickerController = self.imagePickerController {
+                imagePickerController.shootPhoto()
+            }
         }
         backgroundSelectionAlertController.addAction(shoot)
         
-        // Background library action
-        let backgroundAction = UIAlertAction(title: "Палитра", style: .Default) { (action) -> Void in
+        /// Background library action
+        let backgroundAction = UIAlertAction(title: "Палитра", style: .Default) { action in
             let type = ColorSelectionType.CaseBackground.rawValue
-            weakSelf?.performSegueWithIdentifier(SegueIdentifier.ColorPicking.rawValue, sender: type)
+            self.performSegueWithIdentifier(SegueIdentifier.ColorPicking.rawValue, sender: type)
         }
         backgroundSelectionAlertController.addAction(backgroundAction)
         
-        // Images library action
-        let imagesLibraryAction = UIAlertAction(title: "Библиотека изображений", style: .Default, handler: { (action) -> Void in
-            weakSelf?.performSegueWithIdentifier(SegueIdentifier.PhotoLibrary.rawValue, sender: nil)
+        /// Images library action
+        let imagesLibraryAction = UIAlertAction(title: "Библиотека изображений", style: .Default, handler: { action in
+            self.performSegueWithIdentifier(SegueIdentifier.PhotoLibrary.rawValue, sender: nil)
         })
         backgroundSelectionAlertController.addAction(imagesLibraryAction)
         
@@ -249,30 +284,28 @@ class CaseConstructorTableViewController: UITableViewController {
     private func presentManageTextAlertController() {
         let manageTextAlertController = UIAlertController(title: "Редактирование текста", message: nil, preferredStyle: .ActionSheet)
         
-        weak var weakSelf = self
-        
-        // Remove text action
-        let removeTextAction = UIAlertAction(title: "Очистить", style: .Destructive) { (action) -> Void in
-            UIView.animateWithDuration(0.45, animations: { () -> Void in
-                weakSelf!.caseView.text = ""
+        /// Remove text action
+        let removeTextAction = UIAlertAction(title: "Очистить", style: .Destructive) { action in
+            UIView.animateWithDuration(0.45, animations: {
+                self.caseView.text = ""
             })
         }
         manageTextAlertController.addAction(removeTextAction)
         
-        // Cancel action
-        let cancelAction = UIAlertAction(title: "Отмена", style: .Cancel) { (action) -> Void in
+        /// Cancel action
+        let cancelAction = UIAlertAction(title: "Отмена", style: .Cancel) { action in
         }
         manageTextAlertController.addAction(cancelAction)
         
-        // Select text color action
-        let selectTextColorAction = UIAlertAction(title: "Цвет", style: .Default) { (action) -> Void in
+        /// Select text color action
+        let selectTextColorAction = UIAlertAction(title: "Цвет", style: .Default) { action in
             let type = ColorSelectionType.TextColor.rawValue
-            weakSelf!.performSegueWithIdentifier(SegueIdentifier.ColorPicking.rawValue, sender: type)
+            self.performSegueWithIdentifier(SegueIdentifier.ColorPicking.rawValue, sender: type)
         }
         manageTextAlertController.addAction(selectTextColorAction)
         
-        // Enter text action
-        let enterTextAction = UIAlertAction(title: "Ввести текст", style: .Default) { (action) -> Void in
+        /// Enter text action
+        let enterTextAction = UIAlertAction(title: "Ввести текст", style: .Default) { action in
             self.performSegueWithIdentifier(SegueIdentifier.TextEditing.rawValue, sender: nil)
         }
         manageTextAlertController.addAction(enterTextAction)
@@ -281,58 +314,8 @@ class CaseConstructorTableViewController: UITableViewController {
     }
 }
 
-// MARK: - Image picking extension -
-
-extension CaseConstructorTableViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-    // MARK: Private helper methods
-    
-    private func noCamera() {
-        let alertVC = UIAlertController(title: "No Camera", message: "Sorry, this device has no camera", preferredStyle: .Alert)
-        let okAction = UIAlertAction(title: "OK", style:.Default, handler: nil)
-        alertVC.addAction(okAction)
-        self.presentViewController(alertVC, animated: true, completion: nil)
-    }
-    
-    /// Get a photo from the library.
-    private func photoFromLibrary() {
-        imagePickerController.allowsEditing = false
-        imagePickerController.sourceType = .PhotoLibrary
-        imagePickerController.modalPresentationStyle = .FullScreen
-        self.presentViewController(imagePickerController, animated: true, completion: nil)
-    }
-    
-    /// Take a picture, check if we have a camera first.
-    private func shootPhoto() {
-        if UIImagePickerController.availableCaptureModesForCameraDevice(.Rear) != nil {
-            imagePickerController.allowsEditing = false
-            imagePickerController.sourceType = UIImagePickerControllerSourceType.Camera
-            imagePickerController.cameraCaptureMode = .Photo
-            imagePickerController.modalPresentationStyle = .FullScreen
-            self.presentViewController(imagePickerController, animated: true, completion: nil)
-        } else {
-            noCamera()
-        }
-    }
-    
-    // MARK: UIImagePickerControllerDelegate
-    
-    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
-        let chosenImage = info[UIImagePickerControllerOriginalImage] as! UIImage
-        
-        self.caseView.image = UIImage.resizedImage(chosenImage, newSize: caseViewSize)
-        self.caseView.showBackgroundImage = true
-        
-        self.dismissViewControllerAnimated(true, completion: nil)
-    }
-    
-    func imagePickerControllerDidCancel(picker: UIImagePickerController) {
-        dismissViewControllerAnimated(true, completion: nil)
-    }
-}
-
 extension CaseConstructorTableViewController: PhotoLibraryCollectionViewControllerDelegate {
     func photoLibraryCollectionViewController(controller: PhotoLibraryCollectionViewController, didDoneOnImage image: UIImage) {
-        self.caseView.image = UIImage.resizedImage(image, newSize: caseViewSize)
-        self.caseView.showBackgroundImage = true
+        setImageToCaseView(image)
     }
 }
