@@ -7,22 +7,11 @@
 //
 
 import Foundation
-import UIKit
-import CloudKit
 
+/// The Parse Category object class name.
+let CategoryParseClassName = "Category"
 
-/// CloudKit field names for Category and CategoryItem.
-enum CloudKitFieldNames: String {
-    case Name
-    case Image
-    case ParentCategory
-    case CategoryType
-}
-
-/// The type of Category record, app supported record type.
-let CategoryRecordType = "Category"
-
-class Category: NSObject, NSCoding, SortByNameProtocol {
+class Category: PFObject, PFSubclassing {
     // MARK: - Types
     
     enum CategoryTypes: String {
@@ -40,109 +29,43 @@ class Category: NSObject, NSCoding, SortByNameProtocol {
         case undefined
     }
     
-    private enum CoderKeys: String {
-        case nameKey
-        case imageKey
-        case imageUrlKey
-        case recordKey
-        case recordNameKey
-        case recordChangeTag
-        case categoryItemsKey
-        case categoryTypeKey
+    enum CoderKeys: String {
+        case name
+        case image
+        case type
     }
     
     // MARK: - Properties
     
-    var name: String
-    var image: UIImage?
-    var imageUrl: NSURL?
-    var recordName: String
-    var recordChangeTag: String
-    var categoryItems: [CategoryItem] = []
-    var categoryType: CategoryTypes = .undefined
+    @NSManaged var name: String
+    @NSManaged var image: PFFile
+    @NSManaged var type: String
     
+    // MARK: - PFSubclassing
+    
+    override class func initialize() {
+        struct Static {
+            static var onceToken : dispatch_once_t = 0;
+        }
+        dispatch_once(&Static.onceToken) {
+            self.registerSubclass()
+        }
+    }
+    
+    /// The class name of the object.
+    class func parseClassName() -> String {
+        return CategoryParseClassName
+    }
+    
+    // MARK: - Helper Methods
+    
+    /// Return a string that describes the contents.
     override var description: String {
-        return "Name: \(name)\nRecordName: \(recordName)\nCategoryItemsCount: \(categoryItems.count)\nCategoryType: \(categoryType.rawValue)."
+        return "Name: \(name)\nType: \(type)."
     }
     
-    // MARK: - Initializers
-    
-    init(record: CKRecord) {
-        self.name = record[CloudKitFieldNames.Name.rawValue] as! String
-        self.recordName = record.recordID.recordName
-        self.recordChangeTag = record.recordChangeTag ?? ""
-        
-        let categoryString = record[CloudKitFieldNames.CategoryType.rawValue] as! String
-        if let type = Category.categoryTypeFromString(categoryString) {
-            self.categoryType = type
-        } else {
-            self.categoryType = .undefined
-        }
-        
-        super.init()
-        
-        let image = record[CloudKitFieldNames.Image.rawValue] as? CKAsset
-        if let ckAsset = image {
-            let url = ckAsset.fileURL
-            self.imageUrl = url
-            let queue = NSOperationQueue()
-            queue.addOperationWithBlock() {
-                let imageData = NSData(contentsOfURL: url)
-                self.image = UIImage(data: imageData!)!
-            }
-        }
-    }
-    
-    init(categoryData: CategoryData) {
-        self.name = categoryData.name!
-        self.recordName = categoryData.recordName!
-        self.recordChangeTag = categoryData.recordChangeTag!
-        
-        if let url = categoryData.imageUrl as? NSURL {
-            self.imageUrl = url
-        }
-        
-        if let imageData = categoryData.image {
-            self.image = UIImage(data: imageData)
-        }
-        
-        let typeString = categoryData.type!
-        if let type = Category.categoryTypeFromString(typeString) {
-            self.categoryType = type
-        } else {
-            self.categoryType = .undefined
-        }
-        
-        super.init()
-    }
-    
-    // MARK: - Private
-    
-    private class func categoryTypeFromString(string: String) -> CategoryTypes? {
-        return CategoryTypes(rawValue: string)
-    }
-    
-    // MARK: - NSCoding
-    
-    required init?(coder aDecoder: NSCoder) {
-        name = aDecoder.decodeObjectForKey(CoderKeys.nameKey.rawValue) as! String
-        image = aDecoder.decodeObjectForKey(CoderKeys.imageKey.rawValue) as? UIImage
-        imageUrl = aDecoder.decodeObjectForKey(CoderKeys.imageUrlKey.rawValue) as? NSURL
-        recordName = aDecoder.decodeObjectForKey(CoderKeys.recordNameKey.rawValue) as! String
-        recordChangeTag = aDecoder.decodeObjectForKey(CoderKeys.recordChangeTag.rawValue) as! String
-        categoryItems = aDecoder.decodeObjectForKey(CoderKeys.categoryItemsKey.rawValue) as! [CategoryItem]
-        categoryType = CategoryTypes(rawValue: aDecoder.decodeObjectForKey(CoderKeys.categoryTypeKey.rawValue) as! String)!
-        
-        super.init()
-    }
-    
-    func encodeWithCoder(aCoder: NSCoder) {
-        aCoder.encodeObject(name, forKey: CoderKeys.nameKey.rawValue)
-        aCoder.encodeObject(image, forKey: CoderKeys.imageKey.rawValue)
-        aCoder.encodeObject(imageUrl, forKey: CoderKeys.imageUrlKey.rawValue)
-        aCoder.encodeObject(recordName, forKey: CoderKeys.recordNameKey.rawValue)
-        aCoder.encodeObject(recordChangeTag, forKey: CoderKeys.recordChangeTag.rawValue)
-        aCoder.encodeObject(categoryItems, forKey: CoderKeys.categoryItemsKey.rawValue)
-        aCoder.encodeObject(categoryType.rawValue, forKey: CoderKeys.categoryTypeKey.rawValue)
+    func getType() -> CategoryTypes {
+        let type = CategoryTypes(rawValue: self.type)
+        return (type == nil ? .undefined : type!)
     }
 }

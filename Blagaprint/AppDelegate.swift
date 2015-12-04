@@ -7,10 +7,6 @@
 //
 
 import UIKit
-import CloudKit
-import CoreData
-
-let SubscriptionNotification = "SubscriptionNotification"
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -18,43 +14,27 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var window: UIWindow?
     
-    var cloudKitCentral: CloudKitCentral!
-    var persistence: Persistence!
-    var managedObjectContext: NSManagedObjectContext!
+    var parse: Parse?
+    var parseCentral: ParseCentral?
     
-    // MARK: - Persistence Stack
+    // MARK: - Private
     
-    private func setUpPersistence() {
-        self.persistence = Persistence(storeUrl: self.storeUrl(), modelUrl: self.modelUrl())
-        self.managedObjectContext = self.persistence.managedObjectContext
+    private func confParse() {
+        self.parseCentral = ParseCentral.sharedInstance
+        if let parseCentral = self.parseCentral {
+            self.parse = parseCentral.parse
+        }
         
-        spreadManagedObjectContext()
-    }
-    
-    private func spreadManagedObjectContext() {
         let navigationController = window!.rootViewController as! UINavigationController
-        let mainTableViewController = navigationController.topViewController as! MainTableViewController
-        
-        mainTableViewController.managedObjectContext = self.managedObjectContext
+        let mainTableViewController = navigationController.topViewController as! MainQueryTableViewController
+        mainTableViewController.parse = self.parse
     }
     
-    private func documentsDirectory() -> NSURL {
-        return try! NSFileManager.defaultManager().URLForDirectory(.DocumentDirectory, inDomain: .UserDomainMask, appropriateForURL: nil, create: true)
-    }
-    
-    private func storeUrl() -> NSURL {
-        return documentsDirectory().URLByAppendingPathComponent("DataStore.sqlite")
-    }
-    
-    private func modelUrl() -> NSURL {
-        return NSBundle.mainBundle().URLForResource("DataModel", withExtension: "momd")!
-    }
     
     // MARK: - Application Life Cycle
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        setUpPersistence()
-        cloudKitCentral = CloudKitCentral.sharedInstance
+        confParse()
         
         AppAppearance.applyAppAppearance()
         AppConfiguration.setUp()
@@ -71,11 +51,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
-        let castedUserInfo = userInfo as! [String: NSObject]
-        let notification = CKNotification(fromRemoteNotificationDictionary: castedUserInfo)
-        if notification.notificationType == .Query {
-            NSNotificationCenter.defaultCenter().postNotificationName(SubscriptionNotification, object: nil, userInfo: ["subscriptionID": notification.subscriptionID!])
-        }
     }
     
     func applicationWillResignActive(application: UIApplication) {
@@ -84,7 +59,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func applicationDidEnterBackground(application: UIApplication) {
-        persistence.saveContext()
     }
     
     func applicationWillEnterForeground(application: UIApplication) {
@@ -96,7 +70,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func applicationWillTerminate(application: UIApplication) {
-        persistence.saveContext()
     }
 }
 

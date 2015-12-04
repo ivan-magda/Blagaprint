@@ -8,10 +8,10 @@
 
 import UIKit
 
-class CategoryTableViewCell: UITableViewCell {
+class CategoryTableViewCell: PFTableViewCell {
     // MARK: Properties
     
-    @IBOutlet weak var categoryImageView: UIImageView?
-    @IBOutlet weak var categoryNameLabel: UILabel!
+    @IBOutlet weak var categoryImageView: PFImageView?
+    @IBOutlet weak var categoryNameLabel: UILabel?
     
 }

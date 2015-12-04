@@ -24,6 +24,9 @@ xcuserdata
 *.xcscmblueprint
 *.xcscheme
 .idea/
+Bolts.framework
+Parse.framework
+ParseUI.framework
 
 ## Obj-C/Swift specific
 *.hmap

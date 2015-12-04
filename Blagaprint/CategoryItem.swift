@@ -7,90 +7,42 @@
 //
 
 import UIKit
-import CloudKit
 
-/// The type of CategoryItem record, app supported record type.
-let CategoryItemRecordType = "CategoryItem"
+/// The Parse CategoryItem object class name.
+let CategoryItemParseClassName = "CategoryItem"
 
-class CategoryItem: NSObject, NSCoding, SortByNameProtocol {
+class CategoryItem: PFObject, PFSubclassing {
     // MARK: - Types
     
-    private enum CoderKeys: String {
-        case nameKey
-        case recordNameKey
-        case recordChangeTagKey
-        case imageKey
-        case imageUrlKey
-        case parentCategoryKey
+    enum CoderKeys: String {
+        case name
+        case image
+        case parentCategory
     }
     
     // MARK: - Properties
     
-    var name: String
-    var recordName: String
-    var recordChangeTag: String
-    var image: UIImage?
-    var imageUrl: NSURL?
-    weak var parentCategory: Category?
+    @NSManaged var name: String
+    @NSManaged var image: PFFile
+    @NSManaged var parentCategory: PFObject
     
     override var description: String {
-        return "Name: \(name)\nImageUrl: \(imageUrl)"
+        return "Name: \(name)\nImageUrl: \(parentCategory)"
     }
-
-    // MARK: - Initializers
     
-    init(record: CKRecord) {
-        self.name = record[CloudKitFieldNames.Name.rawValue] as! String
-        self.recordName = record.recordID.recordName
-        self.recordChangeTag = record.recordChangeTag ?? ""
-        
-        super.init()
-        
-        let image = record[CloudKitFieldNames.Image.rawValue] as? CKAsset
-        if let ckAsset = image {
-            let url = ckAsset.fileURL
-            self.imageUrl = url
-            let queue = NSOperationQueue()
-            queue.addOperationWithBlock() {
-                let imageData = NSData(contentsOfURL: url)
-                self.image = UIImage(data: imageData!)!
-            }
+    // MARK: - PFSubclassing
+    
+    override class func initialize() {
+        struct Static {
+            static var onceToken : dispatch_once_t = 0;
+        }
+        dispatch_once(&Static.onceToken) {
+            self.registerSubclass()
         }
     }
     
-    init(categoryItemData: CategoryItemData) {
-        self.name = categoryItemData.name!
-        self.recordName = categoryItemData.recordName!
-        self.recordChangeTag = categoryItemData.recordChangeTag!
-        
-        if let url = categoryItemData.imageUrl as? NSURL {
-            self.imageUrl = url
-        }
-        
-        if let imageData = categoryItemData.image {
-            self.image = UIImage(data: imageData)
-        }
-        
-        super.init()
-    }
-    
-    // MARK: - NSCoding
-    
-    required init?(coder aDecoder: NSCoder) {
-        name = aDecoder.decodeObjectForKey(CoderKeys.nameKey.rawValue) as! String
-        recordName = aDecoder.decodeObjectForKey(CoderKeys.recordNameKey.rawValue) as! String
-        recordChangeTag = aDecoder.decodeObjectForKey(CoderKeys.recordChangeTagKey.rawValue) as! String
-        image = aDecoder.decodeObjectForKey(CoderKeys.imageKey.rawValue) as? UIImage
-        imageUrl = aDecoder.decodeObjectForKey(CoderKeys.imageUrlKey.rawValue) as? NSURL
-        
-        super.init()
-    }
-    
-    func encodeWithCoder(aCoder: NSCoder) {
-        aCoder.encodeObject(name, forKey: CoderKeys.nameKey.rawValue)
-        aCoder.encodeObject(recordName, forKey: CoderKeys.recordNameKey.rawValue)
-        aCoder.encodeObject(recordChangeTag, forKey: CoderKeys.recordChangeTagKey.rawValue)
-        aCoder.encodeObject(image, forKey: CoderKeys.imageKey.rawValue)
-        aCoder.encodeObject(imageUrl, forKey: CoderKeys.imageUrlKey.rawValue)
+    /// The class name of the object.
+    class func parseClassName() -> String {
+        return CategoryItemParseClassName
     }
 }
