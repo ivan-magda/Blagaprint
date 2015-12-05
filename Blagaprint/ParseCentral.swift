@@ -14,10 +14,13 @@ private let applicationId = "S6q46qyVTC8tDSqkryAPvBo3fEkrkiFTtHSAHh3P"
 /// The client key of Parse application.
 private let clientKey = "1xTVWNh3TSB4ov5zoIseoDQ98JyMO86fjeBFwInr"
 
-class ParseCentral {
+class ParseCentral: NSObject {
     // MARK: - Properties
     
     let parse: Parse
+    
+    private var hostReach: Reachability?
+    private var networkStatus: Reachability.NetworkStatus?
     
     class var sharedInstance: ParseCentral {
         struct Static {
@@ -34,13 +37,74 @@ class ParseCentral {
     
     // MARK: - Initializers
     
-    init() {
+    override init() {
         Category.registerSubclass()
         CategoryItem.registerSubclass()
         
-        Parse.enableLocalDatastore()
         Parse.setApplicationId(applicationId, clientKey: clientKey)
         
         self.parse = Parse()
+        
+        super.init()
+        
+        self.monitorReachability()
+    }
+    
+    // MARK: - Reachability
+    
+    func isParseReachable() -> Bool {
+        if let networkStatus = self.networkStatus {
+            return networkStatus != Reachability.NetworkStatus.NotReachable
+        } else {
+            return false
+        }
+    }
+    
+    private func monitorReachability() {
+        do {
+            self.hostReach = try Reachability(hostname: "api.parse.com")
+        } catch let error as NSError {
+            print("Unable to create Reachability. Error: \(error.localizedDescription)")
+            return
+        }
+        
+        addReachabilityChangedObserver()
+    }
+    
+    func reachabilityChanged(note: NSNotification) {
+        let reachability = note.object as! Reachability
+        self.networkStatus = reachability.currentReachabilityStatus
+        
+        if reachability.isReachable() {
+            if reachability.isReachableViaWiFi() {
+                print("Reachable via WiFi")
+            } else {
+                print("Reachable via Cellular")
+            }
+        } else {
+            print("Not reachable")
+        }
+    }
+    
+    // MARK: NSNotificationCenter Observe
+    
+    func addObservers() {
+        addReachabilityChangedObserver()
+    }
+    
+    func removeObservers() {
+        NSNotificationCenter.defaultCenter().removeObserver(self)
+        
+        self.hostReach!.stopNotifier()
+    }
+    
+    private func addReachabilityChangedObserver() {
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "reachabilityChanged:", name: ReachabilityChangedNotification, object: self.hostReach!)
+        
+        do {
+            try self.hostReach!.startNotifier()
+        } catch {
+            print("Unable to start notifier")
+        }
     }
 }

@@ -30,7 +30,7 @@ class MainQueryTableViewController: PFQueryTableViewController {
     
     // MARK: - Properties
     
-    var parse: Parse?
+    var parseCentral: ParseCentral?
     
     // MARK: - Init
     
@@ -98,8 +98,20 @@ class MainQueryTableViewController: PFQueryTableViewController {
     /// Construct custom PFQuery to get the objects.
     override func queryForTable() -> PFQuery {
         let query = PFQuery(className: self.parseClassName!)
-        
         query.orderByDescending(Category.CoderKeys.name.rawValue)
+        
+        // A pull-to-refresh should always trigger a network request.
+        query.cachePolicy = .NetworkOnly
+        
+        // If no objects are loaded in memory, we look to the cache first to fill the table
+        // and then subsequently do a query against the network.
+        //
+        // If there is no network connection, we will hit the cache first.
+        if self.objects?.count == 0 && self.parseCentral!.isParseReachable() {
+            query.cachePolicy = .NetworkElseCache
+        } else if self.objects?.count == 0 || !self.parseCentral!.isParseReachable() {
+            query.cachePolicy = .CacheElseNetwork
+        }
         
         return query
     }

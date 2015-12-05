@@ -72,6 +72,7 @@
 		7547D2561BDE2376006E4170 /* galaxyS5Speaker@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7547D2481BDE2376006E4170 /* galaxyS5Speaker@2x.png */; };
 		7561AE9F1C0FD563009B2C8B /* Plate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7561AE9E1C0FD563009B2C8B /* Plate.swift */; };
 		7561AEAF1C0FD8E4009B2C8B /* UIImageResizeAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7561AEAE1C0FD8E4009B2C8B /* UIImageResizeAdditions.swift */; };
+		756FF67D1C128C2D0091B75E /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 756FF67C1C128C2D0091B75E /* Reachability.swift */; };
 		75708CC41C11712000943F73 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 75708CC11C11712000943F73 /* Bolts.framework */; };
 		75708CC51C11712000943F73 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 75708CC21C11712000943F73 /* Parse.framework */; };
 		75708CC61C11712000943F73 /* ParseUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 75708CC31C11712000943F73 /* ParseUI.framework */; };
@@ -228,6 +229,7 @@
 		7547D2481BDE2376006E4170 /* galaxyS5Speaker@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "galaxyS5Speaker@2x.png"; path = "images/galaxyS5Speaker@2x.png"; sourceTree = "<group>"; };
 		7561AE9E1C0FD563009B2C8B /* Plate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Plate.swift; sourceTree = "<group>"; };
 		7561AEAE1C0FD8E4009B2C8B /* UIImageResizeAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageResizeAdditions.swift; sourceTree = "<group>"; };
+		756FF67C1C128C2D0091B75E /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		75708CC11C11712000943F73 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
 		75708CC21C11712000943F73 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
 		75708CC31C11712000943F73 /* ParseUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseUI.framework; sourceTree = "<group>"; };
@@ -376,6 +378,7 @@
 				758070131C0C4088000F9D84 /* PlateTableViewController.swift */,
 				50FD7F511BB903B700ABEC38 /* View */,
 				508503051BBAADCF00152131 /* Utility */,
+				756FF67E1C128C630091B75E /* Reachability */,
 				7561AEAD1C0FD7CD009B2C8B /* UIImageAdditions */,
 				502A8CB61BB80EAC0064E0DA /* Main.storyboard */,
 				502A8CBB1BB80EAC0064E0DA /* LaunchScreen.storyboard */,
@@ -597,6 +600,14 @@
 			);
 			name = UIImageAdditions;
 			path = ..;
+			sourceTree = "<group>";
+		};
+		756FF67E1C128C630091B75E /* Reachability */ = {
+			isa = PBXGroup;
+			children = (
+				756FF67C1C128C2D0091B75E /* Reachability.swift */,
+			);
+			name = Reachability;
 			sourceTree = "<group>";
 		};
 		757470371BDCBEB9004CABD0 /* iPhone6/6S */ = {
@@ -1161,6 +1172,7 @@
 				502A8CB31BB80EAC0064E0DA /* AppDelegate.swift in Sources */,
 				757470321BDCB405004CABD0 /* PhoneCaseDevice.swift in Sources */,
 				7522B8961BFF49F200BC14C0 /* FrameItemCollectionViewCell.swift in Sources */,
+				756FF67D1C128C2D0091B75E /* Reachability.swift in Sources */,
 				508503041BBAADB600152131 /* AppAppearance.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
