@@ -19,11 +19,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     // MARK: - Private
     
-    private func confParse() {
+    private func confParseWithOptions(launchOptions: [NSObject: AnyObject]?) {
         self.parseCentral = ParseCentral.sharedInstance
         if let parseCentral = self.parseCentral {
             self.parse = parseCentral.parse
         }
+        
+        // Track statistics around application opens.
+        PFAnalytics.trackAppOpenedWithLaunchOptions(launchOptions)
         
         let navigationController = window!.rootViewController as! UINavigationController
         let mainTableViewController = navigationController.topViewController as! MainQueryTableViewController
@@ -34,20 +37,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // MARK: - Application Life Cycle
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        confParse()
+        confParseWithOptions(launchOptions)
         
         AppAppearance.applyAppAppearance()
         AppConfiguration.setUp()
         
-        registerForPushNotifications(application)
-        
         return true
-    }
-    
-    func registerForPushNotifications(application: UIApplication) {
-        let notificationSettings = UIUserNotificationSettings(forTypes: .Alert, categories: nil)
-        application.registerUserNotificationSettings(notificationSettings)
-        application.registerForRemoteNotifications()
     }
     
     func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {

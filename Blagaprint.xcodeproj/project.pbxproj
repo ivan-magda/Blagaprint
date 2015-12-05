@@ -56,6 +56,11 @@
 		753D4D6B1C05A4F2002FC5E9 /* sh15_placeholderImage.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 753D4D6A1C05A4F2002FC5E9 /* sh15_placeholderImage.jpg */; };
 		753D4D731C05AC26002FC5E9 /* sh11_placeholderImage.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 753D4D721C05AC26002FC5E9 /* sh11_placeholderImage.jpg */; };
 		753D4D751C05AD11002FC5E9 /* SH11_PhotoFrame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 753D4D741C05AD11002FC5E9 /* SH11_PhotoFrame.swift */; };
+		75467C891C12EB9C008046A2 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75467C881C12EB9C008046A2 /* LoginViewController.swift */; };
+		75467C921C12EC32008046A2 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75467C911C12EC32008046A2 /* SignUpViewController.swift */; };
+		75467C9A1C12F05B008046A2 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 75467C971C12F05B008046A2 /* Bolts.framework */; };
+		75467C9B1C12F05B008046A2 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 75467C981C12F05B008046A2 /* Parse.framework */; };
+		75467C9C1C12F05B008046A2 /* ParseUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 75467C991C12F05B008046A2 /* ParseUI.framework */; };
 		7547D2491BDE2376006E4170 /* galaxyS3CameraImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 7547D23B1BDE2376006E4170 /* galaxyS3CameraImage.png */; };
 		7547D24A1BDE2376006E4170 /* galaxyS3CameraImage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7547D23C1BDE2376006E4170 /* galaxyS3CameraImage@2x.png */; };
 		7547D24B1BDE2376006E4170 /* galaxyS3Led.png in Resources */ = {isa = PBXBuildFile; fileRef = 7547D23D1BDE2376006E4170 /* galaxyS3Led.png */; };
@@ -73,9 +78,6 @@
 		7561AE9F1C0FD563009B2C8B /* Plate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7561AE9E1C0FD563009B2C8B /* Plate.swift */; };
 		7561AEAF1C0FD8E4009B2C8B /* UIImageResizeAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7561AEAE1C0FD8E4009B2C8B /* UIImageResizeAdditions.swift */; };
 		756FF67D1C128C2D0091B75E /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 756FF67C1C128C2D0091B75E /* Reachability.swift */; };
-		75708CC41C11712000943F73 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 75708CC11C11712000943F73 /* Bolts.framework */; };
-		75708CC51C11712000943F73 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 75708CC21C11712000943F73 /* Parse.framework */; };
-		75708CC61C11712000943F73 /* ParseUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 75708CC31C11712000943F73 /* ParseUI.framework */; };
 		75708CC81C11719200943F73 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 75708CC71C11719200943F73 /* AudioToolbox.framework */; };
 		75708CCA1C11719C00943F73 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 75708CC91C11719C00943F73 /* CFNetwork.framework */; };
 		75708CCC1C1171A400943F73 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 75708CCB1C1171A400943F73 /* CoreGraphics.framework */; };
@@ -213,6 +215,11 @@
 		753D4D6A1C05A4F2002FC5E9 /* sh15_placeholderImage.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = sh15_placeholderImage.jpg; sourceTree = "<group>"; };
 		753D4D721C05AC26002FC5E9 /* sh11_placeholderImage.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = sh11_placeholderImage.jpg; sourceTree = "<group>"; };
 		753D4D741C05AD11002FC5E9 /* SH11_PhotoFrame.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SH11_PhotoFrame.swift; sourceTree = "<group>"; };
+		75467C881C12EB9C008046A2 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		75467C911C12EC32008046A2 /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		75467C971C12F05B008046A2 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
+		75467C981C12F05B008046A2 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
+		75467C991C12F05B008046A2 /* ParseUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseUI.framework; sourceTree = "<group>"; };
 		7547D23B1BDE2376006E4170 /* galaxyS3CameraImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = galaxyS3CameraImage.png; path = images/galaxyS3CameraImage.png; sourceTree = "<group>"; };
 		7547D23C1BDE2376006E4170 /* galaxyS3CameraImage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "galaxyS3CameraImage@2x.png"; path = "images/galaxyS3CameraImage@2x.png"; sourceTree = "<group>"; };
 		7547D23D1BDE2376006E4170 /* galaxyS3Led.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = galaxyS3Led.png; path = images/galaxyS3Led.png; sourceTree = "<group>"; };
@@ -230,9 +237,6 @@
 		7561AE9E1C0FD563009B2C8B /* Plate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Plate.swift; sourceTree = "<group>"; };
 		7561AEAE1C0FD8E4009B2C8B /* UIImageResizeAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageResizeAdditions.swift; sourceTree = "<group>"; };
 		756FF67C1C128C2D0091B75E /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
-		75708CC11C11712000943F73 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
-		75708CC21C11712000943F73 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
-		75708CC31C11712000943F73 /* ParseUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseUI.framework; sourceTree = "<group>"; };
 		75708CC71C11719200943F73 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		75708CC91C11719C00943F73 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		75708CCB1C1171A400943F73 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -330,13 +334,13 @@
 				75708CD61C1171DA00943F73 /* SystemConfiguration.framework in Frameworks */,
 				75708CD21C1171C200943F73 /* Security.framework in Frameworks */,
 				75708CD01C1171B900943F73 /* QuartzCore.framework in Frameworks */,
+				75467C9A1C12F05B008046A2 /* Bolts.framework in Frameworks */,
+				75467C9C1C12F05B008046A2 /* ParseUI.framework in Frameworks */,
+				75467C9B1C12F05B008046A2 /* Parse.framework in Frameworks */,
 				75708CCE1C1171AD00943F73 /* CoreLocation.framework in Frameworks */,
 				75708CCC1C1171A400943F73 /* CoreGraphics.framework in Frameworks */,
 				75708CCA1C11719C00943F73 /* CFNetwork.framework in Frameworks */,
 				75708CC81C11719200943F73 /* AudioToolbox.framework in Frameworks */,
-				75708CC51C11712000943F73 /* Parse.framework in Frameworks */,
-				75708CC61C11712000943F73 /* ParseUI.framework in Frameworks */,
-				75708CC41C11712000943F73 /* Bolts.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -507,6 +511,7 @@
 		50FD7F531BB903CC00ABEC38 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				75467C8A1C12EBA3008046A2 /* Login/SignUp */,
 				502A8CB41BB80EAC0064E0DA /* MainQueryTableViewController.swift */,
 				7585BB4D1C1026AA00D59BF5 /* BLImagePickerController.swift */,
 				50551C2F1BCBA534005B88DA /* PhoneCase */,
@@ -556,6 +561,15 @@
 				7522B8911BFF3C0100BC14C0 /* ExpandedCollectionViewFlowLayout.swift */,
 			);
 			name = PhotoFrame;
+			sourceTree = "<group>";
+		};
+		75467C8A1C12EBA3008046A2 /* Login/SignUp */ = {
+			isa = PBXGroup;
+			children = (
+				75467C881C12EB9C008046A2 /* LoginViewController.swift */,
+				75467C911C12EC32008046A2 /* SignUpViewController.swift */,
+			);
+			name = Login/SignUp;
 			sourceTree = "<group>";
 		};
 		7547D2571BDE2381006E4170 /* GalaxyS3 */ = {
@@ -804,6 +818,9 @@
 			children = (
 				75708CD91C1171F800943F73 /* libsqlite3.tbd */,
 				75708CD71C1171E900943F73 /* libz.tbd */,
+				75467C971C12F05B008046A2 /* Bolts.framework */,
+				75467C981C12F05B008046A2 /* Parse.framework */,
+				75467C991C12F05B008046A2 /* ParseUI.framework */,
 				75708CD51C1171DA00943F73 /* SystemConfiguration.framework */,
 				75708CD11C1171C200943F73 /* Security.framework */,
 				75708CCF1C1171B900943F73 /* QuartzCore.framework */,
@@ -811,9 +828,6 @@
 				75708CCB1C1171A400943F73 /* CoreGraphics.framework */,
 				75708CC91C11719C00943F73 /* CFNetwork.framework */,
 				75708CC71C11719200943F73 /* AudioToolbox.framework */,
-				75708CC11C11712000943F73 /* Bolts.framework */,
-				75708CC21C11712000943F73 /* Parse.framework */,
-				75708CC31C11712000943F73 /* ParseUI.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -1154,6 +1168,7 @@
 				50FD7F501BB8FFF600ABEC38 /* CategoryTableViewCell.swift in Sources */,
 				75AB8AC01BE744DB00B88A5A /* ParseCentral.swift in Sources */,
 				503CBEC11BC415C700052BE0 /* CategoryItem.swift in Sources */,
+				75467C891C12EB9C008046A2 /* LoginViewController.swift in Sources */,
 				75F7393A1BE4979B0063EB6F /* LenovoS850.swift in Sources */,
 				50551C311BCBB43A005B88DA /* BackgroundOvalView.swift in Sources */,
 				0C541A591BD0B51A0028BD9A /* PhotoLibraryItemCollectionViewCell.swift in Sources */,
@@ -1173,6 +1188,7 @@
 				757470321BDCB405004CABD0 /* PhoneCaseDevice.swift in Sources */,
 				7522B8961BFF49F200BC14C0 /* FrameItemCollectionViewCell.swift in Sources */,
 				756FF67D1C128C2D0091B75E /* Reachability.swift in Sources */,
+				75467C921C12EC32008046A2 /* SignUpViewController.swift in Sources */,
 				508503041BBAADB600152131 /* AppAppearance.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

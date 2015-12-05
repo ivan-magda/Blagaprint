@@ -41,6 +41,7 @@ class ParseCentral: NSObject {
         Category.registerSubclass()
         CategoryItem.registerSubclass()
         
+        // Initialize Parse.
         Parse.setApplicationId(applicationId, clientKey: clientKey)
         
         self.parse = Parse()
