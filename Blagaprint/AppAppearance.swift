@@ -22,13 +22,24 @@ class AppAppearance: NSObject {
     
     // MARK: - Public
     
-    static func applyAppAppearance() {
+    class func applyAppAppearance() {
         customizeNavigationAndStatusBars()
     }
     
+    class func blurredBackgroundImage() -> UIImage {
+        return UIImage(named: "backgroundImage.png")!
+    }
+    
+    // MARK: - UIFonts
+    
     /// Return Anderson Supercar font with passed size.
-    static func andersonSupercarFontWithSize(size: CGFloat) -> UIFont {
+    class func andersonSupercarFontWithSize(size: CGFloat) -> UIFont {
         return UIFont(name: "AndersonSupercar", size: size)!
+    }
+    
+    /// Return UIFont with family of the Raleway-Thin with passed size.
+    class func ralewayThinFontWithSize(size: CGFloat) -> UIFont {
+        return UIFont(name: "Raleway-Thin", size: size)!
     }
     
     // MARK: - Private
@@ -45,11 +56,9 @@ class AppAppearance: NSObject {
 // MARK: - UINavigationBar extension
 
 extension UINavigationBar {
-    
-    static func hideBottomLineFromNavigationController(navigationController: UINavigationController) {
+    class func hideBottomLineFromNavigationController(navigationController: UINavigationController) {
         navigationController.navigationBar.translucent = false
         navigationController.navigationBar.setBackgroundImage(UIImage(), forBarPosition: UIBarPosition.Any, barMetrics: UIBarMetrics.Default)
         navigationController.navigationBar.shadowImage = UIImage()
     }
-    
 }

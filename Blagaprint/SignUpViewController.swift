@@ -16,7 +16,42 @@ class SignUpViewController: PFSignUpViewController, PFSignUpViewControllerDelega
         
         self.delegate = self
         self.minPasswordLength = 8
+        
+        // Customizing the signUpView
+        let signUpView = self.signUpView!
+        
+        let logo = UILabel()
+        logo.font = AppAppearance.ralewayThinFontWithSize(50)
+        logo.text = "Blagaprint"
+        logo.textColor = UIColor.whiteColor()
+        signUpView.logo = logo
+        
+        signUpView.passwordField?.backgroundColor = UIColor.clearColor()
+        signUpView.passwordField?.textColor = UIColor.whiteColor()
+        
+        signUpView.usernameField?.backgroundColor = UIColor.clearColor()
+        signUpView.usernameField?.textColor = UIColor.whiteColor()
+        
+        signUpView.emailField?.backgroundColor = UIColor.clearColor()
+        signUpView.emailField?.textColor = UIColor.whiteColor()
+        
+        // Add a background image
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let imageView = UIImageView(frame: appDelegate.window!.bounds)
+        imageView.image = AppAppearance.blurredBackgroundImage()
+        self.view.insertSubview(imageView, atIndex: 0)
     }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        // Customizing the dismissButton
+        let dismissButton = self.signUpView!.dismissButton!
+        let image = UIImage(named: "Delete.png")!
+        dismissButton.setImage(image, forState: UIControlState.Normal)
+        dismissButton.setImage(image, forState: UIControlState.Highlighted)
+    }
+
     
     // MARK: - PFSignUpViewControllerDelegate
     

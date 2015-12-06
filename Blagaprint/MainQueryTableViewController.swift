@@ -156,7 +156,7 @@ class MainQueryTableViewController: PFQueryTableViewController {
     override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         
         let headerView = UIView(frame: CGRectMake(0.0, 0.0, CGRectGetWidth(tableView.bounds), headerViewHeight))
-        headerView.backgroundColor = AppAppearance.AppColors.tuna
+        headerView.backgroundColor = AppAppearance.AppColors.tuna.colorWithAlphaComponent(0.99)
         
         let labelHeight: CGFloat = 18.0
         let labelLeadingSpace: CGFloat = 15.0
