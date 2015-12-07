@@ -69,7 +69,13 @@
                             <outlet property="delegate" destination="Q8t-Lm-Vy4" id="0rZ-TX-cfu"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Blagaprint" id="fRJ-Gs-DIm"/>
+                    <navigationItem key="navigationItem" title="Blagaprint" id="fRJ-Gs-DIm">
+                        <barButtonItem key="rightBarButtonItem" title="Log Out" id="8uN-YH-ugM">
+                            <connections>
+                                <action selector="logOutButtonDidPressed:" destination="Q8t-Lm-Vy4" id="yfd-GW-dAh"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <segue destination="Q3z-0e-b2u" kind="show" identifier="PlateConstructor" id="kwQ-9P-Jle"/>
                         <segue destination="jf1-OA-wt3" kind="show" identifier="FrameConstructor" id="TiU-5W-EAV"/>

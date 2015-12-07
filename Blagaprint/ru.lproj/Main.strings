@@ -1,0 +1,51 @@
+
+/* Class = "UINavigationItem"; title = "Библиотека"; ObjectID = "55W-X4-BsO"; */
+"55W-X4-BsO.title" = "Библиотека";
+
+/* Class = "UIBarButtonItem"; title = "Log Out"; ObjectID = "8uN-YH-ugM"; */
+"8uN-YH-ugM.title" = "Log Out";
+
+/* Class = "UILabel"; text = "Изображение"; ObjectID = "Gf3-t5-ryh"; */
+"Gf3-t5-ryh.text" = "Изображение";
+
+/* Class = "UILabel"; text = "Описание"; ObjectID = "L6h-lG-yqa"; */
+"L6h-lG-yqa.text" = "Описание";
+
+/* Class = "UILabel"; text = "Текст"; ObjectID = "RRF-pj-yNP"; */
+"RRF-pj-yNP.text" = "Текст";
+
+/* Class = "UILabel"; text = "Фон"; ObjectID = "SgF-Fw-jpq"; */
+"SgF-Fw-jpq.text" = "Фон";
+
+/* Class = "UILabel"; text = "Изображение"; ObjectID = "SlR-30-Ug2"; */
+"SlR-30-Ug2.text" = "Изображение";
+
+/* Class = "UINavigationItem"; title = "Палитра"; ObjectID = "TcF-T2-lmk"; */
+"TcF-T2-lmk.title" = "Палитра";
+
+/* Class = "UILabel"; text = "iPhone 5/5S"; ObjectID = "U4N-Fd-6Db"; */
+"U4N-Fd-6Db.text" = "iPhone 5/5S";
+
+/* Class = "UITextField"; placeholder = "Enter a text"; ObjectID = "WLl-QD-aoN"; */
+"WLl-QD-aoN.placeholder" = "Enter a text";
+
+/* Class = "UINavigationItem"; title = "Чехол"; ObjectID = "aY6-3t-LUO"; */
+"aY6-3t-LUO.title" = "Чехол";
+
+/* Class = "UINavigationItem"; title = "Тарелка"; ObjectID = "bog-Dz-LcW"; */
+"bog-Dz-LcW.title" = "Тарелка";
+
+/* Class = "UILabel"; text = "Устройство"; ObjectID = "cyR-q6-O6W"; */
+"cyR-q6-O6W.text" = "Устройство";
+
+/* Class = "UINavigationItem"; title = "Blagaprint"; ObjectID = "fRJ-Gs-DIm"; */
+"fRJ-Gs-DIm.title" = "Blagaprint";
+
+/* Class = "UINavigationItem"; title = "Текст"; ObjectID = "hJd-f0-84b"; */
+"hJd-f0-84b.title" = "Текст";
+
+/* Class = "UILabel"; text = "Device"; ObjectID = "o5F-lN-1rY"; */
+"o5F-lN-1rY.text" = "Device";
+
+/* Class = "UINavigationItem"; title = "Фоторамка"; ObjectID = "sWm-TA-c7q"; */
+"sWm-TA-c7q.title" = "Фоторамка";

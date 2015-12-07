@@ -19,6 +19,7 @@ class SignUpViewController: PFSignUpViewController, PFSignUpViewControllerDelega
         
         // Customizing the signUpView
         let signUpView = self.signUpView!
+        signUpView.emailAsUsername = true
         
         let logo = UILabel()
         logo.font = AppAppearance.ralewayThinFontWithSize(50)
@@ -26,14 +27,14 @@ class SignUpViewController: PFSignUpViewController, PFSignUpViewControllerDelega
         logo.textColor = UIColor.whiteColor()
         signUpView.logo = logo
         
+        // Password
         signUpView.passwordField?.backgroundColor = UIColor.clearColor()
         signUpView.passwordField?.textColor = UIColor.whiteColor()
+        signUpView.passwordField?.placeholder = NSLocalizedString("Password", comment: "SignUpViewController password placeholder text")
         
+        // Username as email
         signUpView.usernameField?.backgroundColor = UIColor.clearColor()
         signUpView.usernameField?.textColor = UIColor.whiteColor()
-        
-        signUpView.emailField?.backgroundColor = UIColor.clearColor()
-        signUpView.emailField?.textColor = UIColor.whiteColor()
         
         // Add a background image
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
@@ -44,6 +45,11 @@ class SignUpViewController: PFSignUpViewController, PFSignUpViewControllerDelega
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
+        
+        // Customizing the signUpButton
+        let signUpButton = self.signUpView!.signUpButton!
+        signUpButton.setTitle(NSLocalizedString("Sign Up", comment: "SignUpViewController signUpButton title for state normal"), forState: .Normal)
+        signUpButton.setTitle(NSLocalizedString("Sign Up", comment: "SignUpViewController signUpButton title for state highlighted"), forState: .Highlighted)
         
         // Customizing the dismissButton
         let dismissButton = self.signUpView!.dismissButton!

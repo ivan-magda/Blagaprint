@@ -23,12 +23,26 @@ class LoginViewController: PFLogInViewController, PFLogInViewControllerDelegate 
         logo.font = AppAppearance.ralewayThinFontWithSize(50)
         logo.text = "Blagaprint"
         logo.textColor = UIColor.whiteColor()
-        self.logInView?.logo = logo
         
-        self.logInView?.passwordField?.backgroundColor = UIColor.clearColor()
-        self.logInView?.passwordField?.textColor = UIColor.whiteColor()
-        self.logInView?.usernameField?.backgroundColor = UIColor.clearColor()
-        self.logInView?.usernameField?.textColor = UIColor.whiteColor()
+        let logInView = self.logInView!
+        logInView.logo = logo
+        
+        // Passwor field
+        let passwordField = logInView.passwordField!
+        passwordField.placeholder = NSLocalizedString("Password", comment: "LogInViewController password placeholder text")
+        passwordField.backgroundColor = UIColor.clearColor()
+        passwordField.textColor = UIColor.whiteColor()
+        
+        // Username Field
+        let usernameField = logInView.usernameField!
+        usernameField.placeholder = NSLocalizedString("Email", comment: "LogInViewController username placeholder text")
+        usernameField.backgroundColor = UIColor.clearColor()
+        usernameField.textColor = UIColor.whiteColor()
+        
+        // Forgotten button
+        let forgottenButton = logInView.passwordForgottenButton!
+        forgottenButton.setTitle(NSLocalizedString("Forgot Password?", comment: "LogInViewController forgotPasswordButton title for state normal"), forState: .Normal)
+        forgottenButton.setTitle(NSLocalizedString("Forgot Password?", comment: "LogInViewController forgotPasswordButton title for state highlighted"), forState: .Highlighted)
         
         // Add a background image
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
@@ -42,9 +56,16 @@ class LoginViewController: PFLogInViewController, PFLogInViewControllerDelegate 
         
         // Customizing the logInButton
         let logInButton = self.logInView!.logInButton!
+        logInButton.setTitle(NSLocalizedString("Log In", comment: "LogInViewController logInButton title for state normal"), forState: .Normal)
+        logInButton.setTitle(NSLocalizedString("Log In", comment: "LogInViewController logInButton title for state highlighted"), forState: .Highlighted)
         logInButton.setBackgroundImage(nil, forState: UIControlState.Normal)
         logInButton.setBackgroundImage(nil, forState: UIControlState.Highlighted)
         logInButton.backgroundColor = UIColor.whiteColor().colorWithAlphaComponent(0.3)
+        
+        // Customizing the signUpButton
+        let signUpButton = self.logInView!.signUpButton!
+        signUpButton.setTitle(NSLocalizedString("Sign Up", comment: "LogInViewController signUpButton title for state normal"), forState: .Normal)
+        signUpButton.setTitle(NSLocalizedString("Sign Up", comment: "LogInViewController signUpButton title for state highlighted"), forState: .Highlighted)
         
         // Customizing the dismissButton
         let dismissButton = self.logInView!.dismissButton!
@@ -65,7 +86,7 @@ class LoginViewController: PFLogInViewController, PFLogInViewControllerDelegate 
     
     func presentLoggedInAlert() {
         let alertController = UIAlertController(title: "You're logged in", message: "Welcome to Blagaprint", preferredStyle: .Alert)
-        let OKAction = UIAlertAction(title: "OK", style: .Default) { action in
+        let OKAction = UIAlertAction(title: "Ok", style: .Default) { action in
             self.dismissViewControllerAnimated(true, completion: nil)
         }
         alertController.addAction(OKAction)
