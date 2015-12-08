@@ -106,6 +106,7 @@
 		758595631BDA30C10079A1BA /* iPhone4CameraImage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7585955F1BDA30C10079A1BA /* iPhone4CameraImage@2x.png */; };
 		7585BB4E1C1026AA00D59BF5 /* BLImagePickerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7585BB4D1C1026AA00D59BF5 /* BLImagePickerController.swift */; };
 		758792A81BF487E10071C383 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 758792A71BF487E10071C383 /* LoadingView.swift */; };
+		7589398A1C16B54D0069655B /* CupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 758939891C16B54D0069655B /* CupViewController.swift */; };
 		7589540E1C1582C6006980F0 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7589540C1C1582C6006980F0 /* Localizable.strings */; };
 		759E8CCF1BDF64A1008A5503 /* galaxyS4MiniCameraImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 759E8CCD1BDF64A1008A5503 /* galaxyS4MiniCameraImage.png */; };
 		759E8CD01BDF64A1008A5503 /* galaxyS4MiniCameraImage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 759E8CCE1BDF64A1008A5503 /* galaxyS4MiniCameraImage@2x.png */; };
@@ -272,6 +273,7 @@
 		7585955F1BDA30C10079A1BA /* iPhone4CameraImage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "iPhone4CameraImage@2x.png"; path = "images/iPhone4CameraImage@2x.png"; sourceTree = "<group>"; };
 		7585BB4D1C1026AA00D59BF5 /* BLImagePickerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BLImagePickerController.swift; sourceTree = "<group>"; };
 		758792A71BF487E10071C383 /* LoadingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
+		758939891C16B54D0069655B /* CupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CupViewController.swift; sourceTree = "<group>"; };
 		7589540A1C158189006980F0 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Main.strings; sourceTree = "<group>"; };
 		7589540B1C158189006980F0 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		7589540D1C1582C6006980F0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -536,6 +538,7 @@
 				50551C2F1BCBA534005B88DA /* PhoneCase */,
 				7522B8971BFF4E0200BC14C0 /* PhotoFrame */,
 				758070131C0C4088000F9D84 /* PlateTableViewController.swift */,
+				758939891C16B54D0069655B /* CupViewController.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -1209,6 +1212,7 @@
 				758070211C0C49F2000F9D84 /* PlateTableViewCell.swift in Sources */,
 				0C8296C21BFC65D500B2B345 /* DescriptionTableViewCell.swift in Sources */,
 				0C8296C01BFC5FF100B2B345 /* FrameConstructorTableViewController.swift in Sources */,
+				7589398A1C16B54D0069655B /* CupViewController.swift in Sources */,
 				50551C331BCBB469005B88DA /* OvalView.swift in Sources */,
 				7522B8901BFF34C800BC14C0 /* CollectionTableViewCell.swift in Sources */,
 				758070181C0C420E000F9D84 /* PlateView.swift in Sources */,

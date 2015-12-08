@@ -68,15 +68,17 @@ extension BLImagePickerController: UIImagePickerControllerDelegate, UINavigation
     // MARK: UIImagePickerControllerDelegate
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
-        let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage
-        
-        if let didFinishPickingImage = self.didFinishPickingImage {
-            if let pickedImage = pickedImage {
-                didFinishPickingImage(pickedImage)
+        dispatch_async(dispatch_get_main_queue()) {
+            let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage
+            
+            if let didFinishPickingImage = self.didFinishPickingImage {
+                if let pickedImage = pickedImage {
+                    didFinishPickingImage(pickedImage)
+                }
             }
+            
+            self.rootViewController.dismissViewControllerAnimated(true, completion: nil)
         }
-        
-        self.rootViewController.dismissViewControllerAnimated(true, completion: nil)
     }
     
     func imagePickerControllerDidCancel(picker: UIImagePickerController) {

@@ -80,6 +80,7 @@
                         <segue destination="Q3z-0e-b2u" kind="show" identifier="PlateConstructor" id="kwQ-9P-Jle"/>
                         <segue destination="jf1-OA-wt3" kind="show" identifier="FrameConstructor" id="TiU-5W-EAV"/>
                         <segue destination="Xxy-AC-J3P" kind="show" identifier="PhoneCaseConstructor" id="YaW-6c-zUf"/>
+                        <segue destination="bNt-aM-HSw" kind="show" identifier="CupConstructor" id="U1k-Xv-Bdn"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="itM-KT-VwC" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -290,6 +291,80 @@
             </objects>
             <point key="canvasLocation" x="736" y="971"/>
         </scene>
+        <!--Кружка-->
+        <scene sceneID="yE3-j2-aAZ">
+            <objects>
+                <viewController id="bNt-aM-HSw" customClass="CupViewController" customModule="Blagaprint" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="ost-lx-bow"/>
+                        <viewControllerLayoutGuide type="bottom" id="5VC-9R-o2h"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="VIe-rt-JAk">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="H6l-Gx-55P">
+                                <rect key="frame" x="0.0" y="70" width="320" height="140"/>
+                                <animations/>
+                                <color key="backgroundColor" red="1" green="0.40784313729999999" blue="0.3411764706" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="140" id="9Q4-6b-Dor"/>
+                                    <constraint firstAttribute="width" constant="320" id="ACX-qj-HZy"/>
+                                </constraints>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="dGB-q5-4Yf">
+                                <rect key="frame" x="0.0" y="218" width="320" height="140"/>
+                                <animations/>
+                                <color key="backgroundColor" red="1" green="0.40784313729999999" blue="0.3411764706" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="140" id="XtR-fT-PZQ"/>
+                                    <constraint firstAttribute="width" constant="320" id="xJB-kZ-OKQ"/>
+                                </constraints>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ZRn-L8-ZTN">
+                                <rect key="frame" x="0.0" y="366" width="320" height="140"/>
+                                <animations/>
+                                <color key="backgroundColor" red="1" green="0.40784313729999999" blue="0.3411764706" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="320" id="67U-Is-4b6"/>
+                                    <constraint firstAttribute="height" constant="140" id="JvF-jj-at4"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="ZRn-L8-ZTN" firstAttribute="top" secondItem="dGB-q5-4Yf" secondAttribute="bottom" constant="8" id="6zE-ll-quh"/>
+                            <constraint firstItem="ZRn-L8-ZTN" firstAttribute="top" secondItem="dGB-q5-4Yf" secondAttribute="bottom" constant="8" id="8cz-rN-kEn"/>
+                            <constraint firstItem="H6l-Gx-55P" firstAttribute="leading" secondItem="VIe-rt-JAk" secondAttribute="leading" id="Ev5-XX-pm3"/>
+                            <constraint firstAttribute="trailing" secondItem="dGB-q5-4Yf" secondAttribute="trailing" id="MZS-KQ-vdT"/>
+                            <constraint firstItem="5VC-9R-o2h" firstAttribute="top" secondItem="ZRn-L8-ZTN" secondAttribute="bottom" constant="62" id="PEh-TG-VtZ"/>
+                            <constraint firstAttribute="trailing" secondItem="ZRn-L8-ZTN" secondAttribute="trailing" id="cKL-ta-Nyb"/>
+                            <constraint firstItem="dGB-q5-4Yf" firstAttribute="top" secondItem="H6l-Gx-55P" secondAttribute="bottom" constant="8" id="dng-oa-MXA"/>
+                            <constraint firstItem="dGB-q5-4Yf" firstAttribute="leading" secondItem="VIe-rt-JAk" secondAttribute="leading" id="hVQ-zN-blm"/>
+                            <constraint firstItem="H6l-Gx-55P" firstAttribute="top" secondItem="ost-lx-bow" secondAttribute="bottom" constant="6" id="j36-df-q4s"/>
+                            <constraint firstItem="ZRn-L8-ZTN" firstAttribute="leading" secondItem="VIe-rt-JAk" secondAttribute="leading" id="nHW-W9-rJ2"/>
+                            <constraint firstAttribute="trailing" secondItem="H6l-Gx-55P" secondAttribute="trailing" id="q4N-Ud-tRX"/>
+                            <constraint firstItem="dGB-q5-4Yf" firstAttribute="top" secondItem="H6l-Gx-55P" secondAttribute="bottom" constant="8" id="ycu-gX-bAW"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Кружка" id="4uU-ns-14I">
+                        <barButtonItem key="rightBarButtonItem" title="Image" id="KbC-32-69N">
+                            <connections>
+                                <action selector="imageButtonDidPressed:" destination="bNt-aM-HSw" id="Y9t-xJ-bxr"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="firstPartImageView" destination="dGB-q5-4Yf" id="IUg-aX-oro"/>
+                        <outlet property="secondPartImageView" destination="ZRn-L8-ZTN" id="dUp-xc-XRf"/>
+                        <outlet property="wholeImageView" destination="H6l-Gx-55P" id="R74-cq-QNu"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="HD7-le-hJk" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="443" y="1719"/>
+        </scene>
         <!--Тарелка-->
         <scene sceneID="qHQ-o1-zvX">
             <objects>
@@ -404,7 +479,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="z7u-Tr-hN5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="736" y="1667"/>
+            <point key="canvasLocation" x="1268" y="1667"/>
         </scene>
         <!--Чехол-->
         <scene sceneID="RYb-9i-dgl">

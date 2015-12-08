@@ -22,6 +22,7 @@ class MainQueryTableViewController: PFQueryTableViewController {
         case PhoneCaseConstructor
         case FrameConstructor
         case PlateConstructor
+        case CupConstructor
     }
     
     private enum CellIdentifier: String {
@@ -75,6 +76,8 @@ class MainQueryTableViewController: PFQueryTableViewController {
             print("Segue to FrameConstructor")
         } else if segue.identifier == SegueIdentifier.PlateConstructor.rawValue {
             print("Segue to PlateConstructor")
+        } else if segue.identifier == SegueIdentifier.CupConstructor.rawValue {
+            print("Segue to CupConstructor")
         }
     }
     
@@ -203,13 +206,12 @@ class MainQueryTableViewController: PFQueryTableViewController {
         switch category.getType() {
         case .cases:
             self.performSegueWithIdentifier(SegueIdentifier.PhoneCaseConstructor.rawValue, sender: nil)
-            return
         case .frames:
             self.performSegueWithIdentifier(SegueIdentifier.FrameConstructor.rawValue, sender: nil)
-            return
         case .plates:
             self.performSegueWithIdentifier(SegueIdentifier.PlateConstructor.rawValue, sender: nil)
-            return
+        case .cups:
+            self.performSegueWithIdentifier(SegueIdentifier.CupConstructor.rawValue, sender: nil)
         default:
             break
         }
