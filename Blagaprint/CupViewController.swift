@@ -26,22 +26,22 @@ class CupViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.imagePickerController = BLImagePickerController(rootViewController: self) { image in
-            self.wholeImageView.image = image
+        self.imagePickerController = BLImagePickerController(rootViewController: self) { pickedImage in
+            self.wholeImageView.image = pickedImage
             
             // Picked image cropping
             
-            let imageSize = image.size
+            let imageSize = pickedImage.size
             print("Size: \(imageSize)")
             
             let halfOfWidth: CGFloat = imageSize.width / 2.0
             
             let firstHalfImageRect = CGRectMake(0, 0, halfOfWidth, imageSize.height)
-            self.firstHalfImage = image.croppedImage(firstHalfImageRect)
+            self.firstHalfImage = pickedImage.croppedImage(firstHalfImageRect)
             self.firstPartImageView.image = self.firstHalfImage
             
             let secondHalfImageRect = CGRectMake(halfOfWidth, 0, halfOfWidth, imageSize.height)
-            self.secondHalfImage = image.croppedImage(secondHalfImageRect)
+            self.secondHalfImage = pickedImage.croppedImage(secondHalfImageRect)
             self.secondPartImageView.image = self.secondHalfImage
         }
     }
