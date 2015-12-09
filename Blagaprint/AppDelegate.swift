@@ -28,7 +28,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Track statistics around application opens.
         PFAnalytics.trackAppOpenedWithLaunchOptions(launchOptions)
         
-        let navigationController = window!.rootViewController as! UINavigationController
+        let tabBarController = window!.rootViewController as! UITabBarController
+        let navigationController = tabBarController.viewControllers![0] as! UINavigationController
         let mainTableViewController = navigationController.topViewController as! MainQueryTableViewController
         mainTableViewController.parseCentral = self.parseCentral
     }
