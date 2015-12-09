@@ -58,9 +58,6 @@
 		753D4D751C05AD11002FC5E9 /* SH11_PhotoFrame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 753D4D741C05AD11002FC5E9 /* SH11_PhotoFrame.swift */; };
 		75467C891C12EB9C008046A2 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75467C881C12EB9C008046A2 /* LoginViewController.swift */; };
 		75467C921C12EC32008046A2 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75467C911C12EC32008046A2 /* SignUpViewController.swift */; };
-		75467C9A1C12F05B008046A2 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 75467C971C12F05B008046A2 /* Bolts.framework */; };
-		75467C9B1C12F05B008046A2 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 75467C981C12F05B008046A2 /* Parse.framework */; };
-		75467C9C1C12F05B008046A2 /* ParseUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 75467C991C12F05B008046A2 /* ParseUI.framework */; };
 		7547D2491BDE2376006E4170 /* galaxyS3CameraImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 7547D23B1BDE2376006E4170 /* galaxyS3CameraImage.png */; };
 		7547D24A1BDE2376006E4170 /* galaxyS3CameraImage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7547D23C1BDE2376006E4170 /* galaxyS3CameraImage@2x.png */; };
 		7547D24B1BDE2376006E4170 /* galaxyS3Led.png in Resources */ = {isa = PBXBuildFile; fileRef = 7547D23D1BDE2376006E4170 /* galaxyS3Led.png */; };
@@ -78,15 +75,6 @@
 		7561AE9F1C0FD563009B2C8B /* Plate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7561AE9E1C0FD563009B2C8B /* Plate.swift */; };
 		7561AEAF1C0FD8E4009B2C8B /* UIImageResizeAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7561AEAE1C0FD8E4009B2C8B /* UIImageResizeAdditions.swift */; };
 		756FF67D1C128C2D0091B75E /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 756FF67C1C128C2D0091B75E /* Reachability.swift */; };
-		75708CC81C11719200943F73 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 75708CC71C11719200943F73 /* AudioToolbox.framework */; };
-		75708CCA1C11719C00943F73 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 75708CC91C11719C00943F73 /* CFNetwork.framework */; };
-		75708CCC1C1171A400943F73 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 75708CCB1C1171A400943F73 /* CoreGraphics.framework */; };
-		75708CCE1C1171AD00943F73 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 75708CCD1C1171AD00943F73 /* CoreLocation.framework */; };
-		75708CD01C1171B900943F73 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 75708CCF1C1171B900943F73 /* QuartzCore.framework */; };
-		75708CD21C1171C200943F73 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 75708CD11C1171C200943F73 /* Security.framework */; };
-		75708CD61C1171DA00943F73 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 75708CD51C1171DA00943F73 /* SystemConfiguration.framework */; };
-		75708CD81C1171E900943F73 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 75708CD71C1171E900943F73 /* libz.tbd */; };
-		75708CDA1C1171F800943F73 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 75708CD91C1171F800943F73 /* libsqlite3.tbd */; };
 		757459251C146B270063B758 /* Raleway.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 757459241C146B270063B758 /* Raleway.ttf */; };
 		757459271C146BB20063B758 /* backgroundImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 757459261C146BB20063B758 /* backgroundImage.png */; };
 		757459311C1473290063B758 /* Delete.png in Resources */ = {isa = PBXBuildFile; fileRef = 7574592E1C1473290063B758 /* Delete.png */; };
@@ -168,6 +156,7 @@
 		75FD247E1BE45B7E00446801 /* xperiaZ3CameraImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 75FD247C1BE45B7E00446801 /* xperiaZ3CameraImage.png */; };
 		75FD247F1BE45B7E00446801 /* xperiaZ3CameraImage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 75FD247D1BE45B7E00446801 /* xperiaZ3CameraImage@2x.png */; };
 		75FD24821BE461EE00446801 /* XperiaZcompact.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75FD24811BE461EE00446801 /* XperiaZcompact.swift */; };
+		D87004B643279C4AF87D6CF7 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F4F15583EE9A76B5434C6E93 /* libPods.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -207,6 +196,7 @@
 		750E4AEF1BE20F67006103AE /* galaxyA3Led@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "galaxyA3Led@2x.png"; sourceTree = "<group>"; };
 		750E4AF21BE20F70006103AE /* galaxyA3Speaker.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = galaxyA3Speaker.png; sourceTree = "<group>"; };
 		750E4AF31BE20F70006103AE /* galaxyA3Speaker@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "galaxyA3Speaker@2x.png"; sourceTree = "<group>"; };
+		751D51DA1C16D6A10093AE85 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		752278381BE11E72008E117F /* iPhone5CameraImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = iPhone5CameraImage.png; path = images/iPhone5CameraImage.png; sourceTree = "<group>"; };
 		752278391BE11E72008E117F /* iPhone5CameraImage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "iPhone5CameraImage@2x.png"; path = "images/iPhone5CameraImage@2x.png"; sourceTree = "<group>"; };
 		7522783C1BE12951008E117F /* galaxyS6CameraImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = galaxyS6CameraImage.png; path = images/galaxyS6CameraImage.png; sourceTree = "<group>"; };
@@ -224,9 +214,6 @@
 		753D4D741C05AD11002FC5E9 /* SH11_PhotoFrame.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SH11_PhotoFrame.swift; sourceTree = "<group>"; };
 		75467C881C12EB9C008046A2 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		75467C911C12EC32008046A2 /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
-		75467C971C12F05B008046A2 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
-		75467C981C12F05B008046A2 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
-		75467C991C12F05B008046A2 /* ParseUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseUI.framework; sourceTree = "<group>"; };
 		7547D23B1BDE2376006E4170 /* galaxyS3CameraImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = galaxyS3CameraImage.png; path = images/galaxyS3CameraImage.png; sourceTree = "<group>"; };
 		7547D23C1BDE2376006E4170 /* galaxyS3CameraImage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "galaxyS3CameraImage@2x.png"; path = "images/galaxyS3CameraImage@2x.png"; sourceTree = "<group>"; };
 		7547D23D1BDE2376006E4170 /* galaxyS3Led.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = galaxyS3Led.png; path = images/galaxyS3Led.png; sourceTree = "<group>"; };
@@ -244,15 +231,6 @@
 		7561AE9E1C0FD563009B2C8B /* Plate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Plate.swift; sourceTree = "<group>"; };
 		7561AEAE1C0FD8E4009B2C8B /* UIImageResizeAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageResizeAdditions.swift; sourceTree = "<group>"; };
 		756FF67C1C128C2D0091B75E /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
-		75708CC71C11719200943F73 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
-		75708CC91C11719C00943F73 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
-		75708CCB1C1171A400943F73 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		75708CCD1C1171AD00943F73 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
-		75708CCF1C1171B900943F73 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
-		75708CD11C1171C200943F73 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
-		75708CD51C1171DA00943F73 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
-		75708CD71C1171E900943F73 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
-		75708CD91C1171F800943F73 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		75708CDB1C11729B00943F73 /* Blagaprint-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Blagaprint-Bridging-Header.h"; sourceTree = "<group>"; };
 		757459241C146B270063B758 /* Raleway.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Raleway.ttf; sourceTree = "<group>"; };
 		757459261C146BB20063B758 /* backgroundImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = backgroundImage.png; sourceTree = "<group>"; };
@@ -276,7 +254,6 @@
 		758939891C16B54D0069655B /* CupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CupViewController.swift; sourceTree = "<group>"; };
 		7589540A1C158189006980F0 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Main.strings; sourceTree = "<group>"; };
 		7589540B1C158189006980F0 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
-		7589540D1C1582C6006980F0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		758954101C1582E8006980F0 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
 		759E8CCD1BDF64A1008A5503 /* galaxyS4MiniCameraImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = galaxyS4MiniCameraImage.png; path = images/galaxyS4MiniCameraImage.png; sourceTree = "<group>"; };
 		759E8CCE1BDF64A1008A5503 /* galaxyS4MiniCameraImage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "galaxyS4MiniCameraImage@2x.png"; path = "images/galaxyS4MiniCameraImage@2x.png"; sourceTree = "<group>"; };
@@ -339,6 +316,9 @@
 		75FD247C1BE45B7E00446801 /* xperiaZ3CameraImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = xperiaZ3CameraImage.png; sourceTree = "<group>"; };
 		75FD247D1BE45B7E00446801 /* xperiaZ3CameraImage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "xperiaZ3CameraImage@2x.png"; sourceTree = "<group>"; };
 		75FD24811BE461EE00446801 /* XperiaZcompact.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XperiaZcompact.swift; sourceTree = "<group>"; };
+		B73D32B3F04B08A93EE5B500 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		C8BD4F0CF3381A1B5700C233 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		F4F15583EE9A76B5434C6E93 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -346,18 +326,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				75708CDA1C1171F800943F73 /* libsqlite3.tbd in Frameworks */,
-				75708CD81C1171E900943F73 /* libz.tbd in Frameworks */,
-				75708CD61C1171DA00943F73 /* SystemConfiguration.framework in Frameworks */,
-				75708CD21C1171C200943F73 /* Security.framework in Frameworks */,
-				75708CD01C1171B900943F73 /* QuartzCore.framework in Frameworks */,
-				75467C9A1C12F05B008046A2 /* Bolts.framework in Frameworks */,
-				75467C9C1C12F05B008046A2 /* ParseUI.framework in Frameworks */,
-				75467C9B1C12F05B008046A2 /* Parse.framework in Frameworks */,
-				75708CCE1C1171AD00943F73 /* CoreLocation.framework in Frameworks */,
-				75708CCC1C1171A400943F73 /* CoreGraphics.framework in Frameworks */,
-				75708CCA1C11719C00943F73 /* CFNetwork.framework in Frameworks */,
-				75708CC81C11719200943F73 /* AudioToolbox.framework in Frameworks */,
+				D87004B643279C4AF87D6CF7 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -379,6 +348,8 @@
 			children = (
 				502A8CB11BB80EAC0064E0DA /* Blagaprint */,
 				502A8CB01BB80EAC0064E0DA /* Products */,
+				D9E0DEABA457D3B2B1CB4652 /* Pods */,
+				9B39F86A468EF2F9E9BFD790 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -839,18 +810,6 @@
 		75AB8AC11BE7479F00B88A5A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				75708CD91C1171F800943F73 /* libsqlite3.tbd */,
-				75708CD71C1171E900943F73 /* libz.tbd */,
-				75467C971C12F05B008046A2 /* Bolts.framework */,
-				75467C981C12F05B008046A2 /* Parse.framework */,
-				75467C991C12F05B008046A2 /* ParseUI.framework */,
-				75708CD51C1171DA00943F73 /* SystemConfiguration.framework */,
-				75708CD11C1171C200943F73 /* Security.framework */,
-				75708CCF1C1171B900943F73 /* QuartzCore.framework */,
-				75708CCD1C1171AD00943F73 /* CoreLocation.framework */,
-				75708CCB1C1171A400943F73 /* CoreGraphics.framework */,
-				75708CC91C11719C00943F73 /* CFNetwork.framework */,
-				75708CC71C11719200943F73 /* AudioToolbox.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -992,6 +951,23 @@
 			name = Fonts;
 			sourceTree = "<group>";
 		};
+		9B39F86A468EF2F9E9BFD790 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F4F15583EE9A76B5434C6E93 /* libPods.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D9E0DEABA457D3B2B1CB4652 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				B73D32B3F04B08A93EE5B500 /* Pods.debug.xcconfig */,
+				C8BD4F0CF3381A1B5700C233 /* Pods.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -999,9 +975,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 502A8CC11BB80EAC0064E0DA /* Build configuration list for PBXNativeTarget "Blagaprint" */;
 			buildPhases = (
+				0F79E89D89FBCAEA038CDDBF /* Check Pods Manifest.lock */,
 				502A8CAB1BB80EAC0064E0DA /* Sources */,
 				502A8CAC1BB80EAC0064E0DA /* Frameworks */,
 				502A8CAD1BB80EAC0064E0DA /* Resources */,
+				7FBB6309A9C20CA22C32B787 /* Embed Pods Frameworks */,
+				9DF45CF1DBD34AEC9875F8CC /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1164,6 +1143,54 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		0F79E89D89FBCAEA038CDDBF /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		7FBB6309A9C20CA22C32B787 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9DF45CF1DBD34AEC9875F8CC /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		502A8CAB1BB80EAC0064E0DA /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -1249,8 +1276,8 @@
 		7589540C1C1582C6006980F0 /* Localizable.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
-				7589540D1C1582C6006980F0 /* Base */,
 				758954101C1582E8006980F0 /* ru */,
+				751D51DA1C16D6A10093AE85 /* Base */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
@@ -1341,6 +1368,7 @@
 		};
 		502A8CC21BB80EAC0064E0DA /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B73D32B3F04B08A93EE5B500 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -1362,6 +1390,7 @@
 		};
 		502A8CC31BB80EAC0064E0DA /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C8BD4F0CF3381A1B5700C233 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
