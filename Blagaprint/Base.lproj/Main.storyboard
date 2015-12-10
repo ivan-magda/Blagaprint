@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9060" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="NIy-eV-6ek">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9060" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="NIy-eV-6ek">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
     </dependencies>
@@ -70,13 +70,7 @@
                             <outlet property="delegate" destination="Q8t-Lm-Vy4" id="0rZ-TX-cfu"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Blagaprint" id="fRJ-Gs-DIm">
-                        <barButtonItem key="rightBarButtonItem" title="Log Out" id="8uN-YH-ugM">
-                            <connections>
-                                <action selector="logOutButtonDidPressed:" destination="Q8t-Lm-Vy4" id="yfd-GW-dAh"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Blagaprint" id="fRJ-Gs-DIm"/>
                     <connections>
                         <segue destination="Q3z-0e-b2u" kind="show" identifier="PlateConstructor" id="kwQ-9P-Jle"/>
                         <segue destination="jf1-OA-wt3" kind="show" identifier="FrameConstructor" id="TiU-5W-EAV"/>
@@ -954,7 +948,7 @@
         <!--Bag-->
         <scene sceneID="Vkt-aX-BlP">
             <objects>
-                <viewController id="X7t-0i-ZaH" sceneMemberID="viewController">
+                <viewController id="X7t-0i-ZaH" customClass="ShoppingBagViewController" customModule="Blagaprint" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="15S-Vj-6u8"/>
                         <viewControllerLayoutGuide type="bottom" id="z2P-kl-3hW"/>
@@ -983,9 +977,14 @@ If you already have an account, sign in to see your bag or navigate to the catal
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Bag" id="mhH-65-0ZF">
-                        <barButtonItem key="rightBarButtonItem" image="Contacts.png" id="xEh-AF-m48"/>
+                        <barButtonItem key="rightBarButtonItem" image="Contacts.png" id="xEh-AF-m48">
+                            <connections>
+                                <action selector="accountActionBarButtonDidPressed:" destination="X7t-0i-ZaH" id="NLA-EW-2uA"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="accountActionBarButton" destination="xEh-AF-m48" id="paT-1B-TZF"/>
                         <segue destination="QsI-O0-S6Z" kind="show" identifier="MyInfo" id="xcS-Ub-1qT"/>
                     </connections>
                 </viewController>
@@ -996,8 +995,8 @@ If you already have an account, sign in to see your bag or navigate to the catal
         <!--My Account-->
         <scene sceneID="3xs-ba-glm">
             <objects>
-                <tableViewController id="QsI-O0-S6Z" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="8Ku-60-OgZ">
+                <tableViewController id="QsI-O0-S6Z" customClass="AccountTableViewController" customModule="Blagaprint" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="interactive" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="8Ku-60-OgZ">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="620"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <animations/>
@@ -1019,11 +1018,14 @@ If you already have an account, sign in to see your bag or navigate to the catal
                                                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter yout name" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="tsL-eI-JXx">
+                                                <textField opaque="NO" clipsSubviews="YES" tag="100" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter your name" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="tsL-eI-JXx">
                                                     <rect key="frame" x="68" y="11" width="234" height="21"/>
                                                     <animations/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
+                                                    <connections>
+                                                        <outlet property="delegate" destination="QsI-O0-S6Z" id="QVG-ex-6ST"/>
+                                                    </connections>
                                                 </textField>
                                             </subviews>
                                             <animations/>
@@ -1051,11 +1053,14 @@ If you already have an account, sign in to see your bag or navigate to the catal
                                                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter yout patronymic" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Yfg-KW-EIM">
+                                                <textField opaque="NO" clipsSubviews="YES" tag="101" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter your patronymic" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Yfg-KW-EIM">
                                                     <rect key="frame" x="109" y="11" width="193" height="21"/>
                                                     <animations/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
+                                                    <connections>
+                                                        <outlet property="delegate" destination="QsI-O0-S6Z" id="gea-81-zLh"/>
+                                                    </connections>
                                                 </textField>
                                             </subviews>
                                             <animations/>
@@ -1083,11 +1088,14 @@ If you already have an account, sign in to see your bag or navigate to the catal
                                                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter yout surname" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Rzj-TD-zUb">
+                                                <textField opaque="NO" clipsSubviews="YES" tag="102" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter your surname" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Rzj-TD-zUb">
                                                     <rect key="frame" x="92" y="11" width="210" height="21"/>
                                                     <animations/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
+                                                    <connections>
+                                                        <outlet property="delegate" destination="QsI-O0-S6Z" id="6Ae-ge-cPI"/>
+                                                    </connections>
                                                 </textField>
                                             </subviews>
                                             <animations/>
@@ -1115,11 +1123,14 @@ If you already have an account, sign in to see your bag or navigate to the catal
                                                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Phone number" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="iej-1l-6wv">
+                                                <textField opaque="NO" clipsSubviews="YES" tag="103" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Phone number" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="iej-1l-6wv">
                                                     <rect key="frame" x="135" y="11" width="167" height="21"/>
                                                     <animations/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <textInputTraits key="textInputTraits" keyboardType="phonePad"/>
+                                                    <connections>
+                                                        <outlet property="delegate" destination="QsI-O0-S6Z" id="7Ng-ok-75h"/>
+                                                    </connections>
                                                 </textField>
                                             </subviews>
                                             <animations/>
@@ -1244,7 +1255,7 @@ If you already have an account, sign in to see your bag or navigate to the catal
                             </tableViewSection>
                             <tableViewSection id="pGW-e7-xMf" userLabel="LogOut">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="SY1-nd-nXd">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="SY1-nd-nXd" userLabel="logOutCell">
                                         <rect key="frame" x="0.0" y="509" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="SY1-nd-nXd" id="1Ps-Xl-JEW">
@@ -1258,6 +1269,9 @@ If you already have an account, sign in to see your bag or navigate to the catal
                                                     <state key="normal" title="Log Out">
                                                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
+                                                    <connections>
+                                                        <action selector="logOutButtonDidPressed:" destination="QsI-O0-S6Z" eventType="touchUpInside" id="QzM-Dg-eiB"/>
+                                                    </connections>
                                                 </button>
                                                 <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="thX-Rn-jur">
                                                     <rect key="frame" x="102" y="12" width="20" height="20"/>
@@ -1285,11 +1299,17 @@ If you already have an account, sign in to see your bag or navigate to the catal
                             <outlet property="delegate" destination="QsI-O0-S6Z" id="gaN-sY-tzB"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="My Account" id="uMm-RJ-XGQ">
-                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="She-aC-bGa"/>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="My Account" id="uMm-RJ-XGQ"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="320" height="620"/>
+                    <connections>
+                        <outlet property="emailLabel" destination="I5x-nr-bDM" id="gHp-IW-Oi9"/>
+                        <outlet property="logOutActivityIndicator" destination="thX-Rn-jur" id="qXY-LD-fen"/>
+                        <outlet property="nameTextField" destination="tsL-eI-JXx" id="L3x-b4-Q5c"/>
+                        <outlet property="patronymicTextField" destination="Yfg-KW-EIM" id="eg6-cF-BOO"/>
+                        <outlet property="phoneNumberTextField" destination="iej-1l-6wv" id="smd-X3-01p"/>
+                        <outlet property="surnameTextField" destination="Rzj-TD-zUb" id="vtc-0b-vjN"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GbD-Tw-hrQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

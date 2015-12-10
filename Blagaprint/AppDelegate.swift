@@ -25,13 +25,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             self.parse = parseCentral.parse
         }
         
+        assert(self.parseCentral != nil, "ParseCentral must exist")
+        
         // Track statistics around application opens.
         PFAnalytics.trackAppOpenedWithLaunchOptions(launchOptions)
         
+        // Spread ParseCentral
         let tabBarController = window!.rootViewController as! UITabBarController
-        let navigationController = tabBarController.viewControllers![0] as! UINavigationController
-        let mainTableViewController = navigationController.topViewController as! MainQueryTableViewController
+        
+        // To MainTableViewController
+        let mainTableViewNavigationController = tabBarController.viewControllers![0] as! UINavigationController
+        let mainTableViewController = mainTableViewNavigationController.topViewController as! MainQueryTableViewController
         mainTableViewController.parseCentral = self.parseCentral
+        
+        // To ShoppingBagViewController
+        let shoppingBagNavigationController = tabBarController.viewControllers![1] as! UINavigationController
+        let shoppingBagViewController = shoppingBagNavigationController.topViewController as! ShoppingBagViewController
+        shoppingBagViewController.parseCentral = self.parseCentral
     }
     
     

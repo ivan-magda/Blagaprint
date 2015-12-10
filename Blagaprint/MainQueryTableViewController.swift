@@ -81,25 +81,6 @@ class MainQueryTableViewController: PFQueryTableViewController {
         }
     }
     
-    // MARK: - IBActions
-    
-    @IBAction func logOutButtonDidPressed(sender: UIBarButtonItem) {
-        PFUser.logOutInBackgroundWithBlock { error in
-            if let error = error {
-                let message = error.userInfo["error"] as! String
-                let alert = UIAlertController(title: "Eror", message: message, preferredStyle: .Alert)
-                alert.addAction(UIAlertAction(title: "Ok", style: .Cancel, handler: nil))
-                
-                self.presentViewController(alert, animated: true, completion: nil)
-            } else {
-                let alert = UIAlertController(title: "Logged Out", message: "You have successfully logged out", preferredStyle: .Alert)
-                alert.addAction(UIAlertAction(title: "Ok", style: .Cancel, handler: nil))
-                
-                self.presentViewController(alert, animated: true, completion: nil)
-            }
-        }
-    }
-    
     // MARK: - PFQueryTableViewController -
     
     // MARK: Responding to Events

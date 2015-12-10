@@ -15,6 +15,8 @@
 		0C8296BE1BFC5CF200B2B345 /* ImagePickingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C8296BD1BFC5CF200B2B345 /* ImagePickingTableViewCell.swift */; };
 		0C8296C01BFC5FF100B2B345 /* FrameConstructorTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C8296BF1BFC5FF100B2B345 /* FrameConstructorTableViewController.swift */; };
 		0C8296C21BFC65D500B2B345 /* DescriptionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C8296C11BFC65D400B2B345 /* DescriptionTableViewCell.swift */; };
+		0CA50CE51C194D5800020150 /* ShoppingBagViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CA50CE41C194D5800020150 /* ShoppingBagViewController.swift */; };
+		0CA50CE91C1954F400020150 /* AccountTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CA50CE81C1954F400020150 /* AccountTableViewController.swift */; };
 		501506501BCE96C700697C99 /* TextEditingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5015064F1BCE96C700697C99 /* TextEditingViewController.swift */; };
 		502A8CB31BB80EAC0064E0DA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502A8CB21BB80EAC0064E0DA /* AppDelegate.swift */; };
 		502A8CB51BB80EAC0064E0DA /* MainQueryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502A8CB41BB80EAC0064E0DA /* MainQueryTableViewController.swift */; };
@@ -184,6 +186,8 @@
 		0C8296BD1BFC5CF200B2B345 /* ImagePickingTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagePickingTableViewCell.swift; sourceTree = "<group>"; };
 		0C8296BF1BFC5FF100B2B345 /* FrameConstructorTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FrameConstructorTableViewController.swift; sourceTree = "<group>"; };
 		0C8296C11BFC65D400B2B345 /* DescriptionTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DescriptionTableViewCell.swift; sourceTree = "<group>"; };
+		0CA50CE41C194D5800020150 /* ShoppingBagViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShoppingBagViewController.swift; sourceTree = "<group>"; };
+		0CA50CE81C1954F400020150 /* AccountTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountTableViewController.swift; sourceTree = "<group>"; };
 		5015064F1BCE96C700697C99 /* TextEditingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextEditingViewController.swift; sourceTree = "<group>"; };
 		502A8CAF1BB80EAC0064E0DA /* Blagaprint.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Blagaprint.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		502A8CB21BB80EAC0064E0DA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -375,6 +379,28 @@
 			name = PhotoLibraryImages;
 			sourceTree = "<group>";
 		};
+		0CA50CE61C194EC500020150 /* CatalogScene */ = {
+			isa = PBXGroup;
+			children = (
+				502A8CB41BB80EAC0064E0DA /* MainQueryTableViewController.swift */,
+				7585BB4D1C1026AA00D59BF5 /* BLImagePickerController.swift */,
+				50551C2F1BCBA534005B88DA /* PhoneCase */,
+				7522B8971BFF4E0200BC14C0 /* PhotoFrame */,
+				758070131C0C4088000F9D84 /* PlateTableViewController.swift */,
+				758939891C16B54D0069655B /* CupViewController.swift */,
+			);
+			name = CatalogScene;
+			sourceTree = "<group>";
+		};
+		0CA50CE71C194EF700020150 /* ShoppingBagScene */ = {
+			isa = PBXGroup;
+			children = (
+				0CA50CE41C194D5800020150 /* ShoppingBagViewController.swift */,
+				0CA50CE81C1954F400020150 /* AccountTableViewController.swift */,
+			);
+			name = ShoppingBagScene;
+			sourceTree = "<group>";
+		};
 		502A8CA61BB80EAC0064E0DA = {
 			isa = PBXGroup;
 			children = (
@@ -542,12 +568,8 @@
 			isa = PBXGroup;
 			children = (
 				75467C8A1C12EBA3008046A2 /* Login/SignUp */,
-				502A8CB41BB80EAC0064E0DA /* MainQueryTableViewController.swift */,
-				7585BB4D1C1026AA00D59BF5 /* BLImagePickerController.swift */,
-				50551C2F1BCBA534005B88DA /* PhoneCase */,
-				7522B8971BFF4E0200BC14C0 /* PhotoFrame */,
-				758070131C0C4088000F9D84 /* PlateTableViewController.swift */,
-				758939891C16B54D0069655B /* CupViewController.swift */,
+				0CA50CE61C194EC500020150 /* CatalogScene */,
+				0CA50CE71C194EF700020150 /* ShoppingBagScene */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -1321,6 +1343,7 @@
 				50FD7F501BB8FFF600ABEC38 /* CategoryTableViewCell.swift in Sources */,
 				75AB8AC01BE744DB00B88A5A /* ParseCentral.swift in Sources */,
 				503CBEC11BC415C700052BE0 /* CategoryItem.swift in Sources */,
+				0CA50CE91C1954F400020150 /* AccountTableViewController.swift in Sources */,
 				75467C891C12EB9C008046A2 /* LoginViewController.swift in Sources */,
 				75F7393A1BE4979B0063EB6F /* LenovoS850.swift in Sources */,
 				750E0F911C1874DA00A8158C /* User.swift in Sources */,
@@ -1345,6 +1368,7 @@
 				756FF67D1C128C2D0091B75E /* Reachability.swift in Sources */,
 				75467C921C12EC32008046A2 /* SignUpViewController.swift in Sources */,
 				508503041BBAADB600152131 /* AppAppearance.swift in Sources */,
+				0CA50CE51C194D5800020150 /* ShoppingBagViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
