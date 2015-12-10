@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class User: PFUser {
+class BlagaprintUser: PFUser {
     // MARK: - Properties
     
     @NSManaged var name: String?

@@ -18,6 +18,7 @@ class AppAppearance: NSObject {
         static let brightGray: UIColor = UIColor(red: 65.0 / 255.0, green: 62.0 / 255.0, blue: 80.0 / 255.0, alpha: 1)
         static let haiti: UIColor = UIColor(red: 44.0 / 255.0, green: 42.0 / 255.0, blue: 55.0 / 255.0, alpha: 1)
         static let tuna: UIColor = UIColor(red: 54.0 / 255.0, green: 54.0 / 255.0, blue: 66.0 / 255.0, alpha: 1)
+        static let cornflowerBlue = UIColor(red: 108.0 / 255.0, green: 148.0 / 255.0, blue: 255.0 / 255.0, alpha: 1)
     }
     
     // MARK: - Public

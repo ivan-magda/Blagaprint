@@ -9,20 +9,12 @@
 import UIKit
 
 class ShoppingBagViewController: UIViewController {
-    // MARK: Types
-    
-    private enum SegueIdentifiers: String {
-        case MyInfo
-    }
-    
     // MARK: - Properties
-    
-    private let logInImage = UIImage(named: "Enter.png")!
-    private let accoutnInfoImage = UIImage(named: "Contacts.png")!
     
     var parseCentral: ParseCentral?
 
-    @IBOutlet weak var accountActionBarButton: UIBarButtonItem!
+    private let logInImage = UIImage(named: "Enter.png")!
+    private var logInBarButtonItem: UIBarButtonItem?
     
     // MARK: - View Life Cycle
     
@@ -45,20 +37,18 @@ class ShoppingBagViewController: UIViewController {
     // MARK: - Private Helper Methods
     
     private func configureAccountActionBarButton() {
-        if User.currentUser() != nil {
-            self.accountActionBarButton.image = accoutnInfoImage
+        if BlagaprintUser.currentUser() == nil {
+            self.logInBarButtonItem = UIBarButtonItem(image: logInImage, style: .Plain, target: self, action: Selector("logInBarButtonDidPressed:"))
+            self.navigationItem.rightBarButtonItem = logInBarButtonItem
         } else {
-            self.accountActionBarButton.image = logInImage
+            self.logInBarButtonItem = nil
+            self.navigationItem.rightBarButtonItem = nil
         }
     }
     
-    // MARK: - IBActions
+    // MARK: - Target
 
-    @IBAction func accountActionBarButtonDidPressed(sender: UIBarButtonItem) {
-        if User.currentUser() != nil {
-            self.performSegueWithIdentifier(SegueIdentifiers.MyInfo.rawValue, sender: nil)
-        } else {
-            self.presentViewController(LoginViewController(), animated: true, completion: nil)
-        }
+    func logInBarButtonDidPressed(sender: UIBarButtonItem) {
+        self.presentViewController(LoginViewController(), animated: true, completion: nil)
     }
 }

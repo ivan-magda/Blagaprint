@@ -58,13 +58,6 @@ class MainQueryTableViewController: PFQueryTableViewController {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        
-        // If the current user is not logged in, we need to bring up the login screen.
-        if (PFUser.currentUser() == nil) {
-            dispatch_async(dispatch_get_main_queue(), {
-                self.presentViewController(LoginViewController(), animated: true, completion: nil)
-            })
-        }
     }
     
     // MARK: - Navigation

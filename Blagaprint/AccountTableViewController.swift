@@ -20,6 +20,8 @@ class AccountTableViewController: UITableViewController {
     
     // MARK: - Properties
     
+    var notLoggedAccountView: UserLogInEmptyView?
+    
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var patronymicTextField: UITextField!
     @IBOutlet weak var surnameTextField: UITextField!
@@ -45,11 +47,23 @@ class AccountTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
         
-        userInfoSetup()
+        self.notLoggedAccountView?.removeFromSuperview()
         
-        self.saveBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Save, target: self, action: Selector("saveButtonDidPressed"))
-        self.navigationItem.rightBarButtonItem = saveBarButtonItem
+        if BlagaprintUser.currentUser() == nil {
+            notLoggedAccountViewSetup()
+        } else {
+            userInfoSetup()
+            
+            self.saveBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Save, target: self, action: Selector("saveButtonDidPressed"))
+            self.navigationItem.rightBarButtonItem = saveBarButtonItem
+            
+            updateBackgroundColorOfLogOutCell()
+        }
     }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
@@ -89,12 +103,45 @@ class AccountTableViewController: UITableViewController {
     // MARK: - Private Helper Methods
     
     private func userInfoSetup() {
-        let user = User.currentUser()
+        let user = BlagaprintUser.currentUser()
         self.nameTextField.text = user?.name
         self.patronymicTextField.text = user?.patronymic
         self.surnameTextField.text = user?.surname
         self.phoneNumberTextField.text = user?.phoneNumber
         self.emailLabel.text = user?.email
+    }
+    
+    private func notLoggedAccountViewSetup() {
+        self.notLoggedAccountView = NSBundle.mainBundle().loadNibNamed("UserLogInEmptyView", owner: self, options: nil).first as? UserLogInEmptyView
+        
+        // Handle callback when Log In button pressed.
+        weak var weakSelf = self
+        self.notLoggedAccountView!.logInButtonDidPressedCallBack = {
+            weakSelf?.presentViewController(LoginViewController(), animated: true, completion: nil)
+        }
+        
+        // Customize view frame
+        let navBarHeight = CGRectGetHeight(self.navigationController!.navigationBar.bounds)
+        let statusBarHeight = CGRectGetHeight(UIApplication.sharedApplication().statusBarFrame)
+        let yCoordinate = navBarHeight + statusBarHeight
+        let height = CGRectGetHeight(self.view.bounds) - yCoordinate
+        let frame = CGRectMake(0, yCoordinate, CGRectGetWidth(self.view.bounds), height)
+        self.notLoggedAccountView?.frame = frame
+        
+        // Change background color of log out cell.
+        updateBackgroundColorOfLogOutCell()
+        
+        self.navigationController?.view.addSubview(self.notLoggedAccountView!)
+    }
+    
+    private func updateBackgroundColorOfLogOutCell() {
+        let logOutCell = self.tableView.cellForRowAtIndexPath(logOutIndexPath)
+        
+        if BlagaprintUser.currentUser() == nil {
+            logOutCell?.backgroundColor = UIColor.whiteColor()
+        } else {
+            logOutCell?.backgroundColor = AppAppearance.AppColors.cornflowerBlue
+        }
     }
     
     private func presentAlertWithMessage(message: String) {
@@ -107,7 +154,7 @@ class AccountTableViewController: UITableViewController {
     private func logOut() {
         self.logOutActivityIndicator.startAnimating()
         
-        User.logOutInBackgroundWithBlock { error in
+        BlagaprintUser.logOutInBackgroundWithBlock { error in
             self.logOutActivityIndicator.stopAnimating()
             
             if let error = error {
@@ -129,7 +176,7 @@ class AccountTableViewController: UITableViewController {
         
         activityIndicator.startAnimating()
         
-        User.currentUser()?.saveInBackgroundWithBlock() { (succeeded, error) in
+        BlagaprintUser.currentUser()?.saveInBackgroundWithBlock() { (succeeded, error) in
             activityIndicator.stopAnimating()
             
             if let error = error {
