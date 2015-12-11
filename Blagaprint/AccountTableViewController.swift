@@ -19,8 +19,8 @@ class AccountTableViewController: UITableViewController {
     }
     
     // MARK: - Properties
-    
-    var notLoggedAccountView: UserLogInEmptyView?
+
+    var logInAccountView: UserLogInEmptyView?
     
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var patronymicTextField: UITextField!
@@ -31,6 +31,7 @@ class AccountTableViewController: UITableViewController {
     
     @IBOutlet weak var logOutActivityIndicator: UIActivityIndicatorView!
     
+    // Index paths of the table view cells.
     private var nameIndexPath = NSIndexPath(forRow: 0, inSection: 0)
     private var patronymicIndexPath = NSIndexPath(forRow: 1, inSection: 0)
     private var surnameIndexPath = NSIndexPath(forRow: 2, inSection: 0)
@@ -40,8 +41,10 @@ class AccountTableViewController: UITableViewController {
     private var orderHistoryIndexPath = NSIndexPath(forRow: 0, inSection: 1)
     private var logOutIndexPath = NSIndexPath(forRow: 0, inSection: 2)
     
+    // Right bar button items.
     private var saveBarButtonItem: UIBarButtonItem?
     private var saveActivityIndicatorBarButtonItem: UIBarButtonItem?
+    private var logInBarButtonItem: UIBarButtonItem?
 
     // MARK: - View Life Cycle
     
@@ -52,18 +55,7 @@ class AccountTableViewController: UITableViewController {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
-        self.notLoggedAccountView?.removeFromSuperview()
-        
-        if BlagaprintUser.currentUser() == nil {
-            notLoggedAccountViewSetup()
-        } else {
-            userInfoSetup()
-            
-            self.saveBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Save, target: self, action: Selector("saveButtonDidPressed"))
-            self.navigationItem.rightBarButtonItem = saveBarButtonItem
-            
-            updateBackgroundColorOfLogOutCell()
-        }
+        viewSetup()
     }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
@@ -102,6 +94,24 @@ class AccountTableViewController: UITableViewController {
     
     // MARK: - Private Helper Methods
     
+    private func viewSetup() {
+        self.logInAccountView?.removeFromSuperview()
+        
+        if BlagaprintUser.currentUser() == nil {
+            self.logInBarButtonItem = UIBarButtonItem(image: UIImage(named: "Enter.png")!, style: .Plain, target: self, action: Selector("presentLoginViewController"))
+            self.navigationItem.rightBarButtonItem = self.logInBarButtonItem
+            
+            presentLogInAccountView()
+        } else {
+            userInfoSetup()
+            
+            self.saveBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Save, target: self, action: Selector("saveButtonDidPressed"))
+            self.navigationItem.rightBarButtonItem = saveBarButtonItem
+            
+            updateBackgroundColorOfLogOutCell()
+        }
+    }
+    
     private func userInfoSetup() {
         let user = BlagaprintUser.currentUser()
         self.nameTextField.text = user?.name
@@ -111,13 +121,13 @@ class AccountTableViewController: UITableViewController {
         self.emailLabel.text = user?.email
     }
     
-    private func notLoggedAccountViewSetup() {
-        self.notLoggedAccountView = NSBundle.mainBundle().loadNibNamed("UserLogInEmptyView", owner: self, options: nil).first as? UserLogInEmptyView
+    private func presentLogInAccountView() {
+        self.logInAccountView = NSBundle.mainBundle().loadNibNamed("UserLogInEmptyView", owner: self, options: nil).first as? UserLogInEmptyView
         
         // Handle callback when Log In button pressed.
         weak var weakSelf = self
-        self.notLoggedAccountView!.logInButtonDidPressedCallBack = {
-            weakSelf?.presentViewController(LoginViewController(), animated: true, completion: nil)
+        self.logInAccountView!.logInButtonDidPressedCallBack = {
+            weakSelf?.presentLoginViewController()
         }
         
         // Customize view frame
@@ -126,12 +136,16 @@ class AccountTableViewController: UITableViewController {
         let yCoordinate = navBarHeight + statusBarHeight
         let height = CGRectGetHeight(self.view.bounds) - yCoordinate
         let frame = CGRectMake(0, yCoordinate, CGRectGetWidth(self.view.bounds), height)
-        self.notLoggedAccountView?.frame = frame
+        self.logInAccountView?.frame = frame
         
         // Change background color of log out cell.
         updateBackgroundColorOfLogOutCell()
         
-        self.navigationController?.view.addSubview(self.notLoggedAccountView!)
+        self.navigationController?.view.addSubview(self.logInAccountView!)
+    }
+    
+    func presentLoginViewController() {
+        presentViewController(LoginViewController(), animated: true, completion: nil)
     }
     
     private func updateBackgroundColorOfLogOutCell() {
@@ -160,12 +174,12 @@ class AccountTableViewController: UITableViewController {
             if let error = error {
                 self.presentAlertWithMessage(error.userInfo["error"] as! String)
             } else {
-                self.navigationController?.popViewControllerAnimated(true)
+                self.viewSetup()
             }
         }
     }
     
-    // MARK: - IBActions
+    // MARK: - Actions
     
     func saveButtonDidPressed() {
         let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .White)
@@ -198,6 +212,7 @@ class AccountTableViewController: UITableViewController {
 
 // MARK: - UITextFieldDelegate -
 extension AccountTableViewController: UITextFieldDelegate {
+    
     func textFieldShouldBeginEditing(textField: UITextField) -> Bool {
         return !logOutActivityIndicator.isAnimating()
     }

@@ -1246,7 +1246,7 @@ If you already have an account, sign in to see your bag or navigate to the catal
                             </tableViewSection>
                             <tableViewSection id="pGW-e7-xMf" userLabel="LogOut">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="SY1-nd-nXd" userLabel="logOutCell">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="SY1-nd-nXd" userLabel="logOutCell">
                                         <rect key="frame" x="0.0" y="509" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="SY1-nd-nXd" id="1Ps-Xl-JEW">

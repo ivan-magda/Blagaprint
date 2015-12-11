@@ -14,7 +14,7 @@
                     <rect key="frame" x="41" y="264" width="239" height="41"/>
                     <animations/>
                     <string key="text">You are currently not logged in.
-Please log in or sign up.</string>
+Please login or sign up.</string>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>

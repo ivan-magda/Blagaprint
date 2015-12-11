@@ -116,10 +116,8 @@ class MainQueryTableViewController: PFQueryTableViewController {
         // and then subsequently do a query against the network.
         //
         // If there is no network connection, we will hit the cache first.
-        if self.objects?.count == 0 && self.parseCentral!.isParseReachable() {
-            query.cachePolicy = .NetworkElseCache
-        } else if self.objects?.count == 0 || !self.parseCentral!.isParseReachable() {
-            query.cachePolicy = .CacheElseNetwork
+        if self.objects?.count == 0 || !self.parseCentral!.isParseReachable() {
+            query.cachePolicy = .CacheThenNetwork
         }
         
         return query
