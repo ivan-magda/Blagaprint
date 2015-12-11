@@ -19,7 +19,7 @@ class AccountTableViewController: UITableViewController {
     }
     
     // MARK: - Properties
-
+    
     var logInAccountView: UserLogInEmptyView?
     
     @IBOutlet weak var nameTextField: UITextField!
@@ -41,11 +41,17 @@ class AccountTableViewController: UITableViewController {
     private var orderHistoryIndexPath = NSIndexPath(forRow: 0, inSection: 1)
     private var logOutIndexPath = NSIndexPath(forRow: 0, inSection: 2)
     
+    // Holds input info from text fields.
+    private var name: String?
+    private var patronymic: String?
+    private var surname: String?
+    private var phoneNumber: String?
+    
     // Right bar button items.
     private var saveBarButtonItem: UIBarButtonItem?
     private var saveActivityIndicatorBarButtonItem: UIBarButtonItem?
     private var logInBarButtonItem: UIBarButtonItem?
-
+    
     // MARK: - View Life Cycle
     
     override func viewDidLoad() {
@@ -81,13 +87,24 @@ class AccountTableViewController: UITableViewController {
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         
-        if indexPath == logOutIndexPath {
+        switch indexPath {
+        case nameIndexPath:
+            nameTextField.becomeFirstResponder()
+        case patronymicIndexPath:
+            patronymicTextField.becomeFirstResponder()
+        case surnameIndexPath:
+            surnameTextField.becomeFirstResponder()
+        case phoneNumberIndexPath:
+            phoneNumberTextField.becomeFirstResponder()
+        case logOutIndexPath:
             logOut()
+        default:
+            break
         }
     }
-
+    
     // MARK: - Navigation
-
+    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
     }
@@ -108,17 +125,25 @@ class AccountTableViewController: UITableViewController {
             self.saveBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Save, target: self, action: Selector("saveButtonDidPressed"))
             self.navigationItem.rightBarButtonItem = saveBarButtonItem
             
+            updateSaveButtonEnabledState()
             updateBackgroundColorOfLogOutCell()
         }
     }
     
     private func userInfoSetup() {
-        let user = BlagaprintUser.currentUser()
-        self.nameTextField.text = user?.name
-        self.patronymicTextField.text = user?.patronymic
-        self.surnameTextField.text = user?.surname
-        self.phoneNumberTextField.text = user?.phoneNumber
-        self.emailLabel.text = user?.email
+        let user = BlagaprintUser.currentUser()!
+        
+        self.name = user.name
+        self.patronymic = user.patronymic
+        self.surname = user.surname
+        self.phoneNumber = user.phoneNumber
+        
+        self.nameTextField.text = name
+        self.patronymicTextField.text = patronymic
+        self.surnameTextField.text = surname
+        self.phoneNumberTextField.text = phoneNumber
+        
+        self.emailLabel.text = user.email
     }
     
     private func presentLogInAccountView() {
@@ -158,8 +183,21 @@ class AccountTableViewController: UITableViewController {
         }
     }
     
-    private func presentAlertWithMessage(message: String) {
-        let alert = UIAlertController(title: NSLocalizedString("Error", comment: ""), message: message, preferredStyle: .Alert)
+    private func updateSaveButtonEnabledState() {
+        let user = BlagaprintUser.currentUser()
+        
+        if user?.name != name ||
+           user?.patronymic != patronymic ||
+           user?.surname != surname ||
+           user?.phoneNumber != phoneNumber {
+            self.saveBarButtonItem?.enabled = true
+        } else {
+            self.saveBarButtonItem?.enabled = false
+        }
+    }
+    
+    private func presentAlert(title title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .Alert)
         alert.addAction(UIAlertAction(title: "Ok", style: .Cancel, handler: nil))
         
         self.presentViewController(alert, animated: true, completion: nil)
@@ -172,7 +210,7 @@ class AccountTableViewController: UITableViewController {
             self.logOutActivityIndicator.stopAnimating()
             
             if let error = error {
-                self.presentAlertWithMessage(error.userInfo["error"] as! String)
+                self.presentAlert(title: NSLocalizedString("Error", comment: ""), message: (error.userInfo["error"] as! String))
             } else {
                 self.viewSetup()
             }
@@ -182,6 +220,48 @@ class AccountTableViewController: UITableViewController {
     // MARK: - Actions
     
     func saveButtonDidPressed() {
+        self.view.endEditing(true)
+        
+        // Count for empty text fields.
+        let emptyFields = [nameTextField, patronymicTextField, surnameTextField, phoneNumberTextField].filter { (textField) in textField.text?.characters.count == 0 }.reduce(0) { (total, textField) in
+            total + 1
+        }
+        
+        // Validate inputs info.
+        if emptyFields > 1 {
+            presentAlert(title: "", message: NSLocalizedString("Please, enter all data", comment: "Message for alert controller in accountVC"))
+            
+            return
+        } else if emptyFields == 1 {
+            var message: String?
+            
+            if nameTextField.text == "" {
+                message = NSLocalizedString("Please, enter your name", comment: "Message for alert")
+            } else if patronymicTextField.text == "" {
+                message = NSLocalizedString("Please, enter your patronymic", comment: "Message for alert")
+            } else if surnameTextField.text == "" {
+                message = NSLocalizedString("Please, enter your surname", comment: "Message for alert")
+            } else if phoneNumberTextField.text == "" {
+                message = NSLocalizedString("Please, enter your phone number", comment: "Message for alert")
+            }
+            
+            guard message != nil else {
+                return
+            }
+            
+            presentAlert(title: "", message: message!)
+            
+            return
+        }
+        
+        let length = phoneNumberTextField.text?.characters.count
+        if length > 0 && length < 14 {
+            presentAlert(title: "", message: NSLocalizedString("Incorrect phone number", comment: "Message for alert"))
+            
+            return
+        }
+        
+        // Present activity indicator.
         let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .White)
         activityIndicator.hidesWhenStopped = true
         
@@ -190,11 +270,20 @@ class AccountTableViewController: UITableViewController {
         
         activityIndicator.startAnimating()
         
+        // Update info and save it.
+        let user = BlagaprintUser.currentUser()!
+        user.name = name
+        user.patronymic = patronymic
+        user.surname = surname
+        user.phoneNumber = phoneNumber
+        
         BlagaprintUser.currentUser()?.saveInBackgroundWithBlock() { (succeeded, error) in
             activityIndicator.stopAnimating()
             
             if let error = error {
-                self.presentAlertWithMessage(error.userInfo["error"] as! String)
+                self.presentAlert(title: NSLocalizedString("Error", comment: ""), message: error.userInfo["error"] as! String)
+            } else if succeeded {
+                self.presentAlert(title: "", message: NSLocalizedString("Updated", comment: "Message for alert"))
             }
         }
     }
@@ -207,13 +296,95 @@ class AccountTableViewController: UITableViewController {
         self.tableView.selectRowAtIndexPath(logOutIndexPath, animated: false, scrollPosition: UITableViewScrollPosition.None)
         self.tableView(self.tableView, didSelectRowAtIndexPath: logOutIndexPath)
     }
-
+    
 }
 
 // MARK: - UITextFieldDelegate -
 extension AccountTableViewController: UITextFieldDelegate {
     
+    /// Return formatted phone number string.
+    private func formatPhoneNumber(var simpleNumber: String, deleteLastChar: Bool) -> String {
+        let length = simpleNumber.characters.count
+        
+        if length == 0 {
+            return ""
+        }
+        
+        // use regex to remove non-digits(including spaces) so we are left with just the numbers
+        do {
+            let regex = try NSRegularExpression(pattern: "[\\s-\\(\\)]", options: .CaseInsensitive)
+            
+            var range = NSMakeRange(0, length)
+            simpleNumber = regex.stringByReplacingMatchesInString(simpleNumber, options: NSMatchingOptions(rawValue: 0), range: range, withTemplate: "")
+            
+            // check if the number is to long
+            if simpleNumber.characters.count > 10 {
+                // remove last extra chars.
+                simpleNumber = (simpleNumber as NSString).substringToIndex(10)
+            }
+            
+            if deleteLastChar {
+                // should we delete the last digit?
+                simpleNumber = (simpleNumber as NSString).substringToIndex(simpleNumber.characters.count - 1)
+            }
+            
+            // 123 456 7890
+            // format the number.. if it's less then 7 digits.. then use this regex.
+            range = NSMakeRange(0, simpleNumber.characters.count)
+            
+            if simpleNumber.characters.count < 7 {
+                simpleNumber = (simpleNumber as NSString).stringByReplacingOccurrencesOfString("(\\d{3})(\\d+)", withString: "($1) $2", options: .RegularExpressionSearch, range: range)
+            } else {
+                simpleNumber = (simpleNumber as NSString).stringByReplacingOccurrencesOfString("(\\d{3})(\\d{3})(\\d+)", withString: "($1) $2-$3", options: .RegularExpressionSearch, range: range)
+            }
+            
+            return simpleNumber
+        } catch let error as NSError {
+            print("Error: \(error.localizedDescription)")
+        }
+        
+        return ""
+    }
+    
     func textFieldShouldBeginEditing(textField: UITextField) -> Bool {
         return !logOutActivityIndicator.isAnimating()
+    }
+    
+    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
+        // Find out what the text field will be after adding the current edit
+        let text = (textField.text! as NSString).stringByReplacingCharactersInRange(range, withString: string)
+        
+        switch textField.tag {
+        case TextFieldTag.name.rawValue:
+            self.name = text
+        case TextFieldTag.patronymic.rawValue:
+            self.patronymic = text
+        case TextFieldTag.surname.rawValue:
+            self.surname = text
+        case TextFieldTag.phoneNumber.rawValue:
+            if range.length == 1 {
+                // Delete button was hit.. so tell the method to delete the last char.
+                phoneNumber = formatPhoneNumber(text, deleteLastChar: true)
+                textField.text = phoneNumber
+            } else {
+                phoneNumber = formatPhoneNumber(text, deleteLastChar: false)
+                textField.text = phoneNumber
+            }
+            updateSaveButtonEnabledState()
+            
+            return false
+        default:
+            break
+        }
+        
+        updateSaveButtonEnabledState()
+        
+        return true
+    }
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        
+        return true
     }
 }
