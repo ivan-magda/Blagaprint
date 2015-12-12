@@ -1,51 +1,123 @@
 
-/* Class = "UINavigationItem"; title = "Библиотека"; ObjectID = "55W-X4-BsO"; */
+/* Class = "UITabBarItem"; title = "Catalog"; ObjectID = "1Rs-pw-Uxp"; */
+"1Rs-pw-Uxp.title" = "Каталог";
+
+/* Class = "UIButton"; normalTitle = "Log Out"; ObjectID = "1s7-Jr-RbZ"; */
+"1s7-Jr-RbZ.normalTitle" = "Выйти";
+
+/* Class = "UITableViewSection"; headerTitle = "My Info"; ObjectID = "2qn-Ib-pGJ"; */
+"2qn-Ib-pGJ.headerTitle" = "Мои Данные";
+
+/* Class = "UILabel"; text = "Change password"; ObjectID = "3Yh-Ic-7IQ"; */
+"3Yh-Ic-7IQ.text" = "Сменить пароль";
+
+/* Class = "UINavigationItem"; title = "Cup"; ObjectID = "4uU-ns-14I"; */
+"4uU-ns-14I.title" = "Кружка";
+
+/* Class = "UINavigationItem"; title = "Library"; ObjectID = "55W-X4-BsO"; */
 "55W-X4-BsO.title" = "Библиотека";
 
-/* Class = "UIBarButtonItem"; title = "Log Out"; ObjectID = "8uN-YH-ugM"; */
-"8uN-YH-ugM.title" = "Log Out";
+/* Class = "UILabel"; text = "Phone number"; ObjectID = "BUG-sM-U6U"; */
+"BUG-sM-U6U.text" = "Номер телефона";
 
-/* Class = "UILabel"; text = "Изображение"; ObjectID = "Gf3-t5-ryh"; */
+/* Class = "UILabel"; text = "Name"; ObjectID = "Dv6-60-yRX"; */
+"Dv6-60-yRX.text" = "Имя";
+
+/* Class = "UITableViewSection"; headerTitle = "My Orders"; ObjectID = "GQu-5x-QeT"; */
+"GQu-5x-QeT.headerTitle" = "Мои Заказы";
+
+/* Class = "UILabel"; text = "Image"; ObjectID = "Gf3-t5-ryh"; */
 "Gf3-t5-ryh.text" = "Изображение";
 
-/* Class = "UILabel"; text = "Описание"; ObjectID = "L6h-lG-yqa"; */
+/* Class = "UILabel"; text = "New password"; ObjectID = "Gpu-XF-me6"; */
+"Gpu-XF-me6.text" = "Новый пароль";
+
+/* Class = "UILabel"; text = "There are no items in your bag.\nIf you already have an account, sign in to see your bag or navigate to the catalog and make a purchase."; ObjectID = "HJO-Tt-gpR"; */
+"HJO-Tt-gpR.text" = "У вас в корзине нет ни одного товара. Войдите в свой аккаунт для синхронизации данных или перейдите в каталог, чтобы выбрать покупки.";
+
+/* Class = "UILabel"; text = "Email adress"; ObjectID = "I5x-nr-bDM"; */
+"I5x-nr-bDM.text" = "Эл. почта";
+
+/* Class = "UIBarButtonItem"; title = "Image"; ObjectID = "KbC-32-69N"; */
+"KbC-32-69N.title" = "Изображение";
+
+/* Class = "UILabel"; text = "Description"; ObjectID = "L6h-lG-yqa"; */
 "L6h-lG-yqa.text" = "Описание";
 
 /* Class = "UILabel"; text = "Текст"; ObjectID = "RRF-pj-yNP"; */
 "RRF-pj-yNP.text" = "Текст";
 
-/* Class = "UILabel"; text = "Фон"; ObjectID = "SgF-Fw-jpq"; */
+/* Class = "UILabel"; text = "Background"; ObjectID = "SgF-Fw-jpq"; */
 "SgF-Fw-jpq.text" = "Фон";
 
-/* Class = "UILabel"; text = "Изображение"; ObjectID = "SlR-30-Ug2"; */
+/* Class = "UILabel"; text = "Image"; ObjectID = "SlR-30-Ug2"; */
 "SlR-30-Ug2.text" = "Изображение";
 
-/* Class = "UINavigationItem"; title = "Палитра"; ObjectID = "TcF-T2-lmk"; */
+/* Class = "UINavigationItem"; title = "Palette"; ObjectID = "TcF-T2-lmk"; */
 "TcF-T2-lmk.title" = "Палитра";
+
+/* Class = "UITabBarItem"; title = "Bag"; ObjectID = "TeZ-O9-gor"; */
+"TeZ-O9-gor.title" = "Корзина";
 
 /* Class = "UILabel"; text = "iPhone 5/5S"; ObjectID = "U4N-Fd-6Db"; */
 "U4N-Fd-6Db.text" = "iPhone 5/5S";
 
-/* Class = "UITextField"; placeholder = "Enter a text"; ObjectID = "WLl-QD-aoN"; */
-"WLl-QD-aoN.placeholder" = "Enter a text";
+/* Class = "UILabel"; text = "Surname"; ObjectID = "Vyl-If-zdf"; */
+"Vyl-If-zdf.text" = "Фамилия";
 
-/* Class = "UINavigationItem"; title = "Чехол"; ObjectID = "aY6-3t-LUO"; */
+/* Class = "UITextField"; placeholder = "Enter a text"; ObjectID = "WLl-QD-aoN"; */
+"WLl-QD-aoN.placeholder" = "Введите текст";
+
+/* Class = "UILabel"; text = "Email"; ObjectID = "XvD-G7-ZFo"; */
+"XvD-G7-ZFo.text" = "Email";
+
+/* Class = "UINavigationItem"; title = "Change Password"; ObjectID = "Z0i-Yq-yTX"; */
+"Z0i-Yq-yTX.title" = "Сменить Пароль";
+
+/* Class = "UINavigationItem"; title = "Case"; ObjectID = "aY6-3t-LUO"; */
 "aY6-3t-LUO.title" = "Чехол";
 
-/* Class = "UINavigationItem"; title = "Тарелка"; ObjectID = "bog-Dz-LcW"; */
+/* Class = "UILabel"; text = "Order history"; ObjectID = "atU-F6-vrB"; */
+"atU-F6-vrB.text" = "История заказов";
+
+/* Class = "UINavigationItem"; title = "Plate"; ObjectID = "bog-Dz-LcW"; */
 "bog-Dz-LcW.title" = "Тарелка";
 
-/* Class = "UILabel"; text = "Устройство"; ObjectID = "cyR-q6-O6W"; */
+/* Class = "UILabel"; text = "Device"; ObjectID = "cyR-q6-O6W"; */
 "cyR-q6-O6W.text" = "Устройство";
+
+/* Class = "UILabel"; text = "Current password"; ObjectID = "dk4-Lj-BAd"; */
+"dk4-Lj-BAd.text" = "Текущий пароль";
+
+/* Class = "UITabBarItem"; title = "Account"; ObjectID = "eat-kk-33J"; */
+"eat-kk-33J.title" = "Аккаунт";
 
 /* Class = "UINavigationItem"; title = "Blagaprint"; ObjectID = "fRJ-Gs-DIm"; */
 "fRJ-Gs-DIm.title" = "Blagaprint";
 
-/* Class = "UINavigationItem"; title = "Текст"; ObjectID = "hJd-f0-84b"; */
+/* Class = "UINavigationItem"; title = "Text"; ObjectID = "hJd-f0-84b"; */
 "hJd-f0-84b.title" = "Текст";
 
-/* Class = "UILabel"; text = "Device"; ObjectID = "o5F-lN-1rY"; */
-"o5F-lN-1rY.text" = "Device";
+/* Class = "UITextField"; placeholder = "(123) 456-7890 "; ObjectID = "iej-1l-6wv"; */
+"iej-1l-6wv.placeholder" = "(123) 456-7890 ";
 
-/* Class = "UINavigationItem"; title = "Фоторамка"; ObjectID = "sWm-TA-c7q"; */
+/* Class = "UINavigationItem"; title = "Bag"; ObjectID = "mhH-65-0ZF"; */
+"mhH-65-0ZF.title" = "Корзина";
+
+/* Class = "UILabel"; text = "Device"; ObjectID = "o5F-lN-1rY"; */
+"o5F-lN-1rY.text" = "Устройство";
+
+/* Class = "UILabel"; text = "Save"; ObjectID = "p6E-S7-Jen"; */
+"p6E-S7-Jen.text" = "Сохранить";
+
+/* Class = "UINavigationItem"; title = "Frame"; ObjectID = "sWm-TA-c7q"; */
 "sWm-TA-c7q.title" = "Фоторамка";
+
+/* Class = "UINavigationItem"; title = "Account"; ObjectID = "uMm-RJ-XGQ"; */
+"uMm-RJ-XGQ.title" = "Аккаунт";
+
+/* Class = "UILabel"; text = "Patronymic"; ObjectID = "vWV-he-VSH"; */
+"vWV-he-VSH.text" = "Отчество";
+
+/* Class = "UILabel"; text = "Repeat new password"; ObjectID = "y3V-eP-x35"; */
+"y3V-eP-x35.text" = "Повторите новый пароль";

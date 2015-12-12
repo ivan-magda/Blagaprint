@@ -81,7 +81,7 @@
             </objects>
             <point key="canvasLocation" x="459" y="243"/>
         </scene>
-        <!--Фоторамка-->
+        <!--Frame-->
         <scene sceneID="zqT-tx-zQy">
             <objects>
                 <tableViewController id="jf1-OA-wt3" customClass="FrameConstructorTableViewController" customModule="Blagaprint" customModuleProvider="target" sceneMemberID="viewController">
@@ -199,8 +199,8 @@
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Изображение" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SlR-30-Ug2">
-                                            <rect key="frame" x="15" y="11" width="112" height="21"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Image" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SlR-30-Ug2">
+                                            <rect key="frame" x="15" y="11" width="47" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
@@ -234,7 +234,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Описание" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L6h-lG-yqa">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L6h-lG-yqa">
                                             <rect key="frame" x="15" y="11" width="297" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -258,7 +258,7 @@
                             <outlet property="delegate" destination="jf1-OA-wt3" id="qAI-Y3-ecD"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Фоторамка" id="sWm-TA-c7q">
+                    <navigationItem key="navigationItem" title="Frame" id="sWm-TA-c7q">
                         <barButtonItem key="rightBarButtonItem" systemItem="done" id="CGC-aC-ahf">
                             <connections>
                                 <action selector="doneButtonPressed:" destination="jf1-OA-wt3" id="gA5-JZ-DHm"/>
@@ -270,7 +270,7 @@
             </objects>
             <point key="canvasLocation" x="1330" y="-89"/>
         </scene>
-        <!--Кружка-->
+        <!--Cup-->
         <scene sceneID="yE3-j2-aAZ">
             <objects>
                 <viewController id="bNt-aM-HSw" customClass="CupViewController" customModule="Blagaprint" customModuleProvider="target" sceneMemberID="viewController">
@@ -315,7 +315,7 @@
                             <constraint firstItem="ZRn-L8-ZTN" firstAttribute="top" secondItem="dGB-q5-4Yf" secondAttribute="bottom" constant="8" symbolic="YES" id="uh9-La-M6k"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Кружка" id="4uU-ns-14I">
+                    <navigationItem key="navigationItem" title="Cup" id="4uU-ns-14I">
                         <barButtonItem key="rightBarButtonItem" title="Image" id="KbC-32-69N">
                             <connections>
                                 <action selector="imageButtonDidPressed:" destination="bNt-aM-HSw" id="Y9t-xJ-bxr"/>
@@ -332,7 +332,7 @@
             </objects>
             <point key="canvasLocation" x="1823" y="243"/>
         </scene>
-        <!--Тарелка-->
+        <!--Plate-->
         <scene sceneID="qHQ-o1-zvX">
             <objects>
                 <tableViewController id="Q3z-0e-b2u" customClass="PlateTableViewController" customModule="Blagaprint" customModuleProvider="target" sceneMemberID="viewController">
@@ -387,8 +387,8 @@
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Изображение" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gf3-t5-ryh">
-                                            <rect key="frame" x="15" y="11" width="112" height="21"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Image" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gf3-t5-ryh">
+                                            <rect key="frame" x="15" y="11" width="47" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
@@ -427,7 +427,7 @@
                             <outlet property="delegate" destination="Q3z-0e-b2u" id="wED-nd-Kkj"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Тарелка" id="bog-Dz-LcW">
+                    <navigationItem key="navigationItem" title="Plate" id="bog-Dz-LcW">
                         <barButtonItem key="rightBarButtonItem" systemItem="done" id="GYQ-d3-2rZ">
                             <connections>
                                 <action selector="doneButtonPressed:" destination="Q3z-0e-b2u" id="Cgp-cS-CiW"/>
@@ -437,14 +437,14 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="z7u-Tr-hN5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3766" y="587"/>
+            <point key="canvasLocation" x="1325" y="603"/>
         </scene>
-        <!--Чехол-->
+        <!--Case-->
         <scene sceneID="RYb-9i-dgl">
             <objects>
                 <tableViewController id="Xxy-AC-J3P" customClass="CaseConstructorTableViewController" customModule="Blagaprint" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="static" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="spy-65-JpJ">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="663"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <view key="tableHeaderView" contentMode="scaleToFill" id="UgT-nP-BYM" userLabel="headerView">
@@ -476,8 +476,8 @@
                                             <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="750" verticalHuggingPriority="251" text="Устройство" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cyR-q6-O6W">
-                                                    <rect key="frame" x="15" y="11" width="93" height="21"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="750" verticalHuggingPriority="251" text="Device" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cyR-q6-O6W">
+                                                    <rect key="frame" x="15" y="11" width="53" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -510,8 +510,8 @@
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="750" verticalHuggingPriority="251" text="Фон" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SgF-Fw-jpq">
-                                                    <rect key="frame" x="15" y="11" width="34" height="21"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="750" verticalHuggingPriority="251" text="Background" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SgF-Fw-jpq">
+                                                    <rect key="frame" x="15" y="11" width="92" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -544,8 +544,8 @@
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="750" verticalHuggingPriority="251" text="Текст" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RRF-pj-yNP">
-                                                    <rect key="frame" x="15" y="11" width="45" height="21"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="750" verticalHuggingPriority="251" text="Text" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RRF-pj-yNP">
+                                                    <rect key="frame" x="15" y="11" width="33" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -579,7 +579,7 @@
                             <outlet property="delegate" destination="Xxy-AC-J3P" id="FdO-Gz-aAP"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Чехол" id="aY6-3t-LUO">
+                    <navigationItem key="navigationItem" title="Case" id="aY6-3t-LUO">
                         <barButtonItem key="rightBarButtonItem" systemItem="done" id="rTw-Mw-vqn">
                             <connections>
                                 <action selector="doneButtonDidPressed:" destination="Xxy-AC-J3P" id="2yc-BL-1Ph"/>
@@ -587,7 +587,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <size key="freeformSize" width="320" height="600"/>
+                    <size key="freeformSize" width="320" height="663"/>
                     <connections>
                         <outlet property="caseView" destination="9P3-AA-IEw" id="S4x-ay-i0p"/>
                         <outlet property="caseViewWidthConstraint" destination="dr1-Mg-t4Q" id="tib-ID-aTy"/>
@@ -601,7 +601,7 @@
             </objects>
             <point key="canvasLocation" x="890" y="-1245"/>
         </scene>
-        <!--Палитра-->
+        <!--Palette-->
         <scene sceneID="HOr-Af-TLE">
             <objects>
                 <collectionViewController id="A3U-2g-JNR" customClass="SelectBackgroundCollectionViewController" customModule="Blagaprint" customModuleProvider="target" sceneMemberID="viewController">
@@ -646,7 +646,7 @@
                             <outlet property="delegate" destination="A3U-2g-JNR" id="wSv-W7-6iw"/>
                         </connections>
                     </collectionView>
-                    <navigationItem key="navigationItem" title="Палитра" id="TcF-T2-lmk">
+                    <navigationItem key="navigationItem" title="Palette" id="TcF-T2-lmk">
                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="McF-Sd-cG2">
                             <connections>
                                 <action selector="cancelButtonDidPressed:" destination="A3U-2g-JNR" id="kpE-s5-ZDY"/>
@@ -668,7 +668,7 @@
             <objects>
                 <tableViewController id="rzw-l5-t8A" customClass="SelectDeviceTableViewController" customModule="Blagaprint" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="2iS-kr-sgp">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="663"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
@@ -698,9 +698,9 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="E0P-D1-IXY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="890" y="-533"/>
+            <point key="canvasLocation" x="890" y="-477.5"/>
         </scene>
-        <!--Библиотека-->
+        <!--Library-->
         <scene sceneID="Jvg-mT-6N4">
             <objects>
                 <collectionViewController id="MPQ-Nr-mxS" customClass="PhotoLibraryCollectionViewController" customModule="Blagaprint" customModuleProvider="target" sceneMemberID="viewController">
@@ -744,7 +744,7 @@
                             <outlet property="delegate" destination="MPQ-Nr-mxS" id="ftF-e8-sVj"/>
                         </connections>
                     </collectionView>
-                    <navigationItem key="navigationItem" title="Библиотека" id="55W-X4-BsO">
+                    <navigationItem key="navigationItem" title="Library" id="55W-X4-BsO">
                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="CWd-mg-8N0">
                             <connections>
                                 <action selector="cancelButtonDidPressed:" destination="MPQ-Nr-mxS" id="Epr-cP-r1T"/>
@@ -779,7 +779,7 @@
             </objects>
             <point key="canvasLocation" x="1325" y="-1439"/>
         </scene>
-        <!--Текст-->
+        <!--Text-->
         <scene sceneID="8Fh-Aq-Wnk">
             <objects>
                 <viewController id="F3u-4f-dE3" customClass="TextEditingViewController" customModule="Blagaprint" customModuleProvider="target" sceneMemberID="viewController">
@@ -807,7 +807,7 @@
                             <constraint firstItem="WLl-QD-aoN" firstAttribute="leading" secondItem="LdC-qA-VFk" secondAttribute="leading" constant="20" symbolic="YES" id="o5a-ng-Wdi"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Текст" id="hJd-f0-84b">
+                    <navigationItem key="navigationItem" title="Text" id="hJd-f0-84b">
                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="VVa-DI-O7B">
                             <connections>
                                 <action selector="cancelButtonDidPressed:" destination="F3u-4f-dE3" id="1VH-Js-GeY"/>
@@ -896,10 +896,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HJO-Tt-gpR">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HJO-Tt-gpR">
                                 <rect key="frame" x="20" y="72" width="280" height="82"/>
-                                <string key="text">There are no items in your bag.
-If you already have an account, sign in to see your bag or navigate to the catalog and make a purchase.</string>
+                                <string key="text">There are no items in your bag. If you already have an account, sign in to see your bag or navigate to the catalog and make a purchase.</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
