@@ -33,9 +33,6 @@ class MainQueryTableViewController: PFQueryTableViewController {
     
     var parseCentral: ParseCentral?
     
-    /// View that presenting when navigation bar is hidden.
-    private var statusBarUnderLay: UIView?
-    
     // MARK: - Init
     
     required init?(coder aDecoder: NSCoder) {
@@ -57,65 +54,15 @@ class MainQueryTableViewController: PFQueryTableViewController {
         super.viewDidLoad()
         
         self.tableView.rowHeight = categoryTableViewCellHeight
-        
-        let scrollView = self.tableView as UIScrollView
-        scrollView.delegate = self
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        
-        // Hide navigation bar on swipe.
-        if self.navigationController!.respondsToSelector(Selector("barHideOnSwipeGestureRecognizer")) {
-            self.navigationController!.hidesBarsOnSwipe = true
-        }
-    }
-    
-    // MARK: - UIScrollViewDelegate
-    
-    override func scrollViewDidScroll(scrollView: UIScrollView) {
-        updateStatusBarUnderLayView()
-    }
-    
-    override func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
-        updateStatusBarUnderLayView()
-    }
-    
-    // MARK: - Status bar under lay view
-    
-    // The statusBarFrame returns the frame in screen coordinates. I believe the correct way to get what this corresponds to in view coordinates is to do the following:
-    private func statusbarFrameViewRect(view: UIView) -> CGRect {
-        let statusBarFrame = UIApplication.sharedApplication().statusBarFrame
-        let statusBarWindowRect = view.window!.convertRect(statusBarFrame, fromWindow: nil)
-        let statusBarViewRect = view.convertRect(statusBarWindowRect, fromView: nil)
-        
-        return statusBarViewRect
-    }
-    
-    private func updateStatusBarUnderLayView() {
-        let navigationController = self.navigationController!
-        let isNavigationBarHidden = navigationController.navigationBar.hidden
-        let view = navigationController.view
-        
-        if isNavigationBarHidden {
-            if let statusBarUnderLay = self.statusBarUnderLay {
-                statusBarUnderLay.frame = self.statusbarFrameViewRect(view)
-            } else {
-                statusBarUnderLay = UIView(frame: self.statusbarFrameViewRect(view))
-                statusBarUnderLay!.backgroundColor = AppAppearance.AppColors.tuna
-                view.addSubview(self.statusBarUnderLay!)
-            }
-        } else if !isNavigationBarHidden && statusBarUnderLay != nil {
-            statusBarUnderLay!.removeFromSuperview()
-            statusBarUnderLay = nil
-        }
     }
     
     // MARK: - Navigation
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        self.navigationController?.hidesBarsOnSwipe = false
-        
         if segue.identifier == SegueIdentifier.PhoneCaseConstructor.rawValue {
             print("Segue to PhoneCase")
         } else if segue.identifier == SegueIdentifier.FrameConstructor.rawValue {
