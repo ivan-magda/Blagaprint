@@ -105,9 +105,13 @@ class ChangePasswordTableViewController: UITableViewController {
         }
     }
     
+    private func presentAlert(title title: String, message: String) {
+        let alert = UIAlertController(title: "", message: message, preferredStyle: .Alert)
+        alert.addAction(UIAlertAction(title: "Ok", style: .Cancel, handler: nil))
+        self.presentViewController(alert, animated: true, completion: nil)
+    }
+    
     private func save() {
-        let user = BlagaprintUser.currentUser()!
-        
         // Validate input
         if newPassword != repeatedNewPassword {
             presentAlert(title: "", message: NSLocalizedString("Field confirmation is not the same as the new password field", comment: "Change password message"))
@@ -124,9 +128,18 @@ class ChangePasswordTableViewController: UITableViewController {
             return
         }
         
+        // Change old password with new.
+        
         saveActivityIndicator.startAnimating()
         
-        BlagaprintUser.logInWithUsernameInBackground(user.username!, password: currentPassword) { (user, error) in
+        let username = BlagaprintUser.currentUser()!.username!
+        
+        // Check current password by try to logging in using there current username 
+        // and the password that user entered.
+        // If the loggin is successful the old password is correct.
+        BlagaprintUser.logInWithUsernameInBackground(username, password: currentPassword) { (user, error) in
+            
+            // If the loggin is failed the old password is incorrect.
             if let error = error {
                 self.saveActivityIndicator.stopAnimating()
                 
@@ -137,10 +150,10 @@ class ChangePasswordTableViewController: UITableViewController {
             }
             
             guard user != nil else {
-                print("User is nil")
                 return
             }
             
+            // Set the new password and save it.
             user!.password = self.newPassword
             user!.saveInBackgroundWithBlock { (succeeded, error) in
                 self.saveActivityIndicator.stopAnimating()
@@ -151,27 +164,38 @@ class ChangePasswordTableViewController: UITableViewController {
                 }
                 
                 if succeeded {
-                    let alert = UIAlertController(title: "", message: NSLocalizedString("Password successfully updated", comment: "Change password message"), preferredStyle: .Alert)
-                    alert.addAction(UIAlertAction(title: "Ok", style: .Cancel, handler: { action in
-                        self.navigationController?.popViewControllerAnimated(true)
-                    }))
-                    
-                    self.presentViewController(alert, animated: true, completion: nil)
-                } else {
-                    print("User password is not updated")
+                    // Log out and then log in with the new seted password.
+                    BlagaprintUser.logOut()
+                    BlagaprintUser.logInWithUsernameInBackground(username, password: self.newPassword) { (user, error) in
+                        if let error = error {
+                            self.presentAlert(title: NSLocalizedString("Error", comment: ""), message: error.userInfo["error"] as! String)
+                        } else {
+                            // Caches the user locally.
+                            BlagaprintUser.becomeInBackground(BlagaprintUser.currentUser()!.sessionToken!) { (user, error) in
+                                if let error = error {
+                                    self.presentAlert(title: NSLocalizedString("Error", comment: ""), message: error.userInfo["error"] as! String)
+                                } else {
+                                    // Password successfully changed.
+                                    let alert = UIAlertController(title: "", message: NSLocalizedString("Password successfully changed", comment: "Change password message"), preferredStyle: .Alert)
+                                    alert.addAction(UIAlertAction(title: "Ok", style: .Cancel, handler: { action in
+                                        self.navigationController?.popViewControllerAnimated(true)
+                                    }))
+                                    
+                                    self.presentViewController(alert, animated: true, completion: nil)
+                                }
+                            }
+                        }
+                    }
                 }
             }
         }
     }
     
-    private func presentAlert(title title: String, message: String) {
-        let alert = UIAlertController(title: "", message: message, preferredStyle: .Alert)
-        alert.addAction(UIAlertAction(title: "Ok", style: .Cancel, handler: nil))
-        self.presentViewController(alert, animated: true, completion: nil)
-    }
 }
 
+// MARK: - UITextFieldDelegate
 extension ChangePasswordTableViewController: UITextFieldDelegate {
+    
     func textFieldShouldBeginEditing(textField: UITextField) -> Bool {
         return !self.saveActivityIndicator.isAnimating()
     }
@@ -192,6 +216,11 @@ extension ChangePasswordTableViewController: UITextFieldDelegate {
         
         updateSaveCellBackgroundColor()
         
+        return true
+    }
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
         return true
     }
 }

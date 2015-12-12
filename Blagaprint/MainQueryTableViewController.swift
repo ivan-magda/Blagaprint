@@ -132,7 +132,13 @@ class MainQueryTableViewController: PFQueryTableViewController {
         if let objects = self.objects {
             let category = objects[indexPath.section] as! Category
             categoryCell.categoryImageView?.file = category.image
-            categoryCell.categoryImageView?.loadInBackground()
+            categoryCell.categoryImageView?.loadInBackground({ (image, error) in
+                if let error = error {
+                    print("Error: \(error.localizedDescription)")
+                } else {
+                    categoryCell.categoryImageView?.image = image
+                }
+            })
         }
         
         return categoryCell
