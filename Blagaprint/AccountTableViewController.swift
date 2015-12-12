@@ -284,6 +284,8 @@ class AccountTableViewController: UITableViewController {
                 self.presentAlert(title: NSLocalizedString("Error", comment: ""), message: error.userInfo["error"] as! String)
             } else if succeeded {
                 self.presentAlert(title: "", message: NSLocalizedString("Updated", comment: "Message for alert"))
+            } else {
+                print("User info is not updated")
             }
         }
     }
