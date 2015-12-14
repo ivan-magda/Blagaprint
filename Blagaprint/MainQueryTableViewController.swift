@@ -131,12 +131,20 @@ class MainQueryTableViewController: PFQueryTableViewController {
         
         if let objects = self.objects {
             let category = objects[indexPath.section] as! Category
+            
+            categoryCell.categoryImageView?.image = UIImage()
             categoryCell.categoryImageView?.file = category.image
+            
+            categoryCell.imageDownloadingActivityIndicator.startAnimating()
+            
+            // Remote image downloading.
+            weak var weakCell = categoryCell
             categoryCell.categoryImageView?.loadInBackground({ (image, error) in
                 if let error = error {
-                    print("Error: \(error.localizedDescription)")
+                    print("Error: \(error.userInfo["error"])")
                 } else {
-                    categoryCell.categoryImageView?.image = image
+                    weakCell?.imageDownloadingActivityIndicator.stopAnimating()
+                    weakCell?.categoryImageView?.image = image
                 }
             })
         }

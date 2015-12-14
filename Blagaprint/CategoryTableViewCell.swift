@@ -12,6 +12,7 @@ class CategoryTableViewCell: PFTableViewCell {
     // MARK: Properties
     
     @IBOutlet weak var categoryImageView: PFImageView?
+    @IBOutlet weak var imageDownloadingActivityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var categoryNameLabel: UILabel?
     
 }

@@ -47,6 +47,10 @@ class AccountTableViewController: UITableViewController {
     private var surname: String?
     private var phoneNumber: String?
     
+    // Phone number lengths.
+    private let phoneNumberDigitsCount = 10
+    private let phoneNumberStringLength = 14
+    
     // Right bar button items.
     private var saveBarButtonItem: UIBarButtonItem?
     private var saveActivityIndicatorBarButtonItem: UIBarButtonItem?
@@ -255,7 +259,7 @@ class AccountTableViewController: UITableViewController {
         }
         
         let length = phoneNumberTextField.text?.characters.count
-        if length > 0 && length < 14 {
+        if length < phoneNumberStringLength {
             presentAlert(title: "", message: NSLocalizedString("Incorrect phone number", comment: "Message for alert"))
             
             return
@@ -320,9 +324,9 @@ extension AccountTableViewController: UITextFieldDelegate {
             simpleNumber = regex.stringByReplacingMatchesInString(simpleNumber, options: NSMatchingOptions(rawValue: 0), range: range, withTemplate: "")
             
             // check if the number is to long
-            if simpleNumber.characters.count > 10 {
+            if simpleNumber.characters.count > phoneNumberDigitsCount {
                 // remove last extra chars.
-                simpleNumber = (simpleNumber as NSString).substringToIndex(10)
+                simpleNumber = (simpleNumber as NSString).substringToIndex(phoneNumberDigitsCount)
             }
             
             if deleteLastChar {

@@ -431,7 +431,6 @@
 				50FD7F521BB903C200ABEC38 /* AppDelegate */,
 				50DD723A1BBED31B008A9B80 /* DataModel */,
 				50FD7F531BB903CC00ABEC38 /* ViewControllers */,
-				751DA9B81C19E3C800D10C24 /* AccountScene */,
 				50FD7F511BB903B700ABEC38 /* View */,
 				508503051BBAADCF00152131 /* Utility */,
 				502A8CB61BB80EAC0064E0DA /* Main.storyboard */,
@@ -579,6 +578,7 @@
 				75467C8A1C12EBA3008046A2 /* Login/SignUp */,
 				0CA50CE61C194EC500020150 /* CatalogScene */,
 				0CA50CE71C194EF700020150 /* ShoppingBagScene */,
+				751DA9B81C19E3C800D10C24 /* AccountScene */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
