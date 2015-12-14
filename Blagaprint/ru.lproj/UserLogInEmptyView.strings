@@ -1,0 +1,6 @@
+
+/* Class = "UILabel"; text = "You are currently not logged in.\nPlease login or sign up."; ObjectID = "POP-7x-vub"; */
+"POP-7x-vub.text" = "В настоящее время вы не авторизованы.\nПожалуйста войдите или создайте аккаунт.";
+
+/* Class = "UIButton"; normalTitle = "Log In"; ObjectID = "vsm-i1-pIX"; */
+"vsm-i1-pIX.normalTitle" = "Войти";
