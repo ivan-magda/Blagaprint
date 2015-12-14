@@ -47,9 +47,10 @@ class AccountTableViewController: UITableViewController {
     private var surname: String?
     private var phoneNumber: String?
     
-    // Phone number lengths.
+    // Phone number associated variables.
+    private let internationalCountryCode = "+7"
     private let phoneNumberDigitsCount = 10
-    private let phoneNumberStringLength = 14
+    private let phoneNumberStringLength = 17
     
     // Right bar button items.
     private var saveBarButtonItem: UIBarButtonItem?
@@ -128,6 +129,8 @@ class AccountTableViewController: UITableViewController {
             
             self.saveBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Save, target: self, action: Selector("saveButtonDidPressed"))
             self.navigationItem.rightBarButtonItem = saveBarButtonItem
+            
+            self.phoneNumberTextField.placeholder = "+7 (123) 456-7890"
             
             updateSaveButtonEnabledState()
             updateBackgroundColorOfLogOutCell()
@@ -308,52 +311,35 @@ class AccountTableViewController: UITableViewController {
 // MARK: - UITextFieldDelegate -
 extension AccountTableViewController: UITextFieldDelegate {
     
-    /// Return formatted phone number string.
-    private func formatPhoneNumber(var simpleNumber: String, deleteLastChar: Bool) -> String {
-        let length = simpleNumber.characters.count
+    private func getLength(number: String) -> Int {
+        return getDigitString(number).characters.count
+    }
+    
+    private func getDigitString(number: String) -> String {
+        var digitString = (number as NSString).stringByReplacingCharactersInRange(NSMakeRange(0, 3), withString: "")
+        digitString = digitString.stringByReplacingOccurrencesOfString("(", withString: "")
+        digitString = digitString.stringByReplacingOccurrencesOfString(")", withString: "")
+        digitString = digitString.stringByReplacingOccurrencesOfString(" ", withString: "")
+        digitString = digitString.stringByReplacingOccurrencesOfString("-", withString: "")
+        digitString = digitString.stringByReplacingOccurrencesOfString("+", withString: "")
         
-        if length == 0 {
-            return ""
-        }
-        
-        // use regex to remove non-digits(including spaces) so we are left with just the numbers
-        do {
-            let regex = try NSRegularExpression(pattern: "[\\s-\\(\\)]", options: .CaseInsensitive)
-            
-            var range = NSMakeRange(0, length)
-            simpleNumber = regex.stringByReplacingMatchesInString(simpleNumber, options: NSMatchingOptions(rawValue: 0), range: range, withTemplate: "")
-            
-            // check if the number is to long
-            if simpleNumber.characters.count > phoneNumberDigitsCount {
-                // remove last extra chars.
-                simpleNumber = (simpleNumber as NSString).substringToIndex(phoneNumberDigitsCount)
-            }
-            
-            if deleteLastChar {
-                // should we delete the last digit?
-                simpleNumber = (simpleNumber as NSString).substringToIndex(simpleNumber.characters.count - 1)
-            }
-            
-            // 123 456 7890
-            // format the number.. if it's less then 7 digits.. then use this regex.
-            range = NSMakeRange(0, simpleNumber.characters.count)
-            
-            if simpleNumber.characters.count < 7 {
-                simpleNumber = (simpleNumber as NSString).stringByReplacingOccurrencesOfString("(\\d{3})(\\d+)", withString: "($1) $2", options: .RegularExpressionSearch, range: range)
-            } else {
-                simpleNumber = (simpleNumber as NSString).stringByReplacingOccurrencesOfString("(\\d{3})(\\d{3})(\\d+)", withString: "($1) $2-$3", options: .RegularExpressionSearch, range: range)
-            }
-            
-            return simpleNumber
-        } catch let error as NSError {
-            print("Error: \(error.localizedDescription)")
-        }
-        
-        return ""
+        return digitString
     }
     
     func textFieldShouldBeginEditing(textField: UITextField) -> Bool {
-        return !logOutActivityIndicator.isAnimating()
+        
+        if logOutActivityIndicator.isAnimating() {
+            return false
+        }
+        
+        // Set the placeholder text for the phone number text field.
+        if textField.tag == TextFieldTag.phoneNumber.rawValue, let text = textField.text {
+            if text.characters.count == 0 {
+                textField.text = "\(internationalCountryCode) ("
+            }
+        }
+        
+        return true
     }
     
     func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
@@ -368,17 +354,49 @@ extension AccountTableViewController: UITextFieldDelegate {
         case TextFieldTag.surname.rawValue:
             self.surname = text
         case TextFieldTag.phoneNumber.rawValue:
-            if range.length == 1 {
-                // Delete button was hit.. so tell the method to delete the last char.
-                phoneNumber = formatPhoneNumber(text, deleteLastChar: true)
-                textField.text = phoneNumber
-            } else {
-                phoneNumber = formatPhoneNumber(text, deleteLastChar: false)
-                textField.text = phoneNumber
+            
+          // +7 (xxx) 216-5382
+            
+            let length = getLength(textField.text!)
+            
+            let delete = range.length > 0
+            
+            if length == phoneNumberDigitsCount {
+                if !delete {
+                    updateSaveButtonEnabledState()
+                    
+                    return false
+                }
             }
+            
+            if length == 0 && delete {
+                updateSaveButtonEnabledState()
+                
+                return false
+            }
+            
+            let num: NSString = getDigitString(textField.text!)
+            
+            if length == 3 {
+                textField.text = "\(internationalCountryCode) (\(num)) "
+                
+                if delete {
+                    textField.text = "\(internationalCountryCode) (\(num)"
+                }
+            } else if length == 6 {
+                let mobileOperatorDigits = num.substringToIndex(3)
+                let number = num.substringFromIndex(3)
+                textField.text = "\(internationalCountryCode) (\(mobileOperatorDigits)) \(number)-"
+                
+                if delete {
+                    textField.text = "\(internationalCountryCode) (\(mobileOperatorDigits)) \(number)"
+                }
+            }
+            
+            self.phoneNumber = textField.text
             updateSaveButtonEnabledState()
             
-            return false
+            return true
         default:
             break
         }

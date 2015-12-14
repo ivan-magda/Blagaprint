@@ -18,7 +18,7 @@
 "55W-X4-BsO.title" = "Библиотека";
 
 /* Class = "UILabel"; text = "Phone number"; ObjectID = "BUG-sM-U6U"; */
-"BUG-sM-U6U.text" = "Номер телефона";
+"BUG-sM-U6U.text" = "Телефон";
 
 /* Class = "UILabel"; text = "Name"; ObjectID = "Dv6-60-yRX"; */
 "Dv6-60-yRX.text" = "Имя";

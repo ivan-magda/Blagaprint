@@ -11,7 +11,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="POP-7x-vub">
-                    <rect key="frame" x="41" y="264" width="239" height="41"/>
+                    <rect key="frame" x="20" y="20" width="280" height="41"/>
                     <string key="text">You are currently not logged in.
 Please login or sign up.</string>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -40,13 +40,17 @@ Please login or sign up.</string>
                 <constraint firstItem="vsm-i1-pIX" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="5gC-gK-01o"/>
                 <constraint firstItem="POP-7x-vub" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="Be2-wY-3Cq"/>
                 <constraint firstItem="vsm-i1-pIX" firstAttribute="top" secondItem="POP-7x-vub" secondAttribute="bottom" constant="8" symbolic="YES" id="EyS-yQ-aTb"/>
+                <constraint firstItem="POP-7x-vub" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" symbolic="YES" id="YZE-gh-F65"/>
                 <constraint firstItem="POP-7x-vub" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="e7q-c0-o1a"/>
                 <constraint firstAttribute="trailing" secondItem="vsm-i1-pIX" secondAttribute="trailing" id="gV2-Ve-eJO"/>
+                <constraint firstAttribute="trailing" secondItem="POP-7x-vub" secondAttribute="trailing" constant="20" symbolic="YES" id="hqM-dt-fVL"/>
                 <constraint firstItem="vsm-i1-pIX" firstAttribute="top" secondItem="POP-7x-vub" secondAttribute="bottom" constant="8" id="k37-6w-ahe"/>
+                <constraint firstItem="POP-7x-vub" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="20" symbolic="YES" id="yKP-4n-0Tl"/>
             </constraints>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
             <variation key="default">
                 <mask key="constraints">
+                    <exclude reference="Be2-wY-3Cq"/>
                     <exclude reference="1d0-vc-ad3"/>
                     <exclude reference="EyS-yQ-aTb"/>
                     <exclude reference="k37-6w-ahe"/>
