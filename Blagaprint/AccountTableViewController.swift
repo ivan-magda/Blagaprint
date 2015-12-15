@@ -130,7 +130,7 @@ class AccountTableViewController: UITableViewController {
             self.saveBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Save, target: self, action: Selector("saveButtonDidPressed"))
             self.navigationItem.rightBarButtonItem = saveBarButtonItem
             
-            self.phoneNumberTextField.placeholder = "+7 (123) 456-7890"
+            self.phoneNumberTextField.placeholder = "\(internationalCountryCode) (123) 456-7890"
             
             updateSaveButtonEnabledState()
             updateBackgroundColorOfLogOutCell()
