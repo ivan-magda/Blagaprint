@@ -18,7 +18,12 @@ class CupViewController: UIViewController {
     
     /// Image picker controller to let us take/pick photo.
     private var imagePickerController: BLImagePickerController?
+    
+    /// Picked image by the user.
     private var pickedImage: UIImage?
+    /// Rectangle of the image on the cup.
+    private let pickedImageSize = CGSizeMake(185, 225)
+    
     private var firstHalfImage: UIImage?
     private var secondHalfImage: UIImage?
     
@@ -35,15 +40,19 @@ class CupViewController: UIViewController {
             // Picked image cropping
             
             let imageSize = pickedImage.size
-            print("Size: \(imageSize)")
-            
             let halfOfWidth: CGFloat = imageSize.width / 2.0
             
             let firstHalfImageRect = CGRectMake(0, 0, halfOfWidth, imageSize.height)
-            self.firstHalfImage = pickedImage.croppedImage(firstHalfImageRect)
+
+            var croppedImage = pickedImage.croppedImage(firstHalfImageRect)
+            self.firstHalfImage = croppedImage.resizedImageWithContentMode(.ScaleAspectFit, bounds: self.pickedImageSize, interpolationQuality: .High)
             
             let secondHalfImageRect = CGRectMake(halfOfWidth, 0, halfOfWidth, imageSize.height)
-            self.secondHalfImage = pickedImage.croppedImage(secondHalfImageRect)
+            
+            croppedImage = pickedImage.croppedImage(secondHalfImageRect)
+            self.secondHalfImage = croppedImage.resizedImageWithContentMode(.ScaleAspectFit, bounds: self.pickedImageSize, interpolationQuality: .High)
+            
+            self.reloadCupView(changeSide: false)
         }
     }
     
@@ -60,7 +69,7 @@ class CupViewController: UIViewController {
     // MARK: - UIAlertActions
     
     private func presentImagePickingAlertController() {
-        let imagePickingAlertController = UIAlertController(title: "Выбор изображения", message: nil, preferredStyle: .ActionSheet)
+        let imagePickingAlertController = UIAlertController(title: "Выберите действие", message: nil, preferredStyle: .ActionSheet)
         
         /// Cancel action
         let cancelAction = UIAlertAction(title: "Отмена", style: .Cancel) { action in
@@ -90,26 +99,57 @@ class CupViewController: UIViewController {
         
         self.presentViewController(imagePickingAlertController, animated: true, completion: nil)
     }
-
+    
+    // MARK: - Private Helper Methods
+    
+    private func reloadCupView(changeSide changeSide: Bool) {
+        self.cupImageView.alpha = 0
+        
+        UIView.animateWithDuration(0.25) {
+            if changeSide {
+                if self.isLeftCup {
+                    if let image = self.secondHalfImage {
+                        self.cupImageView.image = Cup.imageOfCupRight(pickedImage: image, imageVisible: true)
+                    } else {
+                        self.cupImageView.image = Cup.imageOfCupRight()
+                    }
+                    self.isLeftCup = false
+                } else {
+                    if let image = self.firstHalfImage {
+                        self.cupImageView.image = Cup.imageOfCupLeft(pickedImage: image, imageVisible: true)
+                    } else {
+                        self.cupImageView.image = Cup.imageOfCupLeft()
+                    }
+                    self.isLeftCup = true
+                }
+            } else {
+                if self.isLeftCup {
+                    if let image = self.firstHalfImage {
+                        self.cupImageView.image = Cup.imageOfCupLeft(pickedImage: image, imageVisible: true)
+                    } else {
+                        self.cupImageView.image = Cup.imageOfCupLeft()
+                    }
+                } else {
+                    if let image = self.secondHalfImage {
+                        self.cupImageView.image = Cup.imageOfCupRight(pickedImage: image, imageVisible: true)
+                    } else {
+                        self.cupImageView.image = Cup.imageOfCupRight()
+                    }
+                }
+            }
+            
+            self.cupImageView.alpha = 1.0
+        }
+    }
+    
     // MARK: - Actions
     
     func pickImageDidPressed() {
         self.presentImagePickingAlertController()
     }
-
-    @IBAction func replaceDidPressed(sender: UIBarButtonItem) {
-        self.cupImageView.alpha = 0
-        
-        UIView.animateWithDuration(0.25) {
-            if self.isLeftCup {
-                self.cupImageView.image = Cup.imageOfCupRight()
-                self.isLeftCup = false
-            } else {
-                self.cupImageView.image = Cup.imageOfCupLeft()
-                self.isLeftCup = true
-            }
-            
-            self.cupImageView.alpha = 1.0
-        }
+    
+    
+    @IBAction func replaceDidPressed() {
+        reloadCupView(changeSide: true)
     }
 }

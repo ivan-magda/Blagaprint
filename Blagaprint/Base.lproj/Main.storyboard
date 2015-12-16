@@ -325,17 +325,37 @@
                                                     <constraint firstAttribute="width" constant="320" id="PyB-Il-90k"/>
                                                 </constraints>
                                             </imageView>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vSg-SN-Uv2">
+                                                <rect key="frame" x="148" y="287" width="25" height="25"/>
+                                                <animations/>
+                                                <state key="normal" image="Replace.png">
+                                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="replaceDidPressed" destination="bNt-aM-HSw" eventType="touchUpInside" id="I0t-h6-c1W"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                         <animations/>
                                         <constraints>
                                             <constraint firstItem="VVo-b9-GVy" firstAttribute="centerX" secondItem="mRn-ti-5JJ" secondAttribute="centerX" id="29L-Ll-v51"/>
+                                            <constraint firstItem="vSg-SN-Uv2" firstAttribute="centerX" secondItem="mRn-ti-5JJ" secondAttribute="centerX" id="8sq-kn-UYF"/>
+                                            <constraint firstAttribute="bottom" secondItem="vSg-SN-Uv2" secondAttribute="bottom" constant="8" id="HQZ-3a-52L"/>
                                             <constraint firstItem="VVo-b9-GVy" firstAttribute="centerY" secondItem="mRn-ti-5JJ" secondAttribute="centerY" id="WCb-b9-05h"/>
                                             <constraint firstAttribute="height" constant="320" id="lwc-JG-UI1"/>
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vei-dx-tIn" userLabel="PickImageView">
-                                        <rect key="frame" x="0.0" y="328" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="320" width="320" height="44"/>
                                         <subviews>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Yae-wH-xxf" userLabel="TopSeparator">
+                                                <rect key="frame" x="15" y="0.0" width="305" height="1"/>
+                                                <animations/>
+                                                <color key="backgroundColor" red="0.7843137255" green="0.78039215689999997" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="0.5" id="vnJ-2I-WmI"/>
+                                                </constraints>
+                                            </view>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Image" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jNa-ph-y4Z">
                                                 <rect key="frame" x="15" y="11" width="47" height="21"/>
                                                 <animations/>
@@ -343,29 +363,46 @@
                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="57i-b6-FqK">
-                                                <rect key="frame" x="275" y="9" width="25" height="25"/>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="More.png" translatesAutoresizingMaskIntoConstraints="NO" id="kOo-cb-id7">
+                                                <rect key="frame" x="277" y="9" width="25" height="25"/>
                                                 <animations/>
-                                                <state key="normal" image="More.png"/>
-                                            </button>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="25" id="D8Y-LH-si0"/>
+                                                    <constraint firstAttribute="height" constant="25" id="Zhf-HA-iul"/>
+                                                </constraints>
+                                            </imageView>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sgk-fh-y9f" userLabel="BottomSeparator">
+                                                <rect key="frame" x="0.0" y="43" width="320" height="1"/>
+                                                <animations/>
+                                                <color key="backgroundColor" red="0.7843137255" green="0.78039215689999997" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="0.5" id="AuF-HQ-k6o"/>
+                                                </constraints>
+                                            </view>
                                         </subviews>
                                         <animations/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <gestureRecognizers/>
                                         <constraints>
-                                            <constraint firstAttribute="trailing" secondItem="57i-b6-FqK" secondAttribute="trailing" constant="20" symbolic="YES" id="2z4-zQ-iXA"/>
-                                            <constraint firstItem="jNa-ph-y4Z" firstAttribute="centerY" secondItem="vei-dx-tIn" secondAttribute="centerY" id="Ftj-QK-Dbe"/>
+                                            <constraint firstItem="jNa-ph-y4Z" firstAttribute="centerY" secondItem="vei-dx-tIn" secondAttribute="centerY" id="52p-jx-Qsv"/>
+                                            <constraint firstItem="kOo-cb-id7" firstAttribute="centerY" secondItem="vei-dx-tIn" secondAttribute="centerY" id="H0t-VL-vQH"/>
+                                            <constraint firstItem="sgk-fh-y9f" firstAttribute="leading" secondItem="vei-dx-tIn" secondAttribute="leading" id="Jmk-wn-nlW"/>
                                             <constraint firstAttribute="height" constant="44" id="Ok6-Jk-ttz"/>
-                                            <constraint firstItem="57i-b6-FqK" firstAttribute="centerY" secondItem="vei-dx-tIn" secondAttribute="centerY" id="aYZ-Ka-k6q"/>
-                                            <constraint firstItem="57i-b6-FqK" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="jNa-ph-y4Z" secondAttribute="trailing" constant="8" symbolic="YES" id="fJ0-mi-u9K"/>
-                                            <constraint firstItem="jNa-ph-y4Z" firstAttribute="leading" secondItem="vei-dx-tIn" secondAttribute="leading" constant="15" id="k7F-rw-4kt"/>
+                                            <constraint firstItem="Yae-wH-xxf" firstAttribute="top" secondItem="vei-dx-tIn" secondAttribute="top" id="P9i-LW-yVu"/>
+                                            <constraint firstAttribute="trailing" secondItem="sgk-fh-y9f" secondAttribute="trailing" id="axX-Hf-mdy"/>
+                                            <constraint firstItem="kOo-cb-id7" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="jNa-ph-y4Z" secondAttribute="trailing" constant="8" symbolic="YES" id="b0H-jB-kkg"/>
+                                            <constraint firstItem="Yae-wH-xxf" firstAttribute="leading" secondItem="vei-dx-tIn" secondAttribute="leading" constant="15" id="cki-8j-feP"/>
+                                            <constraint firstItem="jNa-ph-y4Z" firstAttribute="leading" secondItem="vei-dx-tIn" secondAttribute="leading" constant="15" id="djb-7R-paw"/>
+                                            <constraint firstAttribute="bottom" secondItem="sgk-fh-y9f" secondAttribute="bottom" id="mRG-YL-2nq"/>
+                                            <constraint firstAttribute="trailing" secondItem="Yae-wH-xxf" secondAttribute="trailing" id="nFo-0l-O5e"/>
+                                            <constraint firstAttribute="trailing" secondItem="kOo-cb-id7" secondAttribute="trailing" constant="18" id="rhP-5S-qTU"/>
                                         </constraints>
                                     </view>
                                 </subviews>
                                 <animations/>
                                 <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstItem="vei-dx-tIn" firstAttribute="top" secondItem="mRn-ti-5JJ" secondAttribute="bottom" constant="8" symbolic="YES" id="FS6-dY-1fP"/>
+                                    <constraint firstItem="vei-dx-tIn" firstAttribute="top" secondItem="mRn-ti-5JJ" secondAttribute="bottom" id="FS6-dY-1fP"/>
                                     <constraint firstItem="mRn-ti-5JJ" firstAttribute="leading" secondItem="CIL-24-HX9" secondAttribute="leading" id="LvV-ex-yab"/>
                                     <constraint firstItem="mRn-ti-5JJ" firstAttribute="top" secondItem="CIL-24-HX9" secondAttribute="top" id="M94-eK-qiz"/>
                                     <constraint firstAttribute="trailing" secondItem="vei-dx-tIn" secondAttribute="trailing" id="N8m-r0-fY6"/>
@@ -385,13 +422,7 @@
                             <constraint firstItem="CIL-24-HX9" firstAttribute="top" secondItem="VIe-rt-JAk" secondAttribute="topMargin" id="yOF-sD-mGt"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Cup" id="4uU-ns-14I">
-                        <barButtonItem key="rightBarButtonItem" image="Replace.png" id="zjd-P3-VoM" userLabel="ReplaceBarButtonItem">
-                            <connections>
-                                <action selector="replaceDidPressed:" destination="bNt-aM-HSw" id="CVG-vf-w8A"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Cup" id="4uU-ns-14I"/>
                     <connections>
                         <outlet property="cupImageView" destination="VVo-b9-GVy" id="xfn-ha-ToX"/>
                         <outlet property="cupPlaceholderView" destination="mRn-ti-5JJ" id="W1d-ac-Gmh"/>
@@ -1573,7 +1604,7 @@
         <image name="CardboardBox.png" width="30" height="30"/>
         <image name="Contacts.png" width="30" height="30"/>
         <image name="More.png" width="25" height="25"/>
-        <image name="Replace.png" width="22" height="22"/>
+        <image name="Replace.png" width="25" height="25"/>
         <image name="ShoppingBag.png" width="30" height="30"/>
         <image name="ViewDetails.png" width="30" height="30"/>
     </resources>
