@@ -34,33 +34,13 @@ class CupViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.imagePickerController = BLImagePickerController(rootViewController: self) { pickedImage in
-            self.pickedImage = pickedImage
-            
-            // Picked image cropping
-            
-            let imageSize = pickedImage.size
-            let halfOfWidth: CGFloat = imageSize.width / 2.0
-            
-            let firstHalfImageRect = CGRectMake(0, 0, halfOfWidth, imageSize.height)
-
-            var croppedImage = pickedImage.croppedImage(firstHalfImageRect)
-            self.firstHalfImage = croppedImage.resizedImageWithContentMode(.ScaleAspectFit, bounds: self.pickedImageSize, interpolationQuality: .High)
-            
-            let secondHalfImageRect = CGRectMake(halfOfWidth, 0, halfOfWidth, imageSize.height)
-            
-            croppedImage = pickedImage.croppedImage(secondHalfImageRect)
-            self.secondHalfImage = croppedImage.resizedImageWithContentMode(.ScaleAspectFit, bounds: self.pickedImageSize, interpolationQuality: .High)
-            
-            self.reloadCupView(changeSide: false)
-        }
+        setupImagePickerController()
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
-        self.cupImageView.image = Cup.imageOfCupLeft()
-        self.isLeftCup = true
+        reloadCupView(changeSide: false)
         
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: Selector("pickImageDidPressed"))
         self.pickImageView.addGestureRecognizer(tapGestureRecognizer)
@@ -78,6 +58,11 @@ class CupViewController: UIViewController {
         
         /// Clear action
         let clearAction = UIAlertAction(title: "Очистить", style: .Destructive) { action in
+            self.pickedImage = nil
+            self.firstHalfImage = nil
+            self.secondHalfImage = nil
+            
+            self.reloadCupView(changeSide: false)
         }
         imagePickingAlertController.addAction(clearAction)
         
@@ -101,6 +86,29 @@ class CupViewController: UIViewController {
     }
     
     // MARK: - Private Helper Methods
+    
+    private func setupImagePickerController() {
+        weak var weakSelf = self
+        
+        self.imagePickerController = BLImagePickerController(rootViewController: self) { pickedImage in
+            weakSelf?.pickedImage = pickedImage
+            
+            // Picked image cropping
+            
+            let imageSize = pickedImage.size
+            let halfOfWidth: CGFloat = imageSize.width / 2.0
+            
+            let firstHalfImageRect = CGRectMake(0, 0, halfOfWidth, imageSize.height)
+            
+            var croppedImage = pickedImage.croppedImage(firstHalfImageRect)
+            weakSelf?.firstHalfImage = croppedImage.resizedImageWithContentMode(.ScaleAspectFill, bounds: weakSelf!.pickedImageSize, interpolationQuality: .High)
+            
+            let secondHalfImageRect = CGRectMake(halfOfWidth, 0, halfOfWidth, imageSize.height)
+            
+            croppedImage = pickedImage.croppedImage(secondHalfImageRect)
+            weakSelf?.secondHalfImage = croppedImage.resizedImageWithContentMode(.ScaleAspectFill, bounds: weakSelf!.pickedImageSize, interpolationQuality: .High)
+        }
+    }
     
     private func reloadCupView(changeSide changeSide: Bool) {
         self.cupImageView.alpha = 0

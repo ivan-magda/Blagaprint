@@ -9,7 +9,7 @@
 "2qn-Ib-pGJ.headerTitle" = "Мои Данные";
 
 /* Class = "UILabel"; text = "Change password"; ObjectID = "3Yh-Ic-7IQ"; */
-"3Yh-Ic-7IQ.text" = "Сменить пароль";
+"3Yh-Ic-7IQ.text" = "Изменить пароль";
 
 /* Class = "UINavigationItem"; title = "Cup"; ObjectID = "4uU-ns-14I"; */
 "4uU-ns-14I.title" = "Кружка";
@@ -32,19 +32,16 @@
 /* Class = "UILabel"; text = "New password"; ObjectID = "Gpu-XF-me6"; */
 "Gpu-XF-me6.text" = "Новый пароль";
 
-/* Class = "UILabel"; text = "There are no items in your bag.\nIf you already have an account, sign in to see your bag or navigate to the catalog and make a purchase."; ObjectID = "HJO-Tt-gpR"; */
+/* Class = "UILabel"; text = "There are no items in your bag. If you already have an account, sign in to see your bag or navigate to the catalog and make a purchase."; ObjectID = "HJO-Tt-gpR"; */
 "HJO-Tt-gpR.text" = "У вас в корзине нет ни одного товара. Войдите в свой аккаунт для синхронизации данных или перейдите в каталог, чтобы выбрать покупки.";
 
 /* Class = "UILabel"; text = "Email adress"; ObjectID = "I5x-nr-bDM"; */
 "I5x-nr-bDM.text" = "Эл. почта";
 
-/* Class = "UIBarButtonItem"; title = "Image"; ObjectID = "KbC-32-69N"; */
-"KbC-32-69N.title" = "Изображение";
-
 /* Class = "UILabel"; text = "Description"; ObjectID = "L6h-lG-yqa"; */
 "L6h-lG-yqa.text" = "Описание";
 
-/* Class = "UILabel"; text = "Текст"; ObjectID = "RRF-pj-yNP"; */
+/* Class = "UILabel"; text = "Text"; ObjectID = "RRF-pj-yNP"; */
 "RRF-pj-yNP.text" = "Текст";
 
 /* Class = "UILabel"; text = "Background"; ObjectID = "SgF-Fw-jpq"; */
@@ -69,10 +66,10 @@
 "WLl-QD-aoN.placeholder" = "Введите текст";
 
 /* Class = "UILabel"; text = "Email"; ObjectID = "XvD-G7-ZFo"; */
-"XvD-G7-ZFo.text" = "Email";
+"XvD-G7-ZFo.text" = "Эл. почта";
 
 /* Class = "UINavigationItem"; title = "Change Password"; ObjectID = "Z0i-Yq-yTX"; */
-"Z0i-Yq-yTX.title" = "Сменить Пароль";
+"Z0i-Yq-yTX.title" = "Изменить Пароль";
 
 /* Class = "UINavigationItem"; title = "Case"; ObjectID = "aY6-3t-LUO"; */
 "aY6-3t-LUO.title" = "Чехол";
@@ -98,8 +95,11 @@
 /* Class = "UINavigationItem"; title = "Text"; ObjectID = "hJd-f0-84b"; */
 "hJd-f0-84b.title" = "Текст";
 
-/* Class = "UITextField"; placeholder = "(123) 456-7890 "; ObjectID = "iej-1l-6wv"; */
-"iej-1l-6wv.placeholder" = "(123) 456-7890 ";
+/* Class = "UITextField"; placeholder = "+7 (123) 456-7890"; ObjectID = "iej-1l-6wv"; */
+"iej-1l-6wv.placeholder" = "+7 (123) 456-7890";
+
+/* Class = "UILabel"; text = "Image"; ObjectID = "jNa-ph-y4Z"; */
+"jNa-ph-y4Z.text" = "Изображение";
 
 /* Class = "UINavigationItem"; title = "Bag"; ObjectID = "mhH-65-0ZF"; */
 "mhH-65-0ZF.title" = "Корзина";
