@@ -15,6 +15,10 @@ class CupViewController: UIViewController {
     @IBOutlet weak var cupPlaceholderView: UIView!
     @IBOutlet weak var cupImageView: UIImageView!
     @IBOutlet weak var pickImageView: UIView!
+    @IBOutlet weak var addtoBagButton: UIButton!
+    
+    @IBOutlet weak var addToBagButtonVerticalSpaceConstraint: NSLayoutConstraint!
+    private let minimalVerticalSpace: CGFloat = 16
     
     /// Image picker controller to let us take/pick photo.
     private var imagePickerController: BLImagePickerController?
@@ -44,6 +48,18 @@ class CupViewController: UIViewController {
         
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: Selector("pickImageDidPressed"))
         self.pickImageView.addGestureRecognizer(tapGestureRecognizer)
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        print("\(self.scrollView)")
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        setupScrollView()
     }
     
     // MARK: - UIAlertActions
@@ -110,6 +126,49 @@ class CupViewController: UIViewController {
         }
     }
     
+    private func  setupScrollView() {
+        guard let _ = self.navigationController else {
+            return
+        }
+        
+        setupScrollViewContentSize()
+        setupVerticalSpaceForAddToBagButton()
+        
+        self.scrollView.layoutIfNeeded()
+    }
+    
+    private func setupScrollViewContentSize() {
+        let frameHeight = CGRectGetHeight(self.view.bounds)
+        
+        var scrollViewHeight = self.scrollView.contentSize.height + (self.scrollView.contentOffset.y * -1)
+        if scrollViewHeight < frameHeight {
+            scrollViewHeight += frameHeight - scrollViewHeight
+            self.scrollView.contentSize.height = scrollViewHeight
+        }
+    }
+    
+    private func setupVerticalSpaceForAddToBagButton() {
+        // Calculate height.
+        let frameHeight = CGRectGetHeight(self.view.bounds)
+        let navBarHeight = CGRectGetHeight(self.navigationController!.navigationBar.bounds)
+        let statusBarHeight = CGRectGetHeight(UIApplication.sharedApplication().statusBarFrame)
+        let cupViewHeight = CGRectGetHeight(self.cupPlaceholderView.bounds)
+        let pickImageViewHeight = CGRectGetHeight(self.pickImageView.bounds)
+        let addToBagButtonHeight = CGRectGetHeight(self.addtoBagButton.bounds)
+        let tabBarHeight = CGRectGetHeight(self.tabBarController!.tabBar.bounds)
+        
+        var verticalSpace = frameHeight - (statusBarHeight + navBarHeight + cupViewHeight + pickImageViewHeight + addToBagButtonHeight + tabBarHeight)
+
+        // Check for minimal space.
+        if verticalSpace < minimalVerticalSpace {
+            verticalSpace = minimalVerticalSpace
+        }
+        
+        print("Vertical space: \(verticalSpace)")
+        
+        self.addToBagButtonVerticalSpaceConstraint.constant = verticalSpace
+    }
+    
     private func reloadCupView(changeSide changeSide: Bool) {
         self.cupImageView.alpha = 0
         
@@ -159,5 +218,9 @@ class CupViewController: UIViewController {
     
     @IBAction func replaceDidPressed() {
         reloadCupView(changeSide: true)
+    }
+    
+    @IBAction func addToBagDidPressed(sender: AnyObject) {
+        print("Add to Bag did pressed")
     }
 }
