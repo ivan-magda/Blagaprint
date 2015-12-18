@@ -25,11 +25,14 @@ class CupViewController: UIViewController {
     
     /// Picked image by the user.
     private var pickedImage: UIImage?
-    /// Rectangle of the image on the cup.
-    private let pickedImageSize = CGSizeMake(185, 225)
+    /// Picked side view image size.
+    private let pickedSideViewImageSize = CGSizeMake(185, 225)
+    /// Picked front view image size.
+    private let pickedFrontViewImageSize = CGSizeMake(196.5, 220)
     
-    private var firstHalfImage: UIImage?
-    private var secondHalfImage: UIImage?
+    private var rightSideImage: UIImage?
+    private var leftSideImage: UIImage?
+    private var frontSideImage: UIImage?
     
     private var isLeftCup: Bool = true
     
@@ -48,12 +51,6 @@ class CupViewController: UIViewController {
         
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: Selector("pickImageDidPressed"))
         self.pickImageView.addGestureRecognizer(tapGestureRecognizer)
-    }
-    
-    override func viewDidAppear(animated: Bool) {
-        super.viewDidAppear(animated)
-        
-        print("\(self.scrollView)")
     }
     
     override func viewDidLayoutSubviews() {
@@ -75,8 +72,8 @@ class CupViewController: UIViewController {
         /// Clear action
         let clearAction = UIAlertAction(title: "Очистить", style: .Destructive) { action in
             self.pickedImage = nil
-            self.firstHalfImage = nil
-            self.secondHalfImage = nil
+            self.rightSideImage = nil
+            self.leftSideImage = nil
             
             self.reloadCupView(changeSide: false)
         }
@@ -114,15 +111,15 @@ class CupViewController: UIViewController {
             let imageSize = pickedImage.size
             let halfOfWidth: CGFloat = imageSize.width / 2.0
             
-            let firstHalfImageRect = CGRectMake(0, 0, halfOfWidth, imageSize.height)
+            let leftSideRect = CGRectMake(0, 0, halfOfWidth, imageSize.height)
             
-            var croppedImage = pickedImage.croppedImage(firstHalfImageRect)
-            weakSelf?.firstHalfImage = croppedImage.resizedImageWithContentMode(.ScaleAspectFill, bounds: weakSelf!.pickedImageSize, interpolationQuality: .High)
+            var croppedImage = pickedImage.croppedImage(leftSideRect)
+            weakSelf?.leftSideImage = croppedImage.resizedImageWithContentMode(.ScaleAspectFill, bounds: weakSelf!.pickedSideViewImageSize, interpolationQuality: .High)
             
-            let secondHalfImageRect = CGRectMake(halfOfWidth, 0, halfOfWidth, imageSize.height)
+            let rightSideRect = CGRectMake(halfOfWidth, 0, halfOfWidth, imageSize.height)
             
-            croppedImage = pickedImage.croppedImage(secondHalfImageRect)
-            weakSelf?.secondHalfImage = croppedImage.resizedImageWithContentMode(.ScaleAspectFill, bounds: weakSelf!.pickedImageSize, interpolationQuality: .High)
+            croppedImage = pickedImage.croppedImage(rightSideRect)
+            weakSelf?.rightSideImage = croppedImage.resizedImageWithContentMode(.ScaleAspectFill, bounds: weakSelf!.pickedSideViewImageSize, interpolationQuality: .High)
         }
     }
     
@@ -131,20 +128,9 @@ class CupViewController: UIViewController {
             return
         }
         
-        setupScrollViewContentSize()
         setupVerticalSpaceForAddToBagButton()
         
         self.scrollView.layoutIfNeeded()
-    }
-    
-    private func setupScrollViewContentSize() {
-        let frameHeight = CGRectGetHeight(self.view.bounds)
-        
-        var scrollViewHeight = self.scrollView.contentSize.height + (self.scrollView.contentOffset.y * -1)
-        if scrollViewHeight < frameHeight {
-            scrollViewHeight += frameHeight - scrollViewHeight
-            self.scrollView.contentSize.height = scrollViewHeight
-        }
     }
     
     private func setupVerticalSpaceForAddToBagButton() {
@@ -155,9 +141,8 @@ class CupViewController: UIViewController {
         let cupViewHeight = CGRectGetHeight(self.cupPlaceholderView.bounds)
         let pickImageViewHeight = CGRectGetHeight(self.pickImageView.bounds)
         let addToBagButtonHeight = CGRectGetHeight(self.addtoBagButton.bounds)
-        let tabBarHeight = CGRectGetHeight(self.tabBarController!.tabBar.bounds)
         
-        var verticalSpace = frameHeight - (statusBarHeight + navBarHeight + cupViewHeight + pickImageViewHeight + addToBagButtonHeight + tabBarHeight)
+        var verticalSpace = frameHeight - (statusBarHeight + navBarHeight + cupViewHeight + pickImageViewHeight + addToBagButtonHeight)
 
         // Check for minimal space.
         if verticalSpace < minimalVerticalSpace {
@@ -175,29 +160,31 @@ class CupViewController: UIViewController {
         UIView.animateWithDuration(0.25) {
             if changeSide {
                 if self.isLeftCup {
-                    if let image = self.secondHalfImage {
+                    if let image = self.rightSideImage {
                         self.cupImageView.image = Cup.imageOfCupRight(pickedImage: image, imageVisible: true)
                     } else {
                         self.cupImageView.image = Cup.imageOfCupRight()
                     }
+                    
                     self.isLeftCup = false
                 } else {
-                    if let image = self.firstHalfImage {
+                    if let image = self.leftSideImage {
                         self.cupImageView.image = Cup.imageOfCupLeft(pickedImage: image, imageVisible: true)
                     } else {
                         self.cupImageView.image = Cup.imageOfCupLeft()
                     }
+                    
                     self.isLeftCup = true
                 }
             } else {
                 if self.isLeftCup {
-                    if let image = self.firstHalfImage {
+                    if let image = self.leftSideImage {
                         self.cupImageView.image = Cup.imageOfCupLeft(pickedImage: image, imageVisible: true)
                     } else {
                         self.cupImageView.image = Cup.imageOfCupLeft()
                     }
                 } else {
-                    if let image = self.secondHalfImage {
+                    if let image = self.rightSideImage {
                         self.cupImageView.image = Cup.imageOfCupRight(pickedImage: image, imageVisible: true)
                     } else {
                         self.cupImageView.image = Cup.imageOfCupRight()

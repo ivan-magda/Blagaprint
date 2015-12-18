@@ -83,6 +83,9 @@
 /* Class = "UILabel"; text = "Device"; ObjectID = "cyR-q6-O6W"; */
 "cyR-q6-O6W.text" = "Устройство";
 
+/* Class = "UIButton"; normalTitle = "Add to Bag"; ObjectID = "da6-wR-7Aj"; */
+"da6-wR-7Aj.normalTitle" = "Добавить в Корзину";
+
 /* Class = "UILabel"; text = "Current password"; ObjectID = "dk4-Lj-BAd"; */
 "dk4-Lj-BAd.text" = "Текущий пароль";
 
