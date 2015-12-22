@@ -176,6 +176,16 @@ class CupViewController: UIViewController {
     // MARK: - Actions
     
     func pickImageDidPressed() {
+        // Animate selection.
+        UIView.animateWithDuration(0.25, delay: 0.0, options: UIViewAnimationOptions.CurveEaseInOut, animations: {
+            self.pickImageView.backgroundColor = UIColor.lightGrayColor().colorWithAlphaComponent(0.2)
+            }) { finished in
+                if finished {
+                    UIView.animateWithDuration(0.25) {
+                        self.pickImageView.backgroundColor = UIColor.whiteColor()
+                    }
+                }
+        }
         self.presentImagePickingAlertController()
     }
     
@@ -216,7 +226,7 @@ extension CupViewController: UICollectionViewDataSource, UICollectionViewDelegat
     // MARK: - UICollectionViewDataSource
     
     func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
-        return 3
+        return images.count
     }
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
