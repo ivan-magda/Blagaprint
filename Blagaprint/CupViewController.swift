@@ -15,11 +15,17 @@ class CupViewController: UIViewController {
     @IBOutlet weak var cupPlaceholderView: UIView!
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var pickImageView: UIView!
+    @IBOutlet weak var pickColorView: UIView!
+    @IBOutlet weak var pickedColorView: UIView!
     @IBOutlet weak var addtoBagButton: UIButton!
     @IBOutlet weak var pageControl: UIPageControl!
     
     @IBOutlet weak var addToBagButtonVerticalSpaceConstraint: NSLayoutConstraint!
+    @IBOutlet weak var addToBagButtonBottomSpaceConstraint: NSLayoutConstraint!
     private let minimalVerticalSpace: CGFloat = 16
+    
+    /// Segue identifier to SelectBackgroundCollectionViewController.
+    private let colorPickingSegueIdentifier = "ColorPicking"
     
     /// Image picker controller to let us take/pick photo.
     private var imagePickerController: BLImagePickerController?
@@ -32,6 +38,9 @@ class CupViewController: UIViewController {
     // Data source for collection view.
     private var images = [Cup.imageOfCupLeft(), Cup.imageOfCupFront(), Cup.imageOfCupRight()]
     
+    /// Inner color of cup.
+    private var cupInnerColor = UIColor.whiteColor()
+    
     // MARK: - View Life Cycle
     
     override func viewDidLoad() {
@@ -40,19 +49,40 @@ class CupViewController: UIViewController {
         (self.collectionView as UIScrollView).delegate = self
         
         setupImagePickerController()
+        setupPickedColorView()
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
-        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: Selector("pickImageDidPressed"))
-        self.pickImageView.addGestureRecognizer(tapGestureRecognizer)
+        let pickImageTapGestureRecognizer = UITapGestureRecognizer(target: self, action: Selector("pickImageDidPressed"))
+        self.pickImageView.addGestureRecognizer(pickImageTapGestureRecognizer)
+        
+        let pickColorTapGestureRecognizer = UITapGestureRecognizer(target: self, action: Selector("pickColorDidPressed"))
+        self.pickColorView.addGestureRecognizer(pickColorTapGestureRecognizer)
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
         setupScrollView()
+    }
+    
+    // MARK: - Navigation
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == colorPickingSegueIdentifier {
+            let navigationController = segue.destinationViewController as! UINavigationController
+            
+            let colorPickingVC = navigationController.topViewController as! SelectBackgroundCollectionViewController!
+            colorPickingVC.selectedColor = cupInnerColor
+            
+            colorPickingVC.didSelectColorCompletionHandler = { color in
+                self.cupInnerColor = color
+                self.pickedColorView.backgroundColor = color
+                self.pickedColorViewUpdateBorderLayer()
+            }
+        }
     }
     
     // MARK: - UIAlertActions
@@ -106,35 +136,55 @@ class CupViewController: UIViewController {
         }
     }
     
+    private func setupPickedColorView() {
+        self.pickedColorView.layer.cornerRadius = CGRectGetWidth(self.pickedColorView.bounds) / 2.0
+        pickedColorViewUpdateBorderLayer()
+    }
+    
+    private func pickedColorViewUpdateBorderLayer() {
+        self.pickedColorView.layer.borderWidth = 0.0
+        var borderColor: UIColor?
+        
+        if cupInnerColor == UIColor.whiteColor() {
+            borderColor = UIColor.lightGrayColor()
+        }
+        
+        if let borderColor = borderColor {
+            self.pickedColorView.layer.borderWidth = 1.0
+            self.pickedColorView.layer.borderColor = borderColor.CGColor
+        }
+    }
+    
     private func setupScrollView() {
         if self.navigationController == nil {
             return
         }
         
-        setupVerticalSpaceForAddToBagButton()
-        
+        addToBagButtonSetupVerticalAndBottomSpaces()
         self.scrollView.layoutIfNeeded()
     }
     
-    private func setupVerticalSpaceForAddToBagButton() {
+    private func addToBagButtonSetupVerticalAndBottomSpaces() {
         // Calculate height.
         let frameHeight = CGRectGetHeight(self.view.bounds)
         let navBarHeight = CGRectGetHeight(self.navigationController!.navigationBar.bounds)
         let statusBarHeight = CGRectGetHeight(UIApplication.sharedApplication().statusBarFrame)
         let cupViewHeight = CGRectGetHeight(self.cupPlaceholderView.bounds)
         let pickImageViewHeight = CGRectGetHeight(self.pickImageView.bounds)
+        let pickColorViewHeight = CGRectGetHeight(self.pickColorView.bounds)
         let addToBagButtonHeight = CGRectGetHeight(self.addtoBagButton.bounds)
         
-        var verticalSpace = frameHeight - (statusBarHeight + navBarHeight + cupViewHeight + pickImageViewHeight + addToBagButtonHeight)
-
+        var space = frameHeight - (statusBarHeight + navBarHeight + cupViewHeight + pickImageViewHeight + pickColorViewHeight + addToBagButtonHeight)
+        
         // Check for minimal space.
-        if verticalSpace < minimalVerticalSpace {
-            verticalSpace = minimalVerticalSpace
+        if space < minimalVerticalSpace {
+            space = minimalVerticalSpace
         }
         
-        print("Vertical space: \(verticalSpace)")
+        print("AddToBag Space Value: \(space)")
         
-        self.addToBagButtonVerticalSpaceConstraint.constant = verticalSpace
+        self.addToBagButtonVerticalSpaceConstraint.constant = space
+        self.addToBagButtonBottomSpaceConstraint.constant = space
     }
     
     private func reloadData() {
@@ -173,20 +223,28 @@ class CupViewController: UIViewController {
         }
     }
     
-    // MARK: - Actions
-    
-    func pickImageDidPressed() {
-        // Animate selection.
+    private func animateViewSelection(view: UIView) {
         UIView.animateWithDuration(0.25, delay: 0.0, options: UIViewAnimationOptions.CurveEaseInOut, animations: {
-            self.pickImageView.backgroundColor = UIColor.lightGrayColor().colorWithAlphaComponent(0.2)
+            view.backgroundColor = UIColor.lightGrayColor().colorWithAlphaComponent(0.2)
             }) { finished in
                 if finished {
                     UIView.animateWithDuration(0.25) {
-                        self.pickImageView.backgroundColor = UIColor.whiteColor()
+                        view.backgroundColor = UIColor.whiteColor()
                     }
                 }
         }
+    }
+    
+    // MARK: - Actions
+    
+    func pickImageDidPressed() {
+        animateViewSelection(self.pickImageView)
         self.presentImagePickingAlertController()
+    }
+    
+    func pickColorDidPressed() {
+        animateViewSelection(self.pickColorView)
+        self.performSegueWithIdentifier(colorPickingSegueIdentifier, sender: nil)
     }
     
     @IBAction func addToBagDidPressed(sender: AnyObject) {
