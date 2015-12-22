@@ -26,10 +26,8 @@ class CupViewController: UIViewController {
     
     /// Picked image by the user.
     private var pickedImage: UIImage?
-    /// Picked side view image size.
-    private let pickedSideViewImageSize = CGSizeMake(185, 225)
-    /// Picked front view image size.
-    private let pickedFrontViewImageSize = CGSizeMake(196.5, 220)
+    /// Picked image size for filling in the cup.
+    private let pickedImageSize = CGSizeMake(197, 225)
     
     // Data source for collection view.
     private var images = [Cup.imageOfCupLeft(), Cup.imageOfCupFront(), Cup.imageOfCupRight()]
@@ -151,24 +149,24 @@ class CupViewController: UIViewController {
             // Picked image cropping
             
             let imageSize = pickedImage.size
-            let halfOfWidth: CGFloat = imageSize.width / 2.0
+            let fortyPercentOfWidth = imageSize.width * 0.4
             
             // Left side cup view.
-            let leftSideRect = CGRectMake(0, 0, halfOfWidth, imageSize.height)
-            var croppedImage = pickedImage.croppedImage(leftSideRect)
-            let leftSideImage = croppedImage.resizedImageWithContentMode(.ScaleAspectFill, bounds: pickedSideViewImageSize, interpolationQuality: .High)
+            let leftSideRect = CGRectMake(0.0, 0.0, fortyPercentOfWidth, imageSize.height)
+            let leftCroppedImage = pickedImage.croppedImage(leftSideRect)
+            let leftSideImage = leftCroppedImage.resizedImageWithContentMode(.ScaleAspectFill, bounds: pickedImageSize, interpolationQuality: .High)
             images.append(Cup.imageOfCupLeft(pickedImage: leftSideImage, imageVisible: true))
             
             // Front side cup view.
-            let frontSideRect = CGRectMake(halfOfWidth, 0, halfOfWidth, imageSize.height)
-            croppedImage = pickedImage.croppedImage(frontSideRect)
-            let frontSideImage = croppedImage.resizedImageWithContentMode(.ScaleAspectFill, bounds: pickedFrontViewImageSize, interpolationQuality: .High)
+            let frontSideRect = CGRectMake(CGRectGetWidth(leftSideRect) - (CGRectGetWidth(leftSideRect) * 0.1), 0, fortyPercentOfWidth, imageSize.height)
+            let frontCroppedImage = pickedImage.croppedImage(frontSideRect)
+            let frontSideImage = frontCroppedImage.resizedImageWithContentMode(.ScaleAspectFill, bounds: pickedImageSize, interpolationQuality: .High)
             images.append(Cup.imageOfCupFront(pickedImage: frontSideImage, imageVisible: true))
             
             // Right side cup view.
-            let rightSideRect = CGRectMake(halfOfWidth, 0, halfOfWidth, imageSize.height)
-            croppedImage = pickedImage.croppedImage(rightSideRect)
-            let rightSideImage = croppedImage.resizedImageWithContentMode(.ScaleAspectFill, bounds: pickedSideViewImageSize, interpolationQuality: .High)
+            let rightSideRect = CGRectMake(imageSize.width * 0.6, 0, fortyPercentOfWidth, imageSize.height)
+            let rightCroppedImage = pickedImage.croppedImage(rightSideRect)
+            let rightSideImage = rightCroppedImage.resizedImageWithContentMode(.ScaleAspectFill, bounds: pickedImageSize, interpolationQuality: .High)
             images.append(Cup.imageOfCupRight(pickedImage: rightSideImage, imageVisible: true))
         } else {
             images = [Cup.imageOfCupLeft(), Cup.imageOfCupFront(), Cup.imageOfCupRight()]
