@@ -20,7 +20,7 @@ class LoginViewController: PFLogInViewController, PFLogInViewControllerDelegate 
         
         // Customizing the logoView
         let logo = UILabel()
-        logo.font = AppAppearance.ralewayThinFontWithSize(50)
+        logo.font = AppAppearance.ralewayThinFontWithSize(40)
         logo.text = "Blagaprint"
         logo.textColor = UIColor.whiteColor()
         

@@ -22,7 +22,7 @@ class SignUpViewController: PFSignUpViewController, PFSignUpViewControllerDelega
         signUpView.emailAsUsername = true
         
         let logo = UILabel()
-        logo.font = AppAppearance.ralewayThinFontWithSize(50)
+        logo.font = AppAppearance.ralewayThinFontWithSize(40)
         logo.text = "Blagaprint"
         logo.textColor = UIColor.whiteColor()
         signUpView.logo = logo

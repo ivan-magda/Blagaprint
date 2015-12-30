@@ -61,6 +61,8 @@ class AccountTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.phoneNumberTextField.addTarget(self, action: Selector("phoneNumberDidChanged"), forControlEvents: UIControlEvents.EditingChanged)
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -127,10 +129,9 @@ class AccountTableViewController: UITableViewController {
         } else {
             userInfoSetup()
             
-            self.saveBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Save, target: self, action: Selector("saveButtonDidPressed"))
-            self.navigationItem.rightBarButtonItem = saveBarButtonItem
-            
+            addSaveBarButtonItem(false)
             updateSaveButtonEnabledState()
+            
             updateBackgroundColorOfLogOutCell()
         }
     }
@@ -149,6 +150,11 @@ class AccountTableViewController: UITableViewController {
         self.phoneNumberTextField.text = phoneNumber
         
         self.emailLabel.text = user.email
+    }
+    
+    private func addSaveBarButtonItem(animated: Bool) {
+        self.saveBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Save, target: self, action: Selector("saveButtonDidPressed"))
+        self.navigationItem.setRightBarButtonItem(saveBarButtonItem, animated: animated)
     }
     
     private func presentLogInAccountView() {
@@ -201,6 +207,13 @@ class AccountTableViewController: UITableViewController {
         }
     }
     
+    private func updateUserInfoFromTextFields() {
+        self.name = self.nameTextField.text
+        self.patronymic = self.patronymicTextField.text
+        self.surname = self.surnameTextField.text
+        self.phoneNumber = self.phoneNumberTextField.text
+    }
+    
     private func presentAlert(title title: String, message: String) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .Alert)
         alert.addAction(UIAlertAction(title: "Ok", style: .Cancel, handler: nil))
@@ -226,6 +239,8 @@ class AccountTableViewController: UITableViewController {
     
     func saveButtonDidPressed() {
         self.view.endEditing(true)
+        
+        updateUserInfoFromTextFields()
         
         // Count for empty text fields.
         let emptyFields = [nameTextField, patronymicTextField, surnameTextField, phoneNumberTextField].filter { (textField) in textField.text?.characters.count == 0 }.reduce(0) { (total, textField) in
@@ -289,8 +304,7 @@ class AccountTableViewController: UITableViewController {
                 self.presentAlert(title: NSLocalizedString("Error", comment: ""), message: error.userInfo["error"] as! String)
             } else if succeeded {
                 self.presentAlert(title: "", message: NSLocalizedString("Updated", comment: "Message for alert"))
-            } else {
-                print("User info is not updated")
+                self.viewSetup()
             }
         }
     }
@@ -302,6 +316,11 @@ class AccountTableViewController: UITableViewController {
         
         self.tableView.selectRowAtIndexPath(logOutIndexPath, animated: false, scrollPosition: UITableViewScrollPosition.None)
         self.tableView(self.tableView, didSelectRowAtIndexPath: logOutIndexPath)
+    }
+    
+    func phoneNumberDidChanged() {
+        self.phoneNumber = self.phoneNumberTextField.text
+        updateSaveButtonEnabledState()
     }
     
 }
@@ -391,9 +410,6 @@ extension AccountTableViewController: UITextFieldDelegate {
                 }
             }
             
-            self.phoneNumber = textField.text
-            updateSaveButtonEnabledState()
-            
             return true
         default:
             break
@@ -408,5 +424,10 @@ extension AccountTableViewController: UITextFieldDelegate {
         textField.resignFirstResponder()
         
         return true
+    }
+    
+    func textFieldDidEndEditing(textField: UITextField) {
+        updateUserInfoFromTextFields()
+        updateSaveButtonEnabledState()
     }
 }
