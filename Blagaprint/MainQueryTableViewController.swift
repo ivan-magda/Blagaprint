@@ -39,7 +39,7 @@ class MainQueryTableViewController: PFQueryTableViewController {
         super.init(coder: aDecoder)
         
         // The className to query on
-        self.parseClassName = CategoryParseClassName
+        self.parseClassName = CategoryClassName
         
         // Whether the built-in pull-to-refresh is enabled
         self.pullToRefreshEnabled = true
@@ -71,6 +71,12 @@ class MainQueryTableViewController: PFQueryTableViewController {
             print("Segue to PlateConstructor")
         } else if segue.identifier == SegueIdentifier.CupConstructor.rawValue {
             print("Segue to CupConstructor")
+            
+            let cupViewController = segue.destinationViewController as! CupViewController
+            
+            if let selectedRow = self.tableView.indexPathForSelectedRow {
+                cupViewController.category = objects![selectedRow.section] as! Category
+            }
         }
     }
     
@@ -107,7 +113,7 @@ class MainQueryTableViewController: PFQueryTableViewController {
     /// Construct custom PFQuery to get the objects.
     override func queryForTable() -> PFQuery {
         let query = PFQuery(className: self.parseClassName!)
-        query.orderByDescending(Category.CoderKeys.name.rawValue)
+        query.orderByDescending(Category.Keys.name.rawValue)
         
         // A pull-to-refresh should always trigger a network request.
         query.cachePolicy = .NetworkOnly

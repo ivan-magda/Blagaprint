@@ -38,8 +38,11 @@ class ParseCentral: NSObject {
     // MARK: - Initializers
     
     override init() {
+        // Register subclasses.
         Category.registerSubclass()
         CategoryItem.registerSubclass()
+        Bag.registerSubclass()
+        BagItem.registerSubclass()
         
         // Initialize Parse.
         Parse.setApplicationId(applicationId, clientKey: clientKey)

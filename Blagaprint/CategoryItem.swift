@@ -8,13 +8,13 @@
 
 import UIKit
 
-/// The Parse CategoryItem object class name.
-let CategoryItemParseClassName = "CategoryItem"
+/// Class name of the CategoryItem object.
+let CategoryItemClassName = "CategoryItem"
 
 class CategoryItem: PFObject, PFSubclassing {
     // MARK: - Types
     
-    enum CoderKeys: String {
+    enum Keys: String {
         case name
         case image
         case parentCategory
@@ -27,7 +27,7 @@ class CategoryItem: PFObject, PFSubclassing {
     @NSManaged var parentCategory: PFObject
     
     override var description: String {
-        return "Name: \(name)\nImageUrl: \(parentCategory)"
+        return "Name: \(name)\nCategory: \(parentCategory)"
     }
     
     // MARK: - PFSubclassing
@@ -43,6 +43,6 @@ class CategoryItem: PFObject, PFSubclassing {
     
     /// The class name of the object.
     class func parseClassName() -> String {
-        return CategoryItemParseClassName
+        return CategoryItemClassName
     }
 }

@@ -20,9 +20,11 @@ class CupViewController: UIViewController {
     @IBOutlet weak var addtoBagButton: UIButton!
     @IBOutlet weak var pageControl: UIPageControl!
     
-    @IBOutlet weak var addToBagButtonVerticalSpaceConstraint: NSLayoutConstraint!
-    @IBOutlet weak var addToBagButtonBottomSpaceConstraint: NSLayoutConstraint!
-    private let minimalVerticalSpace: CGFloat = 16
+    @IBOutlet weak var pickColorViewBottomSpace: NSLayoutConstraint!
+    private let minimalSpaceValue: CGFloat = 16
+    
+    var category: Category!
+    private var categoryItems: [CategoryItem]?
     
     /// Segue identifier to SelectBackgroundCollectionViewController.
     private let colorPickingSegueIdentifier = "ColorPicking"
@@ -50,6 +52,8 @@ class CupViewController: UIViewController {
         
         setupImagePickerController()
         setupPickedColorView()
+        
+        loadCategoryItems()
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -160,31 +164,27 @@ class CupViewController: UIViewController {
             return
         }
         
-        addToBagButtonSetupVerticalAndBottomSpaces()
+        setPickColorViewBottomSpace()
         self.scrollView.layoutIfNeeded()
     }
     
-    private func addToBagButtonSetupVerticalAndBottomSpaces() {
+    private func setPickColorViewBottomSpace() {
         // Calculate height.
         let frameHeight = CGRectGetHeight(self.view.bounds)
         let navBarHeight = CGRectGetHeight(self.navigationController!.navigationBar.bounds)
         let statusBarHeight = CGRectGetHeight(UIApplication.sharedApplication().statusBarFrame)
         let cupViewHeight = CGRectGetHeight(self.cupPlaceholderView.bounds)
         let pickImageViewHeight = CGRectGetHeight(self.pickImageView.bounds)
-        let pickColorViewHeight = CGRectGetHeight(self.pickColorView.bounds)
-        let addToBagButtonHeight = CGRectGetHeight(self.addtoBagButton.bounds)
         
-        var space = frameHeight - (statusBarHeight + navBarHeight + cupViewHeight + pickImageViewHeight + pickColorViewHeight + addToBagButtonHeight)
+        var space = frameHeight - (statusBarHeight + navBarHeight + cupViewHeight + pickImageViewHeight)
         
         // Check for minimal space.
-        if space < minimalVerticalSpace {
-            space = minimalVerticalSpace
+        if space < minimalSpaceValue {
+            space = minimalSpaceValue
         }
+        print("Bottom space value: \(space)")
         
-        print("AddToBag Space Value: \(space)")
-        
-        self.addToBagButtonVerticalSpaceConstraint.constant = space
-        self.addToBagButtonBottomSpaceConstraint.constant = space
+        self.pickColorViewBottomSpace.constant = space
     }
     
     private func reloadData() {
@@ -235,6 +235,17 @@ class CupViewController: UIViewController {
         }
     }
     
+    private func loadCategoryItems() {
+        weak var weakSelf = self
+        self.category.getItemsInBackgroundWithBlock() { (items, error) in
+            if let error = error {
+                print(error.localizedDescription)
+            } else if let items = items {
+                weakSelf?.categoryItems = items
+            }
+        }
+    }
+    
     // MARK: - Actions
     
     func pickImageDidPressed() {
@@ -249,6 +260,67 @@ class CupViewController: UIViewController {
     
     @IBAction func addToBagDidPressed(sender: AnyObject) {
         print("Add to Bag did pressed")
+        
+        if let user = BlagaprintUser.currentUser() {
+
+            // Find Bag of the user.
+            let bagQuery = PFQuery(className: BagClassName)
+            bagQuery.whereKey(Bag.Keys.userId.rawValue, equalTo: user.objectId!)
+            bagQuery.findObjectsInBackgroundWithBlock() { (bag, error) in
+                if let error = error {
+                    print(error.localizedDescription)
+                } else if let bag = bag {
+                    assert(bag.count <= 1, "Bag must be unique for each user!")
+                    
+                    // Bag not exist, create it for the user.
+                    if bag.count == 0 {
+                        let bag = Bag()
+                        bag.userId = user.objectId!
+                        bag.saveInBackgroundWithBlock() { (succeeded, error) in
+                            if let error = error {
+                                print(error.localizedDescription)
+                            } else if succeeded {
+                                
+                                // Create BagItem and save it to Parse.
+                                let item = BagItem()
+                                item.userId = user.objectId!
+                                item.category = self.category.objectId!
+                                
+                                if let categoryItems = self.categoryItems where categoryItems.count > 0 {
+                                    item.categoryItem = categoryItems.first!.objectId!
+                                }
+                                
+                                if let image = self.pickedImage {
+                                    let imageData = UIImageJPEGRepresentation(image, 1.0)
+                                    if let imageData = imageData {
+                                        item.image = PFFile(data: imageData)!
+                                    }
+                                }
+                                
+                                let colorInString = BagItem.colorToString(self.cupInnerColor)
+                                item.color = colorInString
+                                
+                                item.saveInBackgroundWithBlock() { (succeeded, error) in
+                                    if let error = error {
+                                        print(error.localizedDescription)
+                                    } else if succeeded {
+                                        // Add this item to bag and save it.
+                                        bag.addUniqueObject(item.objectId!, forKey: Bag.Keys.items.rawValue)
+                                        bag.saveInBackground()
+                                    }
+                                }
+                            }
+                        }
+                    // Bag already exist and we find it.
+                    } else {
+                        
+                    }
+                }
+            }
+        } else {
+            print("User not logged in")
+        }
+        
     }
     
     @IBAction func pageControlDidChangeValue(sender: UIPageControl) {

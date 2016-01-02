@@ -8,8 +8,8 @@
 
 import Foundation
 
-/// The Parse Category object class name.
-let CategoryParseClassName = "Category"
+/// Class name of the Category object.
+let CategoryClassName = "Category"
 
 class Category: PFObject, PFSubclassing {
     // MARK: - Types
@@ -29,7 +29,7 @@ class Category: PFObject, PFSubclassing {
         case undefined
     }
     
-    enum CoderKeys: String {
+    enum Keys: String {
         case name
         case image
         case type
@@ -54,7 +54,7 @@ class Category: PFObject, PFSubclassing {
     
     /// The class name of the object.
     class func parseClassName() -> String {
-        return CategoryParseClassName
+        return CategoryClassName
     }
     
     // MARK: - Helper Methods
@@ -67,5 +67,29 @@ class Category: PFObject, PFSubclassing {
     func getType() -> CategoryTypes {
         let type = CategoryTypes(rawValue: self.type)
         return (type == nil ? .undefined : type!)
+    }
+    
+    /// Returns items of the category.
+    func getItemsInBackgroundWithBlock(completionHandler: ((objects: [CategoryItem]?, error: NSError?) -> ())? ) {
+        let categoryItemsQuery = PFQuery(className: CategoryItemClassName)
+        categoryItemsQuery.whereKey(CategoryItem.Keys.parentCategory.rawValue, equalTo: self)
+        categoryItemsQuery.includeKey(CategoryItem.Keys.parentCategory.rawValue)
+        
+        
+        categoryItemsQuery.findObjectsInBackgroundWithBlock() { (items, error) in
+            dispatch_async(dispatch_get_main_queue()) {
+                if let error = error {
+                    if let completionHandler = completionHandler {
+                        completionHandler(objects: nil, error: error)
+                    }
+                } else if let items = items as? [CategoryItem] {
+                    if let completionHandler = completionHandler {
+                        completionHandler(objects: items, error: error)
+                    }
+                } else if let completionHandler = completionHandler {
+                    completionHandler(objects: nil, error: nil)
+                }
+            }
+        }
     }
 }

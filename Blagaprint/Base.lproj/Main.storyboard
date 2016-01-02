@@ -408,27 +408,13 @@
                                             <constraint firstAttribute="trailing" secondItem="kOo-cb-id7" secondAttribute="trailing" constant="18" id="rhP-5S-qTU"/>
                                         </constraints>
                                     </view>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="da6-wR-7Aj" userLabel="AddToBag">
-                                        <rect key="frame" x="0.0" y="462" width="320" height="56"/>
-                                        <color key="backgroundColor" red="0.29803921568627451" green="0.85098039215686272" blue="0.39215686274509803" alpha="1" colorSpace="calibratedRGB"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="56" id="ZW6-sI-Eow"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="19"/>
-                                        <state key="normal" title="Add to Bag">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="addToBagDidPressed:" destination="bNt-aM-HSw" eventType="touchUpInside" id="hoc-sR-Nbk"/>
-                                        </connections>
-                                    </button>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aAg-sP-szL" userLabel="PickColorView">
                                         <rect key="frame" x="0.0" y="364" width="320" height="44"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Color" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YBS-Bg-HM1">
                                                 <rect key="frame" x="15" y="12" width="42" height="21"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TsG-jg-Sdx" userLabel="BottomSeparator">
@@ -477,26 +463,40 @@
                                     </view>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstItem="da6-wR-7Aj" firstAttribute="leading" secondItem="CIL-24-HX9" secondAttribute="leading" id="078-88-yy3"/>
-                                    <constraint firstAttribute="bottom" secondItem="da6-wR-7Aj" secondAttribute="bottom" constant="20" symbolic="YES" id="CCn-Pc-GDh"/>
+                                    <constraint firstAttribute="bottom" secondItem="aAg-sP-szL" secondAttribute="bottom" constant="20" symbolic="YES" id="1VE-vB-ZxY"/>
                                     <constraint firstItem="aAg-sP-szL" firstAttribute="top" secondItem="vei-dx-tIn" secondAttribute="bottom" id="D11-Qf-hEd"/>
                                     <constraint firstItem="vei-dx-tIn" firstAttribute="top" secondItem="mRn-ti-5JJ" secondAttribute="bottom" id="FS6-dY-1fP"/>
                                     <constraint firstItem="mRn-ti-5JJ" firstAttribute="leading" secondItem="CIL-24-HX9" secondAttribute="leading" id="LvV-ex-yab"/>
                                     <constraint firstItem="mRn-ti-5JJ" firstAttribute="top" secondItem="CIL-24-HX9" secondAttribute="top" id="M94-eK-qiz"/>
                                     <constraint firstAttribute="trailing" secondItem="vei-dx-tIn" secondAttribute="trailing" id="N8m-r0-fY6"/>
-                                    <constraint firstAttribute="trailing" secondItem="da6-wR-7Aj" secondAttribute="trailing" id="Pna-Ka-wbM"/>
                                     <constraint firstAttribute="trailing" secondItem="aAg-sP-szL" secondAttribute="trailing" id="ZGq-cv-eUX"/>
                                     <constraint firstItem="vei-dx-tIn" firstAttribute="leading" secondItem="CIL-24-HX9" secondAttribute="leading" id="c3C-A9-U5q"/>
                                     <constraint firstItem="aAg-sP-szL" firstAttribute="leading" secondItem="CIL-24-HX9" secondAttribute="leading" id="fF1-nJ-IIw"/>
                                     <constraint firstItem="mRn-ti-5JJ" firstAttribute="centerX" secondItem="CIL-24-HX9" secondAttribute="centerX" id="i6T-gj-DuN"/>
                                     <constraint firstAttribute="trailing" secondItem="mRn-ti-5JJ" secondAttribute="trailing" id="kdV-D3-0wW"/>
-                                    <constraint firstItem="da6-wR-7Aj" firstAttribute="top" secondItem="aAg-sP-szL" secondAttribute="bottom" constant="54" id="qnN-70-Ai6"/>
                                 </constraints>
                             </scrollView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="da6-wR-7Aj" userLabel="AddToBag">
+                                <rect key="frame" x="0.0" y="512" width="320" height="56"/>
+                                <color key="backgroundColor" red="0.29803921568627451" green="0.85098039215686272" blue="0.39215686274509803" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="56" id="ZW6-sI-Eow"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                                <state key="normal" title="Add to Bag">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="addToBagDidPressed:" destination="bNt-aM-HSw" eventType="touchUpInside" id="hoc-sR-Nbk"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="CIL-24-HX9" firstAttribute="leading" secondItem="VIe-rt-JAk" secondAttribute="leading" id="1n9-cB-sTK"/>
+                            <constraint firstItem="da6-wR-7Aj" firstAttribute="leading" secondItem="VIe-rt-JAk" secondAttribute="leading" id="CoM-bV-jWM"/>
+                            <constraint firstAttribute="trailing" secondItem="da6-wR-7Aj" secondAttribute="trailing" id="Lya-0K-YKU"/>
+                            <constraint firstAttribute="bottomMargin" secondItem="da6-wR-7Aj" secondAttribute="bottom" id="ey1-xf-Yv2"/>
                             <constraint firstAttribute="trailing" secondItem="CIL-24-HX9" secondAttribute="trailing" id="tNZ-zY-RPp"/>
                             <constraint firstAttribute="bottomMargin" secondItem="CIL-24-HX9" secondAttribute="bottom" id="xWt-Rb-XB0"/>
                             <constraint firstItem="CIL-24-HX9" firstAttribute="top" secondItem="VIe-rt-JAk" secondAttribute="topMargin" id="yOF-sD-mGt"/>
@@ -504,13 +504,12 @@
                     </view>
                     <navigationItem key="navigationItem" title="Cup" id="4uU-ns-14I"/>
                     <connections>
-                        <outlet property="addToBagButtonBottomSpaceConstraint" destination="CCn-Pc-GDh" id="u4e-b6-zQ1"/>
-                        <outlet property="addToBagButtonVerticalSpaceConstraint" destination="qnN-70-Ai6" id="YVb-vo-fBT"/>
                         <outlet property="addtoBagButton" destination="da6-wR-7Aj" id="bDM-Cp-JSp"/>
                         <outlet property="collectionView" destination="DQZ-fV-btc" id="n3y-cm-Ngf"/>
                         <outlet property="cupPlaceholderView" destination="mRn-ti-5JJ" id="W1d-ac-Gmh"/>
                         <outlet property="pageControl" destination="vBh-Oy-UqJ" id="qnv-zG-ww4"/>
                         <outlet property="pickColorView" destination="aAg-sP-szL" id="PLu-6A-mQ3"/>
+                        <outlet property="pickColorViewBottomSpace" destination="1VE-vB-ZxY" id="fRy-nl-3u5"/>
                         <outlet property="pickImageView" destination="vei-dx-tIn" id="S0K-zm-r4r"/>
                         <outlet property="pickedColorView" destination="fo9-HG-bMM" id="Gkm-w5-hpn"/>
                         <outlet property="scrollView" destination="CIL-24-HX9" id="WMh-HF-yIL"/>
