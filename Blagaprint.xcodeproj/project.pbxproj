@@ -131,7 +131,7 @@
 		758595631BDA30C10079A1BA /* iPhone4CameraImage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7585955F1BDA30C10079A1BA /* iPhone4CameraImage@2x.png */; };
 		7585BB4E1C1026AA00D59BF5 /* BLImagePickerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7585BB4D1C1026AA00D59BF5 /* BLImagePickerController.swift */; };
 		7586714D1C1BC5A700B60DFB /* ChangePasswordTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7586714C1C1BC5A700B60DFB /* ChangePasswordTableViewController.swift */; };
-		758792A81BF487E10071C383 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 758792A71BF487E10071C383 /* LoadingView.swift */; };
+		758792A81BF487E10071C383 /* ActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 758792A71BF487E10071C383 /* ActivityView.swift */; };
 		7589398A1C16B54D0069655B /* CupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 758939891C16B54D0069655B /* CupViewController.swift */; };
 		7589540E1C1582C6006980F0 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7589540C1C1582C6006980F0 /* Localizable.strings */; };
 		759E8CCF1BDF64A1008A5503 /* galaxyS4MiniCameraImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 759E8CCD1BDF64A1008A5503 /* galaxyS4MiniCameraImage.png */; };
@@ -330,7 +330,7 @@
 		7585955F1BDA30C10079A1BA /* iPhone4CameraImage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "iPhone4CameraImage@2x.png"; path = "images/iPhone4CameraImage@2x.png"; sourceTree = "<group>"; };
 		7585BB4D1C1026AA00D59BF5 /* BLImagePickerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BLImagePickerController.swift; sourceTree = "<group>"; };
 		7586714C1C1BC5A700B60DFB /* ChangePasswordTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangePasswordTableViewController.swift; sourceTree = "<group>"; };
-		758792A71BF487E10071C383 /* LoadingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
+		758792A71BF487E10071C383 /* ActivityView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityView.swift; sourceTree = "<group>"; };
 		758939891C16B54D0069655B /* CupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CupViewController.swift; sourceTree = "<group>"; };
 		7589540B1C158189006980F0 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		758954101C1582E8006980F0 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -630,7 +630,7 @@
 				7522B88F1BFF34C800BC14C0 /* CollectionTableViewCell.swift */,
 				7522B8951BFF49F200BC14C0 /* FrameItemCollectionViewCell.swift */,
 				0C7F25431C27D75100D7C49C /* ImageCollectionViewCell.swift */,
-				758792A71BF487E10071C383 /* LoadingView.swift */,
+				758792A71BF487E10071C383 /* ActivityView.swift */,
 				751DA9B61C19D3D600D10C24 /* UserLogInEmptyView.swift */,
 				750272031C1D3C4A0095CB0E /* UserLogInEmptyView.xib */,
 			);
@@ -1448,7 +1448,7 @@
 				7522B8921BFF3C0100BC14C0 /* ExpandedCollectionViewFlowLayout.swift in Sources */,
 				75FD246F1BE3D3E500446801 /* XperiaZ.swift in Sources */,
 				50551C351BCBEA96005B88DA /* BackgroundCollectionViewCell.swift in Sources */,
-				758792A81BF487E10071C383 /* LoadingView.swift in Sources */,
+				758792A81BF487E10071C383 /* ActivityView.swift in Sources */,
 				7585BB4E1C1026AA00D59BF5 /* BLImagePickerController.swift in Sources */,
 				7561AE9F1C0FD563009B2C8B /* Plate.swift in Sources */,
 				50551C2C1BCB8B18005B88DA /* SelectDeviceTableViewController.swift in Sources */,

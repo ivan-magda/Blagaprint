@@ -43,6 +43,8 @@ class CupViewController: UIViewController {
     /// Inner color of cup.
     private var cupInnerColor = UIColor.whiteColor()
     
+    private var activityView: ActivityView?
+    
     // MARK: - View Life Cycle
     
     override func viewDidLoad() {
@@ -246,6 +248,29 @@ class CupViewController: UIViewController {
         }
     }
     
+    // MARK: - Activity Indicator
+    
+    private func presentActivityView() {
+        let tabBarController = self.tabBarController!
+        
+        self.activityView = ActivityView(frame: tabBarController.view.bounds, message: NSLocalizedString("Adding...", comment: ""))
+        tabBarController.view.addSubview(activityView!)
+        activityView!.startAnimating()
+    }
+    
+    private func removeActivityView(completion completion: (() -> ())?) {
+        if let activityView = self.activityView {
+            activityView.stopAnimating()
+            activityView.removeFromSuperview()
+
+            self.activityView = nil
+            
+            if let completion = completion {
+                completion()
+            }
+        }
+    }
+    
     // MARK: - Actions
     
     func pickImageDidPressed() {
@@ -258,18 +283,67 @@ class CupViewController: UIViewController {
         self.performSegueWithIdentifier(colorPickingSegueIdentifier, sender: nil)
     }
     
-    @IBAction func addToBagDidPressed(sender: AnyObject) {
-        print("Add to Bag did pressed")
+    private func addBagItemToBag(bag: Bag, user: BlagaprintUser) {
+        // Create BagItem and save it to Parse.
+        let item = BagItem()
+        item.userId = user.objectId!
+        item.category = self.category.objectId!
         
+        if let categoryItems = self.categoryItems where categoryItems.count > 0 {
+            item.categoryItem = categoryItems.first!.objectId!
+        }
+        
+        if let image = self.pickedImage {
+            let imageData = UIImageJPEGRepresentation(image, 0.9)
+            if let imageData = imageData {
+                item.image = PFFile(data: imageData)!
+            }
+        }
+        
+        let colorInString = BagItem.colorToString(self.cupInnerColor)
+        item.color = colorInString
+        
+        item.saveInBackgroundWithBlock() { (succeeded, error) in
+            if let error = error {
+                print(error.localizedDescription)
+                
+                self.removeActivityView(completion: nil)
+            } else if succeeded {
+                // Add this item to bag and save it.
+                bag.addUniqueObject(item.objectId!, forKey: Bag.Keys.items.rawValue)
+                bag.saveInBackgroundWithBlock() { (succeeded, error) in
+                    if let error = error {
+                        print(error.localizedDescription)
+                        
+                        self.removeActivityView(completion: nil)
+                    } else if succeeded {
+                        self.removeActivityView() {
+                            let alert = UIAlertController(title: NSLocalizedString("Succeeded", comment: ""), message: "Item successfully added to bag", preferredStyle: .Alert)
+                            alert.addAction(UIAlertAction(title: "Ok", style: .Cancel, handler: nil))
+                            self.presentViewController(alert, animated: true, completion: nil)
+                        }
+                    }
+                }
+            } else {
+                self.removeActivityView(completion: nil)
+            }
+        }
+    }
+    
+    @IBAction func addToBagDidPressed(sender: AnyObject) {
         if let user = BlagaprintUser.currentUser() {
-
+            
+            presentActivityView()
+            
             // Find Bag of the user.
             let bagQuery = PFQuery(className: BagClassName)
             bagQuery.whereKey(Bag.Keys.userId.rawValue, equalTo: user.objectId!)
             bagQuery.findObjectsInBackgroundWithBlock() { (bag, error) in
                 if let error = error {
                     print(error.localizedDescription)
-                } else if let bag = bag {
+                    
+                    self.removeActivityView(completion: nil)
+                } else if let bag = bag as? [Bag] {
                     assert(bag.count <= 1, "Bag must be unique for each user!")
                     
                     // Bag not exist, create it for the user.
@@ -279,48 +353,28 @@ class CupViewController: UIViewController {
                         bag.saveInBackgroundWithBlock() { (succeeded, error) in
                             if let error = error {
                                 print(error.localizedDescription)
+                                
+                                self.removeActivityView(completion: nil)
                             } else if succeeded {
-                                
-                                // Create BagItem and save it to Parse.
-                                let item = BagItem()
-                                item.userId = user.objectId!
-                                item.category = self.category.objectId!
-                                
-                                if let categoryItems = self.categoryItems where categoryItems.count > 0 {
-                                    item.categoryItem = categoryItems.first!.objectId!
-                                }
-                                
-                                if let image = self.pickedImage {
-                                    let imageData = UIImageJPEGRepresentation(image, 1.0)
-                                    if let imageData = imageData {
-                                        item.image = PFFile(data: imageData)!
-                                    }
-                                }
-                                
-                                let colorInString = BagItem.colorToString(self.cupInnerColor)
-                                item.color = colorInString
-                                
-                                item.saveInBackgroundWithBlock() { (succeeded, error) in
-                                    if let error = error {
-                                        print(error.localizedDescription)
-                                    } else if succeeded {
-                                        // Add this item to bag and save it.
-                                        bag.addUniqueObject(item.objectId!, forKey: Bag.Keys.items.rawValue)
-                                        bag.saveInBackground()
-                                    }
-                                }
+                                self.addBagItemToBag(bag, user: user)
+                            } else {
+                                self.removeActivityView(completion: nil)
                             }
                         }
-                    // Bag already exist and we find it.
+                        // Bag already exist and we find it.
                     } else {
-                        
+                        self.addBagItemToBag(bag[bag.count - 1], user: user)
                     }
                 }
             }
         } else {
-            print("User not logged in")
+            let alert = UIAlertController(title: NSLocalizedString("You are not registred", comment: "Alert title when user not registered"), message: NSLocalizedString("If you want add item to bag, please login in your account", comment: "Alert message when user not logged in and want add item to bag"), preferredStyle: .Alert)
+            alert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .Cancel, handler: nil))
+            alert.addAction(UIAlertAction(title: NSLocalizedString("Log In", comment: ""), style: .Default, handler: { (action) in
+                self.presentViewController(LoginViewController(), animated: true, completion: nil)
+            }))
+            self.presentViewController(alert, animated: true, completion: nil)
         }
-        
     }
     
     @IBAction func pageControlDidChangeValue(sender: UIPageControl) {
