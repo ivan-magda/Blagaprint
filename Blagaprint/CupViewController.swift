@@ -248,6 +248,28 @@ class CupViewController: UIViewController {
         }
     }
     
+    // MARK: - Actions
+    
+    func pickImageDidPressed() {
+        animateViewSelection(self.pickImageView)
+        self.presentImagePickingAlertController()
+    }
+    
+    func pickColorDidPressed() {
+        animateViewSelection(self.pickColorView)
+        self.performSegueWithIdentifier(colorPickingSegueIdentifier, sender: nil)
+    }
+    
+    @IBAction func addToBagDidPressed(sender: AnyObject) {
+        addToBag()
+    }
+    
+    @IBAction func pageControlDidChangeValue(sender: UIPageControl) {
+        let pageWidth = CGRectGetWidth(self.collectionView.bounds)
+        let scrollTo = CGPointMake(pageWidth * CGFloat(sender.currentPage), 0)
+        self.collectionView.setContentOffset(scrollTo, animated: true)
+    }
+    
     // MARK: - Activity Indicator
     
     private func presentActivityView() {
@@ -262,7 +284,7 @@ class CupViewController: UIViewController {
         if let activityView = self.activityView {
             activityView.stopAnimating()
             activityView.removeFromSuperview()
-
+            
             self.activityView = nil
             
             if let completion = completion {
@@ -271,18 +293,9 @@ class CupViewController: UIViewController {
         }
     }
     
-    // MARK: - Actions
+    // MARK: - Adding to Bag
     
-    func pickImageDidPressed() {
-        animateViewSelection(self.pickImageView)
-        self.presentImagePickingAlertController()
-    }
-    
-    func pickColorDidPressed() {
-        animateViewSelection(self.pickColorView)
-        self.performSegueWithIdentifier(colorPickingSegueIdentifier, sender: nil)
-    }
-    
+    /// Adds BagItem object to Bag of the current user.
     private func addBagItemToBag(bag: Bag, user: BlagaprintUser) {
         // Create BagItem and save it to Parse.
         let item = BagItem()
@@ -296,7 +309,16 @@ class CupViewController: UIViewController {
         if let image = self.pickedImage {
             let imageData = UIImageJPEGRepresentation(image, 0.9)
             if let imageData = imageData {
-                item.image = PFFile(data: imageData)!
+                if let imageFile = PFFile(data: imageData) {
+                    item.image = imageFile
+                }
+            }
+        }
+        
+        let thumbnailData = UIImageJPEGRepresentation(images[0], 0.6)
+        if let thumbnailData = thumbnailData {
+            if let thumbnailFile = PFFile(data: thumbnailData) {
+                item.thumbnail = thumbnailFile
             }
         }
         
@@ -330,7 +352,7 @@ class CupViewController: UIViewController {
         }
     }
     
-    @IBAction func addToBagDidPressed(sender: AnyObject) {
+    private func addToBag() {
         if let user = BlagaprintUser.currentUser() {
             
             presentActivityView()
@@ -375,12 +397,6 @@ class CupViewController: UIViewController {
             }))
             self.presentViewController(alert, animated: true, completion: nil)
         }
-    }
-    
-    @IBAction func pageControlDidChangeValue(sender: UIPageControl) {
-        let pageWidth = CGRectGetWidth(self.collectionView.bounds)
-        let scrollTo = CGPointMake(pageWidth * CGFloat(sender.currentPage), 0)
-        self.collectionView.setContentOffset(scrollTo, animated: true)
     }
 }
 

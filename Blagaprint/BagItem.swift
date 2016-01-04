@@ -20,6 +20,7 @@ class BagItem: PFObject, PFSubclassing {
         case category
         case categoryItem
         case image
+        case thumbnail
         case device
         case text
         case color
@@ -42,6 +43,7 @@ class BagItem: PFObject, PFSubclassing {
     @NSManaged var category: String
     @NSManaged var categoryItem: String
     @NSManaged var image: PFFile
+    @NSManaged var thumbnail: PFFile
     @NSManaged var device: String
     @NSManaged var text: String
     @NSManaged var color: String
