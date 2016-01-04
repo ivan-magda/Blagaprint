@@ -111,4 +111,35 @@ class ParseCentral: NSObject {
             print("Unable to start notifier")
         }
     }
+    
+    // MARK: - Fetching data -
+    
+    class func updateBagTabBarItemBadgeValue() {
+        guard let user = BlagaprintUser.currentUser() else {
+            return
+        }
+        
+        let query = PFQuery(className: BagItemClassName)
+        query.whereKey(BagItem.Keys.userId.rawValue, equalTo: user.objectId!)
+        query.cachePolicy = .CacheThenNetwork
+        
+        query.countObjectsInBackgroundWithBlock() { (count, error) in
+            if let error = error {
+                print(error.localizedDescription)
+            } else {
+                dispatch_async(dispatch_get_main_queue()) {
+                    let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+                    let tabBarController = appDelegate.window!.rootViewController as! UITabBarController
+                    
+                    if let tabBarItem = tabBarController.tabBar.items?[1] {
+                        if count == 0 {
+                            tabBarItem.badgeValue = nil
+                        } else {
+                            tabBarItem.badgeValue = "\(count)"
+                        }
+                    }
+                }
+            }
+        }
+    }
 }

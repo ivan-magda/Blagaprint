@@ -54,6 +54,8 @@ class MainQueryTableViewController: PFQueryTableViewController {
         super.viewDidLoad()
         
         self.tableView.rowHeight = categoryTableViewCellHeight
+        
+        ParseCentral.updateBagTabBarItemBadgeValue()
     }
     
     override func viewWillAppear(animated: Bool) {

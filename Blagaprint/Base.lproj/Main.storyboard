@@ -1072,40 +1072,6 @@
             </objects>
             <point key="canvasLocation" x="-602" y="971"/>
         </scene>
-        <!--Bag-->
-        <scene sceneID="Vkt-aX-BlP">
-            <objects>
-                <viewController id="X7t-0i-ZaH" customClass="ShoppingBagViewController" customModule="Blagaprint" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="15S-Vj-6u8"/>
-                        <viewControllerLayoutGuide type="bottom" id="z2P-kl-3hW"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="6At-ic-jbd">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HJO-Tt-gpR">
-                                <rect key="frame" x="20" y="72" width="280" height="82"/>
-                                <string key="text">There are no items in your bag. If you already have an account, sign in to see your bag or navigate to the catalog and make a purchase.</string>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="z2P-kl-3hW" firstAttribute="top" relation="greaterThanOrEqual" secondItem="HJO-Tt-gpR" secondAttribute="bottom" constant="8" symbolic="YES" id="0Jc-AG-u5i"/>
-                            <constraint firstItem="HJO-Tt-gpR" firstAttribute="leading" secondItem="6At-ic-jbd" secondAttribute="leading" constant="20" symbolic="YES" id="E0O-L8-D3w"/>
-                            <constraint firstAttribute="trailing" secondItem="HJO-Tt-gpR" secondAttribute="trailing" constant="20" symbolic="YES" id="JGo-qw-BQA"/>
-                            <constraint firstItem="HJO-Tt-gpR" firstAttribute="top" secondItem="15S-Vj-6u8" secondAttribute="bottom" constant="8" id="OOs-cg-djQ"/>
-                        </constraints>
-                    </view>
-                    <navigationItem key="navigationItem" title="Bag" id="mhH-65-0ZF"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dLS-8Z-nvT" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="459" y="971"/>
-        </scene>
         <!--Account-->
         <scene sceneID="3xs-ba-glm">
             <objects>
@@ -1564,12 +1530,70 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="X7t-0i-ZaH" kind="relationship" relationship="rootViewController" id="h44-Dd-F1r"/>
+                        <segue destination="TkZ-Su-QbA" kind="relationship" relationship="rootViewController" id="jdR-h0-pl7"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fVE-Lk-WL1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="54" y="971"/>
+        </scene>
+        <!--Bag-->
+        <scene sceneID="p6P-bl-aXq">
+            <objects>
+                <tableViewController id="TkZ-Su-QbA" customClass="ShoppingBagViewController" customModule="Blagaprint" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="84" sectionHeaderHeight="28" sectionFooterHeight="28" id="0mL-61-yjd">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="BagItemCell" id="Jpl-KK-EAQ" customClass="BagItemTableViewCell" customModule="Blagaprint" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="92" width="320" height="84"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Jpl-KK-EAQ" id="MMs-bf-9AG">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="83"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="jKE-Tc-92V" customClass="PFImageView">
+                                            <rect key="frame" x="15" y="6" width="72" height="72"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="72" id="45E-aN-gVO"/>
+                                                <constraint firstAttribute="width" constant="72" id="tet-L8-gRX"/>
+                                            </constraints>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="INF-EP-iZ8">
+                                            <rect key="frame" x="95" y="31" width="205" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="INF-EP-iZ8" firstAttribute="centerY" secondItem="MMs-bf-9AG" secondAttribute="centerY" id="IHW-UO-NYx"/>
+                                        <constraint firstItem="INF-EP-iZ8" firstAttribute="leading" secondItem="jKE-Tc-92V" secondAttribute="trailing" constant="8" id="RPz-sq-YbB"/>
+                                        <constraint firstAttribute="trailing" secondItem="INF-EP-iZ8" secondAttribute="trailing" constant="20" symbolic="YES" id="ThD-td-gtf"/>
+                                        <constraint firstItem="jKE-Tc-92V" firstAttribute="centerY" secondItem="MMs-bf-9AG" secondAttribute="centerY" id="rqD-Ff-p65"/>
+                                        <constraint firstItem="jKE-Tc-92V" firstAttribute="leading" secondItem="MMs-bf-9AG" secondAttribute="leading" constant="15" id="vAc-uB-730"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="label" destination="INF-EP-iZ8" id="0eG-tW-trw"/>
+                                    <outlet property="thumbnailImage" destination="jKE-Tc-92V" id="V18-QW-6rg"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="TkZ-Su-QbA" id="tkD-5c-ckL"/>
+                            <outlet property="delegate" destination="TkZ-Su-QbA" id="8jJ-wp-FCK"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Bag" id="vfq-7a-ev4"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="loadingViewEnabled" value="YES"/>
+                    </userDefinedRuntimeAttributes>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="kFr-Tw-lJS" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="444" y="971"/>
         </scene>
         <!--Account-->
         <scene sceneID="sUJ-no-Imi">

@@ -24,6 +24,7 @@ class BagItem: PFObject, PFSubclassing {
         case device
         case text
         case color
+        case createdAt
     }
     
     // MARK: - PFSubclassing

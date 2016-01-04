@@ -306,6 +306,7 @@ class CupViewController: UIViewController {
             item.categoryItem = categoryItems.first!.objectId!
         }
         
+        // Set user picked image from media/camera.
         if let image = self.pickedImage {
             let imageData = UIImageJPEGRepresentation(image, 0.9)
             if let imageData = imageData {
@@ -315,6 +316,7 @@ class CupViewController: UIViewController {
             }
         }
         
+        // Set thumbnail image of item.
         let thumbnailData = UIImageJPEGRepresentation(images[0], 0.6)
         if let thumbnailData = thumbnailData {
             if let thumbnailFile = PFFile(data: thumbnailData) {
@@ -325,13 +327,14 @@ class CupViewController: UIViewController {
         let colorInString = BagItem.colorToString(self.cupInnerColor)
         item.color = colorInString
         
+        // Save item to Parse datastore.
         item.saveInBackgroundWithBlock() { (succeeded, error) in
             if let error = error {
                 print(error.localizedDescription)
                 
                 self.removeActivityView(completion: nil)
             } else if succeeded {
-                // Add this item to bag and save it.
+                // Add this item to bag of the current user.
                 bag.addUniqueObject(item.objectId!, forKey: Bag.Keys.items.rawValue)
                 bag.saveInBackgroundWithBlock() { (succeeded, error) in
                     if let error = error {
@@ -339,6 +342,7 @@ class CupViewController: UIViewController {
                         
                         self.removeActivityView(completion: nil)
                     } else if succeeded {
+                        // Present successfull alert controller.
                         self.removeActivityView() {
                             let alert = UIAlertController(title: NSLocalizedString("Succeeded", comment: ""), message: "Item successfully added to bag", preferredStyle: .Alert)
                             alert.addAction(UIAlertAction(title: "Ok", style: .Cancel, handler: nil))
