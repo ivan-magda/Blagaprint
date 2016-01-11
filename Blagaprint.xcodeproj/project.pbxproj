@@ -116,7 +116,7 @@
 		757459311C1473290063B758 /* Delete.png in Resources */ = {isa = PBXBuildFile; fileRef = 7574592E1C1473290063B758 /* Delete.png */; };
 		757459321C1473290063B758 /* Delete@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7574592F1C1473290063B758 /* Delete@2x.png */; };
 		757459331C1473290063B758 /* Delete@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 757459301C1473290063B758 /* Delete@3x.png */; };
-		757470321BDCB405004CABD0 /* PhoneCaseDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 757470311BDCB404004CABD0 /* PhoneCaseDevice.swift */; };
+		757470321BDCB405004CABD0 /* Device.swift in Sources */ = {isa = PBXBuildFile; fileRef = 757470311BDCB404004CABD0 /* Device.swift */; };
 		757470351BDCBEB4004CABD0 /* iPhone6CameraImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 757470331BDCBEB4004CABD0 /* iPhone6CameraImage.png */; };
 		757470361BDCBEB4004CABD0 /* iPhone6CameraImage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 757470341BDCBEB4004CABD0 /* iPhone6CameraImage@2x.png */; };
 		758070181C0C420E000F9D84 /* PlateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 758070171C0C420E000F9D84 /* PlateView.swift */; };
@@ -309,7 +309,7 @@
 		7574592E1C1473290063B758 /* Delete.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Delete.png; sourceTree = "<group>"; };
 		7574592F1C1473290063B758 /* Delete@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Delete@2x.png"; sourceTree = "<group>"; };
 		757459301C1473290063B758 /* Delete@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Delete@3x.png"; sourceTree = "<group>"; };
-		757470311BDCB404004CABD0 /* PhoneCaseDevice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhoneCaseDevice.swift; sourceTree = "<group>"; };
+		757470311BDCB404004CABD0 /* Device.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Device.swift; sourceTree = "<group>"; };
 		757470331BDCBEB4004CABD0 /* iPhone6CameraImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = iPhone6CameraImage.png; path = images/iPhone6CameraImage.png; sourceTree = "<group>"; };
 		757470341BDCBEB4004CABD0 /* iPhone6CameraImage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "iPhone6CameraImage@2x.png"; path = "images/iPhone6CameraImage@2x.png"; sourceTree = "<group>"; };
 		757E9F211C24642900ADEB32 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Main.strings; sourceTree = "<group>"; };
@@ -599,7 +599,7 @@
 				75C4E7C71C3807450039B59F /* Bag.swift */,
 				75C4E7C91C3807540039B59F /* BagItem.swift */,
 				750E0F901C1874DA00A8158C /* BlagaprintUser.swift */,
-				757470311BDCB404004CABD0 /* PhoneCaseDevice.swift */,
+				757470311BDCB404004CABD0 /* Device.swift */,
 				75BF69521C044900009D670D /* PhotoFrame.swift */,
 			);
 			name = DataModel;
@@ -1457,7 +1457,7 @@
 				758070181C0C420E000F9D84 /* PlateView.swift in Sources */,
 				75C4E7C81C3807450039B59F /* Bag.swift in Sources */,
 				502A8CB31BB80EAC0064E0DA /* AppDelegate.swift in Sources */,
-				757470321BDCB405004CABD0 /* PhoneCaseDevice.swift in Sources */,
+				757470321BDCB405004CABD0 /* Device.swift in Sources */,
 				756FF67D1C128C2D0091B75E /* Reachability.swift in Sources */,
 				75467C921C12EC32008046A2 /* SignUpViewController.swift in Sources */,
 				508503041BBAADB600152131 /* AppAppearance.swift in Sources */,
