@@ -45,6 +45,8 @@ class ShoppingBagViewController: PFQueryTableViewController {
         configureAccountActionBarButton()
         
         self.loadObjects()
+        
+        ParseCentral.updateBagTabBarItemBadgeValue()
     }
     
     
@@ -57,20 +59,6 @@ class ShoppingBagViewController: PFQueryTableViewController {
         } else {
             self.logInBarButtonItem = nil
             self.navigationItem.rightBarButtonItem = nil
-        }
-    }
-    
-    private func updateBadgeValue() {
-        if let tabBarItem = self.tabBarController?.tabBar.items?[1] {
-            if let objects = self.objects {
-                if objects.count == 0 {
-                    tabBarItem.badgeValue = nil
-                } else {
-                    tabBarItem.badgeValue = "\(objects.count)"
-                }
-            } else {
-                tabBarItem.badgeValue = nil
-            }
         }
     }
     
@@ -170,8 +158,6 @@ class ShoppingBagViewController: PFQueryTableViewController {
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        updateBadgeValue()
-        
         return self.objects?.count ?? 0
     }
     

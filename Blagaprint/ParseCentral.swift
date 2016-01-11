@@ -35,6 +35,21 @@ class ParseCentral: NSObject {
         return Static.instance!
     }
     
+    /// This view is presenting when user adding item to the bag.
+    private var activityView: ActivityView?
+    
+    private var rootViewController: UITabBarController? {
+        if let appDelegate = UIApplication.sharedApplication().delegate as? AppDelegate {
+            if let window = appDelegate.window {
+                if let tabBarController = window.rootViewController as? UITabBarController {
+                    return tabBarController
+                }
+            }
+        }
+        
+        return nil
+    }
+    
     // MARK: - Initializers
     
     override init() {
@@ -139,6 +154,122 @@ class ParseCentral: NSObject {
                         }
                     }
                 }
+            }
+        }
+    }
+    
+    // MARK: - Activity Indicator
+    
+    private func presentActivityView() {
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let tabBarController = appDelegate.window!.rootViewController as! UITabBarController
+        
+        self.activityView = ActivityView(frame: tabBarController.view.bounds, message: NSLocalizedString("Adding...", comment: ""))
+        tabBarController.view.addSubview(activityView!)
+        activityView!.startAnimating()
+    }
+    
+    private func removeActivityView(completion completion: (() -> ())?) {
+        if let activityView = self.activityView {
+            activityView.stopAnimating()
+            activityView.removeFromSuperview()
+            
+            self.activityView = nil
+            
+            if let completion = completion {
+                completion()
+            }
+        }
+    }
+    
+    // MARK: - Adding to Bag
+    
+    /// Adds BagItem object to Bag of the current user.
+    private func addItemToBag(bag: Bag, item: BagItem) {
+        // Save item to Parse datastore.
+        item.saveInBackgroundWithBlock() { (succeeded, error) in
+            if let error = error {
+                print(error.localizedDescription)
+                
+                self.removeActivityView(completion: nil)
+            } else if succeeded {
+                // Add this item to bag of the current user.
+                bag.addUniqueObject(item.objectId!, forKey: Bag.Keys.items.rawValue)
+                bag.saveInBackgroundWithBlock() { (succeeded, error) in
+                    if let error = error {
+                        print(error.localizedDescription)
+                        
+                        self.removeActivityView(completion: nil)
+                    } else if succeeded {
+                        // Present successfull alert controller.
+                        self.removeActivityView() {
+                            let alert = UIAlertController(title: NSLocalizedString("Succeeded", comment: ""), message: "Item successfully added to bag", preferredStyle: .Alert)
+                            alert.addAction(UIAlertAction(title: "Ok", style: .Cancel, handler: nil))
+
+                            if let rootViewController = self.rootViewController {
+                                rootViewController.presentViewController(alert, animated: true, completion: nil)
+                            }
+                            
+                            ParseCentral.updateBagTabBarItemBadgeValue()
+                        }
+                    }
+                }
+            } else {
+                self.removeActivityView(completion: nil)
+            }
+        }
+    }
+    
+    /// Saves BagItem to the Bag of the current user asynchronously.
+    func saveItem(item: BagItem) {
+        if let user = BlagaprintUser.currentUser() {
+            
+            presentActivityView()
+            
+            // Find Bag of the user.
+            let bagQuery = PFQuery(className: BagClassName)
+            bagQuery.whereKey(Bag.Keys.userId.rawValue, equalTo: user.objectId!)
+            bagQuery.findObjectsInBackgroundWithBlock() { (bag, error) in
+                if let error = error {
+                    print(error.localizedDescription)
+                    
+                    self.removeActivityView(completion: nil)
+                } else if let bag = bag as? [Bag] {
+                    assert(bag.count <= 1, "Bag must be unique for each user!")
+                    
+                    // Bag not exist, create it for the user.
+                    if bag.count == 0 {
+                        let bag = Bag()
+                        bag.userId = user.objectId!
+                        bag.saveInBackgroundWithBlock() { (succeeded, error) in
+                            if let error = error {
+                                print(error.localizedDescription)
+                                
+                                self.removeActivityView(completion: nil)
+                            } else if succeeded {
+                                self.addItemToBag(bag, item: item)
+                            } else {
+                                self.removeActivityView(completion: nil)
+                            }
+                        }
+                        // Bag already exist and we found it.
+                    } else {
+                        self.addItemToBag(bag[bag.count - 1], item: item)
+                    }
+                }
+            }
+        } else {
+            let alert = UIAlertController(title: NSLocalizedString("You are not registred", comment: "Alert title when user not registered"), message: NSLocalizedString("If you want add item to bag, please login in your account", comment: "Alert message when user not logged in and want add item to bag"), preferredStyle: .Alert)
+            alert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .Cancel, handler: nil))
+            alert.addAction(UIAlertAction(title: NSLocalizedString("Log In", comment: ""), style: .Default, handler: { (action) in
+                
+                if let rootViewController = self.rootViewController {
+                    rootViewController.presentViewController(LoginViewController(), animated: true, completion: nil)
+                }
+            }))
+            
+            if let rootViewController = self.rootViewController {
+                rootViewController.presentViewController(alert, animated: true, completion: nil)
             }
         }
     }

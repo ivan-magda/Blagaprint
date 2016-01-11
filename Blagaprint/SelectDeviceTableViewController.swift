@@ -29,13 +29,13 @@ class SelectDeviceTableViewController: UITableViewController {
         super.viewDidLoad()
         
         assert(originalDevice != nil, "Original device must be passed when segue to this controller")
-        setUp()
+        setup()
     }
 
     // MARK: - Private
     
-    private func setUp() {
-        self.title = "Устройство"
+    private func setup() {
+        self.title = NSLocalizedString("Device", comment: "Title for SelectDeviceVC")
         self.configurateDevicesByCompany()
     }
     

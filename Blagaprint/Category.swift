@@ -72,6 +72,7 @@ class Category: PFObject, PFSubclassing {
     /// Returns items of the category.
     func getItemsInBackgroundWithBlock(completionHandler: ((objects: [CategoryItem]?, error: NSError?) -> ())? ) {
         let categoryItemsQuery = PFQuery(className: CategoryItemClassName)
+        categoryItemsQuery.cachePolicy = .CacheThenNetwork
         categoryItemsQuery.whereKey(CategoryItem.Keys.parentCategory.rawValue, equalTo: self)
         categoryItemsQuery.includeKey(CategoryItem.Keys.parentCategory.rawValue)
         

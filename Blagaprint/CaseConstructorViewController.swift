@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import ImageIO
 
 class CaseConstructorTableViewController: UITableViewController {
     // MARK: - Types
@@ -41,8 +40,19 @@ class CaseConstructorTableViewController: UITableViewController {
     /// Device label.
     @IBOutlet weak var deviceLabel: UILabel!
     
+    var parseCentral: ParseCentral?
+    
+    /// Category of the presenting item.
+    var category: Category!
+    
+    /// Loaded category items of the parent category.
+    private var categoryItems: [CategoryItem]?
+    
     /// Default supported device.
-    var device: Device!
+    private var device: Device!
+    
+    /// Picked image by the user.
+    private var pickedImage: UIImage?
     
     /// Case view size value.
     var caseViewSize: CGSize {
@@ -51,6 +61,10 @@ class CaseConstructorTableViewController: UITableViewController {
     
     /// Image picker controller to let us take/pick photo.
     var imagePickerController: BLImagePickerController?
+    
+    private var addToBagButton: UIButton?
+    
+    private let addToBagButtonHeight: CGFloat = 56.0
     
     // MARK: - View Life Cycle
     
@@ -61,11 +75,38 @@ class CaseConstructorTableViewController: UITableViewController {
         
         self.imagePickerController = BLImagePickerController(rootViewController: self) {
             pickedImage in
+            self.pickedImage = pickedImage
             self.setImageToCaseView(pickedImage)
         }
+        
+        let scrollView = self.view as! UIScrollView
+        scrollView.contentInset = UIEdgeInsetsMake(0.0, 0.0, addToBagButtonHeight - 0.5, 0.0)
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        setupAddToBagButton()
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        self.addToBagButton?.removeFromSuperview()
     }
     
     // MARK: - Private
+    
+    private func loadCategoryItems() {
+        weak var weakSelf = self
+        self.category.getItemsInBackgroundWithBlock() { (items, error) in
+            if let error = error {
+                print(error.localizedDescription)
+            } else if let items = items {
+                weakSelf?.categoryItems = items
+            }
+        }
+    }
     
     private func setImageToCaseView(image: UIImage) {
         self.caseView.image = UIImage.resizedImage(image, newSize: caseViewSize)
@@ -94,6 +135,84 @@ class CaseConstructorTableViewController: UITableViewController {
             }, completion: nil)
     }
     
+    // MARK: - Add to Bag
+    
+    private func setupAddToBagButton() {
+        if self.addToBagButton == nil {
+            let width = CGRectGetWidth(self.view.bounds)
+            let y = CGRectGetHeight(self.navigationController!.view.bounds) - addToBagButtonHeight
+            let addToBagButton = UIButton(frame: CGRectMake(0, y, width, addToBagButtonHeight))
+            addToBagButton.setTitle(NSLocalizedString("Add to Bag", comment: ""), forState: .Normal)
+            addToBagButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
+            addToBagButton.titleLabel?.font = UIFont.systemFontOfSize(19.0)
+            addToBagButton.backgroundColor = UIColor(red: 76.0 / 255.0, green: 217.0 / 255.0, blue: 100.0 / 255.0, alpha: 1.0)
+            addToBagButton.addTarget(self, action: Selector("addToBag"), forControlEvents: UIControlEvents.TouchUpInside)
+            self.addToBagButton = addToBagButton
+        }
+        
+        self.navigationController?.view.addSubview(self.addToBagButton!)
+    }
+    
+    private func createBagItem() -> BagItem {
+        // Create BagItem and save it to Parse.
+        let item = BagItem()
+        
+        if let user = BlagaprintUser.currentUser() {
+            item.userId = user.objectId!
+        }
+        
+        item.category = self.category.objectId!
+        
+        if let categoryItems = self.categoryItems where categoryItems.count > 0 {
+            item.categoryItem = categoryItems[0].objectId!
+        }
+        
+        // Set user picked image from media/camera.
+        if self.caseView.showBackgroundImage == true {
+            if let image = self.pickedImage {
+                let imageData = UIImageJPEGRepresentation(image, 0.9)
+                if let imageData = imageData {
+                    if let imageFile = PFFile(data: imageData) {
+                        item.image = imageFile
+                    }
+                }
+            }
+        }
+        
+        // Set thumbnail image of item.
+        let image = self.caseView.getCaseImage()
+        let resizedImage = image.resizedImage(image.size, interpolationQuality: .Low)
+        let thumbnailData = UIImagePNGRepresentation(resizedImage)
+        if let thumbnailData = thumbnailData {
+            if let thumbnailFile = PFFile(data: thumbnailData) {
+                item.thumbnail = thumbnailFile
+            }
+        }
+        
+        // Set colors.
+        item.fillColor = BagItem.colorToString(self.caseView.fillColor)
+        item.textColor = BagItem.colorToString(self.caseView.textColor)
+        
+        // Set device.
+        item.device = self.device.descriptionFromDevice()
+        
+        // Set text.
+        item.text = self.caseView.text
+        
+        return item
+    }
+    
+    
+    func addToBag() {
+        if let parseCentral = self.parseCentral {
+            parseCentral.saveItem(createBagItem())
+        } else {
+            let alert = UIAlertController(title: NSLocalizedString("Error", comment: ""), message: "An error occured. Please try again later.", preferredStyle: .Alert)
+            alert.addAction(UIAlertAction(title: "Ok", style: .Cancel, handler: nil))
+            self.presentViewController(alert, animated: true, completion: nil)
+        }
+    }
+    
     // MARK: - Navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == SegueIdentifier.SelectDevice.rawValue {
@@ -108,38 +227,38 @@ class CaseConstructorTableViewController: UITableViewController {
                 var tableHeaderViewHeight: CGFloat = 0.0
                 var caseViewWidth: CGFloat = 0.0
                 if selectedDevice.name == Device.iPhone4().name ||
-                    selectedDevice.name == Device.galaxyS4Mini().name ||
-                    selectedDevice.name == Device.galaxyS5Mini().name ||
-                    selectedDevice.name == Device.galaxyA3().name ||
-                    selectedDevice.name == Device.galaxyA5().name ||
-                    selectedDevice.name == Device.sonyXperiaZ1Compact().name ||
-                    selectedDevice.name == Device.sonyXperiaZ2Compact().name ||
-                    selectedDevice.name == Device.sonyXperiaZ3Compact().name {
+                   selectedDevice.name == Device.galaxyS4Mini().name ||
+                   selectedDevice.name == Device.galaxyS5Mini().name ||
+                   selectedDevice.name == Device.galaxyA3().name ||
+                   selectedDevice.name == Device.galaxyA5().name ||
+                   selectedDevice.name == Device.sonyXperiaZ1Compact().name ||
+                   selectedDevice.name == Device.sonyXperiaZ2Compact().name ||
+                   selectedDevice.name == Device.sonyXperiaZ3Compact().name {
                         tableHeaderViewHeight = 380.0
                         caseViewWidth = 220.0
                 } else if selectedDevice.name == Device.iPhone5().name ||
-                    selectedDevice.name == Device.galaxyS3().name ||
-                    selectedDevice.name == Device.galaxyA7().name {
+                   selectedDevice.name == Device.galaxyS3().name ||
+                   selectedDevice.name == Device.galaxyA7().name {
                         tableHeaderViewHeight = 400.0
                         caseViewWidth = 220.0
                 } else if selectedDevice.name == Device.iPhone6().name ||
-                    selectedDevice.name == Device.galaxyS4().name {
+                   selectedDevice.name == Device.galaxyS4().name {
                         tableHeaderViewHeight = 420.0
                         caseViewWidth = 240.0
                 } else if selectedDevice.name == Device.iPhone6Plus().name {
                     tableHeaderViewHeight = 440.0
                     caseViewWidth = 260.0
                 } else if selectedDevice.name == Device.galaxyS5().name ||
-                    selectedDevice.name == Device.galaxyS6().name ||
-                    selectedDevice.name == Device.galaxyS6Edge().name ||
-                    selectedDevice.name == Device.galaxyNote2().name  ||
-                    selectedDevice.name == Device.galaxyNote3().name  ||
-                    selectedDevice.name == Device.galaxyNote4().name  ||
-                    selectedDevice.name == Device.sonyXperiaZ1().name ||
-                    selectedDevice.name == Device.sonyXperiaZ2().name ||
-                    selectedDevice.name == Device.sonyXperiaZ3().name ||
-                    selectedDevice.name == Device.xiaomiMi4().name    ||
-                    selectedDevice.name == Device.lenovoS850().name {
+                   selectedDevice.name == Device.galaxyS6().name ||
+                   selectedDevice.name == Device.galaxyS6Edge().name ||
+                   selectedDevice.name == Device.galaxyNote2().name  ||
+                   selectedDevice.name == Device.galaxyNote3().name  ||
+                   selectedDevice.name == Device.galaxyNote4().name  ||
+                   selectedDevice.name == Device.sonyXperiaZ1().name ||
+                   selectedDevice.name == Device.sonyXperiaZ2().name ||
+                   selectedDevice.name == Device.sonyXperiaZ3().name ||
+                   selectedDevice.name == Device.xiaomiMi4().name    ||
+                   selectedDevice.name == Device.lenovoS850().name {
                         tableHeaderViewHeight = 440.0
                         caseViewWidth = 240
                 }
@@ -178,6 +297,7 @@ class CaseConstructorTableViewController: UITableViewController {
                     UIView.animateWithDuration(0.25, animations: { () -> Void in
                         self.caseView.fillColor = color
                         self.caseView.showBackgroundImage = false
+                        self.pickedImage = nil
                     })
                 } else if textColorType {
                     UIView.animateWithDuration(0.25, animations: { () -> Void in
@@ -226,10 +346,6 @@ class CaseConstructorTableViewController: UITableViewController {
         presentManageTextAlertController()
     }
     
-    @IBAction func doneButtonDidPressed(sender: UIBarButtonItem) {
-        self.navigationController?.popViewControllerAnimated(true)
-    }
-    
     // MARK: - UIAlertActions
     
     private func presentSelectBackgroundAlertController() {
@@ -246,6 +362,7 @@ class CaseConstructorTableViewController: UITableViewController {
             self.caseView.image = UIImage()
             self.caseView.showBackgroundImage = false
             self.caseView.fillColor = UIColor.whiteColor()
+            self.pickedImage = nil
         }
         backgroundSelectionAlertController.addAction(clearAction)
         
@@ -317,5 +434,6 @@ class CaseConstructorTableViewController: UITableViewController {
 extension CaseConstructorTableViewController: PhotoLibraryCollectionViewControllerDelegate {
     func photoLibraryCollectionViewController(controller: PhotoLibraryCollectionViewController, didDoneOnImage image: UIImage) {
         setImageToCaseView(image)
+        self.pickedImage = image
     }
 }

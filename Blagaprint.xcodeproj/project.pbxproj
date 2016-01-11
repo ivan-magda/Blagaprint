@@ -24,7 +24,6 @@
 		0C7F25551C29406C00D7C49C /* MoreThan@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C7F25521C29406C00D7C49C /* MoreThan@2x.png */; };
 		0C7F25561C29406C00D7C49C /* MoreThan.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C7F25531C29406C00D7C49C /* MoreThan.png */; };
 		0C8296BE1BFC5CF200B2B345 /* ImagePickingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C8296BD1BFC5CF200B2B345 /* ImagePickingTableViewCell.swift */; };
-		0C8296C01BFC5FF100B2B345 /* FrameConstructorTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C8296BF1BFC5FF100B2B345 /* FrameConstructorTableViewController.swift */; };
 		0C8296C21BFC65D500B2B345 /* DescriptionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C8296C11BFC65D400B2B345 /* DescriptionTableViewCell.swift */; };
 		0C8348FB1C21435300A0697F /* cupLeftImage.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0C8348F51C21435300A0697F /* cupLeftImage.jpg */; };
 		0C8348FC1C21435300A0697F /* cupLeftImage@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0C8348F61C21435300A0697F /* cupLeftImage@2x.jpg */; };
@@ -39,7 +38,7 @@
 		0CA50CE91C1954F400020150 /* AccountTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CA50CE81C1954F400020150 /* AccountTableViewController.swift */; };
 		501506501BCE96C700697C99 /* TextEditingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5015064F1BCE96C700697C99 /* TextEditingViewController.swift */; };
 		502A8CB31BB80EAC0064E0DA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502A8CB21BB80EAC0064E0DA /* AppDelegate.swift */; };
-		502A8CB51BB80EAC0064E0DA /* MainQueryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502A8CB41BB80EAC0064E0DA /* MainQueryTableViewController.swift */; };
+		502A8CB51BB80EAC0064E0DA /* CategoryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502A8CB41BB80EAC0064E0DA /* CategoryTableViewController.swift */; };
 		502A8CB81BB80EAC0064E0DA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 502A8CB61BB80EAC0064E0DA /* Main.storyboard */; };
 		502A8CBA1BB80EAC0064E0DA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 502A8CB91BB80EAC0064E0DA /* Assets.xcassets */; };
 		502A8CBD1BB80EAC0064E0DA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 502A8CBB1BB80EAC0064E0DA /* LaunchScreen.storyboard */; };
@@ -86,10 +85,7 @@
 		7522783B1BE11E72008E117F /* iPhone5CameraImage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 752278391BE11E72008E117F /* iPhone5CameraImage@2x.png */; };
 		7522783E1BE12951008E117F /* galaxyS6CameraImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 7522783C1BE12951008E117F /* galaxyS6CameraImage.png */; };
 		7522783F1BE12951008E117F /* galaxyS6CameraImage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7522783D1BE12951008E117F /* galaxyS6CameraImage@2x.png */; };
-		7522B8901BFF34C800BC14C0 /* CollectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7522B88F1BFF34C800BC14C0 /* CollectionTableViewCell.swift */; };
 		7522B8921BFF3C0100BC14C0 /* ExpandedCollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7522B8911BFF3C0100BC14C0 /* ExpandedCollectionViewFlowLayout.swift */; };
-		7522B8941BFF3F6600BC14C0 /* FrameItemColectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7522B8931BFF3F6600BC14C0 /* FrameItemColectionView.swift */; };
-		7522B8961BFF49F200BC14C0 /* FrameItemCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7522B8951BFF49F200BC14C0 /* FrameItemCollectionViewCell.swift */; };
 		753CD57A1BF3210500795F44 /* AppConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 753CD5791BF3210500795F44 /* AppConfiguration.swift */; };
 		753D4D651C059880002FC5E9 /* SH2_PhotoFrame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 753D4D641C059880002FC5E9 /* SH2_PhotoFrame.swift */; };
 		753D4D671C059AA5002FC5E9 /* sh2_placeholderImage.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 753D4D661C059AA5002FC5E9 /* sh2_placeholderImage.jpg */; };
@@ -123,16 +119,14 @@
 		757470321BDCB405004CABD0 /* PhoneCaseDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 757470311BDCB404004CABD0 /* PhoneCaseDevice.swift */; };
 		757470351BDCBEB4004CABD0 /* iPhone6CameraImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 757470331BDCBEB4004CABD0 /* iPhone6CameraImage.png */; };
 		757470361BDCBEB4004CABD0 /* iPhone6CameraImage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 757470341BDCBEB4004CABD0 /* iPhone6CameraImage@2x.png */; };
-		758070141C0C4088000F9D84 /* PlateTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 758070131C0C4088000F9D84 /* PlateTableViewController.swift */; };
 		758070181C0C420E000F9D84 /* PlateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 758070171C0C420E000F9D84 /* PlateView.swift */; };
-		758070211C0C49F2000F9D84 /* PlateTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 758070201C0C49F2000F9D84 /* PlateTableViewCell.swift */; };
 		75823AAF1BD8BDD000C92F83 /* PhoneCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75823AAE1BD8BDD000C92F83 /* PhoneCase.swift */; };
 		758595621BDA30C10079A1BA /* iPhone4CameraImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 7585955E1BDA30C10079A1BA /* iPhone4CameraImage.png */; };
 		758595631BDA30C10079A1BA /* iPhone4CameraImage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7585955F1BDA30C10079A1BA /* iPhone4CameraImage@2x.png */; };
 		7585BB4E1C1026AA00D59BF5 /* BLImagePickerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7585BB4D1C1026AA00D59BF5 /* BLImagePickerController.swift */; };
 		7586714D1C1BC5A700B60DFB /* ChangePasswordTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7586714C1C1BC5A700B60DFB /* ChangePasswordTableViewController.swift */; };
 		758792A81BF487E10071C383 /* ActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 758792A71BF487E10071C383 /* ActivityView.swift */; };
-		7589398A1C16B54D0069655B /* CupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 758939891C16B54D0069655B /* CupViewController.swift */; };
+		7589398A1C16B54D0069655B /* CategoryItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 758939891C16B54D0069655B /* CategoryItemViewController.swift */; };
 		7589540E1C1582C6006980F0 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7589540C1C1582C6006980F0 /* Localizable.strings */; };
 		758997531C3ABA1B00427033 /* BagItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 758997521C3ABA1B00427033 /* BagItemTableViewCell.swift */; };
 		759E8CCF1BDF64A1008A5503 /* galaxyS4MiniCameraImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 759E8CCD1BDF64A1008A5503 /* galaxyS4MiniCameraImage.png */; };
@@ -218,7 +212,6 @@
 		0C7F25521C29406C00D7C49C /* MoreThan@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MoreThan@2x.png"; sourceTree = "<group>"; };
 		0C7F25531C29406C00D7C49C /* MoreThan.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MoreThan.png; sourceTree = "<group>"; };
 		0C8296BD1BFC5CF200B2B345 /* ImagePickingTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagePickingTableViewCell.swift; sourceTree = "<group>"; };
-		0C8296BF1BFC5FF100B2B345 /* FrameConstructorTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FrameConstructorTableViewController.swift; sourceTree = "<group>"; };
 		0C8296C11BFC65D400B2B345 /* DescriptionTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DescriptionTableViewCell.swift; sourceTree = "<group>"; };
 		0C8348F51C21435300A0697F /* cupLeftImage.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = cupLeftImage.jpg; sourceTree = "<group>"; };
 		0C8348F61C21435300A0697F /* cupLeftImage@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "cupLeftImage@2x.jpg"; sourceTree = "<group>"; };
@@ -234,7 +227,7 @@
 		5015064F1BCE96C700697C99 /* TextEditingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextEditingViewController.swift; sourceTree = "<group>"; };
 		502A8CAF1BB80EAC0064E0DA /* Blagaprint.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Blagaprint.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		502A8CB21BB80EAC0064E0DA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		502A8CB41BB80EAC0064E0DA /* MainQueryTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainQueryTableViewController.swift; sourceTree = "<group>"; };
+		502A8CB41BB80EAC0064E0DA /* CategoryTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryTableViewController.swift; sourceTree = "<group>"; };
 		502A8CB71BB80EAC0064E0DA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		502A8CB91BB80EAC0064E0DA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		502A8CBC1BB80EAC0064E0DA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -284,10 +277,7 @@
 		752278391BE11E72008E117F /* iPhone5CameraImage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "iPhone5CameraImage@2x.png"; path = "images/iPhone5CameraImage@2x.png"; sourceTree = "<group>"; };
 		7522783C1BE12951008E117F /* galaxyS6CameraImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = galaxyS6CameraImage.png; path = images/galaxyS6CameraImage.png; sourceTree = "<group>"; };
 		7522783D1BE12951008E117F /* galaxyS6CameraImage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "galaxyS6CameraImage@2x.png"; path = "images/galaxyS6CameraImage@2x.png"; sourceTree = "<group>"; };
-		7522B88F1BFF34C800BC14C0 /* CollectionTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionTableViewCell.swift; sourceTree = "<group>"; };
 		7522B8911BFF3C0100BC14C0 /* ExpandedCollectionViewFlowLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpandedCollectionViewFlowLayout.swift; sourceTree = "<group>"; };
-		7522B8931BFF3F6600BC14C0 /* FrameItemColectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FrameItemColectionView.swift; sourceTree = "<group>"; };
-		7522B8951BFF49F200BC14C0 /* FrameItemCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FrameItemCollectionViewCell.swift; sourceTree = "<group>"; };
 		753CD5791BF3210500795F44 /* AppConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppConfiguration.swift; sourceTree = "<group>"; };
 		753D4D641C059880002FC5E9 /* SH2_PhotoFrame.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SH2_PhotoFrame.swift; sourceTree = "<group>"; };
 		753D4D661C059AA5002FC5E9 /* sh2_placeholderImage.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = sh2_placeholderImage.jpg; sourceTree = "<group>"; };
@@ -323,16 +313,14 @@
 		757470331BDCBEB4004CABD0 /* iPhone6CameraImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = iPhone6CameraImage.png; path = images/iPhone6CameraImage.png; sourceTree = "<group>"; };
 		757470341BDCBEB4004CABD0 /* iPhone6CameraImage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "iPhone6CameraImage@2x.png"; path = "images/iPhone6CameraImage@2x.png"; sourceTree = "<group>"; };
 		757E9F211C24642900ADEB32 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Main.strings; sourceTree = "<group>"; };
-		758070131C0C4088000F9D84 /* PlateTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlateTableViewController.swift; sourceTree = "<group>"; };
 		758070171C0C420E000F9D84 /* PlateView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlateView.swift; sourceTree = "<group>"; };
-		758070201C0C49F2000F9D84 /* PlateTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlateTableViewCell.swift; sourceTree = "<group>"; };
 		75823AAE1BD8BDD000C92F83 /* PhoneCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhoneCase.swift; sourceTree = "<group>"; };
 		7585955E1BDA30C10079A1BA /* iPhone4CameraImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = iPhone4CameraImage.png; path = images/iPhone4CameraImage.png; sourceTree = "<group>"; };
 		7585955F1BDA30C10079A1BA /* iPhone4CameraImage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "iPhone4CameraImage@2x.png"; path = "images/iPhone4CameraImage@2x.png"; sourceTree = "<group>"; };
 		7585BB4D1C1026AA00D59BF5 /* BLImagePickerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BLImagePickerController.swift; sourceTree = "<group>"; };
 		7586714C1C1BC5A700B60DFB /* ChangePasswordTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangePasswordTableViewController.swift; sourceTree = "<group>"; };
 		758792A71BF487E10071C383 /* ActivityView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityView.swift; sourceTree = "<group>"; };
-		758939891C16B54D0069655B /* CupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CupViewController.swift; sourceTree = "<group>"; };
+		758939891C16B54D0069655B /* CategoryItemViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryItemViewController.swift; sourceTree = "<group>"; };
 		7589540B1C158189006980F0 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		758954101C1582E8006980F0 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
 		758997521C3ABA1B00427033 /* BagItemTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BagItemTableViewCell.swift; sourceTree = "<group>"; };
@@ -453,12 +441,11 @@
 		0CA50CE61C194EC500020150 /* CatalogScene */ = {
 			isa = PBXGroup;
 			children = (
-				502A8CB41BB80EAC0064E0DA /* MainQueryTableViewController.swift */,
+				502A8CB41BB80EAC0064E0DA /* CategoryTableViewController.swift */,
+				758939891C16B54D0069655B /* CategoryItemViewController.swift */,
 				7585BB4D1C1026AA00D59BF5 /* BLImagePickerController.swift */,
+				7522B8911BFF3C0100BC14C0 /* ExpandedCollectionViewFlowLayout.swift */,
 				50551C2F1BCBA534005B88DA /* PhoneCase */,
-				7522B8971BFF4E0200BC14C0 /* PhotoFrame */,
-				758070131C0C4088000F9D84 /* PlateTableViewController.swift */,
-				758939891C16B54D0069655B /* CupViewController.swift */,
 			);
 			name = CatalogScene;
 			sourceTree = "<group>";
@@ -592,8 +579,8 @@
 		50A871D51BCA9B7C003CB0F9 /* PhoneCase */ = {
 			isa = PBXGroup;
 			children = (
-				75DD91FE1BD7BFE000932AD7 /* CaseView.swift */,
 				75823AAE1BD8BDD000C92F83 /* PhoneCase.swift */,
+				75DD91FE1BD7BFE000932AD7 /* CaseView.swift */,
 				75A3E97F1BE3612F0001E073 /* Samsung */,
 				75FD24701BE3D3EA00446801 /* Sony */,
 				75F739381BE491C60063EB6F /* Xiaomi */,
@@ -613,6 +600,7 @@
 				75C4E7C91C3807540039B59F /* BagItem.swift */,
 				750E0F901C1874DA00A8158C /* BlagaprintUser.swift */,
 				757470311BDCB404004CABD0 /* PhoneCaseDevice.swift */,
+				75BF69521C044900009D670D /* PhotoFrame.swift */,
 			);
 			name = DataModel;
 			sourceTree = "<group>";
@@ -627,11 +615,8 @@
 				50FD7F4F1BB8FFF600ABEC38 /* CategoryTableViewCell.swift */,
 				0C8296BD1BFC5CF200B2B345 /* ImagePickingTableViewCell.swift */,
 				0C8296C11BFC65D400B2B345 /* DescriptionTableViewCell.swift */,
-				758070201C0C49F2000F9D84 /* PlateTableViewCell.swift */,
 				0C541A581BD0B51A0028BD9A /* PhotoLibraryItemCollectionViewCell.swift */,
-				7522B88F1BFF34C800BC14C0 /* CollectionTableViewCell.swift */,
 				758997521C3ABA1B00427033 /* BagItemTableViewCell.swift */,
-				7522B8951BFF49F200BC14C0 /* FrameItemCollectionViewCell.swift */,
 				0C7F25431C27D75100D7C49C /* ImageCollectionViewCell.swift */,
 				758792A71BF487E10071C383 /* ActivityView.swift */,
 				751DA9B61C19D3D600D10C24 /* UserLogInEmptyView.swift */,
@@ -748,17 +733,6 @@
 				7522783D1BE12951008E117F /* galaxyS6CameraImage@2x.png */,
 			);
 			name = GalaxyS6;
-			sourceTree = "<group>";
-		};
-		7522B8971BFF4E0200BC14C0 /* PhotoFrame */ = {
-			isa = PBXGroup;
-			children = (
-				75BF69521C044900009D670D /* PhotoFrame.swift */,
-				0C8296BF1BFC5FF100B2B345 /* FrameConstructorTableViewController.swift */,
-				7522B8931BFF3F6600BC14C0 /* FrameItemColectionView.swift */,
-				7522B8911BFF3C0100BC14C0 /* ExpandedCollectionViewFlowLayout.swift */,
-			);
-			name = PhotoFrame;
 			sourceTree = "<group>";
 		};
 		75467C8A1C12EBA3008046A2 /* Login/SignUp */ = {
@@ -1432,9 +1406,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				75F739371BE491BF0063EB6F /* XiaomiMi4.swift in Sources */,
-				502A8CB51BB80EAC0064E0DA /* MainQueryTableViewController.swift in Sources */,
+				502A8CB51BB80EAC0064E0DA /* CategoryTableViewController.swift in Sources */,
 				7586714D1C1BC5A700B60DFB /* ChangePasswordTableViewController.swift in Sources */,
-				758070141C0C4088000F9D84 /* PlateTableViewController.swift in Sources */,
 				75823AAF1BD8BDD000C92F83 /* PhoneCase.swift in Sources */,
 				75DD91FF1BD7BFE000932AD7 /* CaseView.swift in Sources */,
 				0C7F25441C27D75100D7C49C /* ImageCollectionViewCell.swift in Sources */,
@@ -1470,7 +1443,6 @@
 				0C541A591BD0B51A0028BD9A /* PhotoLibraryItemCollectionViewCell.swift in Sources */,
 				75C4E7CA1C3807540039B59F /* BagItem.swift in Sources */,
 				0C7F25361C27CD6A00D7C49C /* Cup.swift in Sources */,
-				7522B8941BFF3F6600BC14C0 /* FrameItemColectionView.swift in Sources */,
 				750C83C91C02EEBB00BAFEB0 /* SH38_PhotoFrame.swift in Sources */,
 				751DA9B71C19D3D600D10C24 /* UserLogInEmptyView.swift in Sources */,
 				501506501BCE96C700697C99 /* TextEditingViewController.swift in Sources */,
@@ -1479,17 +1451,13 @@
 				75A36C3F1BE25C310036B500 /* GalaxyA7.swift in Sources */,
 				751DA9AC1C19C68900D10C24 /* UIImageResizeAdditions.swift in Sources */,
 				758997531C3ABA1B00427033 /* BagItemTableViewCell.swift in Sources */,
-				758070211C0C49F2000F9D84 /* PlateTableViewCell.swift in Sources */,
 				0C8296C21BFC65D500B2B345 /* DescriptionTableViewCell.swift in Sources */,
-				0C8296C01BFC5FF100B2B345 /* FrameConstructorTableViewController.swift in Sources */,
-				7589398A1C16B54D0069655B /* CupViewController.swift in Sources */,
+				7589398A1C16B54D0069655B /* CategoryItemViewController.swift in Sources */,
 				50551C331BCBB469005B88DA /* OvalView.swift in Sources */,
-				7522B8901BFF34C800BC14C0 /* CollectionTableViewCell.swift in Sources */,
 				758070181C0C420E000F9D84 /* PlateView.swift in Sources */,
 				75C4E7C81C3807450039B59F /* Bag.swift in Sources */,
 				502A8CB31BB80EAC0064E0DA /* AppDelegate.swift in Sources */,
 				757470321BDCB405004CABD0 /* PhoneCaseDevice.swift in Sources */,
-				7522B8961BFF49F200BC14C0 /* FrameItemCollectionViewCell.swift in Sources */,
 				756FF67D1C128C2D0091B75E /* Reachability.swift in Sources */,
 				75467C921C12EC32008046A2 /* SignUpViewController.swift in Sources */,
 				508503041BBAADB600152131 /* AppAppearance.swift in Sources */,

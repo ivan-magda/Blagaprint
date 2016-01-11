@@ -23,7 +23,8 @@ class BagItem: PFObject, PFSubclassing {
         case thumbnail
         case device
         case text
-        case color
+        case fillColor
+        case textColor
         case createdAt
     }
     
@@ -47,7 +48,8 @@ class BagItem: PFObject, PFSubclassing {
     @NSManaged var thumbnail: PFFile
     @NSManaged var device: String
     @NSManaged var text: String
-    @NSManaged var color: String
+    @NSManaged var fillColor: String
+    @NSManaged var textColor: String
     
     /// The class name of the object.
     class func parseClassName() -> String {
@@ -70,9 +72,5 @@ class BagItem: PFObject, PFSubclassing {
         
         return color
     }
-    
-}
-
-extension UIColor {
     
 }

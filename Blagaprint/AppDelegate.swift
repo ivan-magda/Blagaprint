@@ -33,10 +33,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Spread ParseCentral
         let tabBarController = window!.rootViewController as! UITabBarController
         
-        // To MainTableViewController
-        let mainTableViewNavigationController = tabBarController.viewControllers![0] as! UINavigationController
-        let mainTableViewController = mainTableViewNavigationController.topViewController as! MainQueryTableViewController
-        mainTableViewController.parseCentral = self.parseCentral
+        // To CategoryTableViewController
+        let categoryNavigationController = tabBarController.viewControllers![0] as! UINavigationController
+        let categoryTableViewController = categoryNavigationController.topViewController as! CategoryTableViewController
+        categoryTableViewController.parseCentral = self.parseCentral
         
         // To ShoppingBagViewController
         let shoppingBagNavigationController = tabBarController.viewControllers![1] as! UINavigationController

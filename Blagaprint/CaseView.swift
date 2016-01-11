@@ -110,6 +110,64 @@ class CaseView: UIView {
         }
     }
     
+    // MARK: - Image 
+    
+    func getCaseImage() -> UIImage {
+        let numberOfCharacters = text.characters.count
+        let textRectHeight = getTextRectHeightFromNumberOfCharacters(numberOfCharacters)
+        let textYscale = getTextYscaleFromNumberOfCharacters(numberOfCharacters)
+        let textSize = getTextFontSizeFromNumberOfCharacters(numberOfCharacters)
+        let textXscale = getTextXScaleFromText(text)
+        
+        if device.name == Device.iPhone4().name {
+            return PhoneCase.imageOfIPhone4Case(self.bounds, fillColor: fillColor, colorOfText: textColor, image: image, caseText: text, backgroundImageVisible: showBackgroundImage, textRectHeight: textRectHeight, textYscale: textYscale, textSize: textSize, textXscale: textXscale)
+        } else if device.name == Device.iPhone5().name {
+            return PhoneCase.imageOfIPhone5Case(self.bounds, fillColor: fillColor, colorOfText: textColor, image: image, caseText: text, backgroundImageVisible: showBackgroundImage, textRectHeight: textRectHeight, textYscale: textYscale, textSize: textSize, textXscale: textXscale)
+        } else if device.name == Device.iPhone6().name {
+            return PhoneCase.imageOfIPhone6Case(self.bounds, fillColor: fillColor, colorOfText: textColor, image: image, caseText: text, backgroundImageVisible: showBackgroundImage, textRectHeight: textRectHeight, textYscale: textYscale, textSize: textSize, textXscale: textXscale)
+        } else if device.name == Device.iPhone6Plus().name {
+            return PhoneCase.imageOfIPhone6PlusCase(self.bounds, fillColor: fillColor, colorOfText: textColor, image: image, caseText: text, backgroundImageVisible: showBackgroundImage, textRectHeight: textRectHeight, textYscale: textYscale, textSize: textSize, textXscale: textXscale)
+        } else if device.name == Device.galaxyS3().name {
+            return PhoneCase.imageOfGalaxyS3(self.bounds, fillColor: fillColor, colorOfText: textColor, image: image, caseText: text, backgroundImageVisible: showBackgroundImage, textRectHeight: textRectHeight, textYscale: textYscale, textSize: textSize, textXscale: textXscale)
+        } else if device.name == Device.galaxyS4().name {
+            return PhoneCase.imageOfGalaxyS4(self.bounds, fillColor: fillColor, colorOfText: textColor, image: image, caseText: text, backgroundImageVisible: showBackgroundImage, textRectHeight: textRectHeight, textYscale: textYscale, textSize: textSize, textXscale: textXscale)
+        } else if device.name == Device.galaxyS4Mini().name {
+            return PhoneCase.imageOfGalaxyS4Mini(self.bounds, fillColor: fillColor, colorOfText: textColor, image: image, caseText: text, backgroundImageVisible: showBackgroundImage, textRectHeight: textRectHeight, textYscale: textYscale, textSize: textSize, textXscale: textXscale)
+        } else if device.name == Device.galaxyS5().name {
+            return PhoneCase.imageOfGalaxyS5(self.bounds, fillColor: fillColor, colorOfText: textColor, image: image, caseText: text, backgroundImageVisible: showBackgroundImage, textRectHeight: textRectHeight, textYscale: textYscale, textSize: textSize, textXscale: textXscale)
+        } else if device.name == Device.galaxyS5Mini().name {
+            return PhoneCase.imageOfGalaxyS5Mini(self.bounds, fillColor: fillColor, colorOfText: textColor, image: image, caseText: text, backgroundImageVisible: showBackgroundImage, textRectHeight: textRectHeight, textYscale: textYscale, textSize: textSize, textXscale: textXscale)
+        } else if device.name == Device.galaxyS6().name ||
+                  device.name == Device.galaxyS6Edge().name {
+                return PhoneCase.imageOfGalaxyS6(self.bounds, fillColor: fillColor, colorOfText: textColor, image: image, caseText: text, backgroundImageVisible: showBackgroundImage, textRectHeight: textRectHeight, textYscale: textYscale, textSize: textSize, textXscale: textXscale, device: device)
+        } else if device.name == Device.galaxyA3().name ||
+                  device.name == Device.galaxyA5().name {
+                return PhoneCase.imageOfGalaxyA3A5(self.bounds, fillColor: fillColor, colorOfText: textColor, image: image, caseText: text, backgroundImageVisible: showBackgroundImage, textRectHeight: textRectHeight, textYscale: textYscale, textSize: textSize, textXscale: textXscale, device: device)
+        } else if device.name == Device.galaxyA7().name {
+            return GalaxyA7.imageOfGalaxyA7Canvas(self.bounds, fillColor: fillColor, colorOfText: textColor, image: image, textXscale: textXscale, textSize: textSize, backgroundImageVisible: showBackgroundImage, caseText: text, textYscale: textYscale, textRectHeight: textRectHeight)
+        } else if device.name == Device.galaxyNote2().name {
+            return GalaxyNote2.imageOfGalaxyNote2(self.bounds, colorOfText: textColor, fillColor: fillColor, image: image, textSize: textSize, textXscale: textXscale, textRectHeight: textRectHeight, caseText: text, textYscale: textYscale, backgroundImageVisible: showBackgroundImage)
+        } else if device.name == Device.galaxyNote3().name {
+            return GalaxyNote3.imageOfNote3(self.bounds, fillColor: fillColor, colorOfText: textColor, image: image, textSize: textSize, textXscale: textXscale, caseText: text, backgroundImageVisible: showBackgroundImage, textYscale: textYscale, textRectHeight: textRectHeight)
+        } else if device.name == Device.galaxyNote4().name {
+            return GalaxyNote4.imageOfNote4(self.bounds, colorOfText: textColor, fillColor: fillColor, image: image, caseText: text, textYscale: textYscale, backgroundImageVisible: showBackgroundImage, textXscale: textXscale, textSize: textSize, textRectHeight: textRectHeight)
+        } else if device.name == Device.sonyXperiaZ1().name ||
+                  device.name == Device.sonyXperiaZ2().name ||
+                  device.name == Device.sonyXperiaZ3().name {
+                return XperiaZ.imageOfXperiaZ1(self.bounds, colorOfText: textColor, fillColor: fillColor, image: image, textYscale: textYscale, caseText: text, textSize: textSize, textXscale: textXscale, backgroundImageVisible: showBackgroundImage, textRectHeight: textRectHeight, device: device)
+        } else if device.name == Device.sonyXperiaZ1Compact().name ||
+                  device.name == Device.sonyXperiaZ2Compact().name ||
+                  device.name == Device.sonyXperiaZ3Compact().name {
+                return XperiaZcompact.imageOfXperiaZcompact(self.bounds, colorOfText: textColor, fillColor: fillColor, image: image, textRectHeight: textRectHeight, backgroundImageVisible: showBackgroundImage, textYscale: textYscale, caseText: text, textXscale: textXscale, textSize: textSize, device: device)
+        } else if device.name == Device.xiaomiMi4().name {
+            return XiaomiMi4.imageOfXiaomiMi(self.bounds, fillColor: fillColor, colorOfText: textColor, image: image, textYscale: textYscale, textXscale: textXscale, textSize: textSize, textRectHeight: textRectHeight, backgroundImageVisible: showBackgroundImage, caseText: text)
+        } else if device.name == Device.lenovoS850().name {
+            return LenovoS850.imageOfLenovoS(self.bounds, colorOfText: textColor, fillColor: fillColor, image: image, textYscale: textYscale, caseText: text, textRectHeight: textRectHeight, textSize: textSize, textXscale: textXscale, backgroundImageVisible: showBackgroundImage)
+        }
+        
+        return UIImage()
+    }
+    
     // MARK: - Text Label Dimensions
     
     static func fontSizeThatFitsRect(rect: CGRect, withText text: String, maxFontSize: CGFloat, minFontSize: CGFloat) -> CGFloat {
@@ -158,7 +216,6 @@ class CaseView: UIView {
                 scale += 0.2
             }
         }
-        print("Y scale = \(scale)")
         
         return scale
     }
@@ -206,8 +263,6 @@ class CaseView: UIView {
                 scale += 0.2
             }
         }
-        
-        print("X scale = \(scale)")
         
         return scale
     }

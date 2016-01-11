@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import CoreData
 
 /// CategoryTableViewCell height value.
 private let categoryTableViewCellHeight: CGFloat = 200.0
@@ -15,14 +14,12 @@ private let categoryTableViewCellHeight: CGFloat = 200.0
 /// Height for tableView header view.
 private let headerViewHeight: CGFloat = 44.0
 
-class MainQueryTableViewController: PFQueryTableViewController {
+class CategoryTableViewController: PFQueryTableViewController {
     // MARK: - Types
     
     private enum SegueIdentifier: String {
         case PhoneCaseConstructor
-        case FrameConstructor
-        case PlateConstructor
-        case CupConstructor
+        case CategoryItem
     }
     
     private enum CellIdentifier: String {
@@ -65,19 +62,19 @@ class MainQueryTableViewController: PFQueryTableViewController {
     // MARK: - Navigation
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == SegueIdentifier.PhoneCaseConstructor.rawValue {
-            print("Segue to PhoneCase")
-        } else if segue.identifier == SegueIdentifier.FrameConstructor.rawValue {
-            print("Segue to FrameConstructor")
-        } else if segue.identifier == SegueIdentifier.PlateConstructor.rawValue {
-            print("Segue to PlateConstructor")
-        } else if segue.identifier == SegueIdentifier.CupConstructor.rawValue {
-            print("Segue to CupConstructor")
-            
-            let cupViewController = segue.destinationViewController as! CupViewController
+        if segue.identifier == SegueIdentifier.CategoryItem.rawValue {
+            let categoryItemViewController = segue.destinationViewController as! CategoryItemViewController
+            categoryItemViewController.parseCentral = self.parseCentral
             
             if let selectedRow = self.tableView.indexPathForSelectedRow {
-                cupViewController.category = objects![selectedRow.section] as! Category
+                categoryItemViewController.category = objects![selectedRow.section] as! Category
+            }
+        } else if segue.identifier == SegueIdentifier.PhoneCaseConstructor.rawValue {
+            let caseConstructorVC = segue.destinationViewController as! CaseConstructorTableViewController
+            caseConstructorVC.parseCentral = self.parseCentral
+            
+            if let selectedRow = self.tableView.indexPathForSelectedRow {
+                caseConstructorVC.category = objects![selectedRow.section] as! Category
             }
         }
     }
@@ -200,14 +197,8 @@ class MainQueryTableViewController: PFQueryTableViewController {
         switch category.getType() {
         case .cases:
             self.performSegueWithIdentifier(SegueIdentifier.PhoneCaseConstructor.rawValue, sender: nil)
-        case .frames:
-            self.performSegueWithIdentifier(SegueIdentifier.FrameConstructor.rawValue, sender: nil)
-        case .plates:
-            self.performSegueWithIdentifier(SegueIdentifier.PlateConstructor.rawValue, sender: nil)
-        case .cups:
-            self.performSegueWithIdentifier(SegueIdentifier.CupConstructor.rawValue, sender: nil)
         default:
-            break
+            self.performSegueWithIdentifier(SegueIdentifier.CategoryItem.rawValue, sender: nil)
         }
     }
     
