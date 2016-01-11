@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ShoppingBagViewController: PFQueryTableViewController {
+class ShoppingBagViewController: UITableViewController {
     // MARK: - Properties
     
     var parseCentral: ParseCentral?
@@ -16,20 +16,9 @@ class ShoppingBagViewController: PFQueryTableViewController {
     private let logInImage = UIImage(named: "Enter.png")!
     private var logInBarButtonItem: UIBarButtonItem?
     
-    // MARK: - Init
-    
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        
-        // The className to query on
-        self.parseClassName = BagItemClassName
-        
-        // Whether the built-in pull-to-refresh is enabled
-        self.pullToRefreshEnabled = false
-        
-        // Whether the built-in pagination is enabled
-        self.paginationEnabled = false
-    }
+    private var objects: [BagItem]?
+    private var thumbnails = [String : UIImage]()
+    private var categories = [String : String]()
     
     // MARK: - View Life Cycle
     
@@ -44,7 +33,7 @@ class ShoppingBagViewController: PFQueryTableViewController {
         
         configureAccountActionBarButton()
         
-        self.loadObjects()
+        loadObjects()
         
         ParseCentral.updateBagTabBarItemBadgeValue()
     }
@@ -68,87 +57,67 @@ class ShoppingBagViewController: PFQueryTableViewController {
         self.presentViewController(LoginViewController(), animated: true, completion: nil)
     }
     
-    // MARK: - PFQueryTableViewController -
-    
-    // MARK: Responding to Events
-    
-    /// Called when objects will loaded from Parse.
-    override func objectsWillLoad() {
-        super.objectsWillLoad()
-        
-        print("Objects will load.")
-    }
-    
-    /// Called when objects have loaded from Parse.
-    override func objectsDidLoad(error: NSError?) {
-        super.objectsDidLoad(error)
-        
-        if let error = error {
-            print("Error with objects downloading: \(error.localizedDescription)")
-            
-            let message = error.userInfo["error"] as! String
-            let alert = UIAlertController(title: "Error", message: message, preferredStyle: .Alert)
-            alert.addAction(UIAlertAction(title: "Ok", style: .Cancel, handler: nil))
-            
-            self.presentViewController(alert, animated: true, completion: nil)
-        } else {
-            print("Objects have loaded from Parse.")
-        }
-    }
-    
     // MARK: Querying
     
-    /// Construct custom PFQuery to get the objects.
-    override func queryForTable() -> PFQuery {
+    private func loadObjects() {
         guard let user = BlagaprintUser.currentUser() else {
-            return PFQuery()
+            self.objects = nil
+            
+            return
         }
         
-        let query = PFQuery(className: self.parseClassName!)
+        let query = PFQuery(className: BagItemClassName)
         query.orderByDescending(BagItem.Keys.createdAt.rawValue)
         query.whereKey(BagItem.Keys.userId.rawValue, equalTo: user.objectId!)
         query.cachePolicy = .CacheThenNetwork
         
-        return query
-    }
-    
-    // MARK: Data Source Methods
-    
-    /// Customize each cell given a PFObject that is loaded.
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath, object: PFObject?) -> PFTableViewCell? {
-        let cell = self.tableView.dequeueReusableCellWithIdentifier(BagItemTableViewCell.cellReuseIdentifier) as! BagItemTableViewCell
-        cell.label.text = ""
-        
-        if let objects = self.objects {
-            let item = objects[indexPath.row] as! BagItem
-            
-            cell.thumbnailImage.image = UIImage()
-            cell.thumbnailImage.file = item.thumbnail
-            
-            // Remote image downloading.
-            weak var weakCell = cell
-            cell.thumbnailImage.loadInBackground({ (image, error) in
-                if let error = error {
-                    print("Error: \(error.userInfo["error"])")
-                } else {
-                    weakCell?.thumbnailImage.image = image
+        query.findObjectsInBackgroundWithBlock() { (items, error) in
+            if let error = error {
+                print(error.localizedDescription)
+            } else if let items = items as? [BagItem] {
+                self.objects = items
+                
+                self.thumbnails.removeAll(keepCapacity: true)
+                self.categories.removeAll(keepCapacity: true)
+                
+                // Load thumbnail image.
+                for item in items {
+                    item.thumbnail.getDataInBackgroundWithBlock() { (data, error) in
+                        if let error = error {
+                            print(error.localizedDescription)
+                        } else if let data = data where data.length > 0 {
+                            if let image = UIImage(data: data) {
+                                self.thumbnails[item.objectId!] = image
+                            }
+                            
+                            dispatch_async(dispatch_get_main_queue()) {
+                                self.tableView.reloadData()
+                            }
+                        }
+                    }
+                    
+                    // Get category name.
+                    let categoryId = item.category
+                    let categoryQuery = PFQuery(className: CategoryClassName)
+                    categoryQuery.cachePolicy = .CacheThenNetwork
+                    categoryQuery.getObjectInBackgroundWithId(categoryId) { (category, error) in
+                        if let error = error {
+                            print(error.localizedDescription)
+                        } else if let category = category as? Category {
+                            self.categories[item.objectId!] = category.name
+                            
+                            dispatch_async(dispatch_get_main_queue()) {
+                                self.tableView.reloadData()
+                            }
+                        }
+                    }
                 }
-            })
-            
-            // Get category name.
-            let categoryId = item.category
-            let categoryQuery = PFQuery(className: CategoryClassName)
-            categoryQuery.cachePolicy = .CacheThenNetwork
-            categoryQuery.getObjectInBackgroundWithId(categoryId) { (category, error) in
-                if let error = error {
-                    print(error.localizedDescription)
-                } else if let category = category as? Category {
-                    weakCell?.label.text = "\(category.name): \(item.createdAt!)"
+                
+                dispatch_async(dispatch_get_main_queue()) {
+                    self.tableView.reloadData()
                 }
             }
         }
-        
-        return cell
     }
     
     // MARK: - UITableViewDataSource
@@ -159,6 +128,23 @@ class ShoppingBagViewController: PFQueryTableViewController {
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.objects?.count ?? 0
+    }
+    
+    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell = self.tableView.dequeueReusableCellWithIdentifier(BagItemTableViewCell.cellReuseIdentifier) as! BagItemTableViewCell
+        
+        let item = objects![indexPath.row]
+        
+        if indexPath.row < self.thumbnails.count {
+            
+            cell.thumbnailImage.image = thumbnails[item.objectId!]
+        }
+        
+        if indexPath.row < self.categories.count {
+            cell.label.text = categories[item.objectId!]
+        }
+        
+        return cell
     }
     
     // MARK: - UITableViewDelegate

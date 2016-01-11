@@ -11,7 +11,7 @@ import UIKit
 class BagItemTableViewCell: PFTableViewCell {
     // MARK: - Properties
     
-    @IBOutlet weak var thumbnailImage: PFImageView!
+    @IBOutlet weak var thumbnailImage: UIImageView!
     @IBOutlet weak var label: UILabel!
     
     static let cellReuseIdentifier = "BagItemCell"
