@@ -54,7 +54,7 @@ class ParseCentral: NSObject {
     }
     
     //--------------------------------------
-    // MARK: - Initializers
+    // MARK: - Initializers -
     //--------------------------------------
     
     override init() {
@@ -75,7 +75,7 @@ class ParseCentral: NSObject {
     }
     
     //--------------------------------------
-    // MARK: - Reachability
+    // MARK: - Reachability -
     //--------------------------------------
     
     func isParseReachable() -> Bool {
@@ -170,7 +170,7 @@ class ParseCentral: NSObject {
     }
     
     //--------------------------------------
-    // MARK: - Activity Indicator
+    // MARK: - Activity Indicator -
     //--------------------------------------
     
     private func presentActivityView() {
@@ -196,7 +196,7 @@ class ParseCentral: NSObject {
     }
     
     //--------------------------------------
-    // MARK: - Adding to Bag
+    // MARK: - Adding to Bag -
     //--------------------------------------
     
     /// Adds BagItem object to Bag of the current user.
@@ -285,6 +285,51 @@ class ParseCentral: NSObject {
             
             if let rootViewController = self.rootViewController {
                 rootViewController.presentViewController(alert, animated: true, completion: nil)
+            }
+        }
+    }
+    
+    //--------------------------------------
+    // MARK: - Deleting -
+    //--------------------------------------
+    
+    func deleteItem(itemToDelete item: BagItem, succeeded:(() -> ())?, failure:((error: NSError) -> ())?) {
+        let bagQuery = PFQuery(className: BagClassName)
+        bagQuery.whereKey(Bag.Keys.userId.rawValue, equalTo: item.userId)
+        
+        bagQuery.findObjectsInBackgroundWithBlock() { (results, error) in
+            if let error = error {
+                if let failure = failure {
+                    failure(error: error)
+                }
+            } else if let bag = results as? [Bag] {
+                assert(bag.count == 1, "Bag must be unique for each user!")
+                
+                let bag = bag[0]
+                
+                // Remove item from bag.
+                for (index, element) in bag.items.enumerate() {
+                    if element == item.objectId! {
+                        bag.items.removeAtIndex(index)
+                        break
+                    }
+                }
+                
+                // Save changes.
+                bag.saveInBackground()
+                
+                // Delete item.
+                item.deleteInBackgroundWithBlock() { (success, error) in
+                    if let error = error {
+                        if let failure = failure {
+                            failure(error: error)
+                        }
+                    }
+                    
+                    if let succeeded = succeeded {
+                        succeeded()
+                    }
+                }
             }
         }
     }

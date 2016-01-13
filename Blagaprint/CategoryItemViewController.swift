@@ -371,7 +371,7 @@ class CategoryItemViewController: UIViewController {
         }
         
         // Set thumbnail image of item.
-        let size = CGSizeMake(images[0].size.width / 2.0, images[0].size.height / 2.0)
+        let size = images[0].size
         let thumbnailData = UIImagePNGRepresentation(images[0].resizedImage(size, interpolationQuality: .Low))
         if let thumbnailData = thumbnailData {
             if let thumbnailFile = PFFile(data: thumbnailData) {

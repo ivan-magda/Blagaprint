@@ -159,6 +159,38 @@ class ShoppingBagViewController: UITableViewController {
         return cell
     }
     
+    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        if editingStyle == .Delete {
+            // Remove the deleted object from data source.
+            if let parseCentral = self.parseCentral {
+                let itemToDelete = objects![indexPath.row]
+                
+                parseCentral.deleteItem(itemToDelete: itemToDelete, succeeded: {
+                    let idString = itemToDelete.objectId!
+                    
+                    self.objects!.removeAtIndex(indexPath.row)
+                    self.thumbnails.removeValueForKey(idString)
+                    self.categories.removeValueForKey(idString)
+                    
+                    dispatch_async(dispatch_get_main_queue()) {
+                        self.tableView.reloadSections(NSIndexSet(index: 0), withRowAnimation: .Automatic)
+                        
+                        let alert = UIAlertController(title: NSLocalizedString("Succeeded", comment: ""), message: "Item has successfully deleted", preferredStyle: .Alert)
+                        alert.addAction(UIAlertAction(title: "Ok", style: .Cancel, handler: nil))
+                        self.presentViewController(alert, animated: true, completion: nil)
+                    }
+                    
+                    }, failure: { error in
+                        dispatch_async(dispatch_get_main_queue()) {
+                            let alert = UIAlertController(title: NSLocalizedString("Failure", comment: ""), message: error.localizedDescription, preferredStyle: .Alert)
+                            alert.addAction(UIAlertAction(title: "Ok", style: .Cancel, handler: nil))
+                            self.presentViewController(alert, animated: true, completion: nil)
+                        }
+                })
+            }
+        }
+    }
+    
     //--------------------------------------
     // MARK: - UITableViewDelegate
     //--------------------------------------
@@ -166,4 +198,5 @@ class ShoppingBagViewController: UITableViewController {
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
+    
 }
