@@ -9,7 +9,9 @@
 import UIKit
 
 class CaseConstructorTableViewController: UITableViewController {
+    //--------------------------------------
     // MARK: - Types
+    //--------------------------------------
     
     private enum SegueIdentifier: String {
         case SelectDevice
@@ -29,7 +31,9 @@ class CaseConstructorTableViewController: UITableViewController {
         case TextColor
     }
     
+    //--------------------------------------
     // MARK: - Properties
+    //--------------------------------------
     
     /// Case view.
     @IBOutlet weak var caseView: CaseView!
@@ -66,10 +70,14 @@ class CaseConstructorTableViewController: UITableViewController {
     
     private let addToBagButtonHeight: CGFloat = 56.0
     
+    //--------------------------------------
     // MARK: - View Life Cycle
+    //--------------------------------------
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.title = self.category.titleName
         
         device = Device.iPhone5()
         
@@ -79,6 +87,7 @@ class CaseConstructorTableViewController: UITableViewController {
             self.setImageToCaseView(pickedImage)
         }
         
+        // Adds content inset to bottom.
         let scrollView = self.view as! UIScrollView
         scrollView.contentInset = UIEdgeInsetsMake(0.0, 0.0, addToBagButtonHeight - 0.5, 0.0)
     }
@@ -95,7 +104,9 @@ class CaseConstructorTableViewController: UITableViewController {
         self.addToBagButton?.removeFromSuperview()
     }
     
+    //--------------------------------------
     // MARK: - Private
+    //--------------------------------------
     
     private func loadCategoryItems() {
         weak var weakSelf = self
@@ -113,7 +124,9 @@ class CaseConstructorTableViewController: UITableViewController {
         self.caseView.showBackgroundImage = true
     }
     
+    //--------------------------------------
     // MARK: Animations
+    //--------------------------------------
     
     private func animateCaseView(delay: NSTimeInterval) {
         let tableView = self.tableView
@@ -135,7 +148,9 @@ class CaseConstructorTableViewController: UITableViewController {
             }, completion: nil)
     }
     
+    //--------------------------------------
     // MARK: - Add to Bag
+    //--------------------------------------
     
     private func setupAddToBagButton() {
         if self.addToBagButton == nil {
@@ -181,7 +196,8 @@ class CaseConstructorTableViewController: UITableViewController {
         
         // Set thumbnail image of item.
         let image = self.caseView.getCaseImage()
-        let resizedImage = image.resizedImage(image.size, interpolationQuality: .Low)
+        let size = CGSizeMake(image.size.width / 2.0, image.size.height / 2.0)
+        let resizedImage = image.resizedImage(size, interpolationQuality: .Low)
         let thumbnailData = UIImagePNGRepresentation(resizedImage)
         if let thumbnailData = thumbnailData {
             if let thumbnailFile = PFFile(data: thumbnailData) {
@@ -213,7 +229,10 @@ class CaseConstructorTableViewController: UITableViewController {
         }
     }
     
+    //--------------------------------------
     // MARK: - Navigation
+    //--------------------------------------
+    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == SegueIdentifier.SelectDevice.rawValue {
             let selectDeviceViewController = segue.destinationViewController as! SelectDeviceTableViewController
@@ -323,8 +342,13 @@ class CaseConstructorTableViewController: UITableViewController {
         }
     }
     
-    // MARK: - UITableView
+    //--------------------------------------
+    // MARK: - UITableView -
+    //--------------------------------------
+    
+    //--------------------------------------
     // MARK: UITableViewDelegate
+    //--------------------------------------
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
@@ -336,7 +360,9 @@ class CaseConstructorTableViewController: UITableViewController {
         }
     }
     
+    //--------------------------------------
     // MARK: - IBActions
+    //--------------------------------------
     
     @IBAction func selectBackgroundDidPressed(sender: UIButton) {
         presentSelectBackgroundAlertController()
@@ -346,7 +372,9 @@ class CaseConstructorTableViewController: UITableViewController {
         presentManageTextAlertController()
     }
     
+    //--------------------------------------
     // MARK: - UIAlertActions
+    //--------------------------------------
     
     private func presentSelectBackgroundAlertController() {
         let backgroundSelectionAlertController = UIAlertController(title: "Выберите фон", message: nil, preferredStyle: .ActionSheet)
@@ -430,6 +458,10 @@ class CaseConstructorTableViewController: UITableViewController {
         self.presentViewController(manageTextAlertController, animated: true, completion: nil)
     }
 }
+
+//-------------------------------------------------------
+// MARK: - PhotoLibraryCollectionViewControllerDelegate -
+//-------------------------------------------------------
 
 extension CaseConstructorTableViewController: PhotoLibraryCollectionViewControllerDelegate {
     func photoLibraryCollectionViewController(controller: PhotoLibraryCollectionViewController, didDoneOnImage image: UIImage) {

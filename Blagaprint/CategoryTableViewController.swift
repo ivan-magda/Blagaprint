@@ -15,7 +15,9 @@ private let categoryTableViewCellHeight: CGFloat = 200.0
 private let headerViewHeight: CGFloat = 44.0
 
 class CategoryTableViewController: PFQueryTableViewController {
+    //--------------------------------------
     // MARK: - Types
+    //--------------------------------------
     
     private enum SegueIdentifier: String {
         case PhoneCaseConstructor
@@ -26,11 +28,15 @@ class CategoryTableViewController: PFQueryTableViewController {
         case CategoryCell
     }
     
+    //--------------------------------------
     // MARK: - Properties
+    //--------------------------------------
     
     var parseCentral: ParseCentral?
     
+    //--------------------------------------
     // MARK: - Init
+    //--------------------------------------
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -45,7 +51,9 @@ class CategoryTableViewController: PFQueryTableViewController {
         self.paginationEnabled = false
     }
     
+    //--------------------------------------
     // MARK: - View Life Cycle
+    //--------------------------------------
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -59,7 +67,9 @@ class CategoryTableViewController: PFQueryTableViewController {
         super.viewWillAppear(animated)
     }
     
+    //--------------------------------------
     // MARK: - Navigation
+    //--------------------------------------
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == SegueIdentifier.CategoryItem.rawValue {
@@ -79,9 +89,13 @@ class CategoryTableViewController: PFQueryTableViewController {
         }
     }
     
+    //--------------------------------------
     // MARK: - PFQueryTableViewController -
+    //--------------------------------------
     
+    //--------------------------------------
     // MARK: Responding to Events
+    //--------------------------------------
     
     /// Called when objects will loaded from Parse.
     override func objectsWillLoad() {
@@ -107,7 +121,9 @@ class CategoryTableViewController: PFQueryTableViewController {
         }
     }
     
+    //--------------------------------------
     // MARK: Querying
+    //--------------------------------------
     
     /// Construct custom PFQuery to get the objects.
     override func queryForTable() -> PFQuery {
@@ -128,7 +144,9 @@ class CategoryTableViewController: PFQueryTableViewController {
         return query
     }
     
-    // MARK: Data Source Methods
+    //--------------------------------------
+    // MARK: Data Source
+    //--------------------------------------
     
     /// Customize each cell given a PFObject that is loaded.
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath, object: PFObject?) -> PFTableViewCell? {
@@ -157,8 +175,13 @@ class CategoryTableViewController: PFQueryTableViewController {
         return categoryCell
     }
     
+    //--------------------------------------
     // MARK: - UITableView -
+    //--------------------------------------
+    
+    //--------------------------------------
     // MARK: UITableViewDataSource
+    //--------------------------------------
     
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         if let objects = self.objects {
@@ -190,7 +213,9 @@ class CategoryTableViewController: PFQueryTableViewController {
         return headerView
     }
     
+    //--------------------------------------
     // MARK: UITableViewDelegate
+    //--------------------------------------
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let category = self.objects![indexPath.section] as! Category

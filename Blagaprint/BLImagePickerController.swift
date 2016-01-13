@@ -9,7 +9,9 @@
 import UIKit
 
 class BLImagePickerController: NSObject {
+    //--------------------------------------
     // MARK: - Properties
+    //--------------------------------------
     
     /// Image picker controller to let us take/pick photo.
     private var imagePickerController = UIImagePickerController()
@@ -20,7 +22,9 @@ class BLImagePickerController: NSObject {
     /// Did finish picking image completion handler.
     var didFinishPickingImage: ((UIImage) -> ())?
     
+    //--------------------------------------
     // MARK: - Init
+    //--------------------------------------
     
     init(rootViewController: UIViewController, didFinishPickingImage completionHandler:(UIImage) -> ()) {
         self.rootViewController = rootViewController
@@ -32,8 +36,15 @@ class BLImagePickerController: NSObject {
     }
 }
 
-// MARK: - Private Helper Methods
+//--------------------------------------
+// MARK: - Extension -
+//--------------------------------------
+
 extension BLImagePickerController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    //--------------------------------------
+    // MARK: Private Helper Methods
+    //--------------------------------------
+    
     private func noCamera() {
         let alertVC = UIAlertController(title: "No Camera", message: "Sorry, this device has no camera", preferredStyle: .Alert)
         let okAction = UIAlertAction(title: "OK", style:.Default, handler: nil)
@@ -65,7 +76,9 @@ extension BLImagePickerController: UIImagePickerControllerDelegate, UINavigation
         }
     }
     
+    //---------------------------------------
     // MARK: UIImagePickerControllerDelegate
+    //---------------------------------------
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
         dispatch_async(dispatch_get_main_queue()) {

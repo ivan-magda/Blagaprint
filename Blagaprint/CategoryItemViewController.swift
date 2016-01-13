@@ -9,7 +9,9 @@
 import UIKit
 
 class CategoryItemViewController: UIViewController {
+    //--------------------------------------
     // MARK: - Types
+    //--------------------------------------
     
     private enum SegueIdentifier: String {
         case SelectDevice
@@ -24,7 +26,9 @@ class CategoryItemViewController: UIViewController {
         static let Plate = CGSizeMake(210.0, 210.0)
     }
     
+    //--------------------------------------
     // MARK: - Properties
+    //--------------------------------------
     
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var placeholderView: UIView!
@@ -70,10 +74,14 @@ class CategoryItemViewController: UIViewController {
     /// Inner color of cup.
     private var cupInnerColor = UIColor.whiteColor()
     
+    //--------------------------------------
     // MARK: - View Life Cycle
+    //--------------------------------------
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.title = self.category.titleName
         
         (self.collectionView as UIScrollView).delegate = self
         
@@ -97,7 +105,9 @@ class CategoryItemViewController: UIViewController {
         setupScrollView()
     }
     
+    //--------------------------------------
     // MARK: - Navigation
+    //--------------------------------------
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == SegueIdentifier.ColorPicking.rawValue {
@@ -114,7 +124,9 @@ class CategoryItemViewController: UIViewController {
         }
     }
     
+    //--------------------------------------
     // MARK: - UIAlertActions
+    //--------------------------------------
     
     private func presentImagePickingAlertController() {
         let imagePickingAlertController = UIAlertController(title: "Выберите действие", message: nil, preferredStyle: .ActionSheet)
@@ -150,7 +162,9 @@ class CategoryItemViewController: UIViewController {
         self.presentViewController(imagePickingAlertController, animated: true, completion: nil)
     }
     
+    //--------------------------------------
     // MARK: - Private Helper Methods
+    //--------------------------------------
 
     private func addGestureRecognizers() {
         let pickImageTapGestureRecognizer = UITapGestureRecognizer(target: self, action: Selector("pickImageDidPressed"))
@@ -348,7 +362,7 @@ class CategoryItemViewController: UIViewController {
         
         // Set user picked image from media/camera.
         if let image = self.pickedImage {
-            let imageData = UIImageJPEGRepresentation(image, 0.9)
+            let imageData = UIImageJPEGRepresentation(image, 0.8)
             if let imageData = imageData {
                 if let imageFile = PFFile(data: imageData) {
                     item.image = imageFile
@@ -357,7 +371,8 @@ class CategoryItemViewController: UIViewController {
         }
         
         // Set thumbnail image of item.
-        let thumbnailData = UIImagePNGRepresentation(images[0].resizedImage(images[0].size, interpolationQuality: .Low))
+        let size = CGSizeMake(images[0].size.width / 2.0, images[0].size.height / 2.0)
+        let thumbnailData = UIImagePNGRepresentation(images[0].resizedImage(size, interpolationQuality: .Low))
         if let thumbnailData = thumbnailData {
             if let thumbnailFile = PFFile(data: thumbnailData) {
                 item.thumbnail = thumbnailFile
@@ -373,7 +388,9 @@ class CategoryItemViewController: UIViewController {
         return item
     }
     
+    //--------------------------------------
     // MARK: - Actions
+    //--------------------------------------
     
     func pickImageDidPressed() {
         animateViewSelection(self.pickImageView)
@@ -403,7 +420,10 @@ class CategoryItemViewController: UIViewController {
     }
     
 }
+
+//--------------------------------------
 // MARK: - UIScrollViewDelegate -
+//--------------------------------------
 
 extension CategoryItemViewController: UIScrollViewDelegate {
     func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
@@ -425,11 +445,15 @@ extension CategoryItemViewController: UIScrollViewDelegate {
     }
 }
 
+//--------------------------------------
 // MARK: - UICollectionView Extensions -
+//--------------------------------------
 
 extension CategoryItemViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
+    //--------------------------------------
     // MARK: - UICollectionViewDataSource
+    //--------------------------------------
     
     func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
         return images.count
@@ -450,13 +474,17 @@ extension CategoryItemViewController: UICollectionViewDataSource, UICollectionVi
         return cell
     }
     
+    //--------------------------------------
     // MARK: - UICollectionViewDelegate
+    //--------------------------------------
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         print("Select item at section: \(indexPath.section)")
     }
     
+    //--------------------------------------------
     // MARK: - UICollectionViewDelegateFlowLayout
+    //--------------------------------------------
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
         let width  = CGRectGetWidth(collectionView.bounds)

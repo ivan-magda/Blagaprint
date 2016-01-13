@@ -9,7 +9,9 @@
 import UIKit
 
 class LoginViewController: PFLogInViewController, PFLogInViewControllerDelegate {
+    //--------------------------------------
     // MARK: - View Life Cycle
+    //--------------------------------------
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -82,7 +84,9 @@ class LoginViewController: PFLogInViewController, PFLogInViewControllerDelegate 
         }
     }
     
-    // MARL: - Log In
+    //--------------------------------------
+    // MARK: - Log In
+    //--------------------------------------
     
     func presentLoggedInAlert() {
         let alertController = UIAlertController(title: "You're logged in", message: "Welcome to Blagaprint", preferredStyle: .Alert)
@@ -94,7 +98,9 @@ class LoginViewController: PFLogInViewController, PFLogInViewControllerDelegate 
         self.presentViewController(alertController, animated: true, completion: nil)
     }
     
+    //--------------------------------------
     // MARK: PFLogInViewControllerDelegate
+    //--------------------------------------
     
     func logInViewController(logInController: PFLogInViewController, shouldBeginLogInWithUsername username: String, password: String) -> Bool {
         if (!username.isEmpty && !password.isEmpty) {

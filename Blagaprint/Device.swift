@@ -27,11 +27,16 @@ private let Galaxy = "Galaxy"
 private let Xperia = "Xperia"
 
 struct Device {
+    //--------------------------------------
     // MARK: - Properties
+    //--------------------------------------
+    
     let name: String
     let manufacturer: String
     
+    //--------------------------------------
     // MARK: - Methods
+    //--------------------------------------
     
     func descriptionFromDevice() -> String {
         return "\(manufacturer) \(name)"
@@ -45,13 +50,17 @@ struct Device {
         return companies().count
     }
     
+    //--------------------------------------
     // MARK: - Supported Phone Case Devices
+    //--------------------------------------
     
     static func allDevices() -> [Device] {
         return [iPhone4(), iPhone5(), iPhone6(), iPhone6Plus(), galaxyS3(), galaxyS4(), galaxyS4Mini(), galaxyS5(), galaxyS5Mini(), galaxyS6(), galaxyS6Edge(), galaxyA3(), galaxyA5(), galaxyA7(), galaxyNote2(), galaxyNote3(), galaxyNote4(), sonyXperiaZ1(), sonyXperiaZ1Compact(), sonyXperiaZ2(), sonyXperiaZ2Compact(), sonyXperiaZ3(), sonyXperiaZ3Compact(), xiaomiMi4(), lenovoS850()]
     }
     
+    //--------------------------------------
     // MARK: Apple
+    //--------------------------------------
     
     static func iPhone4() -> Device {
         return Device(name: "\(IPhone) 4/4S", manufacturer: AppleInc)
@@ -69,7 +78,9 @@ struct Device {
         return Device(name: "\(IPhone) 6/6S Plus", manufacturer: AppleInc)
     }
     
+    //--------------------------------------
     // MARK: Samsung
+    //--------------------------------------
     
     static func galaxyS3() -> Device {
         return Device(name: "\(Galaxy) S3", manufacturer: SamsungInc)
@@ -123,7 +134,9 @@ struct Device {
         return Device(name: "\(Galaxy) Note 4", manufacturer: SamsungInc)
     }
     
+    //--------------------------------------
     // MARK: Sony
+    //--------------------------------------
 
     static func sonyXperiaZ1() -> Device {
         return Device(name: "\(Xperia) Z1", manufacturer: SonyInc)
@@ -149,14 +162,17 @@ struct Device {
         return Device(name: "\(Xperia) Z3 Compact", manufacturer: SonyInc)
     }
 
-    
+    //--------------------------------------
     // MARK: Xiaomi
+    //--------------------------------------
     
     static func xiaomiMi4() -> Device {
         return Device(name: "Mi4", manufacturer: XiaomiInc)
     }
     
+    //--------------------------------------
     // MARK: Lenovo
+    //--------------------------------------
     
     static func lenovoS850() -> Device {
         return Device(name: "S850", manufacturer: LenovoInc)

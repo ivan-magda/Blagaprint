@@ -20,7 +20,9 @@ enum PhotoFrameType: String {
 }
 
 class PhotoFrame: NSObject {
+    //--------------------------------------
     // MARK: - Properties
+    //--------------------------------------
     
     /// Type of the frame.
     var type: PhotoFrameType
@@ -34,7 +36,9 @@ class PhotoFrame: NSObject {
     /// Frame description.
     var descriptionText: String
     
+    //--------------------------------------
     // MARK: - Init
+    //--------------------------------------
     
     init(type: PhotoFrameType, imageSize: CGSize, image: UIImage, description: String) {
         self.type = type
@@ -45,7 +49,9 @@ class PhotoFrame: NSObject {
         super.init()
     }
     
+    //--------------------------------------
     // MARK: - Frame Image
+    //--------------------------------------
     
     /// Return only frame image, without picked image.
     func frameImage() -> UIImage {
@@ -84,7 +90,9 @@ class PhotoFrame: NSObject {
         }
     }
     
+    //--------------------------------------
     // MARK: - Seed
+    //--------------------------------------
     
     class func seedInitialFrames() -> [PhotoFrame] {
         var frames = [PhotoFrame]()

@@ -9,7 +9,9 @@
 import UIKit
 
 class TextEditingViewController: UIViewController {
+    //--------------------------------------
     // MARK: - Properties
+    //--------------------------------------
     
     /// Text field.
     @IBOutlet weak var textField: UITextField!
@@ -23,7 +25,9 @@ class TextEditingViewController: UIViewController {
     /// Done on text completion handler.
     var didDoneOnTextCompletionHandler: ((String) -> ())?
 
+    //--------------------------------------
     // MARK: - View Life Cycle
+    //--------------------------------------
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,7 +35,9 @@ class TextEditingViewController: UIViewController {
         configurateTextField()
     }
     
+    //--------------------------------------
     // MARK: - Private
+    //--------------------------------------
     
     private func configurateTextField() {
         textField.text = text
@@ -50,7 +56,9 @@ class TextEditingViewController: UIViewController {
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     
+    //--------------------------------------
     // MARK: - IBActions
+    //--------------------------------------
     
     @IBAction func textFieldDidEndOnText(sender: UITextField) {
         doneOnText()
@@ -66,7 +74,9 @@ class TextEditingViewController: UIViewController {
     }
 }
 
+//--------------------------------------
 // MARK: - UITextFieldDelegate -
+//--------------------------------------
 
 extension TextEditingViewController: UITextFieldDelegate {
     func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {

@@ -8,15 +8,25 @@
 
 import UIKit
 
+//----------------------------------------------------------------
+// MARK: - PhotoLibraryCollectionViewControllerDelegate Protocol -
+//----------------------------------------------------------------
+
 protocol PhotoLibraryCollectionViewControllerDelegate {
     func photoLibraryCollectionViewController(controller: PhotoLibraryCollectionViewController, didDoneOnImage image: UIImage)
 }
 
-/// PhotoLibraryItemCollectionViewCell reuse identifier.
-private let reuseIdentifier = "PhotoLibraryCell"
+//-----------------------------------------------
+// MARK: - PhotoLibraryCollectionViewController -
+//-----------------------------------------------
 
 class PhotoLibraryCollectionViewController: UICollectionViewController {
-    // MARK: - Properties
+    //--------------------------------------
+    // MARK: Properties
+    //--------------------------------------
+ 
+    /// PhotoLibraryItemCollectionViewCell reuse identifier.
+    private let reuseIdentifier = "PhotoLibraryCell"
     
     /// PhotoLibraryCollectionViewController delegate object.
     var delegate: PhotoLibraryCollectionViewControllerDelegate?
@@ -27,7 +37,9 @@ class PhotoLibraryCollectionViewController: UICollectionViewController {
     /// Image that user select.
     private var selectedImage: UIImage?
     
+    //--------------------------------------
     // MARK: - View Life Cycle
+    //--------------------------------------
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,8 +47,13 @@ class PhotoLibraryCollectionViewController: UICollectionViewController {
         images = [UIImage(named: "3dWallpaper.jpg")!, UIImage(named: "FunnyAnimals.jpg")!, UIImage(named: "wallpaper.jpg")!]
     }
 
+    //--------------------------------------
     // MARK: - UICollectionView -
+    //--------------------------------------
+    
+    //--------------------------------------
     // MARK: UICollectionViewDataSource
+    //--------------------------------------
 
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return images.count
@@ -58,14 +75,18 @@ class PhotoLibraryCollectionViewController: UICollectionViewController {
         return cell
     }
 
+    //--------------------------------------
     // MARK: UICollectionViewDelegate
+    //--------------------------------------
     
     override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         collectionView.reloadData()
         selectedImage = images[indexPath.row]
     }
 
+    //--------------------------------------
     // MARK: - IBActions
+    //--------------------------------------
     
     @IBAction func cancelButtonDidPressed(sender: UIBarButtonItem) {
         self.dismissViewControllerAnimated(true, completion: nil)

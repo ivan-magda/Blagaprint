@@ -13,7 +13,9 @@ import CoreImage
 let BagItemClassName = "BagItem"
 
 class BagItem: PFObject, PFSubclassing {
+    //--------------------------------------
     // MARK: - Types
+    //--------------------------------------
     
     enum Keys: String {
         case userId
@@ -21,6 +23,7 @@ class BagItem: PFObject, PFSubclassing {
         case categoryItem
         case image
         case thumbnail
+        case price
         case device
         case text
         case fillColor
@@ -28,7 +31,9 @@ class BagItem: PFObject, PFSubclassing {
         case createdAt
     }
     
+    //--------------------------------------
     // MARK: - PFSubclassing
+    //--------------------------------------
     
     override class func initialize() {
         struct Static {
@@ -39,13 +44,16 @@ class BagItem: PFObject, PFSubclassing {
         }
     }
     
+    //--------------------------------------
     // MARK: - Properties
+    //--------------------------------------
     
     @NSManaged var userId: String
     @NSManaged var category: String
     @NSManaged var categoryItem: String
     @NSManaged var image: PFFile
     @NSManaged var thumbnail: PFFile
+    @NSManaged var price: Float
     @NSManaged var device: String
     @NSManaged var text: String
     @NSManaged var fillColor: String
@@ -56,7 +64,9 @@ class BagItem: PFObject, PFSubclassing {
         return BagItemClassName
     }
     
+    //--------------------------------------
     // MARK: - Colors
+    //--------------------------------------
     
     /// Returns a formatted string that specifies the components of the color.
     class func colorToString(color: UIColor) -> String {

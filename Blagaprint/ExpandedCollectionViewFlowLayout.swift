@@ -9,6 +9,10 @@
 import UIKit
 
 class ExpandedCollectionViewFlowLayout: UICollectionViewFlowLayout {
+    //--------------------------------------
+    // MARK: - Overriding
+    //--------------------------------------
+    
     override func collectionViewContentSize() -> CGSize {
         let pages = self.collectionView!.numberOfSections()
         

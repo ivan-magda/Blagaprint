@@ -10,14 +10,18 @@ import Foundation
 import UIKit
 
 class BlagaprintUser: PFUser {
+    //--------------------------------------
     // MARK: - Properties
+    //--------------------------------------
     
     @NSManaged var name: String?
     @NSManaged var patronymic: String?
     @NSManaged var surname: String?
     @NSManaged var phoneNumber: String?
     
+    //--------------------------------------
     // MARK: - Inheritens
+    //--------------------------------------
     
     override class func initialize() {
         struct Static {

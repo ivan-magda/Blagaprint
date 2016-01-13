@@ -12,7 +12,9 @@ import UIKit
 let CategoryItemClassName = "CategoryItem"
 
 class CategoryItem: PFObject, PFSubclassing {
+    //--------------------------------------
     // MARK: - Types
+    //--------------------------------------
     
     enum Keys: String {
         case name
@@ -20,7 +22,9 @@ class CategoryItem: PFObject, PFSubclassing {
         case parentCategory
     }
     
+    //--------------------------------------
     // MARK: - Properties
+    //--------------------------------------
     
     @NSManaged var name: String
     @NSManaged var image: PFFile
@@ -30,7 +34,9 @@ class CategoryItem: PFObject, PFSubclassing {
         return "Name: \(name)\nCategory: \(parentCategory)"
     }
     
+    //--------------------------------------
     // MARK: - PFSubclassing
+    //--------------------------------------
     
     override class func initialize() {
         struct Static {

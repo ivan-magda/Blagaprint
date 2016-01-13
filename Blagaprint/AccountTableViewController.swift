@@ -9,7 +9,9 @@
 import UIKit
 
 class AccountTableViewController: UITableViewController {
+    //--------------------------------------
     // MARK: - Types
+    //--------------------------------------
     
     private enum TextFieldTag: Int {
         case name = 100
@@ -18,7 +20,9 @@ class AccountTableViewController: UITableViewController {
         case phoneNumber
     }
     
+    //--------------------------------------
     // MARK: - Properties
+    //--------------------------------------
     
     var logInAccountView: UserLogInEmptyView?
     
@@ -57,7 +61,9 @@ class AccountTableViewController: UITableViewController {
     private var saveActivityIndicatorBarButtonItem: UIBarButtonItem?
     private var logInBarButtonItem: UIBarButtonItem?
     
+    //--------------------------------------
     // MARK: - View Life Cycle
+    //--------------------------------------
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -77,7 +83,9 @@ class AccountTableViewController: UITableViewController {
         self.view.endEditing(true)
     }
     
+    //--------------------------------------
     // MARK: - UITableViewDelegate
+    //--------------------------------------
     
     override func tableView(tableView: UITableView, willSelectRowAtIndexPath indexPath: NSIndexPath) -> NSIndexPath? {
         if logOutActivityIndicator.isAnimating() {
@@ -110,13 +118,17 @@ class AccountTableViewController: UITableViewController {
         }
     }
     
+    //--------------------------------------
     // MARK: - Navigation
+    //--------------------------------------
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
     }
     
+    //--------------------------------------
     // MARK: - Private Helper Methods
+    //--------------------------------------
     
     private func viewSetup() {
         self.logInAccountView?.removeFromSuperview()
@@ -235,7 +247,9 @@ class AccountTableViewController: UITableViewController {
         }
     }
     
+    //--------------------------------------
     // MARK: - Actions
+    //--------------------------------------
     
     func saveButtonDidPressed() {
         self.view.endEditing(true)
@@ -325,7 +339,10 @@ class AccountTableViewController: UITableViewController {
     
 }
 
+//--------------------------------------
 // MARK: - UITextFieldDelegate -
+//--------------------------------------
+
 extension AccountTableViewController: UITextFieldDelegate {
     
     private func getLength(number: String) -> Int {

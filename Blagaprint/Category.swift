@@ -12,7 +12,9 @@ import Foundation
 let CategoryClassName = "Category"
 
 class Category: PFObject, PFSubclassing {
+    //--------------------------------------
     // MARK: - Types
+    //--------------------------------------
     
     enum CategoryTypes: String {
         case cases
@@ -31,17 +33,31 @@ class Category: PFObject, PFSubclassing {
     
     enum Keys: String {
         case name
+        case titleName
         case image
         case type
     }
     
+    //--------------------------------------
     // MARK: - Properties
+    //--------------------------------------
     
+    /// Name of the category.
     @NSManaged var name: String
+
+    /// Uses for title name of any view controller.
+    @NSManaged var titleName: String
+    
+    /// Image of the category.
     @NSManaged var image: PFFile
+    
+    /// Type of the category. 
+    /// Use CategoryTypes(rawValue:) for creating type from string.
     @NSManaged var type: String
     
+    //--------------------------------------
     // MARK: - PFSubclassing
+    //--------------------------------------
     
     override class func initialize() {
         struct Static {
@@ -57,7 +73,9 @@ class Category: PFObject, PFSubclassing {
         return CategoryClassName
     }
     
+    //--------------------------------------
     // MARK: - Helper Methods
+    //--------------------------------------
     
     /// Return a string that describes the contents.
     override var description: String {

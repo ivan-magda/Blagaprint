@@ -9,7 +9,9 @@
 import UIKit
 
 class SignUpViewController: PFSignUpViewController, PFSignUpViewControllerDelegate {
+    //--------------------------------------
     // MARK: - View Life Cycle
+    //--------------------------------------
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -58,8 +60,9 @@ class SignUpViewController: PFSignUpViewController, PFSignUpViewControllerDelega
         dismissButton.setImage(image, forState: UIControlState.Highlighted)
     }
 
-    
+    //--------------------------------------
     // MARK: - PFSignUpViewControllerDelegate
+    //--------------------------------------
     
     func signUpViewController(signUpController: PFSignUpViewController, didSignUpUser user: PFUser) {
         self.dismissViewControllerAnimated(true, completion: nil)

@@ -15,7 +15,10 @@ private let applicationId = "S6q46qyVTC8tDSqkryAPvBo3fEkrkiFTtHSAHh3P"
 private let clientKey = "1xTVWNh3TSB4ov5zoIseoDQ98JyMO86fjeBFwInr"
 
 class ParseCentral: NSObject {
+    
+    //--------------------------------------
     // MARK: - Properties
+    //--------------------------------------
     
     let parse: Parse
     
@@ -50,7 +53,9 @@ class ParseCentral: NSObject {
         return nil
     }
     
+    //--------------------------------------
     // MARK: - Initializers
+    //--------------------------------------
     
     override init() {
         // Register subclasses.
@@ -69,7 +74,9 @@ class ParseCentral: NSObject {
         self.monitorReachability()
     }
     
+    //--------------------------------------
     // MARK: - Reachability
+    //--------------------------------------
     
     func isParseReachable() -> Bool {
         if let networkStatus = self.networkStatus {
@@ -105,7 +112,9 @@ class ParseCentral: NSObject {
         }
     }
     
+    //--------------------------------------
     // MARK: NSNotificationCenter Observe
+    //--------------------------------------
     
     func addObservers() {
         addReachabilityChangedObserver()
@@ -127,7 +136,9 @@ class ParseCentral: NSObject {
         }
     }
     
+    //--------------------------------------
     // MARK: - Fetching data -
+    //--------------------------------------
     
     class func updateBagTabBarItemBadgeValue() {
         guard let user = BlagaprintUser.currentUser() else {
@@ -158,7 +169,9 @@ class ParseCentral: NSObject {
         }
     }
     
+    //--------------------------------------
     // MARK: - Activity Indicator
+    //--------------------------------------
     
     private func presentActivityView() {
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
@@ -182,7 +195,9 @@ class ParseCentral: NSObject {
         }
     }
     
+    //--------------------------------------
     // MARK: - Adding to Bag
+    //--------------------------------------
     
     /// Adds BagItem object to Bag of the current user.
     private func addItemToBag(bag: Bag, item: BagItem) {

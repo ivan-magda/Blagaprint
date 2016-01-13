@@ -12,14 +12,18 @@ import Foundation
 let BagClassName = "Bag"
 
 class Bag: PFObject, PFSubclassing {
+    //--------------------------------------
     // MARK: - Types
+    //--------------------------------------
     
     enum Keys: String {
         case userId
         case items
     }
     
+    //--------------------------------------
     // MARK: - PFSubclassing
+    //--------------------------------------
     
     override class func initialize() {
         struct Static {
@@ -30,7 +34,9 @@ class Bag: PFObject, PFSubclassing {
         }
     }
     
+    //--------------------------------------
     // MARK: - Properties
+    //--------------------------------------
     
     @NSManaged var userId: String
     @NSManaged var items: [String]

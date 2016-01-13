@@ -1241,23 +1241,44 @@
                                                 <constraint firstAttribute="width" constant="72" id="tet-L8-gRX"/>
                                             </constraints>
                                         </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="INF-EP-iZ8">
-                                            <rect key="frame" x="95" y="31" width="205" height="21"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="INF-EP-iZ8">
+                                            <rect key="frame" x="95" y="19" width="217" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Price" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qxd-BR-7sX">
+                                            <rect key="frame" x="95" y="44" width="217" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
                                     <constraints>
+                                        <constraint firstItem="Qxd-BR-7sX" firstAttribute="leading" secondItem="jKE-Tc-92V" secondAttribute="trailing" constant="8" id="B46-kZ-IA9"/>
                                         <constraint firstItem="INF-EP-iZ8" firstAttribute="centerY" secondItem="MMs-bf-9AG" secondAttribute="centerY" id="IHW-UO-NYx"/>
+                                        <constraint firstAttribute="trailing" secondItem="Qxd-BR-7sX" secondAttribute="trailing" constant="8" id="OEC-AW-FfB"/>
                                         <constraint firstItem="INF-EP-iZ8" firstAttribute="leading" secondItem="jKE-Tc-92V" secondAttribute="trailing" constant="8" id="RPz-sq-YbB"/>
                                         <constraint firstAttribute="trailing" secondItem="INF-EP-iZ8" secondAttribute="trailing" constant="20" symbolic="YES" id="ThD-td-gtf"/>
+                                        <constraint firstItem="INF-EP-iZ8" firstAttribute="leading" secondItem="jKE-Tc-92V" secondAttribute="trailing" constant="8" id="e3r-yT-ke9"/>
+                                        <constraint firstItem="Qxd-BR-7sX" firstAttribute="top" secondItem="INF-EP-iZ8" secondAttribute="bottom" constant="4" id="fVy-MA-uSD"/>
+                                        <constraint firstItem="INF-EP-iZ8" firstAttribute="top" secondItem="MMs-bf-9AG" secondAttribute="top" constant="19" id="rPr-yh-Bix"/>
                                         <constraint firstItem="jKE-Tc-92V" firstAttribute="centerY" secondItem="MMs-bf-9AG" secondAttribute="centerY" id="rqD-Ff-p65"/>
+                                        <constraint firstAttribute="trailing" secondItem="INF-EP-iZ8" secondAttribute="trailing" constant="8" id="ugO-eP-RCe"/>
+                                        <constraint firstAttribute="bottom" secondItem="Qxd-BR-7sX" secondAttribute="bottom" constant="18" id="v05-55-hdC"/>
                                         <constraint firstItem="jKE-Tc-92V" firstAttribute="leading" secondItem="MMs-bf-9AG" secondAttribute="leading" constant="15" id="vAc-uB-730"/>
                                     </constraints>
+                                    <variation key="default">
+                                        <mask key="constraints">
+                                            <exclude reference="IHW-UO-NYx"/>
+                                            <exclude reference="RPz-sq-YbB"/>
+                                            <exclude reference="ThD-td-gtf"/>
+                                        </mask>
+                                    </variation>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="label" destination="INF-EP-iZ8" id="0eG-tW-trw"/>
+                                    <outlet property="descriptionLabel" destination="INF-EP-iZ8" id="zbd-rG-d2C"/>
+                                    <outlet property="priceLabel" destination="Qxd-BR-7sX" id="9KI-dC-ynE"/>
                                     <outlet property="thumbnailImage" destination="jKE-Tc-92V" id="V18-QW-6rg"/>
                                 </connections>
                             </tableViewCell>

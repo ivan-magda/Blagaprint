@@ -9,7 +9,9 @@
 import UIKit
 
 class ChangePasswordTableViewController: UITableViewController {
+    //--------------------------------------
     // MARK: - Types
+    //--------------------------------------
     
     private enum TextFieldTag: Int {
         case currentPassword = 200
@@ -17,7 +19,9 @@ class ChangePasswordTableViewController: UITableViewController {
         case repeatNewPassword
     }
     
+    //--------------------------------------
     // MARK: - Properties
+    //--------------------------------------
     
     @IBOutlet weak var currentPasswordTextFiled: UITextField!
     @IBOutlet weak var newPasswordTextFiled: UITextField!
@@ -35,7 +39,9 @@ class ChangePasswordTableViewController: UITableViewController {
     
     private let minPasswordLength = 8
     
+    //--------------------------------------
     // MARK: - View Life Cycle
+    //--------------------------------------
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -53,7 +59,9 @@ class ChangePasswordTableViewController: UITableViewController {
         self.view.endEditing(true)
     }
     
+    //--------------------------------------
     // MARK: - UITableViewDelegate
+    //--------------------------------------
     
     override func tableView(tableView: UITableView, willSelectRowAtIndexPath indexPath: NSIndexPath) -> NSIndexPath? {
         if saveActivityIndicator.isAnimating() {
@@ -89,7 +97,9 @@ class ChangePasswordTableViewController: UITableViewController {
         }
     }
     
+    //--------------------------------------
     // MARK: - Private Helpers Methods
+    //--------------------------------------
     
     private func isSaveEnabled() -> Bool {
         return (currentPassword != "" && newPassword != "" && repeatedNewPassword != "")
@@ -193,7 +203,10 @@ class ChangePasswordTableViewController: UITableViewController {
     
 }
 
+//--------------------------------------
 // MARK: - UITextFieldDelegate
+//--------------------------------------
+
 extension ChangePasswordTableViewController: UITextFieldDelegate {
     
     func textFieldShouldBeginEditing(textField: UITextField) -> Bool {

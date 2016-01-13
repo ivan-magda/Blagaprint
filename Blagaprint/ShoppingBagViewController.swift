@@ -9,7 +9,9 @@
 import UIKit
 
 class ShoppingBagViewController: UITableViewController {
+    //--------------------------------------
     // MARK: - Properties
+    //--------------------------------------
     
     var parseCentral: ParseCentral?
     
@@ -20,7 +22,9 @@ class ShoppingBagViewController: UITableViewController {
     private var thumbnails = [String : UIImage]()
     private var categories = [String : String]()
     
+    //--------------------------------------
     // MARK: - View Life Cycle
+    //--------------------------------------
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,8 +42,9 @@ class ShoppingBagViewController: UITableViewController {
         ParseCentral.updateBagTabBarItemBadgeValue()
     }
     
-    
+    //--------------------------------------
     // MARK: - Private Helper Methods
+    //--------------------------------------
     
     private func configureAccountActionBarButton() {
         if BlagaprintUser.currentUser() == nil {
@@ -51,13 +56,17 @@ class ShoppingBagViewController: UITableViewController {
         }
     }
     
+    //--------------------------------------
     // MARK: - Target
+    //--------------------------------------
     
     func logInBarButtonDidPressed(sender: UIBarButtonItem) {
         self.presentViewController(LoginViewController(), animated: true, completion: nil)
     }
     
+    //--------------------------------------
     // MARK: Querying
+    //--------------------------------------
     
     private func loadObjects() {
         guard let user = BlagaprintUser.currentUser() else {
@@ -120,7 +129,9 @@ class ShoppingBagViewController: UITableViewController {
         }
     }
     
+    //--------------------------------------
     // MARK: - UITableViewDataSource
+    //--------------------------------------
     
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
@@ -136,18 +147,21 @@ class ShoppingBagViewController: UITableViewController {
         let item = objects![indexPath.row]
         
         if indexPath.row < self.thumbnails.count {
-            
             cell.thumbnailImage.image = thumbnails[item.objectId!]
         }
         
         if indexPath.row < self.categories.count {
-            cell.label.text = categories[item.objectId!]
+            cell.descriptionLabel.text = categories[item.objectId!]
         }
+        
+        cell.priceLabel.text = "\(item.price)"
         
         return cell
     }
     
+    //--------------------------------------
     // MARK: - UITableViewDelegate
+    //--------------------------------------
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)

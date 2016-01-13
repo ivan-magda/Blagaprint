@@ -9,7 +9,9 @@
 import UIKit
 
 class SelectDeviceTableViewController: UITableViewController {
+    //--------------------------------------
     // MARK: - Properties
+    //--------------------------------------
     
     /// Did select device call back closure.
     var didSelectDeviceClosure: ((Device) -> ())?
@@ -23,7 +25,9 @@ class SelectDeviceTableViewController: UITableViewController {
     /// Supported devices.
     private var devices = [String: [Device]]()
     
+    //--------------------------------------
     // MARK: - View Life Cycle
+    //--------------------------------------
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,7 +36,9 @@ class SelectDeviceTableViewController: UITableViewController {
         setup()
     }
 
+    //--------------------------------------
     // MARK: - Private
+    //--------------------------------------
     
     private func setup() {
         self.title = NSLocalizedString("Device", comment: "Title for SelectDeviceVC")
@@ -68,8 +74,13 @@ class SelectDeviceTableViewController: UITableViewController {
         }
     }
     
+    //--------------------------------------
     // MARK: - UITableView
+    //--------------------------------------
+    
+    //--------------------------------------
     // MARK: UITableViewDataSource
+    //--------------------------------------
     
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return Device.numberOfCompanies()
@@ -91,7 +102,9 @@ class SelectDeviceTableViewController: UITableViewController {
         return companyFromSection(section)
     }
     
+    //--------------------------------------
     // MARK: - UITableViewDelegate
+    //--------------------------------------
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
