@@ -191,6 +191,7 @@
 		75FD247E1BE45B7E00446801 /* xperiaZ3CameraImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 75FD247C1BE45B7E00446801 /* xperiaZ3CameraImage.png */; };
 		75FD247F1BE45B7E00446801 /* xperiaZ3CameraImage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 75FD247D1BE45B7E00446801 /* xperiaZ3CameraImage@2x.png */; };
 		75FD24821BE461EE00446801 /* XperiaZcompact.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75FD24811BE461EE00446801 /* XperiaZcompact.swift */; };
+		75FE073A1C46149E00EFE1F6 /* String+FormatAmount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75FE07391C46149E00EFE1F6 /* String+FormatAmount.swift */; };
 		D87004B643279C4AF87D6CF7 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F4F15583EE9A76B5434C6E93 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -387,6 +388,7 @@
 		75FD247C1BE45B7E00446801 /* xperiaZ3CameraImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = xperiaZ3CameraImage.png; sourceTree = "<group>"; };
 		75FD247D1BE45B7E00446801 /* xperiaZ3CameraImage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "xperiaZ3CameraImage@2x.png"; sourceTree = "<group>"; };
 		75FD24811BE461EE00446801 /* XperiaZcompact.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XperiaZcompact.swift; sourceTree = "<group>"; };
+		75FE07391C46149E00EFE1F6 /* String+FormatAmount.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+FormatAmount.swift"; sourceTree = "<group>"; };
 		B73D32B3F04B08A93EE5B500 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		C8BD4F0CF3381A1B5700C233 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		F4F15583EE9A76B5434C6E93 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -483,9 +485,12 @@
 				50DD723A1BBED31B008A9B80 /* DataModel */,
 				50FD7F531BB903CC00ABEC38 /* ViewControllers */,
 				50FD7F511BB903B700ABEC38 /* View */,
-				508503051BBAADCF00152131 /* Utility */,
 				502A8CB61BB80EAC0064E0DA /* Main.storyboard */,
 				502A8CBB1BB80EAC0064E0DA /* LaunchScreen.storyboard */,
+				508503051BBAADCF00152131 /* Utility */,
+				756FF67E1C128C630091B75E /* Reachability */,
+				7561AEAD1C0FD7CD009B2C8B /* UIImageAdditions */,
+				75FE073B1C4614A700EFE1F6 /* Extensions */,
 				502A8CB91BB80EAC0064E0DA /* Assets.xcassets */,
 				502A8CBE1BB80EAC0064E0DA /* Info.plist */,
 				75AB8ABC1BE73F2900B88A5A /* Blagaprint.entitlements */,
@@ -570,8 +575,6 @@
 			children = (
 				508503031BBAADB600152131 /* AppAppearance.swift */,
 				753CD5791BF3210500795F44 /* AppConfiguration.swift */,
-				756FF67E1C128C630091B75E /* Reachability */,
-				7561AEAD1C0FD7CD009B2C8B /* UIImageAdditions */,
 			);
 			name = Utility;
 			sourceTree = "<group>";
@@ -1129,6 +1132,14 @@
 			name = Fonts;
 			sourceTree = "<group>";
 		};
+		75FE073B1C4614A700EFE1F6 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				75FE07391C46149E00EFE1F6 /* String+FormatAmount.swift */,
+			);
+			name = Extensions;
+			sourceTree = "<group>";
+		};
 		9B39F86A468EF2F9E9BFD790 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -1435,6 +1446,7 @@
 				50FD7F501BB8FFF600ABEC38 /* CategoryTableViewCell.swift in Sources */,
 				75AB8AC01BE744DB00B88A5A /* ParseCentral.swift in Sources */,
 				503CBEC11BC415C700052BE0 /* CategoryItem.swift in Sources */,
+				75FE073A1C46149E00EFE1F6 /* String+FormatAmount.swift in Sources */,
 				0CA50CE91C1954F400020150 /* AccountTableViewController.swift in Sources */,
 				75467C891C12EB9C008046A2 /* LoginViewController.swift in Sources */,
 				75F7393A1BE4979B0063EB6F /* LenovoS850.swift in Sources */,

@@ -53,7 +53,7 @@ class BagItem: PFObject, PFSubclassing {
     @NSManaged var categoryItem: String
     @NSManaged var image: PFFile
     @NSManaged var thumbnail: PFFile
-    @NSManaged var price: Float
+    @NSManaged var price: Double
     @NSManaged var device: String
     @NSManaged var text: String
     @NSManaged var fillColor: String

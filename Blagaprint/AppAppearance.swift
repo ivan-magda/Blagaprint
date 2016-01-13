@@ -9,7 +9,9 @@
 import UIKit
 
 class AppAppearance: NSObject {
+    //--------------------------------------
     // MARK: Colors
+    //--------------------------------------
     
     struct AppColors {
         static let vulcanColor: UIColor = UIColor(red: 21.0 / 255.0, green: 21.0 / 255.0, blue: 34.0 / 255, alpha: 1)
@@ -21,7 +23,9 @@ class AppAppearance: NSObject {
         static let cornflowerBlue = UIColor(red: 108.0 / 255.0, green: 148.0 / 255.0, blue: 255.0 / 255.0, alpha: 1)
     }
     
+    //--------------------------------------
     // MARK: - Public
+    //--------------------------------------
     
     class func applyAppAppearance() {
         customizeNavigationAndStatusBars()
@@ -31,7 +35,9 @@ class AppAppearance: NSObject {
         return UIImage(named: "backgroundImage.png")!
     }
     
+    //--------------------------------------
     // MARK: - UIFonts
+    //--------------------------------------
     
     /// Return Anderson Supercar font with passed size.
     class func andersonSupercarFontWithSize(size: CGFloat) -> UIFont {
@@ -43,7 +49,9 @@ class AppAppearance: NSObject {
         return UIFont(name: "Raleway-Thin", size: size)!
     }
     
+    //--------------------------------------
     // MARK: - Private
+    //--------------------------------------
     
     private static func customizeNavigationAndStatusBars() {
         UIApplication.sharedApplication().statusBarStyle = UIStatusBarStyle.LightContent
@@ -54,7 +62,9 @@ class AppAppearance: NSObject {
     }
 }
 
-// MARK: - UINavigationBar extension
+//--------------------------------------
+// MARK: - UINavigationBar extension -
+//--------------------------------------
 
 extension UINavigationBar {
     class func hideBottomLineFromNavigationController(navigationController: UINavigationController) {

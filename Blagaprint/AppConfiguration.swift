@@ -12,7 +12,9 @@ let IsFirstTimeAppLaunchIdentifier: String = "IsFirstLaunch"
 private let RegisterDefaultsIdentifier = "RegisterDefaults"
 
 class AppConfiguration: NSObject {
+    //--------------------------------------
     // MARK: - Methods
+    //--------------------------------------
     
     class func setUp() {
         AppConfiguration.registerUserDefaults()

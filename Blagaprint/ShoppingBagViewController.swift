@@ -154,7 +154,7 @@ class ShoppingBagViewController: UITableViewController {
             cell.descriptionLabel.text = categories[item.objectId!]
         }
         
-        cell.priceLabel.text = "\(item.price)"
+        cell.priceLabel.text = String.formatAmount(NSNumber(double: item.price))
         
         return cell
     }
