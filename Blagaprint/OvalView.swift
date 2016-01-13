@@ -10,7 +10,9 @@ import UIKit
 
 @IBDesignable
 class OvalView: UIView {
+    //--------------------------------------
     // MARK: - Properties
+    //--------------------------------------
     
     /// Fill color.
     var fillColor: UIColor = UIColor.redColor() {
@@ -44,7 +46,9 @@ class OvalView: UIView {
         }
     }
     
+    //--------------------------------------
     // MARK: - Drawing
+    //--------------------------------------
     
     override func drawRect(rect: CGRect) {
         BackgroundOvalView.drawOvalView(self.bounds, fillColor: fillColor, visible: checkmarkVisible)

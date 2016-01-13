@@ -9,7 +9,9 @@
 import UIKit
 
 class DescriptionTableViewCell: UITableViewCell {
+    //--------------------------------------
     // MARK: - Properties
+    //--------------------------------------
     
     @IBOutlet weak var descriptionLabel: UILabel!
 }

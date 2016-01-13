@@ -9,7 +9,9 @@
 import UIKit
 
 class ImagePickingTableViewCell: UITableViewCell {
+    //--------------------------------------
     // MARK: - Properties
+    //--------------------------------------
     
     @IBOutlet weak var moreButton: UIButton!
     @IBOutlet weak var titleLabel: UILabel!

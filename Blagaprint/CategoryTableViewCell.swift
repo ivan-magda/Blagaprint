@@ -9,7 +9,9 @@
 import UIKit
 
 class CategoryTableViewCell: PFTableViewCell {
+    //--------------------------------------
     // MARK: Properties
+    //--------------------------------------
     
     @IBOutlet weak var categoryImageView: PFImageView?
     @IBOutlet weak var imageDownloadingActivityIndicator: UIActivityIndicatorView!

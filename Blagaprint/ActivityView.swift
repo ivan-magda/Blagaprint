@@ -9,11 +9,15 @@
 import UIKit
 
 class ActivityView: UIView {
+    //--------------------------------------
     // MARK: - Properties
+    //--------------------------------------
     
     private var activityIndicator: UIActivityIndicatorView
     
+    //--------------------------------------
     // MARK: - Initializers
+    //--------------------------------------
     
     init(frame: CGRect, message: String) {
         self.activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .White)
@@ -39,7 +43,9 @@ class ActivityView: UIView {
         super.init(coder: aDecoder)
     }
     
+    //--------------------------------------
     // MARK: - Setup
+    //--------------------------------------
     
     private func viewSetupWithMessage(message: String) {
         self.backgroundColor = UIColor.clearColor()
@@ -70,7 +76,9 @@ class ActivityView: UIView {
         self.addSubview(visualEffectView)
     }
     
+    //--------------------------------------
     // MARK: - Behavior
+    //--------------------------------------
     
     func startAnimating() {
         self.activityIndicator.startAnimating()

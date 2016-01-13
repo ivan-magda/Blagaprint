@@ -10,7 +10,9 @@ import UIKit
 
 @IBDesignable
 class CaseView: UIView {
+    //--------------------------------------
     // MARK: - Properties
+    //--------------------------------------
     
     /// Device.
     var device = Device.iPhone5() {
@@ -54,7 +56,9 @@ class CaseView: UIView {
         }
     }
     
+    //--------------------------------------
     // MARK: - Drawing
+    //--------------------------------------
     
     override func drawRect(rect: CGRect) {
         let numberOfCharacters = text.characters.count
@@ -110,7 +114,9 @@ class CaseView: UIView {
         }
     }
     
+    //--------------------------------------
     // MARK: - Image 
+    //--------------------------------------
     
     func getCaseImage() -> UIImage {
         let numberOfCharacters = text.characters.count
@@ -168,7 +174,9 @@ class CaseView: UIView {
         return UIImage()
     }
     
+    //--------------------------------------
     // MARK: - Text Label Dimensions
+    //--------------------------------------
     
     static func fontSizeThatFitsRect(rect: CGRect, withText text: String, maxFontSize: CGFloat, minFontSize: CGFloat) -> CGFloat {
         let label = UILabel(frame: rect)
@@ -604,7 +612,9 @@ class CaseView: UIView {
     }
 }
 
+//--------------------------------------
 // MARK: - NSShadow Extension -
+//--------------------------------------
 
 extension NSShadow {
     convenience init(color: AnyObject!, offset: CGSize, blurRadius: CGFloat) {
@@ -615,7 +625,9 @@ extension NSShadow {
     }
 }
 
+//--------------------------------------
 // MARK: - objc Protocols -
+//--------------------------------------
 
 @objc protocol StyleKitSettableImage {
     var image: UIImage! { get set }

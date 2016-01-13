@@ -10,7 +10,9 @@ import UIKit
 
 @IBDesignable
 class PlateView: UIView {
+    //--------------------------------------
     // MARK: - Properties
+    //--------------------------------------
     
     /// Plate background image.
     var image: UIImage? {
@@ -26,7 +28,9 @@ class PlateView: UIView {
         }
     }
     
+    //--------------------------------------
     // MARK: - Drawing
+    //--------------------------------------
     
     override func drawRect(rect: CGRect) {
         Plate.drawPlateCanvas(frame: rect, image: image ?? UIImage(), isPlateImageVisible: showImage)

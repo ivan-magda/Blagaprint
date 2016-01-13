@@ -9,7 +9,9 @@
 import UIKit
 
 class BackgroundCollectionViewCell: UICollectionViewCell {
+    //--------------------------------------
     // MARK: - Properties
+    //--------------------------------------
     
     @IBOutlet weak var ovalView: OvalView!
 }

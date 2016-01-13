@@ -9,7 +9,9 @@
 import UIKit
 
 class ImageCollectionViewCell: UICollectionViewCell {
+    //--------------------------------------
     // MARK: - Properties
+    //--------------------------------------
     
     @IBOutlet weak var imageView: UIImageView?
 }
