@@ -119,6 +119,10 @@
 		757470321BDCB405004CABD0 /* Device.swift in Sources */ = {isa = PBXBuildFile; fileRef = 757470311BDCB404004CABD0 /* Device.swift */; };
 		757470351BDCBEB4004CABD0 /* iPhone6CameraImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 757470331BDCBEB4004CABD0 /* iPhone6CameraImage.png */; };
 		757470361BDCBEB4004CABD0 /* iPhone6CameraImage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 757470341BDCBEB4004CABD0 /* iPhone6CameraImage@2x.png */; };
+		757F12841C48CB6A00CF947C /* CircleKeyRing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 757F12831C48CB6A00CF947C /* CircleKeyRing.swift */; };
+		757F12881C48CE1400CF947C /* KeyRing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 757F12871C48CE1400CF947C /* KeyRing.swift */; };
+		757F128C1C48E20200CF947C /* HeartKeyRing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 757F128B1C48E20200CF947C /* HeartKeyRing.swift */; };
+		757F12921C48F65300CF947C /* HeartWithWingsKeyRing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 757F12911C48F65300CF947C /* HeartWithWingsKeyRing.swift */; };
 		758070181C0C420E000F9D84 /* PlateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 758070171C0C420E000F9D84 /* PlateView.swift */; };
 		75823AAF1BD8BDD000C92F83 /* PhoneCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75823AAE1BD8BDD000C92F83 /* PhoneCase.swift */; };
 		758595621BDA30C10079A1BA /* iPhone4CameraImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 7585955E1BDA30C10079A1BA /* iPhone4CameraImage.png */; };
@@ -314,6 +318,10 @@
 		757470331BDCBEB4004CABD0 /* iPhone6CameraImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = iPhone6CameraImage.png; path = images/iPhone6CameraImage.png; sourceTree = "<group>"; };
 		757470341BDCBEB4004CABD0 /* iPhone6CameraImage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "iPhone6CameraImage@2x.png"; path = "images/iPhone6CameraImage@2x.png"; sourceTree = "<group>"; };
 		757E9F211C24642900ADEB32 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Main.strings; sourceTree = "<group>"; };
+		757F12831C48CB6A00CF947C /* CircleKeyRing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleKeyRing.swift; sourceTree = "<group>"; };
+		757F12871C48CE1400CF947C /* KeyRing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyRing.swift; sourceTree = "<group>"; };
+		757F128B1C48E20200CF947C /* HeartKeyRing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeartKeyRing.swift; sourceTree = "<group>"; };
+		757F12911C48F65300CF947C /* HeartWithWingsKeyRing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeartWithWingsKeyRing.swift; sourceTree = "<group>"; };
 		758070171C0C420E000F9D84 /* PlateView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlateView.swift; sourceTree = "<group>"; };
 		75823AAE1BD8BDD000C92F83 /* PhoneCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhoneCase.swift; sourceTree = "<group>"; };
 		7585955E1BDA30C10079A1BA /* iPhone4CameraImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = iPhone4CameraImage.png; path = images/iPhone4CameraImage.png; sourceTree = "<group>"; };
@@ -604,6 +612,7 @@
 				750E0F901C1874DA00A8158C /* BlagaprintUser.swift */,
 				757470311BDCB404004CABD0 /* Device.swift */,
 				75BF69521C044900009D670D /* PhotoFrame.swift */,
+				757F12871C48CE1400CF947C /* KeyRing.swift */,
 			);
 			name = DataModel;
 			sourceTree = "<group>";
@@ -615,6 +624,7 @@
 				75A361911C00920700D97278 /* PhotoFrame */,
 				7580701F1C0C4944000F9D84 /* Plate */,
 				0C9A21381C1FFF6F00559947 /* Cup */,
+				757F12851C48CB9C00CF947C /* KeyRing */,
 				50FD7F4F1BB8FFF600ABEC38 /* CategoryTableViewCell.swift */,
 				0C8296BD1BFC5CF200B2B345 /* ImagePickingTableViewCell.swift */,
 				0C8296C11BFC65D400B2B345 /* DescriptionTableViewCell.swift */,
@@ -819,6 +829,16 @@
 				750C83CE1C03110200BAFEB0 /* sh38_placeholderImage.jpg */,
 			);
 			name = PhotoFrame;
+			sourceTree = "<group>";
+		};
+		757F12851C48CB9C00CF947C /* KeyRing */ = {
+			isa = PBXGroup;
+			children = (
+				757F12831C48CB6A00CF947C /* CircleKeyRing.swift */,
+				757F128B1C48E20200CF947C /* HeartKeyRing.swift */,
+				757F12911C48F65300CF947C /* HeartWithWingsKeyRing.swift */,
+			);
+			name = KeyRing;
 			sourceTree = "<group>";
 		};
 		7580701F1C0C4944000F9D84 /* Plate */ = {
@@ -1455,7 +1475,9 @@
 				0C541A591BD0B51A0028BD9A /* PhotoLibraryItemCollectionViewCell.swift in Sources */,
 				75C4E7CA1C3807540039B59F /* BagItem.swift in Sources */,
 				0C7F25361C27CD6A00D7C49C /* Cup.swift in Sources */,
+				757F12841C48CB6A00CF947C /* CircleKeyRing.swift in Sources */,
 				750C83C91C02EEBB00BAFEB0 /* SH38_PhotoFrame.swift in Sources */,
+				757F12921C48F65300CF947C /* HeartWithWingsKeyRing.swift in Sources */,
 				751DA9B71C19D3D600D10C24 /* UserLogInEmptyView.swift in Sources */,
 				501506501BCE96C700697C99 /* TextEditingViewController.swift in Sources */,
 				75BF69531C044900009D670D /* PhotoFrame.swift in Sources */,
@@ -1468,12 +1490,14 @@
 				50551C331BCBB469005B88DA /* OvalView.swift in Sources */,
 				758070181C0C420E000F9D84 /* PlateView.swift in Sources */,
 				75C4E7C81C3807450039B59F /* Bag.swift in Sources */,
+				757F12881C48CE1400CF947C /* KeyRing.swift in Sources */,
 				502A8CB31BB80EAC0064E0DA /* AppDelegate.swift in Sources */,
 				757470321BDCB405004CABD0 /* Device.swift in Sources */,
 				756FF67D1C128C2D0091B75E /* Reachability.swift in Sources */,
 				75467C921C12EC32008046A2 /* SignUpViewController.swift in Sources */,
 				508503041BBAADB600152131 /* AppAppearance.swift in Sources */,
 				0CA50CE51C194D5800020150 /* ShoppingBagViewController.swift in Sources */,
+				757F128C1C48E20200CF947C /* HeartKeyRing.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

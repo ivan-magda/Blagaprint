@@ -215,6 +215,8 @@ class CaseConstructorTableViewController: UITableViewController {
         // Set text.
         item.text = self.caseView.text
         
+        item.price = 500.0
+        
         return item
     }
     

@@ -37,10 +37,11 @@ class CategoryItemViewController: UIViewController {
     @IBOutlet weak var pickImageView: UIView!
     @IBOutlet weak var pickColorView: UIView!
     @IBOutlet weak var pickedColorView: UIView!
-    @IBOutlet weak var addtoBagButton: UIButton!
+    @IBOutlet weak var addToBagButton: UIButton!
     @IBOutlet weak var pageControl: UIPageControl!
     
     @IBOutlet weak var placeholderViewHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var pageControlVerticalSpaceConstraint: NSLayoutConstraint!
     @IBOutlet weak var pickImageViewHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var pickColorViewHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var pickColorViewBottomSpace: NSLayoutConstraint!
@@ -71,8 +72,8 @@ class CategoryItemViewController: UIViewController {
     // Data source for collection view.
     private var images = [UIImage]()
     
-    /// Inner color of cup.
-    private var cupInnerColor = UIColor.whiteColor()
+    /// Picked color by the user.
+    private var pickedColor = UIColor.whiteColor()
     
     //--------------------------------------
     // MARK: - View Life Cycle
@@ -114,10 +115,10 @@ class CategoryItemViewController: UIViewController {
             let navigationController = segue.destinationViewController as! UINavigationController
             
             let colorPickingVC = navigationController.topViewController as! SelectBackgroundCollectionViewController!
-            colorPickingVC.selectedColor = cupInnerColor
+            colorPickingVC.selectedColor = pickedColor
             
             colorPickingVC.didSelectColorCompletionHandler = { color in
-                self.cupInnerColor = color
+                self.pickedColor = color
                 self.pickedColorView.backgroundColor = color
                 self.pickedColorViewUpdateBorderLayer()
             }
@@ -196,7 +197,7 @@ class CategoryItemViewController: UIViewController {
         self.pickedColorView.layer.borderWidth = 0.0
         var borderColor: UIColor?
         
-        if cupInnerColor == UIColor.whiteColor() {
+        if pickedColor == UIColor.whiteColor() {
             borderColor = UIColor.lightGrayColor()
         }
         
@@ -211,19 +212,25 @@ class CategoryItemViewController: UIViewController {
             return
         }
         
+        // Set placeholder view height
+        if self.pageControl.numberOfPages <= 1 {
+            self.placeholderViewHeightConstraint.constant = placeholderViewDefaultHeightValue
+        } else {
+            self.placeholderViewHeightConstraint.constant = placeholderViewDefaultHeightValue + CGRectGetHeight(pageControl.bounds)
+        }
+        
         switch self.category.getType() {
         case .cups:
             self.placeholderViewHeightConstraint.constant = placeholderViewDefaultHeightValue
-            self.pickImageViewHeightConstraint.constant = actionViewHeightValue
-            self.pickColorViewHeightConstraint.constant = actionViewHeightValue
-        case .plates, .frames:
-            self.placeholderViewHeightConstraint.constant = placeholderViewDefaultHeightValue
-            self.pickImageViewHeightConstraint.constant = actionViewHeightValue
+            self.pageControlVerticalSpaceConstraint.constant = -CGRectGetHeight(self.pageControl.bounds)
             
+        case .plates, .frames, .keyRingsWithPhoto:
             self.pickColorViewHeightConstraint.constant = 0.0
             self.pickColorView.alpha = 0.0
+            
         default:
-            break
+            self.pickImageViewHeightConstraint.constant = actionViewHeightValue
+            self.pickColorViewHeightConstraint.constant = actionViewHeightValue
         }
         
         setPickColorViewBottomSpace()
@@ -299,6 +306,12 @@ class CategoryItemViewController: UIViewController {
                     images.append(frame.frameImageWithPickedImage(pickedImage))
                 }
                 
+            case .keyRingsWithPhoto:
+                let keyRings = KeyRing.seedInitialKeyRings()
+                for keyRing in keyRings {
+                    images.append(keyRing.imageOfKeyRingWithPickedImage(pickedImage))
+                }
+                
             default:
                 break
             }
@@ -315,6 +328,12 @@ class CategoryItemViewController: UIViewController {
                 let frames = PhotoFrame.seedInitialFrames()
                 for frame in frames {
                     images.append(frame.image)
+                }
+                
+            case .keyRingsWithPhoto:
+                let keyRings = KeyRing.seedInitialKeyRings()
+                for keyRing in keyRings {
+                    images.append(keyRing.image)
                 }
                 
             default:
@@ -381,9 +400,11 @@ class CategoryItemViewController: UIViewController {
         
         // Set picked color.
         if self.pickColorViewHeightConstraint.constant != 0.0 {
-            let colorInString = BagItem.colorToString(self.cupInnerColor)
+            let colorInString = BagItem.colorToString(self.pickedColor)
             item.fillColor = colorInString
         }
+        
+        item.price = 500.0
         
         return item
     }
@@ -487,8 +508,8 @@ extension CategoryItemViewController: UICollectionViewDataSource, UICollectionVi
     //--------------------------------------------
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-        let width  = CGRectGetWidth(collectionView.bounds)
-        let height: CGFloat = CGRectGetHeight(self.placeholderView.frame)
+        let width = CGRectGetWidth(collectionView.bounds)
+        let height = CGRectGetHeight(collectionView.bounds)
         
         return CGSizeMake(width, height)
     }

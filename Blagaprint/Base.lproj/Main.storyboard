@@ -101,7 +101,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mRn-ti-5JJ" userLabel="PlaceholderView">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="320"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="357"/>
                                         <subviews>
                                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceHorizontal="YES" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="DQZ-fV-btc">
                                                 <rect key="frame" x="0.0" y="0.0" width="320" height="320"/>
@@ -144,8 +144,8 @@
                                                     <outlet property="delegate" destination="bNt-aM-HSw" id="wmY-8o-LS4"/>
                                                 </connections>
                                             </collectionView>
-                                            <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" hidesForSinglePage="YES" numberOfPages="1" translatesAutoresizingMaskIntoConstraints="NO" id="vBh-Oy-UqJ">
-                                                <rect key="frame" x="160" y="320" width="0.0" height="0.0"/>
+                                            <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" hidesForSinglePage="YES" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="vBh-Oy-UqJ">
+                                                <rect key="frame" x="141" y="320" width="39" height="37"/>
                                                 <color key="pageIndicatorTintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                 <color key="currentPageIndicatorTintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                                 <connections>
@@ -158,13 +158,13 @@
                                             <constraint firstItem="DQZ-fV-btc" firstAttribute="leading" secondItem="mRn-ti-5JJ" secondAttribute="leading" id="McF-cI-Fxn"/>
                                             <constraint firstAttribute="trailing" secondItem="DQZ-fV-btc" secondAttribute="trailing" id="VCP-fz-Ovt"/>
                                             <constraint firstAttribute="bottom" secondItem="vBh-Oy-UqJ" secondAttribute="bottom" id="fX9-JC-fLH"/>
-                                            <constraint firstAttribute="height" constant="320" id="lwc-JG-UI1"/>
+                                            <constraint firstItem="vBh-Oy-UqJ" firstAttribute="top" secondItem="DQZ-fV-btc" secondAttribute="bottom" id="fhr-2E-poU"/>
+                                            <constraint firstAttribute="height" constant="357" id="lwc-JG-UI1"/>
                                             <constraint firstItem="vBh-Oy-UqJ" firstAttribute="centerX" secondItem="mRn-ti-5JJ" secondAttribute="centerX" id="si5-tS-VX1"/>
-                                            <constraint firstAttribute="bottom" secondItem="DQZ-fV-btc" secondAttribute="bottom" id="tsq-IS-7Ml"/>
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vei-dx-tIn" userLabel="PickImageView">
-                                        <rect key="frame" x="0.0" y="320" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="357" width="320" height="44"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Yae-wH-xxf" userLabel="TopSeparator">
                                                 <rect key="frame" x="15" y="0.0" width="305" height="1"/>
@@ -212,7 +212,7 @@
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aAg-sP-szL" userLabel="PickColorView">
-                                        <rect key="frame" x="0.0" y="364" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="401" width="320" height="44"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Color" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YBS-Bg-HM1">
                                                 <rect key="frame" x="15" y="12" width="42" height="21"/>
@@ -295,9 +295,10 @@
                     </view>
                     <navigationItem key="navigationItem" title="Item" id="4uU-ns-14I"/>
                     <connections>
-                        <outlet property="addtoBagButton" destination="da6-wR-7Aj" id="bDM-Cp-JSp"/>
+                        <outlet property="addToBagButton" destination="da6-wR-7Aj" id="CXJ-7M-FiR"/>
                         <outlet property="collectionView" destination="DQZ-fV-btc" id="n3y-cm-Ngf"/>
                         <outlet property="pageControl" destination="vBh-Oy-UqJ" id="qnv-zG-ww4"/>
+                        <outlet property="pageControlVerticalSpaceConstraint" destination="fhr-2E-poU" id="HwM-EU-64b"/>
                         <outlet property="pickColorView" destination="aAg-sP-szL" id="PLu-6A-mQ3"/>
                         <outlet property="pickColorViewBottomSpace" destination="1VE-vB-ZxY" id="fRy-nl-3u5"/>
                         <outlet property="pickColorViewHeightConstraint" destination="gPn-BL-0fn" id="dL2-eD-Nyl"/>
@@ -317,7 +318,6 @@
         <!--Case-->
         <scene sceneID="RYb-9i-dgl">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="lGs-Mb-ptV" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tableViewController hidesBottomBarWhenPushed="YES" id="Xxy-AC-J3P" customClass="CaseConstructorTableViewController" customModule="Blagaprint" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="static" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="spy-65-JpJ">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="663"/>
@@ -467,6 +467,7 @@
                         <segue destination="2eN-08-h4l" kind="presentation" identifier="PhotoLibrary" id="gwy-23-ssl"/>
                     </connections>
                 </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lGs-Mb-ptV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="890" y="-1245"/>
         </scene>
@@ -1244,13 +1245,13 @@
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="INF-EP-iZ8">
                                             <rect key="frame" x="95" y="19" width="217" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Price" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qxd-BR-7sX">
                                             <rect key="frame" x="95" y="44" width="217" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>

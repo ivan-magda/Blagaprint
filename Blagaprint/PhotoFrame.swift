@@ -9,17 +9,22 @@
 import Foundation
 import UIKit
 
-/// Photo frame types enum.
-enum PhotoFrameType: String {
-    case SH_2
-    case SH_3
-    case SH_11
-    case SH_15
-    case SH_19
-    case SH_38
-}
-
 class PhotoFrame: NSObject {
+    
+    //--------------------------------------
+    // MARK: - Types
+    //--------------------------------------
+    
+    /// Type of the frame.
+    enum PhotoFrameType: String {
+        case SH_2
+        case SH_3
+        case SH_11
+        case SH_15
+        case SH_19
+        case SH_38
+    }
+    
     //--------------------------------------
     // MARK: - Properties
     //--------------------------------------
