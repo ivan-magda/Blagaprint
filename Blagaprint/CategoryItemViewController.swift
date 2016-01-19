@@ -220,11 +220,11 @@ class CategoryItemViewController: UIViewController {
         }
         
         switch self.category.getType() {
-        case .cups:
+        case .phoneCase:
             self.placeholderViewHeightConstraint.constant = placeholderViewDefaultHeightValue
             self.pageControlVerticalSpaceConstraint.constant = -CGRectGetHeight(self.pageControl.bounds)
             
-        case .plates, .frames, .keyRingsWithPhoto:
+        case .plate, .photoFrame, .keyRing:
             self.pickColorViewHeightConstraint.constant = 0.0
             self.pickColorView.alpha = 0.0
             
@@ -273,7 +273,7 @@ class CategoryItemViewController: UIViewController {
         if let pickedImage = pickedImage {
             switch category {
                 
-            case .cups:
+            case .cup:
                 // Picked image cropping
                 let imageSize = pickedImage.size
                 let fortyPercentOfWidth = imageSize.width * 0.4
@@ -296,17 +296,17 @@ class CategoryItemViewController: UIViewController {
                 let rightSideImage = rightCroppedImage.resizedImageWithContentMode(.ScaleAspectFill, bounds: PickedImageSize.Cup, interpolationQuality: .High)
                 images.append(Cup.imageOfCupRight(pickedImage: rightSideImage, imageVisible: true))
                 
-            case .plates:
+            case .plate:
                 let resizedImage = pickedImage.resizedImageWithContentMode(.ScaleAspectFill, bounds: PickedImageSize.Plate, interpolationQuality: .High)
                 self.images = [Plate.imageOfPlateCanvas(image: resizedImage, isPlateImageVisible: true)]
                 
-            case .frames:
+            case .photoFrame:
                 let frames = PhotoFrame.seedInitialFrames()
                 for frame in frames {
                     images.append(frame.frameImageWithPickedImage(pickedImage))
                 }
                 
-            case .keyRingsWithPhoto:
+            case .keyRing:
                 let keyRings = KeyRing.seedInitialKeyRings()
                 for keyRing in keyRings {
                     images.append(keyRing.imageOfKeyRingWithPickedImage(pickedImage))
@@ -318,19 +318,19 @@ class CategoryItemViewController: UIViewController {
         } else {
             switch category {
                 
-            case .cups:
+            case .cup:
                 images = [Cup.imageOfCupLeft(), Cup.imageOfCupFront(), Cup.imageOfCupRight()]
                 
-            case .plates:
+            case .plate:
                 images = [Plate.imageOfPlateCanvas()]
                 
-            case .frames:
+            case .photoFrame:
                 let frames = PhotoFrame.seedInitialFrames()
                 for frame in frames {
                     images.append(frame.image)
                 }
                 
-            case .keyRingsWithPhoto:
+            case .keyRing:
                 let keyRings = KeyRing.seedInitialKeyRings()
                 for keyRing in keyRings {
                     images.append(keyRing.image)

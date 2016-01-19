@@ -223,7 +223,7 @@ class CategoryTableViewController: PFQueryTableViewController {
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let category = self.objects![indexPath.section] as! Category
         switch category.getType() {
-        case .cases:
+        case .phoneCase:
             self.performSegueWithIdentifier(SegueIdentifier.PhoneCaseConstructor.rawValue, sender: nil)
         default:
             self.performSegueWithIdentifier(SegueIdentifier.CategoryItem.rawValue, sender: nil)

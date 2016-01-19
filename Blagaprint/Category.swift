@@ -17,17 +17,14 @@ class Category: PFObject, PFSubclassing {
     //--------------------------------------
     
     enum CategoryTypes: String {
-        case cases
-        case cups
-        case plates
-        case frames
-        case crystals
-        case keyRingsBy3DPrinter
-        case keyRingsWithPhoto
+        case phoneCase
+        case cup
+        case plate
+        case photoFrame
+        case photoCrystal
+        case keyRing
         case clothes
         case copyServices
-        case printingBy3Dprint
-        case woodCases
         case undefined
     }
     
