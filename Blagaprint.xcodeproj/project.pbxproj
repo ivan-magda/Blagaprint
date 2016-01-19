@@ -110,6 +110,9 @@
 		7547D2551BDE2376006E4170 /* galaxyS5Speaker.png in Resources */ = {isa = PBXBuildFile; fileRef = 7547D2471BDE2376006E4170 /* galaxyS5Speaker.png */; };
 		7547D2561BDE2376006E4170 /* galaxyS5Speaker@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7547D2481BDE2376006E4170 /* galaxyS5Speaker@2x.png */; };
 		7561AE9F1C0FD563009B2C8B /* Plate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7561AE9E1C0FD563009B2C8B /* Plate.swift */; };
+		756DF01A1C4E542700A31B55 /* SquareKeyRing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 756DF0191C4E542700A31B55 /* SquareKeyRing.swift */; };
+		756DF01D1C4E56E200A31B55 /* CircleKeyRing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 756DF01B1C4E56E200A31B55 /* CircleKeyRing.swift */; };
+		756DF01E1C4E56E200A31B55 /* HeartKeyRing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 756DF01C1C4E56E200A31B55 /* HeartKeyRing.swift */; };
 		756FF67D1C128C2D0091B75E /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 756FF67C1C128C2D0091B75E /* Reachability.swift */; };
 		757459251C146B270063B758 /* Raleway.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 757459241C146B270063B758 /* Raleway.ttf */; };
 		757459271C146BB20063B758 /* backgroundImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 757459261C146BB20063B758 /* backgroundImage.png */; };
@@ -119,9 +122,7 @@
 		757470321BDCB405004CABD0 /* Device.swift in Sources */ = {isa = PBXBuildFile; fileRef = 757470311BDCB404004CABD0 /* Device.swift */; };
 		757470351BDCBEB4004CABD0 /* iPhone6CameraImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 757470331BDCBEB4004CABD0 /* iPhone6CameraImage.png */; };
 		757470361BDCBEB4004CABD0 /* iPhone6CameraImage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 757470341BDCBEB4004CABD0 /* iPhone6CameraImage@2x.png */; };
-		757F12841C48CB6A00CF947C /* CircleKeyRing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 757F12831C48CB6A00CF947C /* CircleKeyRing.swift */; };
 		757F12881C48CE1400CF947C /* KeyRing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 757F12871C48CE1400CF947C /* KeyRing.swift */; };
-		757F128C1C48E20200CF947C /* HeartKeyRing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 757F128B1C48E20200CF947C /* HeartKeyRing.swift */; };
 		757F12921C48F65300CF947C /* HeartWithWingsKeyRing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 757F12911C48F65300CF947C /* HeartWithWingsKeyRing.swift */; };
 		758070181C0C420E000F9D84 /* PlateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 758070171C0C420E000F9D84 /* PlateView.swift */; };
 		75823AAF1BD8BDD000C92F83 /* PhoneCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75823AAE1BD8BDD000C92F83 /* PhoneCase.swift */; };
@@ -307,6 +308,9 @@
 		7547D2471BDE2376006E4170 /* galaxyS5Speaker.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = galaxyS5Speaker.png; path = images/galaxyS5Speaker.png; sourceTree = "<group>"; };
 		7547D2481BDE2376006E4170 /* galaxyS5Speaker@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "galaxyS5Speaker@2x.png"; path = "images/galaxyS5Speaker@2x.png"; sourceTree = "<group>"; };
 		7561AE9E1C0FD563009B2C8B /* Plate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Plate.swift; sourceTree = "<group>"; };
+		756DF0191C4E542700A31B55 /* SquareKeyRing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SquareKeyRing.swift; sourceTree = "<group>"; };
+		756DF01B1C4E56E200A31B55 /* CircleKeyRing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleKeyRing.swift; sourceTree = "<group>"; };
+		756DF01C1C4E56E200A31B55 /* HeartKeyRing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeartKeyRing.swift; sourceTree = "<group>"; };
 		756FF67C1C128C2D0091B75E /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		75708CDB1C11729B00943F73 /* Blagaprint-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Blagaprint-Bridging-Header.h"; sourceTree = "<group>"; };
 		757459241C146B270063B758 /* Raleway.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Raleway.ttf; sourceTree = "<group>"; };
@@ -318,9 +322,7 @@
 		757470331BDCBEB4004CABD0 /* iPhone6CameraImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = iPhone6CameraImage.png; path = images/iPhone6CameraImage.png; sourceTree = "<group>"; };
 		757470341BDCBEB4004CABD0 /* iPhone6CameraImage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "iPhone6CameraImage@2x.png"; path = "images/iPhone6CameraImage@2x.png"; sourceTree = "<group>"; };
 		757E9F211C24642900ADEB32 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Main.strings; sourceTree = "<group>"; };
-		757F12831C48CB6A00CF947C /* CircleKeyRing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleKeyRing.swift; sourceTree = "<group>"; };
 		757F12871C48CE1400CF947C /* KeyRing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyRing.swift; sourceTree = "<group>"; };
-		757F128B1C48E20200CF947C /* HeartKeyRing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeartKeyRing.swift; sourceTree = "<group>"; };
 		757F12911C48F65300CF947C /* HeartWithWingsKeyRing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeartWithWingsKeyRing.swift; sourceTree = "<group>"; };
 		758070171C0C420E000F9D84 /* PlateView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlateView.swift; sourceTree = "<group>"; };
 		75823AAE1BD8BDD000C92F83 /* PhoneCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhoneCase.swift; sourceTree = "<group>"; };
@@ -834,9 +836,10 @@
 		757F12851C48CB9C00CF947C /* KeyRing */ = {
 			isa = PBXGroup;
 			children = (
-				757F12831C48CB6A00CF947C /* CircleKeyRing.swift */,
-				757F128B1C48E20200CF947C /* HeartKeyRing.swift */,
+				756DF01B1C4E56E200A31B55 /* CircleKeyRing.swift */,
+				756DF01C1C4E56E200A31B55 /* HeartKeyRing.swift */,
 				757F12911C48F65300CF947C /* HeartWithWingsKeyRing.swift */,
+				756DF0191C4E542700A31B55 /* SquareKeyRing.swift */,
 			);
 			name = KeyRing;
 			sourceTree = "<group>";
@@ -1437,10 +1440,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				75F739371BE491BF0063EB6F /* XiaomiMi4.swift in Sources */,
+				756DF01D1C4E56E200A31B55 /* CircleKeyRing.swift in Sources */,
 				502A8CB51BB80EAC0064E0DA /* CategoryTableViewController.swift in Sources */,
 				7586714D1C1BC5A700B60DFB /* ChangePasswordTableViewController.swift in Sources */,
 				75823AAF1BD8BDD000C92F83 /* PhoneCase.swift in Sources */,
 				75DD91FF1BD7BFE000932AD7 /* CaseView.swift in Sources */,
+				756DF01E1C4E56E200A31B55 /* HeartKeyRing.swift in Sources */,
 				0C7F25441C27D75100D7C49C /* ImageCollectionViewCell.swift in Sources */,
 				75BF695D1C045E78009D670D /* SH3_PhotoFrame.swift in Sources */,
 				0C541A571BD0B2710028BD9A /* PhotoLibraryCollectionViewController.swift in Sources */,
@@ -1475,10 +1480,10 @@
 				0C541A591BD0B51A0028BD9A /* PhotoLibraryItemCollectionViewCell.swift in Sources */,
 				75C4E7CA1C3807540039B59F /* BagItem.swift in Sources */,
 				0C7F25361C27CD6A00D7C49C /* Cup.swift in Sources */,
-				757F12841C48CB6A00CF947C /* CircleKeyRing.swift in Sources */,
 				750C83C91C02EEBB00BAFEB0 /* SH38_PhotoFrame.swift in Sources */,
 				757F12921C48F65300CF947C /* HeartWithWingsKeyRing.swift in Sources */,
 				751DA9B71C19D3D600D10C24 /* UserLogInEmptyView.swift in Sources */,
+				756DF01A1C4E542700A31B55 /* SquareKeyRing.swift in Sources */,
 				501506501BCE96C700697C99 /* TextEditingViewController.swift in Sources */,
 				75BF69531C044900009D670D /* PhotoFrame.swift in Sources */,
 				0C8296BE1BFC5CF200B2B345 /* ImagePickingTableViewCell.swift in Sources */,
@@ -1497,7 +1502,6 @@
 				75467C921C12EC32008046A2 /* SignUpViewController.swift in Sources */,
 				508503041BBAADB600152131 /* AppAppearance.swift in Sources */,
 				0CA50CE51C194D5800020150 /* ShoppingBagViewController.swift in Sources */,
-				757F128C1C48E20200CF947C /* HeartKeyRing.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
