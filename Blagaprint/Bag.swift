@@ -16,7 +16,7 @@ class Bag: PFObject, PFSubclassing {
     // MARK: - Types
     //--------------------------------------
     
-    enum Keys: String {
+    enum FieldKey: String {
         case userId
         case items
     }

@@ -16,7 +16,7 @@ class Category: PFObject, PFSubclassing {
     // MARK: - Types
     //--------------------------------------
     
-    enum CategoryTypes: String {
+    enum CategoryType: String {
         case phoneCase
         case cup
         case plate
@@ -28,7 +28,7 @@ class Category: PFObject, PFSubclassing {
         case undefined
     }
     
-    enum Keys: String {
+    enum FieldKey: String {
         case name
         case titleName
         case image
@@ -79,8 +79,8 @@ class Category: PFObject, PFSubclassing {
         return "Name: \(name)\nType: \(type)."
     }
     
-    func getType() -> CategoryTypes {
-        let type = CategoryTypes(rawValue: self.type)
+    func getType() -> CategoryType {
+        let type = CategoryType(rawValue: self.type)
         return (type == nil ? .undefined : type!)
     }
     
@@ -88,9 +88,8 @@ class Category: PFObject, PFSubclassing {
     func getItemsInBackgroundWithBlock(completionHandler: ((objects: [CategoryItem]?, error: NSError?) -> ())? ) {
         let categoryItemsQuery = PFQuery(className: CategoryItemClassName)
         categoryItemsQuery.cachePolicy = .CacheThenNetwork
-        categoryItemsQuery.whereKey(CategoryItem.Keys.parentCategory.rawValue, equalTo: self)
-        categoryItemsQuery.includeKey(CategoryItem.Keys.parentCategory.rawValue)
-        
+        categoryItemsQuery.whereKey(CategoryItem.FieldKey.parentCategory.rawValue, equalTo: self)
+        categoryItemsQuery.includeKey(CategoryItem.FieldKey.parentCategory.rawValue)
         
         categoryItemsQuery.findObjectsInBackgroundWithBlock() { (items, error) in
             dispatch_async(dispatch_get_main_queue()) {

@@ -16,7 +16,7 @@ class CategoryItem: PFObject, PFSubclassing {
     // MARK: - Types
     //--------------------------------------
     
-    enum Keys: String {
+    enum FieldKey: String {
         case name
         case image
         case parentCategory

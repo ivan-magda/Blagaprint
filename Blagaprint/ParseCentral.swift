@@ -146,7 +146,7 @@ class ParseCentral: NSObject {
         }
         
         let query = PFQuery(className: BagItemClassName)
-        query.whereKey(BagItem.Keys.userId.rawValue, equalTo: user.objectId!)
+        query.whereKey(BagItem.FieldKey.userId.rawValue, equalTo: user.objectId!)
         query.cachePolicy = .CacheThenNetwork
         
         query.countObjectsInBackgroundWithBlock() { (count, error) in
@@ -209,7 +209,7 @@ class ParseCentral: NSObject {
                 self.removeActivityView(completion: nil)
             } else if succeeded {
                 // Add this item to bag of the current user.
-                bag.addUniqueObject(item.objectId!, forKey: Bag.Keys.items.rawValue)
+                bag.addUniqueObject(item.objectId!, forKey: Bag.FieldKey.items.rawValue)
                 bag.saveInBackgroundWithBlock() { (succeeded, error) in
                     if let error = error {
                         print(error.localizedDescription)
@@ -243,7 +243,7 @@ class ParseCentral: NSObject {
             
             // Find Bag of the user.
             let bagQuery = PFQuery(className: BagClassName)
-            bagQuery.whereKey(Bag.Keys.userId.rawValue, equalTo: user.objectId!)
+            bagQuery.whereKey(Bag.FieldKey.userId.rawValue, equalTo: user.objectId!)
             bagQuery.findObjectsInBackgroundWithBlock() { (bag, error) in
                 if let error = error {
                     print(error.localizedDescription)
@@ -295,7 +295,7 @@ class ParseCentral: NSObject {
     
     func deleteItem(itemToDelete item: BagItem, succeeded:(() -> ())?, failure:((error: NSError) -> ())?) {
         let bagQuery = PFQuery(className: BagClassName)
-        bagQuery.whereKey(Bag.Keys.userId.rawValue, equalTo: item.userId)
+        bagQuery.whereKey(Bag.FieldKey.userId.rawValue, equalTo: item.userId)
         
         bagQuery.findObjectsInBackgroundWithBlock() { (results, error) in
             if let error = error {

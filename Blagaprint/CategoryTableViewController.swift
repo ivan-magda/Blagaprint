@@ -131,7 +131,7 @@ class CategoryTableViewController: PFQueryTableViewController {
     /// Construct custom PFQuery to get the objects.
     override func queryForTable() -> PFQuery {
         let query = PFQuery(className: self.parseClassName!)
-        query.orderByDescending(Category.Keys.name.rawValue)
+        query.orderByDescending(Category.FieldKey.name.rawValue)
         
         // A pull-to-refresh should always trigger a network request.
         query.cachePolicy = .NetworkOnly

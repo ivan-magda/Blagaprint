@@ -76,8 +76,8 @@ class ShoppingBagViewController: UITableViewController {
         }
         
         let query = PFQuery(className: BagItemClassName)
-        query.orderByDescending(BagItem.Keys.createdAt.rawValue)
-        query.whereKey(BagItem.Keys.userId.rawValue, equalTo: user.objectId!)
+        query.orderByDescending(BagItem.FieldKey.createdAt.rawValue)
+        query.whereKey(BagItem.FieldKey.userId.rawValue, equalTo: user.objectId!)
         query.cachePolicy = .CacheThenNetwork
         
         query.findObjectsInBackgroundWithBlock() { (items, error) in

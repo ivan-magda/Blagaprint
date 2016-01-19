@@ -15,7 +15,7 @@ class PhotoFrame: NSObject {
     // MARK: - Types
     //--------------------------------------
     
-    /// Type of the frame.
+    /// Type of the photo frame.
     enum PhotoFrameType: String {
         case SH_2
         case SH_3
@@ -29,7 +29,7 @@ class PhotoFrame: NSObject {
     // MARK: - Properties
     //--------------------------------------
     
-    /// Type of the frame.
+    /// Type of the photo frame.
     var type: PhotoFrameType
     
     /// Size for picked image.
