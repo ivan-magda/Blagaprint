@@ -56,12 +56,53 @@ class ShoppingBagViewController: UITableViewController {
         }
     }
     
+    private func configuratedCellForRowAtIndexPath(indexPath: NSIndexPath) -> UITableViewCell {
+        if indexPath.section == 0 {
+            let cell = tableView.dequeueReusableCellWithIdentifier(ProceedToCheckoutTableViewCell.cellReuseIdentifier) as! ProceedToCheckoutTableViewCell
+            
+            cell.proceedToCheckoutButton.addTarget(self, action: Selector("proceedToCheckout:"), forControlEvents: .TouchUpInside)
+            
+            // Count for amount and format it.
+            var amount = 0.0
+            for object in self.objects! {
+                amount += object.price
+            }
+            
+            let formatAmount = String.formatAmount(NSNumber(double: amount))
+            
+            cell.orderDetailsLabel.text = NSLocalizedString("Order in the amount of \(formatAmount)", comment: "Order detail info with amount")
+            cell.proceedToCheckoutButton.setTitle(NSLocalizedString("Proceed to Checkout", comment: "Proceed to Checkout button title"), forState: .Normal)
+            
+            return cell
+        } else {
+            let cell = self.tableView.dequeueReusableCellWithIdentifier(BagItemTableViewCell.cellReuseIdentifier) as! BagItemTableViewCell
+            
+            let item = objects![indexPath.row]
+            
+            if indexPath.row < self.thumbnails.count {
+                cell.thumbnailImage.image = thumbnails[item.objectId!]
+            }
+            
+            if indexPath.row < self.categories.count {
+                cell.descriptionLabel.text = categories[item.objectId!]
+            }
+            
+            cell.priceLabel.text = String.formatAmount(NSNumber(double: item.price))
+            
+            return cell
+        }
+    }
+    
     //--------------------------------------
     // MARK: - Target
     //--------------------------------------
     
     func logInBarButtonDidPressed(sender: UIBarButtonItem) {
         self.presentViewController(LoginViewController(), animated: true, completion: nil)
+    }
+    
+    func proceedToCheckout(sender: UIButton) {
+        print("Proceed to Checkout did pressed")
     }
     
     //--------------------------------------
@@ -107,7 +148,7 @@ class ShoppingBagViewController: UITableViewController {
                     
                     // Get category name.
                     let categoryId = item.category
-                    let categoryQuery = PFQuery(className: CategoryClassName)
+                    let categoryQuery = PFQuery(className: Category.parseClassName())
                     categoryQuery.cachePolicy = .CacheThenNetwork
                     categoryQuery.getObjectInBackgroundWithId(categoryId) { (category, error) in
                         if let error = error {
@@ -134,29 +175,23 @@ class ShoppingBagViewController: UITableViewController {
     //--------------------------------------
     
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 1
+        return 2
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.objects?.count ?? 0
+        guard let _ = self.objects else {
+            return 0
+        }
+        
+        if section == 0 {
+            return 1
+        } else {
+            return self.objects!.count
+        }
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = self.tableView.dequeueReusableCellWithIdentifier(BagItemTableViewCell.cellReuseIdentifier) as! BagItemTableViewCell
-        
-        let item = objects![indexPath.row]
-        
-        if indexPath.row < self.thumbnails.count {
-            cell.thumbnailImage.image = thumbnails[item.objectId!]
-        }
-        
-        if indexPath.row < self.categories.count {
-            cell.descriptionLabel.text = categories[item.objectId!]
-        }
-        
-        cell.priceLabel.text = String.formatAmount(NSNumber(double: item.price))
-        
-        return cell
+        return configuratedCellForRowAtIndexPath(indexPath)
     }
     
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
@@ -191,12 +226,31 @@ class ShoppingBagViewController: UITableViewController {
         }
     }
     
+    override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        if section == 0 {
+            return NSLocalizedString("order info", comment: "Order info title for header in section, ShoppingBagVC")
+        } else {
+            return NSLocalizedString("selected items", comment: "Selected items title for header in section, ShoppingBagVC")
+        }
+    }
+    
     //--------------------------------------
     // MARK: - UITableViewDelegate
     //--------------------------------------
     
+    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        if indexPath.section == 0 {
+            return ProceedToCheckoutTableViewCell.defaultHeightValue
+        } else {
+            return BagItemTableViewCell.defaultHeightValue
+        }
+    }
+    
+    override func tableView(tableView: UITableView, willSelectRowAtIndexPath indexPath: NSIndexPath) -> NSIndexPath? {
+        return (indexPath.section == 0 ? nil : indexPath)
+    }
+    
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
-    
 }

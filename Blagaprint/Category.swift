@@ -8,9 +8,6 @@
 
 import Foundation
 
-/// Class name of the Category object.
-let CategoryClassName = "Category"
-
 class Category: PFObject, PFSubclassing {
     //--------------------------------------
     // MARK: - Types
@@ -65,9 +62,9 @@ class Category: PFObject, PFSubclassing {
         }
     }
     
-    /// The class name of the object.
+    /// Class name of the Category object.
     class func parseClassName() -> String {
-        return CategoryClassName
+        return "Category"
     }
     
     //--------------------------------------

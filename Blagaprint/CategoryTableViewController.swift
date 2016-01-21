@@ -8,12 +8,6 @@
 
 import UIKit
 
-/// CategoryTableViewCell height value.
-private let categoryTableViewCellHeight: CGFloat = 200.0
-
-/// Height for tableView header view.
-private let headerViewHeight: CGFloat = 44.0
-
 class CategoryTableViewController: PFQueryTableViewController {
     //--------------------------------------
     // MARK: - Types
@@ -32,6 +26,12 @@ class CategoryTableViewController: PFQueryTableViewController {
     // MARK: - Properties
     //--------------------------------------
     
+    /// CategoryTableViewCell height value.
+    private let categoryTableViewCellHeight: CGFloat = 200.0
+    
+    /// Height for tableView header view.
+    private let headerViewHeight: CGFloat = 44.0
+    
     var parseCentral: ParseCentral?
     
     //--------------------------------------
@@ -42,7 +42,7 @@ class CategoryTableViewController: PFQueryTableViewController {
         super.init(coder: aDecoder)
         
         // The className to query on
-        self.parseClassName = CategoryClassName
+        self.parseClassName = Category.parseClassName()
         
         // Whether the built-in pull-to-refresh is enabled
         self.pullToRefreshEnabled = true
@@ -187,11 +187,7 @@ class CategoryTableViewController: PFQueryTableViewController {
     //--------------------------------------
     
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        if let objects = self.objects {
-            return objects.count
-        } else {
-            return 0
-        }
+        return self.objects?.count ?? 0
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -207,6 +203,7 @@ class CategoryTableViewController: PFQueryTableViewController {
         let labelLeadingSpace: CGFloat = 15.0
         let labelTrailingSpace: CGFloat = labelLeadingSpace + 8.0
         let label = UILabel(frame: CGRectMake(labelLeadingSpace, CGRectGetHeight(headerView.bounds) / 2 - labelHeight / 2.0, CGRectGetWidth(tableView.bounds) - labelTrailingSpace, labelHeight))
+        
         let category = self.objects![section]
         label.text = category.name
         label.textColor = UIColor.whiteColor()

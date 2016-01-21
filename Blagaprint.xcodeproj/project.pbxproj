@@ -113,6 +113,7 @@
 		756DF01A1C4E542700A31B55 /* SquareKeyRing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 756DF0191C4E542700A31B55 /* SquareKeyRing.swift */; };
 		756DF01D1C4E56E200A31B55 /* CircleKeyRing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 756DF01B1C4E56E200A31B55 /* CircleKeyRing.swift */; };
 		756DF01E1C4E56E200A31B55 /* HeartKeyRing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 756DF01C1C4E56E200A31B55 /* HeartKeyRing.swift */; };
+		756DF0201C50630000A31B55 /* ProceedToCheckoutTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 756DF01F1C50630000A31B55 /* ProceedToCheckoutTableViewCell.swift */; };
 		756FF67D1C128C2D0091B75E /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 756FF67C1C128C2D0091B75E /* Reachability.swift */; };
 		757459251C146B270063B758 /* Raleway.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 757459241C146B270063B758 /* Raleway.ttf */; };
 		757459271C146BB20063B758 /* backgroundImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 757459261C146BB20063B758 /* backgroundImage.png */; };
@@ -311,6 +312,7 @@
 		756DF0191C4E542700A31B55 /* SquareKeyRing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SquareKeyRing.swift; sourceTree = "<group>"; };
 		756DF01B1C4E56E200A31B55 /* CircleKeyRing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleKeyRing.swift; sourceTree = "<group>"; };
 		756DF01C1C4E56E200A31B55 /* HeartKeyRing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeartKeyRing.swift; sourceTree = "<group>"; };
+		756DF01F1C50630000A31B55 /* ProceedToCheckoutTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProceedToCheckoutTableViewCell.swift; sourceTree = "<group>"; };
 		756FF67C1C128C2D0091B75E /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		75708CDB1C11729B00943F73 /* Blagaprint-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Blagaprint-Bridging-Header.h"; sourceTree = "<group>"; };
 		757459241C146B270063B758 /* Raleway.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Raleway.ttf; sourceTree = "<group>"; };
@@ -632,6 +634,7 @@
 				0C8296C11BFC65D400B2B345 /* DescriptionTableViewCell.swift */,
 				0C541A581BD0B51A0028BD9A /* PhotoLibraryItemCollectionViewCell.swift */,
 				758997521C3ABA1B00427033 /* BagItemTableViewCell.swift */,
+				756DF01F1C50630000A31B55 /* ProceedToCheckoutTableViewCell.swift */,
 				0C7F25431C27D75100D7C49C /* ImageCollectionViewCell.swift */,
 				758792A71BF487E10071C383 /* ActivityView.swift */,
 				751DA9B61C19D3D600D10C24 /* UserLogInEmptyView.swift */,
@@ -1452,6 +1455,7 @@
 				50551C2E1BCBA523005B88DA /* SelectBackgroundCollectionViewController.swift in Sources */,
 				50DD72391BBED313008A9B80 /* Category.swift in Sources */,
 				75A3E9681BE354F40001E073 /* GalaxyNote2.swift in Sources */,
+				756DF0201C50630000A31B55 /* ProceedToCheckoutTableViewCell.swift in Sources */,
 				753D4D651C059880002FC5E9 /* SH2_PhotoFrame.swift in Sources */,
 				75FD24821BE461EE00446801 /* XperiaZcompact.swift in Sources */,
 				753CD57A1BF3210500795F44 /* AppConfiguration.swift in Sources */,

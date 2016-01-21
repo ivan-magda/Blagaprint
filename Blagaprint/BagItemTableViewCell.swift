@@ -17,7 +17,11 @@ class BagItemTableViewCell: PFTableViewCell {
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var priceLabel: UILabel!
     
+    /// Cell reuse identifier.
     static let cellReuseIdentifier = "BagItemCell"
+    
+    /// Default cell height value.
+    static let defaultHeightValue: CGFloat = 84.0
     
     //--------------------------------------
     // MARK: - Overriding

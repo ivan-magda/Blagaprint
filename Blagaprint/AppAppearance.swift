@@ -29,6 +29,8 @@ class AppAppearance: NSObject {
     
     class func applyAppAppearance() {
         customizeNavigationAndStatusBars()
+        
+        UITabBar.appearance().tintColor = AppAppearance.AppColors.tuna
     }
     
     class func blurredBackgroundImage() -> UIImage {

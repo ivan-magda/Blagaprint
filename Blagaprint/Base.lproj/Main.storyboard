@@ -1223,13 +1223,58 @@
         <scene sceneID="p6P-bl-aXq">
             <objects>
                 <tableViewController id="TkZ-Su-QbA" customClass="ShoppingBagViewController" customModule="Blagaprint" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="84" sectionHeaderHeight="28" sectionFooterHeight="28" id="0mL-61-yjd">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="0mL-61-yjd">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="BagItemCell" id="Jpl-KK-EAQ" customClass="BagItemTableViewCell" customModule="Blagaprint" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="92" width="320" height="84"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="ProceedToCheckoutCell" rowHeight="132" id="9EK-tI-OkD" userLabel="OrderInfoCell" customClass="ProceedToCheckoutTableViewCell" customModule="Blagaprint" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="114" width="320" height="132"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="9EK-tI-OkD" id="IXo-jN-V1Q">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="131"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Order amount label" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n7j-zx-exV">
+                                            <rect key="frame" x="15" y="20" width="290" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OCe-P9-W4R">
+                                            <rect key="frame" x="15" y="67" width="290" height="44"/>
+                                            <color key="backgroundColor" red="0.42352941179999998" green="0.58039215690000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="44" id="bW6-GQ-tER"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <state key="normal" title="Proceed to Checkout">
+                                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            </state>
+                                        </button>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="trailing" secondItem="n7j-zx-exV" secondAttribute="trailing" constant="15" id="1xc-35-53s"/>
+                                        <constraint firstItem="n7j-zx-exV" firstAttribute="top" secondItem="IXo-jN-V1Q" secondAttribute="top" constant="20" symbolic="YES" id="8fu-b8-kXP"/>
+                                        <constraint firstItem="OCe-P9-W4R" firstAttribute="top" secondItem="n7j-zx-exV" secondAttribute="bottom" constant="8" symbolic="YES" id="IfL-LV-bFu"/>
+                                        <constraint firstItem="OCe-P9-W4R" firstAttribute="leading" secondItem="IXo-jN-V1Q" secondAttribute="leading" constant="15" id="fsR-7E-91O"/>
+                                        <constraint firstAttribute="trailing" secondItem="OCe-P9-W4R" secondAttribute="trailing" constant="15" id="jTF-hH-kK0"/>
+                                        <constraint firstAttribute="bottom" secondItem="OCe-P9-W4R" secondAttribute="bottom" constant="20" symbolic="YES" id="mZY-FW-kXi"/>
+                                        <constraint firstItem="n7j-zx-exV" firstAttribute="leading" secondItem="IXo-jN-V1Q" secondAttribute="leading" constant="15" id="nkR-iV-9m1"/>
+                                    </constraints>
+                                    <variation key="default">
+                                        <mask key="constraints">
+                                            <exclude reference="IfL-LV-bFu"/>
+                                        </mask>
+                                    </variation>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="orderDetailsLabel" destination="n7j-zx-exV" id="0oV-gL-6BD"/>
+                                    <outlet property="proceedToCheckoutButton" destination="OCe-P9-W4R" id="YuD-Jl-hlL"/>
+                                </connections>
+                            </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="BagItemCell" rowHeight="84" id="Jpl-KK-EAQ" customClass="BagItemTableViewCell" customModule="Blagaprint" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="246" width="320" height="84"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Jpl-KK-EAQ" id="MMs-bf-9AG">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="83"/>
