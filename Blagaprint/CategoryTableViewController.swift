@@ -197,7 +197,7 @@ class CategoryTableViewController: PFQueryTableViewController {
     override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         
         let headerView = UIView(frame: CGRectMake(0.0, 0.0, CGRectGetWidth(tableView.bounds), headerViewHeight))
-        headerView.backgroundColor = AppAppearance.AppColors.tuna.colorWithAlphaComponent(0.99)
+        headerView.layer.insertSublayer(AppAppearance.horizontalTunaGradientLayerForRect(headerView.bounds), atIndex: 0)
         
         let labelHeight: CGFloat = 18.0
         let labelLeadingSpace: CGFloat = 15.0

@@ -95,6 +95,7 @@ class CategoryItemViewController: UIViewController {
         
         setupImagePickerController()
         setupPickedColorView()
+        setupAddToBagButton()
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -129,44 +130,6 @@ class CategoryItemViewController: UIViewController {
     }
     
     //--------------------------------------
-    // MARK: - UIAlertActions
-    //--------------------------------------
-    
-    private func presentImagePickingAlertController() {
-        let imagePickingAlertController = UIAlertController(title: "Выберите действие", message: nil, preferredStyle: .ActionSheet)
-        
-        /// Cancel action
-        let cancelAction = UIAlertAction(title: "Отмена", style: .Cancel) { action in
-        }
-        imagePickingAlertController.addAction(cancelAction)
-        
-        /// Clear action
-        let clearAction = UIAlertAction(title: "Очистить", style: .Destructive) { action in
-            self.pickedImage = nil
-            self.reloadData()
-        }
-        imagePickingAlertController.addAction(clearAction)
-        
-        /// Photo from gallery(take photo) action
-        let photoFromLibrary = UIAlertAction(title: "Медиатека", style: .Default) { action in
-            if let imagePickerController = self.imagePickerController {
-                imagePickerController.photoFromLibrary()
-            }
-        }
-        imagePickingAlertController.addAction(photoFromLibrary)
-        
-        /// Shoot photo action
-        let shoot = UIAlertAction(title: "Снять фото", style: .Default) { action in
-            if let imagePickerController = self.imagePickerController {
-                imagePickerController.shootPhoto()
-            }
-        }
-        imagePickingAlertController.addAction(shoot)
-        
-        self.presentViewController(imagePickingAlertController, animated: true, completion: nil)
-    }
-    
-    //--------------------------------------
     // MARK: - Private Helper Methods
     //--------------------------------------
     
@@ -194,6 +157,15 @@ class CategoryItemViewController: UIViewController {
     private func setupPickedColorView() {
         self.pickedColorView.layer.cornerRadius = CGRectGetWidth(self.pickedColorView.bounds) / 2.0
         pickedColorViewUpdateBorderLayer()
+    }
+    
+    private func setupAddToBagButton() {
+        self.addToBagButton.layer.insertSublayer(AppAppearance.horizontalGreenGradientLayerForRect(self.addToBagButton.bounds), atIndex: 0)
+        
+        self.addToBagButton.layer.shadowColor = UIColor.blackColor().colorWithAlphaComponent(0.9).CGColor
+        self.addToBagButton.layer.shadowOpacity = 1.0
+        self.addToBagButton.layer.shadowOffset = CGSizeZero
+        self.addToBagButton.layer.shadowRadius = 3.0
     }
     
     private func pickedColorViewUpdateBorderLayer() {
@@ -491,6 +463,44 @@ class CategoryItemViewController: UIViewController {
         self.collectionView.setContentOffset(scrollTo, animated: true)
     }
     
+    //--------------------------------------
+    // MARK: UIAlertActions
+    //--------------------------------------
+    
+    private func presentImagePickingAlertController() {
+        let imagePickingAlertController = UIAlertController(title: NSLocalizedString("Choose an action", comment: "Alert action title"), message: nil, preferredStyle: .ActionSheet)
+        
+        /// Cancel action
+        let cancelAction = UIAlertAction(title: NSLocalizedString("Cancel", comment: "Alert action title"), style: .Cancel) { action in
+        }
+        imagePickingAlertController.addAction(cancelAction)
+        
+        /// Clear action
+        let clearAction = UIAlertAction(title: NSLocalizedString("Clear", comment: "Alert action title"), style: .Destructive) { action in
+            self.pickedImage = nil
+            self.reloadData()
+        }
+        imagePickingAlertController.addAction(clearAction)
+        
+        /// Photo from gallery(take photo) action
+        let photoFromLibrary = UIAlertAction(title: NSLocalizedString("Gallery", comment: "Alert action title"), style: .Default) { action in
+            if let imagePickerController = self.imagePickerController {
+                imagePickerController.photoFromLibrary()
+            }
+        }
+        imagePickingAlertController.addAction(photoFromLibrary)
+        
+        /// Shoot photo action
+        let shoot = UIAlertAction(title: NSLocalizedString("Take photo", comment: "Alert action title"), style: .Default) { action in
+            if let imagePickerController = self.imagePickerController {
+                imagePickerController.shootPhoto()
+            }
+        }
+        imagePickingAlertController.addAction(shoot)
+        
+        self.presentViewController(imagePickingAlertController, animated: true, completion: nil)
+    }
+    
 }
 
 //--------------------------------------
@@ -536,7 +546,7 @@ extension CategoryItemViewController: UICollectionViewDataSource, UICollectionVi
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("Cell", forIndexPath: indexPath) as! ImageCollectionViewCell
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(ImageCollectionViewCell.cellReuseIdentifier, forIndexPath: indexPath) as! ImageCollectionViewCell
         
         let cup = images[indexPath.section]
         cell.imageView?.image = cup

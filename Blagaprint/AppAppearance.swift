@@ -38,6 +38,45 @@ class AppAppearance: NSObject {
     }
     
     //--------------------------------------
+    // MARK: CAGradientLayer
+    //--------------------------------------
+    
+    /// Returns a horizontal green gradient layer.
+    class func horizontalGreenGradientLayerForRect(rect: CGRect) -> CAGradientLayer {
+        let gradientLayer = CAGradientLayer()
+        gradientLayer.frame = rect
+        
+        //// Color Declarations
+        let color1 = UIColor(red: 76.0 / 255.0, green: 217.0 / 255.0, blue: 100.0 / 255.0, alpha: 1.0).CGColor as CGColorRef
+        let color2 = UIColor(red: 38.0 / 255.0, green: 179.0 / 255.0, blue: 62.0 / 255.0, alpha: 1.0).CGColor as CGColorRef
+        
+        gradientLayer.colors = [color1, color2, color2, color1]
+        gradientLayer.startPoint = CGPointMake(0.0, 0.5)
+        gradientLayer.endPoint = CGPointMake(1.0, 0.5)
+        gradientLayer.locations = [0.0, 0.25, 0.75, 1.0]
+        
+        return gradientLayer
+    }
+    
+    /// Returns a horizontal tuna gradient layer.
+    class func horizontalTunaGradientLayerForRect(rect: CGRect) -> CAGradientLayer {
+        let gradientLayer = CAGradientLayer()
+        gradientLayer.frame = rect
+        
+        //// Color Declarations
+        let color1 = AppColors.tuna.colorWithAlphaComponent(0.99).CGColor as CGColorRef
+        let color2 = UIColor(red: 45.0 / 255.0, green: 45.0 / 255.0, blue: 55.0 / 255.0, alpha: 1.0).colorWithAlphaComponent(0.99).CGColor as CGColorRef
+        let color3 = UIColor(red: 36.0 / 255.0, green: 36.0 / 255.0, blue: 44.0 / 255.0, alpha: 1.0).colorWithAlphaComponent(0.99).CGColor as CGColorRef
+        
+        gradientLayer.colors = [color2, color1, color3, color2]
+        gradientLayer.startPoint = CGPointMake(0.0, 0.5)
+        gradientLayer.endPoint = CGPointMake(1.0, 0.5)
+        gradientLayer.locations = [0.0, 0.25, 0.5, 0.85]
+        
+        return gradientLayer
+    }
+    
+    //--------------------------------------
     // MARK: - UIFonts
     //--------------------------------------
     

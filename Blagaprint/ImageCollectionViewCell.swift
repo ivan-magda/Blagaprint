@@ -14,4 +14,7 @@ class ImageCollectionViewCell: UICollectionViewCell {
     //--------------------------------------
     
     @IBOutlet weak var imageView: UIImageView?
+    
+    /// Cell reuse identifier.
+    static let cellReuseIdentifier = "ImageCollectionViewCell"
 }

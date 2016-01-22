@@ -180,8 +180,18 @@ class CaseConstructorTableViewController: UITableViewController {
             addToBagButton.setTitle(NSLocalizedString("Add to Bag", comment: ""), forState: .Normal)
             addToBagButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
             addToBagButton.titleLabel?.font = UIFont.systemFontOfSize(19.0)
-            addToBagButton.backgroundColor = UIColor(red: 76.0 / 255.0, green: 217.0 / 255.0, blue: 100.0 / 255.0, alpha: 1.0)
+            addToBagButton.backgroundColor = UIColor.clearColor()
             addToBagButton.addTarget(self, action: Selector("addToBag"), forControlEvents: UIControlEvents.TouchUpInside)
+            
+            // Add a gradient layer.
+            addToBagButton.layer.insertSublayer(AppAppearance.horizontalGreenGradientLayerForRect(addToBagButton.bounds), atIndex: 0)
+            
+            // Setup shadow layer.
+            addToBagButton.layer.shadowColor = UIColor.blackColor().colorWithAlphaComponent(0.9).CGColor
+            addToBagButton.layer.shadowOpacity = 1.0
+            addToBagButton.layer.shadowOffset = CGSizeZero
+            addToBagButton.layer.shadowRadius = 3.0
+            
             self.addToBagButton = addToBagButton
         }
         
