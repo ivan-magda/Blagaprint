@@ -29,7 +29,7 @@ class ProceedToCheckoutTableViewCell: UITableViewCell {
     override func layoutSubviews() {
         super.layoutSubviews()
         
-        self.proceedToCheckoutButton.layer.cornerRadius = CGRectGetHeight(self.proceedToCheckoutButton.frame) / 2.0
+        self.proceedToCheckoutButton.layer.cornerRadius = CGRectGetHeight(self.proceedToCheckoutButton.frame) * 0.1
         self.proceedToCheckoutButton.clipsToBounds = true
     }
 }

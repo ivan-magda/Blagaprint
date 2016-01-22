@@ -14,6 +14,10 @@ private let applicationId = "S6q46qyVTC8tDSqkryAPvBo3fEkrkiFTtHSAHh3P"
 /// The client key of Parse application.
 private let clientKey = "1xTVWNh3TSB4ov5zoIseoDQ98JyMO86fjeBFwInr"
 
+public typealias ParseCentralSuccessResultBlock = (() -> ())
+public typealias ParseCentralFailureResultBlock = ((error: NSError?) -> ())
+public typealias ParseCentralResultBlock = ((succeeded: Bool, error: NSError?) -> ())
+
 class ParseCentral: NSObject {
     
     //--------------------------------------
@@ -145,7 +149,7 @@ class ParseCentral: NSObject {
             return
         }
         
-        let query = PFQuery(className: BagItemClassName)
+        let query = PFQuery(className: BagItem.parseClassName())
         query.whereKey(BagItem.FieldKey.userId.rawValue, equalTo: user.objectId!)
         query.cachePolicy = .CacheThenNetwork
         
@@ -190,7 +194,9 @@ class ParseCentral: NSObject {
             self.activityView = nil
             
             if let completion = completion {
-                completion()
+                dispatch_async(dispatch_get_main_queue()) {
+                    completion()
+                }
             }
         }
     }
@@ -200,55 +206,43 @@ class ParseCentral: NSObject {
     //--------------------------------------
     
     /// Adds BagItem object to Bag of the current user.
-    private func addItemToBag(bag: Bag, item: BagItem) {
+    private func addItemToBag(bag: Bag, item: BagItem, block: ParseCentralResultBlock) {
         // Save item to Parse datastore.
         item.saveInBackgroundWithBlock() { (succeeded, error) in
-            if let error = error {
-                print(error.localizedDescription)
-                
-                self.removeActivityView(completion: nil)
-            } else if succeeded {
+            if succeeded {
                 // Add this item to bag of the current user.
                 bag.addUniqueObject(item.objectId!, forKey: Bag.FieldKey.items.rawValue)
                 bag.saveInBackgroundWithBlock() { (succeeded, error) in
-                    if let error = error {
-                        print(error.localizedDescription)
-                        
-                        self.removeActivityView(completion: nil)
-                    } else if succeeded {
-                        // Present successfull alert controller.
-                        self.removeActivityView() {
-                            let alert = UIAlertController(title: NSLocalizedString("Succeeded", comment: ""), message: "Item successfully added to bag", preferredStyle: .Alert)
-                            alert.addAction(UIAlertAction(title: "Ok", style: .Cancel, handler: nil))
-
-                            if let rootViewController = self.rootViewController {
-                                rootViewController.presentViewController(alert, animated: true, completion: nil)
-                            }
-                            
-                            ParseCentral.updateBagTabBarItemBadgeValue()
-                        }
+                    if succeeded {
+                        block(succeeded: true, error: nil)
+                    } else {
+                        block(succeeded: false, error: error)
                     }
                 }
             } else {
-                self.removeActivityView(completion: nil)
+                block(succeeded: false, error: error)
             }
         }
     }
     
     /// Saves BagItem to the Bag of the current user asynchronously.
-    func saveItem(item: BagItem) {
+    func saveItem(item: BagItem, success: ParseCentralSuccessResultBlock?, failure: ParseCentralFailureResultBlock?) {
         if let user = BlagaprintUser.currentUser() {
             
             presentActivityView()
             
             // Find Bag of the user.
-            let bagQuery = PFQuery(className: BagClassName)
+            let bagQuery = PFQuery(className: Bag.parseClassName())
             bagQuery.whereKey(Bag.FieldKey.userId.rawValue, equalTo: user.objectId!)
             bagQuery.findObjectsInBackgroundWithBlock() { (bag, error) in
                 if let error = error {
-                    print(error.localizedDescription)
+                    print("Finding Bag of the user error: \(error.localizedDescription)")
                     
-                    self.removeActivityView(completion: nil)
+                    self.removeActivityView() {
+                        if let failure = failure {
+                            failure(error: error)
+                        }
+                    }
                 } else if let bag = bag as? [Bag] {
                     assert(bag.count <= 1, "Bag must be unique for each user!")
                     
@@ -257,19 +251,62 @@ class ParseCentral: NSObject {
                         let bag = Bag()
                         bag.userId = user.objectId!
                         bag.saveInBackgroundWithBlock() { (succeeded, error) in
-                            if let error = error {
-                                print(error.localizedDescription)
-                                
-                                self.removeActivityView(completion: nil)
-                            } else if succeeded {
-                                self.addItemToBag(bag, item: item)
+                            if succeeded {
+                                self.addItemToBag(bag, item: item, block: { (succeeded, error) in
+                                    if succeeded {
+                                        if let success = success {
+                                            self.removeActivityView() {
+                                                success()
+                                            }
+                                        }
+                                    } else {
+                                        
+                                        if let error = error {
+                                            print("Error adding item to bag: \(error.localizedDescription)")
+                                        }
+                                        
+                                        self.removeActivityView() {
+                                            if let failure = failure {
+                                                failure(error: error)
+                                            }
+                                        }
+                                    }
+                                })
                             } else {
-                                self.removeActivityView(completion: nil)
+                                
+                                if let error = error {
+                                    print("Bag saving error: \(error.localizedDescription)")
+                                }
+                                
+                                self.removeActivityView() {
+                                    if let failure = failure {
+                                        failure(error: error)
+                                    }
+                                }
                             }
                         }
                         // Bag already exist and we found it.
                     } else {
-                        self.addItemToBag(bag[bag.count - 1], item: item)
+                        self.addItemToBag(bag[bag.count - 1], item: item, block: { (succeeded, error) in
+                            if succeeded {
+                                if let success = success {
+                                    self.removeActivityView() {
+                                        success()
+                                    }
+                                }
+                            } else {
+                                
+                                if let error = error {
+                                    print("Adding item to bag error: \(error.localizedDescription)")
+                                }
+                                
+                                self.removeActivityView() {
+                                    if let failure = failure {
+                                        failure(error: error)
+                                    }
+                                }
+                            }
+                        })
                     }
                 }
             }
@@ -277,7 +314,6 @@ class ParseCentral: NSObject {
             let alert = UIAlertController(title: NSLocalizedString("You are not registred", comment: "Alert title when user not registered"), message: NSLocalizedString("If you want add item to bag, please login in your account", comment: "Alert message when user not logged in and want add item to bag"), preferredStyle: .Alert)
             alert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .Cancel, handler: nil))
             alert.addAction(UIAlertAction(title: NSLocalizedString("Log In", comment: ""), style: .Default, handler: { (action) in
-                
                 if let rootViewController = self.rootViewController {
                     rootViewController.presentViewController(LoginViewController(), animated: true, completion: nil)
                 }
@@ -293,8 +329,8 @@ class ParseCentral: NSObject {
     // MARK: - Deleting -
     //--------------------------------------
     
-    func deleteItem(itemToDelete item: BagItem, succeeded:(() -> ())?, failure:((error: NSError) -> ())?) {
-        let bagQuery = PFQuery(className: BagClassName)
+    func deleteItem(itemToDelete item: BagItem, succeeded:(() -> ())?, failure:((error: NSError?) -> ())?) {
+        let bagQuery = PFQuery(className: Bag.parseClassName())
         bagQuery.whereKey(Bag.FieldKey.userId.rawValue, equalTo: item.userId)
         
         bagQuery.findObjectsInBackgroundWithBlock() { (results, error) in
@@ -320,14 +356,14 @@ class ParseCentral: NSObject {
                 
                 // Delete item.
                 item.deleteInBackgroundWithBlock() { (success, error) in
-                    if let error = error {
+                    if success {
+                        if let succeeded = succeeded {
+                            succeeded()
+                        }
+                    } else {
                         if let failure = failure {
                             failure(error: error)
                         }
-                    }
-                    
-                    if let succeeded = succeeded {
-                        succeeded()
                     }
                 }
             }

@@ -8,9 +8,6 @@
 
 import UIKit
 
-/// Class name of the CategoryItem object.
-let CategoryItemClassName = "CategoryItem"
-
 class CategoryItem: PFObject, PFSubclassing {
     //--------------------------------------
     // MARK: - Types
@@ -47,8 +44,8 @@ class CategoryItem: PFObject, PFSubclassing {
         }
     }
     
-    /// The class name of the object.
+    /// Class name of the CategoryItem object.
     class func parseClassName() -> String {
-        return CategoryItemClassName
+        return "CategoryItem"
     }
 }

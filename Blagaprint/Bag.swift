@@ -8,9 +8,6 @@
 
 import Foundation
 
-/// Class name of the Bag object.
-let BagClassName = "Bag"
-
 class Bag: PFObject, PFSubclassing {
     //--------------------------------------
     // MARK: - Types
@@ -41,9 +38,9 @@ class Bag: PFObject, PFSubclassing {
     @NSManaged var userId: String
     @NSManaged var items: [String]
     
-    /// The class name of the object.
+    /// Class name of the Bag object.
     class func parseClassName() -> String {
-        return BagClassName
+        return "Bag"
     }
 
 }

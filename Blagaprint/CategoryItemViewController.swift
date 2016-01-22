@@ -75,6 +75,9 @@ class CategoryItemViewController: UIViewController {
     /// Picked color by the user.
     private var pickedColor = UIColor.whiteColor()
     
+    /// True if user successfully added item to bag.
+    private var didAddItemToBag = false
+    
     //--------------------------------------
     // MARK: - View Life Cycle
     //--------------------------------------
@@ -166,7 +169,7 @@ class CategoryItemViewController: UIViewController {
     //--------------------------------------
     // MARK: - Private Helper Methods
     //--------------------------------------
-
+    
     private func addGestureRecognizers() {
         let pickImageTapGestureRecognizer = UITapGestureRecognizer(target: self, action: Selector("pickImageDidPressed"))
         self.pickImageView.addGestureRecognizer(pickImageTapGestureRecognizer)
@@ -227,6 +230,10 @@ class CategoryItemViewController: UIViewController {
         case .plate, .photoFrame, .keyRing:
             self.pickColorViewHeightConstraint.constant = 0.0
             self.pickColorView.alpha = 0.0
+            
+        case .cup:
+            self.pageControlVerticalSpaceConstraint.constant = -CGRectGetHeight(self.pageControl.bounds)
+            self.placeholderViewHeightConstraint.constant = placeholderViewDefaultHeightValue
             
         default:
             self.pickImageViewHeightConstraint.constant = actionViewHeightValue
@@ -409,6 +416,23 @@ class CategoryItemViewController: UIViewController {
         return item
     }
     
+    private func presentAlertWithTitle(title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .Alert)
+        alert.addAction(UIAlertAction(title: "Ok", style: .Cancel, handler: nil))
+        
+        self.presentViewController(alert, animated: true, completion: nil)
+    }
+    
+    private func setBagActionButtonTitle(title: String) {
+        self.addToBagButton?.setTitle(title, forState: .Normal)
+    }
+    
+    private func goToShoppingCart() {
+        if let tabBarController = self.tabBarController {
+            tabBarController.selectedIndex = TabItemIndex.ShoppingBagViewController.rawValue
+        }
+    }
+    
     //--------------------------------------
     // MARK: - Actions
     //--------------------------------------
@@ -424,12 +448,39 @@ class CategoryItemViewController: UIViewController {
     }
     
     @IBAction func addToBagDidPressed(sender: AnyObject) {
-        if let parseCentral = self.parseCentral {
-            parseCentral.saveItem(createBagItem())
+        // Go to shopping cart.
+        if didAddItemToBag {
+            goToShoppingCart()
+            
+            // Add item to bag.
+        } else if let parseCentral = self.parseCentral {
+            parseCentral.saveItem(createBagItem(), success: {
+                self.didAddItemToBag = true
+                
+                let alert = UIAlertController(title: NSLocalizedString("Successfully", comment: ""), message: NSLocalizedString("Item successfully added to bag. Would you like go to shopping cart?", comment: "Saved successfully item alert message"), preferredStyle: .Alert)
+                alert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .Cancel, handler: nil))
+                alert.addAction(UIAlertAction(title: NSLocalizedString("Go", comment: ""), style: .Default, handler: { (action) in
+                    self.goToShoppingCart()
+                }))
+                
+                self.presentViewController(alert, animated: true, completion: nil)
+                
+                self.setBagActionButtonTitle(NSLocalizedString("Go to Shopping Cart", comment: ""))
+                
+                ParseCentral.updateBagTabBarItemBadgeValue()
+                }, failure: { (error) in
+                    self.didAddItemToBag = false
+                    
+                    self.presentAlertWithTitle(NSLocalizedString("Error", comment: ""), message: error?.localizedDescription ?? NSLocalizedString("An error occured. Please try again later.", comment: "Failure alert message"))
+                    
+                    self.setBagActionButtonTitle(NSLocalizedString("Add to Bag", comment: ""))
+            })
         } else {
-            let alert = UIAlertController(title: NSLocalizedString("Error", comment: ""), message: "An error occured. Please try again later.", preferredStyle: .Alert)
-            alert.addAction(UIAlertAction(title: "Ok", style: .Cancel, handler: nil))
-            self.presentViewController(alert, animated: true, completion: nil)
+            self.didAddItemToBag = false
+            
+            presentAlertWithTitle(NSLocalizedString("Error", comment: ""), message: NSLocalizedString("An error occured. Please try again later.", comment: "Failure alert message"))
+            
+            self.setBagActionButtonTitle(NSLocalizedString("Add to Bag", comment: ""))
         }
     }
     

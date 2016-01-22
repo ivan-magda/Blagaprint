@@ -9,9 +9,6 @@
 import Foundation
 import CoreImage
 
-/// Class name of the Bag object.
-let BagItemClassName = "BagItem"
-
 class BagItem: PFObject, PFSubclassing {
     //--------------------------------------
     // MARK: - Types
@@ -59,9 +56,9 @@ class BagItem: PFObject, PFSubclassing {
     @NSManaged var fillColor: String
     @NSManaged var textColor: String
     
-    /// The class name of the object.
+    /// Class name of the Bag object.
     class func parseClassName() -> String {
-        return BagItemClassName
+        return "BagItem"
     }
     
     //--------------------------------------

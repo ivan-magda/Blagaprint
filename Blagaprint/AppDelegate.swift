@@ -8,6 +8,13 @@
 
 import UIKit
 
+/// The index of the view controller associated with the tab item.
+public enum TabItemIndex: Int {
+    case CatalogViewController
+    case ShoppingBagViewController
+    case AccountViewController
+}
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
     // MARK: - Properties

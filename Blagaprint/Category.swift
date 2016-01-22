@@ -82,8 +82,8 @@ class Category: PFObject, PFSubclassing {
     }
     
     /// Returns items of the category.
-    func getItemsInBackgroundWithBlock(completionHandler: ((objects: [CategoryItem]?, error: NSError?) -> ())? ) {
-        let categoryItemsQuery = PFQuery(className: CategoryItemClassName)
+    func getItemsInBackgroundWithBlock(block: ((objects: [CategoryItem]?, error: NSError?) -> ())? ) {
+        let categoryItemsQuery = PFQuery(className: CategoryItem.parseClassName())
         categoryItemsQuery.cachePolicy = .CacheThenNetwork
         categoryItemsQuery.whereKey(CategoryItem.FieldKey.parentCategory.rawValue, equalTo: self)
         categoryItemsQuery.includeKey(CategoryItem.FieldKey.parentCategory.rawValue)
@@ -91,14 +91,14 @@ class Category: PFObject, PFSubclassing {
         categoryItemsQuery.findObjectsInBackgroundWithBlock() { (items, error) in
             dispatch_async(dispatch_get_main_queue()) {
                 if let error = error {
-                    if let completionHandler = completionHandler {
+                    if let completionHandler = block {
                         completionHandler(objects: nil, error: error)
                     }
                 } else if let items = items as? [CategoryItem] {
-                    if let completionHandler = completionHandler {
+                    if let completionHandler = block {
                         completionHandler(objects: items, error: error)
                     }
-                } else if let completionHandler = completionHandler {
+                } else if let completionHandler = block {
                     completionHandler(objects: nil, error: nil)
                 }
             }

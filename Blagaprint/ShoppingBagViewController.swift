@@ -116,7 +116,7 @@ class ShoppingBagViewController: UITableViewController {
             return
         }
         
-        let query = PFQuery(className: BagItemClassName)
+        let query = PFQuery(className: BagItem.parseClassName())
         query.orderByDescending(BagItem.FieldKey.createdAt.rawValue)
         query.whereKey(BagItem.FieldKey.userId.rawValue, equalTo: user.objectId!)
         query.cachePolicy = .CacheThenNetwork
@@ -208,18 +208,22 @@ class ShoppingBagViewController: UITableViewController {
                     self.categories.removeValueForKey(idString)
                     
                     dispatch_async(dispatch_get_main_queue()) {
-                        self.tableView.reloadSections(NSIndexSet(index: 0), withRowAnimation: .Automatic)
+                        self.tableView.reloadSections(NSIndexSet(index: 1), withRowAnimation: .Automatic)
                         
-                        let alert = UIAlertController(title: NSLocalizedString("Succeeded", comment: ""), message: "Item has successfully deleted", preferredStyle: .Alert)
+                        let alert = UIAlertController(title: NSLocalizedString("Successfully", comment: ""), message: "Item has successfully deleted", preferredStyle: .Alert)
                         alert.addAction(UIAlertAction(title: "Ok", style: .Cancel, handler: nil))
                         self.presentViewController(alert, animated: true, completion: nil)
+                        
+                        ParseCentral.updateBagTabBarItemBadgeValue()
                     }
                     
                     }, failure: { error in
                         dispatch_async(dispatch_get_main_queue()) {
-                            let alert = UIAlertController(title: NSLocalizedString("Failure", comment: ""), message: error.localizedDescription, preferredStyle: .Alert)
+                            let alert = UIAlertController(title: NSLocalizedString("Failure", comment: ""), message: error?.localizedDescription ?? NSLocalizedString("An error occured. Please try again later.", comment: "Failure alert message"), preferredStyle: .Alert)
                             alert.addAction(UIAlertAction(title: "Ok", style: .Cancel, handler: nil))
                             self.presentViewController(alert, animated: true, completion: nil)
+                            
+                            ParseCentral.updateBagTabBarItemBadgeValue()
                         }
                 })
             }
@@ -227,6 +231,10 @@ class ShoppingBagViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        guard self.objects != nil else {
+            return nil
+        }
+        
         if section == 0 {
             return NSLocalizedString("order info", comment: "Order info title for header in section, ShoppingBagVC")
         } else {
