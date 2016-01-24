@@ -435,15 +435,44 @@ class CaseConstructorTableViewController: UITableViewController {
     //--------------------------------------
     
     private func presentSelectBackgroundAlertController() {
-        let backgroundSelectionAlertController = UIAlertController(title: "Выберите фон", message: nil, preferredStyle: .ActionSheet)
+        let backgroundSelectionAlertController = UIAlertController(title: NSLocalizedString("Choose background", comment: "Action sheet title"), message: nil, preferredStyle: .ActionSheet)
         
-        /// Cancel action
-        let cancelAction = UIAlertAction(title: "Отмена", style: .Cancel) { action in
+        /// Cancel action.
+        let cancelAction = UIAlertAction(title: NSLocalizedString("Cancel", comment: "Alert action title"), style: .Cancel) { action in
         }
         backgroundSelectionAlertController.addAction(cancelAction)
         
-        /// Clear action
-        let clearAction = UIAlertAction(title: "Очистить", style: .Destructive) { action in
+        /// Photo from gallery(take photo) action.
+        let photoFromLibrary = UIAlertAction(title: NSLocalizedString("Gallery", comment: "Alert action title"), style: .Default) { action in
+            if let imagePickerController = self.imagePickerController {
+                imagePickerController.photoFromLibrary()
+            }
+        }
+        backgroundSelectionAlertController.addAction(photoFromLibrary)
+        
+        /// Shoot photo action.
+        let shoot = UIAlertAction(title: NSLocalizedString("Take photo", comment: "Alert action title"), style: .Default) { action in
+            if let imagePickerController = self.imagePickerController {
+                imagePickerController.shootPhoto()
+            }
+        }
+        backgroundSelectionAlertController.addAction(shoot)
+        
+        /// Background library action.
+        let backgroundAction = UIAlertAction(title: NSLocalizedString("Palette", comment: "Alert action title"), style: .Default) { action in
+            let type = ColorSelectionType.CaseBackground.rawValue
+            self.performSegueWithIdentifier(SegueIdentifier.ColorPicking.rawValue, sender: type)
+        }
+        backgroundSelectionAlertController.addAction(backgroundAction)
+        
+        /// Images library action.
+        let imagesLibraryAction = UIAlertAction(title: NSLocalizedString("Image library", comment: "Alert action title"), style: .Default, handler: { action in
+            self.performSegueWithIdentifier(SegueIdentifier.PhotoLibrary.rawValue, sender: nil)
+        })
+        backgroundSelectionAlertController.addAction(imagesLibraryAction)
+        
+        /// Clear action.
+        let clearAction = UIAlertAction(title: NSLocalizedString("Clear", comment: "Alert action title"), style: .Destructive) { action in
             self.animateCaseView(0.0)
             self.caseView.image = UIImage()
             self.caseView.showBackgroundImage = false
@@ -452,66 +481,37 @@ class CaseConstructorTableViewController: UITableViewController {
         }
         backgroundSelectionAlertController.addAction(clearAction)
         
-        /// Photo from gallery(take photo) action
-        let photoFromLibrary = UIAlertAction(title: "Медиатека", style: .Default) { action in
-            if let imagePickerController = self.imagePickerController {
-                imagePickerController.photoFromLibrary()
-            }
-        }
-        backgroundSelectionAlertController.addAction(photoFromLibrary)
-        
-        /// Shoot photo action
-        let shoot = UIAlertAction(title: "Снять фото", style: .Default) { action in
-            if let imagePickerController = self.imagePickerController {
-                imagePickerController.shootPhoto()
-            }
-        }
-        backgroundSelectionAlertController.addAction(shoot)
-        
-        /// Background library action
-        let backgroundAction = UIAlertAction(title: "Палитра", style: .Default) { action in
-            let type = ColorSelectionType.CaseBackground.rawValue
-            self.performSegueWithIdentifier(SegueIdentifier.ColorPicking.rawValue, sender: type)
-        }
-        backgroundSelectionAlertController.addAction(backgroundAction)
-        
-        /// Images library action
-        let imagesLibraryAction = UIAlertAction(title: "Библиотека изображений", style: .Default, handler: { action in
-            self.performSegueWithIdentifier(SegueIdentifier.PhotoLibrary.rawValue, sender: nil)
-        })
-        backgroundSelectionAlertController.addAction(imagesLibraryAction)
-        
         self.presentViewController(backgroundSelectionAlertController, animated: true, completion: nil)
     }
     
     private func presentManageTextAlertController() {
-        let manageTextAlertController = UIAlertController(title: "Редактирование текста", message: nil, preferredStyle: .ActionSheet)
+        let manageTextAlertController = UIAlertController(title: NSLocalizedString("Text editing", comment: "Action sheet title"), message: nil, preferredStyle: .ActionSheet)
         
-        /// Remove text action
-        let removeTextAction = UIAlertAction(title: "Очистить", style: .Destructive) { action in
-            UIView.animateWithDuration(0.45, animations: {
-                self.caseView.text = ""
-            })
-        }
-        manageTextAlertController.addAction(removeTextAction)
-        
-        /// Cancel action
-        let cancelAction = UIAlertAction(title: "Отмена", style: .Cancel) { action in
+        /// Cancel action.
+        let cancelAction = UIAlertAction(title: NSLocalizedString("Cancel", comment: "Alert action title"), style: .Cancel) { action in
         }
         manageTextAlertController.addAction(cancelAction)
         
-        /// Select text color action
-        let selectTextColorAction = UIAlertAction(title: "Цвет", style: .Default) { action in
+        /// Select text color action.
+        let selectTextColorAction = UIAlertAction(title: NSLocalizedString("Color", comment: "Alert action title"), style: .Default) { action in
             let type = ColorSelectionType.TextColor.rawValue
             self.performSegueWithIdentifier(SegueIdentifier.ColorPicking.rawValue, sender: type)
         }
         manageTextAlertController.addAction(selectTextColorAction)
         
-        /// Enter text action
-        let enterTextAction = UIAlertAction(title: "Ввести текст", style: .Default) { action in
+        /// Enter text action.
+        let enterTextAction = UIAlertAction(title: NSLocalizedString("Enter a text", comment: "Alert action title"), style: .Default) { action in
             self.performSegueWithIdentifier(SegueIdentifier.TextEditing.rawValue, sender: nil)
         }
         manageTextAlertController.addAction(enterTextAction)
+        
+        /// Remove text action.
+        let removeTextAction = UIAlertAction(title: NSLocalizedString("Clear", comment: "Alert action title"), style: .Destructive) { action in
+            UIView.animateWithDuration(0.45, animations: {
+                self.caseView.text = ""
+            })
+        }
+        manageTextAlertController.addAction(removeTextAction)
         
         self.presentViewController(manageTextAlertController, animated: true, completion: nil)
     }

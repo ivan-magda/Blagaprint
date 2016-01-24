@@ -18,6 +18,7 @@ class KeyRing: NSObject {
     enum KeyRingType: String {
         case Circle
         case Square
+        case Rectangle
         case Heart
         case HeartWithWings
     }
@@ -58,6 +59,8 @@ class KeyRing: NSObject {
             return CircleKeyRing.imageOfKeyRing()
         case .Square:
             return SquareKeyRing.imageOfKeyRing()
+        case .Rectangle:
+            return RectangleKeyRing.imageOfKeyRing()
         case .Heart:
             return HeartKeyRing.imageOfKeyRing()
         case .HeartWithWings:
@@ -74,6 +77,8 @@ class KeyRing: NSObject {
             return CircleKeyRing.imageOfKeyRing(image: resizedImage, imageVisible: true)
         case .Square:
             return SquareKeyRing.imageOfKeyRing(image: resizedImage, imageVisible: true)
+        case .Rectangle:
+            return RectangleKeyRing.imageOfKeyRing(image: resizedImage, imageVisible: true)
         case .Heart:
             return HeartKeyRing.imageOfKeyRing(image: resizedImage, imageVisible: true)
         case .HeartWithWings:
@@ -90,6 +95,7 @@ class KeyRing: NSObject {
         
         keyRings.append(KeyRing(type: .Circle, imageSize: CGSizeMake(240.0, 240.0), image: CircleKeyRing.imageOfKeyRing()))
         keyRings.append(KeyRing(type: .Square, imageSize: CGSizeMake(240.0, 240.0), image: SquareKeyRing.imageOfKeyRing()))
+        keyRings.append(KeyRing(type: .Rectangle, imageSize: CGSizeMake(170.0, 225.0), image: RectangleKeyRing.imageOfKeyRing()))
         keyRings.append(KeyRing(type: .Heart, imageSize: CGSizeMake(250.0, 250.0), image: HeartKeyRing.imageOfKeyRing()))
         keyRings.append(KeyRing(type: .HeartWithWings, imageSize: CGSizeMake(314.0, 214.0), image: HeartWithWingsKeyRing.imageOfKeyRing()))
         

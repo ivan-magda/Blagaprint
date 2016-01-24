@@ -202,7 +202,7 @@ class AccountTableViewController: UITableViewController {
         if BlagaprintUser.currentUser() == nil {
             logOutCell?.backgroundColor = UIColor.whiteColor()
         } else {
-            logOutCell?.backgroundColor = AppAppearance.AppColors.cornflowerBlue
+            logOutCell?.backgroundColor = AppAppearance.AppColors.celestialBlue
         }
     }
     

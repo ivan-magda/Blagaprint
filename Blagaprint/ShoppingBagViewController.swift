@@ -208,7 +208,8 @@ class ShoppingBagViewController: UITableViewController {
                     self.categories.removeValueForKey(idString)
                     
                     dispatch_async(dispatch_get_main_queue()) {
-                        self.tableView.reloadSections(NSIndexSet(index: 1), withRowAnimation: .Automatic)
+                        // Reload a table view.
+                        self.tableView.reloadSections(NSIndexSet(indexesInRange: NSRange(location: 0, length: 2)), withRowAnimation: .Automatic)
                         
                         let alert = UIAlertController(title: NSLocalizedString("Successfully", comment: ""), message: "Item has successfully deleted", preferredStyle: .Alert)
                         alert.addAction(UIAlertAction(title: "Ok", style: .Cancel, handler: nil))

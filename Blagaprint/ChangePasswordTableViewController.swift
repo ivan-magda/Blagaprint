@@ -109,7 +109,7 @@ class ChangePasswordTableViewController: UITableViewController {
         let cell = self.tableView.cellForRowAtIndexPath(saveCellIndexPath)
         
         if isSaveEnabled() {
-            cell?.backgroundColor = AppAppearance.AppColors.cornflowerBlue
+            cell?.backgroundColor = AppAppearance.AppColors.celestialBlue
         } else {
             cell?.backgroundColor = UIColor.lightGrayColor()
         }

@@ -354,8 +354,10 @@ class CategoryItemViewController: UIViewController {
         
         item.category = self.category.objectId!
         
+        let pickedItemIndex = self.pageControl.currentPage
+        
         if let categoryItems = self.categoryItems where categoryItems.count > 0 {
-            item.categoryItem = categoryItems[0].objectId!
+            item.categoryItem = categoryItems[pickedItemIndex].objectId!
         }
         
         // Set user picked image from media/camera.
@@ -369,8 +371,8 @@ class CategoryItemViewController: UIViewController {
         }
         
         // Set thumbnail image of item.
-        let size = images[0].size
-        let thumbnailData = UIImagePNGRepresentation(images[0].resizedImage(size, interpolationQuality: .Low))
+        let size = images[pickedItemIndex].size
+        let thumbnailData = UIImagePNGRepresentation(images[pickedItemIndex].resizedImage(size, interpolationQuality: .Low))
         if let thumbnailData = thumbnailData {
             if let thumbnailFile = PFFile(data: thumbnailData) {
                 item.thumbnail = thumbnailFile
@@ -475,13 +477,6 @@ class CategoryItemViewController: UIViewController {
         }
         imagePickingAlertController.addAction(cancelAction)
         
-        /// Clear action
-        let clearAction = UIAlertAction(title: NSLocalizedString("Clear", comment: "Alert action title"), style: .Destructive) { action in
-            self.pickedImage = nil
-            self.reloadData()
-        }
-        imagePickingAlertController.addAction(clearAction)
-        
         /// Photo from gallery(take photo) action
         let photoFromLibrary = UIAlertAction(title: NSLocalizedString("Gallery", comment: "Alert action title"), style: .Default) { action in
             if let imagePickerController = self.imagePickerController {
@@ -497,6 +492,13 @@ class CategoryItemViewController: UIViewController {
             }
         }
         imagePickingAlertController.addAction(shoot)
+        
+        /// Clear action
+        let clearAction = UIAlertAction(title: NSLocalizedString("Clear", comment: "Alert action title"), style: .Destructive) { action in
+            self.pickedImage = nil
+            self.reloadData()
+        }
+        imagePickingAlertController.addAction(clearAction)
         
         self.presentViewController(imagePickingAlertController, animated: true, completion: nil)
     }

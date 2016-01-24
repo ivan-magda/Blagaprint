@@ -14,13 +14,14 @@ class AppAppearance: NSObject {
     //--------------------------------------
     
     struct AppColors {
-        static let vulcanColor: UIColor = UIColor(red: 21.0 / 255.0, green: 21.0 / 255.0, blue: 34.0 / 255, alpha: 1)
-        static let malibuColor: UIColor = UIColor(red: 89.0 / 255.0, green: 189.0 / 255.0, blue: 247.0 / 255.0, alpha: 1)
-        static let ebonyClayColor: UIColor = UIColor(red: 40.0 / 255.0, green: 37.0 / 255.0, blue: 60.0 / 255.0, alpha: 1)
-        static let brightGray: UIColor = UIColor(red: 65.0 / 255.0, green: 62.0 / 255.0, blue: 80.0 / 255.0, alpha: 1)
-        static let haiti: UIColor = UIColor(red: 44.0 / 255.0, green: 42.0 / 255.0, blue: 55.0 / 255.0, alpha: 1)
-        static let tuna: UIColor = UIColor(red: 54.0 / 255.0, green: 54.0 / 255.0, blue: 66.0 / 255.0, alpha: 1)
+        static let vulcanColor = UIColor(red: 21.0 / 255.0, green: 21.0 / 255.0, blue: 34.0 / 255, alpha: 1)
+        static let malibuColor = UIColor(red: 89.0 / 255.0, green: 189.0 / 255.0, blue: 247.0 / 255.0, alpha: 1)
+        static let ebonyClayColor = UIColor(red: 40.0 / 255.0, green: 37.0 / 255.0, blue: 60.0 / 255.0, alpha: 1)
+        static let brightGray = UIColor(red: 65.0 / 255.0, green: 62.0 / 255.0, blue: 80.0 / 255.0, alpha: 1)
+        static let haiti = UIColor(red: 44.0 / 255.0, green: 42.0 / 255.0, blue: 55.0 / 255.0, alpha: 1)
+        static let tuna = UIColor(red: 54.0 / 255.0, green: 54.0 / 255.0, blue: 66.0 / 255.0, alpha: 1)
         static let cornflowerBlue = UIColor(red: 108.0 / 255.0, green: 148.0 / 255.0, blue: 255.0 / 255.0, alpha: 1)
+        static let celestialBlue = UIColor(red: 65.0 / 255.0, green: 144.0 / 255.0, blue: 219.0 / 255.0, alpha: 1.0)
     }
     
     //--------------------------------------
