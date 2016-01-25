@@ -386,6 +386,7 @@ class CategoryItemViewController: UIViewController {
             item.fillColor = colorInString
         }
         
+        // TODO: fix with price selection.
         item.price = 500.0
         
         return item

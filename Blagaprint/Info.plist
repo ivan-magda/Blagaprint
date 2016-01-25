@@ -72,5 +72,16 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
+    <key>UIApplicationShortcutItems</key>
+    <array>
+        <dict>
+            <key>UIApplicationShortcutItemIconType</key>
+            <string>UIApplicationShortcutIconTypeContact</string>
+            <key>UIApplicationShortcutItemTitle</key>
+            <string>Go to account</string>
+            <key>UIApplicationShortcutItemType</key>
+            <string>com.blagaprint.goToAccount</string>
+        </dict>
+    </array>
 </dict>
 </plist>

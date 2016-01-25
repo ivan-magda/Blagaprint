@@ -129,6 +129,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             PFAnalytics.trackAppOpenedWithRemoteNotificationPayload(userInfo)
         }
     }
+    
+    //--------------------------------------
+    // MARK: - Shortcut Items
+    //--------------------------------------
 
+    func application(application: UIApplication, performActionForShortcutItem shortcutItem: UIApplicationShortcutItem, completionHandler: (Bool) -> Void) {
+        print("User selects a Home screen quick action: \(shortcutItem)")
+        
+        // Go to user account.
+        if shortcutItem.type == AppConfiguration.ShortcutItemType.goToAccount.rawValue {
+            if let tabBarController = window?.rootViewController as? UITabBarController {
+                tabBarController.selectedIndex = TabItemIndex.AccountViewController.rawValue
+            }
+        }
+    }
 }
 

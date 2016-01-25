@@ -8,10 +8,22 @@
 
 import Foundation
 
-let IsFirstTimeAppLaunchIdentifier: String = "IsFirstLaunch"
-private let RegisterDefaultsIdentifier = "RegisterDefaults"
-
 class AppConfiguration: NSObject {
+    //--------------------------------------
+    // MARK: - Types
+    //--------------------------------------
+    
+    enum ShortcutItemType: String {
+        case goToAccount = "com.blagaprint.goToAccount"
+    }
+    
+    //--------------------------------------
+    // MARK: - Properties
+    //--------------------------------------
+    
+    static internal let IsFirstTimeAppLaunchIdentifier = "IsFirstLaunch"
+    static private let RegisterDefaultsIdentifier = "RegisterDefaults"
+    
     //--------------------------------------
     // MARK: - Methods
     //--------------------------------------
