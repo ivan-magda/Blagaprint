@@ -356,8 +356,9 @@ class CategoryItemViewController: UIViewController {
         
         let pickedItemIndex = self.pageControl.currentPage
         
+        // TODO: wrong selection of the picked CategoryItem objectId
         if let categoryItems = self.categoryItems where categoryItems.count > 0 {
-            item.categoryItem = categoryItems[pickedItemIndex].objectId!
+            item.categoryItem = categoryItems[0].objectId!
         }
         
         // Set user picked image from media/camera.
