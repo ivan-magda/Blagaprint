@@ -14,7 +14,9 @@ class AppConfiguration: NSObject {
     //--------------------------------------
     
     enum ShortcutItemType: String {
-        case goToAccount = "com.blagaprint.goToAccount"
+        case goToCatalog = "com.IvanMagda.Blagaprint.goToCatalog"
+        case goToShoppingBag = "com.IvanMagda.Blagaprint.goToShoppingBag"
+        case goToAccount = "com.IvanMagda.Blagaprint.goToAccount"
     }
     
     //--------------------------------------

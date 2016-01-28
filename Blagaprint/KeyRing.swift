@@ -20,6 +20,7 @@ class KeyRing: NSObject {
         case Square
         case Rectangle
         case GlassRectangle
+        case GlassOval
         case Heart
         case HeartWithWings
     }
@@ -64,6 +65,8 @@ class KeyRing: NSObject {
             return RectangleKeyRing.imageOfKeyRing()
         case .GlassRectangle:
             return GlassRectangleKeyRing.imageOfKeyRing()
+        case .GlassOval:
+            return GlassOvalKeyRing.imageOfKeyRing()
         case .Heart:
             return HeartKeyRing.imageOfKeyRing()
         case .HeartWithWings:
@@ -84,6 +87,8 @@ class KeyRing: NSObject {
             return RectangleKeyRing.imageOfKeyRing(image: resizedImage, imageVisible: true)
         case .GlassRectangle:
             return GlassRectangleKeyRing.imageOfKeyRing(image: resizedImage, imageVisible: true)
+        case .GlassOval:
+            return GlassOvalKeyRing.imageOfKeyRing(image: resizedImage, imageVisible: true)
         case .Heart:
             return HeartKeyRing.imageOfKeyRing(image: resizedImage, imageVisible: true)
         case .HeartWithWings:
@@ -102,6 +107,7 @@ class KeyRing: NSObject {
         keyRings.append(KeyRing(type: .Square, imageSize: CGSizeMake(240.0, 240.0), image: SquareKeyRing.imageOfKeyRing()))
         keyRings.append(KeyRing(type: .Rectangle, imageSize: CGSizeMake(170.0, 225.0), image: RectangleKeyRing.imageOfKeyRing()))
         keyRings.append(KeyRing(type: .GlassRectangle, imageSize: CGSizeMake(124.0, 176.0), image: GlassRectangleKeyRing.imageOfKeyRing()))
+        keyRings.append(KeyRing(type: .GlassOval, imageSize: CGSizeMake(120.0, 186.0), image: GlassOvalKeyRing.imageOfKeyRing()))
         keyRings.append(KeyRing(type: .Heart, imageSize: CGSizeMake(250.0, 250.0), image: HeartKeyRing.imageOfKeyRing()))
         keyRings.append(KeyRing(type: .HeartWithWings, imageSize: CGSizeMake(314.0, 214.0), image: HeartWithWingsKeyRing.imageOfKeyRing()))
         

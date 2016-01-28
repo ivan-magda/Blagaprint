@@ -133,14 +133,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     //--------------------------------------
     // MARK: - Shortcut Items
     //--------------------------------------
-
+    
     func application(application: UIApplication, performActionForShortcutItem shortcutItem: UIApplicationShortcutItem, completionHandler: (Bool) -> Void) {
-        print("User selects a Home screen quick action: \(shortcutItem)")
+        print("User selects a Home screen quick action with type: \(shortcutItem.type)")
         
-        // Go to user account.
-        if shortcutItem.type == AppConfiguration.ShortcutItemType.goToAccount.rawValue {
+        /// Nested function, that select view controller from TabItemIndex.
+        func selectTabBarIndex(index: TabItemIndex) {
             if let tabBarController = window?.rootViewController as? UITabBarController {
-                tabBarController.selectedIndex = TabItemIndex.AccountViewController.rawValue
+                tabBarController.selectedIndex = index.rawValue
+            }
+        }
+        
+        if let shortcutItemType = AppConfiguration.ShortcutItemType(rawValue: shortcutItem.type) {
+            switch shortcutItemType {
+            case .goToCatalog:
+                selectTabBarIndex(TabItemIndex.CatalogViewController)
+            case .goToShoppingBag:
+                selectTabBarIndex(TabItemIndex.ShoppingBagViewController)
+            case .goToAccount:
+                selectTabBarIndex(TabItemIndex.AccountViewController)
             }
         }
     }

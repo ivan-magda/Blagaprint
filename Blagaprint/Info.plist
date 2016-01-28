@@ -75,12 +75,28 @@
     <key>UIApplicationShortcutItems</key>
     <array>
         <dict>
-            <key>UIApplicationShortcutItemIconType</key>
-            <string>UIApplicationShortcutIconTypeContact</string>
+            <key>UIApplicationShortcutItemType</key>
+            <string>$(PRODUCT_BUNDLE_IDENTIFIER).goToCatalog</string>
+            <key>UIApplicationShortcutItemTitle</key>
+            <string>Go to catalog</string>
+            <key>UIApplicationShortcutItemIconFile</key>
+            <string>ViewDetails</string>
+        </dict>
+        <dict>
+            <key>UIApplicationShortcutItemType</key>
+            <string>$(PRODUCT_BUNDLE_IDENTIFIER).goToShoppingBag</string>
+            <key>UIApplicationShortcutItemTitle</key>
+            <string>Go to shopping bag</string>
+            <key>UIApplicationShortcutItemIconFile</key>
+            <string>ShoppingBag</string>
+        </dict>
+        <dict>
+            <key>UIApplicationShortcutItemType</key>
+            <string>$(PRODUCT_BUNDLE_IDENTIFIER).goToAccount</string>
             <key>UIApplicationShortcutItemTitle</key>
             <string>Go to account</string>
-            <key>UIApplicationShortcutItemType</key>
-            <string>com.blagaprint.goToAccount</string>
+            <key>UIApplicationShortcutItemIconFile</key>
+            <string>Contacts</string>
         </dict>
     </array>
 </dict>
