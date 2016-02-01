@@ -176,6 +176,7 @@
 		75BF695F1C0464AA009D670D /* sh19_placeholderImage.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 75BF695E1C0464AA009D670D /* sh19_placeholderImage.jpg */; };
 		75C4E7C81C3807450039B59F /* Bag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75C4E7C71C3807450039B59F /* Bag.swift */; };
 		75C4E7CA1C3807540039B59F /* BagItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75C4E7C91C3807540039B59F /* BagItem.swift */; };
+		75CECC291C5FA2D300B2AE6E /* PickTypeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75CECC281C5FA2D300B2AE6E /* PickTypeTableViewController.swift */; };
 		75DD91F91BD7B43800932AD7 /* AndersonSupercar.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 75DD91F81BD7B43800932AD7 /* AndersonSupercar.ttf */; };
 		75DD91FF1BD7BFE000932AD7 /* CaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75DD91FE1BD7BFE000932AD7 /* CaseView.swift */; };
 		75F7391F1BE469940063EB6F /* xperiaZ3compactCameraImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 75F7391D1BE469940063EB6F /* xperiaZ3compactCameraImage.png */; };
@@ -382,6 +383,7 @@
 		75BF695E1C0464AA009D670D /* sh19_placeholderImage.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = sh19_placeholderImage.jpg; sourceTree = "<group>"; };
 		75C4E7C71C3807450039B59F /* Bag.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Bag.swift; sourceTree = "<group>"; };
 		75C4E7C91C3807540039B59F /* BagItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BagItem.swift; sourceTree = "<group>"; };
+		75CECC281C5FA2D300B2AE6E /* PickTypeTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PickTypeTableViewController.swift; sourceTree = "<group>"; };
 		75DD91F81BD7B43800932AD7 /* AndersonSupercar.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = AndersonSupercar.ttf; sourceTree = "<group>"; };
 		75DD91FE1BD7BFE000932AD7 /* CaseView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CaseView.swift; sourceTree = "<group>"; };
 		75F7391D1BE469940063EB6F /* xperiaZ3compactCameraImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = xperiaZ3compactCameraImage.png; sourceTree = "<group>"; };
@@ -465,6 +467,7 @@
 				758939891C16B54D0069655B /* CategoryItemViewController.swift */,
 				7585BB4D1C1026AA00D59BF5 /* BLImagePickerController.swift */,
 				7522B8911BFF3C0100BC14C0 /* ExpandedCollectionViewFlowLayout.swift */,
+				75CECC281C5FA2D300B2AE6E /* PickTypeTableViewController.swift */,
 				50551C2F1BCBA534005B88DA /* PhoneCase */,
 			);
 			name = CatalogScene;
@@ -1507,6 +1510,7 @@
 				752ED13E1C59F56F00BE0751 /* RectangleKeyRing.swift in Sources */,
 				75F7393A1BE4979B0063EB6F /* LenovoS850.swift in Sources */,
 				750E0F911C1874DA00A8158C /* BlagaprintUser.swift in Sources */,
+				75CECC291C5FA2D300B2AE6E /* PickTypeTableViewController.swift in Sources */,
 				50551C311BCBB43A005B88DA /* BackgroundOvalView.swift in Sources */,
 				0C541A591BD0B51A0028BD9A /* PhotoLibraryItemCollectionViewCell.swift in Sources */,
 				75C4E7CA1C3807540039B59F /* BagItem.swift in Sources */,

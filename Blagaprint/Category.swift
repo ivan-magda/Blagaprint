@@ -89,10 +89,11 @@ class Category: PFObject, PFSubclassing {
     /// Returns items of the category.
     func getItemsInBackgroundWithBlock(block: ((objects: [CategoryItem]?, error: NSError?) -> ())? ) {
         let categoryItemsQuery = PFQuery(className: CategoryItem.parseClassName())
+        
         categoryItemsQuery.cachePolicy = .CacheThenNetwork
         categoryItemsQuery.whereKey(CategoryItem.FieldKey.parentCategory.rawValue, equalTo: self)
         categoryItemsQuery.includeKey(CategoryItem.FieldKey.parentCategory.rawValue)
-        categoryItemsQuery.orderByDescending(CategoryItem.FieldKey.name.rawValue)
+        categoryItemsQuery.orderByAscending(CategoryItem.FieldKey.name.rawValue)
         
         categoryItemsQuery.findObjectsInBackgroundWithBlock() { (items, error) in
             dispatch_async(dispatch_get_main_queue()) {

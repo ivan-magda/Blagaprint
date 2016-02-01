@@ -19,6 +19,7 @@ class CategoryItemViewController: UIViewController {
         case ColorPicking
         case TextEditing
         case PhotoLibrary
+        case PickType
     }
     
     /// Picked image sizes for filling in the item object.
@@ -158,6 +159,13 @@ class CategoryItemViewController: UIViewController {
                 self.pickedColorView.backgroundColor = color
                 self.pickedColorViewUpdateBorderLayer()
             }
+        } else if segue.identifier == SegueIdentifier.PickType.rawValue {
+            let pickTypeTableViewController = segue.destinationViewController as! PickTypeTableViewController
+            
+            pickTypeTableViewController.dataSource = self
+            pickTypeTableViewController.delegate = self
+            
+            pickTypeTableViewController.originalTypeName = categoryItems![pickedTypeIndex].name
         }
     }
     
@@ -412,13 +420,17 @@ class CategoryItemViewController: UIViewController {
         }
     }
     
-    private func animateViewSelection(view: UIView) {
+    private func animateViewSelection(view: UIView, callback: (() -> Void)?) {
         UIView.animateWithDuration(0.25, delay: 0.0, options: UIViewAnimationOptions.CurveEaseInOut, animations: {
             view.backgroundColor = UIColor.lightGrayColor().colorWithAlphaComponent(0.2)
             }) { finished in
                 if finished {
                     UIView.animateWithDuration(0.25) {
                         view.backgroundColor = UIColor.whiteColor()
+                        
+                        if let callback = callback {
+                            callback()
+                        }
                     }
                 }
         }
@@ -450,11 +462,9 @@ class CategoryItemViewController: UIViewController {
         
         item.category = self.category.objectId!
         
-        let pickedItemIndex = self.pageControl.currentPage
-        
-        // TODO: wrong selection of the picked CategoryItem objectId
+        // TODO: check for selection objectId.
         if let categoryItems = self.categoryItems where categoryItems.count > 0 {
-            item.categoryItem = categoryItems[0].objectId!
+            item.categoryItem = categoryItems[pickedTypeIndex].objectId!
         }
         
         // Set user picked image from media/camera.
@@ -466,6 +476,8 @@ class CategoryItemViewController: UIViewController {
                 }
             }
         }
+        
+        let pickedItemIndex = self.pageControl.currentPage
         
         // Set thumbnail image of item.
         let size = images[pickedItemIndex].size
@@ -493,18 +505,21 @@ class CategoryItemViewController: UIViewController {
     //--------------------------------------
     
     func pickImageDidPressed() {
-        animateViewSelection(self.pickImageView)
-        self.presentImagePickingAlertController()
+        animateViewSelection(pickImageView) {
+            self.presentImagePickingAlertController()
+        }
     }
     
     func pickColorDidPressed() {
-        animateViewSelection(self.pickColorView)
-        self.performSegueWithIdentifier(SegueIdentifier.ColorPicking.rawValue, sender: nil)
+        animateViewSelection(pickColorView) {
+            self.performSegueWithIdentifier(SegueIdentifier.ColorPicking.rawValue, sender: self)
+        }
     }
     
     func pickTypeDidPressed() {
-        // TODO: perform segue when pick type did pressed.
-        animateViewSelection(self.pickTypeView)
+        animateViewSelection(pickTypeView) {
+            self.performSegueWithIdentifier(SegueIdentifier.PickType.rawValue, sender: self)
+        }
     }
     
     @IBAction func addToBagDidPressed(sender: AnyObject) {
@@ -668,6 +683,42 @@ extension CategoryItemViewController: UICollectionViewDataSource, UICollectionVi
         let height = CGRectGetHeight(collectionView.bounds)
         
         return CGSizeMake(width, height)
+    }
+}
+
+//--------------------------------------------------------
+// MARK: - PickTypeTableViewControllerDataSourceProtocol -
+//--------------------------------------------------------
+
+extension CategoryItemViewController: PickTypeTableViewControllerDataSourceProtocol {
+    func numberOfSections() -> Int {
+        guard let items = self.categoryItems where items.count > 0 else {
+            return 0
+        }
+        
+        return 1
+    }
+    
+    func numberOfRowsInSection(section: Int) -> Int {
+        return self.categoryItems!.count
+    }
+    
+    func itemForIndexPath(indexPath: NSIndexPath) -> String {
+        return self.categoryItems![indexPath.row].name
+    }
+    
+}
+
+//------------------------------------------------------
+// MARK: - PickTypeTableViewControllerDelegateProtocol -
+//------------------------------------------------------
+
+extension CategoryItemViewController: PickTypeTableViewControllerDelegateProtocol {
+    func pickTypeTableViewController(controller: PickTypeTableViewController, didSelectItem item: String, atIndexPath indexPath: NSIndexPath) {
+        print("Did select item: \(item) at section: \(indexPath.section) and row: \(indexPath.row)")
+        
+        self.pickedTypeIndex = indexPath.row
+        setupPickTypeView()
     }
 }
 
