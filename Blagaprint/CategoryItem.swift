@@ -9,12 +9,34 @@
 import UIKit
 
 class CategoryItem: PFObject, PFSubclassing {
+    
     //--------------------------------------
     // MARK: - Types
     //--------------------------------------
     
+    enum CategoryItemType: String {
+        // Copy services.
+        case businessCardPrinting
+        case bannerPrinting
+        case photoPrinting
+        
+        // Key rings.
+        case stateNumberKeyRing
+        case plasticKeyRing
+        case glassKeyRing
+        
+        // Cups.
+        case pairedCup
+        case ceramicCup
+        case chameleonCup
+        
+        // Default.
+        case undefined
+    }
+    
     enum FieldKey: String {
         case name
+        case type
         case image
         case parentCategory
     }
@@ -23,9 +45,18 @@ class CategoryItem: PFObject, PFSubclassing {
     // MARK: - Properties
     //--------------------------------------
     
+    /// Name of the categoryItem.
     @NSManaged var name: String
+    
+    /// Image file of the categoryItem.
     @NSManaged var image: PFFile
+    
+    /// Pointer to the parent category.
     @NSManaged var parentCategory: PFObject
+    
+    /// Type of the categoryItem.
+    /// Use CategoryItemType(rawValue:) for creating type from string.
+    @NSManaged var type: String
     
     override var description: String {
         return "Name: \(name)\nCategory: \(parentCategory)"
@@ -47,5 +78,14 @@ class CategoryItem: PFObject, PFSubclassing {
     /// Class name of the CategoryItem object.
     class func parseClassName() -> String {
         return "CategoryItem"
+    }
+    
+    //--------------------------------------
+    // MARK: - CategoryItemType
+    //--------------------------------------
+    
+    func getType() -> CategoryItemType {
+        let type = CategoryItemType(rawValue: self.type)
+        return (type == nil ? .undefined : type!)
     }
 }

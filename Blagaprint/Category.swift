@@ -9,6 +9,7 @@
 import Foundation
 
 class Category: PFObject, PFSubclassing {
+    
     //--------------------------------------
     // MARK: - Types
     //--------------------------------------
@@ -46,7 +47,7 @@ class Category: PFObject, PFSubclassing {
     @NSManaged var image: PFFile
     
     /// Type of the category. 
-    /// Use CategoryTypes(rawValue:) for creating type from string.
+    /// Use CategoryType(rawValue:) for creating type from string.
     @NSManaged var type: String
     
     //--------------------------------------
@@ -66,6 +67,15 @@ class Category: PFObject, PFSubclassing {
     class func parseClassName() -> String {
         return "Category"
     }
+
+    //--------------------------------------
+    // MARK: - CategoryType
+    //--------------------------------------
+    
+    func getType() -> CategoryType {
+        let type = CategoryType(rawValue: self.type)
+        return (type == nil ? .undefined : type!)
+    }
     
     //--------------------------------------
     // MARK: - Helper Methods
@@ -76,17 +86,13 @@ class Category: PFObject, PFSubclassing {
         return "Name: \(name)\nType: \(type)."
     }
     
-    func getType() -> CategoryType {
-        let type = CategoryType(rawValue: self.type)
-        return (type == nil ? .undefined : type!)
-    }
-    
     /// Returns items of the category.
     func getItemsInBackgroundWithBlock(block: ((objects: [CategoryItem]?, error: NSError?) -> ())? ) {
         let categoryItemsQuery = PFQuery(className: CategoryItem.parseClassName())
         categoryItemsQuery.cachePolicy = .CacheThenNetwork
         categoryItemsQuery.whereKey(CategoryItem.FieldKey.parentCategory.rawValue, equalTo: self)
         categoryItemsQuery.includeKey(CategoryItem.FieldKey.parentCategory.rawValue)
+        categoryItemsQuery.orderByDescending(CategoryItem.FieldKey.name.rawValue)
         
         categoryItemsQuery.findObjectsInBackgroundWithBlock() { (items, error) in
             dispatch_async(dispatch_get_main_queue()) {

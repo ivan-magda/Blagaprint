@@ -9,6 +9,7 @@
 import UIKit
 
 class CategoryItemViewController: UIViewController {
+    
     //--------------------------------------
     // MARK: - Types
     //--------------------------------------
@@ -26,34 +27,56 @@ class CategoryItemViewController: UIViewController {
         static let Plate = CGSizeMake(210.0, 210.0)
     }
     
+    
     //--------------------------------------
-    // MARK: - Properties
+    // MARK: - Properties -
+    //--------------------------------------
+    
+    
+    //--------------------------------------
+    // MARK: Views
     //--------------------------------------
     
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var placeholderView: UIView!
     @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var pageControl: UIPageControl!
     
     @IBOutlet weak var pickImageView: UIView!
     @IBOutlet weak var pickColorView: UIView!
+    @IBOutlet weak var pickTypeView: UIView!
+    @IBOutlet weak var pickTypeViewDetailLabel: UILabel!
+    @IBOutlet weak var pickTypeViewDetailDisclosureImageView: UIImageView!
     @IBOutlet weak var pickedColorView: UIView!
     @IBOutlet weak var addToBagButton: UIButton!
-    @IBOutlet weak var pageControl: UIPageControl!
+    
+    //--------------------------------------
+    // MARK: LayoutConstraints
+    //--------------------------------------
     
     @IBOutlet weak var placeholderViewHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var pageControlVerticalSpaceConstraint: NSLayoutConstraint!
     @IBOutlet weak var pickImageViewHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var pickColorViewHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var pickTypeViewHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var pickColorViewBottomSpace: NSLayoutConstraint!
     
-    /// Height value view that contains UICollectionView.
+    //--------------------------------------
+    // MARK: Dimension Values
+    //--------------------------------------
+    
+    /// Height value of view that contains UICollectionView.
     private let placeholderViewDefaultHeightValue: CGFloat = 320.0
     
-    /// Height value for view that uses for picking a photo or color and so on.
+    /// Height value for views that use for trigger an action.
     private let actionViewHeightValue: CGFloat = 44.0
     
     /// Minimal bottom space value.
     private let minimalSpaceValue: CGFloat = 16
+    
+    //--------------------------------------
+    // MARK: Parse
+    //--------------------------------------
     
     var parseCentral: ParseCentral?
     
@@ -62,6 +85,10 @@ class CategoryItemViewController: UIViewController {
     
     /// Loaded category items of the parent category.
     private var categoryItems: [CategoryItem]?
+    
+    //--------------------------------------
+    // MARK: Other
+    //--------------------------------------
     
     /// Image picker controller to let us take/pick photo.
     private var imagePickerController: BLImagePickerController?
@@ -78,8 +105,10 @@ class CategoryItemViewController: UIViewController {
     /// True if user successfully added item to bag.
     private var didAddItemToBag = false
     
+    private var pickedTypeIndex = 0
+    
     //--------------------------------------
-    // MARK: - View Life Cycle
+    // MARK: - View Life Cycle -
     //--------------------------------------
     
     override func viewDidLoad() {
@@ -89,13 +118,16 @@ class CategoryItemViewController: UIViewController {
         
         (self.collectionView as UIScrollView).delegate = self
         
+        // Working with data.
         loadCategoryItems()
-        
         reloadData()
         
+        // Setup.
         setupImagePickerController()
         setupPickedColorView()
         setupAddToBagButton()
+        
+        self.pickTypeViewDetailLabel.text = nil
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -130,7 +162,17 @@ class CategoryItemViewController: UIViewController {
     }
     
     //--------------------------------------
-    // MARK: - Private Helper Methods
+    // MARK: - Private Helper Methods -
+    //--------------------------------------
+    
+    private func goToShoppingCart() {
+        if let tabBarController = self.tabBarController {
+            tabBarController.selectedIndex = TabItemIndex.ShoppingBagViewController.rawValue
+        }
+    }
+    
+    //--------------------------------------
+    // MARK: Setup
     //--------------------------------------
     
     private func addGestureRecognizers() {
@@ -139,6 +181,9 @@ class CategoryItemViewController: UIViewController {
         
         let pickColorTapGestureRecognizer = UITapGestureRecognizer(target: self, action: Selector("pickColorDidPressed"))
         self.pickColorView.addGestureRecognizer(pickColorTapGestureRecognizer)
+
+        let pickTypeTapGestureRecognizer = UITapGestureRecognizer(target: self, action: Selector("pickTypeDidPressed"))
+        self.pickTypeView.addGestureRecognizer(pickTypeTapGestureRecognizer)
     }
     
     private func setupImagePickerController() {
@@ -154,11 +199,6 @@ class CategoryItemViewController: UIViewController {
         }
     }
     
-    private func setupPickedColorView() {
-        self.pickedColorView.layer.cornerRadius = CGRectGetWidth(self.pickedColorView.bounds) / 2.0
-        pickedColorViewUpdateBorderLayer()
-    }
-    
     private func setupAddToBagButton() {
         self.addToBagButton.layer.insertSublayer(AppAppearance.horizontalGreenGradientLayerForRect(self.addToBagButton.bounds), atIndex: 0)
         
@@ -166,6 +206,17 @@ class CategoryItemViewController: UIViewController {
         self.addToBagButton.layer.shadowOpacity = 1.0
         self.addToBagButton.layer.shadowOffset = CGSizeZero
         self.addToBagButton.layer.shadowRadius = 3.0
+    }
+    
+    private func setBagActionButtonTitle(title: String) {
+        self.addToBagButton?.setTitle(title, forState: .Normal)
+    }
+    
+    private func setupPickedColorView() {
+        self.pickedColorView.backgroundColor = self.pickedColor
+        self.pickedColorView.layer.cornerRadius = CGRectGetWidth(self.pickedColorView.bounds) / 2.0
+        
+        pickedColorViewUpdateBorderLayer()
     }
     
     private func pickedColorViewUpdateBorderLayer() {
@@ -183,6 +234,8 @@ class CategoryItemViewController: UIViewController {
     }
     
     private func setupScrollView() {
+        //TODO: properly determinate scroll view content size.
+        
         if self.navigationController == nil {
             return
         }
@@ -193,6 +246,8 @@ class CategoryItemViewController: UIViewController {
         } else {
             self.placeholderViewHeightConstraint.constant = placeholderViewDefaultHeightValue + CGRectGetHeight(pageControl.bounds)
         }
+        
+        setupPickTypeView()
         
         switch self.category.getType() {
         case .phoneCase:
@@ -221,7 +276,8 @@ class CategoryItemViewController: UIViewController {
         let frameHeight = CGRectGetHeight(self.view.bounds)
         let navBarHeight = CGRectGetHeight(self.navigationController!.navigationBar.bounds)
         let statusBarHeight = CGRectGetHeight(UIApplication.sharedApplication().statusBarFrame)
-        let cupViewHeight = self.placeholderViewHeightConstraint.constant
+        let placeholderView = self.placeholderViewHeightConstraint.constant
+        let pickTypeViewHeight = self.pickTypeViewHeightConstraint.constant
         var pickImageViewHeight = self.pickImageViewHeightConstraint.constant
         
         // If we hide color picking view, then we do not need to include pick image view height.
@@ -229,7 +285,7 @@ class CategoryItemViewController: UIViewController {
             pickImageViewHeight = 0.0
         }
         
-        var space = frameHeight - (statusBarHeight + navBarHeight + cupViewHeight + pickImageViewHeight)
+        var space = frameHeight - (statusBarHeight + navBarHeight + placeholderView + pickImageViewHeight + pickTypeViewHeight)
         
         // Check for minimal space.
         if space < minimalSpaceValue {
@@ -238,6 +294,41 @@ class CategoryItemViewController: UIViewController {
         
         self.pickColorViewBottomSpace.constant = space
     }
+    
+    private func setupPickTypeView() {
+        func hidePickTypeView() {
+            self.pickTypeViewHeightConstraint.constant = 0.0
+            self.pickTypeView.alpha = 0.0
+            self.pickTypeViewDetailLabel.text = nil
+        }
+        
+        if let categoryItems = self.categoryItems {
+            func setDefaultStateOfPickTypeView() {
+                self.pickTypeViewHeightConstraint.constant = actionViewHeightValue
+                self.pickTypeView.alpha = 1.0
+                self.pickTypeViewDetailLabel.text = categoryItems[pickedTypeIndex].name
+            }
+            
+            // Hide pick type view.
+            if categoryItems.count == 0 {
+                hidePickTypeView()
+            } else if categoryItems.count == 1 {
+                setDefaultStateOfPickTypeView()
+                self.pickTypeViewDetailDisclosureImageView.image = UIImage()
+            } else {
+                setDefaultStateOfPickTypeView()
+                self.pickTypeViewDetailDisclosureImageView.image = UIImage(named: "MoreThan.png")
+            }
+        } else {
+            hidePickTypeView()
+        }
+        
+        self.scrollView.layoutIfNeeded()
+    }
+    
+    //--------------------------------------
+    // MARK: Data
+    //--------------------------------------
     
     private func reloadData() {
         reloadImages(pickedImage: pickedImage)
@@ -333,6 +424,10 @@ class CategoryItemViewController: UIViewController {
         }
     }
     
+    //--------------------------------------
+    // MARK: Parse
+    //--------------------------------------
+    
     private func loadCategoryItems() {
         weak var weakSelf = self
         self.category.getItemsInBackgroundWithBlock() { (items, error) in
@@ -340,6 +435,7 @@ class CategoryItemViewController: UIViewController {
                 print(error.localizedDescription)
             } else if let items = items {
                 weakSelf?.categoryItems = items
+                weakSelf?.setupPickTypeView()
             }
         }
     }
@@ -392,23 +488,6 @@ class CategoryItemViewController: UIViewController {
         return item
     }
     
-    private func presentAlertWithTitle(title: String, message: String) {
-        let alert = UIAlertController(title: title, message: message, preferredStyle: .Alert)
-        alert.addAction(UIAlertAction(title: "Ok", style: .Cancel, handler: nil))
-        
-        self.presentViewController(alert, animated: true, completion: nil)
-    }
-    
-    private func setBagActionButtonTitle(title: String) {
-        self.addToBagButton?.setTitle(title, forState: .Normal)
-    }
-    
-    private func goToShoppingCart() {
-        if let tabBarController = self.tabBarController {
-            tabBarController.selectedIndex = TabItemIndex.ShoppingBagViewController.rawValue
-        }
-    }
-    
     //--------------------------------------
     // MARK: - Actions
     //--------------------------------------
@@ -421,6 +500,11 @@ class CategoryItemViewController: UIViewController {
     func pickColorDidPressed() {
         animateViewSelection(self.pickColorView)
         self.performSegueWithIdentifier(SegueIdentifier.ColorPicking.rawValue, sender: nil)
+    }
+    
+    func pickTypeDidPressed() {
+        // TODO: perform segue when pick type did pressed.
+        animateViewSelection(self.pickTypeView)
     }
     
     @IBAction func addToBagDidPressed(sender: AnyObject) {
@@ -468,8 +552,15 @@ class CategoryItemViewController: UIViewController {
     }
     
     //--------------------------------------
-    // MARK: UIAlertActions
+    // MARK: - UIAlertActions
     //--------------------------------------
+    
+    private func presentAlertWithTitle(title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .Alert)
+        alert.addAction(UIAlertAction(title: "Ok", style: .Cancel, handler: nil))
+        
+        self.presentViewController(alert, animated: true, completion: nil)
+    }
     
     private func presentImagePickingAlertController() {
         let imagePickingAlertController = UIAlertController(title: NSLocalizedString("Choose an action", comment: "Alert action title"), message: nil, preferredStyle: .ActionSheet)
@@ -565,7 +656,7 @@ extension CategoryItemViewController: UICollectionViewDataSource, UICollectionVi
     //--------------------------------------
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        print("Select item at section: \(indexPath.section)")
+        print("Did select item at section: \(indexPath.section)")
     }
     
     //--------------------------------------------
