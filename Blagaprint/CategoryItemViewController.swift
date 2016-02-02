@@ -128,13 +128,9 @@ class CategoryItemViewController: UIViewController {
         setupPickedColorView()
         setupAddToBagButton()
         
-        self.pickTypeViewDetailLabel.text = nil
-    }
-    
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-        
         addGestureRecognizers()
+        
+        self.pickTypeViewDetailLabel.text = nil
     }
     
     override func viewDidLayoutSubviews() {
@@ -172,6 +168,22 @@ class CategoryItemViewController: UIViewController {
     //--------------------------------------
     // MARK: - Private Helper Methods -
     //--------------------------------------
+    
+    private func animateViewSelection(view: UIView, callback: (() -> Void)?) {
+        UIView.animateWithDuration(0.25, delay: 0.0, options: UIViewAnimationOptions.CurveEaseInOut, animations: {
+            view.backgroundColor = UIColor.lightGrayColor().colorWithAlphaComponent(0.2)
+            }) { finished in
+                if finished {
+                    UIView.animateWithDuration(0.25) {
+                        view.backgroundColor = UIColor.whiteColor()
+                        
+                        if let callback = callback {
+                            callback()
+                        }
+                    }
+                }
+        }
+    }
     
     private func goToShoppingCart() {
         if let tabBarController = self.tabBarController {
@@ -340,13 +352,22 @@ class CategoryItemViewController: UIViewController {
     
     private func reloadData() {
         reloadImages(pickedImage: pickedImage)
-        self.collectionView.reloadData()
+        collectionView.reloadData()
+        
+        self.pageControl.numberOfPages = images.count
     }
     
     private func reloadImages(pickedImage pickedImage: UIImage?) {
         self.images.removeAll(keepCapacity: true)
         
+        // Get category.
         let category = self.category.getType()
+        
+        // Get catgeory item.
+        var categoryItem: CategoryItem? = nil
+        if let categoryItems = self.categoryItems where categoryItems.count > 0 {
+            categoryItem = categoryItems[pickedTypeIndex]
+        }
         
         if let pickedImage = pickedImage {
             switch category {
@@ -380,15 +401,18 @@ class CategoryItemViewController: UIViewController {
                 
             case .photoFrame:
                 let frames = PhotoFrame.seedInitialFrames()
-                for frame in frames {
-                    images.append(frame.frameImageWithPickedImage(pickedImage))
-                }
+                self.images = frames.map() { $0.frameImageWithPickedImage(pickedImage) }
                 
             case .keyRing:
-                let keyRings = KeyRing.seedInitialKeyRings()
-                for keyRing in keyRings {
-                    images.append(keyRing.imageOfKeyRingWithPickedImage(pickedImage))
+                var keyRings: [KeyRing]!
+                
+                if let categoryItem = categoryItem {
+                    keyRings = KeyRing.keyRingsFromCategoryItem(categoryItem)
+                } else {
+                    keyRings = KeyRing.seedInitialKeyRings()
                 }
+                
+                self.images = keyRings.map() { $0.imageOfKeyRingWithPickedImage(pickedImage) }
                 
             default:
                 break
@@ -404,35 +428,22 @@ class CategoryItemViewController: UIViewController {
                 
             case .photoFrame:
                 let frames = PhotoFrame.seedInitialFrames()
-                for frame in frames {
-                    images.append(frame.image)
-                }
+                self.images = frames.map() { $0.image }
                 
             case .keyRing:
-                let keyRings = KeyRing.seedInitialKeyRings()
-                for keyRing in keyRings {
-                    images.append(keyRing.image)
+                var keyRings: [KeyRing]!
+                
+                if let categoryItem = categoryItem {
+                    keyRings = KeyRing.keyRingsFromCategoryItem(categoryItem)
+                } else {
+                    keyRings = KeyRing.seedInitialKeyRings()
                 }
+                
+                self.images = keyRings.map() { $0.image }
                 
             default:
                 break
             }
-        }
-    }
-    
-    private func animateViewSelection(view: UIView, callback: (() -> Void)?) {
-        UIView.animateWithDuration(0.25, delay: 0.0, options: UIViewAnimationOptions.CurveEaseInOut, animations: {
-            view.backgroundColor = UIColor.lightGrayColor().colorWithAlphaComponent(0.2)
-            }) { finished in
-                if finished {
-                    UIView.animateWithDuration(0.25) {
-                        view.backgroundColor = UIColor.whiteColor()
-                        
-                        if let callback = callback {
-                            callback()
-                        }
-                    }
-                }
         }
     }
     
@@ -447,7 +458,9 @@ class CategoryItemViewController: UIViewController {
                 print(error.localizedDescription)
             } else if let items = items {
                 weakSelf?.categoryItems = items
+                
                 weakSelf?.setupPickTypeView()
+                weakSelf?.reloadData()
             }
         }
     }
@@ -661,8 +674,6 @@ extension CategoryItemViewController: UICollectionViewDataSource, UICollectionVi
         let cup = images[indexPath.section]
         cell.imageView?.image = cup
         
-        self.pageControl.numberOfPages = self.images.count
-        
         return cell
     }
     
@@ -718,7 +729,12 @@ extension CategoryItemViewController: PickTypeTableViewControllerDelegateProtoco
         print("Did select item: \(item) at section: \(indexPath.section) and row: \(indexPath.row)")
         
         self.pickedTypeIndex = indexPath.row
-        setupPickTypeView()
+        
+        reloadImages(pickedImage: pickedImage)
+        self.pageControl.numberOfPages = images.count
+        
+        setupScrollView()
+        reloadData()
     }
 }
 

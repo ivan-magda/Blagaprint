@@ -105,9 +105,10 @@ class KeyRing: NSObject {
     }
     
     //--------------------------------------
-    // MARK: - Seed
+    // MARK: - Getting Key Rings
     //--------------------------------------
     
+    /// Returns all available key rings.
     class func seedInitialKeyRings() -> [KeyRing] {
         var keyRings = [KeyRing]()
         
@@ -123,5 +124,10 @@ class KeyRing: NSObject {
         keyRings.append(KeyRing(selfType: .GlassOval, categoryItemType: .glassKeyRing, imageSize: CGSizeMake(120.0, 186.0), image: GlassOvalKeyRing.imageOfKeyRing()))
         
         return keyRings
+    }
+    
+    /// Returns key rings with the same category item type.
+    class func keyRingsFromCategoryItem(item: CategoryItem) -> [KeyRing] {
+        return seedInitialKeyRings().filter() { $0.categoryItemType.rawValue == item.type }
     }
 }

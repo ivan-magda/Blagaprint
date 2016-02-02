@@ -74,6 +74,7 @@ class Category: PFObject, PFSubclassing {
     
     func getType() -> CategoryType {
         let type = CategoryType(rawValue: self.type)
+        
         return (type == nil ? .undefined : type!)
     }
     
