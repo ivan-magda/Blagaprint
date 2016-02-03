@@ -22,6 +22,14 @@ class CategoryItemViewController: UIViewController {
         case PickType
     }
     
+    /// Use this enum for tracking selected mode of manage text alert 
+    /// controller.
+    private enum ManageTextSelectedMode: Int {
+        case Letters
+        case Numbers
+        case Region
+    }
+    
     /// Picked image sizes for filling in the item object.
     private struct PickedImageSize {
         static let Cup = CGSizeMake(197.0, 225.0)
@@ -43,7 +51,8 @@ class CategoryItemViewController: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var pageControl: UIPageControl!
     
-    @IBOutlet weak var pickImageView: UIView!
+    @IBOutlet weak var moreActionsView: UIView!
+    @IBOutlet weak var moreActionsLabel: UILabel!
     @IBOutlet weak var pickColorView: UIView!
     @IBOutlet weak var pickTypeView: UIView!
     @IBOutlet weak var pickTypeViewDetailLabel: UILabel!
@@ -57,7 +66,7 @@ class CategoryItemViewController: UIViewController {
     
     @IBOutlet weak var placeholderViewHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var pageControlVerticalSpaceConstraint: NSLayoutConstraint!
-    @IBOutlet weak var pickImageViewHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var moreActionsViewHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var pickColorViewHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var pickTypeViewHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var pickColorViewBottomSpace: NSLayoutConstraint!
@@ -107,6 +116,23 @@ class CategoryItemViewController: UIViewController {
     private var didAddItemToBag = false
     
     private var pickedTypeIndex = 0
+    
+    //--------------------------------------
+    // MARK: Manage Text of Item
+    //--------------------------------------
+    
+    /// Set this attributes when you want to segue to TextEditingViewController.
+    private var textAttributes: [TextEditingViewControllerTextFieldAttributes : Int]?
+    
+    private var selectedTextEditingMode: ManageTextSelectedMode?
+    
+    //--------------------------------------
+    // MARK: State Key Ring
+    //--------------------------------------
+    
+    private var letters: String?
+    private var numbers: String?
+    private var region: String?
     
     //--------------------------------------
     // MARK: - View Life Cycle -
@@ -162,6 +188,38 @@ class CategoryItemViewController: UIViewController {
             pickTypeTableViewController.delegate = self
             
             pickTypeTableViewController.originalTypeName = categoryItems![pickedTypeIndex].name
+        } else if segue.identifier == SegueIdentifier.TextEditing.rawValue {
+            let navigationController = segue.destinationViewController as! UINavigationController
+            let textEditingViewController = navigationController.topViewController as! TextEditingViewController
+            
+            // Check for sended attributes and apply its.
+            if let attributes = self.textAttributes {
+                for (key, value) in attributes {
+                    switch key {
+                    case .KeyboardType:
+                        textEditingViewController.keyboardType = UIKeyboardType(rawValue: value)
+                    case .TextLengthLimit:
+                        textEditingViewController.textLengthLimit = value
+                    }
+                }
+            }
+            
+            weak var weakSelf = self
+            
+            textEditingViewController.didDoneOnTextCompletionHandler = { text in
+                if let selectedMode = weakSelf?.selectedTextEditingMode {
+                    switch selectedMode {
+                    case .Letters:
+                        weakSelf?.letters = text
+                    case .Numbers:
+                        weakSelf?.numbers = text
+                    case .Region:
+                        weakSelf?.region = text
+                    }
+                }
+                
+                weakSelf?.reloadData()
+            }
         }
     }
     
@@ -191,13 +249,21 @@ class CategoryItemViewController: UIViewController {
         }
     }
     
+    private func getCategoryItemType() -> CategoryItem.CategoryItemType? {
+        if let categoryItems = self.categoryItems where categoryItems.count > 0 {
+            return categoryItems[pickedTypeIndex].getType()
+        }
+        
+        return nil
+    }
+    
     //--------------------------------------
     // MARK: Setup
     //--------------------------------------
     
     private func addGestureRecognizers() {
-        let pickImageTapGestureRecognizer = UITapGestureRecognizer(target: self, action: Selector("pickImageDidPressed"))
-        self.pickImageView.addGestureRecognizer(pickImageTapGestureRecognizer)
+        let pickImageTapGestureRecognizer = UITapGestureRecognizer(target: self, action: Selector("moreActionsDidPressed"))
+        self.moreActionsView.addGestureRecognizer(pickImageTapGestureRecognizer)
         
         let pickColorTapGestureRecognizer = UITapGestureRecognizer(target: self, action: Selector("pickColorDidPressed"))
         self.pickColorView.addGestureRecognizer(pickColorTapGestureRecognizer)
@@ -210,12 +276,16 @@ class CategoryItemViewController: UIViewController {
         weak var weakSelf = self
         
         self.imagePickerController = BLImagePickerController(rootViewController: self) { pickedImage in
-            guard weakSelf != nil else {
-                return
-            }
-            
-            weakSelf!.pickedImage = pickedImage
-            weakSelf!.reloadData()
+            weakSelf?.pickedImage = pickedImage
+            weakSelf?.reloadData()
+        }
+    }
+    
+    private func setupMoreActionsLabelText() {
+        if let type = getCategoryItemType() where type == CategoryItem.CategoryItemType.stateNumberKeyRing {
+            self.moreActionsLabel.text = NSLocalizedString("Text", comment: "")
+        } else {
+            self.moreActionsLabel.text = NSLocalizedString("Image", comment: "")
         }
     }
     
@@ -254,8 +324,6 @@ class CategoryItemViewController: UIViewController {
     }
     
     private func setupScrollView() {
-        //TODO: properly determinate scroll view content size.
-        
         if self.navigationController == nil {
             return
         }
@@ -268,6 +336,7 @@ class CategoryItemViewController: UIViewController {
         }
         
         setupPickTypeView()
+        setupMoreActionsLabelText()
         
         switch self.category.getType() {
         case .phoneCase:
@@ -283,10 +352,11 @@ class CategoryItemViewController: UIViewController {
             self.placeholderViewHeightConstraint.constant = placeholderViewDefaultHeightValue
             
         default:
-            self.pickImageViewHeightConstraint.constant = actionViewHeightValue
+            self.moreActionsViewHeightConstraint.constant = actionViewHeightValue
             self.pickColorViewHeightConstraint.constant = actionViewHeightValue
         }
         
+        //TODO: properly determinate scroll view content size.
         setPickColorViewBottomSpace()
         
         self.scrollView.layoutIfNeeded()
@@ -298,7 +368,7 @@ class CategoryItemViewController: UIViewController {
         let statusBarHeight = CGRectGetHeight(UIApplication.sharedApplication().statusBarFrame)
         let placeholderView = self.placeholderViewHeightConstraint.constant
         let pickTypeViewHeight = self.pickTypeViewHeightConstraint.constant
-        var pickImageViewHeight = self.pickImageViewHeightConstraint.constant
+        var pickImageViewHeight = self.moreActionsViewHeightConstraint.constant
         
         // If we hide color picking view, then we do not need to include pick image view height.
         if self.pickColorViewHeightConstraint.constant == 0 {
@@ -369,6 +439,14 @@ class CategoryItemViewController: UIViewController {
             categoryItem = categoryItems[pickedTypeIndex]
         }
         
+        // Set image for state number key ring and immediatly return from here.
+        if let type = getCategoryItemType() where type == CategoryItem.CategoryItemType.stateNumberKeyRing {
+            let keyRing = KeyRing(selfType: .StateNumber, categoryItemType: .stateNumberKeyRing)
+            self.images = [keyRing.stateNumberImage(characters: self.letters, numbers: self.numbers, region: self.region)]
+            
+            return
+        }
+        
         if let pickedImage = pickedImage {
             switch category {
                 
@@ -411,8 +489,8 @@ class CategoryItemViewController: UIViewController {
                 } else {
                     keyRings = KeyRing.seedInitialKeyRings()
                 }
-                
-                self.images = keyRings.map() { $0.imageOfKeyRingWithInfo(pickedImage: pickedImage) }
+        
+                self.images = keyRings.map() { $0.imageOfKeyRingWithPickedImage(pickedImage) }
                 
             default:
                 break
@@ -517,9 +595,15 @@ class CategoryItemViewController: UIViewController {
     // MARK: - Actions
     //--------------------------------------
     
-    func pickImageDidPressed() {
-        animateViewSelection(pickImageView) {
-            self.presentImagePickingAlertController()
+    func moreActionsDidPressed() {
+        weak var weakSelf = self
+        
+        animateViewSelection(moreActionsView) {
+            if let type = weakSelf?.getCategoryItemType() where type == CategoryItem.CategoryItemType.stateNumberKeyRing {
+                weakSelf!.presentManageTextAlertController()
+            } else {
+                weakSelf?.presentImagePickingAlertController()
+            }
         }
     }
     
@@ -622,6 +706,44 @@ class CategoryItemViewController: UIViewController {
         imagePickingAlertController.addAction(clearAction)
         
         self.presentViewController(imagePickingAlertController, animated: true, completion: nil)
+    }
+    
+    private func presentManageTextAlertController() {
+        let manageTextAlertController = UIAlertController(title: NSLocalizedString("Choose an action", comment: "Alert action title"), message: nil, preferredStyle: .ActionSheet)
+        
+        // Cancel action.
+        let cancelAction = UIAlertAction(title: NSLocalizedString("Cancel", comment: "Alert action title"), style: .Cancel) { action in
+        }
+        manageTextAlertController.addAction(cancelAction)
+        
+        // Letters action.
+        let lettersAction = UIAlertAction(title: NSLocalizedString("Letters", comment: "Alert action title"), style: .Default) { action in
+            self.textAttributes = [TextEditingViewControllerTextFieldAttributes.KeyboardType : UIKeyboardType.Default.rawValue, TextEditingViewControllerTextFieldAttributes.TextLengthLimit : 3]
+            self.selectedTextEditingMode = ManageTextSelectedMode.Letters
+            
+            self.performSegueWithIdentifier(SegueIdentifier.TextEditing.rawValue, sender: self)
+        }
+        manageTextAlertController.addAction(lettersAction)
+        
+        // Numbers action.
+        let numbersAction = UIAlertAction(title: NSLocalizedString("Numbers", comment: "Alert action title"), style: .Default) { action in
+            self.textAttributes = [TextEditingViewControllerTextFieldAttributes.KeyboardType : UIKeyboardType.NumberPad.rawValue, TextEditingViewControllerTextFieldAttributes.TextLengthLimit : 3]
+            self.selectedTextEditingMode = ManageTextSelectedMode.Numbers
+            
+            self.performSegueWithIdentifier(SegueIdentifier.TextEditing.rawValue, sender: self)
+        }
+        manageTextAlertController.addAction(numbersAction)
+        
+        // Region action.
+        let regionAction = UIAlertAction(title: NSLocalizedString("Region", comment: "Alert action title"), style: .Default) { action in
+            self.textAttributes = [TextEditingViewControllerTextFieldAttributes.KeyboardType : UIKeyboardType.NumberPad.rawValue, TextEditingViewControllerTextFieldAttributes.TextLengthLimit : 3]
+            self.selectedTextEditingMode = ManageTextSelectedMode.Region
+            
+            self.performSegueWithIdentifier(SegueIdentifier.TextEditing.rawValue, sender: self)
+        }
+        manageTextAlertController.addAction(regionAction)
+        
+        self.presentViewController(manageTextAlertController, animated: true, completion: nil)
     }
     
 }

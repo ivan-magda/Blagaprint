@@ -95,8 +95,7 @@ class KeyRing: NSObject {
     }
     
     /// Returns generated image of the key ring with picked image by the user.
-    /// For state number key ring invokes stateNumberImage method.
-    func imageOfKeyRingWithInfo(pickedImage image: UIImage) -> UIImage {
+    func imageOfKeyRingWithPickedImage(image: UIImage) -> UIImage {
         let resizedImage = UIImage.resizedImage(image, newSize: self.pickedImageSize)
         
         switch self.type {
@@ -115,12 +114,35 @@ class KeyRing: NSObject {
         case .HeartWithWings:
             return HeartWithWingsKeyRing.imageOfKeyRing(image: resizedImage, imageVisible: true)
         case .StateNumber:
-            return stateNumberImage()
+            break
         }
+        
+        return UIImage()
     }
     
-    func stateNumberImage() -> UIImage {
-        return StateNumberKeyRing.imageOfKeyRing(numbers: numbers, firstLetter: firstLetter, lastLetters: lastLetters, region: region)
+    /// Returns an image of state number key ring.
+    func stateNumberImage(characters characters: String?, numbers: String?, region: String?) -> UIImage {
+        var charactersArray = [String]()
+        
+        if characters == nil {
+            charactersArray.append(firstLetter)
+            
+            for char in Array(lastLetters.characters) {
+                charactersArray.append(String(char))
+            }
+        } else {
+            for char in Array(characters!.characters) {
+                charactersArray.append(String(char))
+            }
+        }
+        
+        let firstCharacter = charactersArray[0]
+        let lastCharacters = "\(charactersArray[1])\(charactersArray[2])"
+        
+        let numbers = numbers == nil ? self.numbers : numbers!
+        let region = region == nil ? self.region : region!
+        
+        return StateNumberKeyRing.imageOfKeyRing(numbers: numbers, firstLetter: firstCharacter, lastLetters: lastCharacters, region: region)
     }
     
     //--------------------------------------
@@ -144,7 +166,7 @@ class KeyRing: NSObject {
         
         // State number.
         let stateKeyRing = KeyRing(selfType: .StateNumber, categoryItemType: .stateNumberKeyRing)
-        stateKeyRing.image = stateKeyRing.stateNumberImage()
+        stateKeyRing.image = stateKeyRing.stateNumberImage(characters: nil, numbers: nil, region: nil)
         
         keyRings.append(stateKeyRing)
         
