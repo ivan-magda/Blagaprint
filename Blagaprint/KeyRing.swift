@@ -27,6 +27,9 @@ class KeyRing: NSObject {
         // Glass.
         case GlassRectangle
         case GlassOval
+        
+        // State number.
+        case StateNumber
     }
     
     //--------------------------------------
@@ -45,11 +48,18 @@ class KeyRing: NSObject {
     /// Key ring image.
     var image: UIImage
     
+    // MARK: State Number
+    
+    var numbers = "000"
+    var firstLetter = "М"
+    var lastLetters = "ММ"
+    var region = "28"
+    
     //--------------------------------------
     // MARK: - Init
     //--------------------------------------
     
-    init(selfType type: KeyRingType, categoryItemType: CategoryItem.CategoryItemType, imageSize: CGSize, image: UIImage) {
+    init(selfType type: KeyRingType, categoryItemType: CategoryItem.CategoryItemType, imageSize: CGSize = CGSizeZero, image: UIImage = UIImage()) {
         self.type = type
         self.categoryItemType = categoryItemType
         self.pickedImageSize = imageSize
@@ -79,11 +89,14 @@ class KeyRing: NSObject {
             return HeartKeyRing.imageOfKeyRing()
         case .HeartWithWings:
             return HeartWithWingsKeyRing.imageOfKeyRing()
+        case .StateNumber:
+            return StateNumberKeyRing.imageOfKeyRing()
         }
     }
     
     /// Returns generated image of the key ring with picked image by the user.
-    func imageOfKeyRingWithPickedImage(image: UIImage) -> UIImage {
+    /// For state number key ring invokes stateNumberImage method.
+    func imageOfKeyRingWithInfo(pickedImage image: UIImage) -> UIImage {
         let resizedImage = UIImage.resizedImage(image, newSize: self.pickedImageSize)
         
         switch self.type {
@@ -101,7 +114,13 @@ class KeyRing: NSObject {
             return HeartKeyRing.imageOfKeyRing(image: resizedImage, imageVisible: true)
         case .HeartWithWings:
             return HeartWithWingsKeyRing.imageOfKeyRing(image: resizedImage, imageVisible: true)
+        case .StateNumber:
+            return stateNumberImage()
         }
+    }
+    
+    func stateNumberImage() -> UIImage {
+        return StateNumberKeyRing.imageOfKeyRing(numbers: numbers, firstLetter: firstLetter, lastLetters: lastLetters, region: region)
     }
     
     //--------------------------------------
@@ -122,6 +141,12 @@ class KeyRing: NSObject {
         // Glass.
         keyRings.append(KeyRing(selfType: .GlassRectangle, categoryItemType: .glassKeyRing, imageSize: CGSizeMake(124.0, 176.0), image: GlassRectangleKeyRing.imageOfKeyRing()))
         keyRings.append(KeyRing(selfType: .GlassOval, categoryItemType: .glassKeyRing, imageSize: CGSizeMake(120.0, 186.0), image: GlassOvalKeyRing.imageOfKeyRing()))
+        
+        // State number.
+        let stateKeyRing = KeyRing(selfType: .StateNumber, categoryItemType: .stateNumberKeyRing)
+        stateKeyRing.image = stateKeyRing.stateNumberImage()
+        
+        keyRings.append(stateKeyRing)
         
         return keyRings
     }

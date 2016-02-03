@@ -412,7 +412,7 @@ class CategoryItemViewController: UIViewController {
                     keyRings = KeyRing.seedInitialKeyRings()
                 }
                 
-                self.images = keyRings.map() { $0.imageOfKeyRingWithPickedImage(pickedImage) }
+                self.images = keyRings.map() { $0.imageOfKeyRingWithInfo(pickedImage: pickedImage) }
                 
             default:
                 break
