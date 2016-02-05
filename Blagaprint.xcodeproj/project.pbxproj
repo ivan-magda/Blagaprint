@@ -89,6 +89,7 @@
 		752ED13C1C59F56F00BE0751 /* GlassOvalKeyRing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 752ED1391C59F56F00BE0751 /* GlassOvalKeyRing.swift */; };
 		752ED13D1C59F56F00BE0751 /* GlassRectangleKeyRing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 752ED13A1C59F56F00BE0751 /* GlassRectangleKeyRing.swift */; };
 		752ED13E1C59F56F00BE0751 /* RectangleKeyRing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 752ED13B1C59F56F00BE0751 /* RectangleKeyRing.swift */; };
+		753527701C6442A1000BC283 /* StateNumberKeyRing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7535276F1C6442A1000BC283 /* StateNumberKeyRing.swift */; };
 		753CD57A1BF3210500795F44 /* AppConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 753CD5791BF3210500795F44 /* AppConfiguration.swift */; };
 		753D4D651C059880002FC5E9 /* SH2_PhotoFrame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 753D4D641C059880002FC5E9 /* SH2_PhotoFrame.swift */; };
 		753D4D671C059AA5002FC5E9 /* sh2_placeholderImage.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 753D4D661C059AA5002FC5E9 /* sh2_placeholderImage.jpg */; };
@@ -176,7 +177,6 @@
 		75BF695F1C0464AA009D670D /* sh19_placeholderImage.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 75BF695E1C0464AA009D670D /* sh19_placeholderImage.jpg */; };
 		75C4E7C81C3807450039B59F /* Bag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75C4E7C71C3807450039B59F /* Bag.swift */; };
 		75C4E7CA1C3807540039B59F /* BagItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75C4E7C91C3807540039B59F /* BagItem.swift */; };
-		75CD64D31C61EB7E00783D76 /* StateNumberKeyRing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75CD64D21C61EB7E00783D76 /* StateNumberKeyRing.swift */; };
 		75CECC291C5FA2D300B2AE6E /* PickTypeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75CECC281C5FA2D300B2AE6E /* PickTypeTableViewController.swift */; };
 		75DD91F91BD7B43800932AD7 /* AndersonSupercar.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 75DD91F81BD7B43800932AD7 /* AndersonSupercar.ttf */; };
 		75DD91FF1BD7BFE000932AD7 /* CaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75DD91FE1BD7BFE000932AD7 /* CaseView.swift */; };
@@ -293,6 +293,7 @@
 		752ED1391C59F56F00BE0751 /* GlassOvalKeyRing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlassOvalKeyRing.swift; sourceTree = "<group>"; };
 		752ED13A1C59F56F00BE0751 /* GlassRectangleKeyRing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlassRectangleKeyRing.swift; sourceTree = "<group>"; };
 		752ED13B1C59F56F00BE0751 /* RectangleKeyRing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RectangleKeyRing.swift; sourceTree = "<group>"; };
+		7535276F1C6442A1000BC283 /* StateNumberKeyRing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StateNumberKeyRing.swift; sourceTree = "<group>"; };
 		753CD5791BF3210500795F44 /* AppConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppConfiguration.swift; sourceTree = "<group>"; };
 		753D4D641C059880002FC5E9 /* SH2_PhotoFrame.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SH2_PhotoFrame.swift; sourceTree = "<group>"; };
 		753D4D661C059AA5002FC5E9 /* sh2_placeholderImage.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = sh2_placeholderImage.jpg; sourceTree = "<group>"; };
@@ -384,7 +385,6 @@
 		75BF695E1C0464AA009D670D /* sh19_placeholderImage.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = sh19_placeholderImage.jpg; sourceTree = "<group>"; };
 		75C4E7C71C3807450039B59F /* Bag.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Bag.swift; sourceTree = "<group>"; };
 		75C4E7C91C3807540039B59F /* BagItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BagItem.swift; sourceTree = "<group>"; };
-		75CD64D21C61EB7E00783D76 /* StateNumberKeyRing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StateNumberKeyRing.swift; sourceTree = "<group>"; };
 		75CECC281C5FA2D300B2AE6E /* PickTypeTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PickTypeTableViewController.swift; sourceTree = "<group>"; };
 		75DD91F81BD7B43800932AD7 /* AndersonSupercar.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = AndersonSupercar.ttf; sourceTree = "<group>"; };
 		75DD91FE1BD7BFE000932AD7 /* CaseView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CaseView.swift; sourceTree = "<group>"; };
@@ -873,7 +873,7 @@
 				752ED13B1C59F56F00BE0751 /* RectangleKeyRing.swift */,
 				752ED1391C59F56F00BE0751 /* GlassOvalKeyRing.swift */,
 				752ED13A1C59F56F00BE0751 /* GlassRectangleKeyRing.swift */,
-				75CD64D21C61EB7E00783D76 /* StateNumberKeyRing.swift */,
+				7535276F1C6442A1000BC283 /* StateNumberKeyRing.swift */,
 			);
 			name = KeyRing;
 			sourceTree = "<group>";
@@ -1502,7 +1502,7 @@
 				50A871D71BCA9D68003CB0F9 /* CaseConstructorViewController.swift in Sources */,
 				753D4D691C05A4D3002FC5E9 /* SH15_PhotoFrame.swift in Sources */,
 				75A3E9811BE3645E0001E073 /* GalaxyNote4.swift in Sources */,
-				75CD64D31C61EB7E00783D76 /* StateNumberKeyRing.swift in Sources */,
+				753527701C6442A1000BC283 /* StateNumberKeyRing.swift in Sources */,
 				753D4D751C05AD11002FC5E9 /* SH11_PhotoFrame.swift in Sources */,
 				50FD7F501BB8FFF600ABEC38 /* CategoryTableViewCell.swift in Sources */,
 				75AB8AC01BE744DB00B88A5A /* ParseCentral.swift in Sources */,

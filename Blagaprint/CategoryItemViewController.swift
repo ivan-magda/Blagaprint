@@ -65,7 +65,8 @@ class CategoryItemViewController: UIViewController {
     //--------------------------------------
     
     @IBOutlet weak var placeholderViewHeightConstraint: NSLayoutConstraint!
-    @IBOutlet weak var pageControlVerticalSpaceConstraint: NSLayoutConstraint!
+    @IBOutlet weak var collectionViewHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var pageControlBottomSpaceConstraint: NSLayoutConstraint!
     @IBOutlet weak var moreActionsViewHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var pickColorViewHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var pickTypeViewHeightConstraint: NSLayoutConstraint!
@@ -83,6 +84,12 @@ class CategoryItemViewController: UIViewController {
     
     /// Minimal bottom space value.
     private let minimalSpaceValue: CGFloat = 16
+    
+    /// Minimal height value of collection view.
+    private let collectionViewMinHeightValue: CGFloat = 160.0
+    
+    /// Maximum height value of collection view.
+    private let collectionViewMaximumHeightValue: CGFloat = 320.0
     
     //--------------------------------------
     // MARK: Parse
@@ -328,32 +335,44 @@ class CategoryItemViewController: UIViewController {
             return
         }
         
-        // Set placeholder view height
-        if self.pageControl.numberOfPages <= 1 {
-            self.placeholderViewHeightConstraint.constant = placeholderViewDefaultHeightValue
-        } else {
-            self.placeholderViewHeightConstraint.constant = placeholderViewDefaultHeightValue + CGRectGetHeight(pageControl.bounds)
+        /// Sets the placeholder view height constraint with determinated value.
+        func setPlaceholderViewHeightFromCategoryType(type: Category.CategoryType) {
+            switch type {
+            case .cup:
+                self.placeholderViewHeightConstraint.constant = placeholderViewDefaultHeightValue
+            default:
+                self.placeholderViewHeightConstraint.constant = collectionViewHeightConstraint.constant + CGRectGetHeight(pageControl.bounds)
+            }
         }
+        
+        // Setting up the dimentions.
+        
+        // Collection view.
+        let imageHeight = (self.images.count > 0 ? images[0].size.height : 0.0)
+        if imageHeight >= collectionViewMinHeightValue && imageHeight <= collectionViewMaximumHeightValue {
+            self.collectionViewHeightConstraint.constant = imageHeight
+        } else if imageHeight > collectionViewMaximumHeightValue {
+            self.collectionViewHeightConstraint.constant = collectionViewMaximumHeightValue
+        } else if imageHeight < collectionViewMinHeightValue {
+            self.collectionViewHeightConstraint.constant = collectionViewMinHeightValue
+        }
+        
+        // Placeholder view.
+        let categoryType = self.category.getType()
+        setPlaceholderViewHeightFromCategoryType(categoryType)
         
         setupPickTypeView()
         setupMoreActionsLabelText()
         
-        switch self.category.getType() {
-        case .phoneCase:
-            self.placeholderViewHeightConstraint.constant = placeholderViewDefaultHeightValue
-            self.pageControlVerticalSpaceConstraint.constant = -CGRectGetHeight(self.pageControl.bounds)
-            
+        switch categoryType {
         case .plate, .photoFrame, .keyRing:
             self.pickColorViewHeightConstraint.constant = 0.0
             self.pickColorView.alpha = 0.0
-            
-        case .cup:
-            self.pageControlVerticalSpaceConstraint.constant = -CGRectGetHeight(self.pageControl.bounds)
-            self.placeholderViewHeightConstraint.constant = placeholderViewDefaultHeightValue
-            
         default:
             self.moreActionsViewHeightConstraint.constant = actionViewHeightValue
-            self.pickColorViewHeightConstraint.constant = actionViewHeightValue
+
+            self.pickColorViewHeightConstraint.constant = 0.0
+            self.pickColorView.alpha = 0.0
         }
         
         //TODO: properly determinate scroll view content size.

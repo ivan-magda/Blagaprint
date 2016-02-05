@@ -103,9 +103,12 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mRn-ti-5JJ" userLabel="PlaceholderView">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="357"/>
                                         <subviews>
-                                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceHorizontal="YES" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="DQZ-fV-btc">
+                                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="250" alwaysBounceHorizontal="YES" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="DQZ-fV-btc">
                                                 <rect key="frame" x="0.0" y="0.0" width="320" height="320"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="320" id="O0x-jk-FXY"/>
+                                                </constraints>
                                                 <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="5pn-nh-BsD" customClass="ExpandedCollectionViewFlowLayout" customModule="Blagaprint" customModuleProvider="target">
                                                     <size key="itemSize" width="320" height="320"/>
                                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -122,17 +125,15 @@
                                                             <subviews>
                                                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ZHZ-oO-d3l">
                                                                     <rect key="frame" x="0.0" y="0.0" width="320" height="320"/>
-                                                                    <constraints>
-                                                                        <constraint firstAttribute="height" constant="320" id="jGo-OA-ufI"/>
-                                                                        <constraint firstAttribute="width" constant="320" id="w9X-td-ZC6"/>
-                                                                    </constraints>
                                                                 </imageView>
                                                             </subviews>
                                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                         </view>
                                                         <constraints>
-                                                            <constraint firstItem="ZHZ-oO-d3l" firstAttribute="centerX" secondItem="UFD-wh-gAf" secondAttribute="centerX" id="WqC-ci-WWl"/>
-                                                            <constraint firstItem="ZHZ-oO-d3l" firstAttribute="centerY" secondItem="UFD-wh-gAf" secondAttribute="centerY" id="nf7-ZK-AbY"/>
+                                                            <constraint firstItem="ZHZ-oO-d3l" firstAttribute="leading" secondItem="UFD-wh-gAf" secondAttribute="leading" id="707-MX-Ayk"/>
+                                                            <constraint firstAttribute="bottom" secondItem="ZHZ-oO-d3l" secondAttribute="bottom" id="FtL-aP-Q60"/>
+                                                            <constraint firstAttribute="trailing" secondItem="ZHZ-oO-d3l" secondAttribute="trailing" id="IFn-U6-qfZ"/>
+                                                            <constraint firstItem="ZHZ-oO-d3l" firstAttribute="top" secondItem="UFD-wh-gAf" secondAttribute="top" id="f0l-Ie-VXy"/>
                                                         </constraints>
                                                         <connections>
                                                             <outlet property="imageView" destination="ZHZ-oO-d3l" id="COV-sQ-87j"/>
@@ -144,7 +145,7 @@
                                                     <outlet property="delegate" destination="bNt-aM-HSw" id="wmY-8o-LS4"/>
                                                 </connections>
                                             </collectionView>
-                                            <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" hidesForSinglePage="YES" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="vBh-Oy-UqJ">
+                                            <pageControl opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="250" contentHorizontalAlignment="center" contentVerticalAlignment="center" hidesForSinglePage="YES" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="vBh-Oy-UqJ">
                                                 <rect key="frame" x="141" y="320" width="39" height="37"/>
                                                 <color key="pageIndicatorTintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                 <color key="currentPageIndicatorTintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
@@ -158,7 +159,6 @@
                                             <constraint firstItem="DQZ-fV-btc" firstAttribute="leading" secondItem="mRn-ti-5JJ" secondAttribute="leading" id="McF-cI-Fxn"/>
                                             <constraint firstAttribute="trailing" secondItem="DQZ-fV-btc" secondAttribute="trailing" id="VCP-fz-Ovt"/>
                                             <constraint firstAttribute="bottom" secondItem="vBh-Oy-UqJ" secondAttribute="bottom" id="fX9-JC-fLH"/>
-                                            <constraint firstItem="vBh-Oy-UqJ" firstAttribute="top" secondItem="DQZ-fV-btc" secondAttribute="bottom" id="fhr-2E-poU"/>
                                             <constraint firstAttribute="height" constant="357" id="lwc-JG-UI1"/>
                                             <constraint firstItem="vBh-Oy-UqJ" firstAttribute="centerX" secondItem="mRn-ti-5JJ" secondAttribute="centerX" id="si5-tS-VX1"/>
                                         </constraints>
@@ -341,11 +341,12 @@
                     <connections>
                         <outlet property="addToBagButton" destination="da6-wR-7Aj" id="CXJ-7M-FiR"/>
                         <outlet property="collectionView" destination="DQZ-fV-btc" id="n3y-cm-Ngf"/>
+                        <outlet property="collectionViewHeightConstraint" destination="O0x-jk-FXY" id="awc-lk-9zi"/>
                         <outlet property="moreActionsLabel" destination="jNa-ph-y4Z" id="OEf-qn-6BB"/>
                         <outlet property="moreActionsView" destination="vei-dx-tIn" id="R3l-la-aaY"/>
                         <outlet property="moreActionsViewHeightConstraint" destination="Ok6-Jk-ttz" id="9B1-ue-NVS"/>
                         <outlet property="pageControl" destination="vBh-Oy-UqJ" id="qnv-zG-ww4"/>
-                        <outlet property="pageControlVerticalSpaceConstraint" destination="fhr-2E-poU" id="HwM-EU-64b"/>
+                        <outlet property="pageControlBottomSpaceConstraint" destination="fX9-JC-fLH" id="npV-RM-Pn1"/>
                         <outlet property="pickColorView" destination="aAg-sP-szL" id="PLu-6A-mQ3"/>
                         <outlet property="pickColorViewBottomSpace" destination="1VE-vB-ZxY" id="fRy-nl-3u5"/>
                         <outlet property="pickColorViewHeightConstraint" destination="gPn-BL-0fn" id="dL2-eD-Nyl"/>
