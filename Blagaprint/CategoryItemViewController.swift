@@ -335,20 +335,12 @@ class CategoryItemViewController: UIViewController {
             return
         }
         
-        /// Sets the placeholder view height constraint with determinated value.
-        func setPlaceholderViewHeightFromCategoryType(type: Category.CategoryType) {
-            switch type {
-            case .cup:
-                self.placeholderViewHeightConstraint.constant = placeholderViewDefaultHeightValue
-            default:
-                self.placeholderViewHeightConstraint.constant = collectionViewHeightConstraint.constant + CGRectGetHeight(pageControl.bounds)
-            }
-        }
+        let categoryType = self.category.getType()
         
         // Setting up the dimentions.
         
         // Collection view.
-        let imageHeight = (self.images.count > 0 ? images[0].size.height : 0.0)
+        let imageHeight = (self.images.count > 0 ? images[0].size.height : collectionViewMinHeightValue)
         if imageHeight >= collectionViewMinHeightValue && imageHeight <= collectionViewMaximumHeightValue {
             self.collectionViewHeightConstraint.constant = imageHeight
         } else if imageHeight > collectionViewMaximumHeightValue {
@@ -357,11 +349,15 @@ class CategoryItemViewController: UIViewController {
             self.collectionViewHeightConstraint.constant = collectionViewMinHeightValue
         }
         
-        // Placeholder view.
-        let categoryType = self.category.getType()
-        setPlaceholderViewHeightFromCategoryType(categoryType)
+        // Sets the placeholder view height constraint with determinated value.
+        switch categoryType {
+        case .cup:
+            self.placeholderViewHeightConstraint.constant = placeholderViewDefaultHeightValue
+        default:
+            self.placeholderViewHeightConstraint.constant = collectionViewHeightConstraint.constant + CGRectGetHeight(pageControl.bounds)
+        }
         
-        setupPickTypeView()
+        setupPickTypeViewWithIfNeedLayout(false)
         setupMoreActionsLabelText()
         
         switch categoryType {
@@ -378,7 +374,9 @@ class CategoryItemViewController: UIViewController {
         //TODO: properly determinate scroll view content size.
         setPickColorViewBottomSpace()
         
-        self.scrollView.layoutIfNeeded()
+        UIView.animateWithDuration(0.25) {
+            self.scrollView.layoutIfNeeded()
+        }
     }
     
     private func setPickColorViewBottomSpace() {
@@ -404,7 +402,7 @@ class CategoryItemViewController: UIViewController {
         self.pickColorViewBottomSpace.constant = space
     }
     
-    private func setupPickTypeView() {
+    private func setupPickTypeViewWithIfNeedLayout(needed: Bool) {
         func hidePickTypeView() {
             self.pickTypeViewHeightConstraint.constant = 0.0
             self.pickTypeView.alpha = 0.0
@@ -432,7 +430,11 @@ class CategoryItemViewController: UIViewController {
             hidePickTypeView()
         }
         
-        self.scrollView.layoutIfNeeded()
+        if needed {
+            UIView.animateWithDuration(0.25) {
+                self.scrollView.layoutIfNeeded()
+            }
+        }
     }
     
     //--------------------------------------
@@ -556,7 +558,7 @@ class CategoryItemViewController: UIViewController {
             } else if let items = items {
                 weakSelf?.categoryItems = items
                 
-                weakSelf?.setupPickTypeView()
+                weakSelf?.setupPickTypeViewWithIfNeedLayout(true)
                 weakSelf?.reloadData()
             }
         }
@@ -873,6 +875,7 @@ extension CategoryItemViewController: PickTypeTableViewControllerDelegateProtoco
         
         reloadImages(pickedImage: pickedImage)
         self.pageControl.numberOfPages = images.count
+        self.collectionView.reloadData()
         
         setupScrollView()
         reloadData()
