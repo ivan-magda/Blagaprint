@@ -257,8 +257,13 @@ class CaseConstructorTableViewController: UITableViewController {
             
         // Add item to bag.
         } else if let parseCentral = self.parseCentral {
-            parseCentral.saveItem(createBagItem(), success: {
+            let item = createBagItem()
+            
+            parseCentral.saveItem(item, success: {
                 self.didAddItemToBag = true
+                
+                // Post notification.
+                NSNotificationCenter.defaultCenter().postNotificationName(CategoryItemViewControllerDidAddItemToBagNotification, object: item)
                 
                 let alert = UIAlertController(title: NSLocalizedString("Successfully", comment: ""), message: NSLocalizedString("Item successfully added to bag. Would you like go to shopping cart?", comment: "Saved successfully item alert message"), preferredStyle: .Alert)
                 alert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .Cancel, handler: nil))

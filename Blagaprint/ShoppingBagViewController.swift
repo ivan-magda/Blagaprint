@@ -21,6 +21,18 @@ class ShoppingBagViewController: UITableViewController {
     private var objects: [BagItem]?
     private var thumbnails = [String : UIImage]()
     private var categories = [String : String]()
+    private var categoryItems = [String : String]()
+    
+    //--------------------------------------
+    // MARK: - Init
+    //--------------------------------------
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        
+        // Adding notification observer.
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("loadObjects"), name: CategoryItemViewControllerDidAddItemToBagNotification, object: nil)
+    }
     
     //--------------------------------------
     // MARK: - View Life Cycle
@@ -40,6 +52,10 @@ class ShoppingBagViewController: UITableViewController {
         loadObjects()
         
         ParseCentral.updateBagTabBarItemBadgeValue()
+    }
+    
+    deinit {
+        NSNotificationCenter.defaultCenter().removeObserver(self)
     }
     
     //--------------------------------------
@@ -83,8 +99,10 @@ class ShoppingBagViewController: UITableViewController {
                 cell.thumbnailImage.image = thumbnails[item.objectId!]
             }
             
-            if indexPath.row < self.categories.count {
-                cell.descriptionLabel.text = categories[item.objectId!]
+            if let itemName = self.categoryItems[item.objectId!] {
+                cell.descriptionLabel.text = itemName
+            } else if let categoryName = categories[item.objectId!] {
+                cell.descriptionLabel.text = categoryName
             }
             
             cell.priceLabel.text = String.formatAmount(NSNumber(double: item.price))
@@ -109,7 +127,7 @@ class ShoppingBagViewController: UITableViewController {
     // MARK: Querying
     //--------------------------------------
     
-    private func loadObjects() {
+    func loadObjects() {
         guard let user = BlagaprintUser.currentUser() else {
             self.objects = nil
             
@@ -129,6 +147,7 @@ class ShoppingBagViewController: UITableViewController {
                 
                 self.thumbnails.removeAll(keepCapacity: true)
                 self.categories.removeAll(keepCapacity: true)
+                self.categoryItems.removeAll(keepCapacity: true)
                 
                 // Load thumbnail image.
                 for item in items {
@@ -154,7 +173,23 @@ class ShoppingBagViewController: UITableViewController {
                         if let error = error {
                             print(error.localizedDescription)
                         } else if let category = category as? Category {
-                            self.categories[item.objectId!] = category.name
+                            self.categories[item.objectId!] = category.titleName
+                            
+                            dispatch_async(dispatch_get_main_queue()) {
+                                self.tableView.reloadData()
+                            }
+                        }
+                    }
+                    
+                    // Get category item name.
+                    let categoryItemId = item.categoryItem
+                    let categoryItemQuery = PFQuery(className: CategoryItem.parseClassName())
+                    categoryItemQuery.cachePolicy = .CacheThenNetwork
+                    categoryItemQuery.getObjectInBackgroundWithId(categoryItemId) { (categoryItem, error) in
+                        if let error = error {
+                            print(error.localizedDescription)
+                        } else if let categoryItem = categoryItem as? CategoryItem {
+                            self.categoryItems[item.objectId!] = categoryItem.name
                             
                             dispatch_async(dispatch_get_main_queue()) {
                                 self.tableView.reloadData()
@@ -168,6 +203,8 @@ class ShoppingBagViewController: UITableViewController {
                 }
             }
         }
+        
+        ParseCentral.updateBagTabBarItemBadgeValue()
     }
     
     //--------------------------------------
@@ -228,6 +265,8 @@ class ShoppingBagViewController: UITableViewController {
                         }
                 })
             }
+            
+            ParseCentral.updateBagTabBarItemBadgeValue()
         }
     }
     

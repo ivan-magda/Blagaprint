@@ -8,6 +8,8 @@
 
 import UIKit
 
+let CategoryItemViewControllerDidAddItemToBagNotification = "CategoryItemViewControllerDidAddItemToBagNotification"
+
 class CategoryItemViewController: UIViewController {
     
     //--------------------------------------
@@ -305,8 +307,16 @@ class CategoryItemViewController: UIViewController {
         self.addToBagButton.layer.shadowRadius = 3.0
     }
     
-    private func setBagActionButtonTitle(title: String) {
-        self.addToBagButton?.setTitle(title, forState: .Normal)
+    private func updateAddToBagButtonTitle() {
+        func setBagActionButtonTitle(title: String) {
+            self.addToBagButton?.setTitle(title, forState: .Normal)
+        }
+        
+        if didAddItemToBag {
+            setBagActionButtonTitle(NSLocalizedString("Go to Shopping Cart", comment: ""))
+        } else {
+            setBagActionButtonTitle(NSLocalizedString("Add to Bag", comment: ""))
+        }
     }
     
     private func setupPickedColorView() {
@@ -574,7 +584,6 @@ class CategoryItemViewController: UIViewController {
         
         item.category = self.category.objectId!
         
-        // TODO: check for selection objectId.
         if let categoryItems = self.categoryItems where categoryItems.count > 0 {
             item.categoryItem = categoryItems[pickedTypeIndex].objectId!
         }
@@ -635,8 +644,12 @@ class CategoryItemViewController: UIViewController {
     }
     
     func pickTypeDidPressed() {
+        self.didAddItemToBag = false
+        
         animateViewSelection(pickTypeView) {
             self.performSegueWithIdentifier(SegueIdentifier.PickType.rawValue, sender: self)
+            
+            self.updateAddToBagButtonTitle()
         }
     }
     
@@ -647,33 +660,39 @@ class CategoryItemViewController: UIViewController {
             
             // Add item to bag.
         } else if let parseCentral = self.parseCentral {
-            parseCentral.saveItem(createBagItem(), success: {
+            let item = createBagItem()
+            
+            parseCentral.saveItem(item, success: {
                 self.didAddItemToBag = true
                 
+                // Post notification.
+                NSNotificationCenter.defaultCenter().postNotificationName(CategoryItemViewControllerDidAddItemToBagNotification, object: item)
+                
+                // Present success alert controller.
                 let alert = UIAlertController(title: NSLocalizedString("Successfully", comment: ""), message: NSLocalizedString("Item successfully added to bag. Would you like go to shopping cart?", comment: "Saved successfully item alert message"), preferredStyle: .Alert)
                 alert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .Cancel, handler: nil))
                 alert.addAction(UIAlertAction(title: NSLocalizedString("Go", comment: ""), style: .Default, handler: { (action) in
                     self.goToShoppingCart()
                 }))
-                
                 self.presentViewController(alert, animated: true, completion: nil)
                 
-                self.setBagActionButtonTitle(NSLocalizedString("Go to Shopping Cart", comment: ""))
+                self.updateAddToBagButtonTitle()
                 
+                // Update badge value.
                 ParseCentral.updateBagTabBarItemBadgeValue()
                 }, failure: { (error) in
                     self.didAddItemToBag = false
                     
                     self.presentAlertWithTitle(NSLocalizedString("Error", comment: ""), message: error?.localizedDescription ?? NSLocalizedString("An error occured. Please try again later.", comment: "Failure alert message"))
                     
-                    self.setBagActionButtonTitle(NSLocalizedString("Add to Bag", comment: ""))
+                    self.updateAddToBagButtonTitle()
             })
         } else {
             self.didAddItemToBag = false
             
             presentAlertWithTitle(NSLocalizedString("Error", comment: ""), message: NSLocalizedString("An error occured. Please try again later.", comment: "Failure alert message"))
             
-            self.setBagActionButtonTitle(NSLocalizedString("Add to Bag", comment: ""))
+            self.updateAddToBagButtonTitle()
         }
     }
     
