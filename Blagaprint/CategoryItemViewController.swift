@@ -185,10 +185,13 @@ class CategoryItemViewController: UIViewController {
             let colorPickingVC = navigationController.topViewController as! SelectBackgroundCollectionViewController!
             colorPickingVC.selectedColor = pickedColor
             
+            weak var weakSelf = self
             colorPickingVC.didSelectColorCompletionHandler = { color in
-                self.pickedColor = color
-                self.pickedColorView.backgroundColor = color
-                self.pickedColorViewUpdateBorderLayer()
+                weakSelf?.pickedColor = color
+                weakSelf?.pickedColorView.backgroundColor = color
+                weakSelf?.pickedColorViewUpdateBorderLayer()
+                
+                weakSelf?.reloadData()
             }
         } else if segue.identifier == SegueIdentifier.PickType.rawValue {
             let pickTypeTableViewController = segue.destinationViewController as! PickTypeTableViewController
@@ -371,9 +374,9 @@ class CategoryItemViewController: UIViewController {
         setupMoreActionsLabelText()
         
         switch categoryType {
-        case .plate, .photoFrame, .keyRing:
-            self.pickColorViewHeightConstraint.constant = 0.0
-            self.pickColorView.alpha = 0.0
+        case .clothes:
+            self.pickColorViewHeightConstraint.constant = actionViewHeightValue
+            self.pickColorView.alpha = 1.0
         default:
             self.moreActionsViewHeightConstraint.constant = actionViewHeightValue
 
@@ -523,6 +526,9 @@ class CategoryItemViewController: UIViewController {
         
                 self.images = keyRings.map() { $0.imageOfKeyRingWithPickedImage(pickedImage) }
                 
+            case .clothes:
+                self.images = [TShirt.imageOfFront(tshirtColor: pickedColor), TShirt.imageOfBack(tshirtColor: pickedColor)]
+                
             default:
                 break
             }
@@ -549,6 +555,9 @@ class CategoryItemViewController: UIViewController {
                 }
                 
                 self.images = keyRings.map() { $0.image }
+                
+            case .clothes:
+                self.images = [TShirt.imageOfFront(tshirtColor: pickedColor), TShirt.imageOfBack(tshirtColor: pickedColor)]
                 
             default:
                 break

@@ -131,6 +131,7 @@
 		757F12921C48F65300CF947C /* HeartWithWingsKeyRing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 757F12911C48F65300CF947C /* HeartWithWingsKeyRing.swift */; };
 		758070181C0C420E000F9D84 /* PlateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 758070171C0C420E000F9D84 /* PlateView.swift */; };
 		75823AAF1BD8BDD000C92F83 /* PhoneCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75823AAE1BD8BDD000C92F83 /* PhoneCase.swift */; };
+		758579A81C66295C0010A7CF /* TShirt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 758579A71C66295C0010A7CF /* TShirt.swift */; };
 		758595621BDA30C10079A1BA /* iPhone4CameraImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 7585955E1BDA30C10079A1BA /* iPhone4CameraImage.png */; };
 		758595631BDA30C10079A1BA /* iPhone4CameraImage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7585955F1BDA30C10079A1BA /* iPhone4CameraImage@2x.png */; };
 		7585BB4E1C1026AA00D59BF5 /* BLImagePickerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7585BB4D1C1026AA00D59BF5 /* BLImagePickerController.swift */; };
@@ -337,6 +338,7 @@
 		757F12911C48F65300CF947C /* HeartWithWingsKeyRing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeartWithWingsKeyRing.swift; sourceTree = "<group>"; };
 		758070171C0C420E000F9D84 /* PlateView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlateView.swift; sourceTree = "<group>"; };
 		75823AAE1BD8BDD000C92F83 /* PhoneCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhoneCase.swift; sourceTree = "<group>"; };
+		758579A71C66295C0010A7CF /* TShirt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TShirt.swift; sourceTree = "<group>"; };
 		7585955E1BDA30C10079A1BA /* iPhone4CameraImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = iPhone4CameraImage.png; path = images/iPhone4CameraImage.png; sourceTree = "<group>"; };
 		7585955F1BDA30C10079A1BA /* iPhone4CameraImage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "iPhone4CameraImage@2x.png"; path = "images/iPhone4CameraImage@2x.png"; sourceTree = "<group>"; };
 		7585BB4D1C1026AA00D59BF5 /* BLImagePickerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BLImagePickerController.swift; sourceTree = "<group>"; };
@@ -640,6 +642,7 @@
 				7580701F1C0C4944000F9D84 /* Plate */,
 				0C9A21381C1FFF6F00559947 /* Cup */,
 				757F12851C48CB9C00CF947C /* KeyRing */,
+				758578711C6625E60010A7CF /* T-Shirt */,
 				752ED13F1C5A030A00BE0751 /* TableViewCell */,
 				752ED1401C5A031C00BE0751 /* CollectionViewCell */,
 				758792A71BF487E10071C383 /* ActivityView.swift */,
@@ -885,6 +888,14 @@
 				758070171C0C420E000F9D84 /* PlateView.swift */,
 			);
 			name = Plate;
+			sourceTree = "<group>";
+		};
+		758578711C6625E60010A7CF /* T-Shirt */ = {
+			isa = PBXGroup;
+			children = (
+				758579A71C66295C0010A7CF /* TShirt.swift */,
+			);
+			name = "T-Shirt";
 			sourceTree = "<group>";
 		};
 		758595581BDA16EE0079A1BA /* Case */ = {
@@ -1528,6 +1539,7 @@
 				0C8296BE1BFC5CF200B2B345 /* ImagePickingTableViewCell.swift in Sources */,
 				75A36C3F1BE25C310036B500 /* GalaxyA7.swift in Sources */,
 				751DA9AC1C19C68900D10C24 /* UIImageResizeAdditions.swift in Sources */,
+				758579A81C66295C0010A7CF /* TShirt.swift in Sources */,
 				758997531C3ABA1B00427033 /* BagItemTableViewCell.swift in Sources */,
 				0C8296C21BFC65D500B2B345 /* DescriptionTableViewCell.swift in Sources */,
 				752ED13C1C59F56F00BE0751 /* GlassOvalKeyRing.swift in Sources */,
