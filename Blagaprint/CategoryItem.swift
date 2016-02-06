@@ -30,6 +30,11 @@ class CategoryItem: PFObject, PFSubclassing {
         case ceramicCup
         case chameleonCup
         
+        // Clothes.
+        case male
+        case female
+        case child
+        
         // Default.
         case undefined
     }
