@@ -527,7 +527,7 @@ class CategoryItemViewController: UIViewController {
                 self.images = keyRings.map() { $0.imageOfKeyRingWithPickedImage(pickedImage) }
                 
             case .clothes:
-                self.images = [TShirt.imageOfFront(tshirtColor: pickedColor), TShirt.imageOfBack(tshirtColor: pickedColor)]
+                self.images = TShirt(image: pickedImage, isImageVisible: true, imageLocation: .Front, color: pickedColor, size: "M").tShirtImages()
                 
             default:
                 break
@@ -557,7 +557,7 @@ class CategoryItemViewController: UIViewController {
                 self.images = keyRings.map() { $0.image }
                 
             case .clothes:
-                self.images = [TShirt.imageOfFront(tshirtColor: pickedColor), TShirt.imageOfBack(tshirtColor: pickedColor)]
+                self.images = TShirt(isImageVisible: false, imageLocation: .None, color: pickedColor, size: "M").tShirtImages()
                 
             default:
                 break

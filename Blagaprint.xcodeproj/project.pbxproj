@@ -131,7 +131,8 @@
 		757F12921C48F65300CF947C /* HeartWithWingsKeyRing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 757F12911C48F65300CF947C /* HeartWithWingsKeyRing.swift */; };
 		758070181C0C420E000F9D84 /* PlateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 758070171C0C420E000F9D84 /* PlateView.swift */; };
 		75823AAF1BD8BDD000C92F83 /* PhoneCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75823AAE1BD8BDD000C92F83 /* PhoneCase.swift */; };
-		758579A81C66295C0010A7CF /* TShirt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 758579A71C66295C0010A7CF /* TShirt.swift */; };
+		758579AA1C66C8FB0010A7CF /* TShirtCanvas.swift in Sources */ = {isa = PBXBuildFile; fileRef = 758579A91C66C8FB0010A7CF /* TShirtCanvas.swift */; };
+		758579AC1C66C9A30010A7CF /* TShirt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 758579AB1C66C9A30010A7CF /* TShirt.swift */; };
 		758595621BDA30C10079A1BA /* iPhone4CameraImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 7585955E1BDA30C10079A1BA /* iPhone4CameraImage.png */; };
 		758595631BDA30C10079A1BA /* iPhone4CameraImage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7585955F1BDA30C10079A1BA /* iPhone4CameraImage@2x.png */; };
 		7585BB4E1C1026AA00D59BF5 /* BLImagePickerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7585BB4D1C1026AA00D59BF5 /* BLImagePickerController.swift */; };
@@ -338,7 +339,8 @@
 		757F12911C48F65300CF947C /* HeartWithWingsKeyRing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeartWithWingsKeyRing.swift; sourceTree = "<group>"; };
 		758070171C0C420E000F9D84 /* PlateView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlateView.swift; sourceTree = "<group>"; };
 		75823AAE1BD8BDD000C92F83 /* PhoneCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhoneCase.swift; sourceTree = "<group>"; };
-		758579A71C66295C0010A7CF /* TShirt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TShirt.swift; sourceTree = "<group>"; };
+		758579A91C66C8FB0010A7CF /* TShirtCanvas.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TShirtCanvas.swift; sourceTree = "<group>"; };
+		758579AB1C66C9A30010A7CF /* TShirt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TShirt.swift; sourceTree = "<group>"; };
 		7585955E1BDA30C10079A1BA /* iPhone4CameraImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = iPhone4CameraImage.png; path = images/iPhone4CameraImage.png; sourceTree = "<group>"; };
 		7585955F1BDA30C10079A1BA /* iPhone4CameraImage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "iPhone4CameraImage@2x.png"; path = "images/iPhone4CameraImage@2x.png"; sourceTree = "<group>"; };
 		7585BB4D1C1026AA00D59BF5 /* BLImagePickerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BLImagePickerController.swift; sourceTree = "<group>"; };
@@ -621,15 +623,8 @@
 		50DD723A1BBED31B008A9B80 /* DataModel */ = {
 			isa = PBXGroup;
 			children = (
-				75AB8ABF1BE744DB00B88A5A /* ParseCentral.swift */,
-				50DD72381BBED313008A9B80 /* Category.swift */,
-				503CBEC01BC415C700052BE0 /* CategoryItem.swift */,
-				75C4E7C71C3807450039B59F /* Bag.swift */,
-				75C4E7C91C3807540039B59F /* BagItem.swift */,
-				750E0F901C1874DA00A8158C /* BlagaprintUser.swift */,
-				757470311BDCB404004CABD0 /* Device.swift */,
-				75BF69521C044900009D670D /* PhotoFrame.swift */,
-				757F12871C48CE1400CF947C /* KeyRing.swift */,
+				7525F92F1C66DA9B000D5E96 /* ParseDataObjects */,
+				7525F92E1C66DA86000D5E96 /* Items */,
 			);
 			name = DataModel;
 			sourceTree = "<group>";
@@ -760,6 +755,30 @@
 				7522783D1BE12951008E117F /* galaxyS6CameraImage@2x.png */,
 			);
 			name = GalaxyS6;
+			sourceTree = "<group>";
+		};
+		7525F92E1C66DA86000D5E96 /* Items */ = {
+			isa = PBXGroup;
+			children = (
+				757470311BDCB404004CABD0 /* Device.swift */,
+				75BF69521C044900009D670D /* PhotoFrame.swift */,
+				757F12871C48CE1400CF947C /* KeyRing.swift */,
+				758579AB1C66C9A30010A7CF /* TShirt.swift */,
+			);
+			name = Items;
+			sourceTree = "<group>";
+		};
+		7525F92F1C66DA9B000D5E96 /* ParseDataObjects */ = {
+			isa = PBXGroup;
+			children = (
+				75AB8ABF1BE744DB00B88A5A /* ParseCentral.swift */,
+				50DD72381BBED313008A9B80 /* Category.swift */,
+				503CBEC01BC415C700052BE0 /* CategoryItem.swift */,
+				75C4E7C71C3807450039B59F /* Bag.swift */,
+				75C4E7C91C3807540039B59F /* BagItem.swift */,
+				750E0F901C1874DA00A8158C /* BlagaprintUser.swift */,
+			);
+			name = ParseDataObjects;
 			sourceTree = "<group>";
 		};
 		752ED13F1C5A030A00BE0751 /* TableViewCell */ = {
@@ -893,7 +912,7 @@
 		758578711C6625E60010A7CF /* T-Shirt */ = {
 			isa = PBXGroup;
 			children = (
-				758579A71C66295C0010A7CF /* TShirt.swift */,
+				758579A91C66C8FB0010A7CF /* TShirtCanvas.swift */,
 			);
 			name = "T-Shirt";
 			sourceTree = "<group>";
@@ -1538,12 +1557,13 @@
 				75BF69531C044900009D670D /* PhotoFrame.swift in Sources */,
 				0C8296BE1BFC5CF200B2B345 /* ImagePickingTableViewCell.swift in Sources */,
 				75A36C3F1BE25C310036B500 /* GalaxyA7.swift in Sources */,
+				758579AC1C66C9A30010A7CF /* TShirt.swift in Sources */,
 				751DA9AC1C19C68900D10C24 /* UIImageResizeAdditions.swift in Sources */,
-				758579A81C66295C0010A7CF /* TShirt.swift in Sources */,
 				758997531C3ABA1B00427033 /* BagItemTableViewCell.swift in Sources */,
 				0C8296C21BFC65D500B2B345 /* DescriptionTableViewCell.swift in Sources */,
 				752ED13C1C59F56F00BE0751 /* GlassOvalKeyRing.swift in Sources */,
 				7589398A1C16B54D0069655B /* CategoryItemViewController.swift in Sources */,
+				758579AA1C66C8FB0010A7CF /* TShirtCanvas.swift in Sources */,
 				50551C331BCBB469005B88DA /* OvalView.swift in Sources */,
 				758070181C0C420E000F9D84 /* PlateView.swift in Sources */,
 				75C4E7C81C3807450039B59F /* Bag.swift in Sources */,
