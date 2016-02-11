@@ -99,12 +99,24 @@ class ShoppingBagViewController: UITableViewController {
                 cell.thumbnailImage.image = thumbnails[item.objectId!]
             }
             
-            if let itemName = self.categoryItems[item.objectId!] {
-                cell.descriptionLabel.text = itemName
-            } else if let categoryName = categories[item.objectId!] {
-                cell.descriptionLabel.text = categoryName
+            var description = ""
+            
+            // Category title name.
+            if let categoryName = categories[item.objectId!] {
+                description += categoryName
             }
             
+            // Category item name.
+            if let itemName = self.categoryItems[item.objectId!] {
+                description += " \(itemName.lowercaseString)"
+            }
+            
+            // Item size.
+            if let itemSize = self.objects?[indexPath.row].itemSize where itemSize != "" {
+                description += ": \(itemSize)"
+            }
+            
+            cell.descriptionLabel.text = description
             cell.priceLabel.text = String.formatAmount(NSNumber(double: item.price))
             
             return cell
