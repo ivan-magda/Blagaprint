@@ -40,19 +40,15 @@ class TShirt {
     /// T-Shirt color.
     var color = UIColor.whiteColor()
     
-    /// T-Shirt size.
-    var size = "M"
-    
     //--------------------------------------
     // MARK: - Init
     //--------------------------------------
     
-    init(image: UIImage = UIImage(), isImageVisible visible: Bool = false, imageLocation: TShirtImageLocations = .Front, color: UIColor = UIColor.whiteColor(), size: String = "M") {
+    init(image: UIImage = UIImage(), isImageVisible visible: Bool = false, imageLocation: TShirtImageLocations = .Front, color: UIColor = UIColor.whiteColor()) {
         self.image = image
         self.isImageVisible = visible
         self.imageLocation = imageLocation
         self.color = color
-        self.size = size
     }
     
     //--------------------------------------

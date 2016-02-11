@@ -132,6 +132,9 @@ class CategoryItemViewController: UIViewController {
     /// Holds the index of picked item type.
     private var pickedTypeIndex = 0
     
+    /// Where to place the image on t-shirt.
+    private var imageLocation = TShirt.TShirtImageLocations.Front
+    
     //--------------------------------------
     // MARK: Manage Text of Item
     //--------------------------------------
@@ -427,7 +430,6 @@ class CategoryItemViewController: UIViewController {
             self.pickColorView.alpha = 0.0
         }
         
-        //TODO: properly determinate scroll view content size.
         setPickColorViewBottomSpace()
         
         UIView.animateWithDuration(0.25) {
@@ -444,7 +446,7 @@ class CategoryItemViewController: UIViewController {
         let pickTypeViewHeight = self.pickTypeViewHeightConstraint.constant
         var pickImageViewHeight = self.moreActionsViewHeightConstraint.constant
         
-        // If we hide color picking view, then we do not need to include pick image view height.
+        // If we hide color picking view, then we need additional space.
         if self.pickColorViewHeightConstraint.constant == 0 {
             pickImageViewHeight = 0.0
         }
@@ -577,7 +579,7 @@ class CategoryItemViewController: UIViewController {
                 self.images = keyRings.map() { $0.imageOfKeyRingWithPickedImage(pickedImage) }
                 
             case .clothes:
-                self.images = TShirt(image: pickedImage, isImageVisible: true, imageLocation: .Front, color: pickedColor, size: "M").tShirtImages()
+                self.images = TShirt(image: pickedImage, isImageVisible: true, imageLocation: self.imageLocation, color: pickedColor).tShirtImages()
                 
             default:
                 break
@@ -607,7 +609,7 @@ class CategoryItemViewController: UIViewController {
                 self.images = keyRings.map() { $0.image }
                 
             case .clothes:
-                self.images = TShirt(isImageVisible: false, imageLocation: .None, color: pickedColor, size: "M").tShirtImages()
+                self.images = TShirt(isImageVisible: false, imageLocation: self.imageLocation, color: pickedColor).tShirtImages()
                 
             default:
                 break
@@ -814,6 +816,40 @@ class CategoryItemViewController: UIViewController {
             }
         }
         imagePickingAlertController.addAction(shoot)
+        
+        // Add additional image location action.
+        if self.category.type == Category.CategoryType.clothes.rawValue {
+            
+            // Present next action sheet with supported locations.
+            
+            let imageLocation = UIAlertAction(title: NSLocalizedString("Image location", comment: "Alert action title"), style: .Default) { action in
+                
+                /// Nested function for data updating.
+                func setImageLocationAndReloadData(location: TShirt.TShirtImageLocations) {
+                    self.imageLocation = location
+                    self.reloadData()
+                }
+                
+                let imageLocationController = UIAlertController(title: NSLocalizedString("Where to place the image", comment: ""), message: nil, preferredStyle: .ActionSheet)
+                
+                // Front image location action.
+                imageLocationController.addAction(UIAlertAction(title: NSLocalizedString("Front", comment: ""), style: .Default, handler: { action in
+                    setImageLocationAndReloadData(TShirt.TShirtImageLocations.Front)
+                }))
+                
+                // Behind image location action.
+                imageLocationController.addAction(UIAlertAction(title: NSLocalizedString("Behind", comment: ""), style: .Default, handler: { action in
+                    setImageLocationAndReloadData(TShirt.TShirtImageLocations.Behind)
+                }))
+                
+                // Cancel action.
+                imageLocationController.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .Cancel, handler: nil))
+                
+                self.presentViewController(imageLocationController, animated: true, completion: nil)
+            }
+            
+            imagePickingAlertController.addAction(imageLocation)
+        }
         
         /// Clear action
         let clearAction = UIAlertAction(title: NSLocalizedString("Clear", comment: "Alert action title"), style: .Destructive) { action in
