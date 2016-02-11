@@ -43,6 +43,7 @@ class CategoryItem: PFObject, PFSubclassing {
         case name
         case type
         case image
+        case sizes
         case parentCategory
     }
     
@@ -62,6 +63,9 @@ class CategoryItem: PFObject, PFSubclassing {
     /// Type of the categoryItem.
     /// Use CategoryItemType(rawValue:) for creating type from string.
     @NSManaged var type: String
+    
+    /// Array of item sizes.
+    @NSManaged var sizes: [String]
     
     override var description: String {
         return "Name: \(name)\nCategory: \(parentCategory)"

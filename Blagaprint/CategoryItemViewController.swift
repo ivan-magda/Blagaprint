@@ -22,6 +22,7 @@ class CategoryItemViewController: UIViewController {
         case TextEditing
         case PhotoLibrary
         case PickType
+        case EmbedItemSizeCollectionViewController
     }
     
     /// Use this enum for tracking selected mode of manage text alert 
@@ -34,8 +35,8 @@ class CategoryItemViewController: UIViewController {
     
     /// Picked image sizes for filling in the item object.
     private struct PickedImageSize {
-        static let Cup = CGSizeMake(197.0, 225.0)
-        static let Plate = CGSizeMake(210.0, 210.0)
+        static let Cup = CGSize(width: 197.0, height: 225.0)
+        static let Plate = CGSize(width: 210.0, height: 210.0)
     }
     
     
@@ -52,6 +53,9 @@ class CategoryItemViewController: UIViewController {
     @IBOutlet weak var placeholderView: UIView!
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var pageControl: UIPageControl!
+    @IBOutlet weak var itemSizeContainerView: UIView!
+    
+    weak var itemSizeCollectionViewController: ItemSizeCollectionViewController?
     
     @IBOutlet weak var moreActionsView: UIView!
     @IBOutlet weak var moreActionsLabel: UILabel!
@@ -68,6 +72,7 @@ class CategoryItemViewController: UIViewController {
     
     @IBOutlet weak var placeholderViewHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var collectionViewHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var itemSizeContainerViewHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var pageControlBottomSpaceConstraint: NSLayoutConstraint!
     @IBOutlet weak var moreActionsViewHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var pickColorViewHeightConstraint: NSLayoutConstraint!
@@ -85,7 +90,7 @@ class CategoryItemViewController: UIViewController {
     private let actionViewHeightValue: CGFloat = 44.0
     
     /// Minimal bottom space value.
-    private let minimalSpaceValue: CGFloat = 16
+    private let minimalSpaceValue: CGFloat = 72.0
     
     /// Minimal height value of collection view.
     private let collectionViewMinHeightValue: CGFloat = 160.0
@@ -124,6 +129,7 @@ class CategoryItemViewController: UIViewController {
     /// True if user successfully added item to bag.
     private var didAddItemToBag = false
     
+    /// Holds the index of picked item type.
     private var pickedTypeIndex = 0
     
     //--------------------------------------
@@ -133,6 +139,7 @@ class CategoryItemViewController: UIViewController {
     /// Set this attributes when you want to segue to TextEditingViewController.
     private var textAttributes: [TextEditingViewControllerTextFieldAttributes : Int]?
     
+    /// Holds the selected text edting mode: work with numbers or letters.
     private var selectedTextEditingMode: ManageTextSelectedMode?
     
     //--------------------------------------
@@ -179,6 +186,7 @@ class CategoryItemViewController: UIViewController {
     //--------------------------------------
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        // Pick the color.
         if segue.identifier == SegueIdentifier.ColorPicking.rawValue {
             let navigationController = segue.destinationViewController as! UINavigationController
             
@@ -193,6 +201,8 @@ class CategoryItemViewController: UIViewController {
                 
                 weakSelf?.reloadData()
             }
+            
+            // Pick type.
         } else if segue.identifier == SegueIdentifier.PickType.rawValue {
             let pickTypeTableViewController = segue.destinationViewController as! PickTypeTableViewController
             
@@ -200,11 +210,13 @@ class CategoryItemViewController: UIViewController {
             pickTypeTableViewController.delegate = self
             
             pickTypeTableViewController.originalTypeName = categoryItems![pickedTypeIndex].name
+            
+            // Text editing.
         } else if segue.identifier == SegueIdentifier.TextEditing.rawValue {
             let navigationController = segue.destinationViewController as! UINavigationController
             let textEditingViewController = navigationController.topViewController as! TextEditingViewController
             
-            // Check for sended attributes and apply its.
+            // Check for sended attributes and apply if necessary.
             if let attributes = self.textAttributes {
                 for (key, value) in attributes {
                     switch key {
@@ -218,7 +230,9 @@ class CategoryItemViewController: UIViewController {
             
             weak var weakSelf = self
             
+            // Completion handler block.
             textEditingViewController.didDoneOnTextCompletionHandler = { text in
+                // Detect what user has changed.
                 if let selectedMode = weakSelf?.selectedTextEditingMode {
                     switch selectedMode {
                     case .Letters:
@@ -232,6 +246,12 @@ class CategoryItemViewController: UIViewController {
                 
                 weakSelf?.reloadData()
             }
+            
+            // Embed ItemSizeCollectionViewController.
+        } else if segue.identifier == SegueIdentifier.EmbedItemSizeCollectionViewController.rawValue {
+            let controller = segue.destinationViewController as! ItemSizeCollectionViewController
+            
+            self.itemSizeCollectionViewController = controller
         }
     }
     
@@ -267,6 +287,22 @@ class CategoryItemViewController: UIViewController {
         }
         
         return nil
+    }
+    
+    private func getItemSizes() -> [String]? {
+        var sizes: [String]?
+        
+        guard let items = self.categoryItems where items.count > 0 else {
+            return nil
+        }
+        
+        guard self.pickedTypeIndex < items.count else {
+            return nil
+        }
+        
+        sizes = items[pickedTypeIndex].sizes
+        
+        return sizes!.count > 0 ? sizes! : nil
     }
     
     //--------------------------------------
@@ -344,7 +380,7 @@ class CategoryItemViewController: UIViewController {
     }
     
     private func setupScrollView() {
-        if self.navigationController == nil {
+        guard let _ = self.navigationController else {
             return
         }
         
@@ -362,12 +398,19 @@ class CategoryItemViewController: UIViewController {
             self.collectionViewHeightConstraint.constant = collectionViewMinHeightValue
         }
         
+        // Set height of container view.
+        if let _ = self.getItemSizes() {
+            self.itemSizeContainerViewHeightConstraint.constant = actionViewHeightValue
+        } else {
+            self.itemSizeContainerViewHeightConstraint.constant = 0.0
+        }
+        
         // Sets the placeholder view height constraint with determinated value.
         switch categoryType {
         case .cup:
             self.placeholderViewHeightConstraint.constant = placeholderViewDefaultHeightValue
         default:
-            self.placeholderViewHeightConstraint.constant = collectionViewHeightConstraint.constant + CGRectGetHeight(pageControl.bounds)
+            self.placeholderViewHeightConstraint.constant = collectionViewHeightConstraint.constant + itemSizeContainerViewHeightConstraint.constant + pageControl.bounds.height
         }
         
         setupPickTypeViewWithIfNeedLayout(false)
@@ -393,10 +436,11 @@ class CategoryItemViewController: UIViewController {
     }
     
     private func setPickColorViewBottomSpace() {
-        let frameHeight = CGRectGetHeight(self.view.bounds)
-        let navBarHeight = CGRectGetHeight(self.navigationController!.navigationBar.bounds)
-        let statusBarHeight = CGRectGetHeight(UIApplication.sharedApplication().statusBarFrame)
-        let placeholderView = self.placeholderViewHeightConstraint.constant
+        let frameHeight = self.view.bounds.height
+        let navBarHeight = self.navigationController!.navigationBar.bounds.height
+        let statusBarHeight = UIApplication.sharedApplication().statusBarFrame.height
+        let placeholderViewHeight = self.placeholderViewHeightConstraint.constant
+        let itemSizesViewHeight = self.itemSizeContainerViewHeightConstraint.constant
         let pickTypeViewHeight = self.pickTypeViewHeightConstraint.constant
         var pickImageViewHeight = self.moreActionsViewHeightConstraint.constant
         
@@ -405,7 +449,7 @@ class CategoryItemViewController: UIViewController {
             pickImageViewHeight = 0.0
         }
         
-        var space = frameHeight - (statusBarHeight + navBarHeight + placeholderView + pickImageViewHeight + pickTypeViewHeight)
+        var space = frameHeight - (statusBarHeight + navBarHeight + placeholderViewHeight + itemSizesViewHeight + pickImageViewHeight + pickTypeViewHeight)
         
         // Check for minimal space.
         if space < minimalSpaceValue {
@@ -456,7 +500,13 @@ class CategoryItemViewController: UIViewController {
     
     private func reloadData() {
         reloadImages(pickedImage: pickedImage)
+        
         collectionView.reloadData()
+        
+        if let sizes = self.getItemSizes() {
+            self.itemSizeCollectionViewController?.sizes = sizes
+            self.itemSizeCollectionViewController?.collectionView?.reloadData()
+        }
         
         self.pageControl.numberOfPages = images.count
     }
@@ -577,6 +627,13 @@ class CategoryItemViewController: UIViewController {
             } else if let items = items {
                 weakSelf?.categoryItems = items
                 
+                if let itemSizeController = weakSelf?.itemSizeCollectionViewController {
+                    if let sizes = weakSelf!.getItemSizes() {
+                        itemSizeController.sizes = sizes
+                        itemSizeController.collectionView?.reloadData()
+                    }
+                }
+                
                 weakSelf?.setupPickTypeViewWithIfNeedLayout(true)
                 weakSelf?.reloadData()
             }
@@ -587,12 +644,15 @@ class CategoryItemViewController: UIViewController {
         // Create BagItem and save it to Parse.
         let item = BagItem()
         
+        // Set user ID.
         if let user = BlagaprintUser.currentUser() {
             item.userId = user.objectId!
         }
         
+        // Set parent category ID.
         item.category = self.category.objectId!
         
+        // Set selected category item if it exist.
         if let categoryItems = self.categoryItems where categoryItems.count > 0 {
             item.categoryItem = categoryItems[pickedTypeIndex].objectId!
         }
@@ -620,12 +680,20 @@ class CategoryItemViewController: UIViewController {
         
         // Set picked color.
         if self.pickColorViewHeightConstraint.constant != 0.0 {
-            let colorInString = BagItem.colorToString(self.pickedColor)
-            item.fillColor = colorInString
+            item.fillColor = BagItem.colorToString(self.pickedColor)
+        }
+        
+        // Set item size.
+        if let selectedItemSizeIndex = self.itemSizeCollectionViewController?.selectedSizeIndexPath?.row {
+            if let sizes = getItemSizes() {
+                item.itemSize = sizes[selectedItemSizeIndex]
+            }
         }
         
         // TODO: fix with price selection.
         item.price = 500.0
+        
+        print("Created BagItem: \(item)")
         
         return item
     }

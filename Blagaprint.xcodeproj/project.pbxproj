@@ -171,6 +171,8 @@
 		75A3E9851BE365CC0001E073 /* galaxyNote4CameraImage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 75A3E9831BE365CC0001E073 /* galaxyNote4CameraImage@2x.png */; };
 		75A3E9881BE365DC0001E073 /* galaxyNote4Speaker.png in Resources */ = {isa = PBXBuildFile; fileRef = 75A3E9861BE365DC0001E073 /* galaxyNote4Speaker.png */; };
 		75A3E9891BE365DC0001E073 /* galaxyNote4Speaker@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 75A3E9871BE365DC0001E073 /* galaxyNote4Speaker@2x.png */; };
+		75A7F18F1C6C356400E20DB2 /* ItemSizeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75A7F18E1C6C356400E20DB2 /* ItemSizeCollectionViewCell.swift */; };
+		75A7F1971C6C4C5300E20DB2 /* ItemSizeCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75A7F1961C6C4C5300E20DB2 /* ItemSizeCollectionViewController.swift */; };
 		75AB8AC01BE744DB00B88A5A /* ParseCentral.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75AB8ABF1BE744DB00B88A5A /* ParseCentral.swift */; };
 		75BF69531C044900009D670D /* PhotoFrame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75BF69521C044900009D670D /* PhotoFrame.swift */; };
 		75BF69591C044EDC009D670D /* SH19_PhotoFrame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75BF69581C044EDC009D670D /* SH19_PhotoFrame.swift */; };
@@ -380,6 +382,8 @@
 		75A3E9831BE365CC0001E073 /* galaxyNote4CameraImage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "galaxyNote4CameraImage@2x.png"; sourceTree = "<group>"; };
 		75A3E9861BE365DC0001E073 /* galaxyNote4Speaker.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = galaxyNote4Speaker.png; sourceTree = "<group>"; };
 		75A3E9871BE365DC0001E073 /* galaxyNote4Speaker@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "galaxyNote4Speaker@2x.png"; sourceTree = "<group>"; };
+		75A7F18E1C6C356400E20DB2 /* ItemSizeCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemSizeCollectionViewCell.swift; sourceTree = "<group>"; };
+		75A7F1961C6C4C5300E20DB2 /* ItemSizeCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemSizeCollectionViewController.swift; sourceTree = "<group>"; };
 		75AB8ABC1BE73F2900B88A5A /* Blagaprint.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = Blagaprint.entitlements; path = Blagaprint/Blagaprint.entitlements; sourceTree = "<group>"; };
 		75AB8ABF1BE744DB00B88A5A /* ParseCentral.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseCentral.swift; sourceTree = "<group>"; };
 		75BF69521C044900009D670D /* PhotoFrame.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoFrame.swift; sourceTree = "<group>"; };
@@ -474,6 +478,7 @@
 				7585BB4D1C1026AA00D59BF5 /* BLImagePickerController.swift */,
 				7522B8911BFF3C0100BC14C0 /* ExpandedCollectionViewFlowLayout.swift */,
 				75CECC281C5FA2D300B2AE6E /* PickTypeTableViewController.swift */,
+				75A7F1961C6C4C5300E20DB2 /* ItemSizeCollectionViewController.swift */,
 				50551C2F1BCBA534005B88DA /* PhoneCase */,
 			);
 			name = CatalogScene;
@@ -514,7 +519,8 @@
 			isa = PBXGroup;
 			children = (
 				50FD7F521BB903C200ABEC38 /* AppDelegate */,
-				50DD723A1BBED31B008A9B80 /* DataModel */,
+				75A7F18D1C6C2A4100E20DB2 /* Service */,
+				50DD723A1BBED31B008A9B80 /* Model */,
 				50FD7F531BB903CC00ABEC38 /* ViewControllers */,
 				50FD7F511BB903B700ABEC38 /* View */,
 				508503051BBAADCF00152131 /* Utility */,
@@ -620,13 +626,13 @@
 			name = PhoneCase;
 			sourceTree = "<group>";
 		};
-		50DD723A1BBED31B008A9B80 /* DataModel */ = {
+		50DD723A1BBED31B008A9B80 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				7525F92F1C66DA9B000D5E96 /* ParseDataObjects */,
+				7525F92F1C66DA9B000D5E96 /* Parse */,
 				7525F92E1C66DA86000D5E96 /* Items */,
 			);
-			name = DataModel;
+			name = Model;
 			sourceTree = "<group>";
 		};
 		50FD7F511BB903B700ABEC38 /* View */ = {
@@ -768,17 +774,16 @@
 			name = Items;
 			sourceTree = "<group>";
 		};
-		7525F92F1C66DA9B000D5E96 /* ParseDataObjects */ = {
+		7525F92F1C66DA9B000D5E96 /* Parse */ = {
 			isa = PBXGroup;
 			children = (
-				75AB8ABF1BE744DB00B88A5A /* ParseCentral.swift */,
 				50DD72381BBED313008A9B80 /* Category.swift */,
 				503CBEC01BC415C700052BE0 /* CategoryItem.swift */,
 				75C4E7C71C3807450039B59F /* Bag.swift */,
 				75C4E7C91C3807540039B59F /* BagItem.swift */,
 				750E0F901C1874DA00A8158C /* BlagaprintUser.swift */,
 			);
-			name = ParseDataObjects;
+			name = Parse;
 			sourceTree = "<group>";
 		};
 		752ED13F1C5A030A00BE0751 /* TableViewCell */ = {
@@ -798,6 +803,7 @@
 			children = (
 				0C541A581BD0B51A0028BD9A /* PhotoLibraryItemCollectionViewCell.swift */,
 				0C7F25431C27D75100D7C49C /* ImageCollectionViewCell.swift */,
+				75A7F18E1C6C356400E20DB2 /* ItemSizeCollectionViewCell.swift */,
 			);
 			name = CollectionViewCell;
 			sourceTree = "<group>";
@@ -1073,6 +1079,14 @@
 				75A3E9831BE365CC0001E073 /* galaxyNote4CameraImage@2x.png */,
 			);
 			name = GalaxyNote4;
+			sourceTree = "<group>";
+		};
+		75A7F18D1C6C2A4100E20DB2 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				75AB8ABF1BE744DB00B88A5A /* ParseCentral.swift */,
+			);
+			name = Service;
 			sourceTree = "<group>";
 		};
 		75AB8AC11BE7479F00B88A5A /* Frameworks */ = {
@@ -1550,6 +1564,7 @@
 				75C4E7CA1C3807540039B59F /* BagItem.swift in Sources */,
 				0C7F25361C27CD6A00D7C49C /* Cup.swift in Sources */,
 				750C83C91C02EEBB00BAFEB0 /* SH38_PhotoFrame.swift in Sources */,
+				75A7F1971C6C4C5300E20DB2 /* ItemSizeCollectionViewController.swift in Sources */,
 				757F12921C48F65300CF947C /* HeartWithWingsKeyRing.swift in Sources */,
 				751DA9B71C19D3D600D10C24 /* UserLogInEmptyView.swift in Sources */,
 				756DF01A1C4E542700A31B55 /* SquareKeyRing.swift in Sources */,
@@ -1559,6 +1574,7 @@
 				75A36C3F1BE25C310036B500 /* GalaxyA7.swift in Sources */,
 				758579AC1C66C9A30010A7CF /* TShirt.swift in Sources */,
 				751DA9AC1C19C68900D10C24 /* UIImageResizeAdditions.swift in Sources */,
+				75A7F18F1C6C356400E20DB2 /* ItemSizeCollectionViewCell.swift in Sources */,
 				758997531C3ABA1B00427033 /* BagItemTableViewCell.swift in Sources */,
 				0C8296C21BFC65D500B2B345 /* DescriptionTableViewCell.swift in Sources */,
 				752ED13C1C59F56F00BE0751 /* GlassOvalKeyRing.swift in Sources */,

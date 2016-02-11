@@ -26,19 +26,7 @@ class BagItem: PFObject, PFSubclassing {
         case fillColor
         case textColor
         case createdAt
-    }
-    
-    //--------------------------------------
-    // MARK: - PFSubclassing
-    //--------------------------------------
-    
-    override class func initialize() {
-        struct Static {
-            static var onceToken : dispatch_once_t = 0;
-        }
-        dispatch_once(&Static.onceToken) {
-            self.registerSubclass()
-        }
+        case itemSize
     }
     
     //--------------------------------------
@@ -55,6 +43,24 @@ class BagItem: PFObject, PFSubclassing {
     @NSManaged var text: String
     @NSManaged var fillColor: String
     @NSManaged var textColor: String
+    @NSManaged var itemSize: String
+    
+    override var description: String {
+        return "UserID: \(userId), categoryID: \(category), categoryItemID: \(categoryItem), price: \(price), device: \(device), text: \(text), itemSize: \(itemSize)"
+    }
+    
+    //--------------------------------------
+    // MARK: - PFSubclassing
+    //--------------------------------------
+    
+    override class func initialize() {
+        struct Static {
+            static var onceToken : dispatch_once_t = 0;
+        }
+        dispatch_once(&Static.onceToken) {
+            self.registerSubclass()
+        }
+    }
     
     /// Class name of the Bag object.
     class func parseClassName() -> String {
@@ -79,5 +85,4 @@ class BagItem: PFObject, PFSubclassing {
         
         return color
     }
-    
 }

@@ -28,10 +28,6 @@ import UIKit
     optional func pickTypeTableViewController(controller: PickTypeTableViewController, didSelectItem item: String, atIndexPath indexPath: NSIndexPath)
 }
 
-//--------------------------------------
-// MARK:
-//--------------------------------------
-
 class PickTypeTableViewController: UITableViewController {
     
     //--------------------------------------

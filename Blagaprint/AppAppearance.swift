@@ -22,6 +22,7 @@ class AppAppearance: NSObject {
         static let tuna = UIColor(red: 54.0 / 255.0, green: 54.0 / 255.0, blue: 66.0 / 255.0, alpha: 1)
         static let cornflowerBlue = UIColor(red: 108.0 / 255.0, green: 148.0 / 255.0, blue: 255.0 / 255.0, alpha: 1)
         static let celestialBlue = UIColor(red: 65.0 / 255.0, green: 144.0 / 255.0, blue: 219.0 / 255.0, alpha: 1.0)
+        static let green = UIColor(red: 76.0 / 255.0, green: 217.0 / 255.0, blue: 100.0 / 255.0, alpha: 1.0)
     }
     
     //--------------------------------------
