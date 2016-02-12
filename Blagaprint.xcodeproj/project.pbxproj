@@ -115,6 +115,7 @@
 		7547D2541BDE2376006E4170 /* galaxyS5CameraImage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7547D2461BDE2376006E4170 /* galaxyS5CameraImage@2x.png */; };
 		7547D2551BDE2376006E4170 /* galaxyS5Speaker.png in Resources */ = {isa = PBXBuildFile; fileRef = 7547D2471BDE2376006E4170 /* galaxyS5Speaker.png */; };
 		7547D2561BDE2376006E4170 /* galaxyS5Speaker@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7547D2481BDE2376006E4170 /* galaxyS5Speaker@2x.png */; };
+		755514531C6DE9120007BC32 /* Cup+ImageGenerating.swift in Sources */ = {isa = PBXBuildFile; fileRef = 755514521C6DE9120007BC32 /* Cup+ImageGenerating.swift */; };
 		7561AE9F1C0FD563009B2C8B /* Plate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7561AE9E1C0FD563009B2C8B /* Plate.swift */; };
 		756DF01A1C4E542700A31B55 /* SquareKeyRing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 756DF0191C4E542700A31B55 /* SquareKeyRing.swift */; };
 		756DF01D1C4E56E200A31B55 /* CircleKeyRing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 756DF01B1C4E56E200A31B55 /* CircleKeyRing.swift */; };
@@ -325,6 +326,7 @@
 		7547D2461BDE2376006E4170 /* galaxyS5CameraImage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "galaxyS5CameraImage@2x.png"; path = "images/galaxyS5CameraImage@2x.png"; sourceTree = "<group>"; };
 		7547D2471BDE2376006E4170 /* galaxyS5Speaker.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = galaxyS5Speaker.png; path = images/galaxyS5Speaker.png; sourceTree = "<group>"; };
 		7547D2481BDE2376006E4170 /* galaxyS5Speaker@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "galaxyS5Speaker@2x.png"; path = "images/galaxyS5Speaker@2x.png"; sourceTree = "<group>"; };
+		755514521C6DE9120007BC32 /* Cup+ImageGenerating.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Cup+ImageGenerating.swift"; sourceTree = "<group>"; };
 		7561AE9E1C0FD563009B2C8B /* Plate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Plate.swift; sourceTree = "<group>"; };
 		756DF0191C4E542700A31B55 /* SquareKeyRing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SquareKeyRing.swift; sourceTree = "<group>"; };
 		756DF01B1C4E56E200A31B55 /* CircleKeyRing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleKeyRing.swift; sourceTree = "<group>"; };
@@ -454,6 +456,7 @@
 			isa = PBXGroup;
 			children = (
 				0C7F25351C27CD6A00D7C49C /* Cup.swift */,
+				755514521C6DE9120007BC32 /* Cup+ImageGenerating.swift */,
 			);
 			name = Cup;
 			sourceTree = "<group>";
@@ -1557,6 +1560,7 @@
 				7585BB4E1C1026AA00D59BF5 /* BLImagePickerController.swift in Sources */,
 				7561AE9F1C0FD563009B2C8B /* Plate.swift in Sources */,
 				751B784F1C6DC19200920C1A /* CopyServices.swift in Sources */,
+				755514531C6DE9120007BC32 /* Cup+ImageGenerating.swift in Sources */,
 				50551C2C1BCB8B18005B88DA /* SelectDeviceTableViewController.swift in Sources */,
 				50A871D71BCA9D68003CB0F9 /* CaseConstructorViewController.swift in Sources */,
 				753D4D691C05A4D3002FC5E9 /* SH15_PhotoFrame.swift in Sources */,

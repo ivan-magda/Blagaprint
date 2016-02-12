@@ -536,27 +536,7 @@ class CategoryItemViewController: UIViewController {
             switch category {
                 
             case .cup:
-                // Picked image cropping
-                let imageSize = pickedImage.size
-                let fortyPercentOfWidth = imageSize.width * 0.4
-                
-                // Left side cup view.
-                let leftSideRect = CGRectMake(0.0, 0.0, fortyPercentOfWidth, imageSize.height)
-                let leftCroppedImage = pickedImage.croppedImage(leftSideRect)
-                let leftSideImage = leftCroppedImage.resizedImageWithContentMode(.ScaleAspectFill, bounds: PickedImageSize.Cup, interpolationQuality: .High)
-                images.append(Cup.imageOfCupLeft(pickedImage: leftSideImage, imageVisible: true))
-                
-                // Front side cup view.
-                let frontSideRect = CGRectMake(CGRectGetWidth(leftSideRect) - (CGRectGetWidth(leftSideRect) * 0.1), 0, fortyPercentOfWidth, imageSize.height)
-                let frontCroppedImage = pickedImage.croppedImage(frontSideRect)
-                let frontSideImage = frontCroppedImage.resizedImageWithContentMode(.ScaleAspectFill, bounds: PickedImageSize.Cup, interpolationQuality: .High)
-                images.append(Cup.imageOfCupFront(pickedImage: frontSideImage, imageVisible: true))
-                
-                // Right side cup view.
-                let rightSideRect = CGRectMake(imageSize.width * 0.6, 0, fortyPercentOfWidth, imageSize.height)
-                let rightCroppedImage = pickedImage.croppedImage(rightSideRect)
-                let rightSideImage = rightCroppedImage.resizedImageWithContentMode(.ScaleAspectFill, bounds: PickedImageSize.Cup, interpolationQuality: .High)
-                images.append(Cup.imageOfCupRight(pickedImage: rightSideImage, imageVisible: true))
+                self.images = Cup.getCupImagesWithPickedImage(pickedImage)
                 
             case .plate:
                 let scaledImage = pickedImage.scaledImageToSize(PickedImageSize.Plate)
@@ -598,7 +578,7 @@ class CategoryItemViewController: UIViewController {
             switch category {
                 
             case .cup:
-                images = [Cup.imageOfCupLeft(), Cup.imageOfCupFront(), Cup.imageOfCupRight()]
+                images = Cup.getDefaultCupImages()
                 
             case .plate:
                 images = [Plate.imageOfPlateCanvas()]
