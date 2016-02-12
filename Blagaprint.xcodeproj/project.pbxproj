@@ -76,6 +76,8 @@
 		750E4AF11BE20F67006103AE /* galaxyA3Led@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 750E4AEF1BE20F67006103AE /* galaxyA3Led@2x.png */; };
 		750E4AF41BE20F70006103AE /* galaxyA3Speaker.png in Resources */ = {isa = PBXBuildFile; fileRef = 750E4AF21BE20F70006103AE /* galaxyA3Speaker.png */; };
 		750E4AF51BE20F70006103AE /* galaxyA3Speaker@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 750E4AF31BE20F70006103AE /* galaxyA3Speaker@2x.png */; };
+		751B784F1C6DC19200920C1A /* CopyServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 751B784E1C6DC19200920C1A /* CopyServices.swift */; };
+		751B78511C6DC99300920C1A /* BusinessCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 751B78501C6DC99300920C1A /* BusinessCard.swift */; };
 		751DA9AC1C19C68900D10C24 /* UIImageResizeAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 751DA9AB1C19C68900D10C24 /* UIImageResizeAdditions.swift */; };
 		751DA9B01C19CC7A00D10C24 /* Contacts.png in Resources */ = {isa = PBXBuildFile; fileRef = 751DA9AD1C19CC7A00D10C24 /* Contacts.png */; };
 		751DA9B11C19CC7A00D10C24 /* Contacts@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 751DA9AE1C19CC7A00D10C24 /* Contacts@2x.png */; };
@@ -283,6 +285,8 @@
 		750E4AEF1BE20F67006103AE /* galaxyA3Led@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "galaxyA3Led@2x.png"; sourceTree = "<group>"; };
 		750E4AF21BE20F70006103AE /* galaxyA3Speaker.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = galaxyA3Speaker.png; sourceTree = "<group>"; };
 		750E4AF31BE20F70006103AE /* galaxyA3Speaker@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "galaxyA3Speaker@2x.png"; sourceTree = "<group>"; };
+		751B784E1C6DC19200920C1A /* CopyServices.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CopyServices.swift; sourceTree = "<group>"; };
+		751B78501C6DC99300920C1A /* BusinessCard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BusinessCard.swift; sourceTree = "<group>"; };
 		751D51DA1C16D6A10093AE85 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		751DA9AB1C19C68900D10C24 /* UIImageResizeAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIImageResizeAdditions.swift; path = Blagaprint/UIImageResizeAdditions.swift; sourceTree = "<group>"; };
 		751DA9AD1C19CC7A00D10C24 /* Contacts.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Contacts.png; sourceTree = "<group>"; };
@@ -644,6 +648,7 @@
 				0C9A21381C1FFF6F00559947 /* Cup */,
 				757F12851C48CB9C00CF947C /* KeyRing */,
 				758578711C6625E60010A7CF /* T-Shirt */,
+				751B78491C6DC07100920C1A /* CopyServices */,
 				752ED13F1C5A030A00BE0751 /* TableViewCell */,
 				752ED1401C5A031C00BE0751 /* CollectionViewCell */,
 				758792A71BF487E10071C383 /* ActivityView.swift */,
@@ -734,6 +739,14 @@
 			name = GalaxyA3;
 			sourceTree = "<group>";
 		};
+		751B78491C6DC07100920C1A /* CopyServices */ = {
+			isa = PBXGroup;
+			children = (
+				751B78501C6DC99300920C1A /* BusinessCard.swift */,
+			);
+			name = CopyServices;
+			sourceTree = "<group>";
+		};
 		751DA9B31C19CC7F00D10C24 /* Account */ = {
 			isa = PBXGroup;
 			children = (
@@ -770,6 +783,7 @@
 				75BF69521C044900009D670D /* PhotoFrame.swift */,
 				757F12871C48CE1400CF947C /* KeyRing.swift */,
 				758579AB1C66C9A30010A7CF /* TShirt.swift */,
+				751B784E1C6DC19200920C1A /* CopyServices.swift */,
 			);
 			name = Items;
 			sourceTree = "<group>";
@@ -1542,6 +1556,7 @@
 				758792A81BF487E10071C383 /* ActivityView.swift in Sources */,
 				7585BB4E1C1026AA00D59BF5 /* BLImagePickerController.swift in Sources */,
 				7561AE9F1C0FD563009B2C8B /* Plate.swift in Sources */,
+				751B784F1C6DC19200920C1A /* CopyServices.swift in Sources */,
 				50551C2C1BCB8B18005B88DA /* SelectDeviceTableViewController.swift in Sources */,
 				50A871D71BCA9D68003CB0F9 /* CaseConstructorViewController.swift in Sources */,
 				753D4D691C05A4D3002FC5E9 /* SH15_PhotoFrame.swift in Sources */,
@@ -1558,6 +1573,7 @@
 				752ED13E1C59F56F00BE0751 /* RectangleKeyRing.swift in Sources */,
 				75F7393A1BE4979B0063EB6F /* LenovoS850.swift in Sources */,
 				750E0F911C1874DA00A8158C /* BlagaprintUser.swift in Sources */,
+				751B78511C6DC99300920C1A /* BusinessCard.swift in Sources */,
 				75CECC291C5FA2D300B2AE6E /* PickTypeTableViewController.swift in Sources */,
 				50551C311BCBB43A005B88DA /* BackgroundOvalView.swift in Sources */,
 				0C541A591BD0B51A0028BD9A /* PhotoLibraryItemCollectionViewCell.swift in Sources */,

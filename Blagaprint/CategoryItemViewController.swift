@@ -442,7 +442,6 @@ class CategoryItemViewController: UIViewController {
         let navBarHeight = self.navigationController!.navigationBar.bounds.height
         let statusBarHeight = UIApplication.sharedApplication().statusBarFrame.height
         let placeholderViewHeight = self.placeholderViewHeightConstraint.constant
-        let itemSizesViewHeight = self.itemSizeContainerViewHeightConstraint.constant
         let pickTypeViewHeight = self.pickTypeViewHeightConstraint.constant
         var pickImageViewHeight = self.moreActionsViewHeightConstraint.constant
         
@@ -451,7 +450,7 @@ class CategoryItemViewController: UIViewController {
             pickImageViewHeight = 0.0
         }
         
-        var space = frameHeight - (statusBarHeight + navBarHeight + placeholderViewHeight + itemSizesViewHeight + pickImageViewHeight + pickTypeViewHeight)
+        var space = frameHeight - (statusBarHeight + navBarHeight + placeholderViewHeight + pickImageViewHeight + pickTypeViewHeight)
         
         // Check for minimal space.
         if space < minimalSpaceValue {
@@ -581,6 +580,17 @@ class CategoryItemViewController: UIViewController {
             case .clothes:
                 self.images = TShirt(image: pickedImage, isImageVisible: true, imageLocation: self.imageLocation, color: pickedColor).tShirtImages()
                 
+            case .copyServices:
+                var copyServices: [CopyServices]!
+                
+                if let categoryItem = categoryItem {
+                    copyServices = CopyServices.copyServiceFromCategoryItem(categoryItem)
+                } else {
+                    copyServices = CopyServices.seedInitialServices()
+                }
+                
+                self.images = copyServices.map() { $0.imageWithPickedImage(pickedImage) }
+                
             default:
                 break
             }
@@ -610,6 +620,17 @@ class CategoryItemViewController: UIViewController {
                 
             case .clothes:
                 self.images = TShirt(isImageVisible: false, imageLocation: self.imageLocation, color: pickedColor).tShirtImages()
+                
+            case .copyServices:
+                var copyServices: [CopyServices]!
+                
+                if let categoryItem = categoryItem {
+                    copyServices = CopyServices.copyServiceFromCategoryItem(categoryItem)
+                } else {
+                    copyServices = CopyServices.seedInitialServices()
+                }
+                
+                self.images = copyServices.map() { $0.image }
                 
             default:
                 break
@@ -830,20 +851,20 @@ class CategoryItemViewController: UIViewController {
                     self.reloadData()
                 }
                 
-                let imageLocationController = UIAlertController(title: NSLocalizedString("Where to place the image", comment: ""), message: nil, preferredStyle: .ActionSheet)
+                let imageLocationController = UIAlertController(title: NSLocalizedString("Where to place the image", comment: "Alert action title"), message: nil, preferredStyle: .ActionSheet)
                 
                 // Front image location action.
-                imageLocationController.addAction(UIAlertAction(title: NSLocalizedString("Front", comment: ""), style: .Default, handler: { action in
+                imageLocationController.addAction(UIAlertAction(title: NSLocalizedString("Front", comment: "Alert action title"), style: .Default, handler: { action in
                     setImageLocationAndReloadData(TShirt.TShirtImageLocations.Front)
                 }))
                 
                 // Behind image location action.
-                imageLocationController.addAction(UIAlertAction(title: NSLocalizedString("Behind", comment: ""), style: .Default, handler: { action in
+                imageLocationController.addAction(UIAlertAction(title: NSLocalizedString("Behind", comment: "Alert action title"), style: .Default, handler: { action in
                     setImageLocationAndReloadData(TShirt.TShirtImageLocations.Behind)
                 }))
                 
                 // Cancel action.
-                imageLocationController.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .Cancel, handler: nil))
+                imageLocationController.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: "Alert action title"), style: .Cancel, handler: nil))
                 
                 self.presentViewController(imageLocationController, animated: true, completion: nil)
             }
