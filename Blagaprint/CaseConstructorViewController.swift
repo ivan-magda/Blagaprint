@@ -123,7 +123,7 @@ class CaseConstructorTableViewController: UITableViewController {
     }
     
     private func setImageToCaseView(image: UIImage) {
-        self.caseView.image = UIImage.resizedImage(image, newSize: caseViewSize)
+        self.caseView.image = image.scaledImageToSize(caseViewSize)
         self.caseView.showBackgroundImage = true
     }
     
@@ -481,7 +481,6 @@ class CaseConstructorTableViewController: UITableViewController {
             self.animateCaseView(0.0)
             self.caseView.image = UIImage()
             self.caseView.showBackgroundImage = false
-            self.caseView.fillColor = UIColor.whiteColor()
             self.pickedImage = nil
         }
         backgroundSelectionAlertController.addAction(clearAction)

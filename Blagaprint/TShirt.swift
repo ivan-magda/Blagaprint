@@ -56,13 +56,13 @@ class TShirt {
     //--------------------------------------
     
     func tShirtImages() -> [UIImage] {
-        let resizedImage = (isImageVisible == true ? image.resizedImageWithContentMode(.ScaleAspectFill, bounds: pickedImageSize, interpolationQuality: .High) : UIImage())
+        let scaledImage = (isImageVisible == true ? image.scaledImageToSize(pickedImageSize) : UIImage())
         
         let showImageInFront = imageLocation.contains(.Front)  && !imageLocation.contains(.None)
         let showImageBehind  = imageLocation.contains(.Behind) && !imageLocation.contains(.None)
         
-        let frontImage = TShirtCanvas.imageOfFront(tshirtColor: color, image: (showImageInFront == true ? resizedImage : UIImage()), imageVisible: isImageVisible)
-        let behindImage = TShirtCanvas.imageOfBack(tshirtColor: color, image: (showImageBehind == true ? resizedImage : UIImage()), imageVisible: isImageVisible)
+        let frontImage = TShirtCanvas.imageOfFront(tshirtColor: color, image: (showImageInFront == true ? scaledImage : UIImage()), imageVisible: isImageVisible)
+        let behindImage = TShirtCanvas.imageOfBack(tshirtColor: color, image: (showImageBehind == true ? scaledImage : UIImage()), imageVisible: isImageVisible)
         
         return [frontImage, behindImage]
     }

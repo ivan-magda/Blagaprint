@@ -96,23 +96,23 @@ class KeyRing: NSObject {
     
     /// Returns generated image of the key ring with picked image by the user.
     func imageOfKeyRingWithPickedImage(image: UIImage) -> UIImage {
-        let resizedImage = UIImage.resizedImage(image, newSize: self.pickedImageSize)
+        let scaledImage = image.scaledImageToSize(pickedImageSize)
         
         switch self.type {
         case .Circle:
-            return CircleKeyRing.imageOfKeyRing(image: resizedImage, imageVisible: true)
+            return CircleKeyRing.imageOfKeyRing(image: scaledImage, imageVisible: true)
         case .Square:
-            return SquareKeyRing.imageOfKeyRing(image: resizedImage, imageVisible: true)
+            return SquareKeyRing.imageOfKeyRing(image: scaledImage, imageVisible: true)
         case .Rectangle:
-            return RectangleKeyRing.imageOfKeyRing(image: resizedImage, imageVisible: true)
+            return RectangleKeyRing.imageOfKeyRing(image: scaledImage, imageVisible: true)
         case .GlassRectangle:
-            return GlassRectangleKeyRing.imageOfKeyRing(image: resizedImage, imageVisible: true)
+            return GlassRectangleKeyRing.imageOfKeyRing(image: scaledImage, imageVisible: true)
         case .GlassOval:
-            return GlassOvalKeyRing.imageOfKeyRing(image: resizedImage, imageVisible: true)
+            return GlassOvalKeyRing.imageOfKeyRing(image: scaledImage, imageVisible: true)
         case .Heart:
-            return HeartKeyRing.imageOfKeyRing(image: resizedImage, imageVisible: true)
+            return HeartKeyRing.imageOfKeyRing(image: scaledImage, imageVisible: true)
         case .HeartWithWings:
-            return HeartWithWingsKeyRing.imageOfKeyRing(image: resizedImage, imageVisible: true)
+            return HeartWithWingsKeyRing.imageOfKeyRing(image: scaledImage, imageVisible: true)
         case .StateNumber:
             break
         }

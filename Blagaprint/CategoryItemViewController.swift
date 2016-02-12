@@ -559,8 +559,8 @@ class CategoryItemViewController: UIViewController {
                 images.append(Cup.imageOfCupRight(pickedImage: rightSideImage, imageVisible: true))
                 
             case .plate:
-                let resizedImage = pickedImage.resizedImageWithContentMode(.ScaleAspectFill, bounds: PickedImageSize.Plate, interpolationQuality: .High)
-                self.images = [Plate.imageOfPlateCanvas(image: resizedImage, isPlateImageVisible: true)]
+                let scaledImage = pickedImage.scaledImageToSize(PickedImageSize.Plate)
+                self.images = [Plate.imageOfPlateCanvas(image: scaledImage, isPlateImageVisible: true)]
                 
             case .photoFrame:
                 let frames = PhotoFrame.seedInitialFrames()

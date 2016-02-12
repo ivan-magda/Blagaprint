@@ -77,20 +77,21 @@ class PhotoFrame: NSObject {
 
     /// Return frame image with picked image.
     func frameImageWithPickedImage(image: UIImage) -> UIImage {
-        let resizedImage = UIImage.resizedImage(image, newSize: self.pickedImageSize)
+        let scaledImage = image.scaledImageToSize(pickedImageSize)
+        
         switch self.type {
         case .SH_2:
-            return SH2_PhotoFrame.imageOfSH2(pickedImage: resizedImage)
+            return SH2_PhotoFrame.imageOfSH2(pickedImage: scaledImage)
         case .SH_3:
-            return SH3_PhotoFrame.imageOfSH3(pickedImage: resizedImage)
+            return SH3_PhotoFrame.imageOfSH3(pickedImage: scaledImage)
         case .SH_11:
-            return SH11_PhotoFrame.imageOfSH11(pickedImage: resizedImage)
+            return SH11_PhotoFrame.imageOfSH11(pickedImage: scaledImage)
         case .SH_15:
-            return SH15_PhotoFrame.imageOfSH15(pickedImage: resizedImage)
+            return SH15_PhotoFrame.imageOfSH15(pickedImage: scaledImage)
         case .SH_19:
-            return SH19_PhotoFrame.imageOfSH19(pickedImage: resizedImage)
+            return SH19_PhotoFrame.imageOfSH19(pickedImage: scaledImage)
         case .SH_38:
-            return SH38_PhotoFrame.imageOfSH38(pickedImage: resizedImage)
+            return SH38_PhotoFrame.imageOfSH38(pickedImage: scaledImage)
         }
     }
     

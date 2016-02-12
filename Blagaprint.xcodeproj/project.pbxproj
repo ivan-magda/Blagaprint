@@ -529,7 +529,7 @@
 				50FD7F511BB903B700ABEC38 /* View */,
 				508503051BBAADCF00152131 /* Utility */,
 				756FF67E1C128C630091B75E /* Reachability */,
-				7561AEAD1C0FD7CD009B2C8B /* UIImageAdditions */,
+				7561AEAD1C0FD7CD009B2C8B /* UIImageResizeAdditions */,
 				75FE073B1C4614A700EFE1F6 /* Extensions */,
 				75AB8AC11BE7479F00B88A5A /* Frameworks */,
 				502A8CD41BB8120A0064E0DA /* Resources */,
@@ -866,12 +866,12 @@
 			name = GalaxyS5;
 			sourceTree = "<group>";
 		};
-		7561AEAD1C0FD7CD009B2C8B /* UIImageAdditions */ = {
+		7561AEAD1C0FD7CD009B2C8B /* UIImageResizeAdditions */ = {
 			isa = PBXGroup;
 			children = (
 				751DA9AB1C19C68900D10C24 /* UIImageResizeAdditions.swift */,
 			);
-			name = UIImageAdditions;
+			name = UIImageResizeAdditions;
 			path = ..;
 			sourceTree = "<group>";
 		};

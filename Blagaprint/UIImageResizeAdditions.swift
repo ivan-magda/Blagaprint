@@ -23,6 +23,35 @@ extension UIImage {
         return newImage
     }
     
+    /**
+     * Scales an image to fit within a bounds with a size governed by
+     * the passed size. Also keeps the aspect ratio.
+     *
+     * Switch MIN to MAX for aspect fill instead of fit.
+     *
+     * @param newSize the size of the bounds the image must fit within.
+     * @return a new scaled image.
+     */
+    func scaledImageToSize(newSize: CGSize) -> UIImage {
+        var scaledImageRect = CGRect.zero
+        
+        let aspectWidth = newSize.width / self.size.width
+        let aspectHeight = newSize.height / self.size.height
+        let aspectRation = max(aspectWidth, aspectHeight)
+        
+        scaledImageRect.size.width = self.size.width * aspectRation
+        scaledImageRect.size.height = self.size.height * aspectRation
+        scaledImageRect.origin.x = (newSize.width - scaledImageRect.size.width) / 2.0
+        scaledImageRect.origin.y = (newSize.height - scaledImageRect.size.height) / 2.0
+        
+        UIGraphicsBeginImageContextWithOptions(newSize, false, 0.0)
+        self.drawInRect(scaledImageRect)
+        let scaledImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        
+        return scaledImage
+    }
+    
     /// Returns a copy of this image that is cropped to the given bounds.
     /// The bounds will be adjusted using CGRectIntegral.
     /// This method ignores the image's imageOrientation setting.

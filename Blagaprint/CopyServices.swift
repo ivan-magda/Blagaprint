@@ -66,11 +66,11 @@ class CopyServices: NSObject {
     
     /// Return frame image with picked image.
     func imageWithPickedImage(image: UIImage) -> UIImage {
-        let resizedImage = UIImage.resizedImage(image, newSize: self.pickedImageSize)
+        let scaledImage = image.scaledImageToSize(pickedImageSize)
         
         switch self.type {
         case .BusinessCard:
-            return BusinessCard.imageOfBusinessCardCanvas(image: resizedImage, imageVisible: true)
+            return BusinessCard.imageOfBusinessCardCanvas(image: scaledImage, imageVisible: true)
         default:
             return UIImage()
         }
