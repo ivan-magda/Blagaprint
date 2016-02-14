@@ -622,8 +622,8 @@
 		50A871D51BCA9B7C003CB0F9 /* PhoneCase */ = {
 			isa = PBXGroup;
 			children = (
-				75823AAE1BD8BDD000C92F83 /* PhoneCase.swift */,
 				75DD91FE1BD7BFE000932AD7 /* CaseView.swift */,
+				75823AAE1BD8BDD000C92F83 /* PhoneCase.swift */,
 				75A3E97F1BE3612F0001E073 /* Samsung */,
 				75FD24701BE3D3EA00446801 /* Sony */,
 				75F739381BE491C60063EB6F /* Xiaomi */,

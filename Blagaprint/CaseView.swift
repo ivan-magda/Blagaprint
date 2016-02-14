@@ -8,7 +8,6 @@
 
 import UIKit
 
-@IBDesignable
 class CaseView: UIView {
     //--------------------------------------
     // MARK: - Properties
