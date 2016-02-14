@@ -1,5 +1,6 @@
 PODS:
   - Bolts/Tasks (1.5.0)
+  - Firebase (2.5.0)
   - Parse (1.10.0):
     - Bolts/Tasks (~> 1.5)
   - ParseUI (1.1.7):
@@ -7,11 +8,13 @@ PODS:
     - Parse (~> 1.9)
 
 DEPENDENCIES:
+  - Firebase (>= 2.5.0)
   - Parse
   - ParseUI
 
 SPEC CHECKSUMS:
   Bolts: 722ab9a4f8b50fc4ed1b9998a5a7a2b3f16d80b4
+  Firebase: 744617c0733b45198f9486ebd5cac64ec2d10d79
   Parse: 90b2544822200f84b18bfacc4e8b0a3a6c3584a2
   ParseUI: c2bcdfbb00330e464b5b773266ae221697a3bb7b
 

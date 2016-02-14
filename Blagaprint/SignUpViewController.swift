@@ -8,7 +8,30 @@
 
 import UIKit
 
-class SignUpViewController: PFSignUpViewController, PFSignUpViewControllerDelegate {
+class SignUpViewController: UIViewController {
+
+    //--------------------------------------
+    // MARK: - Types
+    //--------------------------------------
+    
+    private enum TextFieldTag: Int {
+        case Email = 254
+        case Password = 255
+    }
+    
+    //--------------------------------------
+    // MARK: - Properties
+    //--------------------------------------
+    
+    @IBOutlet weak var scrollView: UIScrollView!
+    
+    @IBOutlet weak var emailTextField: UITextField!
+    @IBOutlet weak var passwordTextField: UITextField!
+    
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    
+    private var didSetKeyboardOffset = false
+    
     //--------------------------------------
     // MARK: - View Life Cycle
     //--------------------------------------
@@ -16,63 +39,188 @@ class SignUpViewController: PFSignUpViewController, PFSignUpViewControllerDelega
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.delegate = self
-        self.minPasswordLength = 8
-        
-        // Customizing the signUpView
-        let signUpView = self.signUpView!
-        signUpView.emailAsUsername = true
-        
-        let logo = UILabel()
-        logo.font = AppAppearance.ralewayThinFontWithSize(40)
-        logo.text = "Blagaprint"
-        logo.textColor = UIColor.whiteColor()
-        signUpView.logo = logo
-        
-        // Password
-        signUpView.passwordField?.backgroundColor = UIColor.clearColor()
-        signUpView.passwordField?.textColor = UIColor.whiteColor()
-        signUpView.passwordField?.placeholder = NSLocalizedString("Password", comment: "SignUpViewController password placeholder text")
-        
-        // Username as email
-        signUpView.usernameField?.backgroundColor = UIColor.clearColor()
-        signUpView.usernameField?.textColor = UIColor.whiteColor()
-        
-        // Add a background image
-        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        let imageView = UIImageView(frame: appDelegate.window!.bounds)
-        imageView.image = AppAppearance.blurredBackgroundImage()
-        self.view.insertSubview(imageView, atIndex: 0)
+        setup()
     }
     
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        
-        // Customizing the signUpButton
-        let signUpButton = self.signUpView!.signUpButton!
-        signUpButton.setTitle(NSLocalizedString("Sign Up", comment: "SignUpViewController signUpButton title for state normal"), forState: .Normal)
-        signUpButton.setTitle(NSLocalizedString("Sign Up", comment: "SignUpViewController signUpButton title for state highlighted"), forState: .Highlighted)
-        
-        // Customizing the dismissButton
-        let dismissButton = self.signUpView!.dismissButton!
-        let image = UIImage(named: "Delete.png")!
-        dismissButton.setImage(image, forState: UIControlState.Normal)
-        dismissButton.setImage(image, forState: UIControlState.Highlighted)
+    deinit {
+        NSNotificationCenter.defaultCenter().removeObserver(self)
     }
-
+    
     //--------------------------------------
-    // MARK: - PFSignUpViewControllerDelegate
+    // MARK: - UIKeyboardNotifications
     //--------------------------------------
     
-    func signUpViewController(signUpController: PFSignUpViewController, didSignUpUser user: PFUser) {
+    func keyboardWillShow(notification: NSNotification) {
+        guard didSetKeyboardOffset == false else {
+            return
+        }
+        
+        if let info = notification.userInfo {
+            if let keyboardSize = info[UIKeyboardFrameBeginUserInfoKey]?.CGRectValue.size {
+                
+                UIView.beginAnimations(nil, context: nil)
+                UIView.setAnimationDuration(info[UIKeyboardAnimationDurationUserInfoKey]!.doubleValue!)
+                UIView.setAnimationCurve(UIViewAnimationCurve(rawValue: info[UIKeyboardAnimationCurveUserInfoKey]!.integerValue!)!)
+                UIView.setAnimationBeginsFromCurrentState(true)
+                
+                let insets = UIEdgeInsets(top: self.scrollView.contentInset.top, left: 0.0, bottom: keyboardSize.height, right: 0.0)
+                self.scrollView.contentInset = insets
+                self.scrollView.contentOffset = CGPoint(x: self.scrollView.contentOffset.x, y: self.scrollView.contentOffset.y + keyboardSize.height / 2.0)
+                
+                UIView.commitAnimations()
+                
+                self.didSetKeyboardOffset = true
+            }
+        }
+    }
+    
+    func keyboardWillHide(notification: NSNotification) {
+        if let info = notification.userInfo {
+            UIView.beginAnimations(nil, context: nil)
+            UIView.setAnimationDuration(info[UIKeyboardAnimationDurationUserInfoKey]!.doubleValue!)
+            UIView.setAnimationCurve(UIViewAnimationCurve(rawValue: info[UIKeyboardAnimationCurveUserInfoKey]!.integerValue!)!)
+            UIView.setAnimationBeginsFromCurrentState(true)
+            
+            let insets = UIEdgeInsets(top: self.scrollView.contentInset.top, left: 0.0, bottom: 0.0, right: 0.0)
+            self.scrollView.contentInset = insets
+            
+            UIView.commitAnimations()
+            
+            self.didSetKeyboardOffset = false
+        }
+    }
+    
+    //--------------------------------------
+    // MARK: - Setup
+    //--------------------------------------
+    
+    private func setup() {
+        // Add UIKeyboardNotifications observers.
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillShow:"), name: UIKeyboardWillShowNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillHide:"), name: UIKeyboardWillHideNotification, object: nil)
+        
+        // Setup text fields.
+        self.emailTextField.delegate = self
+        self.emailTextField.tag = TextFieldTag.Email.rawValue
+        self.emailTextField.attributedPlaceholder = NSAttributedString(string:"Email",
+            attributes:[NSForegroundColorAttributeName: UIColor.whiteColor()])
+        
+        self.passwordTextField.delegate = self
+        self.passwordTextField.tag = TextFieldTag.Password.rawValue
+        self.passwordTextField.attributedPlaceholder = NSAttributedString(string: NSLocalizedString("Password", comment: ""),
+            attributes:[NSForegroundColorAttributeName: UIColor.whiteColor()])
+    }
+    
+    //--------------------------------------
+    // MARK: - Private
+    //--------------------------------------
+    
+    private func presentSignupErrorAlert(title: String, message: String) {
+        // Called upon signup error to let the user know signup didn't work.
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .Alert)
+        alert.addAction(UIAlertAction(title: "Ok", style: .Cancel, handler: nil))
+        
+        self.presentViewController(alert, animated: true, completion: nil)
+    }
+    
+    //--------------------------------------
+    // MARK: - Actions
+    //--------------------------------------
+    
+    @IBAction func signup(sender: AnyObject) {
+        resetScrollViewContentOffset()
+        
+        self.view.endEditing(true)
+        
+        func presentMissingParametersAlert() {
+            let title = NSLocalizedString("Signup error", comment: "Signup missing parameters error title")
+            let message = NSLocalizedString("Don't forget to enter your email and password.", comment: "Sign up missing parameters error message")
+            
+            presentSignupErrorAlert(title, message: message)
+        }
+        
+        guard let email = emailTextField.text where email.characters.count > 0 else {
+            presentMissingParametersAlert()
+            return
+        }
+        
+        guard let password = passwordTextField.text where password.characters.count > 0 else {
+            presentMissingParametersAlert()
+            return
+        }
+        
+        weak var weakSelf = self
+        
+        // Start animating.
+        self.activityIndicator.startAnimating()
+        
+        // Set Email and Password for the New User.
+        DataService.sharedInstance.baseReference.createUser(email, password: password) { (error, userData) in
+            if error != nil {
+                weakSelf?.activityIndicator.stopAnimating()
+                
+                // There was a problem.
+                print("Create user error: \(error.localizedDescription)")
+                
+                weakSelf?.presentSignupErrorAlert(NSLocalizedString("Error", comment: ""), message: error.localizedDescription)
+            } else {
+                // Create and Login the New User with authUser.
+                DataService.sharedInstance.baseReference.authUser(email, password: password) { (error, authData) in
+                    if error != nil {
+                        weakSelf?.activityIndicator.stopAnimating()
+                        
+                        print("Error: \(error.localizedDescription)")
+                    } else {
+                        let user = [
+                            "provider": authData.provider!,
+                            "email": email
+                        ]
+                        
+                        // Seal the deal in DataService.swift.
+                        DataService.sharedInstance.createNewAccount(authData.uid, user: user)
+                        
+                        // Store the uid for future access - handy!
+                        NSUserDefaults.standardUserDefaults().setValue(userData["uid"], forKey: "uid")
+                        
+                        weakSelf?.activityIndicator.stopAnimating()
+                        
+                        // Enter the app.
+                        weakSelf?.dismiss(weakSelf!)
+                    }
+                }
+            }
+        }
+    }
+    
+    @IBAction func dismiss(sender: AnyObject) {
         self.dismissViewControllerAnimated(true, completion: nil)
     }
+}
+
+//--------------------------------------
+// MARK: - UITextFieldDelegate -
+//--------------------------------------
+
+extension SignUpViewController: UITextFieldDelegate {
     
-    func signUpViewController(signUpController: PFSignUpViewController, didFailToSignUpWithError error: NSError?) {
-        print("Did fail to sign in: \(error)")
+    //--------------------------------------
+    // MARK: Helper
+    //--------------------------------------
+    
+    private func resetScrollViewContentOffset() {
+        self.scrollView.contentOffset = CGPoint(x: self.scrollView.contentOffset.x, y: 0.0)
     }
     
-    func signUpViewControllerDidCancelSignUp(signUpController: PFSignUpViewController) {
-        print("Did cancel to sign up")
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        switch textField.tag {
+        case TextFieldTag.Email.rawValue:
+            self.passwordTextField.becomeFirstResponder()
+        case TextFieldTag.Password.rawValue:
+            self.signup(textField)
+        default:
+            break
+        }
+        
+        return true
     }
 }

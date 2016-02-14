@@ -115,6 +115,7 @@
 		7547D2541BDE2376006E4170 /* galaxyS5CameraImage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7547D2461BDE2376006E4170 /* galaxyS5CameraImage@2x.png */; };
 		7547D2551BDE2376006E4170 /* galaxyS5Speaker.png in Resources */ = {isa = PBXBuildFile; fileRef = 7547D2471BDE2376006E4170 /* galaxyS5Speaker.png */; };
 		7547D2561BDE2376006E4170 /* galaxyS5Speaker@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7547D2481BDE2376006E4170 /* galaxyS5Speaker@2x.png */; };
+		754C457D1C70B2060062336C /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 754C457C1C70B2060062336C /* DataService.swift */; };
 		755514531C6DE9120007BC32 /* Cup+ImageGenerating.swift in Sources */ = {isa = PBXBuildFile; fileRef = 755514521C6DE9120007BC32 /* Cup+ImageGenerating.swift */; };
 		7561AE9F1C0FD563009B2C8B /* Plate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7561AE9E1C0FD563009B2C8B /* Plate.swift */; };
 		756DF01A1C4E542700A31B55 /* SquareKeyRing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 756DF0191C4E542700A31B55 /* SquareKeyRing.swift */; };
@@ -326,6 +327,7 @@
 		7547D2461BDE2376006E4170 /* galaxyS5CameraImage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "galaxyS5CameraImage@2x.png"; path = "images/galaxyS5CameraImage@2x.png"; sourceTree = "<group>"; };
 		7547D2471BDE2376006E4170 /* galaxyS5Speaker.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = galaxyS5Speaker.png; path = images/galaxyS5Speaker.png; sourceTree = "<group>"; };
 		7547D2481BDE2376006E4170 /* galaxyS5Speaker@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "galaxyS5Speaker@2x.png"; path = "images/galaxyS5Speaker@2x.png"; sourceTree = "<group>"; };
+		754C457C1C70B2060062336C /* DataService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
 		755514521C6DE9120007BC32 /* Cup+ImageGenerating.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Cup+ImageGenerating.swift"; sourceTree = "<group>"; };
 		7561AE9E1C0FD563009B2C8B /* Plate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Plate.swift; sourceTree = "<group>"; };
 		756DF0191C4E542700A31B55 /* SquareKeyRing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SquareKeyRing.swift; sourceTree = "<group>"; };
@@ -1102,6 +1104,7 @@
 			isa = PBXGroup;
 			children = (
 				75AB8ABF1BE744DB00B88A5A /* ParseCentral.swift */,
+				754C457C1C70B2060062336C /* DataService.swift */,
 			);
 			name = Service;
 			sourceTree = "<group>";
@@ -1605,6 +1608,7 @@
 				75C4E7C81C3807450039B59F /* Bag.swift in Sources */,
 				757F12881C48CE1400CF947C /* KeyRing.swift in Sources */,
 				502A8CB31BB80EAC0064E0DA /* AppDelegate.swift in Sources */,
+				754C457D1C70B2060062336C /* DataService.swift in Sources */,
 				757470321BDCB405004CABD0 /* Device.swift in Sources */,
 				756FF67D1C128C2D0091B75E /* Reachability.swift in Sources */,
 				75467C921C12EC32008046A2 /* SignUpViewController.swift in Sources */,

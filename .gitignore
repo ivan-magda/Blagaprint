@@ -27,6 +27,7 @@ xcuserdata
 Bolts.framework
 Parse.framework
 ParseUI.framework
+Firebase.framework
 
 ## Obj-C/Swift specific
 *.hmap

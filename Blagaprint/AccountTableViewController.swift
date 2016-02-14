@@ -193,7 +193,7 @@ class AccountTableViewController: UITableViewController {
     }
     
     func presentLoginViewController() {
-        presentViewController(LoginViewController(), animated: true, completion: nil)
+        LoginViewController.presentInController(self)
     }
     
     private func updateBackgroundColorOfLogOutCell() {
