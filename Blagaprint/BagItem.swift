@@ -27,6 +27,8 @@ class BagItem: PFObject, PFSubclassing {
         case textColor
         case createdAt
         case itemSize
+        case numberOfItems
+        case amount
     }
     
     //--------------------------------------
@@ -44,9 +46,11 @@ class BagItem: PFObject, PFSubclassing {
     @NSManaged var fillColor: String
     @NSManaged var textColor: String
     @NSManaged var itemSize: String
+    @NSManaged var numberOfItems: Int
+    @NSManaged var amount: Double
     
     override var description: String {
-        return "UserID: \(userId), categoryID: \(category), categoryItemID: \(categoryItem), price: \(price), device: \(device), text: \(text), itemSize: \(itemSize)"
+        return "UserID: \(userId), categoryID: \(category), categoryItemID: \(categoryItem), numberOfItems: \(numberOfItems), price: \(price), device: \(device), text: \(text), itemSize: \(itemSize)"
     }
     
     //--------------------------------------

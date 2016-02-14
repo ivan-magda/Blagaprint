@@ -59,11 +59,20 @@ class CategoryItemViewController: UIViewController {
     
     @IBOutlet weak var moreActionsView: UIView!
     @IBOutlet weak var moreActionsLabel: UILabel!
-    @IBOutlet weak var pickColorView: UIView!
+    
     @IBOutlet weak var pickTypeView: UIView!
     @IBOutlet weak var pickTypeViewDetailLabel: UILabel!
     @IBOutlet weak var pickTypeViewDetailDisclosureImageView: UIImageView!
+    
+    @IBOutlet weak var pickColorView: UIView!
     @IBOutlet weak var pickedColorView: UIView!
+    
+    @IBOutlet weak var pickCountView: UIView!
+    @IBOutlet weak var pickCountViewDetailLabel: UILabel!
+    
+    @IBOutlet weak var placeholderViewOfPickerView: UIView!
+    @IBOutlet weak var pickerView: UIPickerView!
+    
     @IBOutlet weak var addToBagButton: UIButton!
     
     //--------------------------------------
@@ -74,10 +83,14 @@ class CategoryItemViewController: UIViewController {
     @IBOutlet weak var collectionViewHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var itemSizeContainerViewHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var pageControlBottomSpaceConstraint: NSLayoutConstraint!
+    
     @IBOutlet weak var moreActionsViewHeightConstraint: NSLayoutConstraint!
-    @IBOutlet weak var pickColorViewHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var pickTypeViewHeightConstraint: NSLayoutConstraint!
-    @IBOutlet weak var pickColorViewBottomSpace: NSLayoutConstraint!
+    @IBOutlet weak var pickCountViewHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var pickColorViewHeightConstraint: NSLayoutConstraint!
+    
+    @IBOutlet weak var placeholderViewOfPickerViewHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var placeholderViewOfPickerViewBottomSpace: NSLayoutConstraint!
     
     //--------------------------------------
     // MARK: Dimension Values
@@ -86,17 +99,20 @@ class CategoryItemViewController: UIViewController {
     /// Height value of view that contains UICollectionView.
     private let placeholderViewDefaultHeightValue: CGFloat = 320.0
     
+    /// Minimal height value of collection view.
+    private let collectionViewMinHeightValue: CGFloat = 160.0
+    
+    /// Maximum height value of collection view.
+    private let collectionViewMaximumHeightValue: CGFloat = 320.0
+    
     /// Height value for views that use for trigger an action.
     private let actionViewHeightValue: CGFloat = 44.0
     
     /// Minimal bottom space value.
     private let minimalSpaceValue: CGFloat = 72.0
     
-    /// Minimal height value of collection view.
-    private let collectionViewMinHeightValue: CGFloat = 160.0
-    
-    /// Maximum height value of collection view.
-    private let collectionViewMaximumHeightValue: CGFloat = 320.0
+    /// Default height of the UIPickerView.
+    private let pickerViewDefaultHeightValue: CGFloat = 216.0
     
     //--------------------------------------
     // MARK: Parse
@@ -135,6 +151,12 @@ class CategoryItemViewController: UIViewController {
     /// Where to place the image on t-shirt.
     private var imageLocation = TShirt.TShirtImageLocations.Front
     
+    /// Determine whether picker view visible or hidden
+    private var pickerViewVisible = false
+    
+    /// Number of the specific item that user want to buy.
+    private var numberOfItems = 1
+    
     //--------------------------------------
     // MARK: Manage Text of Item
     //--------------------------------------
@@ -160,22 +182,7 @@ class CategoryItemViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.title = self.category.titleName
-        
-        (self.collectionView as UIScrollView).delegate = self
-        
-        // Working with data.
-        loadCategoryItems()
-        reloadData()
-        
-        // Setup.
-        setupImagePickerController()
-        setupPickedColorView()
-        setupAddToBagButton()
-        
-        addGestureRecognizers()
-        
-        self.pickTypeViewDetailLabel.text = nil
+        setup()
     }
     
     override func viewDidLayoutSubviews() {
@@ -263,7 +270,7 @@ class CategoryItemViewController: UIViewController {
     //--------------------------------------
     
     private func animateViewSelection(view: UIView, callback: (() -> Void)?) {
-        UIView.animateWithDuration(0.25, delay: 0.0, options: UIViewAnimationOptions.CurveEaseInOut, animations: {
+        UIView.animateWithDuration(0.15, delay: 0.0, options: UIViewAnimationOptions.CurveEaseInOut, animations: {
             view.backgroundColor = UIColor.lightGrayColor().colorWithAlphaComponent(0.2)
             }) { finished in
                 if finished {
@@ -312,6 +319,31 @@ class CategoryItemViewController: UIViewController {
     // MARK: Setup
     //--------------------------------------
     
+    private func setup() {
+        self.title = self.category.titleName
+        
+        (self.collectionView as UIScrollView).delegate = self
+        
+        // Working with data.
+        loadCategoryItems()
+        reloadData()
+        
+        // Setup.
+        setupImagePickerController()
+        setupPickedColorView()
+        setupAddToBagButton()
+        
+        addGestureRecognizers()
+        
+        self.pickTypeViewDetailLabel.text = nil
+        
+        // Hide picker view.
+        self.placeholderViewOfPickerView.alpha = 0.0
+        self.placeholderViewOfPickerViewHeightConstraint.constant = 0.0
+        
+        updateItemCountLabel()
+    }
+    
     private func addGestureRecognizers() {
         let pickImageTapGestureRecognizer = UITapGestureRecognizer(target: self, action: Selector("moreActionsDidPressed"))
         self.moreActionsView.addGestureRecognizer(pickImageTapGestureRecognizer)
@@ -321,6 +353,9 @@ class CategoryItemViewController: UIViewController {
 
         let pickTypeTapGestureRecognizer = UITapGestureRecognizer(target: self, action: Selector("pickTypeDidPressed"))
         self.pickTypeView.addGestureRecognizer(pickTypeTapGestureRecognizer)
+        
+        let pickCountTypeGestureRecognizer = UITapGestureRecognizer(target: self, action: Selector("pickCountDidPressed"))
+        self.pickCountView.addGestureRecognizer(pickCountTypeGestureRecognizer)
     }
     
     private func setupImagePickerController() {
@@ -430,14 +465,14 @@ class CategoryItemViewController: UIViewController {
             self.pickColorView.alpha = 0.0
         }
         
-        setPickColorViewBottomSpace()
+        setupBottomSpaceToScrollView()
         
         UIView.animateWithDuration(0.25) {
             self.scrollView.layoutIfNeeded()
         }
     }
     
-    private func setPickColorViewBottomSpace() {
+    private func setupBottomSpaceToScrollView() {
         let frameHeight = self.view.bounds.height
         let navBarHeight = self.navigationController!.navigationBar.bounds.height
         let statusBarHeight = UIApplication.sharedApplication().statusBarFrame.height
@@ -457,7 +492,7 @@ class CategoryItemViewController: UIViewController {
             space = minimalSpaceValue
         }
         
-        self.pickColorViewBottomSpace.constant = space
+        self.placeholderViewOfPickerViewBottomSpace.constant = space
     }
     
     private func setupPickTypeViewWithIfNeedLayout(needed: Bool) {
@@ -693,8 +728,12 @@ class CategoryItemViewController: UIViewController {
             }
         }
         
+        item.numberOfItems = self.numberOfItems
+        
         // TODO: fix with price selection.
         item.price = 500.0
+        
+        item.amount = item.price * Double(item.numberOfItems)
         
         print("Created BagItem: \(item)")
         
@@ -730,6 +769,17 @@ class CategoryItemViewController: UIViewController {
             self.performSegueWithIdentifier(SegueIdentifier.PickType.rawValue, sender: self)
             
             self.updateAddToBagButtonTitle()
+        }
+    }
+    
+    func pickCountDidPressed() {
+        animateViewSelection(pickCountView) {
+            // Show or hide picker view.
+            if self.pickerViewVisible {
+                self.hidePickerView()
+            } else {
+                self.showPickerView()
+            }
         }
     }
     
@@ -1012,6 +1062,87 @@ extension CategoryItemViewController: PickTypeTableViewControllerDelegateProtoco
         
         setupScrollView()
         reloadData()
+    }
+}
+
+//---------------------------------
+// MARK: - UIPickerView Extensions -
+//---------------------------------
+
+extension CategoryItemViewController: UIPickerViewDataSource, UIPickerViewDelegate {
+    
+    //---------------------------------
+    // MARK: Helper Methods
+    //---------------------------------
+    
+    private func showPickerView() {
+        self.pickCountViewDetailLabel.textColor = self.view.tintColor
+        
+        // Select row from previous picked item.
+        self.pickerView.selectRow(self.numberOfItems - 1, inComponent: 0, animated: false)
+        self.pickerViewVisible = true
+        
+        self.scrollView.layoutIfNeeded()
+        
+        // Show picker view.
+        UIView.animateWithDuration(0.25, animations: {
+            self.placeholderViewOfPickerView.alpha = 1.0
+            self.placeholderViewOfPickerViewHeightConstraint.constant = self.pickerViewDefaultHeightValue
+            }, completion: { finished in
+        })
+        
+        self.scrollView.layoutIfNeeded()
+        
+        // Scroll to the bottom.
+        let bottomOffset = CGPoint(x: 0.0, y: self.scrollView.contentSize.height - self.scrollView.bounds.height)
+        self.scrollView.setContentOffset(bottomOffset, animated: true)
+    }
+    
+    private func hidePickerView() {
+        self.pickCountViewDetailLabel.textColor = .blackColor()
+        
+        self.pickerViewVisible = false
+        
+        self.scrollView.layoutIfNeeded()
+        
+        // Hide picker view.
+        UIView.animateWithDuration(0.25, animations: {
+            self.placeholderViewOfPickerView.alpha = 0.0
+            self.placeholderViewOfPickerViewHeightConstraint.constant = 0.0
+            }) { finished in
+        }
+        
+        self.scrollView.layoutIfNeeded()
+    }
+    
+    private func updateItemCountLabel() {
+        self.pickCountViewDetailLabel.text =  "\(self.numberOfItems)"
+    }
+    
+    //---------------------------------
+    // MARK: UIPickerViewDataSource
+    //---------------------------------
+    
+    func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return 1000
+    }
+    
+    //---------------------------------
+    // MARK: UIPickerViewDelagate
+    //---------------------------------
+    
+    func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return "\(row + 1)"
+    }
+    
+    func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        self.numberOfItems = row + 1
+        
+        updateItemCountLabel()
     }
 }
 

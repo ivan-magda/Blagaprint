@@ -9,6 +9,7 @@
 import UIKit
 
 class ItemSizeCollectionViewCell: UICollectionViewCell {
+    
     //--------------------------------------
     // MARK: - Properties
     //--------------------------------------
@@ -17,6 +18,10 @@ class ItemSizeCollectionViewCell: UICollectionViewCell {
     
     /// Cell reuse identifier.
     static let cellReuseIdentifier = "SizeCell"
+
+    //--------------------------------------
+    // MARK: - Life Cycle
+    //--------------------------------------
     
     override func layoutSubviews() {
         super.layoutSubviews()
@@ -24,5 +29,4 @@ class ItemSizeCollectionViewCell: UICollectionViewCell {
         self.layer.cornerRadius = self.bounds.height / 2.0
         self.clipsToBounds = true
     }
-
 }
