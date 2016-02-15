@@ -7,3 +7,4 @@ pod 'Parse'
 pod 'ParseUI'
 
 pod 'Firebase', '>= 2.5.0'
+pod 'Shimmer', '~> 1.0'

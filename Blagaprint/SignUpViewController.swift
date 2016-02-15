@@ -25,6 +25,8 @@ class SignUpViewController: UIViewController {
     
     @IBOutlet weak var scrollView: UIScrollView!
     
+    @IBOutlet weak var shimmeringView: FBShimmeringView!
+    
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     
@@ -40,6 +42,7 @@ class SignUpViewController: UIViewController {
         super.viewDidLoad()
         
         setup()
+        startShimmering()
     }
     
     deinit {
@@ -109,6 +112,20 @@ class SignUpViewController: UIViewController {
         self.passwordTextField.tag = TextFieldTag.Password.rawValue
         self.passwordTextField.attributedPlaceholder = NSAttributedString(string: NSLocalizedString("Password", comment: ""),
             attributes:[NSForegroundColorAttributeName: UIColor.whiteColor()])
+    }
+    
+    private func startShimmering() {
+        // Add app name label.
+        let label = UILabel(frame: shimmeringView.bounds)
+        label.textAlignment = .Center
+        label.font = UIFont(name: "AvenirNext-UltraLight", size: 48.0)
+        label.text = "Blagaprint"
+        label.textColor = .whiteColor()
+        
+        shimmeringView.contentView = label
+        
+        // Start shimmering.
+        shimmeringView.shimmering = true
     }
     
     //--------------------------------------

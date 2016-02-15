@@ -6,3 +6,4 @@
 #import <ParseUI/ParseUI.h>
 #import <Bolts/Bolts.h>
 #import <Firebase/Firebase.h>
+#import <Shimmer/FBShimmeringView.h>
