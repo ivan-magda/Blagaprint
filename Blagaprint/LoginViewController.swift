@@ -213,7 +213,27 @@ class LoginViewController: UIViewController {
             if error != nil {
                 print("Error: \(error.localizedDescription)")
                 
-                self.presentAlert(title: NSLocalizedString("Error", comment: ""), message: NSLocalizedString("Check your username and password.", comment: "Login error message"))
+                // An error occurred while attempting login.
+                if let errorCode = FAuthenticationError(rawValue: error.code) {
+                    switch errorCode {
+                    case .UserDoesNotExist:
+                        print("Handle invalid user")
+                        
+                        self.presentAlert(title: NSLocalizedString("User does not exist", comment: ""), message: NSLocalizedString("First, create your account, then log in.", comment: ""))
+                    case .InvalidEmail:
+                        print("Handle invalid email")
+                        
+                        self.presentAlert(title: NSLocalizedString("Invalid email", comment: ""), message: NSLocalizedString("User with this email does not exist. Check your email.", comment: ""))
+                    case .InvalidPassword:
+                        print("Handle invalid password")
+                        
+                        self.presentAlert(title: NSLocalizedString("Invalid password", comment: ""), message: NSLocalizedString("Check your password and try again.", comment: ""))
+                    default:
+                        print("Handle default situation")
+                        
+                        self.presentAlert(title: NSLocalizedString("Error", comment: ""), message: NSLocalizedString("Check your email and password.", comment: "Login error message"))
+                    }
+                }
             } else {
                 // Be sure the correct uid is stored.
                 

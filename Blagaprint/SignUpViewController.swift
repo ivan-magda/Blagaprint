@@ -179,7 +179,15 @@ class SignUpViewController: UIViewController {
                 // There was a problem.
                 print("Create user error: \(error.localizedDescription)")
                 
-                weakSelf?.presentSignupErrorAlert(NSLocalizedString("Error", comment: ""), message: error.localizedDescription)
+                // An error occurred while attempting login.
+                if let errorCode = FAuthenticationError(rawValue: error.code) {
+                    switch errorCode {
+                    case .EmailTaken:
+                        weakSelf?.presentSignupErrorAlert(NSLocalizedString("Email taken", comment: ""), message: NSLocalizedString("Email adress is already taken. Please enter another email adress and try again to signup.", comment: ""))
+                    default:
+                        weakSelf?.presentSignupErrorAlert(NSLocalizedString("Error", comment: ""), message: NSLocalizedString("An error occurred while attempting signup.", comment: ""))
+                    }
+                }
             } else {
                 // Create and Login the New User with authUser.
                 DataService.sharedInstance.baseReference.authUser(email, password: password) { (error, authData) in
