@@ -49,6 +49,16 @@ class DataService {
         return (NSUserDefaults.standardUserDefaults().stringForKey("uid") != nil) && (DataService.sharedInstance.currentUserReference.authData != nil)
     }
     
+    //--------------------------------------
+    // MARK: - User Behavior -
+    //--------------------------------------
+    
+    func createNewAccount(uid: String, user: Dictionary<String, String>) {
+        // A User is born.
+        
+        userReference.childByAppendingPath(uid).setValue(user)
+    }
+    
     class func logout() {
         // unauth() is the logout method for the current user.
         
@@ -57,16 +67,6 @@ class DataService {
         // Remove the user's uid from storage.
         
         NSUserDefaults.standardUserDefaults().setValue(nil, forKey: "uid")
-    }
-    
-    //--------------------------------------
-    // MARK: - User
-    //--------------------------------------
-    
-    func createNewAccount(uid: String, user: Dictionary<String, String>) {
-        // A User is born.
-        
-        userReference.childByAppendingPath(uid).setValue(user)
     }
     
     func resetPasswordForEmail(email: String, callback: (success: Bool, error: NSError?) -> Void ) {

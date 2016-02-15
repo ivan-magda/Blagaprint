@@ -145,6 +145,7 @@
 		7589398A1C16B54D0069655B /* CategoryItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 758939891C16B54D0069655B /* CategoryItemViewController.swift */; };
 		7589540E1C1582C6006980F0 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7589540C1C1582C6006980F0 /* Localizable.strings */; };
 		758997531C3ABA1B00427033 /* BagItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 758997521C3ABA1B00427033 /* BagItemTableViewCell.swift */; };
+		759C9EE11C7169130017B0DF /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 759C9EE01C7169130017B0DF /* User.swift */; };
 		759E8CCF1BDF64A1008A5503 /* galaxyS4MiniCameraImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 759E8CCD1BDF64A1008A5503 /* galaxyS4MiniCameraImage.png */; };
 		759E8CD01BDF64A1008A5503 /* galaxyS4MiniCameraImage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 759E8CCE1BDF64A1008A5503 /* galaxyS4MiniCameraImage@2x.png */; };
 		759E8CD41BDF6D46008A5503 /* galaxyS5MiniCameraImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 759E8CD21BDF6D46008A5503 /* galaxyS5MiniCameraImage.png */; };
@@ -360,6 +361,7 @@
 		7589540B1C158189006980F0 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		758954101C1582E8006980F0 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
 		758997521C3ABA1B00427033 /* BagItemTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BagItemTableViewCell.swift; sourceTree = "<group>"; };
+		759C9EE01C7169130017B0DF /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		759E8CCD1BDF64A1008A5503 /* galaxyS4MiniCameraImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = galaxyS4MiniCameraImage.png; path = images/galaxyS4MiniCameraImage.png; sourceTree = "<group>"; };
 		759E8CCE1BDF64A1008A5503 /* galaxyS4MiniCameraImage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "galaxyS4MiniCameraImage@2x.png"; path = "images/galaxyS4MiniCameraImage@2x.png"; sourceTree = "<group>"; };
 		759E8CD21BDF6D46008A5503 /* galaxyS5MiniCameraImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = galaxyS5MiniCameraImage.png; path = images/galaxyS5MiniCameraImage.png; sourceTree = "<group>"; };
@@ -638,6 +640,7 @@
 		50DD723A1BBED31B008A9B80 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				759C9EE01C7169130017B0DF /* User.swift */,
 				7525F92F1C66DA9B000D5E96 /* Parse */,
 				7525F92E1C66DA86000D5E96 /* Items */,
 			);
@@ -1563,6 +1566,7 @@
 				7585BB4E1C1026AA00D59BF5 /* BLImagePickerController.swift in Sources */,
 				7561AE9F1C0FD563009B2C8B /* Plate.swift in Sources */,
 				751B784F1C6DC19200920C1A /* CopyServices.swift in Sources */,
+				759C9EE11C7169130017B0DF /* User.swift in Sources */,
 				755514531C6DE9120007BC32 /* Cup+ImageGenerating.swift in Sources */,
 				50551C2C1BCB8B18005B88DA /* SelectDeviceTableViewController.swift in Sources */,
 				50A871D71BCA9D68003CB0F9 /* CaseConstructorViewController.swift in Sources */,
