@@ -12,6 +12,8 @@ import Parse
 import FBSDKCoreKit
 import FBSDKLoginKit
 
+import Firebase
+
 /// The index of the view controller associated with the tab item.
 enum TabItemIndex: Int {
     case CatalogViewController
@@ -86,6 +88,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             application.registerUserNotificationSettings(settings)
             application.registerForRemoteNotifications()
         }
+        
+        Firebase.defaultConfig().persistenceEnabled = true
         
         return FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
     }
