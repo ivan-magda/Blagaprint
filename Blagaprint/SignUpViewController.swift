@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import Shimmer
+import Firebase
 
 class SignUpViewController: UIViewController {
 
@@ -196,16 +198,16 @@ class SignUpViewController: UIViewController {
                         
                         print("Error: \(error.localizedDescription)")
                     } else {
+                        let id = userData["uid"] as! String
+                        
                         let user = [
+                            "id" : id,
                             "provider": authData.provider!,
                             "email": email
                         ]
                         
                         // Seal the deal in DataService.swift.
-                        DataService.sharedInstance.createNewAccount(authData.uid, user: user)
-                        
-                        // Store the uid for future access - handy!
-                        NSUserDefaults.standardUserDefaults().setValue(userData["uid"], forKey: "uid")
+                        DataService.sharedInstance.createNewAccount(id, user: user)
                         
                         weakSelf?.activityIndicator.stopAnimating()
                         

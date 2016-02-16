@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Firebase
 
 class User {
     
@@ -15,6 +16,7 @@ class User {
     //--------------------------------------
     
     enum Keys: String {
+        case Id = "id"
         case Email = "email"
         case Provider = "provider"
         case Name = "name"
@@ -31,6 +33,7 @@ class User {
     
     var reference: Firebase
     
+    var id: String
     var email: String
     var provider: String
     var name: String?
@@ -41,6 +44,7 @@ class User {
     var value: Dictionary<String, AnyObject> {
         var dictionary = [String : AnyObject]()
         
+        dictionary[Keys.Id.rawValue] = id
         dictionary[Keys.Email.rawValue] = email
         dictionary[Keys.Provider.rawValue] = provider
         
@@ -71,6 +75,7 @@ class User {
     init(key: String, dictionary: Dictionary<String, AnyObject>) {
         self.key = key
         
+        self.id = dictionary[Keys.Id.rawValue] as! String
         self.email = dictionary[Keys.Email.rawValue] as! String
         self.provider = dictionary[Keys.Provider.rawValue] as! String
         

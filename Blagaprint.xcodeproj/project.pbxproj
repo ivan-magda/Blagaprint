@@ -36,6 +36,7 @@
 		0C83490C1C214ADB00A0697F /* Replace.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C8349091C214ADB00A0697F /* Replace.png */; };
 		0CA50CE51C194D5800020150 /* ShoppingBagViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CA50CE41C194D5800020150 /* ShoppingBagViewController.swift */; };
 		0CA50CE91C1954F400020150 /* AccountTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CA50CE81C1954F400020150 /* AccountTableViewController.swift */; };
+		48DCA15F20C4FABBBF82151F /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA1B90805AA307FDE05B12FC /* Pods.framework */; };
 		501506501BCE96C700697C99 /* TextEditingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5015064F1BCE96C700697C99 /* TextEditingViewController.swift */; };
 		502A8CB31BB80EAC0064E0DA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502A8CB21BB80EAC0064E0DA /* AppDelegate.swift */; };
 		502A8CB51BB80EAC0064E0DA /* CategoryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502A8CB41BB80EAC0064E0DA /* CategoryTableViewController.swift */; };
@@ -213,7 +214,6 @@
 		75FD247F1BE45B7E00446801 /* xperiaZ3CameraImage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 75FD247D1BE45B7E00446801 /* xperiaZ3CameraImage@2x.png */; };
 		75FD24821BE461EE00446801 /* XperiaZcompact.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75FD24811BE461EE00446801 /* XperiaZcompact.swift */; };
 		75FE073A1C46149E00EFE1F6 /* String+FormatAmount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75FE07391C46149E00EFE1F6 /* String+FormatAmount.swift */; };
-		D87004B643279C4AF87D6CF7 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F4F15583EE9A76B5434C6E93 /* libPods.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -433,7 +433,7 @@
 		75FE07391C46149E00EFE1F6 /* String+FormatAmount.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+FormatAmount.swift"; sourceTree = "<group>"; };
 		B73D32B3F04B08A93EE5B500 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		C8BD4F0CF3381A1B5700C233 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
-		F4F15583EE9A76B5434C6E93 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		CA1B90805AA307FDE05B12FC /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -441,7 +441,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D87004B643279C4AF87D6CF7 /* libPods.a in Frameworks */,
+				48DCA15F20C4FABBBF82151F /* Pods.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1270,7 +1270,7 @@
 		9B39F86A468EF2F9E9BFD790 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				F4F15583EE9A76B5434C6E93 /* libPods.a */,
+				CA1B90805AA307FDE05B12FC /* Pods.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";

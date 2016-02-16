@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Parse
 
 /// The application id of Parse application.
 private let applicationId = "S6q46qyVTC8tDSqkryAPvBo3fEkrkiFTtHSAHh3P"

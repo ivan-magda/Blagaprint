@@ -8,6 +8,7 @@
 
 import Foundation
 import CoreImage
+import Parse
 
 class BagItem: PFObject, PFSubclassing {
     //--------------------------------------

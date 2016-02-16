@@ -1,3 +1,5 @@
+use_frameworks!
+
 source 'https://github.com/CocoaPods/Specs.git'
 
 platform :ios, '9.0'
@@ -6,5 +8,6 @@ inhibit_all_warnings!
 pod 'Parse'
 pod 'ParseUI'
 
+pod 'FBSDKLoginKit'
 pod 'Firebase', '>= 2.5.0'
 pod 'Shimmer', '~> 1.0'

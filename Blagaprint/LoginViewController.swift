@@ -7,6 +7,9 @@
 //
 
 import UIKit
+import Shimmer
+import Firebase
+import FBSDKLoginKit
 
 class LoginViewController: UIViewController {
     
@@ -32,6 +35,7 @@ class LoginViewController: UIViewController {
     
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
+    @IBOutlet weak var facebookButton: UIButton!
     @IBOutlet weak var signupButton: UIButton!
     
     static private let storyboardId = "LoginViewController"
@@ -52,7 +56,12 @@ class LoginViewController: UIViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
-        self.signupButton.layer.cornerRadius = signupButton.bounds.height * 0.1
+        
+        // Make rounded buttons.
+        self.facebookButton.layer.cornerRadius = facebookButton.bounds.height / 2.0
+        self.facebookButton.clipsToBounds = true
+        
+        self.signupButton.layer.cornerRadius = signupButton.bounds.height / 2.0
         self.signupButton.clipsToBounds = true
     }
     
@@ -155,7 +164,7 @@ class LoginViewController: UIViewController {
     }
     
     //--------------------------------------
-    // MARK: - Log In
+    // MARK: - Log In -
     //--------------------------------------
     
     private func presentLoggedInAlert() {
@@ -176,6 +185,10 @@ class LoginViewController: UIViewController {
         
         self.presentViewController(alert, animated: true, completion: nil)
     }
+    
+    //--------------------------------------
+    // MARK: Email & Password
+    //--------------------------------------
     
     @IBAction func login(sender: AnyObject) {
         resetScrollViewContentOffset()
@@ -243,6 +256,135 @@ class LoginViewController: UIViewController {
                 self.presentLoggedInAlert()
             }
         }
+    }
+    
+    //--------------------------------------
+    // MARK: Facebook
+    //--------------------------------------
+    
+    @IBAction func facebookLogin(sender: AnyObject) {
+        self.view.endEditing(true)
+        
+        // Log In with facebook.
+        // Fetch user info using graph request.
+        // Check for account in DataBase, is it exist or not.
+        // If there is no account, then create account in database and auth
+        // If account exist, then we simly auth with access token.
+        
+        weak var weakSelf = self
+        
+        activityIndicator.startAnimating()
+        
+        FBSDKLoginManager().logInWithReadPermissions(["email"], fromViewController: self) { (facebookResult, facebookError) in
+            if facebookError != nil {
+                print("Facebook login failed. Error: \(facebookError)")
+                
+                weakSelf?.activityIndicator.stopAnimating()
+            } else if facebookResult.isCancelled {
+                print("Facebook login was cancelled.")
+                
+                weakSelf?.activityIndicator.stopAnimating()
+            } else {
+                // Fetch user info.
+                weakSelf?.fetchUserInfoFromFacebookWithCompletionBlock() { (result, error) in
+                    if let error = error {
+                        print("Facebook request failed. Error: \(error)")
+                        
+                        weakSelf?.activityIndicator.stopAnimating()
+                    } else if let result = result {
+                        print("Fetched user info: \(result)")
+                        
+                        if let facebookId = result["id"] {
+                            
+                            // Check for account in database.
+                            
+                            weakSelf?.isUserAccountAlreadyPersist(facebookId) { exist in
+                                let accessToken = FBSDKAccessToken.currentAccessToken().tokenString
+                                
+                                if exist {
+                                    print("Account exist.")
+                                } else {
+                                    print("Account doesn't exist.")
+                                    
+                                    // Create user info dictionary.
+                                    
+                                    var user: Dictionary<String, String> = [
+                                        User.Keys.Id.rawValue : facebookId,
+                                        User.Keys.Provider.rawValue : "facebook",
+                                        User.Keys.Email.rawValue : result["email"]!
+                                    ]
+                                    
+                                    if let name = result["first_name"] {
+                                        user[User.Keys.Name.rawValue] = name
+                                    }
+                                    
+                                    if let surname = result["last_name"] {
+                                        user[User.Keys.Surname.rawValue] = surname
+                                    }
+                                    
+                                    // Seal the deal in DataService.swift.
+                                    DataService.sharedInstance.createNewAccount(facebookId, user: user)
+                                }
+                                
+                                // Auth with facebook.
+                                
+                                DataService.sharedInstance.baseReference.authWithOAuthProvider("facebook", token: accessToken,
+                                    withCompletionBlock: { error, authData in
+                                        if error != nil {
+                                            print("Login failed. \(error.localizedDescription)")
+                                            
+                                            self.presentAlert(title: NSLocalizedString("Log In Error", comment: ""), message: NSLocalizedString("An error occured when trying to login. Try again.", comment: "Login error message"))
+                                        } else {
+                                            print("Logged in! \(authData)")
+                                            
+                                            weakSelf?.activityIndicator.stopAnimating()
+                                            
+                                            // Be sure the correct uid is stored.
+                                            NSUserDefaults.standardUserDefaults().setValue(authData.providerData["id"], forKey: "uid")
+                                            
+                                            // Enter the app after user cancel the alert.
+                                            self.presentLoggedInAlert()
+                                        }
+                                })
+                            }
+                        }
+                    } else {
+                        print("Unexpected issue. Error: \(error). Result: \(result)")
+                    }
+                }
+            }
+        }
+    }
+    
+    private func fetchUserInfoFromFacebookWithCompletionBlock(block:(result: [String : String]?, error: NSError?) -> ()) {
+        FBSDKGraphRequest(graphPath: "me", parameters: ["fields": "id, name, first_name, last_name, email"]).startWithCompletionHandler({ (connection, result, error) in
+            if error != nil {
+                block(result: nil, error: error)
+            } else if let result = result as? [String : String] {
+                block(result: result, error: nil)
+            } else {
+                print("Unexpected issue. Error: \(error). Result: \(result)")
+                
+                block(result: nil, error: error)
+            }
+        })
+    }
+    
+    private func isUserAccountAlreadyPersist(userId: String, block: Bool -> Void) {
+        let usersRef = DataService.sharedInstance.userReference
+        
+        usersRef.queryOrderedByChild("id").queryEqualToValue(userId).observeSingleEventOfType(.Value, withBlock: { snapshot in
+            if snapshot.value is NSNull {
+                block(false)
+            } else {
+                print("Found user with value: \(snapshot.value)")
+                
+                assert(snapshot.childrenCount > 0 && snapshot.childrenCount < 2, "Founded user account must be unique")
+                
+                block(true)
+            }
+        })
+        
     }
     
     //--------------------------------------

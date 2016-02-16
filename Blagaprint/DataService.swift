@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Firebase
 
 class DataService {
     
@@ -29,7 +30,11 @@ class DataService {
     var currentUserReference: Firebase {
         let userId = NSUserDefaults.standardUserDefaults().stringForKey("uid")
         
-        return userReference.childByAppendingPath(userId)
+        let ref = userReference.childByAppendingPath(userId)
+        
+        print("Current user reference: \(ref)")
+        
+        return ref
     }
     
     class var sharedInstance: DataService {
@@ -53,10 +58,13 @@ class DataService {
     // MARK: - User Behavior -
     //--------------------------------------
     
-    func createNewAccount(uid: String, user: Dictionary<String, String>) {
+    func createNewAccount(key: String, user: Dictionary<String, String>) {
         // A User is born.
         
-        userReference.childByAppendingPath(uid).setValue(user)
+        userReference.childByAppendingPath(key).setValue(user)
+        
+        // Store the uid for future access - handy!
+        NSUserDefaults.standardUserDefaults().setValue(user[User.Keys.Id.rawValue]!, forKey: "uid")
     }
     
     class func logout() {

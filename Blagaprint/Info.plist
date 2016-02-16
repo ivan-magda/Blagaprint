@@ -2,33 +2,35 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>NSAllowsArbitraryLoads</key>
-	<false/>
-	<key>NSExceptionDomains</key>
-	<dict>
-		<key>api.parse.com</key>
-		<dict>
-			<key>NSTemporaryExceptionAllowsInsecureHTTPLoads</key>
-			<true/>
-			<key>NSTemporaryExceptionMinimumTLSVersion</key>
-			<string>TLSv1.1</string>
-			<key>NSIncludesSubdomains</key>
-			<true/>
-			<key>NSThirdPartyExceptionRequiresForwardSecrecy</key>
-			<false/>
-		</dict>
-		<key>files.parsetfss.com</key>
-		<dict>
-			<key>NSTemporaryExceptionAllowsInsecureHTTPLoads</key>
-			<true/>
-			<key>NSTemporaryExceptionMinimumTLSVersion</key>
-			<string>TLSv1.1</string>
-			<key>NSIncludesSubdomains</key>
-			<true/>
-			<key>NSThirdPartyExceptionRequiresForwardSecrecy</key>
-			<false/>
-		</dict>
-	</dict>
+    
+    <key>CFBundleURLTypes</key>
+    <array>
+        <dict>
+            <key>CFBundleURLSchemes</key>
+            <array>
+                <string>fb508849125960858</string>
+            </array>
+        </dict>
+    </array>
+    <key>FacebookAppID</key>
+    <string>508849125960858</string>
+    <key>FacebookDisplayName</key>
+    <string>Blagaprint</string>
+    
+    <key>LSApplicationQueriesSchemes</key>
+    <array>
+        <string>fbapi</string>
+        <string>fb-messenger-api</string>
+        <string>fbauth2</string>
+        <string>fbshareextension</string>
+    </array>
+    
+    <key>NSAppTransportSecurity</key>
+    <dict>
+        <key>NSAllowsArbitraryLoads</key>
+        <true/>
+    </dict>
+    
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleExecutable</key>
@@ -72,32 +74,32 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
-    <key>UIApplicationShortcutItems</key>
-    <array>
-        <dict>
-            <key>UIApplicationShortcutItemType</key>
-            <string>$(PRODUCT_BUNDLE_IDENTIFIER).goToCatalog</string>
-            <key>UIApplicationShortcutItemTitle</key>
-            <string>Go to catalog</string>
-            <key>UIApplicationShortcutItemIconFile</key>
-            <string>ViewDetails</string>
-        </dict>
-        <dict>
-            <key>UIApplicationShortcutItemType</key>
-            <string>$(PRODUCT_BUNDLE_IDENTIFIER).goToShoppingBag</string>
-            <key>UIApplicationShortcutItemTitle</key>
-            <string>Go to shopping bag</string>
-            <key>UIApplicationShortcutItemIconFile</key>
-            <string>ShoppingBag</string>
-        </dict>
-        <dict>
-            <key>UIApplicationShortcutItemType</key>
-            <string>$(PRODUCT_BUNDLE_IDENTIFIER).goToAccount</string>
-            <key>UIApplicationShortcutItemTitle</key>
-            <string>Go to account</string>
-            <key>UIApplicationShortcutItemIconFile</key>
-            <string>Contacts</string>
-        </dict>
-    </array>
+	<key>UIApplicationShortcutItems</key>
+	<array>
+		<dict>
+			<key>UIApplicationShortcutItemType</key>
+			<string>$(PRODUCT_BUNDLE_IDENTIFIER).goToCatalog</string>
+			<key>UIApplicationShortcutItemTitle</key>
+			<string>Go to catalog</string>
+			<key>UIApplicationShortcutItemIconFile</key>
+			<string>ViewDetails</string>
+		</dict>
+		<dict>
+			<key>UIApplicationShortcutItemType</key>
+			<string>$(PRODUCT_BUNDLE_IDENTIFIER).goToShoppingBag</string>
+			<key>UIApplicationShortcutItemTitle</key>
+			<string>Go to shopping bag</string>
+			<key>UIApplicationShortcutItemIconFile</key>
+			<string>ShoppingBag</string>
+		</dict>
+		<dict>
+			<key>UIApplicationShortcutItemType</key>
+			<string>$(PRODUCT_BUNDLE_IDENTIFIER).goToAccount</string>
+			<key>UIApplicationShortcutItemTitle</key>
+			<string>Go to account</string>
+			<key>UIApplicationShortcutItemIconFile</key>
+			<string>Contacts</string>
+		</dict>
+	</array>
 </dict>
 </plist>

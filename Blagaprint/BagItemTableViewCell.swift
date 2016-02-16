@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import ParseUI
 
 class BagItemTableViewCell: PFTableViewCell {
     //--------------------------------------

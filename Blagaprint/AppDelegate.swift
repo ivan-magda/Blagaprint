@@ -7,9 +7,13 @@
 //
 
 import UIKit
+import Parse
+
+import FBSDKCoreKit
+import FBSDKLoginKit
 
 /// The index of the view controller associated with the tab item.
-public enum TabItemIndex: Int {
+enum TabItemIndex: Int {
     case CatalogViewController
     case ShoppingBagViewController
     case AccountViewController
@@ -83,7 +87,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             application.registerForRemoteNotifications()
         }
         
-        return true
+        return FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
     }
     
     func applicationWillResignActive(application: UIApplication) {
@@ -98,9 +102,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func applicationDidBecomeActive(application: UIApplication) {
+        FBSDKAppEvents.activateApp()
     }
     
     func applicationWillTerminate(application: UIApplication) {
+    }
+    
+    func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject) -> Bool {
+        return FBSDKApplicationDelegate.sharedInstance().application(application, openURL: url, sourceApplication: sourceApplication, annotation: annotation)
     }
     
     //--------------------------------------

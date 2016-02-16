@@ -6,6 +6,8 @@
 //  Copyright © 2016 Blagaprint. All rights reserved.
 //
 
+import UIKit
+
 class TintTextField: UITextField {
     
     //--------------------------------------
