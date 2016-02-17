@@ -36,6 +36,7 @@ class LoginViewController: UIViewController {
     
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
+    @IBOutlet weak var logInView: UIView!
     
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
@@ -123,6 +124,10 @@ class LoginViewController: UIViewController {
         self.passwordTextField.tag = TextFieldTag.Password.rawValue
         self.passwordTextField.attributedPlaceholder = NSAttributedString(string: NSLocalizedString("Password", comment: ""),
             attributes:[NSForegroundColorAttributeName: UIColor.whiteColor()])
+        
+        // Add gesture recognizer to logIn view.
+        let logInGestureRecognizer = UITapGestureRecognizer(target: self, action: Selector("login:"))
+        self.logInView.addGestureRecognizer(logInGestureRecognizer)
     }
     
     private func startShimmering() {
@@ -146,8 +151,6 @@ class LoginViewController: UIViewController {
         
         var spaceValue: CGFloat = round((screenHeight - (statusBarHeight + dismissButtonHeightConstraint.constant + minVerticalSpaceFromPlacegolderViewToDismissButton + placeholderViewHeightConstraint.constant)) / 2.0)
         spaceValue = max(minVerticalSpaceFromPlacegolderViewToDismissButton, spaceValue)
-        
-        print("Vertical spacing = \(spaceValue)")
         
         self.placeholderViewTopConstraint.constant = spaceValue
     }

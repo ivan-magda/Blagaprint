@@ -936,7 +936,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iez-1g-u3I" userLabel="Dismiss">
-                                        <rect key="frame" x="20" y="20" width="20" height="20"/>
+                                        <rect key="frame" x="20" y="28" width="20" height="20"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="20" id="GLo-41-i7h"/>
                                             <constraint firstAttribute="width" constant="20" id="efh-KY-7Rg"/>
@@ -948,7 +948,7 @@
                                         </connections>
                                     </button>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AEZ-Kt-7uE" userLabel="PlaceholderView">
-                                        <rect key="frame" x="0.0" y="56" width="320" height="408"/>
+                                        <rect key="frame" x="0.0" y="64" width="320" height="408"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HJc-tu-DfN" customClass="FBShimmeringView">
                                                 <rect key="frame" x="20" y="0.0" width="279" height="58"/>
@@ -967,9 +967,6 @@
                                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="Oqf-9g-KTk" customClass="TintTextField" customModule="Blagaprint" customModuleProvider="target">
                                                         <rect key="frame" x="20" y="1" width="279" height="44"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="height" constant="44" id="sTa-X0-evU"/>
-                                                        </constraints>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="emailAddress" returnKeyType="next"/>
@@ -992,9 +989,6 @@
                                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="6B5-Jc-ggZ" customClass="TintTextField" customModule="Blagaprint" customModuleProvider="target">
                                                         <rect key="frame" x="20" y="46" width="279" height="44"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="height" constant="44" id="1q1-MT-QdC"/>
-                                                        </constraints>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <textInputTraits key="textInputTraits" autocorrectionType="no" returnKeyType="done" enablesReturnKeyAutomatically="YES" secureTextEntry="YES"/>
@@ -1150,7 +1144,7 @@
                                     <constraint firstItem="AEZ-Kt-7uE" firstAttribute="top" secondItem="iez-1g-u3I" secondAttribute="bottom" constant="16" id="1qI-hQ-PB8"/>
                                     <constraint firstItem="iez-1g-u3I" firstAttribute="leading" secondItem="nu0-Tm-ulf" secondAttribute="leading" constant="20" symbolic="YES" id="7M7-cc-oDf"/>
                                     <constraint firstAttribute="trailing" secondItem="AEZ-Kt-7uE" secondAttribute="trailing" id="NFB-o6-8T6"/>
-                                    <constraint firstItem="iez-1g-u3I" firstAttribute="top" secondItem="nu0-Tm-ulf" secondAttribute="top" constant="20" symbolic="YES" id="TV0-cu-bI5"/>
+                                    <constraint firstItem="iez-1g-u3I" firstAttribute="top" secondItem="nu0-Tm-ulf" secondAttribute="top" constant="28" id="TV0-cu-bI5"/>
                                     <constraint firstItem="AEZ-Kt-7uE" firstAttribute="leading" secondItem="nu0-Tm-ulf" secondAttribute="leading" id="UOL-vn-TpC"/>
                                     <constraint firstAttribute="bottom" secondItem="AEZ-Kt-7uE" secondAttribute="bottom" constant="20" symbolic="YES" id="UqP-aW-JJT"/>
                                     <constraint firstItem="AEZ-Kt-7uE" firstAttribute="centerX" secondItem="nu0-Tm-ulf" secondAttribute="centerX" id="zz3-v6-2jw"/>
@@ -1175,6 +1169,7 @@
                         <outlet property="dismissButtonHeightConstraint" destination="GLo-41-i7h" id="ElQ-MT-8yo"/>
                         <outlet property="emailTextField" destination="Oqf-9g-KTk" id="tl9-bP-MqB"/>
                         <outlet property="facebookButton" destination="dB8-aq-uUZ" id="Oqs-3f-uET"/>
+                        <outlet property="logInView" destination="nqC-VK-NtX" id="UUP-8l-XCW"/>
                         <outlet property="passwordTextField" destination="6B5-Jc-ggZ" id="br8-re-nic"/>
                         <outlet property="placeholderViewHeightConstraint" destination="0OS-ho-9Ec" id="5XG-MF-5lw"/>
                         <outlet property="placeholderViewTopConstraint" destination="1qI-hQ-PB8" id="DaE-oB-vK0"/>
@@ -1882,7 +1877,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Klb-Je-ivv" userLabel="Dismiss">
-                                        <rect key="frame" x="20" y="20" width="20" height="20"/>
+                                        <rect key="frame" x="20" y="28" width="20" height="20"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="20" id="bjS-NI-ydl"/>
                                             <constraint firstAttribute="height" constant="20" id="mFg-QD-gu6"/>
@@ -1899,13 +1894,13 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sK1-9T-LGJ" userLabel="Separator">
                                                 <rect key="frame" x="0.0" y="0.0" width="321" height="1"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="0.5" id="HZ6-KX-OUc"/>
+                                                </constraints>
                                             </view>
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="CQZ-3B-w0M" customClass="TintTextField" customModule="Blagaprint" customModuleProvider="target">
                                                 <rect key="frame" x="20" y="1" width="281" height="44"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="44" id="MNA-4C-6Bg"/>
-                                                </constraints>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="emailAddress" returnKeyType="next"/>
@@ -1916,17 +1911,20 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OOl-hV-ez2" userLabel="Separator">
                                                 <rect key="frame" x="0.0" y="45" width="321" height="1"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="0.5" id="jeZ-1t-6tj"/>
+                                                </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jb6-w8-gTy" userLabel="Separator">
                                                 <rect key="frame" x="0.0" y="90" width="321" height="1"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="0.5" id="051-nQ-MSN"/>
+                                                </constraints>
                                             </view>
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="mHl-HU-oxM" customClass="TintTextField" customModule="Blagaprint" customModuleProvider="target">
                                                 <rect key="frame" x="20" y="46" width="281" height="44"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="44" id="q0B-ud-ijD"/>
-                                                </constraints>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <textInputTraits key="textInputTraits" autocorrectionType="no" returnKeyType="done" enablesReturnKeyAutomatically="YES" secureTextEntry="YES"/>
@@ -1941,12 +1939,12 @@
                                             <constraint firstItem="jb6-w8-gTy" firstAttribute="top" secondItem="mHl-HU-oxM" secondAttribute="bottom" id="4o4-sL-4Vo"/>
                                             <constraint firstItem="OOl-hV-ez2" firstAttribute="leading" secondItem="jb6-w8-gTy" secondAttribute="leading" id="CXb-VA-H7R"/>
                                             <constraint firstItem="sK1-9T-LGJ" firstAttribute="leading" secondItem="OFn-yb-w91" secondAttribute="leading" id="FeW-iT-XDJ"/>
-                                            <constraint firstItem="CQZ-3B-w0M" firstAttribute="leading" secondItem="OFn-yb-w91" secondAttribute="leading" constant="20" id="K7G-ro-uiv"/>
+                                            <constraint firstItem="CQZ-3B-w0M" firstAttribute="leading" secondItem="OFn-yb-w91" secondAttribute="leading" constant="20" symbolic="YES" id="K7G-ro-uiv"/>
                                             <constraint firstItem="jb6-w8-gTy" firstAttribute="trailing" secondItem="OOl-hV-ez2" secondAttribute="trailing" id="KEq-RV-Qne"/>
-                                            <constraint firstItem="CQZ-3B-w0M" firstAttribute="top" secondItem="OFn-yb-w91" secondAttribute="top" constant="1" id="LWg-sA-Ty3"/>
                                             <constraint firstItem="sK1-9T-LGJ" firstAttribute="trailing" secondItem="OOl-hV-ez2" secondAttribute="trailing" id="Nun-lc-vdO"/>
                                             <constraint firstItem="OOl-hV-ez2" firstAttribute="centerY" secondItem="OFn-yb-w91" secondAttribute="centerY" id="O4D-bM-SIG"/>
                                             <constraint firstItem="sK1-9T-LGJ" firstAttribute="leading" secondItem="OOl-hV-ez2" secondAttribute="leading" id="UFX-GM-Apb"/>
+                                            <constraint firstAttribute="trailing" secondItem="CQZ-3B-w0M" secondAttribute="trailing" constant="20" symbolic="YES" id="VLq-cs-B3G"/>
                                             <constraint firstItem="CQZ-3B-w0M" firstAttribute="leading" secondItem="mHl-HU-oxM" secondAttribute="leading" id="YYi-vm-19f"/>
                                             <constraint firstItem="CQZ-3B-w0M" firstAttribute="top" secondItem="sK1-9T-LGJ" secondAttribute="bottom" id="hVm-MJ-w3V"/>
                                             <constraint firstAttribute="height" constant="91" id="i8r-gr-QKh"/>
@@ -1954,7 +1952,6 @@
                                             <constraint firstItem="CQZ-3B-w0M" firstAttribute="trailing" secondItem="mHl-HU-oxM" secondAttribute="trailing" id="ntw-q0-euv"/>
                                             <constraint firstAttribute="trailing" secondItem="jb6-w8-gTy" secondAttribute="trailing" id="usH-rs-3fB"/>
                                             <constraint firstItem="sK1-9T-LGJ" firstAttribute="top" secondItem="OFn-yb-w91" secondAttribute="top" id="xIC-yn-hrL"/>
-                                            <constraint firstItem="sK1-9T-LGJ" firstAttribute="centerX" secondItem="CQZ-3B-w0M" secondAttribute="centerX" id="y9h-Nh-2Lg"/>
                                             <constraint firstAttribute="bottom" secondItem="jb6-w8-gTy" secondAttribute="bottom" id="zQo-ro-bnm"/>
                                         </constraints>
                                     </view>
@@ -1977,8 +1974,8 @@
                                         </subviews>
                                         <color key="backgroundColor" red="0.25490196079999999" green="0.56470588239999997" blue="0.85882352939999995" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
+                                            <constraint firstAttribute="height" constant="56" id="3PI-N2-K7X"/>
                                             <constraint firstItem="JFj-bg-7uL" firstAttribute="leading" secondItem="Hh3-kS-d34" secondAttribute="trailing" constant="8" symbolic="YES" id="DKP-QZ-H3d"/>
-                                            <constraint firstItem="JFj-bg-7uL" firstAttribute="top" secondItem="7Ht-BX-AP2" secondAttribute="top" constant="10" id="Hdd-wT-ZYq"/>
                                             <constraint firstItem="Hh3-kS-d34" firstAttribute="centerY" secondItem="JFj-bg-7uL" secondAttribute="centerY" id="IQU-kd-6wN"/>
                                             <constraint firstItem="JFj-bg-7uL" firstAttribute="centerX" secondItem="7Ht-BX-AP2" secondAttribute="centerX" id="Q2M-6G-hlu"/>
                                             <constraint firstItem="JFj-bg-7uL" firstAttribute="centerY" secondItem="7Ht-BX-AP2" secondAttribute="centerY" id="hwj-0k-9gb"/>
@@ -1994,11 +1991,11 @@
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="OFn-yb-w91" secondAttribute="trailing" constant="-1" id="4Y2-0N-SCX"/>
+                                    <constraint firstAttribute="trailing" secondItem="OFn-yb-w91" secondAttribute="trailing" id="4Y2-0N-SCX"/>
                                     <constraint firstItem="Klb-Je-ivv" firstAttribute="leading" secondItem="l3c-Cl-KEV" secondAttribute="leading" constant="20" symbolic="YES" id="7Sd-en-sqz"/>
                                     <constraint firstItem="R9j-b0-Bj6" firstAttribute="leading" secondItem="Klb-Je-ivv" secondAttribute="leading" id="NRq-lx-6ey"/>
                                     <constraint firstItem="OFn-yb-w91" firstAttribute="centerX" secondItem="R9j-b0-Bj6" secondAttribute="centerX" id="PKV-gC-Ozs"/>
-                                    <constraint firstItem="Klb-Je-ivv" firstAttribute="top" secondItem="l3c-Cl-KEV" secondAttribute="top" constant="20" symbolic="YES" id="Pcc-pr-o4T"/>
+                                    <constraint firstItem="Klb-Je-ivv" firstAttribute="top" secondItem="l3c-Cl-KEV" secondAttribute="top" constant="28" id="Pcc-pr-o4T"/>
                                     <constraint firstItem="R9j-b0-Bj6" firstAttribute="top" secondItem="l3c-Cl-KEV" secondAttribute="top" constant="156" id="RCo-3X-HN0"/>
                                     <constraint firstItem="OFn-yb-w91" firstAttribute="leading" secondItem="7Ht-BX-AP2" secondAttribute="leading" id="Rqx-R9-xbi"/>
                                     <constraint firstAttribute="bottom" secondItem="7Ht-BX-AP2" secondAttribute="bottom" constant="183" id="Wn2-Ur-ZgY"/>
@@ -2028,6 +2025,7 @@
                         <outlet property="passwordTextField" destination="mHl-HU-oxM" id="umP-Np-4K5"/>
                         <outlet property="scrollView" destination="l3c-Cl-KEV" id="2e9-IF-o1n"/>
                         <outlet property="shimmeringView" destination="R9j-b0-Bj6" id="fox-2p-hGS"/>
+                        <outlet property="signUpView" destination="7Ht-BX-AP2" id="30a-hi-aTc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AoS-b4-xWn" userLabel="First Responder" sceneMemberID="firstResponder"/>

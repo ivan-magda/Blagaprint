@@ -31,6 +31,7 @@ class SignUpViewController: UIViewController {
     
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
+    @IBOutlet weak var signUpView: UIView!
     
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
@@ -114,6 +115,10 @@ class SignUpViewController: UIViewController {
         self.passwordTextField.tag = TextFieldTag.Password.rawValue
         self.passwordTextField.attributedPlaceholder = NSAttributedString(string: NSLocalizedString("Password", comment: ""),
             attributes:[NSForegroundColorAttributeName: UIColor.whiteColor()])
+        
+        // Add gesture recognizer to signUp view.
+        let signUpGestureRecognizer = UITapGestureRecognizer(target: self, action: Selector("signup:"))
+        self.signUpView.addGestureRecognizer(signUpGestureRecognizer)
     }
     
     private func startShimmering() {
