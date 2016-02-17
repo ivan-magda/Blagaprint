@@ -23,7 +23,11 @@ class LoginViewController: UIViewController {
     }
     
     //--------------------------------------
-    // MARK: - Properties
+    // MARK: - Properties -
+    //--------------------------------------
+    
+    //--------------------------------------
+    // MARK: IBOutlets
     //--------------------------------------
     
     @IBOutlet weak var scrollView: UIScrollView!
@@ -38,7 +42,20 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var facebookButton: UIButton!
     @IBOutlet weak var signupButton: UIButton!
     
-    static private let storyboardId = "LoginViewController"
+    //--------------------------------------
+    // MARK: Dimenstion
+    //--------------------------------------
+    
+    @IBOutlet weak var placeholderViewTopConstraint: NSLayoutConstraint!
+    @IBOutlet weak var dismissButtonHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var placeholderViewHeightConstraint: NSLayoutConstraint!
+    private let minVerticalSpaceFromPlacegolderViewToDismissButton: CGFloat = 16.0
+
+    //--------------------------------------
+    // MARK: Other
+    //--------------------------------------
+    
+    private static let storyboardId = "LoginViewController"
     
     private var didSetKeyboardOffset = false
     
@@ -63,6 +80,9 @@ class LoginViewController: UIViewController {
         
         self.signupButton.layer.cornerRadius = signupButton.bounds.height / 2.0
         self.signupButton.clipsToBounds = true
+        
+        // Set vertical spacing.
+        updateVerticalSpaceFromPlaceholderViewToDismissButton()
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -113,10 +133,23 @@ class LoginViewController: UIViewController {
         label.text = "Blagaprint"
         label.textColor = .whiteColor()
         
+        shimmeringView.backgroundColor = .clearColor()
         shimmeringView.contentView = label
         
         // Start shimmering.
         shimmeringView.shimmering = true
+    }
+    
+    private func updateVerticalSpaceFromPlaceholderViewToDismissButton() {
+        let screenHeight = self.view.bounds.height
+        let statusBarHeight = UIApplication.sharedApplication().statusBarFrame.height
+        
+        var spaceValue: CGFloat = round((screenHeight - (statusBarHeight + dismissButtonHeightConstraint.constant + minVerticalSpaceFromPlacegolderViewToDismissButton + placeholderViewHeightConstraint.constant)) / 2.0)
+        spaceValue = max(minVerticalSpaceFromPlacegolderViewToDismissButton, spaceValue)
+        
+        print("Vertical spacing = \(spaceValue)")
+        
+        self.placeholderViewTopConstraint.constant = spaceValue
     }
     
     //--------------------------------------
@@ -138,7 +171,7 @@ class LoginViewController: UIViewController {
                 
                 let insets = UIEdgeInsets(top: self.scrollView.contentInset.top, left: 0.0, bottom: keyboardSize.height, right: 0.0)
                 self.scrollView.contentInset = insets
-                self.scrollView.contentOffset = CGPoint(x: self.scrollView.contentOffset.x, y: self.scrollView.contentOffset.y + keyboardSize.height / 2.0)
+                self.scrollView.contentOffset = CGPoint(x: self.scrollView.contentOffset.x, y: self.scrollView.contentOffset.y + keyboardSize.height / 4.0)
                 
                 UIView.commitAnimations()
                 

@@ -70,7 +70,7 @@ class SignUpViewController: UIViewController {
                 
                 let insets = UIEdgeInsets(top: self.scrollView.contentInset.top, left: 0.0, bottom: keyboardSize.height, right: 0.0)
                 self.scrollView.contentInset = insets
-                self.scrollView.contentOffset = CGPoint(x: self.scrollView.contentOffset.x, y: self.scrollView.contentOffset.y + keyboardSize.height / 2.0)
+                self.scrollView.contentOffset = CGPoint(x: self.scrollView.contentOffset.x, y: self.scrollView.contentOffset.y + keyboardSize.height / 3.0)
                 
                 UIView.commitAnimations()
                 
@@ -124,6 +124,7 @@ class SignUpViewController: UIViewController {
         label.text = "Blagaprint"
         label.textColor = .whiteColor()
         
+        shimmeringView.backgroundColor = .clearColor()
         shimmeringView.contentView = label
         
         // Start shimmering.
