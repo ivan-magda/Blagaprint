@@ -201,9 +201,9 @@ class SignUpViewController: UIViewController {
                         let id = userData["uid"] as! String
                         
                         let user = [
-                            "id" : id,
-                            "provider": authData.provider!,
-                            "email": email
+                            User.Keys.Id.rawValue : id,
+                            User.Keys.Provider.rawValue : authData.provider!,
+                            User.Keys.Email.rawValue : email
                         ]
                         
                         // Seal the deal in DataService.swift.

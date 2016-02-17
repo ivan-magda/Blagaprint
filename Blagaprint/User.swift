@@ -8,6 +8,7 @@
 
 import Foundation
 import Firebase
+import FBSDKCoreKit
 
 class User {
     
@@ -67,6 +68,18 @@ class User {
         return dictionary
     }
     
+    class var currentUserId: String? {
+        return NSUserDefaults.standardUserDefaults().stringForKey(UserDefaultsKeys.userId)
+    }
+    
+    class var currentUserEmail: String? {
+        return NSUserDefaults.standardUserDefaults().stringForKey(UserDefaultsKeys.email)
+    }
+    
+    class var currentUserProvider: String? {
+        return NSUserDefaults.standardUserDefaults().stringForKey(UserDefaultsKeys.provider)
+    }
+    
     //--------------------------------------
     // MARK: - Initialize -
     //--------------------------------------
@@ -100,6 +113,10 @@ class User {
         self.reference = DataService.sharedInstance.userReference.childByAppendingPath(key)
     }
     
+    //--------------------------------------
+    // MARK: - Behavior -
+    //--------------------------------------
+    
     func updateValuesWithCompletionBlock(block: (Bool, NSError?) -> Void) {
         self.reference.updateChildValues(self.value) { (error, ref) in
             if error != nil {
@@ -112,5 +129,35 @@ class User {
                 block(true, nil)
             }
         }
+    }
+    
+    class func fetchFacebookUserInfoWithCompletionHandler(block:(result: [String : String]?, error: NSError?) -> ()) {
+        FBSDKGraphRequest(graphPath: "me", parameters: ["fields": "\(FacebookParameters.id), \(FacebookParameters.name), \(FacebookParameters.firstName), \(FacebookParameters.lastName), \(FacebookParameters.email)"]).startWithCompletionHandler({ (connection, result, error) in
+            if error != nil {
+                block(result: nil, error: error)
+            } else if let result = result as? [String : String] {
+                block(result: result, error: nil)
+            } else {
+                print("Unexpected issue. Error: \(error). Result: \(result)")
+                
+                block(result: nil, error: error)
+            }
+        })
+    }
+    
+    class func isUserAccountAlreadyPersist(userId userId: String, block: Bool -> Void) {
+        let usersRef = DataService.sharedInstance.userReference
+        
+        usersRef.queryOrderedByChild(Keys.Id.rawValue).queryEqualToValue(userId).observeSingleEventOfType(.Value, withBlock: { snapshot in
+            if snapshot.value is NSNull {
+                block(false)
+            } else {
+                print("Found user with value: \(snapshot.value)")
+                
+                assert(snapshot.childrenCount == 1, "Founded user account must be unique.")
+                
+                block(true)
+            }
+        })
     }
 }

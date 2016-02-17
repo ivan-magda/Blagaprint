@@ -54,6 +54,7 @@
 		50DD72391BBED313008A9B80 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50DD72381BBED313008A9B80 /* Category.swift */; };
 		50FD7F501BB8FFF600ABEC38 /* CategoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50FD7F4F1BB8FFF600ABEC38 /* CategoryTableViewCell.swift */; };
 		750272011C1D3C4A0095CB0E /* UserLogInEmptyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 750272031C1D3C4A0095CB0E /* UserLogInEmptyView.xib */; };
+		7509CE281C74023B00F05A54 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7509CE271C74023B00F05A54 /* Constants.swift */; };
 		750C83C91C02EEBB00BAFEB0 /* SH38_PhotoFrame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 750C83C81C02EEBB00BAFEB0 /* SH38_PhotoFrame.swift */; };
 		750C83CF1C03110200BAFEB0 /* sh38_placeholderImage.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 750C83CE1C03110200BAFEB0 /* sh38_placeholderImage.jpg */; };
 		750E0F911C1874DA00A8158C /* BlagaprintUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 750E0F901C1874DA00A8158C /* BlagaprintUser.swift */; };
@@ -266,6 +267,7 @@
 		50FD7F4F1BB8FFF600ABEC38 /* CategoryTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryTableViewCell.swift; sourceTree = "<group>"; };
 		750272021C1D3C4A0095CB0E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/UserLogInEmptyView.xib; sourceTree = "<group>"; };
 		750272051C1D3C560095CB0E /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/UserLogInEmptyView.strings; sourceTree = "<group>"; };
+		7509CE271C74023B00F05A54 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		750C83C81C02EEBB00BAFEB0 /* SH38_PhotoFrame.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SH38_PhotoFrame.swift; sourceTree = "<group>"; };
 		750C83CE1C03110200BAFEB0 /* sh38_placeholderImage.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = sh38_placeholderImage.jpg; path = images/sh38_placeholderImage.jpg; sourceTree = "<group>"; };
 		750E0F901C1874DA00A8158C /* BlagaprintUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlagaprintUser.swift; sourceTree = "<group>"; };
@@ -619,6 +621,7 @@
 		508503051BBAADCF00152131 /* Utility */ = {
 			isa = PBXGroup;
 			children = (
+				7509CE271C74023B00F05A54 /* Constants.swift */,
 				508503031BBAADB600152131 /* AppAppearance.swift */,
 				753CD5791BF3210500795F44 /* AppConfiguration.swift */,
 			);
@@ -1598,6 +1601,7 @@
 				75A7F1971C6C4C5300E20DB2 /* ItemSizeCollectionViewController.swift in Sources */,
 				757F12921C48F65300CF947C /* HeartWithWingsKeyRing.swift in Sources */,
 				751DA9B71C19D3D600D10C24 /* UserLogInEmptyView.swift in Sources */,
+				7509CE281C74023B00F05A54 /* Constants.swift in Sources */,
 				756DF01A1C4E542700A31B55 /* SquareKeyRing.swift in Sources */,
 				501506501BCE96C700697C99 /* TextEditingViewController.swift in Sources */,
 				75BF69531C044900009D670D /* PhotoFrame.swift in Sources */,

@@ -173,7 +173,7 @@ class LoginViewController: UIViewController {
         
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .Alert)
         alertController.addAction(UIAlertAction(title: "Ok", style: .Cancel) { action in
-            self.dismiss(self)
+            self.dismiss(alertController)
             })
         
         self.presentViewController(alertController, animated: true, completion: nil)
@@ -184,6 +184,15 @@ class LoginViewController: UIViewController {
         alert.addAction(UIAlertAction(title: "Ok", style: .Cancel, handler: nil))
         
         self.presentViewController(alert, animated: true, completion: nil)
+    }
+    
+    private func prepareForDismissWithUserInfo(info: [String : String]) {
+        // Be sure the correct info is stored.
+        
+        NSUserDefaults.standardUserDefaults().updateUserInfoWithDictionary(info)
+        
+        // Enter the app after user cancel the alert.
+        self.presentLoggedInAlert()
     }
     
     //--------------------------------------
@@ -248,12 +257,16 @@ class LoginViewController: UIViewController {
                     }
                 }
             } else {
-                // Be sure the correct uid is stored.
                 
-                NSUserDefaults.standardUserDefaults().setValue(authData.uid, forKey: "uid")
+                // Store necessary data in user defaults and dismiss the controller.
                 
-                // Enter the app after user cancel the alert.
-                self.presentLoggedInAlert()
+                let userInfo: [String : String] = [
+                    User.Keys.Id.rawValue : authData.uid,
+                    User.Keys.Email.rawValue : email,
+                    User.Keys.Provider.rawValue : authData.provider
+                ]
+                
+                self.prepareForDismissWithUserInfo(userInfo)
             }
         }
     }
@@ -275,7 +288,7 @@ class LoginViewController: UIViewController {
         
         activityIndicator.startAnimating()
         
-        FBSDKLoginManager().logInWithReadPermissions(["email"], fromViewController: self) { (facebookResult, facebookError) in
+        FBSDKLoginManager().logInWithReadPermissions([FacebookParameters.email], fromViewController: self) { (facebookResult, facebookError) in
             if facebookError != nil {
                 print("Facebook login failed. Error: \(facebookError)")
                 
@@ -286,7 +299,7 @@ class LoginViewController: UIViewController {
                 weakSelf?.activityIndicator.stopAnimating()
             } else {
                 // Fetch user info.
-                weakSelf?.fetchUserInfoFromFacebookWithCompletionBlock() { (result, error) in
+                User.fetchFacebookUserInfoWithCompletionHandler { (result, error) in
                     if let error = error {
                         print("Facebook request failed. Error: \(error)")
                         
@@ -294,31 +307,30 @@ class LoginViewController: UIViewController {
                     } else if let result = result {
                         print("Fetched user info: \(result)")
                         
-                        if let facebookId = result["id"] {
+                        if let facebookId = result[FacebookParameters.id] {
                             
                             // Check for account in database.
-                            
-                            weakSelf?.isUserAccountAlreadyPersist(facebookId) { exist in
+                            User.isUserAccountAlreadyPersist(userId: facebookId) { exist in
                                 let accessToken = FBSDKAccessToken.currentAccessToken().tokenString
                                 
-                                if exist {
-                                    print("Account exist.")
-                                } else {
+                                // Create account in database.
+                                
+                                if !exist {
                                     print("Account doesn't exist.")
                                     
                                     // Create user info dictionary.
                                     
                                     var user: Dictionary<String, String> = [
                                         User.Keys.Id.rawValue : facebookId,
-                                        User.Keys.Provider.rawValue : "facebook",
-                                        User.Keys.Email.rawValue : result["email"]!
+                                        User.Keys.Provider.rawValue : AuthProviders.facebook,
+                                        User.Keys.Email.rawValue : result[FacebookParameters.email]!
                                     ]
                                     
-                                    if let name = result["first_name"] {
+                                    if let name = result[FacebookParameters.firstName] {
                                         user[User.Keys.Name.rawValue] = name
                                     }
                                     
-                                    if let surname = result["last_name"] {
+                                    if let surname = result[FacebookParameters.lastName] {
                                         user[User.Keys.Surname.rawValue] = surname
                                     }
                                     
@@ -328,7 +340,7 @@ class LoginViewController: UIViewController {
                                 
                                 // Auth with facebook.
                                 
-                                DataService.sharedInstance.baseReference.authWithOAuthProvider("facebook", token: accessToken,
+                                DataService.sharedInstance.baseReference.authWithOAuthProvider(AuthProviders.facebook, token: accessToken,
                                     withCompletionBlock: { error, authData in
                                         if error != nil {
                                             print("Login failed. \(error.localizedDescription)")
@@ -339,11 +351,15 @@ class LoginViewController: UIViewController {
                                             
                                             weakSelf?.activityIndicator.stopAnimating()
                                             
-                                            // Be sure the correct uid is stored.
-                                            NSUserDefaults.standardUserDefaults().setValue(authData.providerData["id"], forKey: "uid")
+                                            // Be sure the correct data is stored and dismiss.
                                             
-                                            // Enter the app after user cancel the alert.
-                                            self.presentLoggedInAlert()
+                                            let userInfo: [String : String] = [
+                                                User.Keys.Id.rawValue : authData.providerData[FacebookParameters.id] as! String,
+                                                User.Keys.Provider.rawValue : authData.provider!,
+                                                User.Keys.Email.rawValue : result[FacebookParameters.email]!
+                                            ]
+                                            
+                                            weakSelf?.prepareForDismissWithUserInfo(userInfo)
                                         }
                                 })
                             }
@@ -354,37 +370,6 @@ class LoginViewController: UIViewController {
                 }
             }
         }
-    }
-    
-    private func fetchUserInfoFromFacebookWithCompletionBlock(block:(result: [String : String]?, error: NSError?) -> ()) {
-        FBSDKGraphRequest(graphPath: "me", parameters: ["fields": "id, name, first_name, last_name, email"]).startWithCompletionHandler({ (connection, result, error) in
-            if error != nil {
-                block(result: nil, error: error)
-            } else if let result = result as? [String : String] {
-                block(result: result, error: nil)
-            } else {
-                print("Unexpected issue. Error: \(error). Result: \(result)")
-                
-                block(result: nil, error: error)
-            }
-        })
-    }
-    
-    private func isUserAccountAlreadyPersist(userId: String, block: Bool -> Void) {
-        let usersRef = DataService.sharedInstance.userReference
-        
-        usersRef.queryOrderedByChild("id").queryEqualToValue(userId).observeSingleEventOfType(.Value, withBlock: { snapshot in
-            if snapshot.value is NSNull {
-                block(false)
-            } else {
-                print("Found user with value: \(snapshot.value)")
-                
-                assert(snapshot.childrenCount > 0 && snapshot.childrenCount < 2, "Founded user account must be unique")
-                
-                block(true)
-            }
-        })
-        
     }
     
     //--------------------------------------

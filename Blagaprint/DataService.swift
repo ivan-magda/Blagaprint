@@ -28,13 +28,9 @@ class DataService {
     }
     
     var currentUserReference: Firebase {
-        let userId = NSUserDefaults.standardUserDefaults().stringForKey("uid")
+        let userId = NSUserDefaults.standardUserDefaults().stringForKey(UserDefaultsKeys.userId)
         
-        let ref = userReference.childByAppendingPath(userId)
-        
-        print("Current user reference: \(ref)")
-        
-        return ref
+        return userReference.childByAppendingPath(userId)
     }
     
     class var sharedInstance: DataService {
@@ -51,7 +47,7 @@ class DataService {
     }
     
     var isUserLoggedIn: Bool {
-        return (NSUserDefaults.standardUserDefaults().stringForKey("uid") != nil) && (DataService.sharedInstance.currentUserReference.authData != nil)
+        return (NSUserDefaults.standardUserDefaults().stringForKey(UserDefaultsKeys.userId) != nil) && (DataService.sharedInstance.currentUserReference.authData != nil)
     }
     
     //--------------------------------------
@@ -63,8 +59,8 @@ class DataService {
         
         userReference.childByAppendingPath(key).setValue(user)
         
-        // Store the uid for future access - handy!
-        NSUserDefaults.standardUserDefaults().setValue(user[User.Keys.Id.rawValue]!, forKey: "uid")
+        // Store the uid, email, provider for future access - handy!
+        NSUserDefaults.standardUserDefaults().updateUserInfoWithDictionary(user)
     }
     
     class func logout() {
@@ -72,9 +68,8 @@ class DataService {
         
         DataService.sharedInstance.currentUserReference.unauth()
         
-        // Remove the user's uid from storage.
-        
-        NSUserDefaults.standardUserDefaults().setValue(nil, forKey: "uid")
+        // Remove the user's uid, email and provider from storage.
+        NSUserDefaults.standardUserDefaults().updateUserInfoWithDictionary(nil)
     }
     
     func resetPasswordForEmail(email: String, callback: (success: Bool, error: NSError?) -> Void ) {
@@ -90,5 +85,27 @@ class DataService {
                 callback(success: true, error: nil)
             }
         })
+    }
+    
+    func changePasswordForUser(email email: String, fromOldPassword oldPassword: String, toNewPassword newPassword: String, withCompletionBlock block: NSError? -> ()) {
+        self.baseReference.changePasswordForUser(email, fromOld: oldPassword, toNew: newPassword) { error in
+            if error != nil {
+                block(error)
+            } else {
+                block(nil)
+            }
+        }
+    }
+}
+
+//--------------------------------------
+// MARK: - NSUserDefaults Extension -
+//--------------------------------------
+
+extension NSUserDefaults {
+    func updateUserInfoWithDictionary(info: [String : String]?) {
+        self.setValue(info?[User.Keys.Id.rawValue], forKey: UserDefaultsKeys.userId)
+        self.setValue(info?[User.Keys.Email.rawValue], forKey: UserDefaultsKeys.email)
+        self.setValue(info?[User.Keys.Provider.rawValue], forKey: UserDefaultsKeys.provider)
     }
 }
