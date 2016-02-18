@@ -119,13 +119,13 @@ class CategoryItemViewController: UIViewController {
     // MARK: Parse
     //--------------------------------------
     
-    var parseCentral: ParseCentral?
+    var dataService: DataService!
     
     /// Category of the presenting item.
-    var category: Category!
+    var category: FCategory!
     
     /// Loaded category items of the parent category.
-    private var categoryItems: [CategoryItem]?
+    private var categoryItems: [FCategoryItem]?
     
     //--------------------------------------
     // MARK: Other
@@ -292,9 +292,9 @@ class CategoryItemViewController: UIViewController {
         }
     }
     
-    private func getCategoryItemType() -> CategoryItem.CategoryItemType? {
+    private func getCategoryItemType() -> FCategoryItem.CategoryItemType? {
         if let categoryItems = self.categoryItems where categoryItems.count > 0 {
-            return categoryItems[pickedTypeIndex].getType()
+            return categoryItems[pickedTypeIndex].type!
         }
         
         return nil
@@ -369,7 +369,7 @@ class CategoryItemViewController: UIViewController {
     }
     
     private func setupMoreActionsLabelText() {
-        if let type = getCategoryItemType() where type == CategoryItem.CategoryItemType.stateNumberKeyRing {
+        if let type = getCategoryItemType() where type == FCategoryItem.CategoryItemType.stateNumberKeyRing {
             self.moreActionsLabel.text = NSLocalizedString("Text", comment: "")
         } else {
             self.moreActionsLabel.text = NSLocalizedString("Image", comment: "")
@@ -423,7 +423,7 @@ class CategoryItemViewController: UIViewController {
             return
         }
         
-        let categoryType = self.category.getType()
+        let categoryType = category.type!
         
         // Setting up the dimentions.
         
@@ -552,16 +552,16 @@ class CategoryItemViewController: UIViewController {
         self.images.removeAll(keepCapacity: true)
         
         // Get category.
-        let category = self.category.getType()
+        let categoryType = category.type!
         
         // Get catgeory item.
-        var categoryItem: CategoryItem? = nil
+        var categoryItem: FCategoryItem? = nil
         if let categoryItems = self.categoryItems where categoryItems.count > 0 {
             categoryItem = categoryItems[pickedTypeIndex]
         }
         
         // Set image for state number key ring and immediatly return from here.
-        if let type = getCategoryItemType() where type == CategoryItem.CategoryItemType.stateNumberKeyRing {
+        if let type = getCategoryItemType() where type == FCategoryItem.CategoryItemType.stateNumberKeyRing {
             let keyRing = KeyRing(selfType: .StateNumber, categoryItemType: .stateNumberKeyRing)
             self.images = [keyRing.stateNumberImage(characters: self.letters, numbers: self.numbers, region: self.region)]
             
@@ -569,7 +569,7 @@ class CategoryItemViewController: UIViewController {
         }
         
         if let pickedImage = pickedImage {
-            switch category {
+            switch categoryType {
                 
             case .cup:
                 self.images = Cup.getCupImagesWithPickedImage(pickedImage)
@@ -611,7 +611,7 @@ class CategoryItemViewController: UIViewController {
                 break
             }
         } else {
-            switch category {
+            switch categoryType {
                 
             case .cup:
                 images = Cup.getDefaultCupImages()
@@ -655,15 +655,14 @@ class CategoryItemViewController: UIViewController {
     }
     
     //--------------------------------------
-    // MARK: Parse
+    // MARK: Quering
     //--------------------------------------
     
     private func loadCategoryItems() {
         weak var weakSelf = self
-        self.category.getItemsInBackgroundWithBlock() { (items, error) in
-            if let error = error {
-                print(error.localizedDescription)
-            } else if let items = items {
+        
+        category.getItemsInBackgroundWithBlock { objects in
+            if let items = objects {
                 weakSelf?.categoryItems = items
                 
                 if let itemSizeController = weakSelf?.itemSizeCollectionViewController {
@@ -679,66 +678,69 @@ class CategoryItemViewController: UIViewController {
         }
     }
     
+    // TODO: fix this
     private func createBagItem() -> BagItem {
-        // Create BagItem and save it to Parse.
-        let item = BagItem()
+//        // Create BagItem and save it to Parse.
+//        let item = BagItem()
+//        
+//        // Set user ID.
+//        if let user = BlagaprintUser.currentUser() {
+//            item.userId = user.objectId!
+//        }
+//        
+//        // Set parent category ID.
+//        item.category = self.category.objectId!
+//        
+//        // Set selected category item if it exist.
+//        if let categoryItems = self.categoryItems where categoryItems.count > 0 {
+//            item.categoryItem = categoryItems[pickedTypeIndex].objectId!
+//        }
+//        
+//        // Set user picked image from media/camera.
+//        if let image = self.pickedImage {
+//            let imageData = UIImageJPEGRepresentation(image, 0.8)
+//            if let imageData = imageData {
+//                if let imageFile = PFFile(data: imageData) {
+//                    item.image = imageFile
+//                }
+//            }
+//        }
+//        
+//        let pickedItemIndex = self.pageControl.currentPage
+//        
+//        // Set thumbnail image of item.
+//        let size = images[pickedItemIndex].size
+//        let thumbnailData = UIImagePNGRepresentation(images[pickedItemIndex].resizedImage(size, interpolationQuality: .Low))
+//        if let thumbnailData = thumbnailData {
+//            if let thumbnailFile = PFFile(data: thumbnailData) {
+//                item.thumbnail = thumbnailFile
+//            }
+//        }
+//        
+//        // Set picked color.
+//        if self.pickColorViewHeightConstraint.constant != 0.0 {
+//            item.fillColor = BagItem.colorToString(self.pickedColor)
+//        }
+//        
+//        // Set item size.
+//        if let selectedItemSizeIndex = self.itemSizeCollectionViewController?.selectedSizeIndexPath?.row {
+//            if let sizes = getItemSizes() {
+//                item.itemSize = sizes[selectedItemSizeIndex]
+//            }
+//        }
+//        
+//        item.numberOfItems = self.numberOfItems
+//        
+//        // TODO: fix with price selection.
+//        item.price = 500.0
+//        
+//        item.amount = item.price * Double(item.numberOfItems)
+//        
+//        print("Created BagItem: \(item)")
+//        
+//        return item
         
-        // Set user ID.
-        if let user = BlagaprintUser.currentUser() {
-            item.userId = user.objectId!
-        }
-        
-        // Set parent category ID.
-        item.category = self.category.objectId!
-        
-        // Set selected category item if it exist.
-        if let categoryItems = self.categoryItems where categoryItems.count > 0 {
-            item.categoryItem = categoryItems[pickedTypeIndex].objectId!
-        }
-        
-        // Set user picked image from media/camera.
-        if let image = self.pickedImage {
-            let imageData = UIImageJPEGRepresentation(image, 0.8)
-            if let imageData = imageData {
-                if let imageFile = PFFile(data: imageData) {
-                    item.image = imageFile
-                }
-            }
-        }
-        
-        let pickedItemIndex = self.pageControl.currentPage
-        
-        // Set thumbnail image of item.
-        let size = images[pickedItemIndex].size
-        let thumbnailData = UIImagePNGRepresentation(images[pickedItemIndex].resizedImage(size, interpolationQuality: .Low))
-        if let thumbnailData = thumbnailData {
-            if let thumbnailFile = PFFile(data: thumbnailData) {
-                item.thumbnail = thumbnailFile
-            }
-        }
-        
-        // Set picked color.
-        if self.pickColorViewHeightConstraint.constant != 0.0 {
-            item.fillColor = BagItem.colorToString(self.pickedColor)
-        }
-        
-        // Set item size.
-        if let selectedItemSizeIndex = self.itemSizeCollectionViewController?.selectedSizeIndexPath?.row {
-            if let sizes = getItemSizes() {
-                item.itemSize = sizes[selectedItemSizeIndex]
-            }
-        }
-        
-        item.numberOfItems = self.numberOfItems
-        
-        // TODO: fix with price selection.
-        item.price = 500.0
-        
-        item.amount = item.price * Double(item.numberOfItems)
-        
-        print("Created BagItem: \(item)")
-        
-        return item
+        return BagItem()
     }
     
     //--------------------------------------
@@ -749,7 +751,7 @@ class CategoryItemViewController: UIViewController {
         weak var weakSelf = self
         
         animateViewSelection(moreActionsView) {
-            if let type = weakSelf?.getCategoryItemType() where type == CategoryItem.CategoryItemType.stateNumberKeyRing {
+            if let type = weakSelf?.getCategoryItemType() where type == FCategoryItem.CategoryItemType.stateNumberKeyRing {
                 weakSelf!.presentManageTextAlertController()
             } else {
                 weakSelf?.presentImagePickingAlertController()
@@ -784,47 +786,48 @@ class CategoryItemViewController: UIViewController {
         }
     }
     
+    // TODO: fix this
     @IBAction func addToBagDidPressed(sender: AnyObject) {
         // Go to shopping cart.
-        if didAddItemToBag {
-            goToShoppingCart()
-            
-            // Add item to bag.
-        } else if let parseCentral = self.parseCentral {
-            let item = createBagItem()
-            
-            parseCentral.saveItem(item, success: {
-                self.didAddItemToBag = true
-                
-                // Post notification.
-                NSNotificationCenter.defaultCenter().postNotificationName(CategoryItemViewControllerDidAddItemToBagNotification, object: item)
-                
-                // Present success alert controller.
-                let alert = UIAlertController(title: NSLocalizedString("Successfully", comment: ""), message: NSLocalizedString("Item successfully added to bag. Would you like go to shopping cart?", comment: "Saved successfully item alert message"), preferredStyle: .Alert)
-                alert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .Cancel, handler: nil))
-                alert.addAction(UIAlertAction(title: NSLocalizedString("Go", comment: ""), style: .Default, handler: { (action) in
-                    self.goToShoppingCart()
-                }))
-                self.presentViewController(alert, animated: true, completion: nil)
-                
-                self.updateAddToBagButtonTitle()
-                
-                // Update badge value.
-                ParseCentral.updateBagTabBarItemBadgeValue()
-                }, failure: { (error) in
-                    self.didAddItemToBag = false
-                    
-                    self.presentAlertWithTitle(NSLocalizedString("Error", comment: ""), message: error?.localizedDescription ?? NSLocalizedString("An error occured. Please try again later.", comment: "Failure alert message"))
-                    
-                    self.updateAddToBagButtonTitle()
-            })
-        } else {
-            self.didAddItemToBag = false
-            
-            presentAlertWithTitle(NSLocalizedString("Error", comment: ""), message: NSLocalizedString("An error occured. Please try again later.", comment: "Failure alert message"))
-            
-            self.updateAddToBagButtonTitle()
-        }
+//        if didAddItemToBag {
+//            goToShoppingCart()
+//            
+//            // Add item to bag.
+//        } else if let parseCentral = self.parseCentral {
+//            let item = createBagItem()
+//            
+//            parseCentral.saveItem(item, success: {
+//                self.didAddItemToBag = true
+//                
+//                // Post notification.
+//                NSNotificationCenter.defaultCenter().postNotificationName(CategoryItemViewControllerDidAddItemToBagNotification, object: item)
+//                
+//                // Present success alert controller.
+//                let alert = UIAlertController(title: NSLocalizedString("Successfully", comment: ""), message: NSLocalizedString("Item successfully added to bag. Would you like go to shopping cart?", comment: "Saved successfully item alert message"), preferredStyle: .Alert)
+//                alert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .Cancel, handler: nil))
+//                alert.addAction(UIAlertAction(title: NSLocalizedString("Go", comment: ""), style: .Default, handler: { (action) in
+//                    self.goToShoppingCart()
+//                }))
+//                self.presentViewController(alert, animated: true, completion: nil)
+//                
+//                self.updateAddToBagButtonTitle()
+//                
+//                // Update badge value.
+//                ParseCentral.updateBagTabBarItemBadgeValue()
+//                }, failure: { (error) in
+//                    self.didAddItemToBag = false
+//                    
+//                    self.presentAlertWithTitle(NSLocalizedString("Error", comment: ""), message: error?.localizedDescription ?? NSLocalizedString("An error occured. Please try again later.", comment: "Failure alert message"))
+//                    
+//                    self.updateAddToBagButtonTitle()
+//            })
+//        } else {
+//            self.didAddItemToBag = false
+//            
+//            presentAlertWithTitle(NSLocalizedString("Error", comment: ""), message: NSLocalizedString("An error occured. Please try again later.", comment: "Failure alert message"))
+//            
+//            self.updateAddToBagButtonTitle()
+//        }
     }
     
     @IBAction func pageControlDidChangeValue(sender: UIPageControl) {
@@ -870,7 +873,7 @@ class CategoryItemViewController: UIViewController {
         imagePickingAlertController.addAction(shoot)
         
         // Add additional image location action.
-        if self.category.type == Category.CategoryType.clothes.rawValue {
+        if self.category.type == FCategory.CategoryType.clothes {
             
             // Present next action sheet with supported locations.
             

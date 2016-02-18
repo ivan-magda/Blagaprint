@@ -31,9 +31,6 @@ class CategoryTableViewController: UITableViewController {
     
     var dataService: DataService!
     
-    // TODO: Remove ParseCentarl
-    var parseCentral: ParseCentral?
-    
     private var categories = [FCategory]()
     
     //--------------------------------------
@@ -62,19 +59,20 @@ class CategoryTableViewController: UITableViewController {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == SegueIdentifier.CategoryItem.rawValue {
             let categoryItemViewController = segue.destinationViewController as! CategoryItemViewController
-            categoryItemViewController.parseCentral = self.parseCentral
+            categoryItemViewController.dataService = dataService
             
-            // TODO: path the selected category
-            //            if let selectedRow = self.tableView.indexPathForSelectedRow {
-            //                categoryItemViewController.category = objects![selectedRow.section] as! Category
-            //            }
+            if let selectedRow = self.tableView.indexPathForSelectedRow {
+                categoryItemViewController.category = categories[selectedRow.section]
+            }
         } else if segue.identifier == SegueIdentifier.PhoneCaseConstructor.rawValue {
             let caseConstructorVC = segue.destinationViewController as! CaseConstructorTableViewController
-            caseConstructorVC.parseCentral = self.parseCentral
+            // TODO: fix with path the category
             
-            //            if let selectedRow = self.tableView.indexPathForSelectedRow {
-            //                caseConstructorVC.category = objects![selectedRow.section] as! Category
-            //            }
+//            caseConstructorVC.parseCentral = self.parseCentral
+//            
+//            if let selectedRow = self.tableView.indexPathForSelectedRow {
+//                caseConstructorVC.category = objects![selectedRow.section] as! Category
+//            }
         }
     }
     

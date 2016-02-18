@@ -12,7 +12,11 @@ import Firebase
 class DataService {
     
     //--------------------------------------
-    // MARK: - Properties
+    // MARK: - Properties -
+    //--------------------------------------
+    
+    //--------------------------------------
+    // MARK: References
     //--------------------------------------
     
     var baseURL: String {
@@ -27,6 +31,10 @@ class DataService {
         return Firebase(url: baseURL).childByAppendingPath("categories")
     }
     
+    var categoryItemsReference: Firebase {
+        return Firebase(url: baseURL).childByAppendingPath("categoryItems")
+    }
+    
     var userReference: Firebase {
         return Firebase(url: baseURL).childByAppendingPath("users")
     }
@@ -36,6 +44,10 @@ class DataService {
         
         return userReference.childByAppendingPath(userId)
     }
+    
+    //--------------------------------------
+    // MARK: Other
+    //--------------------------------------
     
     class var sharedInstance: DataService {
         struct Static {

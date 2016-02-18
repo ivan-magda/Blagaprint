@@ -40,7 +40,7 @@ class KeyRing: NSObject {
     var type: KeyRingType
     
     /// Type of the key ring category item.
-    var categoryItemType: CategoryItem.CategoryItemType
+    var categoryItemType: FCategoryItem.CategoryItemType
     
     /// Size for picked image.
     var pickedImageSize: CGSize
@@ -59,7 +59,7 @@ class KeyRing: NSObject {
     // MARK: - Init
     //--------------------------------------
     
-    init(selfType type: KeyRingType, categoryItemType: CategoryItem.CategoryItemType, imageSize: CGSize = CGSizeZero, image: UIImage = UIImage()) {
+    init(selfType type: KeyRingType, categoryItemType: FCategoryItem.CategoryItemType, imageSize: CGSize = CGSizeZero, image: UIImage = UIImage()) {
         self.type = type
         self.categoryItemType = categoryItemType
         self.pickedImageSize = imageSize
@@ -174,7 +174,7 @@ class KeyRing: NSObject {
     }
     
     /// Returns key rings with the same category item type.
-    class func keyRingsFromCategoryItem(item: CategoryItem) -> [KeyRing] {
-        return seedInitialKeyRings().filter() { $0.categoryItemType.rawValue == item.type }
+    class func keyRingsFromCategoryItem(item: FCategoryItem) -> [KeyRing] {
+        return seedInitialKeyRings().filter() { $0.categoryItemType == item.type }
     }
 }

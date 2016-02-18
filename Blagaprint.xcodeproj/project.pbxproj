@@ -122,6 +122,7 @@
 		755830B41C75EA920065E47C /* FCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 755830B31C75EA920065E47C /* FCategory.swift */; };
 		755830B61C75FBEB0065E47C /* UIImage+Base64String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 755830B51C75FBEB0065E47C /* UIImage+Base64String.swift */; };
 		755830BA1C75FF2F0065E47C /* String+Base64StringDecoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 755830B91C75FF2F0065E47C /* String+Base64StringDecoding.swift */; };
+		755830BC1C761DB30065E47C /* FCategoryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 755830BB1C761DB30065E47C /* FCategoryItem.swift */; };
 		7561AE9F1C0FD563009B2C8B /* Plate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7561AE9E1C0FD563009B2C8B /* Plate.swift */; };
 		756DF01A1C4E542700A31B55 /* SquareKeyRing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 756DF0191C4E542700A31B55 /* SquareKeyRing.swift */; };
 		756DF01D1C4E56E200A31B55 /* CircleKeyRing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 756DF01B1C4E56E200A31B55 /* CircleKeyRing.swift */; };
@@ -339,6 +340,7 @@
 		755830B31C75EA920065E47C /* FCategory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FCategory.swift; sourceTree = "<group>"; };
 		755830B51C75FBEB0065E47C /* UIImage+Base64String.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Base64String.swift"; sourceTree = "<group>"; };
 		755830B91C75FF2F0065E47C /* String+Base64StringDecoding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Base64StringDecoding.swift"; sourceTree = "<group>"; };
+		755830BB1C761DB30065E47C /* FCategoryItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FCategoryItem.swift; sourceTree = "<group>"; };
 		7561AE9E1C0FD563009B2C8B /* Plate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Plate.swift; sourceTree = "<group>"; };
 		756DF0191C4E542700A31B55 /* SquareKeyRing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SquareKeyRing.swift; sourceTree = "<group>"; };
 		756DF01B1C4E56E200A31B55 /* CircleKeyRing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleKeyRing.swift; sourceTree = "<group>"; };
@@ -652,6 +654,7 @@
 			children = (
 				759C9EE01C7169130017B0DF /* User.swift */,
 				755830B31C75EA920065E47C /* FCategory.swift */,
+				755830BB1C761DB30065E47C /* FCategoryItem.swift */,
 				7525F92F1C66DA9B000D5E96 /* Parse */,
 				7525F92E1C66DA86000D5E96 /* Items */,
 			);
@@ -1596,6 +1599,7 @@
 				75AB8AC01BE744DB00B88A5A /* ParseCentral.swift in Sources */,
 				503CBEC11BC415C700052BE0 /* CategoryItem.swift in Sources */,
 				75FE073A1C46149E00EFE1F6 /* String+FormatAmount.swift in Sources */,
+				755830BC1C761DB30065E47C /* FCategoryItem.swift in Sources */,
 				752ED13D1C59F56F00BE0751 /* GlassRectangleKeyRing.swift in Sources */,
 				0CA50CE91C1954F400020150 /* AccountTableViewController.swift in Sources */,
 				75467C891C12EB9C008046A2 /* LoginViewController.swift in Sources */,

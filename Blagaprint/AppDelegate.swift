@@ -53,7 +53,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // To CategoryTableViewController
         let categoryNavigationController = tabBarController.viewControllers![0] as! UINavigationController
         let categoryTableViewController = categoryNavigationController.topViewController as! CategoryTableViewController
-        categoryTableViewController.parseCentral = self.parseCentral
         categoryTableViewController.dataService = self.dataService
         
         // To ShoppingBagViewController

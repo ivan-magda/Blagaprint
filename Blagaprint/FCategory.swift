@@ -94,6 +94,61 @@ class FCategory {
         
         return (type == nil ? .undefined : type!)
     }
+    
+    //--------------------------------------
+    // MARK: - Quering
+    //--------------------------------------
+    
+    /// Returns items of the Category.
+    func getItemsInBackgroundWithBlock(block: ((objects: [FCategoryItem]?) -> Void)? ) {
+        let ref = DataService.sharedInstance.categoryItemsReference
+        
+        DataService.showNetworkIndicator()
+        
+        ref.queryOrderedByChild(FCategoryItem.Keys.parentCategory.rawValue).queryEqualToValue(self.key).observeSingleEventOfType(.Value, withBlock: { snapshot in
+            
+            if snapshot.value is NSNull {
+                
+                DataService.hideNetworkIndicator()
+                
+                block?(objects: nil)
+                
+            } else {
+                
+                if let snapshots = snapshot.children.allObjects as? [FDataSnapshot] {
+                    
+                    var items = [FCategoryItem]()
+                    
+                    for snap in snapshots {
+                        
+                        // Make our items.
+                        
+                        // TODO: Implement parsing via generic function.
+                        if let dictionary = snap.value as? Dictionary<String, AnyObject> {
+                            let key = snap.key
+                            let item = FCategoryItem(key: key, dictionary: dictionary)
+                            
+                            print("CategoryItem \(item)")
+                            
+                            // Reverse ordered.
+                            
+                            items.append(item)
+                        }
+                    }
+                    
+                    DataService.hideNetworkIndicator()
+                    
+                    block?(objects: items)
+                    
+                } else {
+                    
+                    DataService.hideNetworkIndicator()
+                    
+                    block?(objects: nil)
+                }
+            }
+        })
+    }
 }
 
 //--------------------------------------

@@ -29,7 +29,7 @@ class CopyServices: NSObject {
     var type: CopyServicesType
     
     /// Type of the key ring category item.
-    var categoryItemType: CategoryItem.CategoryItemType
+    var categoryItemType: FCategoryItem.CategoryItemType
     
     /// Size for picked image.
     var pickedImageSize: CGSize
@@ -41,7 +41,7 @@ class CopyServices: NSObject {
     // MARK: - Init
     //--------------------------------------
     
-    init(type: CopyServicesType, categoryItemType: CategoryItem.CategoryItemType, imageSize: CGSize = .zero, image: UIImage = UIImage()) {
+    init(type: CopyServicesType, categoryItemType: FCategoryItem.CategoryItemType, imageSize: CGSize = .zero, image: UIImage = UIImage()) {
         self.type = type
         self.categoryItemType = categoryItemType
         self.pickedImageSize = imageSize
@@ -83,13 +83,13 @@ class CopyServices: NSObject {
     class func seedInitialServices() -> [CopyServices] {
         var images = [CopyServices]()
         
-        images.append(CopyServices(type: .BusinessCard, categoryItemType: CategoryItem.CategoryItemType.businessCardPrinting, imageSize: CGSize(width: 300.0, height: 160.0), image: BusinessCard.imageOfBusinessCardCanvas()))
+        images.append(CopyServices(type: .BusinessCard, categoryItemType: FCategoryItem.CategoryItemType.businessCardPrinting, imageSize: CGSize(width: 300.0, height: 160.0), image: BusinessCard.imageOfBusinessCardCanvas()))
         
         return images
     }
     
     /// Returns key rings with the same category item type.
-    class func copyServiceFromCategoryItem(item: CategoryItem) -> [CopyServices] {
-        return seedInitialServices().filter() { $0.categoryItemType.rawValue == item.type }
+    class func copyServiceFromCategoryItem(item: FCategoryItem) -> [CopyServices] {
+        return seedInitialServices().filter() { $0.categoryItemType == item.type }
     }
 }

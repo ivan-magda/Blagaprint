@@ -236,6 +236,10 @@
                                             </label>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="MoreThan.png" translatesAutoresizingMaskIntoConstraints="NO" id="p3X-33-lrD">
                                                 <rect key="frame" x="291" y="11" width="21" height="21"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="21" id="FlV-a1-hsO"/>
+                                                    <constraint firstAttribute="height" constant="21" id="pVo-R3-oBE"/>
+                                                </constraints>
                                             </imageView>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lg9-t4-0N0" userLabel="BottomSeparator">
                                                 <rect key="frame" x="0.0" y="43" width="320" height="1"/>
