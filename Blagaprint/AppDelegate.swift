@@ -30,6 +30,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var parse: Parse?
     var parseCentral: ParseCentral?
     
+    var dataService: DataService!
+    
     //--------------------------------------
     // MARK: - Private
     //--------------------------------------
@@ -42,6 +44,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         assert(self.parseCentral != nil, "ParseCentral must exist")
         
+        // TODO: Rewrite it
+        self.dataService = DataService.sharedInstance
+        
         // Spread ParseCentral
         let tabBarController = window!.rootViewController as! UITabBarController
         
@@ -49,6 +54,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let categoryNavigationController = tabBarController.viewControllers![0] as! UINavigationController
         let categoryTableViewController = categoryNavigationController.topViewController as! CategoryTableViewController
         categoryTableViewController.parseCentral = self.parseCentral
+        categoryTableViewController.dataService = self.dataService
         
         // To ShoppingBagViewController
         let shoppingBagNavigationController = tabBarController.viewControllers![1] as! UINavigationController

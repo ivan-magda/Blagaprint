@@ -119,6 +119,9 @@
 		7547D2561BDE2376006E4170 /* galaxyS5Speaker@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7547D2481BDE2376006E4170 /* galaxyS5Speaker@2x.png */; };
 		754C457D1C70B2060062336C /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 754C457C1C70B2060062336C /* DataService.swift */; };
 		755514531C6DE9120007BC32 /* Cup+ImageGenerating.swift in Sources */ = {isa = PBXBuildFile; fileRef = 755514521C6DE9120007BC32 /* Cup+ImageGenerating.swift */; };
+		755830B41C75EA920065E47C /* FCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 755830B31C75EA920065E47C /* FCategory.swift */; };
+		755830B61C75FBEB0065E47C /* UIImage+Base64String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 755830B51C75FBEB0065E47C /* UIImage+Base64String.swift */; };
+		755830BA1C75FF2F0065E47C /* String+Base64StringDecoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 755830B91C75FF2F0065E47C /* String+Base64StringDecoding.swift */; };
 		7561AE9F1C0FD563009B2C8B /* Plate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7561AE9E1C0FD563009B2C8B /* Plate.swift */; };
 		756DF01A1C4E542700A31B55 /* SquareKeyRing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 756DF0191C4E542700A31B55 /* SquareKeyRing.swift */; };
 		756DF01D1C4E56E200A31B55 /* CircleKeyRing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 756DF01B1C4E56E200A31B55 /* CircleKeyRing.swift */; };
@@ -333,6 +336,9 @@
 		7547D2481BDE2376006E4170 /* galaxyS5Speaker@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "galaxyS5Speaker@2x.png"; path = "images/galaxyS5Speaker@2x.png"; sourceTree = "<group>"; };
 		754C457C1C70B2060062336C /* DataService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
 		755514521C6DE9120007BC32 /* Cup+ImageGenerating.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Cup+ImageGenerating.swift"; sourceTree = "<group>"; };
+		755830B31C75EA920065E47C /* FCategory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FCategory.swift; sourceTree = "<group>"; };
+		755830B51C75FBEB0065E47C /* UIImage+Base64String.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Base64String.swift"; sourceTree = "<group>"; };
+		755830B91C75FF2F0065E47C /* String+Base64StringDecoding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Base64StringDecoding.swift"; sourceTree = "<group>"; };
 		7561AE9E1C0FD563009B2C8B /* Plate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Plate.swift; sourceTree = "<group>"; };
 		756DF0191C4E542700A31B55 /* SquareKeyRing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SquareKeyRing.swift; sourceTree = "<group>"; };
 		756DF01B1C4E56E200A31B55 /* CircleKeyRing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleKeyRing.swift; sourceTree = "<group>"; };
@@ -540,7 +546,6 @@
 				50FD7F511BB903B700ABEC38 /* View */,
 				508503051BBAADCF00152131 /* Utility */,
 				756FF67E1C128C630091B75E /* Reachability */,
-				7561AEAD1C0FD7CD009B2C8B /* UIImageResizeAdditions */,
 				75FE073B1C4614A700EFE1F6 /* Extensions */,
 				75AB8AC11BE7479F00B88A5A /* Frameworks */,
 				502A8CD41BB8120A0064E0DA /* Resources */,
@@ -646,6 +651,7 @@
 			isa = PBXGroup;
 			children = (
 				759C9EE01C7169130017B0DF /* User.swift */,
+				755830B31C75EA920065E47C /* FCategory.swift */,
 				7525F92F1C66DA9B000D5E96 /* Parse */,
 				7525F92E1C66DA86000D5E96 /* Items */,
 			);
@@ -880,12 +886,13 @@
 			name = GalaxyS5;
 			sourceTree = "<group>";
 		};
-		7561AEAD1C0FD7CD009B2C8B /* UIImageResizeAdditions */ = {
+		7561AEAD1C0FD7CD009B2C8B /* UIImageExtension */ = {
 			isa = PBXGroup;
 			children = (
 				751DA9AB1C19C68900D10C24 /* UIImageResizeAdditions.swift */,
+				755830B51C75FBEB0065E47C /* UIImage+Base64String.swift */,
 			);
-			name = UIImageResizeAdditions;
+			name = UIImageExtension;
 			path = ..;
 			sourceTree = "<group>";
 		};
@@ -1265,7 +1272,9 @@
 		75FE073B1C4614A700EFE1F6 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				7561AEAD1C0FD7CD009B2C8B /* UIImageExtension */,
 				75FE07391C46149E00EFE1F6 /* String+FormatAmount.swift */,
+				755830B91C75FF2F0065E47C /* String+Base64StringDecoding.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -1548,6 +1557,7 @@
 			files = (
 				75F739371BE491BF0063EB6F /* XiaomiMi4.swift in Sources */,
 				756DF01D1C4E56E200A31B55 /* CircleKeyRing.swift in Sources */,
+				755830B41C75EA920065E47C /* FCategory.swift in Sources */,
 				502A8CB51BB80EAC0064E0DA /* CategoryTableViewController.swift in Sources */,
 				7586714D1C1BC5A700B60DFB /* ChangePasswordTableViewController.swift in Sources */,
 				75823AAF1BD8BDD000C92F83 /* PhoneCase.swift in Sources */,
@@ -1555,6 +1565,7 @@
 				756DF01E1C4E56E200A31B55 /* HeartKeyRing.swift in Sources */,
 				757542CA1C71C071009EF8BD /* TintTextField.swift in Sources */,
 				0C7F25441C27D75100D7C49C /* ImageCollectionViewCell.swift in Sources */,
+				755830BA1C75FF2F0065E47C /* String+Base64StringDecoding.swift in Sources */,
 				75BF695D1C045E78009D670D /* SH3_PhotoFrame.swift in Sources */,
 				0C541A571BD0B2710028BD9A /* PhotoLibraryCollectionViewController.swift in Sources */,
 				50551C2E1BCBA523005B88DA /* SelectBackgroundCollectionViewController.swift in Sources */,
@@ -1606,6 +1617,7 @@
 				501506501BCE96C700697C99 /* TextEditingViewController.swift in Sources */,
 				75BF69531C044900009D670D /* PhotoFrame.swift in Sources */,
 				0C8296BE1BFC5CF200B2B345 /* ImagePickingTableViewCell.swift in Sources */,
+				755830B61C75FBEB0065E47C /* UIImage+Base64String.swift in Sources */,
 				75A36C3F1BE25C310036B500 /* GalaxyA7.swift in Sources */,
 				758579AC1C66C9A30010A7CF /* TShirt.swift in Sources */,
 				751DA9AC1C19C68900D10C24 /* UIImageResizeAdditions.swift in Sources */,

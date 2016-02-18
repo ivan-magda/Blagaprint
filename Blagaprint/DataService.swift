@@ -23,6 +23,10 @@ class DataService {
         return Firebase(url: baseURL)
     }
     
+    var categoryReference: Firebase {
+        return Firebase(url: baseURL).childByAppendingPath("categories")
+    }
+    
     var userReference: Firebase {
         return Firebase(url: baseURL).childByAppendingPath("users")
     }
@@ -73,7 +77,11 @@ class DataService {
     }
     
     func resetPasswordForEmail(email: String, callback: (success: Bool, error: NSError?) -> Void ) {
+        DataService.showNetworkIndicator()
+        
         self.baseReference.resetPasswordForUser(email, withCompletionBlock: { error in
+            DataService.hideNetworkIndicator()
+            
             if error != nil {
                 // There was an error processing the request
                 print("Reset password error: \(error.localizedDescription)")
@@ -88,13 +96,29 @@ class DataService {
     }
     
     func changePasswordForUser(email email: String, fromOldPassword oldPassword: String, toNewPassword newPassword: String, withCompletionBlock block: NSError? -> ()) {
+        DataService.showNetworkIndicator()
+        
         self.baseReference.changePasswordForUser(email, fromOld: oldPassword, toNew: newPassword) { error in
+            DataService.hideNetworkIndicator()
+            
             if error != nil {
                 block(error)
             } else {
                 block(nil)
             }
         }
+    }
+    
+    //--------------------------------------
+    // MARK: - Network Indicator
+    //--------------------------------------
+    
+    class func showNetworkIndicator() {
+        UIApplication.sharedApplication().networkActivityIndicatorVisible = true
+    }
+    
+    class func hideNetworkIndicator() {
+        UIApplication.sharedApplication().networkActivityIndicatorVisible = false
     }
 }
 
