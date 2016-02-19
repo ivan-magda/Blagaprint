@@ -9,6 +9,10 @@
 import Foundation
 import Firebase
 
+public typealias DataServiceSuccessResultBlock = () -> ()
+public typealias DataServiceFailureResultBlock = (error: NSError?) -> ()
+public typealias DataServiceResultBlock = (succeeded: Bool, error: NSError?) -> ()
+
 class DataService {
     
     //--------------------------------------
@@ -27,14 +31,6 @@ class DataService {
         return Firebase(url: baseURL)
     }
     
-    var categoryReference: Firebase {
-        return Firebase(url: baseURL).childByAppendingPath("categories")
-    }
-    
-    var categoryItemsReference: Firebase {
-        return Firebase(url: baseURL).childByAppendingPath("categoryItems")
-    }
-    
     var userReference: Firebase {
         return Firebase(url: baseURL).childByAppendingPath("users")
     }
@@ -43,6 +39,18 @@ class DataService {
         let userId = NSUserDefaults.standardUserDefaults().stringForKey(UserDefaultsKeys.userId)
         
         return userReference.childByAppendingPath(userId)
+    }
+    
+    var categoryReference: Firebase {
+        return Firebase(url: baseURL).childByAppendingPath("categories")
+    }
+    
+    var categoryItemsReference: Firebase {
+        return Firebase(url: baseURL).childByAppendingPath("categoryItems")
+    }
+    
+    var bagItemReference: Firebase {
+        return Firebase(url: baseURL).childByAppendingPath("bagItems")
     }
     
     //--------------------------------------
@@ -122,7 +130,7 @@ class DataService {
     }
     
     //--------------------------------------
-    // MARK: - Network Indicator
+    // MARK: - Network Indicator -
     //--------------------------------------
     
     class func showNetworkIndicator() {
@@ -131,6 +139,14 @@ class DataService {
     
     class func hideNetworkIndicator() {
         UIApplication.sharedApplication().networkActivityIndicatorVisible = false
+    }
+    
+    //--------------------------------------
+    // MARK: - Adding to Bag
+    //--------------------------------------
+    
+    func saveItem(item: [String : AnyObject], success: DataServiceSuccessResultBlock?, failure: DataServiceFailureResultBlock?) {
+        
     }
 }
 

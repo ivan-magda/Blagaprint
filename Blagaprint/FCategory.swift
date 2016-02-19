@@ -105,7 +105,7 @@ class FCategory {
         
         DataService.showNetworkIndicator()
         
-        ref.queryOrderedByChild(FCategoryItem.Keys.parentCategory.rawValue).queryEqualToValue(self.key).observeSingleEventOfType(.Value, withBlock: { snapshot in
+        ref.queryOrderedByChild(FCategoryItem.Keys.parentCategory.rawValue).queryEqualToValue(self.key).observeEventType(.Value, withBlock: { snapshot in
             
             if snapshot.value is NSNull {
                 
