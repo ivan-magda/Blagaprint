@@ -10,6 +10,7 @@ import UIKit
 import Firebase
 
 class CategoryTableViewController: UITableViewController {
+    
     //--------------------------------------
     // MARK: - Types
     //--------------------------------------
@@ -32,6 +33,8 @@ class CategoryTableViewController: UITableViewController {
     var dataService: DataService!
     
     private var categories = [FCategory]()
+    
+    private var loadingLabel: UILabel?
     
     //--------------------------------------
     // MARK: - View Life Cycle
@@ -83,6 +86,10 @@ class CategoryTableViewController: UITableViewController {
     func loadCategories() {
         DataService.showNetworkIndicator()
         
+        if self.categories.count == 0 {
+            showLoadingLabel()
+        }
+        
         // observeEventType is called whenever anything changes in the Firebase.
         // It's always listening.
         
@@ -116,7 +123,10 @@ class CategoryTableViewController: UITableViewController {
             }
             
             self.refreshControl?.endRefreshing()
+            
             DataService.hideNetworkIndicator()
+            
+            self.hideLoadingLabel()
             
             // Be sure that the tableView updates when there is new data.
             
@@ -188,6 +198,31 @@ class CategoryTableViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return categoryTableViewCellHeight
+    }
+    
+    //--------------------------------------
+    // MARK: - Loading Label -
+    //--------------------------------------
+    
+    private func showLoadingLabel() {
+        guard self.loadingLabel == nil else {
+            return
+        }
+        
+        self.loadingLabel = UILabel()
+        self.loadingLabel?.text = NSLocalizedString("Loading...", comment: "")
+        self.loadingLabel?.sizeToFit()
+        
+        if let navigationController = self.navigationController {
+            self.loadingLabel?.center = navigationController.view.center
+            
+            navigationController.view.addSubview(loadingLabel!)
+        }
+    }
+    
+    private func hideLoadingLabel() {
+        self.loadingLabel?.removeFromSuperview()
+        self.loadingLabel = nil
     }
 }
 

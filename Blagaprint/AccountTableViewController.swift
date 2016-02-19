@@ -199,8 +199,8 @@ class AccountTableViewController: UITableViewController {
         self.logInAccountView = NSBundle.mainBundle().loadNibNamed("UserLogInEmptyView", owner: self, options: nil).first as? UserLogInEmptyView
         
         // Handle callback when Log In button pressed.
-        logInAccountView!.logInButtonDidPressedCallBack = {
-            self.presentLoginViewController()
+        logInAccountView!.logInButtonDidPressedCallBack = { [weak self] in
+            self?.presentLoginViewController()
         }
         
         // Customize view frame
