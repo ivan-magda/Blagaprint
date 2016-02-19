@@ -192,6 +192,7 @@
 		75BF695B1C045E44009D670D /* sh3_placeholderImage.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 75BF695A1C045E44009D670D /* sh3_placeholderImage.jpg */; };
 		75BF695D1C045E78009D670D /* SH3_PhotoFrame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75BF695C1C045E78009D670D /* SH3_PhotoFrame.swift */; };
 		75BF695F1C0464AA009D670D /* sh19_placeholderImage.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 75BF695E1C0464AA009D670D /* sh19_placeholderImage.jpg */; };
+		75C21F4C1C7749A90006ECB7 /* FBag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75C21F4B1C7749A90006ECB7 /* FBag.swift */; };
 		75C4E7C81C3807450039B59F /* Bag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75C4E7C71C3807450039B59F /* Bag.swift */; };
 		75C4E7CA1C3807540039B59F /* BagItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75C4E7C91C3807540039B59F /* BagItem.swift */; };
 		75CECC291C5FA2D300B2AE6E /* PickTypeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75CECC281C5FA2D300B2AE6E /* PickTypeTableViewController.swift */; };
@@ -415,6 +416,7 @@
 		75BF695A1C045E44009D670D /* sh3_placeholderImage.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = sh3_placeholderImage.jpg; sourceTree = "<group>"; };
 		75BF695C1C045E78009D670D /* SH3_PhotoFrame.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SH3_PhotoFrame.swift; sourceTree = "<group>"; };
 		75BF695E1C0464AA009D670D /* sh19_placeholderImage.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = sh19_placeholderImage.jpg; sourceTree = "<group>"; };
+		75C21F4B1C7749A90006ECB7 /* FBag.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FBag.swift; sourceTree = "<group>"; };
 		75C4E7C71C3807450039B59F /* Bag.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Bag.swift; sourceTree = "<group>"; };
 		75C4E7C91C3807540039B59F /* BagItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BagItem.swift; sourceTree = "<group>"; };
 		75CECC281C5FA2D300B2AE6E /* PickTypeTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PickTypeTableViewController.swift; sourceTree = "<group>"; };
@@ -658,6 +660,7 @@
 				755830B31C75EA920065E47C /* FCategory.swift */,
 				755830BB1C761DB30065E47C /* FCategoryItem.swift */,
 				753580281C772A5000E1CADB /* FBagItem.swift */,
+				75C21F4B1C7749A90006ECB7 /* FBag.swift */,
 				7525F92F1C66DA9B000D5E96 /* Parse */,
 				7525F92E1C66DA86000D5E96 /* Items */,
 			);
@@ -1632,6 +1635,7 @@
 				75A7F18F1C6C356400E20DB2 /* ItemSizeCollectionViewCell.swift in Sources */,
 				758997531C3ABA1B00427033 /* BagItemTableViewCell.swift in Sources */,
 				0C8296C21BFC65D500B2B345 /* DescriptionTableViewCell.swift in Sources */,
+				75C21F4C1C7749A90006ECB7 /* FBag.swift in Sources */,
 				752ED13C1C59F56F00BE0751 /* GlassOvalKeyRing.swift in Sources */,
 				7589398A1C16B54D0069655B /* CategoryItemViewController.swift in Sources */,
 				758579AA1C66C8FB0010A7CF /* TShirtCanvas.swift in Sources */,

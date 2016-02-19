@@ -324,7 +324,7 @@ class LoginViewController: UIViewController {
         
         activityIndicator.startAnimating()
         
-        FBSDKLoginManager().logInWithReadPermissions([FacebookParameters.email], fromViewController: self) { (facebookResult, facebookError) in
+        FBSDKLoginManager().logInWithReadPermissions([FacebookParameters.email, FacebookParameters.publicProfile], fromViewController: self) { (facebookResult, facebookError) in
             if facebookError != nil {
                 print("Facebook login failed. Error: \(facebookError)")
                 

@@ -783,43 +783,57 @@ class CategoryItemViewController: UIViewController {
     }
     
     @IBAction func addToBagDidPressed(sender: AnyObject) {
-        // Go to shopping cart.
+        
+        // For adding item to bag, user must be logged in.
+        // Present an alert that inform user about this.
+        
+        guard self.dataService.isUserLoggedIn == true else {
+            let alert = UIAlertController(title: NSLocalizedString("You are not registred", comment: "Alert title when user not registered"), message: NSLocalizedString("If you want add item to bag, please login in your account", comment: "Alert message when user not logged in and want add item to bag"), preferredStyle: .Alert)
+            alert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .Cancel, handler: nil))
+            alert.addAction(UIAlertAction(title: NSLocalizedString("Log In", comment: ""), style: .Default, handler: { (action) in
+                LoginViewController.presentInController(self)
+            }))
+            
+            self.presentViewController(alert, animated: true, completion: nil)
+
+            return
+        }
+        
+        // If the item has already been added to bag, go to shopping cart.
         if didAddItemToBag {
             goToShoppingCart()
-            
-            // Add item to bag.
         } else {
+            // Adding item to the user bag.
             
-            SVProgressHUD.show()
+            SVProgressHUD.showWithStatus(NSLocalizedString("Adding...", comment: ""))
+            DataService.showNetworkIndicator()
             
+            // Build the new item.
             let item = createBagItem()
             
             dataService.saveItem(item, success: {
                 self.didAddItemToBag = true
                 
-                SVProgressHUD.showSuccessWithStatus(NSLocalizedString("Saved", comment: ""))
+                SVProgressHUD.showSuccessWithStatus(NSLocalizedString("Added", comment: ""))
+                DataService.hideNetworkIndicator()
                 
                 // Post notification.
                 NSNotificationCenter.defaultCenter().postNotificationName(CategoryItemViewControllerDidAddItemToBagNotification, object: item)
-                
-                // Present success alert controller.
-                let alert = UIAlertController(title: NSLocalizedString("Successfully", comment: ""), message: NSLocalizedString("Item successfully added to bag. Would you like go to shopping cart?", comment: "Saved successfully item alert message"), preferredStyle: .Alert)
-                alert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .Cancel, handler: nil))
-                alert.addAction(UIAlertAction(title: NSLocalizedString("Go", comment: ""), style: .Default, handler: { (action) in
-                    self.goToShoppingCart()
-                }))
-                self.presentViewController(alert, animated: true, completion: nil)
                 
                 self.updateAddToBagButtonTitle()
                 
                 // TODO: Update badge value.
                 ParseCentral.updateBagTabBarItemBadgeValue()
                 }, failure: { (error) in
+                    
+                    if let error = error {
+                        print("Failed to save item. Error: \(error.localizedDescription)")
+                    }
+                    
                     self.didAddItemToBag = false
                     
                     SVProgressHUD.showErrorWithStatus(NSLocalizedString("Failed", comment: ""))
-                    
-                    self.presentAlertWithTitle(NSLocalizedString("Error", comment: ""), message: error?.localizedDescription ?? NSLocalizedString("An error occured. Please try again later.", comment: "Failure alert message"))
+                    DataService.hideNetworkIndicator()
                     
                     self.updateAddToBagButtonTitle()
             })

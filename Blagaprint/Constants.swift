@@ -25,4 +25,5 @@ struct FacebookParameters {
     static let firstName = "first_name"
     static let lastName = "last_name"
     static let email = "email"
+    static let publicProfile = "public_profile"
 }

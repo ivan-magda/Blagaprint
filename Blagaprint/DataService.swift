@@ -9,9 +9,9 @@
 import Foundation
 import Firebase
 
-public typealias DataServiceSuccessResultBlock = () -> ()
-public typealias DataServiceFailureResultBlock = (error: NSError?) -> ()
-public typealias DataServiceResultBlock = (succeeded: Bool, error: NSError?) -> ()
+public typealias DataServiceSuccessResultBlock = () -> Void
+public typealias DataServiceFailureResultBlock = (error: NSError?) -> Void
+public typealias DataServiceResultBlock = (succeeded: Bool, error: NSError?) -> Void
 
 class DataService {
     
@@ -51,6 +51,10 @@ class DataService {
     
     var bagItemReference: Firebase {
         return Firebase(url: baseURL).childByAppendingPath("bagItems")
+    }
+    
+    var bagReference: Firebase {
+        return Firebase(url: baseURL).childByAppendingPath("bags")
     }
     
     //--------------------------------------
@@ -142,11 +146,107 @@ class DataService {
     }
     
     //--------------------------------------
-    // MARK: - Adding to Bag
+    // MARK: - Bag
     //--------------------------------------
     
+    /// Saves BagItem to the Bag of the current user.
     func saveItem(item: [String : AnyObject], success: DataServiceSuccessResultBlock?, failure: DataServiceFailureResultBlock?) {
+        let bagRef = bagReference
+        let userId = User.currentUserId!
         
+        // Looking for the Bag of the current user.
+        
+        bagRef.queryOrderedByChild(FBag.Keys.userId.rawValue).queryEqualToValue(userId).observeSingleEventOfType(.Value, withBlock: { snapshot in
+            
+            // If there is no value in snapshot, it's meaning that bag
+            // for the current user doesn't exist yet.
+            // Create it and then save the item.
+            
+            if snapshot.value is NSNull {
+                self.createBagForUserWithId(userId) { (error, ref, bag) in
+                    if let error = error {
+                        failure?(error: error)
+                    } else {
+                        self.addItemToBag(bag!, item: item) { (succeeded, error) in
+                            if succeeded {
+                                success?()
+                            } else {
+                                failure?(error: error)
+                            }
+                        }
+                    }
+                }
+            } else if let snapshots = snapshot.children.allObjects as? [FDataSnapshot] {
+                assert(snapshots.count == 1, "Bag must be unique for each user.")
+                
+                let bagSnap = snapshots[0]
+                
+                if let bagDict = bagSnap.value as? [String : AnyObject] {
+                    let bag = FBag(key: bagSnap.key, dictionary: bagDict)
+                    
+                    self.addItemToBag(bag, item: item) { (succeeded, error) in
+                        if succeeded {
+                            success?()
+                        } else {
+                            failure?(error: error)
+                        }
+                    }
+                } else {
+                    failure?(error: nil)
+                }
+            }
+        })
+    }
+    
+    private func createBagForUserWithId(id: String, andWithCompletionBlock block: (NSError?, Firebase!, FBag?) -> Void) {
+        // Save the Bag
+        // bagReference is the parent of the new Bag: "bags".
+        // childByAutoId() saves the bag and gives it its own ID.
+        
+        let newBagRef = bagReference.childByAutoId()
+        
+        let bag = [
+            FBag.Keys.userId.rawValue : id
+        ]
+        
+        // saves to Firebase.
+        
+        newBagRef.setValue(bag) { (error, ref) in
+            if error != nil {
+                block(error, ref, nil)
+            } else {
+                let newBag = FBag(key: ref.key, dictionary: bag)
+                
+                block(nil, ref, newBag)
+            }
+        }
+    }
+    
+    private func addItemToBag(bag: FBag, item: [String : AnyObject], andWithCompletionBlock block: DataServiceResultBlock) {
+        let itemRef = bagItemReference.childByAutoId()
+        
+        itemRef.setValue(item) { (error, ref) in
+            if let error = error {
+                block(succeeded: false, error: error)
+            } else {
+                
+                if bag.items != nil {
+                    if !bag.items!.contains(ref.key) {
+                        bag.items!.append(ref.key)
+                    }
+                } else {
+                    bag.items = [ref.key]
+                }
+                
+                bag.reference.updateChildValues(bag.value, withCompletionBlock: { (error, ref) in
+                    if let error = error {
+                        block(succeeded: false, error: error)
+                    } else {
+                        block(succeeded: true, error: nil)
+                    }
+                })
+            }
+        }
     }
 }
 
