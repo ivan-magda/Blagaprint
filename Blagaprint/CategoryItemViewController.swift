@@ -658,21 +658,19 @@ class CategoryItemViewController: UIViewController {
     //--------------------------------------
     
     private func loadCategoryItems() {
-        weak var weakSelf = self
-        
-        category.getItemsInBackgroundWithBlock { objects in
+        category.getItemsInBackgroundWithBlock { [weak self] objects in
             if let items = objects {
-                weakSelf?.categoryItems = items
+                self?.categoryItems = items
                 
-                if let itemSizeController = weakSelf?.itemSizeCollectionViewController {
-                    if let sizes = weakSelf!.getItemSizes() {
+                if let itemSizeController = self?.itemSizeCollectionViewController {
+                    if let sizes = self!.getItemSizes() {
                         itemSizeController.sizes = sizes
                         itemSizeController.collectionView?.reloadData()
                     }
                 }
                 
-                weakSelf?.setupPickTypeViewWithIfNeedLayout(true)
-                weakSelf?.reloadData()
+                self?.setupPickTypeViewWithIfNeedLayout(true)
+                self?.reloadData()
             }
         }
     }

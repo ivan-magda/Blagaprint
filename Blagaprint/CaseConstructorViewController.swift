@@ -7,9 +7,10 @@
 //
 
 import UIKit
-import Parse
+import SVProgressHUD
 
 class CaseConstructorTableViewController: UITableViewController {
+    
     //--------------------------------------
     // MARK: - Types
     //--------------------------------------
@@ -45,13 +46,13 @@ class CaseConstructorTableViewController: UITableViewController {
     /// Device label.
     @IBOutlet weak var deviceLabel: UILabel!
     
-    var parseCentral: ParseCentral?
+    var dataService: DataService!
     
     /// Category of the presenting item.
-    var category: Category!
+    var category: FCategory!
     
     /// Loaded category items of the parent category.
-    private var categoryItems: [CategoryItem]?
+    private var categoryItems: [FCategoryItem]?
     
     /// Default supported device.
     private var device: Device!
@@ -113,12 +114,9 @@ class CaseConstructorTableViewController: UITableViewController {
     //--------------------------------------
     
     private func loadCategoryItems() {
-        weak var weakSelf = self
-        self.category.getItemsInBackgroundWithBlock() { (items, error) in
-            if let error = error {
-                print(error.localizedDescription)
-            } else if let items = items {
-                weakSelf?.categoryItems = items
+        category.getItemsInBackgroundWithBlock { [weak self] objects in
+            if let items = objects {
+                self?.categoryItems = items
             }
         }
     }
@@ -144,6 +142,19 @@ class CaseConstructorTableViewController: UITableViewController {
             tabBarController.selectedIndex = TabItemIndex.ShoppingBagViewController.rawValue
         }
     }
+    
+    private func updateAddToBagButtonTitle() {
+        func setBagActionButtonTitle(title: String) {
+            self.addToBagButton?.setTitle(title, forState: .Normal)
+        }
+        
+        if didAddItemToBag {
+            setBagActionButtonTitle(NSLocalizedString("Go to Shopping Cart", comment: ""))
+        } else {
+            setBagActionButtonTitle(NSLocalizedString("Add to Bag", comment: ""))
+        }
+    }
+
     
     //--------------------------------------
     // MARK: Animations
@@ -199,98 +210,120 @@ class CaseConstructorTableViewController: UITableViewController {
         self.navigationController?.view.addSubview(self.addToBagButton!)
     }
     
-    private func createBagItem() -> BagItem {
-        // Create BagItem and save it to Parse.
-        let item = BagItem()
+    private func createBagItem() -> [String: AnyObject] {
+        var item = [String : AnyObject]()
         
-        if let user = BlagaprintUser.currentUser() {
-            item.userId = user.objectId!
+        guard let userId = User.currentUserId else {
+            assert(false, "User must be logged in.")
         }
         
-        item.category = self.category.objectId!
+        // Set the user id.
+        item[FBagItem.Keys.userId.rawValue] = userId
         
-        if let categoryItems = self.categoryItems where categoryItems.count > 0 {
-            item.categoryItem = categoryItems[0].objectId!
+        // Set parent category id.
+        item[FBagItem.Keys.category.rawValue] = category.key
+        
+        // Set the current date.
+        item[FBagItem.Keys.createdAt.rawValue] = NSDate().getStringValue()
+        
+        // Set selected category item if it exist.
+        if let categoryItems = categoryItems where categoryItems.count > 0 {
+            item[FBagItem.Keys.categoryItem.rawValue] = categoryItems[0].key
         }
         
         // Set user picked image from media/camera.
         if self.caseView.showBackgroundImage == true {
-            if let image = self.pickedImage {
-                let imageData = UIImageJPEGRepresentation(image, 0.9)
-                if let imageData = imageData {
-                    if let imageFile = PFFile(data: imageData) {
-                        item.image = imageFile
-                    }
+            if let image = pickedImage {
+                if let base64ImageString = image.base64EncodedString() {
+                    item[FBagItem.Keys.image.rawValue] = base64ImageString
                 }
             }
         }
         
         // Set thumbnail image of item.
-        let image = self.caseView.getCaseImage()
-        let size = CGSizeMake(image.size.width / 2.0, image.size.height / 2.0)
-        let resizedImage = image.resizedImage(size, interpolationQuality: .Low)
-        let thumbnailData = UIImagePNGRepresentation(resizedImage)
+        let image = caseView.getCaseImage()
+        let size = image.size
+        let thumbnailData = UIImagePNGRepresentation(image.resizedImage(size, interpolationQuality: .Low))
         if let thumbnailData = thumbnailData {
-            if let thumbnailFile = PFFile(data: thumbnailData) {
-                item.thumbnail = thumbnailFile
-            }
+            item[FBagItem.Keys.thumbnail.rawValue] = thumbnailData.base64EncodedStringWithOptions([])
         }
         
+        
         // Set colors.
-        item.fillColor = BagItem.colorToString(self.caseView.fillColor)
-        item.textColor = BagItem.colorToString(self.caseView.textColor)
+        item[FBagItem.Keys.fillColor.rawValue] = FBagItem.colorToString(caseView.fillColor)
+        item[FBagItem.Keys.textColor.rawValue] = FBagItem.colorToString(caseView.textColor)
+        
+        item[FBagItem.Keys.numberOfItems.rawValue] = 1
+        
+        // FIXME: fix with the price.
+        let price = 750.0
+        item[FBagItem.Keys.price.rawValue] = price
+        item[FBagItem.Keys.amount.rawValue] = price
         
         // Set device.
-        item.device = self.device.descriptionFromDevice()
+        item[FBagItem.Keys.device.rawValue] = device.descriptionFromDevice()
         
         // Set text.
-        item.text = self.caseView.text
+        item[FBagItem.Keys.text.rawValue] = caseView.text
         
-        item.price = 500.0
+        print("BagItem dictionary created.")
         
         return item
     }
     
     func addToBag() {
-        // Go to shopping cart.
+        // For adding item to bag, user must be logged in.
+        // Present an alert that inform user about this.
+        
+        guard dataService.isUserLoggedIn == true else {
+            let alert = UIAlertController(title: NSLocalizedString("You are not registred", comment: "Alert title when user not registered"), message: NSLocalizedString("If you want add item to bag, please login in your account", comment: "Alert message when user not logged in and want add item to bag"), preferredStyle: .Alert)
+            alert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .Cancel, handler: nil))
+            alert.addAction(UIAlertAction(title: NSLocalizedString("Log In", comment: ""), style: .Default, handler: { (action) in
+                LoginViewController.presentInController(self)
+            }))
+            
+            presentViewController(alert, animated: true, completion: nil)
+            
+            return
+        }
+        
+        // If the item has already been added to bag, go to shopping cart.
         if didAddItemToBag {
             goToShoppingCart()
+        } else {
+            // Adding item to the user bag.
             
-        // Add item to bag.
-        } else if let parseCentral = parseCentral {
+            SVProgressHUD.showWithStatus(NSLocalizedString("Adding...", comment: ""))
+            DataService.showNetworkIndicator()
+            
+            // Create the new item.
             let item = createBagItem()
             
-            parseCentral.saveItem(item, success: {
-                self.didAddItemToBag = true
+            dataService.saveItem(item, success: { [weak self] in
+                self?.didAddItemToBag = true
+                
+                SVProgressHUD.showSuccessWithStatus(NSLocalizedString("Added", comment: ""))
+                DataService.hideNetworkIndicator()
                 
                 // Post notification.
                 NSNotificationCenter.defaultCenter().postNotificationName(NotificationName.CategoryItemViewControllerDidAddItemToBagNotification, object: item)
                 
-                let alert = UIAlertController(title: NSLocalizedString("Successfully", comment: ""), message: NSLocalizedString("Item successfully added to bag. Would you like go to shopping cart?", comment: "Saved successfully item alert message"), preferredStyle: .Alert)
-                alert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .Cancel, handler: nil))
-                alert.addAction(UIAlertAction(title: NSLocalizedString("Go", comment: ""), style: .Default, handler: { (action) in
-                    self.goToShoppingCart()
-                }))
+                self?.updateAddToBagButtonTitle()
                 
-                self.presentViewController(alert, animated: true, completion: nil)
-                
-                self.setBagActionButtonTitle(NSLocalizedString("Go to Shopping Cart", comment: ""))
-                
-
-                DataService.sharedInstance.updateBagBadgeValue()
-                }, failure: { (error) in
-                    self.didAddItemToBag = false
+                self?.dataService.updateBagBadgeValue()
+                }, failure: { [weak self] (error) in
                     
-                    self.presentAlertWithTitle(NSLocalizedString("Error", comment: ""), message: error?.localizedDescription ?? NSLocalizedString("An error occured. Please try again later.", comment: "Failure alert message"))
+                    if let error = error {
+                        print("Failed to save item. Error: \(error.localizedDescription)")
+                    }
                     
-                    self.setBagActionButtonTitle(NSLocalizedString("Add to Bag", comment: ""))
-            })
-        } else {
-            self.didAddItemToBag = false
-            
-            presentAlertWithTitle(NSLocalizedString("Error", comment: ""), message: NSLocalizedString("An error occured. Please try again later.", comment: "Failure alert message"))
-            
-            self.setBagActionButtonTitle(NSLocalizedString("Add to Bag", comment: ""))
+                    self?.didAddItemToBag = false
+                    
+                    SVProgressHUD.showErrorWithStatus(NSLocalizedString("Failed", comment: ""))
+                    DataService.hideNetworkIndicator()
+                    
+                    self?.updateAddToBagButtonTitle()
+                })
         }
     }
     
@@ -299,6 +332,9 @@ class CaseConstructorTableViewController: UITableViewController {
     //--------------------------------------
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        didAddItemToBag = false
+        updateAddToBagButtonTitle()
+        
         if segue.identifier == SegueIdentifier.SelectDevice.rawValue {
             let selectDeviceViewController = segue.destinationViewController as! SelectDeviceTableViewController
             selectDeviceViewController.originalDevice = device

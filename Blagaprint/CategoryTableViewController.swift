@@ -68,13 +68,12 @@ class CategoryTableViewController: UITableViewController {
             }
         } else if segue.identifier == SegueIdentifier.PhoneCaseConstructor.rawValue {
             let caseConstructorVC = segue.destinationViewController as! CaseConstructorTableViewController
-            // TODO: fix with path the category
             
-//            caseConstructorVC.parseCentral = self.parseCentral
-//            
-//            if let selectedRow = self.tableView.indexPathForSelectedRow {
-//                caseConstructorVC.category = objects![selectedRow.section] as! Category
-//            }
+            caseConstructorVC.dataService = dataService
+            
+            if let selectedRow = self.tableView.indexPathForSelectedRow {
+                caseConstructorVC.category = categories[selectedRow.section]
+            }
         }
     }
     
