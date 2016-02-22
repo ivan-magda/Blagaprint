@@ -47,7 +47,7 @@ class FBagItem {
     
     var image: UIImage?
     var thumbnail: UIImage?
-
+    
     var device: String?
     var text: String?
     var fillColor: String?

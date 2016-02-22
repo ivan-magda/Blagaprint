@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import SVProgressHUD
 
 class ShoppingBagViewController: UITableViewController {
     
@@ -25,7 +26,7 @@ class ShoppingBagViewController: UITableViewController {
     private var categoryItems = [String : String]()
     
     //--------------------------------------
-    // MARK: - Init
+    // MARK: - Init -
     //--------------------------------------
     
     required init?(coder aDecoder: NSCoder) {
@@ -34,7 +35,7 @@ class ShoppingBagViewController: UITableViewController {
         // Adding notification observer.
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("loadObjects"), name: NotificationName.CategoryItemViewControllerDidAddItemToBagNotification, object: nil)
     }
-
+    
     deinit {
         NSNotificationCenter.defaultCenter().removeObserver(self)
     }
@@ -137,6 +138,11 @@ class ShoppingBagViewController: UITableViewController {
     // MARK: Querying
     //--------------------------------------
     
+    func updateView() {
+        tableView.reloadData()
+        dataService.updateBagBadgeValue()
+    }
+    
     func loadObjects() {
         
         func clearData() {
@@ -163,7 +169,6 @@ class ShoppingBagViewController: UITableViewController {
         
         // Query for the user bag.
         
-        // TODO: ordered by creation date
         bagRef.queryOrderedByChild(FBag.Key.userId.rawValue).queryEqualToValue(userId).observeEventType(.Value, withBlock: { [weak self] snapshot in
             if let snapshots = snapshot.children.allObjects as? [FDataSnapshot] {
                 assert(snapshots.count == 1, "Bag must be unique for each user.")
@@ -189,7 +194,21 @@ class ShoppingBagViewController: UITableViewController {
                                     if let itemDict = itemSnap.value as? [String: AnyObject] {
                                         let item = FBagItem(key: itemPath, dictionary: itemDict)
                                         
-                                        self?.items.append(item)
+                                        // Do we already have this item.
+                                        var index: Int?
+                                        for (idx, anItem) in self!.items.enumerate() {
+                                            if anItem.key == item.key {
+                                                index = idx
+                                            }
+                                        }
+                                        
+                                        // Update or insert an item.
+                                        if let index = index {
+                                            self?.items[index] = item
+                                        } else {
+                                            self?.items.insert(item, atIndex: 0)
+                                        }
+                                        
                                         self?.tableView.reloadData()
                                         
                                         // Query for the category name of the specific item.
@@ -224,6 +243,8 @@ class ShoppingBagViewController: UITableViewController {
                             }
                         }
                     }
+                } else {
+                    self?.updateView()
                 }
             }
             })
@@ -256,42 +277,18 @@ class ShoppingBagViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        // FIXME: implement item deletion
         if editingStyle == .Delete {
-            // Remove the deleted object from data source.
-            //            if let parseCentral = self.parseCentral {
-            //                let itemToDelete = items![indexPath.row]
-            //
-            //                parseCentral.deleteItem(itemToDelete: itemToDelete, succeeded: {
-            //                    let idString = itemToDelete.objectId!
-            //
-            //                    self.objects!.removeAtIndex(indexPath.row)
-            //                    self.thumbnails.removeValueForKey(idString)
-            //                    self.categories.removeValueForKey(idString)
-            //
-            //                    dispatch_async(dispatch_get_main_queue()) {
-            //                        // Reload a table view.
-            //                        self.tableView.reloadSections(NSIndexSet(indexesInRange: NSRange(location: 0, length: 2)), withRowAnimation: .Automatic)
-            //
-            //                        let alert = UIAlertController(title: NSLocalizedString("Successfully", comment: ""), message: "Item has successfully deleted", preferredStyle: .Alert)
-            //                        alert.addAction(UIAlertAction(title: "Ok", style: .Cancel, handler: nil))
-            //                        self.presentViewController(alert, animated: true, completion: nil)
-            //
-            //                        ParseCentral.updateBagTabBarItemBadgeValue()
-            //                    }
-            //
-            //                    }, failure: { error in
-            //                        dispatch_async(dispatch_get_main_queue()) {
-            //                            let alert = UIAlertController(title: NSLocalizedString("Failure", comment: ""), message: error?.localizedDescription ?? NSLocalizedString("An error occured. Please try again later.", comment: "Failure alert message"), preferredStyle: .Alert)
-            //                            alert.addAction(UIAlertAction(title: "Ok", style: .Cancel, handler: nil))
-            //                            self.presentViewController(alert, animated: true, completion: nil)
-            //
-            //                            ParseCentral.updateBagTabBarItemBadgeValue()
-            //                        }
-            //                })
-            //            }
-            //
-            //            ParseCentral.updateBagTabBarItemBadgeValue()
+            SVProgressHUD.show()
+            
+            let itemToDelete = items[indexPath.row]
+            
+            dataService.deleteItem(itemToDelete, succeeded: { [weak self] in
+                SVProgressHUD.showSuccessWithStatus(NSLocalizedString("Deleted", comment: ""))
+                self?.updateView()
+                }, failure: { [weak self] error in
+                    SVProgressHUD.showErrorWithStatus(NSLocalizedString("Failed", comment: ""))
+                    self?.updateView()
+            })
         }
     }
     

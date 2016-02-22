@@ -197,11 +197,61 @@ internal final class DataService {
                 if let bagDict = bagSnap.value as? [String: AnyObject] {
                     if let items = bagDict[FBag.Key.items.rawValue] as? [String] {
                         setCountValue(items.count)
+                    } else {
+                        setCountValue(0)
                     }
                 }
             }
         })
     }
+    
+    
+    func deleteItem(item: FBagItem, succeeded: DataServiceSuccessResultBlock?, failure: DataServiceFailureResultBlock?) {
+        let bagRef = bagReference
+        let userId = User.currentUserId!
+        
+        // Query for the user bag.
+        bagRef.queryOrderedByChild(FBag.Key.userId.rawValue).queryEqualToValue(userId).observeSingleEventOfType(.Value, withBlock: { snap in
+            if let snapshots = snap.children.allObjects as? [FDataSnapshot] {
+                assert(snapshots.count == 1, "Bag must be unique for each user.")
+                
+                let bagSnap = snapshots[0]
+                
+                if let bagDict = bagSnap.value as? [String : AnyObject] {
+                    let bag = FBag(key: bagSnap.key, dictionary: bagDict)
+                    
+                    // Remove item from bag.
+                    
+                    for (index, element) in bag.items!.enumerate() {
+                        if element == item.key {
+                            bag.items!.removeAtIndex(index)
+                            break
+                        }
+                    }
+                    
+                    // Update bag.
+                    
+                    bag.reference.updateChildValues(bag.value, withCompletionBlock: { (error, ref) in
+                        if let _ = error {
+                            failure?(error: error)
+                        } else {
+                            
+                            // Remove item from firebase.
+                            
+                            item.reference.setValue(nil, withCompletionBlock: { (error, ref) in
+                                if let _ = error {
+                                    failure?(error: error)
+                                } else {
+                                    succeeded?()
+                                }
+                            })
+                        }
+                    })
+                }
+            }
+        })
+    }
+    
     
     /// Saves item to the Bag of the current user.
     func saveItem(item: [String : AnyObject], success: DataServiceSuccessResultBlock?, failure: DataServiceFailureResultBlock?) {
