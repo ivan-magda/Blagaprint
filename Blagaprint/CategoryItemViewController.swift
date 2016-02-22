@@ -726,7 +726,7 @@ class CategoryItemViewController: UIViewController {
         
         item[FBagItem.Keys.numberOfItems.rawValue] = self.numberOfItems
         
-        // TODO: fix with price.
+        // FIXME: fix with the price.
         let price = 500.0
         item[FBagItem.Keys.price.rawValue] = price
         
@@ -809,8 +809,8 @@ class CategoryItemViewController: UIViewController {
             // Create the new item.
             let item = createBagItem()
             
-            dataService.saveItem(item, success: {
-                self.didAddItemToBag = true
+            dataService.saveItem(item, success: { [weak self] in
+                self?.didAddItemToBag = true
                 
                 SVProgressHUD.showSuccessWithStatus(NSLocalizedString("Added", comment: ""))
                 DataService.hideNetworkIndicator()
@@ -818,22 +818,21 @@ class CategoryItemViewController: UIViewController {
                 // Post notification.
                 NSNotificationCenter.defaultCenter().postNotificationName(NotificationName.CategoryItemViewControllerDidAddItemToBagNotification, object: item)
                 
-                self.updateAddToBagButtonTitle()
+                self?.updateAddToBagButtonTitle()
                 
-                // FIXME: Update badge value.
-                ParseCentral.updateBagTabBarItemBadgeValue()
-                }, failure: { (error) in
+                self?.dataService.updateBagBadgeValue()
+                }, failure: { [weak self] (error) in
                     
                     if let error = error {
                         print("Failed to save item. Error: \(error.localizedDescription)")
                     }
                     
-                    self.didAddItemToBag = false
+                    self?.didAddItemToBag = false
                     
                     SVProgressHUD.showErrorWithStatus(NSLocalizedString("Failed", comment: ""))
                     DataService.hideNetworkIndicator()
                     
-                    self.updateAddToBagButtonTitle()
+                    self?.updateAddToBagButtonTitle()
             })
         }
     }

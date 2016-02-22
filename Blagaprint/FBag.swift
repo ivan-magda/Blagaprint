@@ -15,7 +15,7 @@ class FBag {
     // MARK: - Types
     //--------------------------------------
     
-    enum Keys: String {
+    enum Key: String {
         case userId
         case items
     }
@@ -34,10 +34,10 @@ class FBag {
     var value: Dictionary<String, AnyObject> {
         var dictionary = [String : AnyObject]()
 
-        dictionary[Keys.userId.rawValue] = userId
+        dictionary[Key.userId.rawValue] = userId
         
         if let items = items {
-            dictionary[Keys.items.rawValue] = items
+            dictionary[Key.items.rawValue] = items
         }
         
         return dictionary
@@ -52,15 +52,15 @@ class FBag {
         self.key = key
         
         for (key, value) in dictionary {
-            let type = Keys(rawValue: key)
+            let type = Key(rawValue: key)
             
             if let type = type {
                 
                 switch type {
                 case .userId:
-                    self.userId = value as! String
+                    userId = value as! String
                 case .items:
-                    self.items = value as? [String]
+                    items = value as? [String]
                 }
                 
             } else {

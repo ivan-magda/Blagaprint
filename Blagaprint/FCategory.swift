@@ -101,7 +101,7 @@ class FCategory {
     
     /// Returns items of the Category.
     func getItemsInBackgroundWithBlock(block: ((objects: [FCategoryItem]?) -> Void)? ) {
-        let ref = DataService.sharedInstance.categoryItemsReference
+        let ref = DataService.sharedInstance.categoryItemReference
         
         DataService.showNetworkIndicator()
         

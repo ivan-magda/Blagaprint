@@ -95,7 +95,7 @@ class FCategoryItem {
         
         // The above properties are assigned to their key.
         
-        self.reference = DataService.sharedInstance.categoryItemsReference.childByAppendingPath(self.key)
+        reference = DataService.sharedInstance.categoryItemReference.childByAppendingPath(self.key)
     }
     
     //--------------------------------------

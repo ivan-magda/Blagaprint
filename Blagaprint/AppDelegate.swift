@@ -38,15 +38,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     //--------------------------------------
     
     private func confParseWithOptions(launchOptions: [NSObject: AnyObject]?) {
-        self.parseCentral = ParseCentral.sharedInstance
-        if let parseCentral = self.parseCentral {
-            self.parse = parseCentral.parse
+        parseCentral = ParseCentral.sharedInstance
+        
+        if let parseCentral = parseCentral {
+            parse = parseCentral.parse
         }
         
-        assert(self.parseCentral != nil, "ParseCentral must exist")
+        assert(parseCentral != nil, "ParseCentral must exist")
         
-        // TODO: Rewrite it
-        self.dataService = DataService.sharedInstance
+        // FIXME: Rewrite it
+        dataService = DataService.sharedInstance
         
         // Spread ParseCentral
         let tabBarController = window!.rootViewController as! UITabBarController
@@ -54,12 +55,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // To CategoryTableViewController
         let categoryNavigationController = tabBarController.viewControllers![0] as! UINavigationController
         let categoryTableViewController = categoryNavigationController.topViewController as! CategoryTableViewController
-        categoryTableViewController.dataService = self.dataService
+        categoryTableViewController.dataService = dataService
         
         // To ShoppingBagViewController
         let shoppingBagNavigationController = tabBarController.viewControllers![1] as! UINavigationController
         let shoppingBagViewController = shoppingBagNavigationController.topViewController as! ShoppingBagViewController
-        shoppingBagViewController.parseCentral = self.parseCentral
+        shoppingBagViewController.dataService = dataService
     }
     
     //--------------------------------------

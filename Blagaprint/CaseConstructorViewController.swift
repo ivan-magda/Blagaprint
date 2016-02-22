@@ -257,7 +257,7 @@ class CaseConstructorTableViewController: UITableViewController {
             goToShoppingCart()
             
         // Add item to bag.
-        } else if let parseCentral = self.parseCentral {
+        } else if let parseCentral = parseCentral {
             let item = createBagItem()
             
             parseCentral.saveItem(item, success: {
@@ -276,7 +276,8 @@ class CaseConstructorTableViewController: UITableViewController {
                 
                 self.setBagActionButtonTitle(NSLocalizedString("Go to Shopping Cart", comment: ""))
                 
-                ParseCentral.updateBagTabBarItemBadgeValue()
+
+                DataService.sharedInstance.updateBagBadgeValue()
                 }, failure: { (error) in
                     self.didAddItemToBag = false
                     

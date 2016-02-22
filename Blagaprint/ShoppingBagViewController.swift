@@ -7,20 +7,20 @@
 //
 
 import UIKit
-import Parse
+import Firebase
 
 class ShoppingBagViewController: UITableViewController {
+    
     //--------------------------------------
-    // MARK: - Properties
+    // MARK: - Properties -
     //--------------------------------------
     
-    var parseCentral: ParseCentral?
+    var dataService: DataService!
     
     private let logInImage = UIImage(named: "Enter.png")!
     private var logInBarButtonItem: UIBarButtonItem?
     
-    private var objects: [BagItem]?
-    private var thumbnails = [String : UIImage]()
+    private var items = [FBagItem]()
     private var categories = [String : String]()
     private var categoryItems = [String : String]()
     
@@ -34,9 +34,13 @@ class ShoppingBagViewController: UITableViewController {
         // Adding notification observer.
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("loadObjects"), name: NotificationName.CategoryItemViewControllerDidAddItemToBagNotification, object: nil)
     }
+
+    deinit {
+        NSNotificationCenter.defaultCenter().removeObserver(self)
+    }
     
     //--------------------------------------
-    // MARK: - View Life Cycle
+    // MARK: - View Life Cycle -
     //--------------------------------------
     
     override func viewDidLoad() {
@@ -48,15 +52,10 @@ class ShoppingBagViewController: UITableViewController {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
-        configureAccountActionBarButton()
-        
         loadObjects()
+        dataService.updateBagBadgeValue()
         
-        ParseCentral.updateBagTabBarItemBadgeValue()
-    }
-    
-    deinit {
-        NSNotificationCenter.defaultCenter().removeObserver(self)
+        configureAccountActionBarButton()
     }
     
     //--------------------------------------
@@ -64,12 +63,12 @@ class ShoppingBagViewController: UITableViewController {
     //--------------------------------------
     
     private func configureAccountActionBarButton() {
-        if BlagaprintUser.currentUser() == nil {
-            self.logInBarButtonItem = UIBarButtonItem(image: logInImage, style: .Plain, target: self, action: Selector("logInBarButtonDidPressed:"))
-            self.navigationItem.rightBarButtonItem = logInBarButtonItem
+        if dataService.isUserLoggedIn {
+            logInBarButtonItem = nil
+            navigationItem.rightBarButtonItem = nil
         } else {
-            self.logInBarButtonItem = nil
-            self.navigationItem.rightBarButtonItem = nil
+            logInBarButtonItem = UIBarButtonItem(image: logInImage, style: .Plain, target: self, action: Selector("logInBarButtonDidPressed:"))
+            navigationItem.rightBarButtonItem = logInBarButtonItem
         }
     }
     
@@ -81,8 +80,8 @@ class ShoppingBagViewController: UITableViewController {
             
             // Count for amount and format it.
             var amount = 0.0
-            for object in self.objects! {
-                amount += object.price
+            for item in items {
+                amount += item.amount
             }
             
             let formatAmount = String.formatAmount(NSNumber(double: amount))
@@ -92,28 +91,26 @@ class ShoppingBagViewController: UITableViewController {
             
             return cell
         } else {
-            let cell = self.tableView.dequeueReusableCellWithIdentifier(BagItemTableViewCell.cellReuseIdentifier) as! BagItemTableViewCell
+            let cell = tableView.dequeueReusableCellWithIdentifier(BagItemTableViewCell.cellReuseIdentifier) as! BagItemTableViewCell
             
-            let item = objects![indexPath.row]
+            let item = items[indexPath.row]
             
-            if indexPath.row < self.thumbnails.count {
-                cell.thumbnailImage.image = thumbnails[item.objectId!]
-            }
+            cell.thumbnailImage.image = item.thumbnail
             
             var description = ""
             
             // Category title name.
-            if let categoryName = categories[item.objectId!] {
+            if let categoryName = categories[item.key] {
                 description += categoryName
             }
             
             // Category item name.
-            if let itemName = self.categoryItems[item.objectId!] {
+            if let itemName = categoryItems[item.key] {
                 description += " \(itemName.lowercaseString)"
             }
             
             // Item size.
-            if let itemSize = self.objects?[indexPath.row].itemSize where itemSize != "" {
+            if let itemSize = items[indexPath.row].itemSize where itemSize != "" {
                 description += ": \(itemSize)"
             }
             
@@ -129,7 +126,7 @@ class ShoppingBagViewController: UITableViewController {
     //--------------------------------------
     
     func logInBarButtonDidPressed(sender: UIBarButtonItem) {
-        self.presentViewController(LoginViewController(), animated: true, completion: nil)
+        LoginViewController.presentInController(self)
     }
     
     func proceedToCheckout(sender: UIButton) {
@@ -141,83 +138,97 @@ class ShoppingBagViewController: UITableViewController {
     //--------------------------------------
     
     func loadObjects() {
-        guard let user = BlagaprintUser.currentUser() else {
-            self.objects = nil
+        
+        func clearData() {
+            items.removeAll(keepCapacity: true)
+            categories.removeAll(keepCapacity: true)
+            categoryItems.removeAll(keepCapacity: true)
+        }
+        
+        guard dataService.isUserLoggedIn == true else {
+            clearData()
+            tableView.reloadData()
             
             return
         }
         
-        let query = PFQuery(className: BagItem.parseClassName())
-        query.orderByDescending(BagItem.FieldKey.createdAt.rawValue)
-        query.whereKey(BagItem.FieldKey.userId.rawValue, equalTo: user.objectId!)
-        query.cachePolicy = .CacheThenNetwork
-        
-        query.findObjectsInBackgroundWithBlock() { (items, error) in
-            if let error = error {
-                print(error.localizedDescription)
-            } else if let items = items as? [BagItem] {
-                self.objects = items
-                
-                self.thumbnails.removeAll(keepCapacity: true)
-                self.categories.removeAll(keepCapacity: true)
-                self.categoryItems.removeAll(keepCapacity: true)
-                
-                // Load thumbnail image.
-                for item in items {
-                    item.thumbnail.getDataInBackgroundWithBlock() { (data, error) in
-                        if let error = error {
-                            print(error.localizedDescription)
-                        } else if let data = data where data.length > 0 {
-                            if let image = UIImage(data: data) {
-                                self.thumbnails[item.objectId!] = image
-                            }
-                            
-                            dispatch_async(dispatch_get_main_queue()) {
-                                self.tableView.reloadData()
-                            }
-                        }
-                    }
-                    
-                    // Get category name.
-                    let categoryId = item.category
-                    let categoryQuery = PFQuery(className: Category.parseClassName())
-                    categoryQuery.cachePolicy = .CacheThenNetwork
-                    categoryQuery.getObjectInBackgroundWithId(categoryId) { (category, error) in
-                        if let error = error {
-                            print(error.localizedDescription)
-                        } else if let category = category as? Category {
-                            self.categories[item.objectId!] = category.titleName
-                            
-                            dispatch_async(dispatch_get_main_queue()) {
-                                self.tableView.reloadData()
-                            }
-                        }
-                    }
-                    
-                    // Get category item name.
-                    let categoryItemId = item.categoryItem
-                    let categoryItemQuery = PFQuery(className: CategoryItem.parseClassName())
-                    categoryItemQuery.cachePolicy = .CacheThenNetwork
-                    categoryItemQuery.getObjectInBackgroundWithId(categoryItemId) { (categoryItem, error) in
-                        if let error = error {
-                            print(error.localizedDescription)
-                        } else if let categoryItem = categoryItem as? CategoryItem {
-                            self.categoryItems[item.objectId!] = categoryItem.name
-                            
-                            dispatch_async(dispatch_get_main_queue()) {
-                                self.tableView.reloadData()
-                            }
-                        }
-                    }
-                }
-                
-                dispatch_async(dispatch_get_main_queue()) {
-                    self.tableView.reloadData()
-                }
-            }
+        guard let userId = User.currentUserId else {
+            clearData()
+            tableView.reloadData()
+            
+            return
         }
         
-        ParseCentral.updateBagTabBarItemBadgeValue()
+        let bagRef = dataService.bagReference
+        
+        // Query for the user bag.
+        
+        // TODO: ordered by creation date
+        bagRef.queryOrderedByChild(FBag.Key.userId.rawValue).queryEqualToValue(userId).observeEventType(.Value, withBlock: { [weak self] snapshot in
+            if let snapshots = snapshot.children.allObjects as? [FDataSnapshot] {
+                assert(snapshots.count == 1, "Bag must be unique for each user.")
+                
+                // Create user bag object.
+                
+                clearData()
+                
+                let bagSnap = snapshots[0]
+                
+                if let bagDict = bagSnap.value as? [String: AnyObject] {
+                    let bag = FBag(key: bagSnap.key, dictionary: bagDict)
+                    
+                    // Query for the BagItems of the current bag.
+                    
+                    if let items = bag.items {
+                        if let itemRef = self?.dataService.bagItemReference {
+                            for itemPath in items {
+                                
+                                // Append each item object to the item data source array.
+                                
+                                itemRef.childByAppendingPath(itemPath).observeEventType(.Value, withBlock: { itemSnap in
+                                    if let itemDict = itemSnap.value as? [String: AnyObject] {
+                                        let item = FBagItem(key: itemPath, dictionary: itemDict)
+                                        
+                                        self?.items.append(item)
+                                        self?.tableView.reloadData()
+                                        
+                                        // Query for the category name of the specific item.
+                                        
+                                        let categoryRef = self?.dataService.categoryReference
+                                        categoryRef?.childByAppendingPath(item.category).observeEventType(.Value, withBlock: { categorySnap in
+                                            if let categoryDict = categorySnap.value as? [String: AnyObject] {
+                                                let name = categoryDict[FCategory.Keys.titleName.rawValue] as? String
+                                                if let name = name {
+                                                    self?.categories[itemPath] = name
+                                                    self?.tableView.reloadData()
+                                                }
+                                            }
+                                        })
+                                        
+                                        // Query for categoryItem name of the specific item.
+                                        
+                                        if let cItem = item.categoryItem {
+                                            let cItemRef = self?.dataService.categoryItemReference
+                                            cItemRef?.childByAppendingPath(cItem).observeEventType(.Value, withBlock: { snap in
+                                                if let cItemDict = snap.value as? [String: AnyObject] {
+                                                    let name = cItemDict[FCategoryItem.Keys.name.rawValue] as? String
+                                                    if let name = name {
+                                                        self?.categoryItems[itemPath] = name
+                                                        self?.tableView.reloadData()
+                                                    }
+                                                }
+                                            })
+                                        }
+                                    }
+                                })
+                            }
+                        }
+                    }
+                }
+            }
+            })
+        
+        dataService.updateBagBadgeValue()
     }
     
     //--------------------------------------
@@ -229,15 +240,15 @@ class ShoppingBagViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        guard let _ = self.objects else {
+        if items.count == 0 {
             return 0
         }
         
         if section == 0 {
             return 1
-        } else {
-            return self.objects!.count
         }
+        
+        return items.count
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -245,46 +256,47 @@ class ShoppingBagViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        // FIXME: implement item deletion
         if editingStyle == .Delete {
             // Remove the deleted object from data source.
-            if let parseCentral = self.parseCentral {
-                let itemToDelete = objects![indexPath.row]
-                
-                parseCentral.deleteItem(itemToDelete: itemToDelete, succeeded: {
-                    let idString = itemToDelete.objectId!
-                    
-                    self.objects!.removeAtIndex(indexPath.row)
-                    self.thumbnails.removeValueForKey(idString)
-                    self.categories.removeValueForKey(idString)
-                    
-                    dispatch_async(dispatch_get_main_queue()) {
-                        // Reload a table view.
-                        self.tableView.reloadSections(NSIndexSet(indexesInRange: NSRange(location: 0, length: 2)), withRowAnimation: .Automatic)
-                        
-                        let alert = UIAlertController(title: NSLocalizedString("Successfully", comment: ""), message: "Item has successfully deleted", preferredStyle: .Alert)
-                        alert.addAction(UIAlertAction(title: "Ok", style: .Cancel, handler: nil))
-                        self.presentViewController(alert, animated: true, completion: nil)
-                        
-                        ParseCentral.updateBagTabBarItemBadgeValue()
-                    }
-                    
-                    }, failure: { error in
-                        dispatch_async(dispatch_get_main_queue()) {
-                            let alert = UIAlertController(title: NSLocalizedString("Failure", comment: ""), message: error?.localizedDescription ?? NSLocalizedString("An error occured. Please try again later.", comment: "Failure alert message"), preferredStyle: .Alert)
-                            alert.addAction(UIAlertAction(title: "Ok", style: .Cancel, handler: nil))
-                            self.presentViewController(alert, animated: true, completion: nil)
-                            
-                            ParseCentral.updateBagTabBarItemBadgeValue()
-                        }
-                })
-            }
-            
-            ParseCentral.updateBagTabBarItemBadgeValue()
+            //            if let parseCentral = self.parseCentral {
+            //                let itemToDelete = items![indexPath.row]
+            //
+            //                parseCentral.deleteItem(itemToDelete: itemToDelete, succeeded: {
+            //                    let idString = itemToDelete.objectId!
+            //
+            //                    self.objects!.removeAtIndex(indexPath.row)
+            //                    self.thumbnails.removeValueForKey(idString)
+            //                    self.categories.removeValueForKey(idString)
+            //
+            //                    dispatch_async(dispatch_get_main_queue()) {
+            //                        // Reload a table view.
+            //                        self.tableView.reloadSections(NSIndexSet(indexesInRange: NSRange(location: 0, length: 2)), withRowAnimation: .Automatic)
+            //
+            //                        let alert = UIAlertController(title: NSLocalizedString("Successfully", comment: ""), message: "Item has successfully deleted", preferredStyle: .Alert)
+            //                        alert.addAction(UIAlertAction(title: "Ok", style: .Cancel, handler: nil))
+            //                        self.presentViewController(alert, animated: true, completion: nil)
+            //
+            //                        ParseCentral.updateBagTabBarItemBadgeValue()
+            //                    }
+            //
+            //                    }, failure: { error in
+            //                        dispatch_async(dispatch_get_main_queue()) {
+            //                            let alert = UIAlertController(title: NSLocalizedString("Failure", comment: ""), message: error?.localizedDescription ?? NSLocalizedString("An error occured. Please try again later.", comment: "Failure alert message"), preferredStyle: .Alert)
+            //                            alert.addAction(UIAlertAction(title: "Ok", style: .Cancel, handler: nil))
+            //                            self.presentViewController(alert, animated: true, completion: nil)
+            //
+            //                            ParseCentral.updateBagTabBarItemBadgeValue()
+            //                        }
+            //                })
+            //            }
+            //
+            //            ParseCentral.updateBagTabBarItemBadgeValue()
         }
     }
     
     override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        guard self.objects != nil else {
+        if items.count == 0 {
             return nil
         }
         

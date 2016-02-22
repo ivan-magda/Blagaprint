@@ -45,7 +45,7 @@ internal final class DataService {
         return Firebase(url: baseURL).childByAppendingPath("categories")
     }
     
-    var categoryItemsReference: Firebase {
+    var categoryItemReference: Firebase {
         return Firebase(url: baseURL).childByAppendingPath("categoryItems")
     }
     
@@ -164,6 +164,45 @@ internal final class DataService {
     // MARK: Bag
     //--------------------------------------
     
+    func updateBagBadgeValue() {
+        
+        func setCountValue(count: Int) {
+            let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+            let tabBarController = appDelegate.window!.rootViewController as! UITabBarController
+            
+            if let tabBarItem = tabBarController.tabBar.items?[TabItemIndex.ShoppingBagViewController.rawValue] {
+                if count == 0 {
+                    tabBarItem.badgeValue = nil
+                } else {
+                    tabBarItem.badgeValue = "\(count)"
+                }
+            }
+        }
+        
+        guard isUserLoggedIn == true else {
+            setCountValue(0)
+            return
+        }
+        
+        guard let userId = User.currentUserId else {
+            setCountValue(0)
+            return
+        }
+        
+        bagReference.queryOrderedByChild(FBag.Key.userId.rawValue).queryEqualToValue(userId).observeEventType(.Value, withBlock: { snapshot in
+            if let snapshots = snapshot.children.allObjects as? [FDataSnapshot] {
+                assert(snapshots.count == 1, "Bag must be unique for each user.")
+                
+                let bagSnap = snapshots[0]
+                if let bagDict = bagSnap.value as? [String: AnyObject] {
+                    if let items = bagDict[FBag.Key.items.rawValue] as? [String] {
+                        setCountValue(items.count)
+                    }
+                }
+            }
+        })
+    }
+    
     /// Saves item to the Bag of the current user.
     func saveItem(item: [String : AnyObject], success: DataServiceSuccessResultBlock?, failure: DataServiceFailureResultBlock?) {
         
@@ -173,7 +212,7 @@ internal final class DataService {
         
         // Looking for the Bag of the current user.
         
-        bagRef.queryOrderedByChild(FBag.Keys.userId.rawValue).queryEqualToValue(userId).observeSingleEventOfType(.Value, withBlock: { [weak self] snapshot in
+        bagRef.queryOrderedByChild(FBag.Key.userId.rawValue).queryEqualToValue(userId).observeSingleEventOfType(.Value, withBlock: { [weak self] snapshot in
             
             // If there is no value in snapshot, it's meaning that bag
             // for the current user doesn't exist yet.
@@ -212,7 +251,7 @@ internal final class DataService {
                     failure?(error: nil)
                 }
             }
-        })
+            })
     }
     
     private func createBagForUserWithId(id: String, andWithCompletionBlock block: (NSError?, Firebase!, FBag?) -> Void) {
@@ -222,7 +261,7 @@ internal final class DataService {
         
         let newBagRef = bagReference.childByAutoId()
         
-        let bag = [FBag.Keys.userId.rawValue: id]
+        let bag = [FBag.Key.userId.rawValue: id]
         
         // saves to Firebase.
         

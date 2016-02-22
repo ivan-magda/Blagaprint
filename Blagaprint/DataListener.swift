@@ -90,7 +90,7 @@ internal final class DataListener: NSObject {
         
         let bagRef = dataService.bagReference
         
-        handler = bagRef.queryOrderedByChild(FBag.Keys.userId.rawValue).queryEqualToValue(userId).observeEventType(.Value, withBlock: { _ in
+        handler = bagRef.queryOrderedByChild(FBag.Key.userId.rawValue).queryEqualToValue(userId).observeEventType(.Value, withBlock: { _ in
             print("\(String(DataListener.self)) did observe Bag event.")
         })
     }
