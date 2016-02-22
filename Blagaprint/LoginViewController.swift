@@ -76,11 +76,11 @@ class LoginViewController: UIViewController {
         
         
         // Make rounded buttons.
-        self.facebookButton.layer.cornerRadius = facebookButton.bounds.height / 2.0
-        self.facebookButton.clipsToBounds = true
+        facebookButton.layer.cornerRadius = facebookButton.bounds.height / 2.0
+        facebookButton.clipsToBounds = true
         
-        self.signupButton.layer.cornerRadius = signupButton.bounds.height / 2.0
-        self.signupButton.clipsToBounds = true
+        signupButton.layer.cornerRadius = signupButton.bounds.height / 2.0
+        signupButton.clipsToBounds = true
         
         // Set vertical spacing.
         updateVerticalSpaceFromPlaceholderViewToDismissButton()
@@ -98,7 +98,7 @@ class LoginViewController: UIViewController {
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         super.touchesBegan(touches, withEvent: event)
         
-        self.view.endEditing(true)
+        view.endEditing(true)
     }
     
     deinit {
@@ -115,19 +115,19 @@ class LoginViewController: UIViewController {
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillHide:"), name: UIKeyboardWillHideNotification, object: nil)
         
         // Setup text fields.
-        self.emailTextField.delegate = self
-        self.emailTextField.tag = TextFieldTag.Email.rawValue
-        self.emailTextField.attributedPlaceholder = NSAttributedString(string:"Email",
+        emailTextField.delegate = self
+        emailTextField.tag = TextFieldTag.Email.rawValue
+        emailTextField.attributedPlaceholder = NSAttributedString(string:"Email",
             attributes:[NSForegroundColorAttributeName: UIColor.whiteColor()])
         
-        self.passwordTextField.delegate = self
-        self.passwordTextField.tag = TextFieldTag.Password.rawValue
-        self.passwordTextField.attributedPlaceholder = NSAttributedString(string: NSLocalizedString("Password", comment: ""),
+        passwordTextField.delegate = self
+        passwordTextField.tag = TextFieldTag.Password.rawValue
+        passwordTextField.attributedPlaceholder = NSAttributedString(string: NSLocalizedString("Password", comment: ""),
             attributes:[NSForegroundColorAttributeName: UIColor.whiteColor()])
         
         // Add gesture recognizer to logIn view.
         let logInGestureRecognizer = UITapGestureRecognizer(target: self, action: Selector("login:"))
-        self.logInView.addGestureRecognizer(logInGestureRecognizer)
+        logInView.addGestureRecognizer(logInGestureRecognizer)
     }
     
     private func startShimmering() {
@@ -146,13 +146,13 @@ class LoginViewController: UIViewController {
     }
     
     private func updateVerticalSpaceFromPlaceholderViewToDismissButton() {
-        let screenHeight = self.view.bounds.height
+        let screenHeight = view.bounds.height
         let statusBarHeight = UIApplication.sharedApplication().statusBarFrame.height
         
         var spaceValue: CGFloat = round((screenHeight - (statusBarHeight + dismissButtonHeightConstraint.constant + minVerticalSpaceFromPlacegolderViewToDismissButton + placeholderViewHeightConstraint.constant)) / 2.0)
         spaceValue = max(minVerticalSpaceFromPlacegolderViewToDismissButton, spaceValue)
         
-        self.placeholderViewTopConstraint.constant = spaceValue
+        placeholderViewTopConstraint.constant = spaceValue
     }
     
     //--------------------------------------
@@ -172,13 +172,13 @@ class LoginViewController: UIViewController {
                 UIView.setAnimationCurve(UIViewAnimationCurve(rawValue: info[UIKeyboardAnimationCurveUserInfoKey]!.integerValue!)!)
                 UIView.setAnimationBeginsFromCurrentState(true)
                 
-                let insets = UIEdgeInsets(top: self.scrollView.contentInset.top, left: 0.0, bottom: keyboardSize.height, right: 0.0)
-                self.scrollView.contentInset = insets
-                self.scrollView.contentOffset = CGPoint(x: self.scrollView.contentOffset.x, y: self.scrollView.contentOffset.y + keyboardSize.height / 4.0)
+                let insets = UIEdgeInsets(top: scrollView.contentInset.top, left: 0.0, bottom: keyboardSize.height, right: 0.0)
+                scrollView.contentInset = insets
+                scrollView.contentOffset = CGPoint(x: scrollView.contentOffset.x, y: scrollView.contentOffset.y + keyboardSize.height / 4.0)
                 
                 UIView.commitAnimations()
                 
-                self.didSetKeyboardOffset = true
+                didSetKeyboardOffset = true
             }
         }
     }
@@ -190,12 +190,12 @@ class LoginViewController: UIViewController {
             UIView.setAnimationCurve(UIViewAnimationCurve(rawValue: info[UIKeyboardAnimationCurveUserInfoKey]!.integerValue!)!)
             UIView.setAnimationBeginsFromCurrentState(true)
             
-            let insets = UIEdgeInsets(top: self.scrollView.contentInset.top, left: 0.0, bottom: 0.0, right: 0.0)
-            self.scrollView.contentInset = insets
+            let insets = UIEdgeInsets(top: scrollView.contentInset.top, left: 0.0, bottom: 0.0, right: 0.0)
+            scrollView.contentInset = insets
             
             UIView.commitAnimations()
             
-            self.didSetKeyboardOffset = false
+            didSetKeyboardOffset = false
         }
     }
     
@@ -212,14 +212,14 @@ class LoginViewController: UIViewController {
             self.dismiss(alertController)
             })
         
-        self.presentViewController(alertController, animated: true, completion: nil)
+        presentViewController(alertController, animated: true, completion: nil)
     }
     
     private func presentAlert(title title: String, message: String) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .Alert)
         alert.addAction(UIAlertAction(title: "Ok", style: .Cancel, handler: nil))
         
-        self.presentViewController(alert, animated: true, completion: nil)
+        presentViewController(alert, animated: true, completion: nil)
     }
     
     private func prepareForDismissWithUserInfo(info: [String : String]) {
@@ -228,7 +228,7 @@ class LoginViewController: UIViewController {
         NSUserDefaults.standardUserDefaults().updateUserInfoWithDictionary(info)
         
         // Enter the app after user cancel the alert.
-        self.presentLoggedInAlert()
+        presentLoggedInAlert()
     }
     
     //--------------------------------------
@@ -238,7 +238,7 @@ class LoginViewController: UIViewController {
     @IBAction func login(sender: AnyObject) {
         resetScrollViewContentOffset()
         
-        self.view.endEditing(true)
+        view.endEditing(true)
         
         /// Nested function for informing user with missed info.
         func presentMissingParametersAlert() {
@@ -257,7 +257,6 @@ class LoginViewController: UIViewController {
         
         guard let password = passwordTextField.text where password.characters.count > 0 else {
             presentMissingParametersAlert()
-            
             return
         }
         
@@ -268,7 +267,7 @@ class LoginViewController: UIViewController {
         DataService.sharedInstance.baseReference.authUser(email, password: password) { (error, authData) in
             self.activityIndicator.stopAnimating()
             
-            if error != nil {
+            if let _ = error {
                 print("Error: \(error.localizedDescription)")
                 
                 // An error occurred while attempting login.
@@ -296,10 +295,10 @@ class LoginViewController: UIViewController {
                 
                 // Store necessary data in user defaults and dismiss the controller.
                 
-                let userInfo: [String : String] = [
-                    User.Keys.Id.rawValue : authData.uid,
-                    User.Keys.Email.rawValue : email,
-                    User.Keys.Provider.rawValue : authData.provider
+                let userInfo: [String: String] = [
+                    User.Key.Id.rawValue: authData.uid,
+                    User.Key.Email.rawValue: email,
+                    User.Key.Provider.rawValue: authData.provider
                 ]
                 
                 self.prepareForDismissWithUserInfo(userInfo)
@@ -320,26 +319,24 @@ class LoginViewController: UIViewController {
         // If there is no account, then create account in database and auth
         // If account exist, then we simly auth with access token.
         
-        weak var weakSelf = self
-        
         activityIndicator.startAnimating()
         
-        FBSDKLoginManager().logInWithReadPermissions([FacebookParameters.email, FacebookParameters.publicProfile], fromViewController: self) { (facebookResult, facebookError) in
+        FBSDKLoginManager().logInWithReadPermissions([FacebookParameters.email, FacebookParameters.publicProfile], fromViewController: self) { [weak self] (facebookResult, facebookError) in
             if facebookError != nil {
                 print("Facebook login failed. Error: \(facebookError)")
                 
-                weakSelf?.activityIndicator.stopAnimating()
+                self?.activityIndicator.stopAnimating()
             } else if facebookResult.isCancelled {
                 print("Facebook login was cancelled.")
                 
-                weakSelf?.activityIndicator.stopAnimating()
+                self?.activityIndicator.stopAnimating()
             } else {
                 // Fetch user info.
                 User.fetchFacebookUserInfoWithCompletionHandler { (result, error) in
                     if let error = error {
                         print("Facebook request failed. Error: \(error)")
                         
-                        weakSelf?.activityIndicator.stopAnimating()
+                        self?.activityIndicator.stopAnimating()
                     } else if let result = result {
                         print("Fetched user info: \(result)")
                         
@@ -357,17 +354,17 @@ class LoginViewController: UIViewController {
                                     // Create user info dictionary.
                                     
                                     var user: Dictionary<String, String> = [
-                                        User.Keys.Id.rawValue : facebookId,
-                                        User.Keys.Provider.rawValue : AuthProviders.facebook,
-                                        User.Keys.Email.rawValue : result[FacebookParameters.email]!
+                                        User.Key.Id.rawValue : facebookId,
+                                        User.Key.Provider.rawValue : AuthProviders.facebook,
+                                        User.Key.Email.rawValue : result[FacebookParameters.email]!
                                     ]
                                     
                                     if let name = result[FacebookParameters.firstName] {
-                                        user[User.Keys.Name.rawValue] = name
+                                        user[User.Key.Name.rawValue] = name
                                     }
                                     
                                     if let surname = result[FacebookParameters.lastName] {
-                                        user[User.Keys.Surname.rawValue] = surname
+                                        user[User.Key.Surname.rawValue] = surname
                                     }
                                     
                                     // Seal the deal in DataService.swift.
@@ -378,24 +375,24 @@ class LoginViewController: UIViewController {
                                 
                                 DataService.sharedInstance.baseReference.authWithOAuthProvider(AuthProviders.facebook, token: accessToken,
                                     withCompletionBlock: { error, authData in
-                                        if error != nil {
+                                        if let _ = error {
                                             print("Login failed. \(error.localizedDescription)")
                                             
-                                            self.presentAlert(title: NSLocalizedString("Log In Error", comment: ""), message: NSLocalizedString("An error occured when trying to login. Try again.", comment: "Login error message"))
+                                            self?.presentAlert(title: NSLocalizedString("Log In Error", comment: ""), message: NSLocalizedString("An error occured when trying to login. Try again.", comment: "Login error message"))
                                         } else {
                                             print("Logged in! \(authData)")
                                             
-                                            weakSelf?.activityIndicator.stopAnimating()
+                                            self?.activityIndicator.stopAnimating()
                                             
                                             // Be sure the correct data is stored and dismiss.
                                             
-                                            let userInfo: [String : String] = [
-                                                User.Keys.Id.rawValue : authData.providerData[FacebookParameters.id] as! String,
-                                                User.Keys.Provider.rawValue : authData.provider!,
-                                                User.Keys.Email.rawValue : result[FacebookParameters.email]!
+                                            let userInfo: [String: String] = [
+                                                User.Key.Id.rawValue: authData.providerData[FacebookParameters.id] as! String,
+                                                User.Key.Provider.rawValue: authData.provider!,
+                                                User.Key.Email.rawValue: result[FacebookParameters.email]!
                                             ]
                                             
-                                            weakSelf?.prepareForDismissWithUserInfo(userInfo)
+                                            self?.prepareForDismissWithUserInfo(userInfo)
                                         }
                                 })
                             }
@@ -413,7 +410,7 @@ class LoginViewController: UIViewController {
     //--------------------------------------
     
     @IBAction func forgotPassword(sender: AnyObject) {
-        self.view.endEditing(true)
+        view.endEditing(true)
         
         // Present alert controller with a text field for entering
         // an email adress and then send a password reset email.
@@ -425,6 +422,7 @@ class LoginViewController: UIViewController {
             
             guard let email = alert.textFields![0].text where email.characters.count > 0 else {
                 self.presentAlert(title: NSLocalizedString("Error", comment: ""), message: NSLocalizedString("Incorrect email", comment: ""))
+                
                 return
             }
             
@@ -451,9 +449,8 @@ class LoginViewController: UIViewController {
     //--------------------------------------
     
     @IBAction func dismiss(sender: AnyObject) {
-        self.view.endEditing(true)
-        
-        self.dismissViewControllerAnimated(true, completion: nil)
+        view.endEditing(true)
+        dismissViewControllerAnimated(true, completion: nil)
     }
     
     //--------------------------------------
@@ -479,7 +476,7 @@ extension LoginViewController: UITextFieldDelegate {
     //--------------------------------------
     
     private func resetScrollViewContentOffset() {
-        self.scrollView.contentOffset = CGPoint(x: self.scrollView.contentOffset.x, y: 0.0)
+        scrollView.contentOffset = CGPoint(x: scrollView.contentOffset.x, y: 0.0)
     }
     
     //--------------------------------------
@@ -489,9 +486,9 @@ extension LoginViewController: UITextFieldDelegate {
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         switch textField.tag {
         case TextFieldTag.Email.rawValue:
-            self.passwordTextField.becomeFirstResponder()
+            passwordTextField.becomeFirstResponder()
         case TextFieldTag.Password.rawValue:
-            self.login(textField)
+            login(textField)
         default:
             break
         }

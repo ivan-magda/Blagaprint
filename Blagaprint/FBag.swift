@@ -68,6 +68,6 @@ class FBag {
             }
         }
         
-        self.reference = DataService.sharedInstance.bagReference.childByAppendingPath(self.key)
+        reference = DataService.sharedInstance.bagReference.childByAppendingPath(self.key)
     }
 }

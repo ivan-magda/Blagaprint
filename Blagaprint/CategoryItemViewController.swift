@@ -9,8 +9,6 @@
 import UIKit
 import SVProgressHUD
 
-let CategoryItemViewControllerDidAddItemToBagNotification = "CategoryItemViewControllerDidAddItemToBagNotification"
-
 class CategoryItemViewController: UIViewController {
     
     //--------------------------------------
@@ -787,14 +785,14 @@ class CategoryItemViewController: UIViewController {
         // For adding item to bag, user must be logged in.
         // Present an alert that inform user about this.
         
-        guard self.dataService.isUserLoggedIn == true else {
+        guard dataService.isUserLoggedIn == true else {
             let alert = UIAlertController(title: NSLocalizedString("You are not registred", comment: "Alert title when user not registered"), message: NSLocalizedString("If you want add item to bag, please login in your account", comment: "Alert message when user not logged in and want add item to bag"), preferredStyle: .Alert)
             alert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .Cancel, handler: nil))
             alert.addAction(UIAlertAction(title: NSLocalizedString("Log In", comment: ""), style: .Default, handler: { (action) in
                 LoginViewController.presentInController(self)
             }))
             
-            self.presentViewController(alert, animated: true, completion: nil)
+            presentViewController(alert, animated: true, completion: nil)
 
             return
         }
@@ -808,7 +806,7 @@ class CategoryItemViewController: UIViewController {
             SVProgressHUD.showWithStatus(NSLocalizedString("Adding...", comment: ""))
             DataService.showNetworkIndicator()
             
-            // Build the new item.
+            // Create the new item.
             let item = createBagItem()
             
             dataService.saveItem(item, success: {
@@ -818,11 +816,11 @@ class CategoryItemViewController: UIViewController {
                 DataService.hideNetworkIndicator()
                 
                 // Post notification.
-                NSNotificationCenter.defaultCenter().postNotificationName(CategoryItemViewControllerDidAddItemToBagNotification, object: item)
+                NSNotificationCenter.defaultCenter().postNotificationName(NotificationName.CategoryItemViewControllerDidAddItemToBagNotification, object: item)
                 
                 self.updateAddToBagButtonTitle()
                 
-                // TODO: Update badge value.
+                // FIXME: Update badge value.
                 ParseCentral.updateBagTabBarItemBadgeValue()
                 }, failure: { (error) in
                     

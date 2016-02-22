@@ -257,12 +257,12 @@ class AccountTableViewController: UITableViewController {
     }
     
     private func logOut() {
-        self.logOutActivityIndicator.startAnimating()
+        logOutActivityIndicator.startAnimating()
         
         DataService.logout()
-        self.user = nil
+        user = nil
         
-        self.logOutActivityIndicator.stopAnimating()
+        logOutActivityIndicator.stopAnimating()
         
         viewSetup()
     }

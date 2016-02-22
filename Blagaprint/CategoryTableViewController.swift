@@ -94,6 +94,7 @@ class CategoryTableViewController: UITableViewController {
         // It's always listening.
         
         let categoryRef = dataService.categoryReference
+        categoryRef.keepSynced(true)
         
         categoryRef.queryOrderedByChild(FCategory.Keys.name.rawValue).observeEventType(.Value, withBlock: { snapshot in
             if snapshot.value is NSNull {

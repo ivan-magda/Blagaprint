@@ -32,7 +32,7 @@ class ShoppingBagViewController: UITableViewController {
         super.init(coder: aDecoder)
         
         // Adding notification observer.
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("loadObjects"), name: CategoryItemViewControllerDidAddItemToBagNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("loadObjects"), name: NotificationName.CategoryItemViewControllerDidAddItemToBagNotification, object: nil)
     }
     
     //--------------------------------------

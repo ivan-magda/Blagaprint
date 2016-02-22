@@ -151,9 +151,11 @@ class ChangePasswordTableViewController: UITableViewController {
         
         saveActivityIndicator.startAnimating()
         
-        let email = User.currentUserEmail!
+        guard let email = User.currentUserEmail else {
+            return
+        }
         
-        DataService.sharedInstance.changePasswordForUser(email: email, fromOldPassword: currentPassword, toNewPassword: newPassword) { error in
+        DataService.sharedInstance.changePasswordForUser(email: email, fromOldPassword: currentPassword, toNewPassword: newPassword) { (succeeded, error) in
             self.saveActivityIndicator.stopAnimating()
             
             if let error = error {
@@ -172,6 +174,7 @@ class ChangePasswordTableViewController: UITableViewController {
             }
         }
     }
+    
 }
 
 //--------------------------------------

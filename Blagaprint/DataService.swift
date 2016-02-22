@@ -13,7 +13,7 @@ public typealias DataServiceSuccessResultBlock = () -> Void
 public typealias DataServiceFailureResultBlock = (error: NSError?) -> Void
 public typealias DataServiceResultBlock = (succeeded: Bool, error: NSError?) -> Void
 
-class DataService {
+internal final class DataService {
     
     //--------------------------------------
     // MARK: - Properties -
@@ -57,8 +57,12 @@ class DataService {
         return Firebase(url: baseURL).childByAppendingPath("bags")
     }
     
+    var isUserLoggedIn: Bool {
+        return (NSUserDefaults.standardUserDefaults().stringForKey(UserDefaultsKeys.userId) != nil) && (DataService.sharedInstance.currentUserReference.authData != nil)
+    }
+    
     //--------------------------------------
-    // MARK: Other
+    // MARK: Class Variables
     //--------------------------------------
     
     class var sharedInstance: DataService {
@@ -74,67 +78,12 @@ class DataService {
         return Static.instance!
     }
     
-    var isUserLoggedIn: Bool {
-        return (NSUserDefaults.standardUserDefaults().stringForKey(UserDefaultsKeys.userId) != nil) && (DataService.sharedInstance.currentUserReference.authData != nil)
-    }
-    
     //--------------------------------------
-    // MARK: - User Behavior -
+    // MARK: - Class Functions -
     //--------------------------------------
     
-    func createNewAccount(key: String, user: Dictionary<String, String>) {
-        // A User is born.
-        
-        userReference.childByAppendingPath(key).setValue(user)
-        
-        // Store the uid, email, provider for future access - handy!
-        NSUserDefaults.standardUserDefaults().updateUserInfoWithDictionary(user)
-    }
-    
-    class func logout() {
-        // unauth() is the logout method for the current user.
-        
-        DataService.sharedInstance.currentUserReference.unauth()
-        
-        // Remove the user's uid, email and provider from storage.
-        NSUserDefaults.standardUserDefaults().updateUserInfoWithDictionary(nil)
-    }
-    
-    func resetPasswordForEmail(email: String, callback: (success: Bool, error: NSError?) -> Void ) {
-        DataService.showNetworkIndicator()
-        
-        self.baseReference.resetPasswordForUser(email, withCompletionBlock: { error in
-            DataService.hideNetworkIndicator()
-            
-            if error != nil {
-                // There was an error processing the request
-                print("Reset password error: \(error.localizedDescription)")
-                
-                callback(success: false, error: error)
-            } else {
-                // Password reset sent successfully
-                
-                callback(success: true, error: nil)
-            }
-        })
-    }
-    
-    func changePasswordForUser(email email: String, fromOldPassword oldPassword: String, toNewPassword newPassword: String, withCompletionBlock block: NSError? -> ()) {
-        DataService.showNetworkIndicator()
-        
-        self.baseReference.changePasswordForUser(email, fromOld: oldPassword, toNew: newPassword) { error in
-            DataService.hideNetworkIndicator()
-            
-            if error != nil {
-                block(error)
-            } else {
-                block(nil)
-            }
-        }
-    }
-    
     //--------------------------------------
-    // MARK: - Network Indicator -
+    // MARK: Network Indicator
     //--------------------------------------
     
     class func showNetworkIndicator() {
@@ -146,28 +95,96 @@ class DataService {
     }
     
     //--------------------------------------
-    // MARK: - Bag
+    // MARK: User
     //--------------------------------------
     
-    /// Saves BagItem to the Bag of the current user.
+    class func logout() {
+        // unauth() is the logout method for the current user.
+        
+        DataService.sharedInstance.currentUserReference.unauth()
+        
+        // Remove the user's uid, email and provider from storage.
+        NSUserDefaults.standardUserDefaults().updateUserInfoWithDictionary(nil)
+    }
+    
+    //--------------------------------------
+    // MARK: - Instance Functions -
+    //--------------------------------------
+    
+    //--------------------------------------
+    // MARK: User
+    //--------------------------------------
+    
+    func createNewAccount(key: String, user: Dictionary<String, String>) {
+        // A User is born.
+        
+        userReference.childByAppendingPath(key).setValue(user)
+        
+        // Store the uid, email, provider for future access - handy!
+        NSUserDefaults.standardUserDefaults().updateUserInfoWithDictionary(user)
+    }
+    
+    func resetPasswordForEmail(email: String, withCompletionHandler block: DataServiceResultBlock) {
+        DataService.showNetworkIndicator()
+        
+        baseReference.resetPasswordForUser(email, withCompletionBlock: { error in
+            DataService.hideNetworkIndicator()
+            
+            if let _ = error {
+                // There was an error processing the request
+                print("Reset password failed. Error: \(error.localizedDescription)")
+                
+                block(succeeded: false, error: error)
+            } else {
+                // Password reset sent successfully
+                
+                block(succeeded: true, error: nil)
+            }
+        })
+    }
+    
+    func changePasswordForUser(email email: String, fromOldPassword oldPassword: String, toNewPassword newPassword: String, withCompletionBlock block: DataServiceResultBlock) {
+        DataService.showNetworkIndicator()
+        
+        baseReference.changePasswordForUser(email, fromOld: oldPassword, toNew: newPassword) { error in
+            DataService.hideNetworkIndicator()
+            
+            if let _ = error {
+                // There was an error processing the request
+                print("Change password failed. Error: \(error.localizedDescription)")
+                
+                block(succeeded: false, error: error)
+            } else {
+                block(succeeded: true, error: nil)
+            }
+        }
+    }
+    
+    //--------------------------------------
+    // MARK: Bag
+    //--------------------------------------
+    
+    /// Saves item to the Bag of the current user.
     func saveItem(item: [String : AnyObject], success: DataServiceSuccessResultBlock?, failure: DataServiceFailureResultBlock?) {
+        
         let bagRef = bagReference
+        
         let userId = User.currentUserId!
         
         // Looking for the Bag of the current user.
         
-        bagRef.queryOrderedByChild(FBag.Keys.userId.rawValue).queryEqualToValue(userId).observeSingleEventOfType(.Value, withBlock: { snapshot in
+        bagRef.queryOrderedByChild(FBag.Keys.userId.rawValue).queryEqualToValue(userId).observeSingleEventOfType(.Value, withBlock: { [weak self] snapshot in
             
             // If there is no value in snapshot, it's meaning that bag
             // for the current user doesn't exist yet.
             // Create it and then save the item.
             
             if snapshot.value is NSNull {
-                self.createBagForUserWithId(userId) { (error, ref, bag) in
+                self?.createBagForUserWithId(userId) { (error, ref, bag) in
                     if let error = error {
                         failure?(error: error)
                     } else {
-                        self.addItemToBag(bag!, item: item) { (succeeded, error) in
+                        self?.addItemToBag(bag!, item: item) { (succeeded, error) in
                             if succeeded {
                                 success?()
                             } else {
@@ -184,7 +201,7 @@ class DataService {
                 if let bagDict = bagSnap.value as? [String : AnyObject] {
                     let bag = FBag(key: bagSnap.key, dictionary: bagDict)
                     
-                    self.addItemToBag(bag, item: item) { (succeeded, error) in
+                    self?.addItemToBag(bag, item: item) { (succeeded, error) in
                         if succeeded {
                             success?()
                         } else {
@@ -205,14 +222,12 @@ class DataService {
         
         let newBagRef = bagReference.childByAutoId()
         
-        let bag = [
-            FBag.Keys.userId.rawValue : id
-        ]
+        let bag = [FBag.Keys.userId.rawValue: id]
         
         // saves to Firebase.
         
         newBagRef.setValue(bag) { (error, ref) in
-            if error != nil {
+            if let _ = error {
                 block(error, ref, nil)
             } else {
                 let newBag = FBag(key: ref.key, dictionary: bag)
@@ -226,10 +241,10 @@ class DataService {
         let itemRef = bagItemReference.childByAutoId()
         
         itemRef.setValue(item) { (error, ref) in
-            if let error = error {
+            if let _ = error {
                 block(succeeded: false, error: error)
             } else {
-                
+                // Add unique object.
                 if bag.items != nil {
                     if !bag.items!.contains(ref.key) {
                         bag.items!.append(ref.key)
@@ -248,16 +263,5 @@ class DataService {
             }
         }
     }
-}
-
-//--------------------------------------
-// MARK: - NSUserDefaults Extension -
-//--------------------------------------
-
-extension NSUserDefaults {
-    func updateUserInfoWithDictionary(info: [String : String]?) {
-        self.setValue(info?[User.Keys.Id.rawValue], forKey: UserDefaultsKeys.userId)
-        self.setValue(info?[User.Keys.Email.rawValue], forKey: UserDefaultsKeys.email)
-        self.setValue(info?[User.Keys.Provider.rawValue], forKey: UserDefaultsKeys.provider)
-    }
+    
 }

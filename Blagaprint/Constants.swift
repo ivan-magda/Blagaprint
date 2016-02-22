@@ -8,6 +8,15 @@
 
 import Foundation
 
+struct NotificationName {
+    // CategoryItemViewController.
+    static let CategoryItemViewControllerDidAddItemToBagNotification = "CategoryItemViewControllerDidAddItemToBagNotification"
+    
+    // DataListener.
+    static let DataListenerUserDidLogOutNotification = "UserDidLogOutNotification"
+    static let DataListenerUserDidLogInNotification  = "UserDidLogInNotification"
+}
+
 struct UserDefaultsKeys {
     static let userId = "uid"
     static let email = "email"

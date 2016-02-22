@@ -95,6 +95,8 @@
 		752ED13E1C59F56F00BE0751 /* RectangleKeyRing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 752ED13B1C59F56F00BE0751 /* RectangleKeyRing.swift */; };
 		753527701C6442A1000BC283 /* StateNumberKeyRing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7535276F1C6442A1000BC283 /* StateNumberKeyRing.swift */; };
 		753580291C772A5000E1CADB /* FBagItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 753580281C772A5000E1CADB /* FBagItem.swift */; };
+		7539D3FB1C7AD24A001B82F2 /* DataListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7539D3FA1C7AD24A001B82F2 /* DataListener.swift */; };
+		7539D3FD1C7AE078001B82F2 /* NSUserDefaults+UpdateUserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7539D3FC1C7AE078001B82F2 /* NSUserDefaults+UpdateUserInfo.swift */; };
 		753CD57A1BF3210500795F44 /* AppConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 753CD5791BF3210500795F44 /* AppConfiguration.swift */; };
 		753D4D651C059880002FC5E9 /* SH2_PhotoFrame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 753D4D641C059880002FC5E9 /* SH2_PhotoFrame.swift */; };
 		753D4D671C059AA5002FC5E9 /* sh2_placeholderImage.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 753D4D661C059AA5002FC5E9 /* sh2_placeholderImage.jpg */; };
@@ -315,6 +317,8 @@
 		752ED13B1C59F56F00BE0751 /* RectangleKeyRing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RectangleKeyRing.swift; sourceTree = "<group>"; };
 		7535276F1C6442A1000BC283 /* StateNumberKeyRing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StateNumberKeyRing.swift; sourceTree = "<group>"; };
 		753580281C772A5000E1CADB /* FBagItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FBagItem.swift; sourceTree = "<group>"; };
+		7539D3FA1C7AD24A001B82F2 /* DataListener.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataListener.swift; sourceTree = "<group>"; };
+		7539D3FC1C7AE078001B82F2 /* NSUserDefaults+UpdateUserInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSUserDefaults+UpdateUserInfo.swift"; sourceTree = "<group>"; };
 		753CD5791BF3210500795F44 /* AppConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppConfiguration.swift; sourceTree = "<group>"; };
 		753D4D641C059880002FC5E9 /* SH2_PhotoFrame.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SH2_PhotoFrame.swift; sourceTree = "<group>"; };
 		753D4D661C059AA5002FC5E9 /* sh2_placeholderImage.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = sh2_placeholderImage.jpg; sourceTree = "<group>"; };
@@ -1130,6 +1134,7 @@
 			children = (
 				75AB8ABF1BE744DB00B88A5A /* ParseCentral.swift */,
 				754C457C1C70B2060062336C /* DataService.swift */,
+				7539D3FA1C7AD24A001B82F2 /* DataListener.swift */,
 			);
 			name = Service;
 			sourceTree = "<group>";
@@ -1284,6 +1289,7 @@
 				7561AEAD1C0FD7CD009B2C8B /* UIImageExtension */,
 				75FE07391C46149E00EFE1F6 /* String+FormatAmount.swift */,
 				755830B91C75FF2F0065E47C /* String+Base64StringDecoding.swift */,
+				7539D3FC1C7AE078001B82F2 /* NSUserDefaults+UpdateUserInfo.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -1583,6 +1589,7 @@
 				756DF0201C50630000A31B55 /* ProceedToCheckoutTableViewCell.swift in Sources */,
 				753D4D651C059880002FC5E9 /* SH2_PhotoFrame.swift in Sources */,
 				75FD24821BE461EE00446801 /* XperiaZcompact.swift in Sources */,
+				7539D3FB1C7AD24A001B82F2 /* DataListener.swift in Sources */,
 				753CD57A1BF3210500795F44 /* AppConfiguration.swift in Sources */,
 				75BF69591C044EDC009D670D /* SH19_PhotoFrame.swift in Sources */,
 				75A3E9751BE35DC90001E073 /* GalaxyNote3.swift in Sources */,
@@ -1618,6 +1625,7 @@
 				50551C311BCBB43A005B88DA /* BackgroundOvalView.swift in Sources */,
 				0C541A591BD0B51A0028BD9A /* PhotoLibraryItemCollectionViewCell.swift in Sources */,
 				75C4E7CA1C3807540039B59F /* BagItem.swift in Sources */,
+				7539D3FD1C7AE078001B82F2 /* NSUserDefaults+UpdateUserInfo.swift in Sources */,
 				0C7F25361C27CD6A00D7C49C /* Cup.swift in Sources */,
 				750C83C91C02EEBB00BAFEB0 /* SH38_PhotoFrame.swift in Sources */,
 				75A7F1971C6C4C5300E20DB2 /* ItemSizeCollectionViewController.swift in Sources */,

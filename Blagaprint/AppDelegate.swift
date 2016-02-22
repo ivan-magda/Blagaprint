@@ -31,6 +31,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var parseCentral: ParseCentral?
     
     var dataService: DataService!
+    private var dataListener: DataListener!
     
     //--------------------------------------
     // MARK: - Private
@@ -94,7 +95,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             application.registerForRemoteNotifications()
         }
         
+        // Enable persistence storage.
         Firebase.defaultConfig().persistenceEnabled = true
+        
+        // Start listen for data changes.
+        dataListener = DataListener.sharedInstance
+        dataListener.startListen()
         
         return FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
     }
