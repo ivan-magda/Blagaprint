@@ -200,6 +200,8 @@
 		75CECC291C5FA2D300B2AE6E /* PickTypeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75CECC281C5FA2D300B2AE6E /* PickTypeTableViewController.swift */; };
 		75DD91F91BD7B43800932AD7 /* AndersonSupercar.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 75DD91F81BD7B43800932AD7 /* AndersonSupercar.ttf */; };
 		75DD91FF1BD7BFE000932AD7 /* CaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75DD91FE1BD7BFE000932AD7 /* CaseView.swift */; };
+		75ED7A751C7B312900163EE1 /* String+Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75ED7A741C7B312800163EE1 /* String+Date.swift */; };
+		75ED7A771C7B324700163EE1 /* NSDate+String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75ED7A761C7B324700163EE1 /* NSDate+String.swift */; };
 		75F7391F1BE469940063EB6F /* xperiaZ3compactCameraImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 75F7391D1BE469940063EB6F /* xperiaZ3compactCameraImage.png */; };
 		75F739201BE469940063EB6F /* xperiaZ3compactCameraImage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 75F7391E1BE469940063EB6F /* xperiaZ3compactCameraImage@2x.png */; };
 		75F739231BE4699B0063EB6F /* xperiaZ2compactCameraImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 75F739211BE4699B0063EB6F /* xperiaZ2compactCameraImage.png */; };
@@ -426,6 +428,8 @@
 		75CECC281C5FA2D300B2AE6E /* PickTypeTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PickTypeTableViewController.swift; sourceTree = "<group>"; };
 		75DD91F81BD7B43800932AD7 /* AndersonSupercar.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = AndersonSupercar.ttf; sourceTree = "<group>"; };
 		75DD91FE1BD7BFE000932AD7 /* CaseView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CaseView.swift; sourceTree = "<group>"; };
+		75ED7A741C7B312800163EE1 /* String+Date.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Date.swift"; sourceTree = "<group>"; };
+		75ED7A761C7B324700163EE1 /* NSDate+String.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSDate+String.swift"; sourceTree = "<group>"; };
 		75F7391D1BE469940063EB6F /* xperiaZ3compactCameraImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = xperiaZ3compactCameraImage.png; sourceTree = "<group>"; };
 		75F7391E1BE469940063EB6F /* xperiaZ3compactCameraImage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "xperiaZ3compactCameraImage@2x.png"; sourceTree = "<group>"; };
 		75F739211BE4699B0063EB6F /* xperiaZ2compactCameraImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = xperiaZ2compactCameraImage.png; sourceTree = "<group>"; };
@@ -899,13 +903,13 @@
 			name = GalaxyS5;
 			sourceTree = "<group>";
 		};
-		7561AEAD1C0FD7CD009B2C8B /* UIImageExtension */ = {
+		7561AEAD1C0FD7CD009B2C8B /* UIImage */ = {
 			isa = PBXGroup;
 			children = (
 				751DA9AB1C19C68900D10C24 /* UIImageResizeAdditions.swift */,
 				7565720D1C7708B1004BD531 /* UIImage+Base64String.swift */,
 			);
-			name = UIImageExtension;
+			name = UIImage;
 			path = ..;
 			sourceTree = "<group>";
 		};
@@ -1146,6 +1150,16 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		75ED7A731C7B310F00163EE1 /* String */ = {
+			isa = PBXGroup;
+			children = (
+				75FE07391C46149E00EFE1F6 /* String+FormatAmount.swift */,
+				75ED7A741C7B312800163EE1 /* String+Date.swift */,
+				755830B91C75FF2F0065E47C /* String+Base64StringDecoding.swift */,
+			);
+			name = String;
+			sourceTree = "<group>";
+		};
 		75F739291BE469A80063EB6F /* XperiaZ1Compact */ = {
 			isa = PBXGroup;
 			children = (
@@ -1286,10 +1300,10 @@
 		75FE073B1C4614A700EFE1F6 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				7561AEAD1C0FD7CD009B2C8B /* UIImageExtension */,
-				75FE07391C46149E00EFE1F6 /* String+FormatAmount.swift */,
-				755830B91C75FF2F0065E47C /* String+Base64StringDecoding.swift */,
+				7561AEAD1C0FD7CD009B2C8B /* UIImage */,
+				75ED7A731C7B310F00163EE1 /* String */,
 				7539D3FC1C7AE078001B82F2 /* NSUserDefaults+UpdateUserInfo.swift */,
+				75ED7A761C7B324700163EE1 /* NSDate+String.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -1645,6 +1659,7 @@
 				0C8296C21BFC65D500B2B345 /* DescriptionTableViewCell.swift in Sources */,
 				75C21F4C1C7749A90006ECB7 /* FBag.swift in Sources */,
 				752ED13C1C59F56F00BE0751 /* GlassOvalKeyRing.swift in Sources */,
+				75ED7A751C7B312900163EE1 /* String+Date.swift in Sources */,
 				7589398A1C16B54D0069655B /* CategoryItemViewController.swift in Sources */,
 				758579AA1C66C8FB0010A7CF /* TShirtCanvas.swift in Sources */,
 				50551C331BCBB469005B88DA /* OvalView.swift in Sources */,
@@ -1654,6 +1669,7 @@
 				502A8CB31BB80EAC0064E0DA /* AppDelegate.swift in Sources */,
 				754C457D1C70B2060062336C /* DataService.swift in Sources */,
 				757470321BDCB405004CABD0 /* Device.swift in Sources */,
+				75ED7A771C7B324700163EE1 /* NSDate+String.swift in Sources */,
 				756FF67D1C128C2D0091B75E /* Reachability.swift in Sources */,
 				75467C921C12EC32008046A2 /* SignUpViewController.swift in Sources */,
 				508503041BBAADB600152131 /* AppAppearance.swift in Sources */,

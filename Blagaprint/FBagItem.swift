@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import CoreImage
 import Firebase
 
 class FBagItem {
@@ -34,7 +33,7 @@ class FBagItem {
     }
     
     //--------------------------------------
-    // MARK: - Properties
+    // MARK: - Properties -
     //--------------------------------------
     
     var key: String
@@ -44,7 +43,7 @@ class FBagItem {
     var userId: String!
     var category: String!
     var categoryItem: String?
-    var createdAt: String!
+    var createdAt = NSDate()
     
     var image: UIImage?
     var thumbnail: UIImage?
@@ -60,57 +59,7 @@ class FBagItem {
     var amount: Double!
     
     //--------------------------------------
-    // MARK: - Initialize -
-    //--------------------------------------
-    
-    /// Initialize the new Category
-    init(key: String, dictionary: Dictionary<String, AnyObject>) {
-        self.key = key
-        
-        // Within the BagItem, or Key, the following properties are children
-        
-        for (key, value) in dictionary {
-            let type = Keys(rawValue: key)!
-            
-            switch type {
-            case .userId:
-                self.userId = value as! String
-            case .category:
-                self.category = value as! String
-            case .categoryItem:
-                self.categoryItem = value as? String
-            case .image:
-                self.image = (value as! String).decodedImageFromBase64String()
-            case .thumbnail:
-                self.thumbnail = (value as! String).decodedImageFromBase64String()
-            case .price:
-                self.price = value as! Double
-            case .device:
-                self.device = value as? String
-            case .text:
-                self.text = value as? String
-            case .fillColor:
-                self.fillColor = value as? String
-            case .textColor:
-                self.textColor = value as? String
-            case .itemSize:
-                self.itemSize = value as? String
-            case .numberOfItems:
-                self.numberOfItems = value as! Int
-            case .amount:
-                self.amount = value as! Double
-            case .createdAt:
-                self.createdAt = value as! String
-            }
-        }
-        
-        // The above properties are assigned to their key.
-        
-        self.reference = DataService.sharedInstance.bagItemReference.childByAppendingPath(self.key)
-    }
-    
-    //--------------------------------------
-    // MARK: - Colors
+    // MARK: - Class Functions -
     //--------------------------------------
     
     /// Returns a formatted string that specifies the components of the color.
@@ -127,6 +76,65 @@ class FBagItem {
         
         return color
     }
+    
+    //--------------------------------------
+    // MARK: - Init -
+    //--------------------------------------
+    
+    /// Initialize the new Category
+    init(key: String, dictionary: Dictionary<String, AnyObject>) {
+        self.key = key
+        
+        // Within the BagItem, or Key, the following properties are children
+        
+        for (key, value) in dictionary {
+            let type = Keys(rawValue: key)!
+            
+            switch type {
+            case .userId:
+                userId = value as! String
+            case .category:
+                category = value as! String
+            case .categoryItem:
+                categoryItem = value as? String
+            case .image:
+                if let base64ImageString = value as? String {
+                    image = base64ImageString.decodedImageFromBase64String()
+                }
+            case .thumbnail:
+                if let base64ThumbString = value as? String {
+                    thumbnail = base64ThumbString.decodedImageFromBase64String()
+                }
+            case .price:
+                price = value as! Double
+            case .device:
+                device = value as? String
+            case .text:
+                text = value as? String
+            case .fillColor:
+                fillColor = value as? String
+            case .textColor:
+                textColor = value as? String
+            case .itemSize:
+                itemSize = value as? String
+            case .numberOfItems:
+                numberOfItems = value as! Int
+            case .amount:
+                amount = value as! Double
+            case .createdAt:
+                if let dateString = value as? String {
+                    if let date = dateString.getDateValue() {
+                        createdAt = date
+                    }
+                }
+            }
+        }
+        
+        // The above properties are assigned to their key.
+        
+        reference = DataService.sharedInstance.bagItemReference.childByAppendingPath(self.key)
+    }
+    
 }
 
 //--------------------------------------
@@ -134,7 +142,9 @@ class FBagItem {
 //--------------------------------------
 
 extension FBagItem: CustomStringConvertible {
+    
     var description: String {
         return "UserID: \(userId), categoryID: \(category), categoryItemID: \(categoryItem), numberOfItems: \(numberOfItems), price: \(price), device: \(device), text: \(text), itemSize: \(itemSize)"
     }
+    
 }

@@ -682,14 +682,17 @@ class CategoryItemViewController: UIViewController {
         var item = [String : AnyObject]()
         
         guard let userId = User.currentUserId else {
-            assert(false)
+            assert(false, "User must be logged in.")
         }
         
         // Set the user id.
         item[FBagItem.Keys.userId.rawValue] = userId
         
         // Set parent category id.
-        item[FBagItem.Keys.category.rawValue] = self.category.key
+        item[FBagItem.Keys.category.rawValue] = category.key
+        
+        // Set the current date.
+        item[FBagItem.Keys.createdAt.rawValue] = NSDate().getStringValue()
         
         // Set selected category item if it exist.
         if let categoryItems = self.categoryItems where categoryItems.count > 0 {
@@ -742,36 +745,32 @@ class CategoryItemViewController: UIViewController {
     //--------------------------------------
     
     func moreActionsDidPressed() {
-        weak var weakSelf = self
-        
-        animateViewSelection(moreActionsView) {
-            if let type = weakSelf?.getCategoryItemType() where type == FCategoryItem.CategoryItemType.stateNumberKeyRing {
-                weakSelf!.presentManageTextAlertController()
+        animateViewSelection(moreActionsView) { [weak self] in
+            if let type = self?.getCategoryItemType() where type == FCategoryItem.CategoryItemType.stateNumberKeyRing {
+                self?.presentManageTextAlertController()
             } else {
-                weakSelf?.presentImagePickingAlertController()
+                self?.presentImagePickingAlertController()
             }
         }
     }
     
     func pickColorDidPressed() {
-        animateViewSelection(pickColorView) {
-            self.performSegueWithIdentifier(SegueIdentifier.ColorPicking.rawValue, sender: self)
+        animateViewSelection(pickColorView) { [weak self] in
+            self?.performSegueWithIdentifier(SegueIdentifier.ColorPicking.rawValue, sender: self)
         }
     }
     
     func pickTypeDidPressed() {
         self.didAddItemToBag = false
         
-        animateViewSelection(pickTypeView) {
-            self.performSegueWithIdentifier(SegueIdentifier.PickType.rawValue, sender: self)
-            
-            self.updateAddToBagButtonTitle()
+        animateViewSelection(pickTypeView) { [weak self] in
+            self?.performSegueWithIdentifier(SegueIdentifier.PickType.rawValue, sender: self)
+            self?.updateAddToBagButtonTitle()
         }
     }
     
     func pickCountDidPressed() {
         animateViewSelection(pickCountView) {
-            // Show or hide picker view.
             if self.pickerViewVisible {
                 self.hidePickerView()
             } else {
