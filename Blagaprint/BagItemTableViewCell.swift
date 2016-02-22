@@ -7,9 +7,9 @@
 //
 
 import UIKit
-import ParseUI
 
-class BagItemTableViewCell: PFTableViewCell {
+class BagItemTableViewCell: UITableViewCell {
+    
     //--------------------------------------
     // MARK: - Properties
     //--------------------------------------

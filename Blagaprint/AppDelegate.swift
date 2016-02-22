@@ -7,11 +7,8 @@
 //
 
 import UIKit
-import Parse
-
 import FBSDKCoreKit
 import FBSDKLoginKit
-
 import Firebase
 
 /// The index of the view controller associated with the tab item.
@@ -27,67 +24,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var window: UIWindow?
     
-    var parse: Parse?
-    var parseCentral: ParseCentral?
-    
     var dataService: DataService!
     private var dataListener: DataListener!
-    
-    //--------------------------------------
-    // MARK: - Private
-    //--------------------------------------
-    
-    private func confParseWithOptions(launchOptions: [NSObject: AnyObject]?) {
-        parseCentral = ParseCentral.sharedInstance
-        
-        if let parseCentral = parseCentral {
-            parse = parseCentral.parse
-        }
-        
-        assert(parseCentral != nil, "ParseCentral must exist")
-        
-        // FIXME: Rewrite it
-        dataService = DataService.sharedInstance
-        
-        // Spread ParseCentral
-        let tabBarController = window!.rootViewController as! UITabBarController
-        
-        // To CategoryTableViewController
-        let categoryNavigationController = tabBarController.viewControllers![0] as! UINavigationController
-        let categoryTableViewController = categoryNavigationController.topViewController as! CategoryTableViewController
-        categoryTableViewController.dataService = dataService
-        
-        // To ShoppingBagViewController
-        let shoppingBagNavigationController = tabBarController.viewControllers![1] as! UINavigationController
-        let shoppingBagViewController = shoppingBagNavigationController.topViewController as! ShoppingBagViewController
-        shoppingBagViewController.dataService = dataService
-    }
     
     //--------------------------------------
     // MARK: - Application Life Cycle
     //--------------------------------------
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        confParseWithOptions(launchOptions)
+        configurateFirebase()
         
         AppAppearance.applyAppAppearance()
         AppConfiguration.setUp()
-        
-        if application.applicationState != UIApplicationState.Background {
-            // Track an app open here if we launch with a push, unless
-            // "content_available" was used to trigger a background push (introduced in iOS 7).
-            // In that case, we skip tracking here to avoid double counting the app-open.
-            
-            let preBackgroundPush = !application.respondsToSelector("backgroundRefreshStatus")
-            let oldPushHandlerOnly = !self.respondsToSelector("application:didReceiveRemoteNotification:fetchCompletionHandler:")
-            var noPushPayload = false
-            if let options = launchOptions {
-                noPushPayload = options[UIApplicationLaunchOptionsRemoteNotificationKey] != nil
-            }
-            if (preBackgroundPush || oldPushHandlerOnly || noPushPayload) {
-                PFAnalytics.trackAppOpenedWithLaunchOptions(launchOptions)
-            }
-        }
         
         if application.respondsToSelector("registerUserNotificationSettings:") {
             let userNotificationTypes: UIUserNotificationType = [UIUserNotificationType.Alert, UIUserNotificationType.Badge, UIUserNotificationType.Sound]
@@ -96,13 +44,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             application.registerForRemoteNotifications()
         }
         
-        // Enable persistence storage.
-        Firebase.defaultConfig().persistenceEnabled = true
-        
-        // Start listen for data changes.
-        dataListener = DataListener.sharedInstance
-        dataListener.startListen()
-        
         return FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
     }
     
@@ -110,11 +51,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func applicationDidEnterBackground(application: UIApplication) {
-        self.parseCentral?.removeObservers()
     }
     
     func applicationWillEnterForeground(application: UIApplication) {
-        self.parseCentral?.addObservers()
     }
     
     func applicationDidBecomeActive(application: UIApplication) {
@@ -133,11 +72,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     //--------------------------------------
     
     func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
-        // Store the deviceToken in the current installation and save it to Parse.
-        let currentInstallation = PFInstallation.currentInstallation()
-        currentInstallation.setDeviceTokenFromData(deviceToken)
-        currentInstallation.channels = ["global"]
-        currentInstallation.saveInBackground()
     }
     
     func application(application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: NSError) {
@@ -149,10 +83,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
-        PFPush.handlePush(userInfo)
-        if application.applicationState == UIApplicationState.Inactive {
-            PFAnalytics.trackAppOpenedWithRemoteNotificationPayload(userInfo)
-        }
     }
     
     //--------------------------------------
@@ -180,5 +110,34 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         }
     }
+    
+    
+    //--------------------------------------
+    // MARK: - Private
+    //--------------------------------------
+    
+    private func configurateFirebase() {
+        dataService = DataService.sharedInstance
+        
+        let tabBarController = window!.rootViewController as! UITabBarController
+        
+        // To CategoryTableViewController
+        let categoryNavigationController = tabBarController.viewControllers![0] as! UINavigationController
+        let categoryTableViewController = categoryNavigationController.topViewController as! CategoryTableViewController
+        categoryTableViewController.dataService = dataService
+        
+        // To ShoppingBagViewController
+        let shoppingBagNavigationController = tabBarController.viewControllers![1] as! UINavigationController
+        let shoppingBagViewController = shoppingBagNavigationController.topViewController as! ShoppingBagViewController
+        shoppingBagViewController.dataService = dataService
+        
+        // Enable persistence storage.
+        Firebase.defaultConfig().persistenceEnabled = true
+        
+        // Start listen for data changes.
+        dataListener = DataListener.sharedInstance
+        dataListener.startListen()
+    }
+    
 }
 
