@@ -8,7 +8,6 @@
 
 import UIKit
 
-@IBDesignable
 class OvalView: UIView {
     //--------------------------------------
     // MARK: - Properties

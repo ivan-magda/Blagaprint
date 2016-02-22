@@ -7,9 +7,15 @@
 //
 
 import UIKit
+import Parse
+
+import FBSDKCoreKit
+import FBSDKLoginKit
+
+import Firebase
 
 /// The index of the view controller associated with the tab item.
-public enum TabItemIndex: Int {
+enum TabItemIndex: Int {
     case CatalogViewController
     case ShoppingBagViewController
     case AccountViewController
@@ -24,17 +30,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var parse: Parse?
     var parseCentral: ParseCentral?
     
+    var dataService: DataService!
+    private var dataListener: DataListener!
+    
     //--------------------------------------
     // MARK: - Private
     //--------------------------------------
     
     private func confParseWithOptions(launchOptions: [NSObject: AnyObject]?) {
-        self.parseCentral = ParseCentral.sharedInstance
-        if let parseCentral = self.parseCentral {
-            self.parse = parseCentral.parse
+        parseCentral = ParseCentral.sharedInstance
+        
+        if let parseCentral = parseCentral {
+            parse = parseCentral.parse
         }
         
-        assert(self.parseCentral != nil, "ParseCentral must exist")
+        assert(parseCentral != nil, "ParseCentral must exist")
+        
+        // FIXME: Rewrite it
+        dataService = DataService.sharedInstance
         
         // Spread ParseCentral
         let tabBarController = window!.rootViewController as! UITabBarController
@@ -42,12 +55,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // To CategoryTableViewController
         let categoryNavigationController = tabBarController.viewControllers![0] as! UINavigationController
         let categoryTableViewController = categoryNavigationController.topViewController as! CategoryTableViewController
-        categoryTableViewController.parseCentral = self.parseCentral
+        categoryTableViewController.dataService = dataService
         
         // To ShoppingBagViewController
         let shoppingBagNavigationController = tabBarController.viewControllers![1] as! UINavigationController
         let shoppingBagViewController = shoppingBagNavigationController.topViewController as! ShoppingBagViewController
-        shoppingBagViewController.parseCentral = self.parseCentral
+        shoppingBagViewController.dataService = dataService
     }
     
     //--------------------------------------
@@ -83,7 +96,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             application.registerForRemoteNotifications()
         }
         
-        return true
+        // Enable persistence storage.
+        Firebase.defaultConfig().persistenceEnabled = true
+        
+        // Start listen for data changes.
+        dataListener = DataListener.sharedInstance
+        dataListener.startListen()
+        
+        return FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
     }
     
     func applicationWillResignActive(application: UIApplication) {
@@ -98,9 +118,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func applicationDidBecomeActive(application: UIApplication) {
+        FBSDKAppEvents.activateApp()
     }
     
     func applicationWillTerminate(application: UIApplication) {
+    }
+    
+    func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject) -> Bool {
+        return FBSDKApplicationDelegate.sharedInstance().application(application, openURL: url, sourceApplication: sourceApplication, annotation: annotation)
     }
     
     //--------------------------------------

@@ -9,6 +9,7 @@
 import UIKit
 
 class UserLogInEmptyView: UIView {
+    
     //--------------------------------------
     // MARK: - Properties
     //--------------------------------------

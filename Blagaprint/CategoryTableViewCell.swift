@@ -8,12 +8,15 @@
 
 import UIKit
 
-class CategoryTableViewCell: PFTableViewCell {
+class CategoryTableViewCell: UITableViewCell {
     //--------------------------------------
     // MARK: Properties
     //--------------------------------------
     
-    @IBOutlet weak var categoryImageView: PFImageView?
+    @IBOutlet weak var categoryImageView: UIImageView?
     @IBOutlet weak var imageDownloadingActivityIndicator: UIActivityIndicatorView!
+ 
+    /// Cell reuse identifier.
+    static let cellReuseIdentifier = "CategoryCell"
     
 }

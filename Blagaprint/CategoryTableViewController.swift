@@ -7,8 +7,10 @@
 //
 
 import UIKit
+import Firebase
 
-class CategoryTableViewController: PFQueryTableViewController {
+class CategoryTableViewController: UITableViewController {
+    
     //--------------------------------------
     // MARK: - Types
     //--------------------------------------
@@ -16,10 +18,6 @@ class CategoryTableViewController: PFQueryTableViewController {
     private enum SegueIdentifier: String {
         case PhoneCaseConstructor
         case CategoryItem
-    }
-    
-    private enum CellIdentifier: String {
-        case CategoryCell
     }
     
     //--------------------------------------
@@ -32,24 +30,11 @@ class CategoryTableViewController: PFQueryTableViewController {
     /// Height for tableView header view.
     private let headerViewHeight: CGFloat = 44.0
     
-    var parseCentral: ParseCentral?
+    var dataService: DataService!
     
-    //--------------------------------------
-    // MARK: - Init
-    //--------------------------------------
+    private var categories = [FCategory]()
     
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        
-        // The className to query on
-        self.parseClassName = Category.parseClassName()
-        
-        // Whether the built-in pull-to-refresh is enabled
-        self.pullToRefreshEnabled = true
-        
-        // Whether the built-in pagination is enabled
-        self.paginationEnabled = false
-    }
+    private var loadingLabel: UILabel?
     
     //--------------------------------------
     // MARK: - View Life Cycle
@@ -58,16 +43,15 @@ class CategoryTableViewController: PFQueryTableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.tableView.rowHeight = categoryTableViewCellHeight
+        dataService.updateBagBadgeValue()
         
-        ParseCentral.updateBagTabBarItemBadgeValue()
-
         // Back button without title.
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .Plain, target: nil, action: nil)
-    }
-    
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
+        
+        loadCategories()
+        
+        self.refreshControl = UIRefreshControl()
+        self.refreshControl?.addTarget(self, action: Selector("loadCategories"), forControlEvents: .ValueChanged)
     }
     
     //--------------------------------------
@@ -77,50 +61,20 @@ class CategoryTableViewController: PFQueryTableViewController {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == SegueIdentifier.CategoryItem.rawValue {
             let categoryItemViewController = segue.destinationViewController as! CategoryItemViewController
-            categoryItemViewController.parseCentral = self.parseCentral
+            categoryItemViewController.dataService = dataService
             
             if let selectedRow = self.tableView.indexPathForSelectedRow {
-                categoryItemViewController.category = objects![selectedRow.section] as! Category
+                categoryItemViewController.category = categories[selectedRow.section]
             }
         } else if segue.identifier == SegueIdentifier.PhoneCaseConstructor.rawValue {
             let caseConstructorVC = segue.destinationViewController as! CaseConstructorTableViewController
-            caseConstructorVC.parseCentral = self.parseCentral
+            // TODO: fix with path the category
             
-            if let selectedRow = self.tableView.indexPathForSelectedRow {
-                caseConstructorVC.category = objects![selectedRow.section] as! Category
-            }
-        }
-    }
-    
-    //--------------------------------------
-    // MARK: - PFQueryTableViewController -
-    //--------------------------------------
-    
-    //--------------------------------------
-    // MARK: Responding to Events
-    //--------------------------------------
-    
-    /// Called when objects will loaded from Parse.
-    override func objectsWillLoad() {
-        super.objectsWillLoad()
-        
-        print("Objects will load.")
-    }
-    
-    /// Called when objects have loaded from Parse.
-    override func objectsDidLoad(error: NSError?) {
-        super.objectsDidLoad(error)
-        
-        if let error = error {
-            print("Error with objects downloading: \(error.localizedDescription)")
-            
-            let message = error.userInfo["error"] as! String
-            let alert = UIAlertController(title: "Error", message: message, preferredStyle: .Alert)
-            alert.addAction(UIAlertAction(title: "Ok", style: .Cancel, handler: nil))
-            
-            self.presentViewController(alert, animated: true, completion: nil)
-        } else {
-            print("Objects have loaded from Parse.")
+//            caseConstructorVC.parseCentral = self.parseCentral
+//            
+//            if let selectedRow = self.tableView.indexPathForSelectedRow {
+//                caseConstructorVC.category = objects![selectedRow.section] as! Category
+//            }
         }
     }
     
@@ -128,70 +82,80 @@ class CategoryTableViewController: PFQueryTableViewController {
     // MARK: Querying
     //--------------------------------------
     
-    /// Construct custom PFQuery to get the objects.
-    override func queryForTable() -> PFQuery {
-        let query = PFQuery(className: self.parseClassName!)
-        query.orderByDescending(Category.FieldKey.name.rawValue)
+    func loadCategories() {
+        DataService.showNetworkIndicator()
         
-        // A pull-to-refresh should always trigger a network request.
-        query.cachePolicy = .NetworkOnly
-        
-        // If no objects are loaded in memory, we look to the cache first to fill the table
-        // and then subsequently do a query against the network.
-        //
-        // If there is no network connection, we will hit the cache first.
-        if self.objects?.count == 0 || !self.parseCentral!.isParseReachable() {
-            query.cachePolicy = .CacheThenNetwork
+        if self.categories.count == 0 {
+            showLoadingLabel()
         }
         
-        return query
-    }
-    
-    //--------------------------------------
-    // MARK: Data Source
-    //--------------------------------------
-    
-    /// Customize each cell given a PFObject that is loaded.
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath, object: PFObject?) -> PFTableViewCell? {
-        let categoryCell = self.tableView.dequeueReusableCellWithIdentifier(CellIdentifier.CategoryCell.rawValue) as! CategoryTableViewCell
+        // observeEventType is called whenever anything changes in the Firebase.
+        // It's always listening.
         
-        if let objects = self.objects {
-            let category = objects[indexPath.section] as! Category
+        let categoryRef = dataService.categoryReference
+        categoryRef.keepSynced(true)
+        
+        categoryRef.queryOrderedByChild(FCategory.Keys.name.rawValue).observeEventType(.Value, withBlock: { snapshot in
+            if snapshot.value is NSNull {
+                print("Loading categories failed. Snapshot: \(snapshot)")
+            } else {
+                print("Categories loaded. Now parse it.")
+            }
             
-            categoryCell.categoryImageView?.image = UIImage()
-            categoryCell.categoryImageView?.file = category.image
+            self.categories.removeAll(keepCapacity: true)
             
-            categoryCell.imageDownloadingActivityIndicator.startAnimating()
-            
-            // Remote image downloading.
-            weak var weakCell = categoryCell
-            categoryCell.categoryImageView?.loadInBackground({ (image, error) in
-                if let error = error {
-                    print("Error: \(error.userInfo["error"])")
-                } else {
-                    weakCell?.imageDownloadingActivityIndicator.stopAnimating()
-                    weakCell?.categoryImageView?.image = image
+            if let snapshots = snapshot.children.allObjects as? [FDataSnapshot] {
+                for snap in snapshots {
+                    
+                    // Make our categories array for the tableView.
+                    
+                    if let categoryDictionary = snap.value as? Dictionary<String, AnyObject> {
+                        let key = snap.key
+                        let category = FCategory(key: key, dictionary: categoryDictionary)
+                        
+                        print("Category \(category)")
+                        
+                        // Reverse ordered.
+                        
+                        self.categories.insert(category, atIndex: 0)
+                    }
                 }
-            })
-        }
-        
-        return categoryCell
+            }
+            
+            self.refreshControl?.endRefreshing()
+            
+            DataService.hideNetworkIndicator()
+            
+            self.hideLoadingLabel()
+            
+            // Be sure that the tableView updates when there is new data.
+            
+            self.tableView.reloadData()
+        })
     }
     
     //--------------------------------------
-    // MARK: - UITableView -
-    //--------------------------------------
-    
-    //--------------------------------------
-    // MARK: UITableViewDataSource
+    // MARK: - UITableViewDataSource
     //--------------------------------------
     
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return self.objects?.count ?? 0
+        return self.categories.count
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
+    }
+    
+    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let categoryCell = self.tableView.dequeueReusableCellWithIdentifier(CategoryTableViewCell.cellReuseIdentifier) as! CategoryTableViewCell
+        
+        let category = categories[indexPath.section]
+        
+        categoryCell.categoryImageView?.image = category.image
+        
+        //categoryCell.imageDownloadingActivityIndicator.startAnimating()
+        
+        return categoryCell
     }
     
     override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -204,7 +168,7 @@ class CategoryTableViewController: PFQueryTableViewController {
         let labelTrailingSpace: CGFloat = labelLeadingSpace + 8.0
         let label = UILabel(frame: CGRectMake(labelLeadingSpace, CGRectGetHeight(headerView.bounds) / 2 - labelHeight / 2.0, CGRectGetWidth(tableView.bounds) - labelTrailingSpace, labelHeight))
         
-        let category = self.objects![section]
+        let category = categories[section]
         label.text = category.name
         label.textColor = UIColor.whiteColor()
         
@@ -214,12 +178,13 @@ class CategoryTableViewController: PFQueryTableViewController {
     }
     
     //--------------------------------------
-    // MARK: UITableViewDelegate
+    // MARK: - UITableViewDelegate
     //--------------------------------------
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let category = self.objects![indexPath.section] as! Category
-        switch category.getType() {
+        let category = categories[indexPath.section]
+        
+        switch category.type! {
         case .phoneCase:
             self.performSegueWithIdentifier(SegueIdentifier.PhoneCaseConstructor.rawValue, sender: nil)
         default:
@@ -229,6 +194,35 @@ class CategoryTableViewController: PFQueryTableViewController {
     
     override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return headerViewHeight
+    }
+    
+    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return categoryTableViewCellHeight
+    }
+    
+    //--------------------------------------
+    // MARK: - Loading Label -
+    //--------------------------------------
+    
+    private func showLoadingLabel() {
+        guard self.loadingLabel == nil else {
+            return
+        }
+        
+        self.loadingLabel = UILabel()
+        self.loadingLabel?.text = NSLocalizedString("Loading...", comment: "")
+        self.loadingLabel?.sizeToFit()
+        
+        if let navigationController = self.navigationController {
+            self.loadingLabel?.center = navigationController.view.center
+            
+            navigationController.view.addSubview(loadingLabel!)
+        }
+    }
+    
+    private func hideLoadingLabel() {
+        self.loadingLabel?.removeFromSuperview()
+        self.loadingLabel = nil
     }
 }
 

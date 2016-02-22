@@ -21,7 +21,7 @@ class AccountTableViewController: UITableViewController {
     }
     
     //--------------------------------------
-    // MARK: - Properties
+    // MARK: - Properties -
     //--------------------------------------
     
     var logInAccountView: UserLogInEmptyView?
@@ -35,7 +35,12 @@ class AccountTableViewController: UITableViewController {
     
     @IBOutlet weak var logOutActivityIndicator: UIActivityIndicatorView!
     
-    // Index paths of the table view cells.
+    private var user: User?
+    
+    //-------------------------------------------
+    // MARK: Index paths of the table view cells
+    //-------------------------------------------
+    
     private var nameIndexPath = NSIndexPath(forRow: 0, inSection: 0)
     private var patronymicIndexPath = NSIndexPath(forRow: 1, inSection: 0)
     private var surnameIndexPath = NSIndexPath(forRow: 2, inSection: 0)
@@ -45,16 +50,28 @@ class AccountTableViewController: UITableViewController {
     private var orderHistoryIndexPath = NSIndexPath(forRow: 0, inSection: 1)
     private var logOutIndexPath = NSIndexPath(forRow: 0, inSection: 2)
     
+    //--------------------------------------
+    // MARK: Input Data
+    //--------------------------------------
+    
     // Holds input info from text fields.
     private var name: String?
     private var patronymic: String?
     private var surname: String?
     private var phoneNumber: String?
     
+    //--------------------------------------
+    // MARK: Constants
+    //--------------------------------------
+    
     // Phone number associated variables.
     private let internationalCountryCode = "+7"
     private let phoneNumberDigitsCount = 10
     private let phoneNumberStringLength = 17
+    
+    //--------------------------------------
+    // MARK: Navigation Items
+    //--------------------------------------
     
     // Right bar button items.
     private var saveBarButtonItem: UIBarButtonItem?
@@ -88,7 +105,7 @@ class AccountTableViewController: UITableViewController {
     //--------------------------------------
     
     override func tableView(tableView: UITableView, willSelectRowAtIndexPath indexPath: NSIndexPath) -> NSIndexPath? {
-        if logOutActivityIndicator.isAnimating() {
+        guard logOutActivityIndicator.isAnimating() == false else {
             return nil
         }
         
@@ -133,7 +150,7 @@ class AccountTableViewController: UITableViewController {
     private func viewSetup() {
         self.logInAccountView?.removeFromSuperview()
         
-        if BlagaprintUser.currentUser() == nil {
+        if !DataService.sharedInstance.isUserLoggedIn {
             self.logInBarButtonItem = UIBarButtonItem(image: UIImage(named: "Enter.png")!, style: .Plain, target: self, action: Selector("presentLoginViewController"))
             self.navigationItem.rightBarButtonItem = self.logInBarButtonItem
             
@@ -149,19 +166,28 @@ class AccountTableViewController: UITableViewController {
     }
     
     private func userInfoSetup() {
-        let user = BlagaprintUser.currentUser()!
-        
-        self.name = user.name
-        self.patronymic = user.patronymic
-        self.surname = user.surname
-        self.phoneNumber = user.phoneNumber
-        
-        self.nameTextField.text = name
-        self.patronymicTextField.text = patronymic
-        self.surnameTextField.text = surname
-        self.phoneNumberTextField.text = phoneNumber
-        
-        self.emailLabel.text = user.email
+        DataService.sharedInstance.currentUserReference.observeEventType(.Value, withBlock: { snapshot in
+            print(snapshot.value)
+            
+            if let userDictionary = snapshot.value as? Dictionary<String, AnyObject> {
+                let key = snapshot.key
+                let user = User(key: key, dictionary: userDictionary)
+                
+                self.name = user.name
+                self.patronymic = user.patronymic
+                self.surname = user.surname
+                self.phoneNumber = user.phoneNumber
+                
+                self.nameTextField.text = self.name
+                self.patronymicTextField.text = self.patronymic
+                self.surnameTextField.text = self.surname
+                self.phoneNumberTextField.text = self.phoneNumber
+                
+                self.emailLabel.text = user.email
+                
+                self.user = user
+            }
+        })
     }
     
     private func addSaveBarButtonItem(animated: Bool) {
@@ -173,9 +199,8 @@ class AccountTableViewController: UITableViewController {
         self.logInAccountView = NSBundle.mainBundle().loadNibNamed("UserLogInEmptyView", owner: self, options: nil).first as? UserLogInEmptyView
         
         // Handle callback when Log In button pressed.
-        weak var weakSelf = self
-        self.logInAccountView!.logInButtonDidPressedCallBack = {
-            weakSelf?.presentLoginViewController()
+        logInAccountView!.logInButtonDidPressedCallBack = { [weak self] in
+            self?.presentLoginViewController()
         }
         
         // Customize view frame
@@ -193,13 +218,13 @@ class AccountTableViewController: UITableViewController {
     }
     
     func presentLoginViewController() {
-        presentViewController(LoginViewController(), animated: true, completion: nil)
+        LoginViewController.presentInController(self)
     }
     
     private func updateBackgroundColorOfLogOutCell() {
         let logOutCell = self.tableView.cellForRowAtIndexPath(logOutIndexPath)
         
-        if BlagaprintUser.currentUser() == nil {
+        if !DataService.sharedInstance.isUserLoggedIn {
             logOutCell?.backgroundColor = UIColor.whiteColor()
         } else {
             logOutCell?.backgroundColor = AppAppearance.AppColors.celestialBlue
@@ -207,8 +232,6 @@ class AccountTableViewController: UITableViewController {
     }
     
     private func updateSaveButtonEnabledState() {
-        let user = BlagaprintUser.currentUser()
-        
         if user?.name != name ||
            user?.patronymic != patronymic ||
            user?.surname != surname ||
@@ -234,17 +257,14 @@ class AccountTableViewController: UITableViewController {
     }
     
     private func logOut() {
-        self.logOutActivityIndicator.startAnimating()
+        logOutActivityIndicator.startAnimating()
         
-        BlagaprintUser.logOutInBackgroundWithBlock { error in
-            self.logOutActivityIndicator.stopAnimating()
-            
-            if let error = error {
-                self.presentAlert(title: NSLocalizedString("Error", comment: ""), message: (error.userInfo["error"] as! String))
-            } else {
-                self.viewSetup()
-            }
-        }
+        DataService.logout()
+        user = nil
+        
+        logOutActivityIndicator.stopAnimating()
+        
+        viewSetup()
     }
     
     //--------------------------------------
@@ -295,6 +315,10 @@ class AccountTableViewController: UITableViewController {
             return
         }
         
+        guard let user = self.user else {
+            fatalError("At this point user must exist.")
+        }
+        
         // Present activity indicator.
         let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .White)
         activityIndicator.hidesWhenStopped = true
@@ -305,20 +329,19 @@ class AccountTableViewController: UITableViewController {
         activityIndicator.startAnimating()
         
         // Update info and save it.
-        let user = BlagaprintUser.currentUser()!
         user.name = name
         user.patronymic = patronymic
         user.surname = surname
         user.phoneNumber = phoneNumber
         
-        BlagaprintUser.currentUser()?.saveInBackgroundWithBlock() { (succeeded, error) in
+        user.updateValuesWithCompletionBlock() { (success, error) in
             activityIndicator.stopAnimating()
             
-            if let error = error {
-                self.presentAlert(title: NSLocalizedString("Error", comment: ""), message: error.userInfo["error"] as! String)
-            } else if succeeded {
+            if success {
                 self.presentAlert(title: "", message: NSLocalizedString("Updated", comment: "Message for alert"))
                 self.viewSetup()
+            } else {
+                self.presentAlert(title: NSLocalizedString("Error", comment: ""), message: error!.userInfo["error"] as! String)
             }
         }
     }

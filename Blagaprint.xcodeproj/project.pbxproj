@@ -36,6 +36,7 @@
 		0C83490C1C214ADB00A0697F /* Replace.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C8349091C214ADB00A0697F /* Replace.png */; };
 		0CA50CE51C194D5800020150 /* ShoppingBagViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CA50CE41C194D5800020150 /* ShoppingBagViewController.swift */; };
 		0CA50CE91C1954F400020150 /* AccountTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CA50CE81C1954F400020150 /* AccountTableViewController.swift */; };
+		48DCA15F20C4FABBBF82151F /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA1B90805AA307FDE05B12FC /* Pods.framework */; };
 		501506501BCE96C700697C99 /* TextEditingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5015064F1BCE96C700697C99 /* TextEditingViewController.swift */; };
 		502A8CB31BB80EAC0064E0DA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502A8CB21BB80EAC0064E0DA /* AppDelegate.swift */; };
 		502A8CB51BB80EAC0064E0DA /* CategoryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502A8CB41BB80EAC0064E0DA /* CategoryTableViewController.swift */; };
@@ -53,6 +54,7 @@
 		50DD72391BBED313008A9B80 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50DD72381BBED313008A9B80 /* Category.swift */; };
 		50FD7F501BB8FFF600ABEC38 /* CategoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50FD7F4F1BB8FFF600ABEC38 /* CategoryTableViewCell.swift */; };
 		750272011C1D3C4A0095CB0E /* UserLogInEmptyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 750272031C1D3C4A0095CB0E /* UserLogInEmptyView.xib */; };
+		7509CE281C74023B00F05A54 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7509CE271C74023B00F05A54 /* Constants.swift */; };
 		750C83C91C02EEBB00BAFEB0 /* SH38_PhotoFrame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 750C83C81C02EEBB00BAFEB0 /* SH38_PhotoFrame.swift */; };
 		750C83CF1C03110200BAFEB0 /* sh38_placeholderImage.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 750C83CE1C03110200BAFEB0 /* sh38_placeholderImage.jpg */; };
 		750E0F911C1874DA00A8158C /* BlagaprintUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 750E0F901C1874DA00A8158C /* BlagaprintUser.swift */; };
@@ -92,6 +94,9 @@
 		752ED13D1C59F56F00BE0751 /* GlassRectangleKeyRing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 752ED13A1C59F56F00BE0751 /* GlassRectangleKeyRing.swift */; };
 		752ED13E1C59F56F00BE0751 /* RectangleKeyRing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 752ED13B1C59F56F00BE0751 /* RectangleKeyRing.swift */; };
 		753527701C6442A1000BC283 /* StateNumberKeyRing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7535276F1C6442A1000BC283 /* StateNumberKeyRing.swift */; };
+		753580291C772A5000E1CADB /* FBagItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 753580281C772A5000E1CADB /* FBagItem.swift */; };
+		7539D3FB1C7AD24A001B82F2 /* DataListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7539D3FA1C7AD24A001B82F2 /* DataListener.swift */; };
+		7539D3FD1C7AE078001B82F2 /* NSUserDefaults+UpdateUserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7539D3FC1C7AE078001B82F2 /* NSUserDefaults+UpdateUserInfo.swift */; };
 		753CD57A1BF3210500795F44 /* AppConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 753CD5791BF3210500795F44 /* AppConfiguration.swift */; };
 		753D4D651C059880002FC5E9 /* SH2_PhotoFrame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 753D4D641C059880002FC5E9 /* SH2_PhotoFrame.swift */; };
 		753D4D671C059AA5002FC5E9 /* sh2_placeholderImage.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 753D4D661C059AA5002FC5E9 /* sh2_placeholderImage.jpg */; };
@@ -115,8 +120,13 @@
 		7547D2541BDE2376006E4170 /* galaxyS5CameraImage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7547D2461BDE2376006E4170 /* galaxyS5CameraImage@2x.png */; };
 		7547D2551BDE2376006E4170 /* galaxyS5Speaker.png in Resources */ = {isa = PBXBuildFile; fileRef = 7547D2471BDE2376006E4170 /* galaxyS5Speaker.png */; };
 		7547D2561BDE2376006E4170 /* galaxyS5Speaker@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7547D2481BDE2376006E4170 /* galaxyS5Speaker@2x.png */; };
+		754C457D1C70B2060062336C /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 754C457C1C70B2060062336C /* DataService.swift */; };
 		755514531C6DE9120007BC32 /* Cup+ImageGenerating.swift in Sources */ = {isa = PBXBuildFile; fileRef = 755514521C6DE9120007BC32 /* Cup+ImageGenerating.swift */; };
+		755830B41C75EA920065E47C /* FCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 755830B31C75EA920065E47C /* FCategory.swift */; };
+		755830BA1C75FF2F0065E47C /* String+Base64StringDecoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 755830B91C75FF2F0065E47C /* String+Base64StringDecoding.swift */; };
+		755830BC1C761DB30065E47C /* FCategoryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 755830BB1C761DB30065E47C /* FCategoryItem.swift */; };
 		7561AE9F1C0FD563009B2C8B /* Plate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7561AE9E1C0FD563009B2C8B /* Plate.swift */; };
+		7565720E1C7708B1004BD531 /* UIImage+Base64String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7565720D1C7708B1004BD531 /* UIImage+Base64String.swift */; };
 		756DF01A1C4E542700A31B55 /* SquareKeyRing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 756DF0191C4E542700A31B55 /* SquareKeyRing.swift */; };
 		756DF01D1C4E56E200A31B55 /* CircleKeyRing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 756DF01B1C4E56E200A31B55 /* CircleKeyRing.swift */; };
 		756DF01E1C4E56E200A31B55 /* HeartKeyRing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 756DF01C1C4E56E200A31B55 /* HeartKeyRing.swift */; };
@@ -130,6 +140,7 @@
 		757470321BDCB405004CABD0 /* Device.swift in Sources */ = {isa = PBXBuildFile; fileRef = 757470311BDCB404004CABD0 /* Device.swift */; };
 		757470351BDCBEB4004CABD0 /* iPhone6CameraImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 757470331BDCBEB4004CABD0 /* iPhone6CameraImage.png */; };
 		757470361BDCBEB4004CABD0 /* iPhone6CameraImage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 757470341BDCBEB4004CABD0 /* iPhone6CameraImage@2x.png */; };
+		757542CA1C71C071009EF8BD /* TintTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 757542C91C71C071009EF8BD /* TintTextField.swift */; };
 		757F12881C48CE1400CF947C /* KeyRing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 757F12871C48CE1400CF947C /* KeyRing.swift */; };
 		757F12921C48F65300CF947C /* HeartWithWingsKeyRing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 757F12911C48F65300CF947C /* HeartWithWingsKeyRing.swift */; };
 		758070181C0C420E000F9D84 /* PlateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 758070171C0C420E000F9D84 /* PlateView.swift */; };
@@ -144,6 +155,7 @@
 		7589398A1C16B54D0069655B /* CategoryItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 758939891C16B54D0069655B /* CategoryItemViewController.swift */; };
 		7589540E1C1582C6006980F0 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7589540C1C1582C6006980F0 /* Localizable.strings */; };
 		758997531C3ABA1B00427033 /* BagItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 758997521C3ABA1B00427033 /* BagItemTableViewCell.swift */; };
+		759C9EE11C7169130017B0DF /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 759C9EE01C7169130017B0DF /* User.swift */; };
 		759E8CCF1BDF64A1008A5503 /* galaxyS4MiniCameraImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 759E8CCD1BDF64A1008A5503 /* galaxyS4MiniCameraImage.png */; };
 		759E8CD01BDF64A1008A5503 /* galaxyS4MiniCameraImage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 759E8CCE1BDF64A1008A5503 /* galaxyS4MiniCameraImage@2x.png */; };
 		759E8CD41BDF6D46008A5503 /* galaxyS5MiniCameraImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 759E8CD21BDF6D46008A5503 /* galaxyS5MiniCameraImage.png */; };
@@ -182,6 +194,7 @@
 		75BF695B1C045E44009D670D /* sh3_placeholderImage.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 75BF695A1C045E44009D670D /* sh3_placeholderImage.jpg */; };
 		75BF695D1C045E78009D670D /* SH3_PhotoFrame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75BF695C1C045E78009D670D /* SH3_PhotoFrame.swift */; };
 		75BF695F1C0464AA009D670D /* sh19_placeholderImage.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 75BF695E1C0464AA009D670D /* sh19_placeholderImage.jpg */; };
+		75C21F4C1C7749A90006ECB7 /* FBag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75C21F4B1C7749A90006ECB7 /* FBag.swift */; };
 		75C4E7C81C3807450039B59F /* Bag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75C4E7C71C3807450039B59F /* Bag.swift */; };
 		75C4E7CA1C3807540039B59F /* BagItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75C4E7C91C3807540039B59F /* BagItem.swift */; };
 		75CECC291C5FA2D300B2AE6E /* PickTypeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75CECC281C5FA2D300B2AE6E /* PickTypeTableViewController.swift */; };
@@ -210,7 +223,6 @@
 		75FD247F1BE45B7E00446801 /* xperiaZ3CameraImage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 75FD247D1BE45B7E00446801 /* xperiaZ3CameraImage@2x.png */; };
 		75FD24821BE461EE00446801 /* XperiaZcompact.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75FD24811BE461EE00446801 /* XperiaZcompact.swift */; };
 		75FE073A1C46149E00EFE1F6 /* String+FormatAmount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75FE07391C46149E00EFE1F6 /* String+FormatAmount.swift */; };
-		D87004B643279C4AF87D6CF7 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F4F15583EE9A76B5434C6E93 /* libPods.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -263,6 +275,7 @@
 		50FD7F4F1BB8FFF600ABEC38 /* CategoryTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryTableViewCell.swift; sourceTree = "<group>"; };
 		750272021C1D3C4A0095CB0E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/UserLogInEmptyView.xib; sourceTree = "<group>"; };
 		750272051C1D3C560095CB0E /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/UserLogInEmptyView.strings; sourceTree = "<group>"; };
+		7509CE271C74023B00F05A54 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		750C83C81C02EEBB00BAFEB0 /* SH38_PhotoFrame.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SH38_PhotoFrame.swift; sourceTree = "<group>"; };
 		750C83CE1C03110200BAFEB0 /* sh38_placeholderImage.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = sh38_placeholderImage.jpg; path = images/sh38_placeholderImage.jpg; sourceTree = "<group>"; };
 		750E0F901C1874DA00A8158C /* BlagaprintUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlagaprintUser.swift; sourceTree = "<group>"; };
@@ -303,6 +316,9 @@
 		752ED13A1C59F56F00BE0751 /* GlassRectangleKeyRing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlassRectangleKeyRing.swift; sourceTree = "<group>"; };
 		752ED13B1C59F56F00BE0751 /* RectangleKeyRing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RectangleKeyRing.swift; sourceTree = "<group>"; };
 		7535276F1C6442A1000BC283 /* StateNumberKeyRing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StateNumberKeyRing.swift; sourceTree = "<group>"; };
+		753580281C772A5000E1CADB /* FBagItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FBagItem.swift; sourceTree = "<group>"; };
+		7539D3FA1C7AD24A001B82F2 /* DataListener.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataListener.swift; sourceTree = "<group>"; };
+		7539D3FC1C7AE078001B82F2 /* NSUserDefaults+UpdateUserInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSUserDefaults+UpdateUserInfo.swift"; sourceTree = "<group>"; };
 		753CD5791BF3210500795F44 /* AppConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppConfiguration.swift; sourceTree = "<group>"; };
 		753D4D641C059880002FC5E9 /* SH2_PhotoFrame.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SH2_PhotoFrame.swift; sourceTree = "<group>"; };
 		753D4D661C059AA5002FC5E9 /* sh2_placeholderImage.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = sh2_placeholderImage.jpg; sourceTree = "<group>"; };
@@ -326,8 +342,13 @@
 		7547D2461BDE2376006E4170 /* galaxyS5CameraImage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "galaxyS5CameraImage@2x.png"; path = "images/galaxyS5CameraImage@2x.png"; sourceTree = "<group>"; };
 		7547D2471BDE2376006E4170 /* galaxyS5Speaker.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = galaxyS5Speaker.png; path = images/galaxyS5Speaker.png; sourceTree = "<group>"; };
 		7547D2481BDE2376006E4170 /* galaxyS5Speaker@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "galaxyS5Speaker@2x.png"; path = "images/galaxyS5Speaker@2x.png"; sourceTree = "<group>"; };
+		754C457C1C70B2060062336C /* DataService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
 		755514521C6DE9120007BC32 /* Cup+ImageGenerating.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Cup+ImageGenerating.swift"; sourceTree = "<group>"; };
+		755830B31C75EA920065E47C /* FCategory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FCategory.swift; sourceTree = "<group>"; };
+		755830B91C75FF2F0065E47C /* String+Base64StringDecoding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Base64StringDecoding.swift"; sourceTree = "<group>"; };
+		755830BB1C761DB30065E47C /* FCategoryItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FCategoryItem.swift; sourceTree = "<group>"; };
 		7561AE9E1C0FD563009B2C8B /* Plate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Plate.swift; sourceTree = "<group>"; };
+		7565720D1C7708B1004BD531 /* UIImage+Base64String.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIImage+Base64String.swift"; path = "Blagaprint/UIImage+Base64String.swift"; sourceTree = "<group>"; };
 		756DF0191C4E542700A31B55 /* SquareKeyRing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SquareKeyRing.swift; sourceTree = "<group>"; };
 		756DF01B1C4E56E200A31B55 /* CircleKeyRing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleKeyRing.swift; sourceTree = "<group>"; };
 		756DF01C1C4E56E200A31B55 /* HeartKeyRing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeartKeyRing.swift; sourceTree = "<group>"; };
@@ -342,6 +363,7 @@
 		757470311BDCB404004CABD0 /* Device.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Device.swift; sourceTree = "<group>"; };
 		757470331BDCBEB4004CABD0 /* iPhone6CameraImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = iPhone6CameraImage.png; path = images/iPhone6CameraImage.png; sourceTree = "<group>"; };
 		757470341BDCBEB4004CABD0 /* iPhone6CameraImage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "iPhone6CameraImage@2x.png"; path = "images/iPhone6CameraImage@2x.png"; sourceTree = "<group>"; };
+		757542C91C71C071009EF8BD /* TintTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TintTextField.swift; sourceTree = "<group>"; };
 		757E9F211C24642900ADEB32 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Main.strings; sourceTree = "<group>"; };
 		757F12871C48CE1400CF947C /* KeyRing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyRing.swift; sourceTree = "<group>"; };
 		757F12911C48F65300CF947C /* HeartWithWingsKeyRing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeartWithWingsKeyRing.swift; sourceTree = "<group>"; };
@@ -358,6 +380,7 @@
 		7589540B1C158189006980F0 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		758954101C1582E8006980F0 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
 		758997521C3ABA1B00427033 /* BagItemTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BagItemTableViewCell.swift; sourceTree = "<group>"; };
+		759C9EE01C7169130017B0DF /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		759E8CCD1BDF64A1008A5503 /* galaxyS4MiniCameraImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = galaxyS4MiniCameraImage.png; path = images/galaxyS4MiniCameraImage.png; sourceTree = "<group>"; };
 		759E8CCE1BDF64A1008A5503 /* galaxyS4MiniCameraImage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "galaxyS4MiniCameraImage@2x.png"; path = "images/galaxyS4MiniCameraImage@2x.png"; sourceTree = "<group>"; };
 		759E8CD21BDF6D46008A5503 /* galaxyS5MiniCameraImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = galaxyS5MiniCameraImage.png; path = images/galaxyS5MiniCameraImage.png; sourceTree = "<group>"; };
@@ -397,6 +420,7 @@
 		75BF695A1C045E44009D670D /* sh3_placeholderImage.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = sh3_placeholderImage.jpg; sourceTree = "<group>"; };
 		75BF695C1C045E78009D670D /* SH3_PhotoFrame.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SH3_PhotoFrame.swift; sourceTree = "<group>"; };
 		75BF695E1C0464AA009D670D /* sh19_placeholderImage.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = sh19_placeholderImage.jpg; sourceTree = "<group>"; };
+		75C21F4B1C7749A90006ECB7 /* FBag.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FBag.swift; sourceTree = "<group>"; };
 		75C4E7C71C3807450039B59F /* Bag.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Bag.swift; sourceTree = "<group>"; };
 		75C4E7C91C3807540039B59F /* BagItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BagItem.swift; sourceTree = "<group>"; };
 		75CECC281C5FA2D300B2AE6E /* PickTypeTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PickTypeTableViewController.swift; sourceTree = "<group>"; };
@@ -427,7 +451,7 @@
 		75FE07391C46149E00EFE1F6 /* String+FormatAmount.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+FormatAmount.swift"; sourceTree = "<group>"; };
 		B73D32B3F04B08A93EE5B500 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		C8BD4F0CF3381A1B5700C233 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
-		F4F15583EE9A76B5434C6E93 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		CA1B90805AA307FDE05B12FC /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -435,7 +459,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D87004B643279C4AF87D6CF7 /* libPods.a in Frameworks */,
+				48DCA15F20C4FABBBF82151F /* Pods.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -528,11 +552,10 @@
 				50FD7F521BB903C200ABEC38 /* AppDelegate */,
 				75A7F18D1C6C2A4100E20DB2 /* Service */,
 				50DD723A1BBED31B008A9B80 /* Model */,
-				50FD7F531BB903CC00ABEC38 /* ViewControllers */,
+				50FD7F531BB903CC00ABEC38 /* Controllers */,
 				50FD7F511BB903B700ABEC38 /* View */,
 				508503051BBAADCF00152131 /* Utility */,
 				756FF67E1C128C630091B75E /* Reachability */,
-				7561AEAD1C0FD7CD009B2C8B /* UIImageResizeAdditions */,
 				75FE073B1C4614A700EFE1F6 /* Extensions */,
 				75AB8AC11BE7479F00B88A5A /* Frameworks */,
 				502A8CD41BB8120A0064E0DA /* Resources */,
@@ -613,6 +636,7 @@
 		508503051BBAADCF00152131 /* Utility */ = {
 			isa = PBXGroup;
 			children = (
+				7509CE271C74023B00F05A54 /* Constants.swift */,
 				508503031BBAADB600152131 /* AppAppearance.swift */,
 				753CD5791BF3210500795F44 /* AppConfiguration.swift */,
 			);
@@ -622,8 +646,8 @@
 		50A871D51BCA9B7C003CB0F9 /* PhoneCase */ = {
 			isa = PBXGroup;
 			children = (
-				75823AAE1BD8BDD000C92F83 /* PhoneCase.swift */,
 				75DD91FE1BD7BFE000932AD7 /* CaseView.swift */,
+				75823AAE1BD8BDD000C92F83 /* PhoneCase.swift */,
 				75A3E97F1BE3612F0001E073 /* Samsung */,
 				75FD24701BE3D3EA00446801 /* Sony */,
 				75F739381BE491C60063EB6F /* Xiaomi */,
@@ -636,6 +660,11 @@
 		50DD723A1BBED31B008A9B80 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				759C9EE01C7169130017B0DF /* User.swift */,
+				755830B31C75EA920065E47C /* FCategory.swift */,
+				755830BB1C761DB30065E47C /* FCategoryItem.swift */,
+				753580281C772A5000E1CADB /* FBagItem.swift */,
+				75C21F4B1C7749A90006ECB7 /* FBag.swift */,
 				7525F92F1C66DA9B000D5E96 /* Parse */,
 				7525F92E1C66DA86000D5E96 /* Items */,
 			);
@@ -657,6 +686,7 @@
 				758792A71BF487E10071C383 /* ActivityView.swift */,
 				751DA9B61C19D3D600D10C24 /* UserLogInEmptyView.swift */,
 				750272031C1D3C4A0095CB0E /* UserLogInEmptyView.xib */,
+				757542C91C71C071009EF8BD /* TintTextField.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -669,7 +699,7 @@
 			name = AppDelegate;
 			sourceTree = "<group>";
 		};
-		50FD7F531BB903CC00ABEC38 /* ViewControllers */ = {
+		50FD7F531BB903CC00ABEC38 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
 				75467C8A1C12EBA3008046A2 /* Login/SignUp */,
@@ -677,7 +707,7 @@
 				0CA50CE71C194EF700020150 /* ShoppingBagScene */,
 				751DA9B81C19E3C800D10C24 /* AccountScene */,
 			);
-			name = ViewControllers;
+			name = Controllers;
 			sourceTree = "<group>";
 		};
 		750E0F981C187FF200A8158C /* TabBarImages */ = {
@@ -869,12 +899,13 @@
 			name = GalaxyS5;
 			sourceTree = "<group>";
 		};
-		7561AEAD1C0FD7CD009B2C8B /* UIImageResizeAdditions */ = {
+		7561AEAD1C0FD7CD009B2C8B /* UIImageExtension */ = {
 			isa = PBXGroup;
 			children = (
 				751DA9AB1C19C68900D10C24 /* UIImageResizeAdditions.swift */,
+				7565720D1C7708B1004BD531 /* UIImage+Base64String.swift */,
 			);
-			name = UIImageResizeAdditions;
+			name = UIImageExtension;
 			path = ..;
 			sourceTree = "<group>";
 		};
@@ -1102,6 +1133,8 @@
 			isa = PBXGroup;
 			children = (
 				75AB8ABF1BE744DB00B88A5A /* ParseCentral.swift */,
+				754C457C1C70B2060062336C /* DataService.swift */,
+				7539D3FA1C7AD24A001B82F2 /* DataListener.swift */,
 			);
 			name = Service;
 			sourceTree = "<group>";
@@ -1253,7 +1286,10 @@
 		75FE073B1C4614A700EFE1F6 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				7561AEAD1C0FD7CD009B2C8B /* UIImageExtension */,
 				75FE07391C46149E00EFE1F6 /* String+FormatAmount.swift */,
+				755830B91C75FF2F0065E47C /* String+Base64StringDecoding.swift */,
+				7539D3FC1C7AE078001B82F2 /* NSUserDefaults+UpdateUserInfo.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -1261,7 +1297,7 @@
 		9B39F86A468EF2F9E9BFD790 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				F4F15583EE9A76B5434C6E93 /* libPods.a */,
+				CA1B90805AA307FDE05B12FC /* Pods.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -1536,12 +1572,15 @@
 			files = (
 				75F739371BE491BF0063EB6F /* XiaomiMi4.swift in Sources */,
 				756DF01D1C4E56E200A31B55 /* CircleKeyRing.swift in Sources */,
+				755830B41C75EA920065E47C /* FCategory.swift in Sources */,
 				502A8CB51BB80EAC0064E0DA /* CategoryTableViewController.swift in Sources */,
 				7586714D1C1BC5A700B60DFB /* ChangePasswordTableViewController.swift in Sources */,
 				75823AAF1BD8BDD000C92F83 /* PhoneCase.swift in Sources */,
 				75DD91FF1BD7BFE000932AD7 /* CaseView.swift in Sources */,
 				756DF01E1C4E56E200A31B55 /* HeartKeyRing.swift in Sources */,
+				757542CA1C71C071009EF8BD /* TintTextField.swift in Sources */,
 				0C7F25441C27D75100D7C49C /* ImageCollectionViewCell.swift in Sources */,
+				755830BA1C75FF2F0065E47C /* String+Base64StringDecoding.swift in Sources */,
 				75BF695D1C045E78009D670D /* SH3_PhotoFrame.swift in Sources */,
 				0C541A571BD0B2710028BD9A /* PhotoLibraryCollectionViewController.swift in Sources */,
 				50551C2E1BCBA523005B88DA /* SelectBackgroundCollectionViewController.swift in Sources */,
@@ -1550,6 +1589,7 @@
 				756DF0201C50630000A31B55 /* ProceedToCheckoutTableViewCell.swift in Sources */,
 				753D4D651C059880002FC5E9 /* SH2_PhotoFrame.swift in Sources */,
 				75FD24821BE461EE00446801 /* XperiaZcompact.swift in Sources */,
+				7539D3FB1C7AD24A001B82F2 /* DataListener.swift in Sources */,
 				753CD57A1BF3210500795F44 /* AppConfiguration.swift in Sources */,
 				75BF69591C044EDC009D670D /* SH19_PhotoFrame.swift in Sources */,
 				75A3E9751BE35DC90001E073 /* GalaxyNote3.swift in Sources */,
@@ -1560,6 +1600,7 @@
 				7585BB4E1C1026AA00D59BF5 /* BLImagePickerController.swift in Sources */,
 				7561AE9F1C0FD563009B2C8B /* Plate.swift in Sources */,
 				751B784F1C6DC19200920C1A /* CopyServices.swift in Sources */,
+				759C9EE11C7169130017B0DF /* User.swift in Sources */,
 				755514531C6DE9120007BC32 /* Cup+ImageGenerating.swift in Sources */,
 				50551C2C1BCB8B18005B88DA /* SelectDeviceTableViewController.swift in Sources */,
 				50A871D71BCA9D68003CB0F9 /* CaseConstructorViewController.swift in Sources */,
@@ -1567,10 +1608,12 @@
 				75A3E9811BE3645E0001E073 /* GalaxyNote4.swift in Sources */,
 				753527701C6442A1000BC283 /* StateNumberKeyRing.swift in Sources */,
 				753D4D751C05AD11002FC5E9 /* SH11_PhotoFrame.swift in Sources */,
+				753580291C772A5000E1CADB /* FBagItem.swift in Sources */,
 				50FD7F501BB8FFF600ABEC38 /* CategoryTableViewCell.swift in Sources */,
 				75AB8AC01BE744DB00B88A5A /* ParseCentral.swift in Sources */,
 				503CBEC11BC415C700052BE0 /* CategoryItem.swift in Sources */,
 				75FE073A1C46149E00EFE1F6 /* String+FormatAmount.swift in Sources */,
+				755830BC1C761DB30065E47C /* FCategoryItem.swift in Sources */,
 				752ED13D1C59F56F00BE0751 /* GlassRectangleKeyRing.swift in Sources */,
 				0CA50CE91C1954F400020150 /* AccountTableViewController.swift in Sources */,
 				75467C891C12EB9C008046A2 /* LoginViewController.swift in Sources */,
@@ -1582,11 +1625,14 @@
 				50551C311BCBB43A005B88DA /* BackgroundOvalView.swift in Sources */,
 				0C541A591BD0B51A0028BD9A /* PhotoLibraryItemCollectionViewCell.swift in Sources */,
 				75C4E7CA1C3807540039B59F /* BagItem.swift in Sources */,
+				7539D3FD1C7AE078001B82F2 /* NSUserDefaults+UpdateUserInfo.swift in Sources */,
 				0C7F25361C27CD6A00D7C49C /* Cup.swift in Sources */,
 				750C83C91C02EEBB00BAFEB0 /* SH38_PhotoFrame.swift in Sources */,
 				75A7F1971C6C4C5300E20DB2 /* ItemSizeCollectionViewController.swift in Sources */,
 				757F12921C48F65300CF947C /* HeartWithWingsKeyRing.swift in Sources */,
+				7565720E1C7708B1004BD531 /* UIImage+Base64String.swift in Sources */,
 				751DA9B71C19D3D600D10C24 /* UserLogInEmptyView.swift in Sources */,
+				7509CE281C74023B00F05A54 /* Constants.swift in Sources */,
 				756DF01A1C4E542700A31B55 /* SquareKeyRing.swift in Sources */,
 				501506501BCE96C700697C99 /* TextEditingViewController.swift in Sources */,
 				75BF69531C044900009D670D /* PhotoFrame.swift in Sources */,
@@ -1597,6 +1643,7 @@
 				75A7F18F1C6C356400E20DB2 /* ItemSizeCollectionViewCell.swift in Sources */,
 				758997531C3ABA1B00427033 /* BagItemTableViewCell.swift in Sources */,
 				0C8296C21BFC65D500B2B345 /* DescriptionTableViewCell.swift in Sources */,
+				75C21F4C1C7749A90006ECB7 /* FBag.swift in Sources */,
 				752ED13C1C59F56F00BE0751 /* GlassOvalKeyRing.swift in Sources */,
 				7589398A1C16B54D0069655B /* CategoryItemViewController.swift in Sources */,
 				758579AA1C66C8FB0010A7CF /* TShirtCanvas.swift in Sources */,
@@ -1605,6 +1652,7 @@
 				75C4E7C81C3807450039B59F /* Bag.swift in Sources */,
 				757F12881C48CE1400CF947C /* KeyRing.swift in Sources */,
 				502A8CB31BB80EAC0064E0DA /* AppDelegate.swift in Sources */,
+				754C457D1C70B2060062336C /* DataService.swift in Sources */,
 				757470321BDCB405004CABD0 /* Device.swift in Sources */,
 				756FF67D1C128C2D0091B75E /* Reachability.swift in Sources */,
 				75467C921C12EC32008046A2 /* SignUpViewController.swift in Sources */,

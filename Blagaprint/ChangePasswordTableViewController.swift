@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class ChangePasswordTableViewController: UITableViewController {
     //--------------------------------------
@@ -122,6 +123,14 @@ class ChangePasswordTableViewController: UITableViewController {
     }
     
     private func save() {
+        
+        // Change password only for users that signup with password provider.
+        
+        if let provider = User.currentUserProvider where provider == "facebook" {
+            presentAlert(title: "", message: NSLocalizedString("You can't change your password, because you have joined us with Facebook account.", comment: "Change password provider message"))
+            return
+        }
+        
         // Validate input
         if newPassword != repeatedNewPassword {
             presentAlert(title: "", message: NSLocalizedString("Field confirmation is not the same as the new password field", comment: "Change password message"))
@@ -138,65 +147,30 @@ class ChangePasswordTableViewController: UITableViewController {
             return
         }
         
-        // Change old password with new.
+        // Change old password to new password.
         
         saveActivityIndicator.startAnimating()
         
-        let username = BlagaprintUser.currentUser()!.username!
+        guard let email = User.currentUserEmail else {
+            return
+        }
         
-        // Check current password by try to logging in using there current username 
-        // and the password that user entered.
-        // If the loggin is successful the old password is correct.
-        BlagaprintUser.logInWithUsernameInBackground(username, password: currentPassword) { (user, error) in
+        DataService.sharedInstance.changePasswordForUser(email: email, fromOldPassword: currentPassword, toNewPassword: newPassword) { (succeeded, error) in
+            self.saveActivityIndicator.stopAnimating()
             
-            // If the loggin is failed the old password is incorrect.
             if let error = error {
-                self.saveActivityIndicator.stopAnimating()
-                
                 print("Error: \(error.localizedDescription)")
-                self.presentAlert(title: "", message: NSLocalizedString("Current password is incorrect", comment: "Change password message"))
                 
-                return
-            }
-            
-            guard user != nil else {
-                return
-            }
-            
-            // Set the new password and save it.
-            user!.password = self.newPassword
-            user!.saveInBackgroundWithBlock { (succeeded, error) in
-                self.saveActivityIndicator.stopAnimating()
+                self.presentAlert(title: NSLocalizedString("Change password failed.", comment: "Change password title"), message: error.localizedDescription)
+            } else {
+                // Password successfully changed.
                 
-                if let error = error {
-                    let message = error.userInfo["error"] as! String
-                    self.presentAlert(title: NSLocalizedString("Error", comment: ""), message: message)
-                }
+                let alert = UIAlertController(title: "", message: NSLocalizedString("Password successfully changed", comment: "Change password message"), preferredStyle: .Alert)
+                alert.addAction(UIAlertAction(title: "Ok", style: .Cancel, handler: { action in
+                    self.navigationController?.popViewControllerAnimated(true)
+                }))
                 
-                if succeeded {
-                    // Log out and then log in with the new seted password.
-                    BlagaprintUser.logOut()
-                    BlagaprintUser.logInWithUsernameInBackground(username, password: self.newPassword) { (user, error) in
-                        if let error = error {
-                            self.presentAlert(title: NSLocalizedString("Error", comment: ""), message: error.userInfo["error"] as! String)
-                        } else {
-                            // Caches the user locally.
-                            BlagaprintUser.becomeInBackground(BlagaprintUser.currentUser()!.sessionToken!) { (user, error) in
-                                if let error = error {
-                                    self.presentAlert(title: NSLocalizedString("Error", comment: ""), message: error.userInfo["error"] as! String)
-                                } else {
-                                    // Password successfully changed.
-                                    let alert = UIAlertController(title: "", message: NSLocalizedString("Password successfully changed", comment: "Change password message"), preferredStyle: .Alert)
-                                    alert.addAction(UIAlertAction(title: "Ok", style: .Cancel, handler: { action in
-                                        self.navigationController?.popViewControllerAnimated(true)
-                                    }))
-                                    
-                                    self.presentViewController(alert, animated: true, completion: nil)
-                                }
-                            }
-                        }
-                    }
-                }
+                self.presentViewController(alert, animated: true, completion: nil)
             }
         }
     }
