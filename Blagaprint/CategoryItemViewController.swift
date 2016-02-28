@@ -789,6 +789,13 @@ class CategoryItemViewController: UIViewController {
         if didAddItemToBag {
             goToShoppingCart()
         } else {
+            
+            // DataService must be reachable for adding item to bag.
+            guard dataService.reachability.isReachable() == true else {
+                presentAlertWithTitle(NSLocalizedString("Offline", comment: "DataService is not reachable alert title"), message: NSLocalizedString("Server is not reachable. Please, check your internet connection and try again.", comment: "DataService is not reachable alert message"))
+                return
+            }
+            
             // Adding item to the user bag.
             
             SVProgressHUD.showWithStatus(NSLocalizedString("Adding...", comment: ""))
