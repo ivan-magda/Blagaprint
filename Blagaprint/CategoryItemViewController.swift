@@ -9,35 +9,34 @@
 import UIKit
 import SVProgressHUD
 
+//--------------------------------------
+// MARK: Types
+//--------------------------------------
+
+private enum SegueIdentifier: String {
+    case SelectDevice
+    case ColorPicking
+    case TextEditing
+    case PhotoLibrary
+    case PickType
+    case EmbedItemSizeCollectionViewController
+}
+
+/// Use this enum for tracking selected mode of manage text alert
+/// controller.
+private enum ManageTextSelectedMode: Int {
+    case Letters
+    case Numbers
+    case Region
+}
+
+/// Picked image sizes for filling in the item object.
+private struct PickedImageSize {
+    static let Cup = CGSize(width: 197.0, height: 225.0)
+    static let Plate = CGSize(width: 210.0, height: 210.0)
+}
+
 class CategoryItemViewController: UIViewController {
-    
-    //--------------------------------------
-    // MARK: - Types
-    //--------------------------------------
-    
-    private enum SegueIdentifier: String {
-        case SelectDevice
-        case ColorPicking
-        case TextEditing
-        case PhotoLibrary
-        case PickType
-        case EmbedItemSizeCollectionViewController
-    }
-    
-    /// Use this enum for tracking selected mode of manage text alert
-    /// controller.
-    private enum ManageTextSelectedMode: Int {
-        case Letters
-        case Numbers
-        case Region
-    }
-    
-    /// Picked image sizes for filling in the item object.
-    private struct PickedImageSize {
-        static let Cup = CGSize(width: 197.0, height: 225.0)
-        static let Plate = CGSize(width: 210.0, height: 210.0)
-    }
-    
     
     //--------------------------------------
     // MARK: - Properties -
@@ -202,13 +201,12 @@ class CategoryItemViewController: UIViewController {
             let colorPickingVC = navigationController.topViewController as! SelectBackgroundCollectionViewController!
             colorPickingVC.selectedColor = pickedColor
             
-            weak var weakSelf = self
-            colorPickingVC.didSelectColorCompletionHandler = { color in
-                weakSelf?.pickedColor = color
-                weakSelf?.pickedColorView.backgroundColor = color
-                weakSelf?.pickedColorViewUpdateBorderLayer()
+            colorPickingVC.didSelectColorCompletionHandler = { [weak self] color in
+                self?.pickedColor = color
+                self?.pickedColorView.backgroundColor = color
+                self?.pickedColorViewUpdateBorderLayer()
                 
-                weakSelf?.reloadData()
+                self?.reloadData()
             }
             
             // Pick type.
@@ -226,7 +224,7 @@ class CategoryItemViewController: UIViewController {
             let textEditingViewController = navigationController.topViewController as! TextEditingViewController
             
             // Check for sended attributes and apply if necessary.
-            if let attributes = self.textAttributes {
+            if let attributes = textAttributes {
                 for (key, value) in attributes {
                     switch key {
                     case .KeyboardType:
@@ -237,23 +235,21 @@ class CategoryItemViewController: UIViewController {
                 }
             }
             
-            weak var weakSelf = self
-            
             // Completion handler block.
-            textEditingViewController.didDoneOnTextCompletionHandler = { text in
+            textEditingViewController.didDoneOnTextCompletionHandler = { [weak self] text in
                 // Detect what user has changed.
-                if let selectedMode = weakSelf?.selectedTextEditingMode {
+                if let selectedMode = self?.selectedTextEditingMode {
                     switch selectedMode {
                     case .Letters:
-                        weakSelf?.letters = text
+                        self?.letters = text
                     case .Numbers:
-                        weakSelf?.numbers = text
+                        self?.numbers = text
                     case .Region:
-                        weakSelf?.region = text
+                        self?.region = text
                     }
                 }
                 
-                weakSelf?.reloadData()
+                self?.reloadData()
             }
             
             // Embed ItemSizeCollectionViewController.
@@ -275,23 +271,20 @@ class CategoryItemViewController: UIViewController {
                 if finished {
                     UIView.animateWithDuration(0.25) {
                         view.backgroundColor = UIColor.whiteColor()
-                        
-                        if let callback = callback {
-                            callback()
-                        }
+                        callback?()
                     }
                 }
         }
     }
     
     private func goToShoppingCart() {
-        if let tabBarController = self.tabBarController {
+        if let tabBarController = tabBarController {
             tabBarController.selectedIndex = TabItemIndex.ShoppingBagViewController.rawValue
         }
     }
     
     private func getCategoryItemType() -> FCategoryItem.CategoryItemType? {
-        if let categoryItems = self.categoryItems where categoryItems.count > 0 {
+        if let categoryItems = categoryItems where categoryItems.count > 0 {
             return categoryItems[pickedTypeIndex].type!
         }
         
@@ -301,11 +294,11 @@ class CategoryItemViewController: UIViewController {
     private func getItemSizes() -> [String]? {
         var sizes: [String]?
         
-        guard let items = self.categoryItems where items.count > 0 else {
+        guard let items = categoryItems where items.count > 0 else {
             return nil
         }
         
-        guard self.pickedTypeIndex < items.count else {
+        guard pickedTypeIndex < items.count else {
             return nil
         }
         
@@ -323,9 +316,9 @@ class CategoryItemViewController: UIViewController {
     //--------------------------------------
     
     private func setup() {
-        self.title = self.category.titleName
+        title = category.titleName
         
-        (self.collectionView as UIScrollView).delegate = self
+        (collectionView as UIScrollView).delegate = self
         
         // Working with data.
         loadCategoryItems()
@@ -338,58 +331,56 @@ class CategoryItemViewController: UIViewController {
         
         addGestureRecognizers()
         
-        self.pickTypeViewDetailLabel.text = nil
+        pickTypeViewDetailLabel.text = nil
         
         // Hide picker view.
-        self.placeholderViewOfPickerView.alpha = 0.0
-        self.placeholderViewOfPickerViewHeightConstraint.constant = 0.0
+        placeholderViewOfPickerView.alpha = 0.0
+        placeholderViewOfPickerViewHeightConstraint.constant = 0.0
         
         updateItemCountLabel()
     }
     
     private func addGestureRecognizers() {
         let pickImageTapGestureRecognizer = UITapGestureRecognizer(target: self, action: Selector("moreActionsDidPressed"))
-        self.moreActionsView.addGestureRecognizer(pickImageTapGestureRecognizer)
+        moreActionsView.addGestureRecognizer(pickImageTapGestureRecognizer)
         
         let pickColorTapGestureRecognizer = UITapGestureRecognizer(target: self, action: Selector("pickColorDidPressed"))
-        self.pickColorView.addGestureRecognizer(pickColorTapGestureRecognizer)
+        pickColorView.addGestureRecognizer(pickColorTapGestureRecognizer)
         
         let pickTypeTapGestureRecognizer = UITapGestureRecognizer(target: self, action: Selector("pickTypeDidPressed"))
-        self.pickTypeView.addGestureRecognizer(pickTypeTapGestureRecognizer)
+        pickTypeView.addGestureRecognizer(pickTypeTapGestureRecognizer)
         
         let pickCountTypeGestureRecognizer = UITapGestureRecognizer(target: self, action: Selector("pickCountDidPressed"))
-        self.pickCountView.addGestureRecognizer(pickCountTypeGestureRecognizer)
+        pickCountView.addGestureRecognizer(pickCountTypeGestureRecognizer)
     }
     
     private func setupImagePickerController() {
-        weak var weakSelf = self
-        
-        self.imagePickerController = BLImagePickerController(rootViewController: self) { pickedImage in
-            weakSelf?.pickedImage = pickedImage
-            weakSelf?.reloadData()
+        imagePickerController = BLImagePickerController(rootViewController: self) { [weak self] pickedImage in
+            self?.pickedImage = pickedImage
+            self?.reloadData()
         }
     }
     
     private func setupMoreActionsLabelText() {
         if let type = getCategoryItemType() where type == FCategoryItem.CategoryItemType.stateNumberKeyRing {
-            self.moreActionsLabel.text = NSLocalizedString("Text", comment: "")
+            moreActionsLabel.text = NSLocalizedString("Text", comment: "")
         } else {
-            self.moreActionsLabel.text = NSLocalizedString("Image", comment: "")
+            moreActionsLabel.text = NSLocalizedString("Image", comment: "")
         }
     }
     
     private func setupAddToBagButton() {
-        self.addToBagButton.layer.insertSublayer(AppAppearance.horizontalGreenGradientLayerForRect(self.addToBagButton.bounds), atIndex: 0)
+        addToBagButton.layer.insertSublayer(AppAppearance.horizontalGreenGradientLayerForRect(addToBagButton.bounds), atIndex: 0)
         
-        self.addToBagButton.layer.shadowColor = UIColor.blackColor().colorWithAlphaComponent(0.9).CGColor
-        self.addToBagButton.layer.shadowOpacity = 1.0
-        self.addToBagButton.layer.shadowOffset = CGSizeZero
-        self.addToBagButton.layer.shadowRadius = 3.0
+        addToBagButton.layer.shadowColor = UIColor.blackColor().colorWithAlphaComponent(0.9).CGColor
+        addToBagButton.layer.shadowOpacity = 1.0
+        addToBagButton.layer.shadowOffset = CGSize.zero
+        addToBagButton.layer.shadowRadius = 3.0
     }
     
     private func updateAddToBagButtonTitle() {
         func setBagActionButtonTitle(title: String) {
-            self.addToBagButton?.setTitle(title, forState: .Normal)
+            addToBagButton?.setTitle(title, forState: .Normal)
         }
         
         if didAddItemToBag {
@@ -400,28 +391,28 @@ class CategoryItemViewController: UIViewController {
     }
     
     private func setupPickedColorView() {
-        self.pickedColorView.backgroundColor = self.pickedColor
-        self.pickedColorView.layer.cornerRadius = CGRectGetWidth(self.pickedColorView.bounds) / 2.0
+        pickedColorView.backgroundColor = pickedColor
+        pickedColorView.layer.cornerRadius = pickedColorView.bounds.width / 2.0
         
         pickedColorViewUpdateBorderLayer()
     }
     
     private func pickedColorViewUpdateBorderLayer() {
-        self.pickedColorView.layer.borderWidth = 0.0
+        pickedColorView.layer.borderWidth = 0.0
         var borderColor: UIColor?
         
         if pickedColor == UIColor.whiteColor() {
-            borderColor = UIColor.lightGrayColor()
+            borderColor = .lightGrayColor()
         }
         
         if let borderColor = borderColor {
-            self.pickedColorView.layer.borderWidth = 1.0
-            self.pickedColorView.layer.borderColor = borderColor.CGColor
+            pickedColorView.layer.borderWidth = 1.0
+            pickedColorView.layer.borderColor = borderColor.CGColor
         }
     }
     
     private func setupScrollView() {
-        guard let _ = self.navigationController else {
+        guard let _ = navigationController else {
             return
         }
         
@@ -430,28 +421,28 @@ class CategoryItemViewController: UIViewController {
         // Setting up the dimentions.
         
         // Collection view.
-        let imageHeight = (self.images.count > 0 ? images[0].size.height : collectionViewMinHeightValue)
+        let imageHeight = (images.count > 0 ? images[0].size.height : collectionViewMinHeightValue)
         if imageHeight >= collectionViewMinHeightValue && imageHeight <= collectionViewMaximumHeightValue {
-            self.collectionViewHeightConstraint.constant = imageHeight
+            collectionViewHeightConstraint.constant = imageHeight
         } else if imageHeight > collectionViewMaximumHeightValue {
-            self.collectionViewHeightConstraint.constant = collectionViewMaximumHeightValue
+            collectionViewHeightConstraint.constant = collectionViewMaximumHeightValue
         } else if imageHeight < collectionViewMinHeightValue {
-            self.collectionViewHeightConstraint.constant = collectionViewMinHeightValue
+            collectionViewHeightConstraint.constant = collectionViewMinHeightValue
         }
         
         // Set height of container view.
-        if let _ = self.getItemSizes() {
-            self.itemSizeContainerViewHeightConstraint.constant = actionViewHeightValue
+        if let _ = getItemSizes() {
+            itemSizeContainerViewHeightConstraint.constant = actionViewHeightValue
         } else {
-            self.itemSizeContainerViewHeightConstraint.constant = 0.0
+            itemSizeContainerViewHeightConstraint.constant = 0.0
         }
         
         // Sets the placeholder view height constraint with determinated value.
         switch categoryType {
         case .cup:
-            self.placeholderViewHeightConstraint.constant = placeholderViewDefaultHeightValue
+            placeholderViewHeightConstraint.constant = placeholderViewDefaultHeightValue
         default:
-            self.placeholderViewHeightConstraint.constant = collectionViewHeightConstraint.constant + itemSizeContainerViewHeightConstraint.constant + pageControl.bounds.height
+            placeholderViewHeightConstraint.constant = collectionViewHeightConstraint.constant + itemSizeContainerViewHeightConstraint.constant + pageControl.bounds.height
         }
         
         setupPickTypeViewWithIfNeedLayout(false)
@@ -459,13 +450,13 @@ class CategoryItemViewController: UIViewController {
         
         switch categoryType {
         case .clothes:
-            self.pickColorViewHeightConstraint.constant = actionViewHeightValue
-            self.pickColorView.alpha = 1.0
+            pickColorViewHeightConstraint.constant = actionViewHeightValue
+            pickColorView.alpha = 1.0
         default:
-            self.moreActionsViewHeightConstraint.constant = actionViewHeightValue
+            moreActionsViewHeightConstraint.constant = actionViewHeightValue
             
-            self.pickColorViewHeightConstraint.constant = 0.0
-            self.pickColorView.alpha = 0.0
+            pickColorViewHeightConstraint.constant = 0.0
+            pickColorView.alpha = 0.0
         }
         
         setupBottomSpaceToScrollView()
@@ -476,15 +467,15 @@ class CategoryItemViewController: UIViewController {
     }
     
     private func setupBottomSpaceToScrollView() {
-        let frameHeight = self.view.bounds.height
-        let navBarHeight = self.navigationController!.navigationBar.bounds.height
+        let frameHeight = view.bounds.height
+        let navBarHeight = navigationController!.navigationBar.bounds.height
         let statusBarHeight = UIApplication.sharedApplication().statusBarFrame.height
-        let placeholderViewHeight = self.placeholderViewHeightConstraint.constant
-        let pickTypeViewHeight = self.pickTypeViewHeightConstraint.constant
-        var pickImageViewHeight = self.moreActionsViewHeightConstraint.constant
+        let placeholderViewHeight = placeholderViewHeightConstraint.constant
+        let pickTypeViewHeight = pickTypeViewHeightConstraint.constant
+        var pickImageViewHeight = moreActionsViewHeightConstraint.constant
         
         // If we hide color picking view, then we need additional space.
-        if self.pickColorViewHeightConstraint.constant == 0 {
+        if pickColorViewHeightConstraint.constant == 0 {
             pickImageViewHeight = 0.0
         }
         
@@ -495,21 +486,21 @@ class CategoryItemViewController: UIViewController {
             space = minimalSpaceValue
         }
         
-        self.placeholderViewOfPickerViewBottomSpace.constant = space
+        placeholderViewOfPickerViewBottomSpace.constant = space
     }
     
     private func setupPickTypeViewWithIfNeedLayout(needed: Bool) {
         func hidePickTypeView() {
-            self.pickTypeViewHeightConstraint.constant = 0.0
-            self.pickTypeView.alpha = 0.0
-            self.pickTypeViewDetailLabel.text = nil
+            pickTypeViewHeightConstraint.constant = 0.0
+            pickTypeView.alpha = 0.0
+            pickTypeViewDetailLabel.text = nil
         }
         
-        if let categoryItems = self.categoryItems {
+        if let categoryItems = categoryItems {
             func setDefaultStateOfPickTypeView() {
-                self.pickTypeViewHeightConstraint.constant = actionViewHeightValue
-                self.pickTypeView.alpha = 1.0
-                self.pickTypeViewDetailLabel.text = categoryItems[pickedTypeIndex].name
+                pickTypeViewHeightConstraint.constant = actionViewHeightValue
+                pickTypeView.alpha = 1.0
+                pickTypeViewDetailLabel.text = categoryItems[pickedTypeIndex].name
             }
             
             // Hide pick type view.
@@ -517,7 +508,7 @@ class CategoryItemViewController: UIViewController {
                 hidePickTypeView()
             } else {
                 setDefaultStateOfPickTypeView()
-                self.pickTypeViewDetailDisclosureImageView.image = UIImage(named: "MoreThan.png")
+                pickTypeViewDetailDisclosureImageView.image = UIImage(named: "MoreThan.png")
             }
         } else {
             hidePickTypeView()
@@ -539,30 +530,30 @@ class CategoryItemViewController: UIViewController {
         
         collectionView.reloadData()
         
-        if let sizes = self.getItemSizes() {
-            self.itemSizeCollectionViewController?.sizes = sizes
-            self.itemSizeCollectionViewController?.collectionView?.reloadData()
+        if let sizes = getItemSizes() {
+            itemSizeCollectionViewController?.sizes = sizes
+            itemSizeCollectionViewController?.collectionView?.reloadData()
         }
         
-        self.pageControl.numberOfPages = images.count
+        pageControl.numberOfPages = images.count
     }
     
     private func reloadImages(pickedImage pickedImage: UIImage?) {
-        self.images.removeAll(keepCapacity: true)
+        images.removeAll(keepCapacity: true)
         
         // Get category.
         let categoryType = category.type!
         
         // Get catgeory item.
         var categoryItem: FCategoryItem? = nil
-        if let categoryItems = self.categoryItems where categoryItems.count > 0 {
+        if let categoryItems = categoryItems where categoryItems.count > 0 {
             categoryItem = categoryItems[pickedTypeIndex]
         }
         
         // Set image for state number key ring and immediatly return from here.
         if let type = getCategoryItemType() where type == FCategoryItem.CategoryItemType.stateNumberKeyRing {
             let keyRing = KeyRing(selfType: .StateNumber, categoryItemType: .stateNumberKeyRing)
-            self.images = [keyRing.stateNumberImage(characters: self.letters, numbers: self.numbers, region: self.region)]
+            images = [keyRing.stateNumberImage(characters: letters, numbers: numbers, region: region)]
             
             return
         }
@@ -571,15 +562,15 @@ class CategoryItemViewController: UIViewController {
             switch categoryType {
                 
             case .cup:
-                self.images = Cup.getCupImagesWithPickedImage(pickedImage)
+                images = Cup.getCupImagesWithPickedImage(pickedImage)
                 
             case .plate:
                 let scaledImage = pickedImage.scaledImageToSize(PickedImageSize.Plate)
-                self.images = [Plate.imageOfPlateCanvas(image: scaledImage, isPlateImageVisible: true)]
+                images = [Plate.imageOfPlateCanvas(image: scaledImage, isPlateImageVisible: true)]
                 
             case .photoFrame:
                 let frames = PhotoFrame.seedInitialFrames()
-                self.images = frames.map() { $0.frameImageWithPickedImage(pickedImage) }
+                images = frames.map() { $0.frameImageWithPickedImage(pickedImage) }
                 
             case .keyRing:
                 var keyRings: [KeyRing]!
@@ -590,10 +581,10 @@ class CategoryItemViewController: UIViewController {
                     keyRings = KeyRing.seedInitialKeyRings()
                 }
                 
-                self.images = keyRings.map() { $0.imageOfKeyRingWithPickedImage(pickedImage) }
+                images = keyRings.map() { $0.imageOfKeyRingWithPickedImage(pickedImage) }
                 
             case .clothes:
-                self.images = TShirt(image: pickedImage, isImageVisible: true, imageLocation: self.imageLocation, color: pickedColor).tShirtImages()
+                images = TShirt(image: pickedImage, isImageVisible: true, imageLocation: imageLocation, color: pickedColor).tShirtImages()
                 
             case .copyServices:
                 var copyServices: [CopyServices]!
@@ -604,7 +595,7 @@ class CategoryItemViewController: UIViewController {
                     copyServices = CopyServices.seedInitialServices()
                 }
                 
-                self.images = copyServices.map() { $0.imageWithPickedImage(pickedImage) }
+                images = copyServices.map() { $0.imageWithPickedImage(pickedImage) }
                 
             default:
                 break
@@ -620,7 +611,7 @@ class CategoryItemViewController: UIViewController {
                 
             case .photoFrame:
                 let frames = PhotoFrame.seedInitialFrames()
-                self.images = frames.map() { $0.image }
+                images = frames.map() { $0.image }
                 
             case .keyRing:
                 var keyRings: [KeyRing]!
@@ -631,10 +622,10 @@ class CategoryItemViewController: UIViewController {
                     keyRings = KeyRing.seedInitialKeyRings()
                 }
                 
-                self.images = keyRings.map() { $0.image }
+                images = keyRings.map() { $0.image }
                 
             case .clothes:
-                self.images = TShirt(isImageVisible: false, imageLocation: self.imageLocation, color: pickedColor).tShirtImages()
+                images = TShirt(isImageVisible: false, imageLocation: self.imageLocation, color: pickedColor).tShirtImages()
                 
             case .copyServices:
                 var copyServices: [CopyServices]!
@@ -645,7 +636,7 @@ class CategoryItemViewController: UIViewController {
                     copyServices = CopyServices.seedInitialServices()
                 }
                 
-                self.images = copyServices.map() { $0.image }
+                images = copyServices.map() { $0.image }
                 
             default:
                 break
@@ -693,18 +684,18 @@ class CategoryItemViewController: UIViewController {
         item[FBagItem.Keys.createdAt.rawValue] = NSDate().getStringValue()
         
         // Set selected category item if it exist.
-        if let categoryItems = self.categoryItems where categoryItems.count > 0 {
+        if let categoryItems = categoryItems where categoryItems.count > 0 {
             item[FBagItem.Keys.categoryItem.rawValue] = categoryItems[pickedTypeIndex].key
         }
         
         // Set user picked image from media/camera.
-        if let image = self.pickedImage {
+        if let image = pickedImage {
             if let base64ImageString = image.base64EncodedString() {
                 item[FBagItem.Keys.image.rawValue] = base64ImageString
             }
         }
         
-        let pickedItemIndex = self.pageControl.currentPage
+        let pickedItemIndex = pageControl.currentPage
         
         // Set thumbnail image of item.
         let size = images[pickedItemIndex].size
@@ -714,24 +705,24 @@ class CategoryItemViewController: UIViewController {
         }
         
         // Set picked color.
-        if self.pickColorViewHeightConstraint.constant != 0.0 {
-            item[FBagItem.Keys.fillColor.rawValue] = FBagItem.colorToString(self.pickedColor)
+        if pickColorViewHeightConstraint.constant != 0.0 {
+            item[FBagItem.Keys.fillColor.rawValue] = FBagItem.colorToString(pickedColor)
         }
         
         // Set item size.
-        if let selectedItemSizeIndex = self.itemSizeCollectionViewController?.selectedSizeIndexPath?.row {
+        if let selectedItemSizeIndex = itemSizeCollectionViewController?.selectedSizeIndexPath?.row {
             if let sizes = getItemSizes() {
                 item[FBagItem.Keys.itemSize.rawValue] = sizes[selectedItemSizeIndex]
             }
         }
         
-        item[FBagItem.Keys.numberOfItems.rawValue] = self.numberOfItems
+        item[FBagItem.Keys.numberOfItems.rawValue] = numberOfItems
         
         // FIXME: fix with the price.
         let price = 500.0
         item[FBagItem.Keys.price.rawValue] = price
         
-        item[FBagItem.Keys.amount.rawValue] = price * Double(self.numberOfItems)
+        item[FBagItem.Keys.amount.rawValue] = price * Double(numberOfItems)
         
         print("BagItem dictionary created.")
         
@@ -790,7 +781,7 @@ class CategoryItemViewController: UIViewController {
             }))
             
             presentViewController(alert, animated: true, completion: nil)
-
+            
             return
         }
         
@@ -830,15 +821,15 @@ class CategoryItemViewController: UIViewController {
                     DataService.hideNetworkIndicator()
                     
                     self?.updateAddToBagButtonTitle()
-            })
+                })
         }
     }
     
     @IBAction func pageControlDidChangeValue(sender: UIPageControl) {
-        let pageWidth = self.collectionView.bounds.width
+        let pageWidth = collectionView.bounds.width
         let scrollTo = CGPoint(x: pageWidth * CGFloat(sender.currentPage), y: 0)
         
-        self.collectionView.setContentOffset(scrollTo, animated: true)
+        collectionView.setContentOffset(scrollTo, animated: true)
     }
     
     //--------------------------------------
@@ -849,7 +840,7 @@ class CategoryItemViewController: UIViewController {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .Alert)
         alert.addAction(UIAlertAction(title: "Ok", style: .Cancel, handler: nil))
         
-        self.presentViewController(alert, animated: true, completion: nil)
+        presentViewController(alert, animated: true, completion: nil)
     }
     
     private func presentImagePickingAlertController() {
@@ -877,7 +868,7 @@ class CategoryItemViewController: UIViewController {
         imagePickingAlertController.addAction(shoot)
         
         // Add additional image location action.
-        if self.category.type == FCategory.CategoryType.clothes {
+        if category.type == FCategory.CategoryType.clothes {
             
             // Present next action sheet with supported locations.
             
@@ -917,7 +908,7 @@ class CategoryItemViewController: UIViewController {
         }
         imagePickingAlertController.addAction(clearAction)
         
-        self.presentViewController(imagePickingAlertController, animated: true, completion: nil)
+        presentViewController(imagePickingAlertController, animated: true, completion: nil)
     }
     
     private func presentManageTextAlertController() {
@@ -955,7 +946,7 @@ class CategoryItemViewController: UIViewController {
         }
         manageTextAlertController.addAction(regionAction)
         
-        self.presentViewController(manageTextAlertController, animated: true, completion: nil)
+        presentViewController(manageTextAlertController, animated: true, completion: nil)
     }
     
 }
@@ -965,23 +956,25 @@ class CategoryItemViewController: UIViewController {
 //--------------------------------------
 
 extension CategoryItemViewController: UIScrollViewDelegate {
+    
     func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
         // Calculate current page.
         if !scrollView.isKindOfClass(UICollectionView) {
             return
         } else {
-            let pageWidth: CGFloat = CGRectGetWidth(self.collectionView.bounds)
-            let currentPage = self.collectionView.contentOffset.x / pageWidth
+            let pageWidth = collectionView.bounds.width
+            let currentPage = collectionView.contentOffset.x / pageWidth
             
             //let needToReloadData = pageControl.currentPage != Int(currentPage)
             
             if (0.0 != fmodf(Float(currentPage), 1.0)) {
-                self.pageControl.currentPage = Int(currentPage) + 1
+                pageControl.currentPage = Int(currentPage) + 1
             } else {
-                self.pageControl.currentPage = Int(currentPage)
+                pageControl.currentPage = Int(currentPage)
             }
         }
     }
+    
 }
 
 //--------------------------------------
@@ -1024,11 +1017,12 @@ extension CategoryItemViewController: UICollectionViewDataSource, UICollectionVi
     //--------------------------------------------
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-        let width = CGRectGetWidth(collectionView.bounds)
-        let height = CGRectGetHeight(collectionView.bounds)
+        let width = collectionView.bounds.width
+        let height = collectionView.bounds.height
         
-        return CGSizeMake(width, height)
+        return CGSize(width: width, height: height)
     }
+    
 }
 
 //--------------------------------------------------------
@@ -1036,8 +1030,9 @@ extension CategoryItemViewController: UICollectionViewDataSource, UICollectionVi
 //--------------------------------------------------------
 
 extension CategoryItemViewController: PickTypeTableViewControllerDataSourceProtocol {
+    
     func numberOfSections() -> Int {
-        guard let items = self.categoryItems where items.count > 0 else {
+        guard let items = categoryItems where items.count > 0 else {
             return 0
         }
         
@@ -1045,11 +1040,11 @@ extension CategoryItemViewController: PickTypeTableViewControllerDataSourceProto
     }
     
     func numberOfRowsInSection(section: Int) -> Int {
-        return self.categoryItems!.count
+        return categoryItems!.count
     }
     
     func itemForIndexPath(indexPath: NSIndexPath) -> String {
-        return self.categoryItems![indexPath.row].name
+        return categoryItems![indexPath.row].name
     }
     
 }
@@ -1059,18 +1054,20 @@ extension CategoryItemViewController: PickTypeTableViewControllerDataSourceProto
 //------------------------------------------------------
 
 extension CategoryItemViewController: PickTypeTableViewControllerDelegateProtocol {
+    
     func pickTypeTableViewController(controller: PickTypeTableViewController, didSelectItem item: String, atIndexPath indexPath: NSIndexPath) {
         print("Did select item: \(item) at section: \(indexPath.section) and row: \(indexPath.row)")
         
-        self.pickedTypeIndex = indexPath.row
+        pickedTypeIndex = indexPath.row
         
         reloadImages(pickedImage: pickedImage)
-        self.pageControl.numberOfPages = images.count
-        self.collectionView.reloadData()
+        pageControl.numberOfPages = images.count
+        collectionView.reloadData()
         
         setupScrollView()
         reloadData()
     }
+    
 }
 
 //---------------------------------
@@ -1084,13 +1081,13 @@ extension CategoryItemViewController: UIPickerViewDataSource, UIPickerViewDelega
     //---------------------------------
     
     private func showPickerView() {
-        self.pickCountViewDetailLabel.textColor = self.view.tintColor
+        pickCountViewDetailLabel.textColor = view.tintColor
         
         // Select row from previous picked item.
-        self.pickerView.selectRow(self.numberOfItems - 1, inComponent: 0, animated: false)
-        self.pickerViewVisible = true
+        pickerView.selectRow(numberOfItems - 1, inComponent: 0, animated: false)
+        pickerViewVisible = true
         
-        self.scrollView.layoutIfNeeded()
+        scrollView.layoutIfNeeded()
         
         // Show picker view.
         UIView.animateWithDuration(0.25, animations: {
@@ -1099,19 +1096,19 @@ extension CategoryItemViewController: UIPickerViewDataSource, UIPickerViewDelega
             }, completion: { finished in
         })
         
-        self.scrollView.layoutIfNeeded()
+        scrollView.layoutIfNeeded()
         
         // Scroll to the bottom.
-        let bottomOffset = CGPoint(x: 0.0, y: self.scrollView.contentSize.height - self.scrollView.bounds.height)
-        self.scrollView.setContentOffset(bottomOffset, animated: true)
+        let bottomOffset = CGPoint(x: 0.0, y: scrollView.contentSize.height - scrollView.bounds.height)
+        scrollView.setContentOffset(bottomOffset, animated: true)
     }
     
     private func hidePickerView() {
-        self.pickCountViewDetailLabel.textColor = .blackColor()
+        pickCountViewDetailLabel.textColor = .blackColor()
         
-        self.pickerViewVisible = false
+        pickerViewVisible = false
         
-        self.scrollView.layoutIfNeeded()
+        scrollView.layoutIfNeeded()
         
         // Hide picker view.
         UIView.animateWithDuration(0.25, animations: {
@@ -1120,11 +1117,11 @@ extension CategoryItemViewController: UIPickerViewDataSource, UIPickerViewDelega
             }) { finished in
         }
         
-        self.scrollView.layoutIfNeeded()
+        scrollView.layoutIfNeeded()
     }
     
     private func updateItemCountLabel() {
-        self.pickCountViewDetailLabel.text =  "\(self.numberOfItems)"
+        pickCountViewDetailLabel.text =  "\(numberOfItems)"
     }
     
     //---------------------------------
@@ -1136,7 +1133,7 @@ extension CategoryItemViewController: UIPickerViewDataSource, UIPickerViewDelega
     }
     
     func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return 1000
+        return 10000
     }
     
     //---------------------------------
@@ -1148,7 +1145,7 @@ extension CategoryItemViewController: UIPickerViewDataSource, UIPickerViewDelega
     }
     
     func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        self.numberOfItems = row + 1
+        numberOfItems = row + 1
         
         updateItemCountLabel()
     }

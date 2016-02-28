@@ -13,7 +13,7 @@ public typealias DataServiceSuccessResultBlock = () -> Void
 public typealias DataServiceFailureResultBlock = (error: NSError?) -> Void
 public typealias DataServiceResultBlock = (succeeded: Bool, error: NSError?) -> Void
 
-internal final class DataService {
+public final class DataService {
     
     //--------------------------------------
     // MARK: - Properties -
@@ -60,6 +60,14 @@ internal final class DataService {
     var isUserLoggedIn: Bool {
         return (NSUserDefaults.standardUserDefaults().stringForKey(UserDefaultsKeys.userId) != nil) && (DataService.sharedInstance.currentUserReference.authData != nil)
     }
+
+    //--------------------------------------
+    // MARK: Reachability
+    //--------------------------------------
+    
+    lazy var reachability: DataServiceReachability = {
+        return DataServiceReachability(hostName: self.baseURL)
+    }()
     
     //--------------------------------------
     // MARK: Class Variables

@@ -20,7 +20,10 @@ enum TabItemIndex: Int {
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
+    
+    //--------------------------------------
     // MARK: - Properties
+    //--------------------------------------
     
     var window: UIWindow?
     
@@ -51,9 +54,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func applicationDidEnterBackground(application: UIApplication) {
+        dataService.reachability.removeObservers()
     }
     
     func applicationWillEnterForeground(application: UIApplication) {
+        dataService.reachability.addObservers()
     }
     
     func applicationDidBecomeActive(application: UIApplication) {
@@ -118,16 +123,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     private func configurateFirebase() {
         dataService = DataService.sharedInstance
+        dataService.reachability.monitorReachability()
         
         let tabBarController = window!.rootViewController as! UITabBarController
         
-        // To CategoryTableViewController
-        let categoryNavigationController = tabBarController.viewControllers![0] as! UINavigationController
+        // To CatalogViewController
+        let categoryNavigationController = tabBarController.viewControllers![TabItemIndex.CatalogViewController.rawValue] as! UINavigationController
         let categoryTableViewController = categoryNavigationController.topViewController as! CategoryTableViewController
         categoryTableViewController.dataService = dataService
         
         // To ShoppingBagViewController
-        let shoppingBagNavigationController = tabBarController.viewControllers![1] as! UINavigationController
+        let shoppingBagNavigationController = tabBarController.viewControllers![TabItemIndex.ShoppingBagViewController.rawValue] as! UINavigationController
         let shoppingBagViewController = shoppingBagNavigationController.topViewController as! ShoppingBagViewController
         shoppingBagViewController.dataService = dataService
         

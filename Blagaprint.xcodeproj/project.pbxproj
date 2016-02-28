@@ -94,6 +94,7 @@
 		753580291C772A5000E1CADB /* FBagItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 753580281C772A5000E1CADB /* FBagItem.swift */; };
 		7539D3FB1C7AD24A001B82F2 /* DataListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7539D3FA1C7AD24A001B82F2 /* DataListener.swift */; };
 		7539D3FD1C7AE078001B82F2 /* NSUserDefaults+UpdateUserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7539D3FC1C7AE078001B82F2 /* NSUserDefaults+UpdateUserInfo.swift */; };
+		753C7D501C83225D006DD9CF /* DataServiceReachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 753C7D4F1C83225D006DD9CF /* DataServiceReachability.swift */; };
 		753CD57A1BF3210500795F44 /* AppConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 753CD5791BF3210500795F44 /* AppConfiguration.swift */; };
 		753D4D651C059880002FC5E9 /* SH2_PhotoFrame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 753D4D641C059880002FC5E9 /* SH2_PhotoFrame.swift */; };
 		753D4D671C059AA5002FC5E9 /* sh2_placeholderImage.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 753D4D661C059AA5002FC5E9 /* sh2_placeholderImage.jpg */; };
@@ -312,6 +313,7 @@
 		753580281C772A5000E1CADB /* FBagItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FBagItem.swift; sourceTree = "<group>"; };
 		7539D3FA1C7AD24A001B82F2 /* DataListener.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataListener.swift; sourceTree = "<group>"; };
 		7539D3FC1C7AE078001B82F2 /* NSUserDefaults+UpdateUserInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSUserDefaults+UpdateUserInfo.swift"; sourceTree = "<group>"; };
+		753C7D4F1C83225D006DD9CF /* DataServiceReachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataServiceReachability.swift; sourceTree = "<group>"; };
 		753CD5791BF3210500795F44 /* AppConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppConfiguration.swift; sourceTree = "<group>"; };
 		753D4D641C059880002FC5E9 /* SH2_PhotoFrame.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SH2_PhotoFrame.swift; sourceTree = "<group>"; };
 		753D4D661C059AA5002FC5E9 /* sh2_placeholderImage.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = sh2_placeholderImage.jpg; sourceTree = "<group>"; };
@@ -1113,6 +1115,7 @@
 			children = (
 				754C457C1C70B2060062336C /* DataService.swift */,
 				7539D3FA1C7AD24A001B82F2 /* DataListener.swift */,
+				753C7D4F1C83225D006DD9CF /* DataServiceReachability.swift */,
 			);
 			name = Service;
 			sourceTree = "<group>";
@@ -1627,6 +1630,7 @@
 				758997531C3ABA1B00427033 /* BagItemTableViewCell.swift in Sources */,
 				0C8296C21BFC65D500B2B345 /* DescriptionTableViewCell.swift in Sources */,
 				75C21F4C1C7749A90006ECB7 /* FBag.swift in Sources */,
+				753C7D501C83225D006DD9CF /* DataServiceReachability.swift in Sources */,
 				752ED13C1C59F56F00BE0751 /* GlassOvalKeyRing.swift in Sources */,
 				75ED7A751C7B312900163EE1 /* String+Date.swift in Sources */,
 				7589398A1C16B54D0069655B /* CategoryItemViewController.swift in Sources */,
