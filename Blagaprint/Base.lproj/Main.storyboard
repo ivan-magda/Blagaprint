@@ -399,10 +399,10 @@
                                 </constraints>
                             </scrollView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="da6-wR-7Aj" userLabel="AddToBag">
-                                <rect key="frame" x="0.0" y="584" width="320" height="56"/>
+                                <rect key="frame" x="0.0" y="591" width="320" height="49"/>
                                 <color key="backgroundColor" red="0.29803921568627451" green="0.85098039215686272" blue="0.39215686274509803" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="56" id="ZW6-sI-Eow"/>
+                                    <constraint firstAttribute="height" constant="49" id="ZW6-sI-Eow"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="19"/>
                                 <state key="normal" title="Add to Bag">

@@ -70,7 +70,7 @@ class CaseConstructorTableViewController: UITableViewController {
     
     private var addToBagButton: UIButton?
     
-    private let addToBagButtonHeight: CGFloat = 56.0
+    private let addToBagButtonHeight: CGFloat = 49.0
     
     /// True if user successfully added item to bag.
     private var didAddItemToBag = false
