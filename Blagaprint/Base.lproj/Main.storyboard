@@ -1779,6 +1779,7 @@
                                     <outlet property="descriptionLabel" destination="INF-EP-iZ8" id="zbd-rG-d2C"/>
                                     <outlet property="priceLabel" destination="Qxd-BR-7sX" id="9KI-dC-ynE"/>
                                     <outlet property="thumbnailImage" destination="jKE-Tc-92V" id="V18-QW-6rg"/>
+                                    <segue destination="bNt-aM-HSw" kind="show" identifier="CategoryItem" id="7Tc-fp-Yvl"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -2048,8 +2049,9 @@
         <image name="backgroundImage.png" width="1024" height="645"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="xWx-3x-hsV"/>
         <segue reference="Ykt-7z-LTN"/>
+        <segue reference="7Tc-fp-Yvl"/>
+        <segue reference="xWx-3x-hsV"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.25490196079999999" green="0.56470588239999997" blue="0.85882352939999995" alpha="1" colorSpace="calibratedRGB"/>
 </document>

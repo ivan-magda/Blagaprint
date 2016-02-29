@@ -121,12 +121,22 @@ class CategoryItemViewController: UIViewController {
     /// Category of the presenting item.
     var category: FCategory!
     
+    /// BagItem that user want to edit.
+    var bagItemToEdit: FBagItem? {
+        didSet {
+            print("BagItem did set")
+            isInEditMode = true
+        }
+    }
+    
     /// Loaded category items of the parent category.
     private var categoryItems: [FCategoryItem]?
     
     //--------------------------------------
     // MARK: Model
     //--------------------------------------
+    
+    private var isInEditMode = false
     
     /// Image picker controller to let us take/pick photo.
     private var imagePickerController: BLImagePickerController?
@@ -147,7 +157,7 @@ class CategoryItemViewController: UIViewController {
     private var pickedTypeIndex = 0
     
     /// Where to place the image on t-shirt.
-    private var imageLocation = TShirt.TShirtImageLocations.Front
+    private var imageLocation = TShirt.TShirtImageLocation.Front
     
     /// Determine whether picker view visible or hidden
     private var pickerViewVisible = false
@@ -169,9 +179,9 @@ class CategoryItemViewController: UIViewController {
     // MARK: State Key Ring
     //--------------------------------------
     
-    private var letters: String?
-    private var numbers: String?
-    private var region: String?
+    private var letters = "МММ"
+    private var numbers = "000"
+    private var region = "28"
     
     //--------------------------------------
     // MARK: - View Life Cycle -
@@ -179,6 +189,9 @@ class CategoryItemViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        assert(dataService != nil, "DataService must exist.")
+        assert(category != nil, "Category object must exist.")
         
         setup()
     }
@@ -236,20 +249,20 @@ class CategoryItemViewController: UIViewController {
             }
             
             // Completion handler block.
-            textEditingViewController.didDoneOnTextCompletionHandler = { [weak self] text in
+            textEditingViewController.didDoneOnTextCompletionHandler = { text in
                 // Detect what user has changed.
-                if let selectedMode = self?.selectedTextEditingMode {
+                if let selectedMode = self.selectedTextEditingMode {
                     switch selectedMode {
                     case .Letters:
-                        self?.letters = text
+                        self.letters = text
                     case .Numbers:
-                        self?.numbers = text
+                        self.numbers = text
                     case .Region:
-                        self?.region = text
+                        self.region = text
                     }
                 }
                 
-                self?.reloadData()
+                self.reloadData()
             }
             
             // Embed ItemSizeCollectionViewController.
@@ -320,6 +333,17 @@ class CategoryItemViewController: UIViewController {
         
         (collectionView as UIScrollView).delegate = self
         
+        // In edit mode restore some values.
+        // Other items restored in loadCategoryItems.
+        if isInEditMode {
+            pickedImage = bagItemToEdit!.image
+            numberOfItems = bagItemToEdit!.numberOfItems
+            
+            if let fillColor = bagItemToEdit?.fillColor {
+                pickedColor = FBagItem.colorFromString(fillColor)
+            }
+        }
+        
         // Working with data.
         loadCategoryItems()
         reloadData()
@@ -370,6 +394,11 @@ class CategoryItemViewController: UIViewController {
     }
     
     private func setupAddToBagButton() {
+        // Change title if we already have bag item and want to edit it.
+        if isInEditMode {
+            addToBagButton.setTitle(NSLocalizedString("Update", comment: "AddToBagButton title name"), forState: .Normal)
+        }
+        
         addToBagButton.layer.insertSublayer(AppAppearance.horizontalGreenGradientLayerForRect(addToBagButton.bounds), atIndex: 0)
         
         addToBagButton.layer.shadowColor = UIColor.blackColor().colorWithAlphaComponent(0.9).CGColor
@@ -379,6 +408,10 @@ class CategoryItemViewController: UIViewController {
     }
     
     private func updateAddToBagButtonTitle() {
+        guard isInEditMode == false else {
+            return
+        }
+        
         func setBagActionButtonTitle(title: String) {
             addToBagButton?.setTitle(title, forState: .Normal)
         }
@@ -653,9 +686,39 @@ class CategoryItemViewController: UIViewController {
             if let items = objects {
                 self?.categoryItems = items
                 
+                // Select category item from list of items with equal key.
+                if self!.isInEditMode {
+                    for (idx, item) in items.enumerate() {
+                        if item.key == self!.bagItemToEdit!.categoryItem {
+                            self?.pickedTypeIndex = idx
+                            
+                            // Set text for key ring.
+                            if item.type == .stateNumberKeyRing {
+                                if let components = self?.bagItemToEdit?.text?.componentsSeparatedByString(".") {
+                                    assert(components.count == 3)
+                                    
+                                    self?.letters = components[0]
+                                    self?.numbers = components[1]
+                                    self?.region = components[2]
+                                }
+                            }
+                        }
+                    }
+                }
+                
                 if let itemSizeController = self?.itemSizeCollectionViewController {
                     if let sizes = self!.getItemSizes() {
                         itemSizeController.sizes = sizes
+                        
+                        // Select picked size by the user.
+                        if self!.isInEditMode {
+                            for (idx, size) in sizes.enumerate() {
+                                if size == self!.bagItemToEdit!.itemSize {
+                                    itemSizeController.selectedSizeIndexPath = NSIndexPath(forRow: idx, inSection: 0)
+                                }
+                            }
+                        }
+                        
                         itemSizeController.collectionView?.reloadData()
                     }
                 }
@@ -675,23 +738,23 @@ class CategoryItemViewController: UIViewController {
         }
         
         // Set the user id.
-        item[FBagItem.Keys.userId.rawValue] = userId
+        item[FBagItem.Key.UserId.rawValue] = userId
         
         // Set parent category id.
-        item[FBagItem.Keys.category.rawValue] = category.key
+        item[FBagItem.Key.Category.rawValue] = category.key
         
         // Set the current date.
-        item[FBagItem.Keys.createdAt.rawValue] = NSDate().getStringValue()
+        item[FBagItem.Key.CreatedAt.rawValue] = NSDate().getStringValue()
         
         // Set selected category item if it exist.
         if let categoryItems = categoryItems where categoryItems.count > 0 {
-            item[FBagItem.Keys.categoryItem.rawValue] = categoryItems[pickedTypeIndex].key
+            item[FBagItem.Key.CategoryItem.rawValue] = categoryItems[pickedTypeIndex].key
         }
         
         // Set user picked image from media/camera.
         if let image = pickedImage {
             if let base64ImageString = image.base64EncodedString() {
-                item[FBagItem.Keys.image.rawValue] = base64ImageString
+                item[FBagItem.Key.Image.rawValue] = base64ImageString
             }
         }
         
@@ -701,28 +764,40 @@ class CategoryItemViewController: UIViewController {
         let size = images[pickedItemIndex].size
         let thumbnailData = UIImagePNGRepresentation(images[pickedItemIndex].resizedImage(size, interpolationQuality: .Low))
         if let thumbnailData = thumbnailData {
-            item[FBagItem.Keys.thumbnail.rawValue] = thumbnailData.base64EncodedStringWithOptions([])
+            item[FBagItem.Key.Thumbnail.rawValue] = thumbnailData.base64EncodedStringWithOptions([])
         }
         
         // Set picked color.
         if pickColorViewHeightConstraint.constant != 0.0 {
-            item[FBagItem.Keys.fillColor.rawValue] = FBagItem.colorToString(pickedColor)
+            item[FBagItem.Key.FillColor.rawValue] = FBagItem.colorToString(pickedColor)
         }
         
         // Set item size.
         if let selectedItemSizeIndex = itemSizeCollectionViewController?.selectedSizeIndexPath?.row {
             if let sizes = getItemSizes() {
-                item[FBagItem.Keys.itemSize.rawValue] = sizes[selectedItemSizeIndex]
+                item[FBagItem.Key.ItemSize.rawValue] = sizes[selectedItemSizeIndex]
             }
         }
         
-        item[FBagItem.Keys.numberOfItems.rawValue] = numberOfItems
+        // Save info about state number key ring.
+        if let type = getCategoryItemType() where type == .stateNumberKeyRing {
+            let text = "\(letters).\(numbers).\(region)"
+            item[FBagItem.Key.Text.rawValue] = text
+        }
+        
+        // Image location for clothes.
+        if category.type == .clothes {
+            item[FBagItem.Key.ImageLocation.rawValue] = imageLocation.rawValue
+        }
+        
+        // Number of items.
+        item[FBagItem.Key.NumberOfItems.rawValue] = numberOfItems
         
         // FIXME: fix with the price.
         let price = 500.0
-        item[FBagItem.Keys.price.rawValue] = price
+        item[FBagItem.Key.Price.rawValue] = price
         
-        item[FBagItem.Keys.amount.rawValue] = price * Double(numberOfItems)
+        item[FBagItem.Key.Amount.rawValue] = price * Double(numberOfItems)
         
         print("BagItem dictionary created.")
         
@@ -769,6 +844,20 @@ class CategoryItemViewController: UIViewController {
     }
     
     @IBAction func addToBagDidPressed(sender: AnyObject) {
+        func showWithStatus(status: String) {
+            SVProgressHUD.showWithStatus(status)
+            DataService.showNetworkIndicator()
+        }
+        
+        func showSuccessWithStatus(status: String) {
+            SVProgressHUD.showSuccessWithStatus(status)
+            DataService.hideNetworkIndicator()
+        }
+        
+        func showErrorWithStatus(status: String) {
+            SVProgressHUD.showErrorWithStatus(status)
+            DataService.hideNetworkIndicator()
+        }
         
         // For adding item to bag, user must be logged in.
         // Present an alert that inform user about this.
@@ -785,8 +874,24 @@ class CategoryItemViewController: UIViewController {
             return
         }
         
+        if isInEditMode {
+            showWithStatus(NSLocalizedString("Updating...", comment: ""))
+            
+            var value = createBagItem()
+            value[FBagItem.Key.CreatedAt.rawValue] = bagItemToEdit!.createdAt.getStringValue()
+            
+            bagItemToEdit!.reference.setValue(value, withCompletionBlock: { (error, ref) in
+                if let error = error {
+                    print("An error occured when trying to update item. Error: \(error.localizedDescription)")
+                    
+                    showErrorWithStatus(NSLocalizedString("Failed", comment: ""))
+                } else {
+                    showSuccessWithStatus(NSLocalizedString("Updated", comment: ""))
+                }
+            })
+            
         // If the item has already been added to bag, go to shopping cart.
-        if didAddItemToBag {
+        } else if didAddItemToBag {
             goToShoppingCart()
         } else {
             
@@ -797,9 +902,7 @@ class CategoryItemViewController: UIViewController {
             }
             
             // Adding item to the user bag.
-            
-            SVProgressHUD.showWithStatus(NSLocalizedString("Adding...", comment: ""))
-            DataService.showNetworkIndicator()
+            showWithStatus(NSLocalizedString("Adding...", comment: ""))
             
             // Create the new item.
             let item = createBagItem()
@@ -807,8 +910,7 @@ class CategoryItemViewController: UIViewController {
             dataService.saveItem(item, success: { [weak self] in
                 self?.didAddItemToBag = true
                 
-                SVProgressHUD.showSuccessWithStatus(NSLocalizedString("Added", comment: ""))
-                DataService.hideNetworkIndicator()
+                showSuccessWithStatus(NSLocalizedString("Added", comment: ""))
                 
                 // Post notification.
                 NSNotificationCenter.defaultCenter().postNotificationName(NotificationName.CategoryItemViewControllerDidAddItemToBagNotification, object: item)
@@ -822,11 +924,9 @@ class CategoryItemViewController: UIViewController {
                         print("Failed to save item. Error: \(error.localizedDescription)")
                     }
                     
+                    showErrorWithStatus(NSLocalizedString("Failed", comment: ""))
+                    
                     self?.didAddItemToBag = false
-                    
-                    SVProgressHUD.showErrorWithStatus(NSLocalizedString("Failed", comment: ""))
-                    DataService.hideNetworkIndicator()
-                    
                     self?.updateAddToBagButtonTitle()
                 })
         }
@@ -882,7 +982,7 @@ class CategoryItemViewController: UIViewController {
             let imageLocation = UIAlertAction(title: NSLocalizedString("Image location", comment: "Alert action title"), style: .Default) { action in
                 
                 /// Nested function for data updating.
-                func setImageLocationAndReloadData(location: TShirt.TShirtImageLocations) {
+                func setImageLocationAndReloadData(location: TShirt.TShirtImageLocation) {
                     self.imageLocation = location
                     self.reloadData()
                 }
@@ -891,12 +991,12 @@ class CategoryItemViewController: UIViewController {
                 
                 // Front image location action.
                 imageLocationController.addAction(UIAlertAction(title: NSLocalizedString("Front", comment: "Alert action title"), style: .Default, handler: { action in
-                    setImageLocationAndReloadData(TShirt.TShirtImageLocations.Front)
+                    setImageLocationAndReloadData(TShirt.TShirtImageLocation.Front)
                 }))
                 
                 // Behind image location action.
                 imageLocationController.addAction(UIAlertAction(title: NSLocalizedString("Behind", comment: "Alert action title"), style: .Default, handler: { action in
-                    setImageLocationAndReloadData(TShirt.TShirtImageLocations.Behind)
+                    setImageLocationAndReloadData(TShirt.TShirtImageLocation.Behind)
                 }))
                 
                 // Cancel action.

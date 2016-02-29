@@ -218,24 +218,24 @@ class CaseConstructorTableViewController: UITableViewController {
         }
         
         // Set the user id.
-        item[FBagItem.Keys.userId.rawValue] = userId
+        item[FBagItem.Key.UserId.rawValue] = userId
         
         // Set parent category id.
-        item[FBagItem.Keys.category.rawValue] = category.key
+        item[FBagItem.Key.Category.rawValue] = category.key
         
         // Set the current date.
-        item[FBagItem.Keys.createdAt.rawValue] = NSDate().getStringValue()
+        item[FBagItem.Key.CreatedAt.rawValue] = NSDate().getStringValue()
         
         // Set selected category item if it exist.
         if let categoryItems = categoryItems where categoryItems.count > 0 {
-            item[FBagItem.Keys.categoryItem.rawValue] = categoryItems[0].key
+            item[FBagItem.Key.CategoryItem.rawValue] = categoryItems[0].key
         }
         
         // Set user picked image from media/camera.
         if self.caseView.showBackgroundImage == true {
             if let image = pickedImage {
                 if let base64ImageString = image.base64EncodedString() {
-                    item[FBagItem.Keys.image.rawValue] = base64ImageString
+                    item[FBagItem.Key.Image.rawValue] = base64ImageString
                 }
             }
         }
@@ -245,26 +245,26 @@ class CaseConstructorTableViewController: UITableViewController {
         let size = image.size
         let thumbnailData = UIImagePNGRepresentation(image.resizedImage(size, interpolationQuality: .Low))
         if let thumbnailData = thumbnailData {
-            item[FBagItem.Keys.thumbnail.rawValue] = thumbnailData.base64EncodedStringWithOptions([])
+            item[FBagItem.Key.Thumbnail.rawValue] = thumbnailData.base64EncodedStringWithOptions([])
         }
         
         
         // Set colors.
-        item[FBagItem.Keys.fillColor.rawValue] = FBagItem.colorToString(caseView.fillColor)
-        item[FBagItem.Keys.textColor.rawValue] = FBagItem.colorToString(caseView.textColor)
+        item[FBagItem.Key.FillColor.rawValue] = FBagItem.colorToString(caseView.fillColor)
+        item[FBagItem.Key.TextColor.rawValue] = FBagItem.colorToString(caseView.textColor)
         
-        item[FBagItem.Keys.numberOfItems.rawValue] = 1
+        item[FBagItem.Key.NumberOfItems.rawValue] = 1
         
         // FIXME: fix with the price.
         let price = 750.0
-        item[FBagItem.Keys.price.rawValue] = price
-        item[FBagItem.Keys.amount.rawValue] = price
+        item[FBagItem.Key.Price.rawValue] = price
+        item[FBagItem.Key.Amount.rawValue] = price
         
         // Set device.
-        item[FBagItem.Keys.device.rawValue] = device.descriptionFromDevice()
+        item[FBagItem.Key.Device.rawValue] = device.descriptionFromDevice()
         
         // Set text.
-        item[FBagItem.Keys.text.rawValue] = caseView.text
+        item[FBagItem.Key.Text.rawValue] = caseView.text
         
         print("BagItem dictionary created.")
         

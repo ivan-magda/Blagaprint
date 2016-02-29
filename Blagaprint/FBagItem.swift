@@ -15,21 +15,22 @@ class FBagItem {
     // MARK: - Types
     //--------------------------------------
     
-    enum Keys: String {
-        case userId
-        case category
-        case categoryItem
-        case image
-        case thumbnail
-        case price
-        case device
-        case text
-        case fillColor
-        case textColor
-        case createdAt
-        case itemSize
-        case numberOfItems
-        case amount
+    enum Key: String {
+        case UserId = "userId"
+        case Category = "category"
+        case CategoryItem = "categoryItem"
+        case Image = "image"
+        case Thumbnail = "thumbnail"
+        case Price = "price"
+        case Device = "device"
+        case Text = "text"
+        case FillColor = "fillColor"
+        case TextColor = "textColor"
+        case CreatedAt = "createdAt"
+        case ItemSize = "itemSize"
+        case NumberOfItems = "numberOfItems"
+        case Amount = "amount"
+        case ImageLocation = "imageLocation"
     }
     
     //--------------------------------------
@@ -47,6 +48,7 @@ class FBagItem {
     
     var image: UIImage?
     var thumbnail: UIImage?
+    var imageLocation: Int?
     
     var device: String?
     var text: String?
@@ -57,6 +59,28 @@ class FBagItem {
     var numberOfItems: Int!
     var price: Double!
     var amount: Double!
+    
+    var value: Dictionary<String, AnyObject> {
+        var dictionary = [String : AnyObject]()
+        
+        dictionary[Key.UserId.rawValue] = userId
+        dictionary[Key.Category.rawValue] = category
+        dictionary[Key.CategoryItem.rawValue] = categoryItem
+        dictionary[Key.CreatedAt.rawValue] = createdAt
+        dictionary[Key.Image.rawValue] = image
+        dictionary[Key.Thumbnail.rawValue] = thumbnail
+        dictionary[Key.ImageLocation.rawValue] = imageLocation
+        dictionary[Key.Device.rawValue] = device
+        dictionary[Key.Text.rawValue] = text
+        dictionary[Key.FillColor.rawValue] = fillColor
+        dictionary[Key.TextColor.rawValue] = textColor
+        dictionary[Key.ItemSize.rawValue] = itemSize
+        dictionary[Key.NumberOfItems.rawValue] = numberOfItems
+        dictionary[Key.Price.rawValue] = price
+        dictionary[Key.Amount.rawValue] = amount
+        
+        return dictionary
+    }
     
     //--------------------------------------
     // MARK: - Class Functions -
@@ -88,50 +112,51 @@ class FBagItem {
         // Within the BagItem, or Key, the following properties are children
         
         for (key, value) in dictionary {
-            let type = Keys(rawValue: key)!
-            
-            switch type {
-            case .userId:
-                userId = value as! String
-            case .category:
-                category = value as! String
-            case .categoryItem:
-                categoryItem = value as? String
-            case .image:
-                if let base64ImageString = value as? String {
-                    image = base64ImageString.decodedImageFromBase64String()
-                }
-            case .thumbnail:
-                if let base64ThumbString = value as? String {
-                    thumbnail = base64ThumbString.decodedImageFromBase64String()
-                }
-            case .price:
-                price = value as! Double
-            case .device:
-                device = value as? String
-            case .text:
-                text = value as? String
-            case .fillColor:
-                fillColor = value as? String
-            case .textColor:
-                textColor = value as? String
-            case .itemSize:
-                itemSize = value as? String
-            case .numberOfItems:
-                numberOfItems = value as! Int
-            case .amount:
-                amount = value as! Double
-            case .createdAt:
-                if let dateString = value as? String {
-                    if let date = dateString.getDateValue() {
-                        createdAt = date
+            if let type = Key(rawValue: key) {
+                switch type {
+                case .UserId:
+                    userId = value as! String
+                case .Category:
+                    category = value as! String
+                case .CategoryItem:
+                    categoryItem = value as? String
+                case .Image:
+                    if let base64ImageString = value as? String {
+                        image = base64ImageString.decodedImageFromBase64String()
                     }
+                case .Thumbnail:
+                    if let base64ThumbString = value as? String {
+                        thumbnail = base64ThumbString.decodedImageFromBase64String()
+                    }
+                case .Price:
+                    price = value as! Double
+                case .Device:
+                    device = value as? String
+                case .Text:
+                    text = value as? String
+                case .FillColor:
+                    fillColor = value as? String
+                case .TextColor:
+                    textColor = value as? String
+                case .ItemSize:
+                    itemSize = value as? String
+                case .NumberOfItems:
+                    numberOfItems = value as! Int
+                case .Amount:
+                    amount = value as! Double
+                case .CreatedAt:
+                    if let dateString = value as? String {
+                        if let date = dateString.getDateValue() {
+                            createdAt = date
+                        }
+                    }
+                case .ImageLocation:
+                    imageLocation = value as? Int
                 }
             }
         }
         
         // The above properties are assigned to their key.
-        
         reference = DataService.sharedInstance.bagItemReference.childByAppendingPath(self.key)
     }
     

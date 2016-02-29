@@ -9,16 +9,16 @@
 import UIKit
 import Firebase
 
+//--------------------------------------
+// MARK: - Types
+//--------------------------------------
+
+private enum SegueIdentifier: String {
+    case PhoneCaseConstructor
+    case CategoryItem
+}
+
 class CategoryTableViewController: UITableViewController {
-    
-    //--------------------------------------
-    // MARK: - Types
-    //--------------------------------------
-    
-    private enum SegueIdentifier: String {
-        case PhoneCaseConstructor
-        case CategoryItem
-    }
     
     //--------------------------------------
     // MARK: - Properties
@@ -63,16 +63,16 @@ class CategoryTableViewController: UITableViewController {
             let categoryItemViewController = segue.destinationViewController as! CategoryItemViewController
             categoryItemViewController.dataService = dataService
             
-            if let selectedRow = self.tableView.indexPathForSelectedRow {
-                categoryItemViewController.category = categories[selectedRow.section]
+            if let selectedIndexPath = tableView.indexPathForSelectedRow {
+                categoryItemViewController.category = categories[selectedIndexPath.section]
             }
         } else if segue.identifier == SegueIdentifier.PhoneCaseConstructor.rawValue {
             let caseConstructorVC = segue.destinationViewController as! CaseConstructorTableViewController
             
             caseConstructorVC.dataService = dataService
             
-            if let selectedRow = self.tableView.indexPathForSelectedRow {
-                caseConstructorVC.category = categories[selectedRow.section]
+            if let selectedIndexPath = tableView.indexPathForSelectedRow {
+                caseConstructorVC.category = categories[selectedIndexPath.section]
             }
         }
     }

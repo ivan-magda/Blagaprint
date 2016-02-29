@@ -10,16 +10,17 @@ import Foundation
 import UIKit
 
 class TShirt {
+    
     //--------------------------------------
     // MARK: - Types
     //--------------------------------------
     
-    struct TShirtImageLocations: OptionSetType {
+    struct TShirtImageLocation: OptionSetType {
         let rawValue: Int
         
-        static let None   = TShirtImageLocations(rawValue: -1)
-        static let Front  = TShirtImageLocations(rawValue: 1 << 0)
-        static let Behind = TShirtImageLocations(rawValue: 1 << 1)
+        static let None   = TShirtImageLocation(rawValue: -1)
+        static let Front  = TShirtImageLocation(rawValue: 1 << 0)
+        static let Behind = TShirtImageLocation(rawValue: 1 << 1)
     }
     
     //--------------------------------------
@@ -33,7 +34,7 @@ class TShirt {
     var image: UIImage
     
     /// T-Shirt image location.
-    var imageLocation: TShirtImageLocations = .Front
+    var imageLocation: TShirtImageLocation = .Front
     
     /// Show or hide the image.
     var isImageVisible = false
@@ -45,11 +46,11 @@ class TShirt {
     // MARK: - Init
     //--------------------------------------
     
-    init(image: UIImage = UIImage(), isImageVisible visible: Bool = false, imageLocation: TShirtImageLocations = .Front, color: UIColor = UIColor.whiteColor()) {
+    init(image: UIImage = UIImage(), isImageVisible visible: Bool = false, imageLocation: TShirtImageLocation = .Front, color: UIColor = UIColor.whiteColor()) {
         self.image = image
-        self.isImageVisible = visible
         self.imageLocation = imageLocation
         self.color = color
+        isImageVisible = visible
     }
     
     //--------------------------------------
