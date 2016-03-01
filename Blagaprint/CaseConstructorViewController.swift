@@ -250,8 +250,8 @@ class CaseConstructorTableViewController: UITableViewController {
         
         
         // Set colors.
-        item[FBagItem.Key.FillColor.rawValue] = FBagItem.colorToString(caseView.fillColor)
-        item[FBagItem.Key.TextColor.rawValue] = FBagItem.colorToString(caseView.textColor)
+        item[FBagItem.Key.FillColor.rawValue] = caseView.fillColor.hexString(false)
+        item[FBagItem.Key.TextColor.rawValue] = caseView.textColor.hexString(false)
         
         item[FBagItem.Key.NumberOfItems.rawValue] = 1
         

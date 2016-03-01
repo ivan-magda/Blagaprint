@@ -36,7 +36,7 @@
 		0C83490C1C214ADB00A0697F /* Replace.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C8349091C214ADB00A0697F /* Replace.png */; };
 		0CA50CE51C194D5800020150 /* ShoppingBagViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CA50CE41C194D5800020150 /* ShoppingBagViewController.swift */; };
 		0CA50CE91C1954F400020150 /* AccountTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CA50CE81C1954F400020150 /* AccountTableViewController.swift */; };
-		48DCA15F20C4FABBBF82151F /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA1B90805AA307FDE05B12FC /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		48DCA15F20C4FABBBF82151F /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA1B90805AA307FDE05B12FC /* Pods.framework */; };
 		501506501BCE96C700697C99 /* TextEditingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5015064F1BCE96C700697C99 /* TextEditingViewController.swift */; };
 		502A8CB31BB80EAC0064E0DA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502A8CB21BB80EAC0064E0DA /* AppDelegate.swift */; };
 		502A8CB51BB80EAC0064E0DA /* CategoryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502A8CB41BB80EAC0064E0DA /* CategoryTableViewController.swift */; };
@@ -158,6 +158,7 @@
 		759E8CD01BDF64A1008A5503 /* galaxyS4MiniCameraImage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 759E8CCE1BDF64A1008A5503 /* galaxyS4MiniCameraImage@2x.png */; };
 		759E8CD41BDF6D46008A5503 /* galaxyS5MiniCameraImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 759E8CD21BDF6D46008A5503 /* galaxyS5MiniCameraImage.png */; };
 		759E8CD51BDF6D46008A5503 /* galaxyS5MiniCameraImage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 759E8CD31BDF6D46008A5503 /* galaxyS5MiniCameraImage@2x.png */; };
+		75A167011C8553C00023EC3B /* UIColor+EqualToColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75A167001C8553C00023EC3B /* UIColor+EqualToColor.swift */; };
 		75A36C331BE254910036B500 /* galaxyA5CameraImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 75A36C311BE254910036B500 /* galaxyA5CameraImage.png */; };
 		75A36C341BE254910036B500 /* galaxyA5CameraImage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 75A36C321BE254910036B500 /* galaxyA5CameraImage@2x.png */; };
 		75A36C371BE2549E0036B500 /* galaxyA5Led.png in Resources */ = {isa = PBXBuildFile; fileRef = 75A36C351BE2549E0036B500 /* galaxyA5Led.png */; };
@@ -380,6 +381,7 @@
 		759E8CCE1BDF64A1008A5503 /* galaxyS4MiniCameraImage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "galaxyS4MiniCameraImage@2x.png"; path = "images/galaxyS4MiniCameraImage@2x.png"; sourceTree = "<group>"; };
 		759E8CD21BDF6D46008A5503 /* galaxyS5MiniCameraImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = galaxyS5MiniCameraImage.png; path = images/galaxyS5MiniCameraImage.png; sourceTree = "<group>"; };
 		759E8CD31BDF6D46008A5503 /* galaxyS5MiniCameraImage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "galaxyS5MiniCameraImage@2x.png"; path = "images/galaxyS5MiniCameraImage@2x.png"; sourceTree = "<group>"; };
+		75A167001C8553C00023EC3B /* UIColor+EqualToColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+EqualToColor.swift"; sourceTree = "<group>"; };
 		75A36C311BE254910036B500 /* galaxyA5CameraImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = galaxyA5CameraImage.png; sourceTree = "<group>"; };
 		75A36C321BE254910036B500 /* galaxyA5CameraImage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "galaxyA5CameraImage@2x.png"; sourceTree = "<group>"; };
 		75A36C351BE2549E0036B500 /* galaxyA5Led.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = galaxyA5Led.png; sourceTree = "<group>"; };
@@ -1281,6 +1283,7 @@
 				75ED7A731C7B310F00163EE1 /* String */,
 				7539D3FC1C7AE078001B82F2 /* NSUserDefaults+UpdateUserInfo.swift */,
 				75ED7A761C7B324700163EE1 /* NSDate+String.swift */,
+				75A167001C8553C00023EC3B /* UIColor+EqualToColor.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -1582,6 +1585,7 @@
 				7539D3FB1C7AD24A001B82F2 /* DataListener.swift in Sources */,
 				753CD57A1BF3210500795F44 /* AppConfiguration.swift in Sources */,
 				75BF69591C044EDC009D670D /* SH19_PhotoFrame.swift in Sources */,
+				75A167011C8553C00023EC3B /* UIColor+EqualToColor.swift in Sources */,
 				75A3E9751BE35DC90001E073 /* GalaxyNote3.swift in Sources */,
 				7522B8921BFF3C0100BC14C0 /* ExpandedCollectionViewFlowLayout.swift in Sources */,
 				75FD246F1BE3D3E500446801 /* XperiaZ.swift in Sources */,

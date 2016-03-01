@@ -83,25 +83,6 @@ class FBagItem {
     }
     
     //--------------------------------------
-    // MARK: - Class Functions -
-    //--------------------------------------
-    
-    /// Returns a formatted string that specifies the components of the color.
-    class func colorToString(color: UIColor) -> String {
-        let colorString = CIColor(CGColor: color.CGColor).stringRepresentation
-        
-        return colorString
-    }
-    
-    /// Creates a color object using the RGBA color component values specified by a string.
-    class func colorFromString(string: String) -> UIColor {
-        let coreColor = CIColor(string: string)
-        let color = UIColor(CIColor: coreColor)
-        
-        return color
-    }
-    
-    //--------------------------------------
     // MARK: - Init -
     //--------------------------------------
     

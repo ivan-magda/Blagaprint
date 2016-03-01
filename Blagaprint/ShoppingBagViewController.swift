@@ -223,7 +223,7 @@ class ShoppingBagViewController: UITableViewController {
         // Query for the user bag.
         
         bagRef.queryOrderedByChild(FBag.Key.userId.rawValue).queryEqualToValue(userId).observeEventType(.Value, withBlock: { [weak self] snapshot in
-            if let snapshots = snapshot.children.allObjects as? [FDataSnapshot] {
+            if let snapshots = snapshot.children.allObjects as? [FDataSnapshot] where snapshots.count > 0 {
                 assert(snapshots.count == 1, "Bag must be unique for each user.")
                 
                 // Create user bag object.

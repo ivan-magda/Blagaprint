@@ -8,6 +8,7 @@
 
 import UIKit
 import SVProgressHUD
+import UIColor_Hex_Swift
 
 //--------------------------------------
 // MARK: Types
@@ -340,7 +341,7 @@ class CategoryItemViewController: UIViewController {
             numberOfItems = bagItemToEdit!.numberOfItems
             
             if let fillColor = bagItemToEdit?.fillColor {
-                pickedColor = FBagItem.colorFromString(fillColor)
+                pickedColor = UIColor(rgba: fillColor)
             }
         }
         
@@ -434,8 +435,8 @@ class CategoryItemViewController: UIViewController {
         pickedColorView.layer.borderWidth = 0.0
         var borderColor: UIColor?
         
-        if pickedColor == UIColor.whiteColor() {
-            borderColor = .lightGrayColor()
+        if pickedColor.isEqualToColor(UIColor.whiteColor()) {
+            borderColor = UIColor.lightGrayColor()
         }
         
         if let borderColor = borderColor {
@@ -769,7 +770,7 @@ class CategoryItemViewController: UIViewController {
         
         // Set picked color.
         if pickColorViewHeightConstraint.constant != 0.0 {
-            item[FBagItem.Key.FillColor.rawValue] = FBagItem.colorToString(pickedColor)
+            item[FBagItem.Key.FillColor.rawValue] = pickedColor.hexString(false)
         }
         
         // Set item size.

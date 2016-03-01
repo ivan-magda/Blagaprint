@@ -9,6 +9,7 @@
 import UIKit
 
 class SelectBackgroundCollectionViewController: UICollectionViewController {
+    
     //--------------------------------------
     // MARK: - Properties
     //--------------------------------------
@@ -40,10 +41,8 @@ class SelectBackgroundCollectionViewController: UICollectionViewController {
     //--------------------------------------
     
     private func doneWithColorSelecting(color: UIColor) {
-        if let callBack = didSelectColorCompletionHandler {
-            callBack(color)
-        }
-        self.dismissViewControllerAnimated(true, completion: nil)
+        didSelectColorCompletionHandler?(color)
+        dismissViewControllerAnimated(true, completion: nil)
     }
     
     //--------------------------------------
@@ -61,7 +60,7 @@ class SelectBackgroundCollectionViewController: UICollectionViewController {
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(SelectBackgroundCollectionViewController.kCellIdentifier, forIndexPath: indexPath) as! BackgroundCollectionViewCell
         cell.ovalView.fillColor = colors[indexPath.row]
-        cell.ovalView.checkmarkVisible = cell.ovalView.fillColor == selectedColor
+        cell.ovalView.checkmarkVisible = cell.ovalView.fillColor.isEqualToColor(selectedColor)
         
         return cell
     }
@@ -80,7 +79,7 @@ class SelectBackgroundCollectionViewController: UICollectionViewController {
     //--------------------------------------
 
     @IBAction func cancelButtonDidPressed(sender: UIBarButtonItem) {
-        self.dismissViewControllerAnimated(true, completion: nil)
+        dismissViewControllerAnimated(true, completion: nil)
     }
     
     @IBAction func doneButtonDidPressed(sender: UIBarButtonItem) {
