@@ -10,6 +10,7 @@ import UIKit
 import FBSDKCoreKit
 import FBSDKLoginKit
 import Firebase
+import LaunchKit
 
 /// The index of the view controller associated with the tab item.
 enum TabItemIndex: Int {
@@ -35,6 +36,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     //--------------------------------------
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+        // Initialize LaunchKit.
+        LaunchKit.launchWithToken("D7lqrPFIWIfS9zitBhQrfnTkxfmxD99FHPhHELpw2Dfv")
+        
         configurateFirebase()
         
         AppAppearance.applyAppAppearance()
@@ -46,6 +50,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             application.registerUserNotificationSettings(settings)
             application.registerForRemoteNotifications()
         }
+        
+        showOnBoardingIfNecessary()
         
         return FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
     }
@@ -143,6 +149,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Start listen for data changes.
         dataListener = DataListener.sharedInstance
         dataListener.startListen()
+    }
+    
+    private func showOnBoardingIfNecessary() {
+        let defaults = NSUserDefaults.standardUserDefaults()
+        let hasShownOnboarding = defaults.boolForKey("shownOnboardingBefore")
+        if !hasShownOnboarding {
+            let lk = LaunchKit.sharedInstance()
+            UIApplication.sharedApplication().statusBarStyle = UIStatusBarStyle.Default
+            lk.presentOnboardingUIOnWindow(self.window!) { _ in
+                print("Showed onboarding!")
+                
+                dispatch_async(dispatch_get_main_queue()) {
+                    UIApplication.sharedApplication().statusBarStyle = UIStatusBarStyle.LightContent
+                }
+                
+                defaults.setBool(true, forKey: "shownOnboardingBefore")
+                defaults.synchronize()
+            }
+        }
     }
     
 }

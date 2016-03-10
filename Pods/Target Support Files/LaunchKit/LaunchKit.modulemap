@@ -1,0 +1,13 @@
+framework module LaunchKit {
+  umbrella header "LaunchKit-umbrella.h"
+
+  export *
+  module * { export * }
+
+  private header "LK_SSZipArchive.h"
+  private header "lk_crypt.h"
+  private header "lk_ioapi.h"
+  private header "lk_mztools.h"
+  private header "lk_unzip.h"
+  private header "lk_zip.h"
+}
